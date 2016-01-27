@@ -202,6 +202,17 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
 
     return YES;
 }
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField == _signUpView.usernameField)
+    {
+        NSCharacterSet *invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyz0123456789"] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
+        return [string isEqualToString:filtered];
+    }
+    else
+        return YES;
+}
 
 #pragma mark -
 #pragma mark Private

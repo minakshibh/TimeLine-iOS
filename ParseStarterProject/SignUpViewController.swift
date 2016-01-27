@@ -40,11 +40,11 @@ class SignUpViewController: PFSignUpViewController {
         signUpView?.usernameField?.delegate = self
     }
 
-    override func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let result = (textField.text ?? "" as NSString).stringByReplacingCharactersInRange(range, withString: string)
-        textField.text = result.lowercaseString
-        return false
-    }
+//    override func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+//        let result = (textField.text ?? "" as NSString).stringByReplacingCharactersInRange(range, withString: string)
+//        textField.text = result.lowercaseString
+//        return false
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

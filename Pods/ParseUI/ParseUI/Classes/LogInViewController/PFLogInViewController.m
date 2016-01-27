@@ -232,7 +232,17 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
 
     return YES;
 }
-
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField == _logInView.usernameField)
+    {
+        NSCharacterSet *invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyz0123456789"] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
+        return [string isEqualToString:filtered];
+    }
+    else
+        return YES;
+}
 ///--------------------------------------
 #pragma mark - UIAlertViewDelegate
 ///--------------------------------------
