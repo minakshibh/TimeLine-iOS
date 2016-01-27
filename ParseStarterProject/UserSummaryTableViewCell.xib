@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="312" id="dWy-cR-JQd" customClass="UserSummaryTableViewCell" customModule="Timeline" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="412" height="312"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dWy-cR-JQd" id="CnY-dq-8Rf">
+                <rect key="frame" x="0.0" y="0.0" width="412" height="311"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20q-DA-Jxx" customClass="SWFrameButton">
+                        <rect key="frame" x="214" y="115" width="118" height="22"/>
+                        <color key="tintColor" red="1" green="0.31372549020000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="0" image="love"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="tappedLikeButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="uF0-Ny-g9A"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re5-Sp-TW8">
+                        <rect key="frame" x="214" y="175" width="60" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33" id="12K-gb-58x"/>
+                        </constraints>
+                        <state key="normal" image="more"/>
+                        <connections>
+                            <action selector="tappedMoreButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="QQa-Cu-uuz"/>
+                        </connections>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ptT-Lq-JZU" customClass="ProfileImageView" customModule="Timeline" customModuleProvider="target">
+                        <rect key="frame" x="80" y="97" width="118" height="118"/>
+                        <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="118" id="F7I-0Z-45q"/>
+                            <constraint firstAttribute="width" secondItem="ptT-Lq-JZU" secondAttribute="height" multiplier="1:1" id="Ue3-rY-aKG"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ue3-rY-aKG"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaF-cL-c0Y">
+                        <rect key="frame" x="206" y="156" width="0.0" height="0.0"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" id="1KP-6w-7Nd"/>
+                            <constraint firstAttribute="height" id="F0k-Se-6r8"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-u8-Fmv" customClass="SWFrameButton">
+                        <rect key="frame" x="214" y="145" width="118" height="22"/>
+                        <color key="tintColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="0" image="follower"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="tappedFollowButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="FnR-sB-unJ"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mm-UQ-4qv" customClass="SWFrameButton">
+                        <rect key="frame" x="282" y="175" width="50" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="Respond"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="tappedApproveButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="MJO-cA-crN"/>
+                        </connections>
+                    </button>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpC-xd-0Kv">
+                        <rect key="frame" x="80" y="68" width="252" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ptT-Lq-JZU" firstAttribute="width" secondItem="ptT-Lq-JZU" secondAttribute="height" multiplier="1:1" id="2za-V6-71m"/>
+                    <constraint firstItem="20q-DA-Jxx" firstAttribute="leading" secondItem="z0h-u8-Fmv" secondAttribute="leading" id="32N-Ed-8vG"/>
+                    <constraint firstItem="re5-Sp-TW8" firstAttribute="height" secondItem="8mm-UQ-4qv" secondAttribute="height" id="3Ad-cb-Cbi"/>
+                    <constraint firstItem="xaF-cL-c0Y" firstAttribute="leading" secondItem="ptT-Lq-JZU" secondAttribute="trailing" constant="8" id="45t-Ac-3hp"/>
+                    <constraint firstItem="re5-Sp-TW8" firstAttribute="leading" secondItem="z0h-u8-Fmv" secondAttribute="leading" id="7sg-J4-g52"/>
+                    <constraint firstItem="xaF-cL-c0Y" firstAttribute="centerY" secondItem="CnY-dq-8Rf" secondAttribute="centerY" id="IBX-qY-YVC"/>
+                    <constraint firstItem="8mm-UQ-4qv" firstAttribute="leading" secondItem="re5-Sp-TW8" secondAttribute="trailing" constant="8" id="IEW-dR-2hh"/>
+                    <constraint firstItem="z0h-u8-Fmv" firstAttribute="top" secondItem="20q-DA-Jxx" secondAttribute="bottom" constant="8" id="Jpv-cj-lMm"/>
+                    <constraint firstItem="z0h-u8-Fmv" firstAttribute="width" secondItem="ptT-Lq-JZU" secondAttribute="width" id="Kfh-GN-vOy"/>
+                    <constraint firstItem="ptT-Lq-JZU" firstAttribute="width" secondItem="ptT-Lq-JZU" secondAttribute="height" multiplier="1:1" id="NCY-JI-e9R"/>
+                    <constraint firstItem="8mm-UQ-4qv" firstAttribute="top" secondItem="z0h-u8-Fmv" secondAttribute="bottom" constant="8" id="Rgp-tQ-fyc"/>
+                    <constraint firstItem="ptT-Lq-JZU" firstAttribute="width" secondItem="ptT-Lq-JZU" secondAttribute="height" multiplier="1:1" id="Xy2-H9-EgP"/>
+                    <constraint firstItem="re5-Sp-TW8" firstAttribute="centerY" secondItem="8mm-UQ-4qv" secondAttribute="centerY" id="ZM2-fR-t8F"/>
+                    <constraint firstItem="re5-Sp-TW8" firstAttribute="trailing" secondItem="z0h-u8-Fmv" secondAttribute="trailing" priority="750" id="eWE-jV-OCJ"/>
+                    <constraint firstItem="z0h-u8-Fmv" firstAttribute="leading" secondItem="xaF-cL-c0Y" secondAttribute="trailing" constant="8" id="evK-W3-sM3"/>
+                    <constraint firstItem="ptT-Lq-JZU" firstAttribute="centerY" secondItem="CnY-dq-8Rf" secondAttribute="centerY" id="gWU-9m-rbY"/>
+                    <constraint firstItem="z0h-u8-Fmv" firstAttribute="width" secondItem="20q-DA-Jxx" secondAttribute="width" id="lmH-eG-8fi"/>
+                    <constraint firstItem="z0h-u8-Fmv" firstAttribute="centerY" secondItem="CnY-dq-8Rf" secondAttribute="centerY" id="m4g-Fh-AJo"/>
+                    <constraint firstItem="8mm-UQ-4qv" firstAttribute="trailing" secondItem="z0h-u8-Fmv" secondAttribute="trailing" id="m6m-70-I2P"/>
+                    <constraint firstItem="NpC-xd-0Kv" firstAttribute="trailing" secondItem="20q-DA-Jxx" secondAttribute="trailing" id="nkg-vg-NwM"/>
+                    <constraint firstItem="NpC-xd-0Kv" firstAttribute="leading" secondItem="ptT-Lq-JZU" secondAttribute="leading" id="nog-wm-jY5"/>
+                    <constraint firstItem="ptT-Lq-JZU" firstAttribute="top" secondItem="NpC-xd-0Kv" secondAttribute="bottom" constant="8" id="pgL-Ir-4zm"/>
+                    <constraint firstItem="xaF-cL-c0Y" firstAttribute="centerX" secondItem="CnY-dq-8Rf" secondAttribute="centerX" id="viI-oO-1Nu"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="2za-V6-71m"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="approveButton" destination="8mm-UQ-4qv" id="cTQ-Kq-GDg"/>
+                <outlet property="approveConstraint" destination="IEW-dR-2hh" id="lCT-fP-Wi5"/>
+                <outlet property="followButton" destination="z0h-u8-Fmv" id="7ky-r2-76k"/>
+                <outlet property="likeButton" destination="20q-DA-Jxx" id="QXP-LE-khS"/>
+                <outlet property="nameLabel" destination="NpC-xd-0Kv" id="Mtn-Rf-bRB"/>
+                <outlet property="profileImageView" destination="ptT-Lq-JZU" id="Xnw-Ar-eTh"/>
+            </connections>
+            <point key="canvasLocation" x="783" y="313"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="follower" width="16" height="15"/>
+        <image name="love" width="16" height="15"/>
+        <image name="more" width="33" height="30"/>
+    </resources>
+</document>

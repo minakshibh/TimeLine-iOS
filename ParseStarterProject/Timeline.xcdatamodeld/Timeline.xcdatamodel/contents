@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DistantObject" representedClassName="PRODUCT_MODULE_NAME.DistantObject" syncable="YES">
+        <attribute name="isOnline" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Followable" syncable="YES">
+        <attribute name="followersCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="likersCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Moment" representedClassName="PRODUCT_MODULE_NAME.Moment" parentEntity="DistantObject" syncable="YES">
+        <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="duration" attributeType="Integer 16" syncable="YES"/>
+        <relationship name="timeline" maxCount="1" deletionRule="Nullify" destinationEntity="Timeline" inverseName="moments" inverseEntity="Timeline" syncable="YES"/>
+    </entity>
+    <entity name="Tag" representedClassName="PRODUCT_MODULE_NAME.Tag" syncable="YES">
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="timelines" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Timeline" inverseName="tags" inverseEntity="Timeline" syncable="YES"/>
+    </entity>
+    <entity name="Timeline" representedClassName="PRODUCT_MODULE_NAME.Timeline" parentEntity="DistantObject" syncable="YES">
+        <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="moments" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Moment" inverseName="timeline" inverseEntity="Moment" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="timelines" inverseEntity="User" syncable="YES"/>
+        <relationship name="tags" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="timelines" inverseEntity="Tag" syncable="YES"/>
+    </entity>
+    <entity name="User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="timelines" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Timeline" inverseName="owner" inverseEntity="Timeline" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="DistantObject" positionX="144" positionY="-15" width="128" height="90"/>
+        <element name="Moment" positionX="315" positionY="135" width="128" height="88"/>
+        <element name="Tag" positionX="-27" positionY="141" width="128" height="73"/>
+        <element name="Timeline" positionX="144" positionY="126" width="128" height="105"/>
+        <element name="User" positionX="144" positionY="108" width="128" height="90"/>
+        <element name="Followable" positionX="153" positionY="117" width="128" height="75"/>
+    </elements>
+</model>

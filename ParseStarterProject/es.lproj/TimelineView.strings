@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "38"; ObjectID = "0nU-Gc-Yd5"; */
+"0nU-Gc-Yd5.text" = "38";
+
+/* Class = "UILabel"; text = "Followers"; ObjectID = "8cC-1L-fai"; */
+"8cC-1L-fai.text" = "Seguidores";
+
+/* Class = "UILabel"; text = "100 / 300 s"; ObjectID = "LGz-1E-ODX"; */
+"LGz-1E-ODX.text" = "100 / 300 s";
+
+/* Class = "UILabel"; text = "Duration"; ObjectID = "Ze2-EJ-yuS"; */
+"Ze2-EJ-yuS.text" = "Duración";
+
+/* Class = "UILabel"; text = "#TourItaly"; ObjectID = "ozN-3T-wGn"; */
+"ozN-3T-wGn.text" = "#ExcursionItalia";
+
+/* Class = "UILabel"; text = "1,231"; ObjectID = "pRB-0e-G4G"; */
+"pRB-0e-G4G.text" = "1,231";

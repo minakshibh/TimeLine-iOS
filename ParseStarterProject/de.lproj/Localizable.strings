@@ -1,0 +1,242 @@
+/*
+ Timeline.strings
+ Timeline
+ 
+ Created by Valentin Knabel on 13.07.15.
+ Copyright (c) 2015 Conclurer GbR. All rights reserved.
+ */
+
+/* MARK: Settings License */
+"Settings-Format-License-Container-Name:%@-License:%@" = "The follwowing software may be included in this product: %@. This software is subject to the following license and notice:\n\n%@";
+
+/* MARK: Settings Support */
+"Settings-String-Support-URL" = "http://mytimelineapp.com/support";
+
+/* MARK: Blocking */
+"Timeline-Alert-Block-Title" = "Timeline sperren";
+"Timeline-Alert-Block-Message-Name:%@" = "Möchtest du #%@ sperren?";
+"Timeline-Alert-Block-Action-Cancel" = "Abbrechen";
+"Timeline-Alert-Block-Action-Block" = "Sperren";
+
+"User-Alert-Block-Title" = "Benutzer sperren";
+"User-Alert-Block-Message-Name:%@" = "Möchtest du @%@ sperren?";
+"User-Alert-Block-Action-Cancel" = "Abbrechen";
+"User-Alert-Block-Action-Block" = "Sperren";
+
+/* MARK: Unblocking */
+"Timeline-Alert-Unblock-Title" = "Timeline entsperren";
+"Timeline-Alert-Unblock-Message-Name:%@" = "Möchtest du #%@ entsperren?";
+"Timeline-Alert-Unblock-Action-Cancel" = "Abbrechen";
+"Timeline-Alert-Unblock-Action-Unblock" = "Entsperren";
+
+"User-Alert-Unblock-Title" = "Benutzer entsperren";
+"User-Alert-Unblock-Message-Name:%@" = "Möchtest du @%@ entsperren?";
+"User-Alert-Unblock-Action-Cancel" = "Abbrechen";
+"User-Alert-Unblock-Action-Unblock" = "Entsperren";
+
+/* MARK: Capture */
+"Capture-Authorization-Failure-Title" = "Timeline";
+"Capture-Authorization-Failure-Message" = "Timeline hat nicht die Berechtigung, auf die Kamera zuzugreifen. Bitte ändere dies in den Privatsphäre-Einstellungen ab.";
+"Capture-Authorization-Failure-Dismiss" = "OK";
+
+"Capture-Record-Button-Start-Title" = "Aufnehmen";
+"Capture-Record-Button-Stop-Title" = "Pause";
+
+/* MARK: Login */
+"Login-Alert-Wait-Title" = "Anmelden";
+
+/* MARK: Session Expired */
+"Session-Alert-Expired-Title" = "Timeline";
+"Session-Alert-Expired-Message" = "Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.";
+"Session-Alert-Expired-Action-Dismiss" = "Ok";
+
+/* MARK: Settings Logout */
+"Settings-Alert-Logout-Title" = "Abmelden";
+"Settings-Alert-Logout-Message" = "Alle unveröffentlichten Momente werden gelöscht.";
+"Settings-Alert-Logout-Action-Cancel" = "Abbrechen";
+"Settings-Alert-Logout-Action-Logout" = "Abmelden";
+
+/* MARK: Settings Delete */
+"Settings-Alert-Delete-Title" = "Konto löschen";
+"Settings-Alert-Delete-Message" = "Alle Momente und Timelines werden gelöscht und können nicht wiederhergestellt werden.";
+"Settings-Alert-Delete-Action-Cancel" = "Abbrechen";
+"Settings-Alert-Delete-Action-Delete" = "Konto löschen";
+
+/* MARK: Settings Email */
+"Settings-Placeholder-Email-Text" = "beispiel@icloud.com";
+
+"Settings-Alert-Email-Missing-Title" = "E-Mail-Adresse ändern";
+"Settings-Alert-Email-Missing-Message" = "Es wurde keine E-Mail-Adresse angegeben.";
+"Settings-Alert-Email-Missing-Action-Dismiss" = "Ok";
+
+/* MARK: Settings Password */
+"Settings-Alert-Password-Error-Title" = "Kennwort ändern";
+"Settings-Alert-Password-Error-Message" = "Die Kennwörter sind leer oder stimmen nicht überein.";
+"Settings-Alert-Password-Error-Action-Dismiss" = "Ok";
+
+/* MARK: Settings Image */
+"Settings-Sheet-Image-Source-Title" = "Profilbild wählen";
+"Settings-Sheet-Image-Source-Message" = "Quelle wählen";
+"Settings-Sheet-Image-Source-Action-Camera" = "Foto aufnehmen";
+"Settings-Sheet-Image-Source-Action-Library" = "Foto auswählen";
+"Settings-Sheet-Image-Source-Action-Cancel" = "Abbrechen";
+
+/* MARK: Settings Timelines Public */
+"Settings-Alert-TimelinesPublic-Error-Title" = "Timelines öffentlich machen";
+"Settings-Alert-TimelinesPublic-Error-Action-Dismiss" = "Ok";
+
+/* MARK: Settings Followers Approve */
+"Settings-Alert-FollowersApprove-Error-Title" = "Follower bestätigen";
+"Settings-Alert-FollowersApprove-Error-Action-Dismiss" = "Ok";
+
+/* MARK: Settings Share */
+"Settings-String-Share-Message" = "Schau dir diese neue App an";
+"Settings-String-Share-URL" = "http://www.mytimelineapp.com";
+
+/* MARK: Timeline Deletion */
+"Timeline-Alert-Delete-Wait-Title" = "Timeline löschen";
+"Timeline-Alert-Delete-Wait-Message" = "Bitte warten";
+
+"Timeline-Alert-Delete-Error-Title" = "Timeline löschen";
+"Timeline-Alert-Delete-Error-Action-Dismiss" = "Ok";
+
+"Timeline-Alert-Delete-Confirm-Title" = "Timeline löschen";
+"Timeline-Alert-Delete-Confirm-Message" = "Möchtest du wirklich diese Timeline löschen?";
+"Timeline-Alert-Delete-Confirm-Action-Delete" = "Löschen";
+"Timeline-Alert-Delete-Confirm-Action-Cancel" = "Abbrechen";
+
+/* MARK: Timeline Creation */
+"Timeline-Alert-Create-Missing-Title" = "Timeline erstellen";
+"Timeline-Alert-Create-Missing-Message" = "Bitte benenne deine Timeline.";
+"Timeline-Alert-Create-Missing-Dismiss" = "Ok";
+
+"Timeline-Alert-Create-Error-Title" = "Timeline erstellen";
+"Timeline-Alert-Create-Error-Action-Dismiss" = "Ok";
+
+/* MARK: Timeline Cell */
+"Timeline-Button-Cell-Pending-Title" = "Ausstehend";
+
+/* MARK: Timeline Limit */
+"Timeline-Alert-Limit-Error-Title" = "Timeline-Limit";
+"Timeline-Alert-Limit-Error-Default" = "Das Upgrade konnte nicht vollständig abgeschlossen werden. Bitte versuche es erneut.";
+"Timeline-Alert-Limit-Error-Action-Later" = "Später";
+"Timeline-Alert-Limit-Error-Action-Retry" = "Erneut versuchen";
+
+"Timeline-Alert-Limit-Error-Action-Dismiss" = "Ok";
+
+"Timeline-Alert-Limit-Required-Title" = "Timeline-Limit";
+"Timeline-Alert-Limit-Required-Message" = "Du hast dein Limit an Timelines erreicht. Um eine neue Timeline zu erstellen, musst du ein Upgrade erwerben.";
+"Timeline-Alert-Limit-Required-Action-Upgrade" = "Upgrade";
+"Timeline-Alert-Limit-Required-Action-Cancel" = "Abbrechen";
+
+// MARK: Timeline Share
+"Timeline-String-Share-Message-User:%@-Timeline:%@" = "Schau dir #%2$@ von @%1$@ an";
+"Timeline-String-Share-URL-User:%@-Timeline:%@" = "http://www.mytimelineapp.com/user/%1$@/timeline/%2$@";
+
+// MARK: User Share
+"User-String-Share-Message-User:%@" = "Schau dir @%1$@ an";
+"User-String-Share-URL-User:%@" = "http://www.mytimelineapp.com/user/%@";
+
+/* MARK: Moment Deletion */
+"Moment-Alert-Delete-Confirm-Title" = "Moment löschen";
+"Moment-Alert-Delete-Confirm-Message" = "Dieser Moment wird endgültig gelöscht.";
+"Moment-Alert-Delete-Confirm-Action-Cancel" = "Abbrechen";
+"Moment-Alert-Delete-Confirm-Action-Delete" = "Löschen";
+
+/* MARK: Trim Moment */
+"Moment-Alert-Trim-Error-Title" = "Moment kürzen";
+"Moment-Alert-Trim-Error-Action-Dismiss" = "Ok";
+
+"Moment-Alert-Trim-Keep-Title" = "Moment kürzen";
+"Moment-Alert-Trim-Keep-Message" = "Möchtest du den originalen Moment behalten?";
+"Moment-Alert-Trim-Keep-Action-Keep" = "Original behalten";
+"Moment-Alert-Trim-Keep-Action-Delete" = "Löschen";
+
+// MARK: Moment Overlay
+"Moment-Alert-Overlay-None-Title" = "Leerer Text";
+"Moment-Alert-Overlay-None-Message" = "Leere Textbanner können nicht erstellt werden.";
+"Moment-Alert-Overlay-None-Action-Save" = "Entfernen";
+"Moment-Alert-Overlay-None-Action-Dismiss" = "Bearbeiten";
+
+/* MARK: Moment Upload */
+"Moment-Alert-Upload-Error-Title" = "Moment hochladen";
+/* Will only displayed if the error is unknwon */
+"Moment-Alert-Upload-Error-Message-Default" = "Ein unbekannter Fehler ist aufgetreten.";
+"Moment-Alert-Upload-Error-Action-Dismiss" = "Ok";
+
+/* MARK: Formats */
+"Duration-Format-Seconds-%@" = "%@s";
+"Duration-Format-Limited-Seconds-%@" = "%@ / 300 Sekunden";
+
+/* MARK: - 1.0.39 */
+/* MARK: Timeline Download */
+"Timeline-Alert-Download-Info-Title" = "Offline verfügbar machen";
+"Timeline-Alert-Download-Info-Message-Timeline:%@" = "Möchtest du #%1$@ offline verfügbar machen?";
+"Timeline-Alert-Download-Info-Action-Dismiss" = "Abbrechen";
+"Timeline-Alert-Download-Info-Action-Download" = "Laden";
+
+/* MARK: - 1.0.41 */
+/* MARK: Timeline Playback Errors */
+"Timeline-Alert-BlockedTimeline-Title-Timeline:%@" = "#%1$@ gesperrt";
+"Timeline-Alert-BlockedTimeline-Message-User:%@-Timeline:%@" = "Du kannst #%2$@ von @%1$@ nicht abspielen, da du sie gesperrt hast.";
+"Timeline-Alert-BlockedTimeline-Action-Dismiss" = "Ok";
+
+"Timeline-Alert-BlockedUser-Title-User:%@" = "@%1$@ gesperrt";
+"Timeline-Alert-BlockedUser-Message-User:%@-Timeline:%@" = "Du kannst #%2$@ nicht abspielen, da du @%1$@ gesperrt hast.";
+"Timeline-Alert-BlockedUser-Action-Dismiss" = "Ok";
+
+"Timeline-Alert-NotPublic-Title-User:%@" = "Timeline privat";
+"Timeline-Alert-NotPublic-Message-User:%@" = "Diese Timeline ist nicht öffentlich. Folge @%1$@, um sie anzuschauen.";
+"Timeline-Alert-NotPublic-Action-Dismiss" = "Ok";
+
+// MARK: - 1.0.75
+// TimelineMoreButtonBehaviorSheet
+"Timeline-Sheet-More-Button-Title:%@" = "#%@";
+"Timeline-Sheet-More-Button-Message" = "";
+"Timeline-Sheet-More-Button-Cancel" = "Abbrechen";
+"Timeline-Sheet-More-Button-Share" = "Teilen";
+"Timeline-Sheet-More-Button-Delete" = "Löschen";
+"Timeline-Sheet-More-Button-Block" = "Sperren";
+"Timeline-Sheet-More-Button-Unblock" = "Entsperren";
+
+// MARK: - 1.0.76
+"Timeline-Sheet-More-Button-User:%@" = "@%@";
+
+// MARK: - 1.0.77
+// UserMoreButtonBehaviorSheet
+"User-Sheet-More-Button-Title:%@" = "@%@";
+"User-Sheet-More-Button-Message" = "";
+"User-Sheet-More-Button-Cancel" = "Abbrechen";
+"User-Sheet-More-Button-Share" = "Teilen";
+"User-Sheet-More-Button-Block" = "Sperren";
+"User-Sheet-More-Button-Unblock" = "Entsperren";
+
+// MARK: - 1.0.78
+"Timeline-Sheet-More-Button-Add" = "Moment hinzufügen";
+"Timeline-Sheet-More-Button-Download" = "Offline verfügbar machen";
+"Timeline-Sheet-More-Button-No-Download" = "Download entfernen";
+
+// MARK: - 1.0.79
+"User-Button-Respond-Title" = "Antwort";
+"User-Sheet-Respond-Title:%@" = "Antworte %@";
+"User-Sheet-Respond-Message" = "";
+"User-Sheet-Respond-Approve" = "Annehmen";
+"User-Sheet-Respond-Decline" = "Ablehnen";
+"User-Sheet-Respond-Cancel" = "Abbrechen";
+
+// MARK: - 1.0.80
+"User-Sheet-More-Button-Followers" = "Follower zeigen";
+"User-Sheet-More-Button-Likers" = "Likes zeigen";
+"Timeline-Sheet-More-Button-Followers" = "Follower zeigen";
+"Timeline-Sheet-More-Button-Likers" = "Likes zeigen";
+
+// MARK: - 1.0.81
+"Draft-Alert-PickTimeline-Title" = "Wähle eine Timeline";
+"Draft-Alert-PickTimeline-Message" = "";
+"Draft-Alert-PickTimeline-Cancel" = "Abbrechen";
+
+// MARK: - 91
+"Draft-Alert-ConfirmUpload-Title:%@" = "In %@ hochladen";
+"Draft-Alert-ConfirmUpload-Message" = "Einmal veröffentlichte Moments bleiben öffentlich.";
+"Draft-Alert-ConfirmUpload-Upload" = "Hochladen";
+"Draft-Alert-ConfirmUpload-Cancel" = "Abbrechen";

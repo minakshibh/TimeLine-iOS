@@ -1,0 +1,10 @@
+framework module ConclurerHook {
+  umbrella header "ConclurerHook.h"
+
+  export *
+  module * { export * }
+}
+
+module ConclurerHook.Swift {
+    header "ConclurerHook-Swift.h"
+}

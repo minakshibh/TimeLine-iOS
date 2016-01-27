@@ -1,0 +1,237 @@
+
+/* Class = "UILabel"; text = "Logout"; ObjectID = "0X4-pO-2JD"; */
+"0X4-pO-2JD.text" = "Logout";
+
+/* Class = "UILabel"; text = "Timelines must be tagged alphanumerically."; ObjectID = "1By-6o-PfB"; */
+"1By-6o-PfB.text" = "Timelines must be tagged alphanumerically.";
+
+/* Class = "UINavigationItem"; title = "My Timelines"; ObjectID = "1Lz-Nz-xZS"; */
+"1Lz-Nz-xZS.title" = "My Timelines";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "1qj-a4-H33"; */
+"1qj-a4-H33.text" = "Detail";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "2H8-BH-End"; */
+"2H8-BH-End.title" = " ";
+
+/* Class = "UITextView"; text = "Terms of Use"; ObjectID = "4UZ-3p-LwX"; */
+"4UZ-3p-LwX.text" = "Terms of Use: Lorem ipsum";
+
+/* Class = "UITextField"; placeholder = "●●●●●●"; ObjectID = "5Ah-IS-hWO"; */
+"5Ah-IS-hWO.placeholder" = "●●●●●●";
+
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "9oN-zE-P7R"; */
+"9oN-zE-P7R.text" = "Privacy Policy";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "AGd-vf-Gfq"; */
+"AGd-vf-Gfq.text" = "Password";
+
+/* Class = "UITextField"; placeholder = "●●●●●●"; ObjectID = "ALf-Ik-l6T"; */
+"ALf-Ik-l6T.placeholder" = "●●●●●●";
+
+/* Class = "UILabel"; text = "Terms of Use"; ObjectID = "AOM-rr-aUH"; */
+"AOM-rr-aUH.text" = "Terms of Use";
+
+/* Class = "UINavigationItem"; title = "Edit Profile"; ObjectID = "BW1-x4-fTK"; */
+"BW1-x4-fTK.title" = "Edit Profile";
+
+/* Class = "UINavigationItem"; title = "Change Password"; ObjectID = "C7t-Fm-T4o"; */
+"C7t-Fm-T4o.title" = "Change Password";
+
+/* Class = "UITableViewSection"; headerTitle = "General"; ObjectID = "DRi-dD-pQ4"; */
+"DRi-dD-pQ4.headerTitle" = "General";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "DpZ-xN-ocK"; */
+"DpZ-xN-ocK.title" = " ";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "Fml-Z7-fGI"; */
+"Fml-Z7-fGI.title" = "Settings";
+
+/* Class = "UILabel"; text = "How to Use"; ObjectID = "FxE-9A-lzZ"; */
+"FxE-9A-lzZ.text" = "How to Use";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "G45-E9-SAm"; */
+"G45-E9-SAm.normalTitle" = "Done";
+
+/* Class = "UINavigationItem"; title = "Terms of Use"; ObjectID = "Gal-JX-OGd"; */
+"Gal-JX-OGd.title" = "Terms of Use";
+
+/* Class = "UITableViewSection"; headerTitle = "Repeat password"; ObjectID = "HMM-5N-s8n"; */
+"HMM-5N-s8n.headerTitle" = "Repeat password";
+
+/* Class = "UITableViewController"; title = "Timelines"; ObjectID = "HaX-lv-h0Q"; */
+"HaX-lv-h0Q.title" = "Timelines";
+
+/* Class = "UITableViewSection"; headerTitle = "Quick Settings"; ObjectID = "IWV-7T-NjK"; */
+"IWV-7T-NjK.headerTitle" = "Quick Settings";
+
+/* Class = "UITableViewSection"; headerTitle = "Blocked"; ObjectID = "JnY-Mw-X16"; */
+"JnY-Mw-X16.headerTitle" = "Blocked";
+
+/* Class = "UILabel"; text = "Current Timelines"; ObjectID = "Kua-3w-xCL"; */
+"Kua-3w-xCL.text" = "Current Timelines";
+
+/* Class = "UILabel"; text = "Blocked Users"; ObjectID = "Lr1-Gc-II9"; */
+"Lr1-Gc-II9.text" = "Blocked Users";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "MHa-18-KFk"; */
+"MHa-18-KFk.text" = "Email";
+
+/* Class = "UILabel"; text = "user@domain.com"; ObjectID = "Mmq-gz-p4n"; */
+"Mmq-gz-p4n.text" = "user@domain.com";
+
+/* Class = "UINavigationItem"; title = "@UserNameHere"; ObjectID = "OyL-ov-dYp"; */
+"OyL-ov-dYp.title" = "@UserNameHere";
+
+/* Class = "UILabel"; text = "I must approve followers?"; ObjectID = "PDY-1w-n4A"; */
+"PDY-1w-n4A.text" = "I must approve followers?";
+
+/* Class = "UILabel"; text = "Sharing, please wait..."; ObjectID = "PId-B2-jfV"; */
+"PId-B2-jfV.text" = "Sharing, please wait...";
+
+/* Class = "UILabel"; text = "Applying purchase, please wait..."; ObjectID = "Prx-q6-1rE"; */
+"Prx-q6-1rE.text" = "Applying purchase, please wait...";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "QKk-zZ-XMQ"; */
+"QKk-zZ-XMQ.title" = "Item";
+
+/* Class = "UITableViewSection"; headerTitle = "New password"; ObjectID = "QOb-Di-aok"; */
+"QOb-Di-aok.headerTitle" = "New password";
+
+/* Class = "UILabel"; text = "Following"; ObjectID = "R9g-To-bzW"; */
+"R9g-To-bzW.text" = "Following";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "RIh-1M-0b2"; */
+"RIh-1M-0b2.text" = "2";
+
+/* Class = "UILabel"; text = "5"; ObjectID = "RPQ-a9-5yJ"; */
+"RPQ-a9-5yJ.text" = "5";
+
+/* Class = "UILabel"; text = "User Name"; ObjectID = "Rnd-Mo-fTd"; */
+"Rnd-Mo-fTd.text" = "User Name";
+
+/* Class = "UITableViewSection"; headerTitle = "Account"; ObjectID = "Sos-tS-jws"; */
+"Sos-tS-jws.headerTitle" = "Account";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "Tfm-vk-6Yg"; */
+"Tfm-vk-6Yg.title" = " ";
+
+/* Class = "UILabel"; text = "Followers"; ObjectID = "Tw4-5J-wZS"; */
+"Tw4-5J-wZS.text" = "Followers";
+
+/* Class = "UILabel"; text = "One additional Timeline"; ObjectID = "Tx8-mp-4dQ"; */
+"Tx8-mp-4dQ.text" = "One additional Timeline";
+
+/* Class = "UINavigationItem"; title = "Privacy Policy"; ObjectID = "V53-ET-1ux"; */
+"V53-ET-1ux.title" = "Privacy Policy";
+
+/* Class = "UITableViewSection"; headerTitle = "new email"; ObjectID = "Vm8-Fl-546"; */
+"Vm8-Fl-546.headerTitle" = "new email";
+
+/* Class = "UINavigationItem"; title = "Moments"; ObjectID = "WCR-AL-njZ"; */
+"WCR-AL-njZ.title" = "Moments";
+
+/* Class = "UINavigationItem"; title = "Send Moment"; ObjectID = "Yon-FQ-KQn"; */
+"Yon-FQ-KQn.title" = "Send Moment";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "ZDz-Yf-eya"; */
+"ZDz-Yf-eya.text" = "2";
+
+/* Class = "UINavigationItem"; title = "Upgrades"; ObjectID = "ZRy-yQ-fBZ"; */
+"ZRy-yQ-fBZ.title" = "Upgrades";
+
+/* Class = "UITableViewSection"; headerTitle = "timeline maximum"; ObjectID = "ZoJ-CH-cNI"; */
+"ZoJ-CH-cNI.headerTitle" = "timeline maximum";
+
+/* Class = "UILabel"; text = "1,000,098"; ObjectID = "a8e-Ne-gGb"; */
+"a8e-Ne-gGb.text" = "1,000,098";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "aab-Is-D6X"; */
+"aab-Is-D6X.title" = "Title";
+
+/* Class = "UILabel"; text = "Unsynced additional Timelines"; ObjectID = "ccJ-Hq-euz"; */
+"ccJ-Hq-euz.text" = "Unsynced additional Timelines";
+
+/* Class = "UISearchBar"; placeholder = "search @users and #timelines"; ObjectID = "dnb-1y-RYo"; */
+"dnb-1y-RYo.placeholder" = "search @users and #timelines";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "e6X-Cm-CCa"; */
+"e6X-Cm-CCa.text" = "Detail";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "exa-Y0-iF7"; */
+"exa-Y0-iF7.text" = "0";
+
+/* Class = "UILabel"; text = "0.99$"; ObjectID = "fgN-PY-6fu"; */
+"fgN-PY-6fu.text" = "0.99$";
+
+/* Class = "UINavigationItem"; title = "Trending"; ObjectID = "g87-kS-OQH"; */
+"g87-kS-OQH.title" = "Trending";
+
+/* Class = "UITextView"; text = "Privacy Policy"; ObjectID = "hLN-fe-pm6"; */
+"hLN-fe-pm6.text" = "Privacy Policy: Lorem ipsum";
+
+/* Class = "UITableViewController"; title = "Timelines"; ObjectID = "jSH-I8-dWf"; */
+"jSH-I8-dWf.title" = "Timelines";
+
+/* Class = "UITextField"; placeholder = "Tell us something"; ObjectID = "kgI-I4-wtG"; */
+"kgI-I4-wtG.placeholder" = "Tell us something";
+
+/* Class = "UINavigationItem"; title = "Create Timeline"; ObjectID = "m0g-Hy-lb0"; */
+"m0g-Hy-lb0.title" = "Create Timeline";
+
+/* Class = "UILabel"; text = "Pending Followers"; ObjectID = "mHg-rR-eIo"; */
+"mHg-rR-eIo.text" = "Pending Followers";
+
+/* Class = "UINavigationItem"; title = "Change Email"; ObjectID = "mt5-I6-2b2"; */
+"mt5-I6-2b2.title" = "Change Email";
+
+/* Class = "UILabel"; text = "Profile Picture"; ObjectID = "n8q-Kr-t7r"; */
+"n8q-Kr-t7r.text" = "Profile Picture";
+
+/* Class = "UITableViewSection"; headerTitle = "Profile"; ObjectID = "nCF-hK-Hg6"; */
+"nCF-hK-Hg6.headerTitle" = "Profile";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "ops-Qx-iHE"; */
+"ops-Qx-iHE.placeholder" = "Email";
+
+/* Class = "UINavigationItem"; title = "Uploading Moment"; ObjectID = "ovx-z8-Kse"; */
+"ovx-z8-Kse.title" = "Uploading Moment";
+
+/* Class = "UILabel"; text = "Blocked Timelines"; ObjectID = "pn6-qt-JT8"; */
+"pn6-qt-JT8.text" = "Blocked Timelines";
+
+/* Class = "UINavigationItem"; title = "Following"; ObjectID = "qdu-sC-mA3"; */
+"qdu-sC-mA3.title" = "Following";
+
+/* Class = "UITableViewController"; title = "Timelines"; ObjectID = "qfZ-8f-OL2"; */
+"qfZ-8f-OL2.title" = "Timelines";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "qha-8H-Gze"; */
+"qha-8H-Gze.text" = "Detail";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "rHK-jr-uvR"; */
+"rHK-jr-uvR.text" = "10";
+
+/* Class = "UITableViewSection"; headerTitle = "Profile"; ObjectID = "rlN-Gg-hIo"; */
+"rlN-Gg-hIo.headerTitle" = "Profile";
+
+/* Class = "UILabel"; text = "●●●●●●"; ObjectID = "tkY-lF-vmo"; */
+"tkY-lF-vmo.text" = "●●●●●●";
+
+/* Class = "UILabel"; text = "Support"; ObjectID = "uQj-Gb-XXB"; */
+"uQj-Gb-XXB.text" = "Support";
+
+/* Class = "UILabel"; text = "1,098"; ObjectID = "vaI-Wf-ZHw"; */
+"vaI-Wf-ZHw.text" = "1,098";
+
+/* Class = "UILabel"; text = "Maximum Timelines"; ObjectID = "xtn-Cb-yI8"; */
+"xtn-Cb-yI8.text" = "Maximum Timelines";
+
+/* Class = "UILabel"; text = "Make my timelines public?"; ObjectID = "yfC-Mq-j4H"; */
+"yfC-Mq-j4H.text" = "Make my timelines public?";
+
+/* Class = "UITextField"; placeholder = "#tagyourtimeline"; ObjectID = "zAa-9y-rbp"; */
+"zAa-9y-rbp.placeholder" = "#tagyourtimeline";
+
+/* Class = "UILabel"; text = "Full Name Here"; ObjectID = "zCI-VR-8CK"; */
+"zCI-VR-8CK.text" = "Full Name Here";

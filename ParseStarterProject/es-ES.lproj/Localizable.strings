@@ -1,0 +1,176 @@
+/*
+ Timeline.strings
+ Timeline
+ 
+ Created by Valentin Knabel on 13.07.15.
+ Copyright (c) 2015 Conclurer GbR. All rights reserved.
+ */
+
+/* MARK: Settings License */
+"Settings-Format-License-Container-Name:%@-License:%@" = "The follwowing software may be included in this product: %@. This software is subject to the following license and notice:\n\n%@";
+
+/* MARK: Settings Support */
+"Settings-String-Support-URL" = "http://mytimelineapp.com/support";
+
+/* MARK: Blocking */
+"Timeline-Alert-Block-Title" = "Block Timeline";
+"Timeline-Alert-Block-Message-Name:%@" = "Do you want to block #%@?";
+"Timeline-Alert-Block-Action-Cancel" = "Cancel";
+"Timeline-Alert-Block-Action-Block" = "Block";
+
+"User-Alert-Block-Title" = "Block User";
+"User-Alert-Block-Message-Name:%@" = "Do you want to block @%@?";
+"User-Alert-Block-Action-Cancel" = "Cancel";
+"User-Alert-Block-Action-Block" = "Block";
+
+/* MARK: Unblocking */
+"Timeline-Alert-Unblock-Title" = "Unblock Timeline";
+"Timeline-Alert-Unblock-Message-Name:%@" = "Do you want to unblock #%@?";
+"Timeline-Alert-Unblock-Action-Cancel" = "Cancel";
+"Timeline-Alert-Unblock-Action-Unblock" = "Unblock";
+
+"User-Alert-Unblock-Title" = "Unblock User";
+"User-Alert-Unblock-Message-Name:%@" = "Do you want to unblock @%@?";
+"User-Alert-Unblock-Action-Cancel" = "Cancel";
+"User-Alert-Unblock-Action-Unblock" = "Unblock";
+
+/* MARK: Capture */
+"Capture-Authorization-Failure-Title" = "Timeline";
+"Capture-Authorization-Failure-Message" = "Timeline no tiene permiso para usar la cámara, favor de cambiar la configuración de privacidad en sus ajustes.";
+"Capture-Authorization-Failure-Dismiss" = "Si";
+
+"Capture-Record-Button-Start-Title" = "Grabar";
+"Capture-Record-Button-Stop-Title" = "Pausa";
+
+/* MARK: Login */
+"Login-Alert-Wait-Title" = "Iniciando sesión";
+
+/* MARK: Session Expired */
+"Session-Alert-Expired-Title" = "Timeline";
+"Session-Alert-Expired-Message" = "Su sesión a finalizado. Favor de  iniciar de nuevo.";
+"Session-Alert-Expired-Action-Dismiss" = "Si";
+
+/* MARK: Settings Logout */
+"Settings-Alert-Logout-Title" = "Cerrar sesión";
+"Settings-Alert-Logout-Message" = "Se perderán todos momentos no subidos.";
+"Settings-Alert-Logout-Action-Cancel" = "Cancelar";
+"Settings-Alert-Logout-Action-Logout" = "Cerrar sesión";
+
+/* MARK: Settings Delete */
+"Settings-Alert-Delete-Title" = "Delete Account";
+"Settings-Alert-Delete-Message" = "All your moments and timelines will be lost and can't be restored.";
+"Settings-Alert-Delete-Action-Cancel" = "Cancel";
+"Settings-Alert-Delete-Action-Delete" = "Delete Account";
+
+/* MARK: Settings Email */
+"Settings-Placeholder-Email-Text" = "ejemplo@correoelectronico.com";
+
+"Settings-Alert-Email-Missing-Title" = "Cambiear Correo Electronico";
+"Settings-Alert-Email-Missing-Message" = "Verifique su correo electronico.";
+"Settings-Alert-Email-Missing-Action-Dismiss" = "Si";
+
+/* MARK: Settings Password */
+"Settings-Alert-Password-Error-Title" = "Cambiar Contraseña";
+"Settings-Alert-Password-Error-Message" = "Las contraseñas están vacías o no coinciden.";
+"Settings-Alert-Password-Error-Action-Dismiss" = "Si";
+
+/* MARK: Settings Image */
+"Settings-Sheet-Image-Source-Title" = "Elija Foto de Perfil";
+"Settings-Sheet-Image-Source-Message" = "Elija su fuente preferida";
+"Settings-Sheet-Image-Source-Action-Camera" = "Cámara";
+"Settings-Sheet-Image-Source-Action-Library" = "Fotos";
+"Settings-Sheet-Image-Source-Action-Cancel" = "Cancelar";
+
+/* MARK: Settings Timelines Public */
+"Settings-Alert-TimelinesPublic-Error-Title" = "Timelines Publico";
+"Settings-Alert-TimelinesPublic-Error-Action-Dismiss" = "Si";
+
+/* MARK: Settings Followers Approve */
+"Settings-Alert-FollowersApprove-Error-Title" = "Aprobar Seguidores";
+"Settings-Alert-FollowersApprove-Error-Action-Dismiss" = "Si";
+
+/* MARK: Settings Share */
+"Settings-String-Share-Message" = "Descarga el nuevo app Timeline!";
+"Settings-String-Share-URL" = "http://www.mytimelineapp.com";
+
+/* MARK: Timeline Deletion */
+"Timeline-Alert-Delete-Wait-Title" = "Borrar Timeline";
+"Timeline-Alert-Delete-Wait-Message" = "Realizando accion";
+
+"Timeline-Alert-Delete-Error-Title" = "Borrar Timeline";
+"Timeline-Alert-Delete-Error-Action-Dismiss" = "Si";
+
+"Timeline-Alert-Delete-Confirm-Title" = "Delete Timeline";
+"Timeline-Alert-Delete-Confirm-Message" = "¿De verdad quiere borrar este Timeline?";
+"Timeline-Alert-Delete-Confirm-Action-Delete" = "Borrar";
+"Timeline-Alert-Delete-Confirm-Action-Cancel" = "Cancelar";
+
+/* MARK: Timeline Creation */
+"Timeline-Alert-Create-Missing-Title" = "Crear Timeline";
+"Timeline-Alert-Create-Missing-Message" = "Favor de dar un nombre a este Timeline.";
+"Timeline-Alert-Create-Missing-Dismiss" = "Si";
+
+"Timeline-Alert-Create-Error-Title" = "Borrar Timeline";
+"Timeline-Alert-Create-Error-Action-Dismiss" = "Si";
+
+/* MARK: Timeline Cell */
+"Timeline-Button-Cell-Pending-Title" = "Pendiente";
+
+/* MARK: Timeline Limit */
+"Timeline-Alert-Limit-Error-Title" = "Timeline Limite";
+"Timeline-Alert-Limit-Error-Default" = "Has alcanzado el límite de crear un nuevo timeline.  Para añadir otro timeline necesita comprar mas o borrar un timeline.";
+"Timeline-Alert-Limit-Error-Action-Later" = "Intenta más tarde";
+"Timeline-Alert-Limit-Error-Action-Retry" = "Intenta de nuevo";
+
+"Timeline-Alert-Limit-Error-Action-Dismiss" = "Si";
+
+"Timeline-Alert-Limit-Required-Title" = "Timeline Limite";
+"Timeline-Alert-Limit-Required-Message" = "Has alcanzado el límite de crear un nuevo timeline. Para añadir otro timeline necesita descargar Actualización.";
+"Timeline-Alert-Limit-Required-Action-Upgrade" = "Actualización";
+"Timeline-Alert-Limit-Required-Action-Cancel" = "Cancelar";
+
+// MARK: Timeline Share
+"Timeline-String-Share-Message-User:%@-Timeline:%@" = "Vea el Timeline %2@ de %1@";
+"Timeline-String-Share-URL-User:%@-Timeline:%@" = "http://www.mytimelineapp.com/user/%1@/timeline/%2@";
+
+// MARK: User Share
+"User-String-Share-Message-User:%@" = "Vea el usuario %1@";
+"User-String-Share-URL-User:%@" = "http://www.mytimelineapp.com/user/%@";
+
+/* MARK: Moment Deletion */
+"Moment-Alert-Delete-Confirm-Title" = "Borrar Momento";
+"Moment-Alert-Delete-Confirm-Message" = "Su momento se perderá para siempre.";
+"Moment-Alert-Delete-Confirm-Action-Cancel" = "Cancelar";
+"Moment-Alert-Delete-Confirm-Action-Delete" = "Borrar";
+
+/* MARK: Trim Moment */
+"Moment-Alert-Trim-Error-Title" = "Recortar Momento";
+"Moment-Alert-Trim-Error-Action-Dismiss" = "Si";
+
+"Moment-Alert-Trim-Keep-Title" = "Recortar Momento";
+"Moment-Alert-Trim-Keep-Message" = "¿Quieres mantener el momento recortado también?";
+"Moment-Alert-Trim-Keep-Action-Keep" = "Mantén ambos";
+"Moment-Alert-Trim-Keep-Action-Delete" = "Borrar";
+
+// MARK: Moment Overlay
+"Moment-Alert-Overlay-None-Title" = "Texto vacío";
+"Moment-Alert-Overlay-None-Message" = "No se permite texto vacío.";
+"Moment-Alert-Overlay-None-Action-Save" = "Eliminar";
+"Moment-Alert-Overlay-None-Action-Dismiss" = "Editar";
+
+/* MARK: Moment Upload */
+"Moment-Alert-Upload-Error-Title" = "Subir Momento";
+/* Will only displayed if the error is unknwon */
+"Moment-Alert-Upload-Error-Message-Default" = "A ocurrido un error desconocido.";
+"Moment-Alert-Upload-Error-Action-Dismiss" = "Si";
+
+/* MARK: Formats */
+"Duration-Format-Seconds-%@" = "%@ s";
+"Duration-Format-Limited-Seconds-%@" = "%@ / 300 s";
+
+/* MARK: - 1.0.39 */
+/* MARK: Timeline Download */
+"Timeline-Alert-Download-Info-Title" = "Download Timeline";
+"Timeline-Alert-Download-Info-Message" = "Do you want to download #timeline to  your app for full resolution playback?  This doesn't mean #timeline is saved to your phone.";
+"Timeline-Alert-Download-Info-Action-Dismiss" = "Cancel";
+"Timeline-Alert-Download-Info-Action-Download" = "Download";

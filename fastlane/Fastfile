@@ -1,0 +1,101 @@
+# Customise this file, documentation can be found here:
+# https://github.com/KrauseFx/fastlane/tree/master/docs
+# All available actions: https://github.com/KrauseFx/fastlane/blob/master/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# By default, fastlane will send which actions are used
+# No personal data is shared, more information on https://github.com/fastlane/enhancer
+# Uncomment the following line to opt out
+# opt_out_usage
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "1.48.0"
+
+default_platform :ios
+
+
+platform :ios do
+  before_all do
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+    ENV["FASTLANE_TEAM_ID"] = "B4F2Z6ZQE6"
+    cocoapods
+    carthage
+
+    # xctool # run the tests of your app
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    # snapshot
+  end
+
+  desc "Updates all dependencies"
+  lane :update do
+    # will be handled by :before_all
+  end
+
+  desc "Archives the application"
+  lane :archive do 
+    increment_build_number
+    sigh
+    gym(scheme: "Timeline")
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
+    increment_build_number
+    sigh
+    gym(scheme: "Timeline") # Build your app - more options available
+    pilot
+
+    # sh "your_script.sh"
+    # You can also use other beta testing services here
+    
+    #slack(
+    #  message: "Successfully deployed new TestFlight "+get_build_number(xcodeproj: "Timeline.xcodeproj")+".",
+    #  success: true
+    #)
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :deploy do
+    increment_build_number
+    # snapshot
+    sigh
+    gym(scheme: "Timeline") # Build your app - more options available
+    deliver(force: true)
+    # frameit
+    
+    #slack(
+    #  message: "Successfully deployed new App Update.",
+    #  success: true
+    #)
+  end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+    
+  end
+
+  error do |lane, exception|
+    slack(
+      message: exception.message,
+      success: false
+    )
+  end
+end
+
+
+
+# More information about multiple platforms in fastlane: https://github.com/KrauseFx/fastlane/blob/master/docs/Platforms.md
+# All available actions: https://github.com/KrauseFx/fastlane/blob/master/docs/Actions.md

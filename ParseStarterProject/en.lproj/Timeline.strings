@@ -1,0 +1,10 @@
+/* 
+  Timeline.strings
+  Timeline
+
+  Created by Valentin Knabel on 13.07.15.
+  Copyright (c) 2015 Conclurer GbR. All rights reserved.
+*/
+
+"FailureCameraAuthorizationTitle" = "FailureCameraAuthorizationTitle";
+"FailureCameraAuthorizationMessage" = "Timeline doesn't have permission to use Camera, please change privacy settings.";
