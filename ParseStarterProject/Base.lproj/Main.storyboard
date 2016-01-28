@@ -481,7 +481,7 @@
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fe0-Hh-EBq">
                                                     <rect key="frame" x="124" y="60" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1803,7 +1803,7 @@ Effective as of September 14, 2015
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgs-fD-JOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4000" y="1730"/>
+            <point key="canvasLocation" x="-4000" y="1712"/>
         </scene>
         <!--Create Timeline-->
         <scene sceneID="ewK-wh-kW0">
@@ -4179,18 +4179,18 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ndx-Tw-tdZ"/>
         <segue reference="8W1-I7-grp"/>
         <segue reference="SrR-ph-ZEC"/>
         <segue reference="fy0-iv-eFM"/>
-        <segue reference="3ER-K8-eo8"/>
-        <segue reference="pyd-yG-wzP"/>
         <segue reference="wPR-Ua-TlF"/>
-        <segue reference="UDh-ad-jqq"/>
-        <segue reference="BJd-cD-9l3"/>
+        <segue reference="sHs-6J-bIg"/>
         <segue reference="dHW-RB-S8H"/>
         <segue reference="5f9-3x-iDp"/>
+        <segue reference="nAo-SQ-8ZV"/>
         <segue reference="JUD-Gk-HWr"/>
+        <segue reference="T9S-G7-mh0"/>
+        <segue reference="BJd-cD-9l3"/>
+        <segue reference="ndx-Tw-tdZ"/>
         <segue reference="8E9-nt-LSh"/>
         <segue reference="UZr-rR-uSk"/>
     </inferredMetricsTieBreakers>

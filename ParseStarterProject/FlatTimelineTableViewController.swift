@@ -138,7 +138,7 @@ class FlatTimelineTableViewController: UITableViewController {
 
 extension FlatTimelineTableViewController: Hooking, UserMoreButtonBehavior, TimelineMoreButtonBehavior, PushableBehavior, ShareableBehavior, DeleteableBehavior, BlockableBehavior {
     var hookingSetUps: [() -> AnyObject?] {
-        return [setUpTimelineMoreButtonBehavior, setUpUserMoreButtonBehavior, setUpPushableBehavior, setUpActiveControllerBehavior]
+        return [setUpTimelineMoreWithoutUserButtonButtonBehavior, setUpUserMoreButtonBehavior, setUpPushableBehavior, setUpActiveControllerBehavior]
     }
 
     override func reloadData() {
