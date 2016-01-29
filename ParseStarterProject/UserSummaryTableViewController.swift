@@ -9,7 +9,7 @@
 import UIKit
 import ConclurerHook
 
-class UserSummaryTableViewController: FlatTimelineTableViewController {
+class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUsername {
     
     var user: User!
     

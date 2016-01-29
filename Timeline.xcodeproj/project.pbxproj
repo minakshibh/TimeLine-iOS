@@ -14,6 +14,7 @@
 		81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81781A49E0DB00E65899 /* AudioToolbox.framework */; };
 		81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */; };
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
+		979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */; };
 		BA05786E1C1A0FC10098C3A1 /* NormalButtonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */; };
 		BA05787A1C1A39470098C3A1 /* UserSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0578791C1A39470098C3A1 /* UserSummaryView.xib */; };
 		BA0578801C1A3B630098C3A1 /* UserSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05787F1C1A3B630098C3A1 /* UserSummaryTableViewCell.swift */; };
@@ -243,6 +244,7 @@
 		81BA81821A49E27F00E65899 /* ParseStarterProject-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ParseStarterProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		8809B3C606F182C848542489 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9472C1B472FC01F506711759 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatTimelineTableViewControllerWithoutUsername.swift; sourceTree = "<group>"; };
 		BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalButtonProperties.swift; sourceTree = "<group>"; };
 		BA0578791C1A39470098C3A1 /* UserSummaryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSummaryView.xib; sourceTree = "<group>"; };
 		BA05787F1C1A3B630098C3A1 /* UserSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSummaryTableViewCell.swift; sourceTree = "<group>"; };
@@ -959,6 +961,7 @@
 				DA2BA53F1B78FC4A00DE6300 /* MyTimelinesTableViewController.swift */,
 				DA75465B1B82AA7100FADDE5 /* FollowingTableViewController.swift */,
 				DA75465D1B82AA8A00FADDE5 /* TrendingTimelineTableViewController.swift */,
+				979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */,
 			);
 			name = "Specific Timelines";
 			sourceTree = "<group>";
@@ -1104,7 +1107,7 @@
 				TargetAttributes = {
 					81BA81441A49DA1800E65899 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = B4F2Z6ZQE6;
+						DevelopmentTeam = T5DY39F2BR;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1360,6 +1363,7 @@
 				DA7546581B8283D600FADDE5 /* ModalUploadViewController.swift in Sources */,
 				BA6729D71B9993D2000935A1 /* DraftPreviewView.swift in Sources */,
 				BAB996D61C12EDDB000E72F3 /* GlobalHooks.swift in Sources */,
+				979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */,
 				BAEE04461BA2E5A200B61DA7 /* BWWalkthroughPageViewController.swift in Sources */,
 				BAEE09521C17057D0095F6CE /* TimelineMoreButtonBehavior.swift in Sources */,
 				DAF09E8C1B84FF91007DE11D /* MomentImageView.swift in Sources */,
@@ -1577,7 +1581,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeffrey Garibay (7WH2H4QHZW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				CURRENT_PROJECT_VERSION = 95;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1589,11 +1593,11 @@
 					"$(PROJECT_DIR)/ParseStarterProject",
 				);
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "inc.reebay.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "89edb553-afe4-428d-a07f-0a1273f279d8";
+				PROVISIONING_PROFILE = "ee15ea52-873d-4231-a316-b0312059910a";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1607,7 +1611,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeffrey Garibay (7WH2H4QHZW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				CURRENT_PROJECT_VERSION = 95;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1619,11 +1623,11 @@
 					"$(PROJECT_DIR)/ParseStarterProject",
 				);
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "inc.reebay.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "89edb553-afe4-428d-a07f-0a1273f279d8";
+				PROVISIONING_PROFILE = "ee15ea52-873d-4231-a316-b0312059910a";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";

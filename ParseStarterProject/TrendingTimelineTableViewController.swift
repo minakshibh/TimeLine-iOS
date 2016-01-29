@@ -103,7 +103,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController {
                 
                 // Configure the cell...
                 cell.user = user
-                cell.nameLabel.hidden = false
+                cell.nameLabel.hidden = true
                 
                 return cell
             } else {

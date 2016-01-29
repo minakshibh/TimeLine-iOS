@@ -1,14 +1,7 @@
-//
-//  FlatTimelineTableViewController.swift
-//  Timeline
-//
-//  Created by Valentin Knabel on 18.08.15.
-//  Copyright (c) 2015 Conclurer GbR. All rights reserved.
-//
 
 import UIKit
 
-class FlatTimelineTableViewController: UITableViewController {
+class FlatTimelineTableViewControllerWithoutUsername: UITableViewController, UITabBarControllerDelegate, UINavigationControllerDelegate {
     
     var oldTabDelegate: UITabBarControllerDelegate?
     var oldNavDelegate: UINavigationControllerDelegate?
@@ -16,7 +9,7 @@ class FlatTimelineTableViewController: UITableViewController {
     var timelines: [Timeline] = [] {
         didSet {
             print("didset")
-
+            
             for i in 0..<timelines.count {
                 timelines[i].reloadMoments {
                     if let cell = self.tableView.cellForRowAtIndexPath(self.indexPathForIndex(i)) as? ModernTimelineTableViewCell {
@@ -27,11 +20,11 @@ class FlatTimelineTableViewController: UITableViewController {
             main { self.tableView.reloadData() }
         }
     }
-
+    
     var callbacks: [AnyObject?] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         callbacks.append(setUpReloadable())
         
         oldTabDelegate = tabBarController?.delegate
@@ -50,7 +43,7 @@ class FlatTimelineTableViewController: UITableViewController {
     }
     
     func refreshTableView() { }
-
+    
     override func viewWillAppear(animated: Bool) {
         self.setUpHooking() // required for Hooking protocol
     }
@@ -133,14 +126,14 @@ class FlatTimelineTableViewController: UITableViewController {
     }
     // MARK: Hooking
     var hookingResponsibilities: [AnyObject?] = []
-
+    
 }
 
-extension FlatTimelineTableViewController: Hooking, UserMoreButtonBehavior, TimelineMoreButtonBehavior, PushableBehavior, ShareableBehavior, DeleteableBehavior, BlockableBehavior {
+extension FlatTimelineTableViewControllerWithoutUsername: Hooking, UserMoreButtonBehavior, TimelineMoreButtonBehavior, PushableBehavior, ShareableBehavior, DeleteableBehavior, BlockableBehavior {
     var hookingSetUps: [() -> AnyObject?] {
-        return [setUpTimelineMoreButtonBehavior, setUpUserMoreButtonBehavior, setUpPushableBehavior, setUpActiveControllerBehavior]
+        return [setUpTimelineMoreWithoutUserButtonButtonBehavior, setUpUserMoreButtonBehavior, setUpPushableBehavior, setUpActiveControllerBehavior]
     }
-
+    
     override func reloadData() {
         main {
             self.refreshTableView()
