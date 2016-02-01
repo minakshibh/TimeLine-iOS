@@ -206,7 +206,7 @@ class MomentPlayerController: NSObject {
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        print("keyPath: \(keyPath)")
+        print("keyPath: \(keyPath!)")
         switch keyPath ?? "" {
         case "currentItem":
             let current = currentMoment()

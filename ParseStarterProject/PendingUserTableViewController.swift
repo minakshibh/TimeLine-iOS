@@ -44,7 +44,7 @@ class PendingUserTableViewController: FlatUserTableViewController {
         // Configure the cell...
         cell.hidesApproveButton = false
         cell.user = users[indexForIndexPath(indexPath)]
-        
+        cell.nameLabel.hidden = false
         return cell
     }
     

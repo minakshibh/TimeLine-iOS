@@ -37,7 +37,7 @@ class CommonTimelineTableViewController: UITableViewController {
         navigationController?.delegate = self
         
         self.refreshControl?.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
-        self.refreshTableView()
+        //self.refreshTableView()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

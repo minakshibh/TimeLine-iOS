@@ -1364,7 +1364,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="pqp-p9-mtJ" customClass="EditPasswordTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="6zF-QL-jjB">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -1629,7 +1629,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Xbc-8Z-o3Z" customClass="EditEmailTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="naj-kV-wKa">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -4179,19 +4179,19 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LAc-cl-HI0"/>
+        <segue reference="MIt-vp-hHF"/>
         <segue reference="SrR-ph-ZEC"/>
         <segue reference="fy0-iv-eFM"/>
         <segue reference="wPR-Ua-TlF"/>
         <segue reference="dHW-RB-S8H"/>
-        <segue reference="G1Z-KN-jvz"/>
-        <segue reference="Cnm-d8-vbZ"/>
-        <segue reference="BJd-cD-9l3"/>
+        <segue reference="hFd-TA-2wg"/>
+        <segue reference="sHs-6J-bIg"/>
+        <segue reference="9SA-Oc-iuS"/>
+        <segue reference="kNn-C3-4Z5"/>
         <segue reference="8W1-I7-grp"/>
         <segue reference="5f9-3x-iDp"/>
-        <segue reference="ndx-Tw-tdZ"/>
-        <segue reference="8E9-nt-LSh"/>
         <segue reference="JUD-Gk-HWr"/>
+        <segue reference="8E9-nt-LSh"/>
         <segue reference="UZr-rR-uSk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>

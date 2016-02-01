@@ -21,7 +21,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         self.tableView.allowsMultipleSelectionDuringEditing = false
         
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+         self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -33,12 +33,15 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
                 self.performSegueWithIdentifier("WalkthroughMy", sender: self)
             }
         }
+        
     }
     
     private var leftBarButtonItems: [AnyObject]?
     private var rightBarButtonItems: [AnyObject]?
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        refreshTableView()
         
         for any: AnyObject in leftBarButtonItems ?? [] {
             if let item = any as? UIBarButtonItem {

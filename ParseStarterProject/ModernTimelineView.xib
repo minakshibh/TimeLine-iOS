@@ -71,22 +71,6 @@
                         <outletCollection property="gestureRecognizers" destination="X9B-N1-dFJ" appends="YES" id="VYz-ff-sUR"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-je-7Td" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
-                    <rect key="frame" x="328" y="154" width="71" height="71"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="rdV-je-7Td" secondAttribute="height" multiplier="1:1" id="YHK-iU-FT8"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="YHK-iU-FT8"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="cC5-F5-vor" appends="YES" id="Smt-3i-eYX"/>
-                    </connections>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRr-Jw-1xW" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="328" y="232" width="71" height="71"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -190,6 +174,22 @@
                     </variation>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="du8-JZ-SKG" appends="YES" id="dOJ-o1-h9i"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-je-7Td" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                    <rect key="frame" x="328" y="155" width="71" height="71"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="rdV-je-7Td" secondAttribute="height" multiplier="1:1" id="YHK-iU-FT8"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="YHK-iU-FT8"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="cC5-F5-vor" appends="YES" id="Smt-3i-eYX"/>
                     </connections>
                 </view>
             </subviews>
