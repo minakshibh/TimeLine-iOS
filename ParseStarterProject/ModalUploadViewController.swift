@@ -9,10 +9,13 @@
 import UIKit
 import Alamofire
 
+
 class ModalUploadViewController: UIViewController {
 
     var moment: Moment!
     var timeline: Timeline!
+    var timer = NSTimer()
+    var request: Alamofire.Request?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +26,17 @@ class ModalUploadViewController: UIViewController {
         //navigationItem.hidesBackButton = true
         navigationController?.setNavigationBarHidden(true, animated: true)
         
+        // NSTimer for stop uploading video if uploading exceed 10 sec.
+        
+         timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: "stopUploading", userInfo: nil, repeats: false)
+        
+        
         // Do any additional setup after loading the view.
         
         Storage.performUpload(moment: moment, timeline: timeline) { (response: Response<AnyObject, NSError>) -> Void in
             guard let json = response.result.value else { return }
             if let dict = json as? [String: AnyObject] {
+                print("dict : %@",dict)
                 let state = SynchronizationState(dict: dict, parent: nil)
                 if let _ = dict["timeline_id"] as? UUID,
                     let contentType = dict["video_content_type"] as? String,
@@ -36,7 +45,7 @@ class ModalUploadViewController: UIViewController {
                     let videoSize = dict["video_file_size"] as? Int,
                     let _remoteVideoURLString = dict["video_url"] as? String,
                     let remoteVideoURL = NSURL(string: _remoteVideoURLString)
-                {
+                {   
                     self.moment.contentType = contentType
                     self.moment.state = state
                     self.moment.remoteThumbURL = remoteThumbURL
@@ -59,7 +68,7 @@ class ModalUploadViewController: UIViewController {
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
                     
-                    return
+                    //return
                 }
             } else {
                 main {
@@ -82,7 +91,19 @@ class ModalUploadViewController: UIViewController {
             }
         }
     }
-
+    
+    func stopUploading() {
+    
+        let alert = UIAlertController(title: local(.MomentAlertUploadErrorTitle), message: local(.MomentAlertUploadExceedTenseconds), preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: local(.MomentAlertUploadErrorActionDismiss), style: .Default, handler: { _ in
+            delay(0.1) {
+                self.dismissViewControllerAnimated(true, completion: nil)
+               // MyTimelinesTableViewController().refreshTableView()
+            }
+        }))
+        self.presentAlertController(alert)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

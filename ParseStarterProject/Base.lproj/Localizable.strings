@@ -162,6 +162,7 @@
 "Moment-Alert-Upload-Error-Title" = "Upload Moment";
 /* Will only displayed if the error is unknwon */
 "Moment-Alert-Upload-Error-Message-Default" = "An unknown error occured.";
+"Moment-Alert-Upload-Exceed-Tenseconds" = "Please be patient, moment is still uploading.";
 "Moment-Alert-Upload-Error-Action-Dismiss" = "Ok";
 
 /* MARK: Formats */
@@ -240,3 +241,5 @@
 "Draft-Alert-ConfirmUpload-Message" = "Uploading moments to a timeline cannot be undone.";
 "Draft-Alert-ConfirmUpload-Upload" = "Upload";
 "Draft-Alert-ConfirmUpload-Cancel" = "Cancel";
+
+

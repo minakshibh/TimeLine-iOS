@@ -28,6 +28,7 @@ class MomentPlayerController: NSObject {
     }
 
     init(moments: [Moment], inView view: PlayerView) {
+        
         items = moments.sort(<).map { ($0, AVPlayerItem(URL: $0.bestVideoURL ?? $0.alternativeVideoURL!)) }
         
         queuePlayer = AVQueuePlayer(items: items.map { $0.1 })
@@ -173,7 +174,7 @@ class MomentPlayerController: NSObject {
         //queue.addOperationWithBlock {
             if self.queuePlayer.items().count > 1 {
                 self.currentIndex++
-                let new = items[currentIndex].1
+                _ = items[currentIndex].1
                 queuePlayer.advanceToNextItem()
             } else {
                 

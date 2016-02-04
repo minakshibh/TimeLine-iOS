@@ -164,6 +164,7 @@ enum LocalizedString: String, Localized {
     // MARK: Moment Upload
     case MomentAlertUploadErrorTitle = "Moment-Alert-Upload-Error-Title"
     case MomentAlertUploadErrorMessageDefault = "Moment-Alert-Upload-Error-Message-Default"
+    case MomentAlertUploadExceedTenseconds = "Moment-Alert-Upload-Exceed-Tenseconds"
     case MomentAlertUploadErrorActionDismiss = "Moment-Alert-Upload-Error-Action-Dismiss"
     
     // MARK: Moment Overlay
