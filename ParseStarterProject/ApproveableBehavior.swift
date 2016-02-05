@@ -63,15 +63,27 @@ extension ApproveableBehavior where TargetBehaviorType: Named {
         let alert = UIAlertController(title: title, message: local(.UserSheetRespondMessage), preferredStyle: .ActionSheet)
         alert.addAction(title: local(.UserSheetRespondApprove), style: .Default) { _ in
             approveable.approve(reloadData)
+            self.resetPendingFollowerCount()
             removeData()
         }
         alert.addAction(title: local(.UserSheetRespondDecline), style: .Destructive) { _ in
             approveable.decline(reloadData)
+            self.resetPendingFollowerCount()
             removeData()
         }
         alert.addAction(title: local(.UserSheetRespondCancel), style: .Cancel, handler: nil)
 
         controller.presentAlertController(alert)
     }
+    
+    func resetPendingFollowerCount() {
+        if let user = Storage.session.currentUser {
+            if user.pendingFollowersCount > 0 {
+                Storage.session.currentUser?.pendingFollowersCount=user.pendingFollowersCount!-1
+            }
+        }
+    }
+    
+
     
 }
