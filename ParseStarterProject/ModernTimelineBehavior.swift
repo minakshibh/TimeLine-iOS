@@ -147,7 +147,7 @@ extension ModernTimelineBehavior {
 
 
 
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animateWithDuration(0.01, animations: {
             /*playerView.superview?.removeConstraints(self.centerConstraints)
 
             self.centerConstraints = [
@@ -187,7 +187,7 @@ extension ModernTimelineBehavior {
         for v in self.modernTimelineView?.previewItems ?? [] {
             v.hidden = false
         }
-        UIView.animateWithDuration(animated ? 0.5 : 0.0, animations: {
+        UIView.animateWithDuration(animated ? 0.01 : 0.0, animations: {
             for v in self.modernTimelineView?.previewItems ?? [] {
                 v.alpha = 1.0
             }
@@ -216,7 +216,16 @@ extension ModernTimelineBehavior {
         } else {
             moment = tlview.lastMomentPreviews.filter { $0 == target }.first?.moment
         }
-        guard let m = moment else { return }
+        guard let m = moment else {
+            
+            let alert = UIAlertView()
+            alert.title = ""
+            alert.message = "Sorry, this timeline has no moments. Follow to get updates or check back later."
+            alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
+            alert.show()
+            
+            return
+        }
         playMoment(target, moment: m)
     }
 

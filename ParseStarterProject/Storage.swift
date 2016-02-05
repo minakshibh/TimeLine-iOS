@@ -138,7 +138,7 @@ extension Storage {
     static func performRequest(request: ApiRequest, completion: ([String: AnyObject]) -> Void) {
         let t = urlSession.taskWith(request) { (data, response, error) -> Void in
             if let error = error {
-                print("Error: \(request.urlRequest.URL?.absoluteString ?? "")\n\(error)\n\n")
+                //print("Error: \(request.urlRequest.URL?.absoluteString ?? "")\n\(error)\n\n")
                 return
             }
             
@@ -177,10 +177,10 @@ extension Storage {
                     // completion will not be called
                 }
             case 200:
-                print("\((response as! NSHTTPURLResponse).statusCode): \(request.urlRequest.URLString)")
+               // print("\((response as! NSHTTPURLResponse).statusCode): \(request.urlRequest.URLString)")
                 perform()
             case 404, 500, 502, _:
-                print("\((response as! NSHTTPURLResponse).statusCode): \(request.urlRequest.URLString)")
+               // print("\((response as! NSHTTPURLResponse).statusCode): \(request.urlRequest.URLString)")
                 perform()
                 
             }
