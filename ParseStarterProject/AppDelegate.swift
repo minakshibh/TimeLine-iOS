@@ -148,21 +148,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             currentInstallation.saveEventually()
         }
         
-        if let _ = Storage.session.currentUser {
-            Storage.performRequest(ApiRequest.UserNotifications, completion: { (json) -> Void in
-                print(json)
-                if let results = json["result"] as? [[String: AnyObject]] {
-                    for not in results {
-                        if let raw = not["payload"] as? NSString,
-                            let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
-                            let payload = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? [String: AnyObject]
-                        {
-                            self.process(payload: payload)
-                        }
-                    }
-                }
-            })
-        }
+//        if let _ = Storage.session.currentUser {
+//            Storage.performRequest(ApiRequest.UserNotifications, completion: { (json) -> Void in
+//                print(json)
+//                if let results = json["result"] as? [[String: AnyObject]] {
+//                    for not in results {
+//                        if let raw = not["payload"] as? NSString,
+//                            let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
+//                            let payload = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? [String: AnyObject]
+//                        {
+//                            self.process(payload: payload)
+//                        }
+//                    }
+//                }
+//            })
+//        }
     }
     
     //--------------------------------------

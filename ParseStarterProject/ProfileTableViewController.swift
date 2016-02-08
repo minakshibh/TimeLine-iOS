@@ -92,22 +92,22 @@ class ProfileTableViewController: TintedHeaderTableViewController {
             timelinesPublicSwitch.on = Storage.session.currentUser!.timelinesPublic!
             approveFollowersSwitch.on = Storage.session.currentUser!.approveFollowers!
             
-            user.badgePendingInBackground { pc -> Void in
-                main {
-                    if pc > 0 {
-                        let text = String(pc)
-                        if self.pendingBadge == nil {
-                            self.pendingBadge = CustomBadge(string: text, withStyle: BadgeStyle.defaultStyle())
-                            self.pendingLabel.superview?.addSubview(self.pendingBadge!)
-                            self.pendingBadge?.center = self.pendingLabel.center
-                        } else {
-                            self.pendingBadge?.badgeText = text
-                        }
-                    } else {
-                        self.pendingBadge?.removeFromSuperview()
-                    }
-                }
-            }
+//            user.badgePendingInBackground { pc -> Void in
+//                main {
+//                    if pc > 0 {
+//                        let text = String(pc)
+//                        if self.pendingBadge == nil {
+//                            self.pendingBadge = CustomBadge(string: text, withStyle: BadgeStyle.defaultStyle())
+//                            self.pendingLabel.superview?.addSubview(self.pendingBadge!)
+//                            self.pendingBadge?.center = self.pendingLabel.center
+//                        } else {
+//                            self.pendingBadge?.badgeText = text
+//                        }
+//                    } else {
+//                        self.pendingBadge?.removeFromSuperview()
+//                    }
+//                }
+//            }
         } else {
             Storage.logout()
         }
