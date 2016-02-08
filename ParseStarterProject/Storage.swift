@@ -21,6 +21,7 @@ struct Storage {
     }()
     
     static func save() {
+        
         NSUserDefaults.standardUserDefaults().setValue(session.dict, forKey: "session")
         
         if Storage.session.unsyncedTimelineIncrement - Storage.session.activeTimelineIncrementSyncs > 0 {
@@ -53,21 +54,22 @@ extension Storage {
 extension Storage {
     
     static func logout(delete: Bool = true) {
-        main {
+//        main {
             PFUser.logOut()
             let drafts = Storage.session.drafts
+            print(drafts.count)
             Storage.session = Session()
-            Storage.session.drafts = delete ? [] : drafts
+            Storage.session.drafts = drafts
             Storage.save()
 
-            if delete {
-                do {
-                    try NSFileManager.defaultManager().removeItemAtPath(Moment.basePath)
-                } catch _ {
-                }
-            }
+//            if delete {
+//                do {
+//                    try NSFileManager.defaultManager().removeItemAtPath(Moment.basePath)
+//                } catch _ {
+//                }
+//            }
             (UIApplication.sharedApplication().delegate as! AppDelegate).initializeRootViewController()
-        }
+//        }
     }
     
     static func delete() {

@@ -101,6 +101,9 @@ enum LocalizedString: String, Localized {
     // MARK: Settings Share
     case SettingsStringShareMessage = "Settings-String-Share-Message"
     case SettingsStringShareURL = "Settings-String-Share-URL"
+    case SettingInternetErrorTitle = "Setting-Internet-Error-Title"
+    case SettingInternetErrorMessage = "Setting-Internet-Error-Message"
+    case SettinginternetErrorActionDismiss = "Setting-Internet-Error-Action-Dismiss"
     
     // MARK: Timeline Deletion
     case TimelineAlertDeleteWaitTitle = "Timeline-Alert-Delete-Wait-Title"

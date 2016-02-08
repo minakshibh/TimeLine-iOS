@@ -11,6 +11,9 @@
 
 /* MARK: Settings Support */
 "Settings-String-Support-URL" = "http://mytimelineapp.com/support";
+"Setting-Internet-Error-Title" = "Internet Connection";
+"Setting-Internet-Error-Message" = "You might be experiencing bad internet connection.";
+"Setting-Internet-Error-Action-Dismiss" = "Ok";
 
 /* MARK: Blocking */
 "Timeline-Alert-Block-Title" = "Block Timeline";
