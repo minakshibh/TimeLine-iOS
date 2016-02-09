@@ -184,6 +184,7 @@ static char* SCRecorderPhotoOptionsContext = "PhotoOptionsContext";
     
     AVCaptureSession *session = _captureSession;
     
+    
     if (session != nil) {
         [self beginConfiguration];
         

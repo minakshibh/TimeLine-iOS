@@ -4139,16 +4139,16 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fy0-iv-eFM"/>
-        <segue reference="SrR-ph-ZEC"/>
-        <segue reference="wPR-Ua-TlF"/>
-        <segue reference="MIt-vp-hHF"/>
-        <segue reference="hFd-TA-2wg"/>
-        <segue reference="dHW-RB-S8H"/>
         <segue reference="9SA-Oc-iuS"/>
+        <segue reference="3ER-K8-eo8"/>
+        <segue reference="SrR-ph-ZEC"/>
+        <segue reference="fy0-iv-eFM"/>
+        <segue reference="dHW-RB-S8H"/>
+        <segue reference="pyd-yG-wzP"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="UDh-ad-jqq"/>
         <segue reference="kNn-C3-4Z5"/>
         <segue reference="8W1-I7-grp"/>
-        <segue reference="JSH-Rm-O8t"/>
         <segue reference="5f9-3x-iDp"/>
         <segue reference="JUD-Gk-HWr"/>
         <segue reference="UZr-rR-uSk"/>

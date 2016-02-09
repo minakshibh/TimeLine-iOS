@@ -44,7 +44,7 @@ class FlatUserTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 197
+        return 100
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

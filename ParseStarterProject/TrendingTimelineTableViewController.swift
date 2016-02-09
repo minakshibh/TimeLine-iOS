@@ -73,7 +73,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController {
             if searching && searchResults.count == 0 {
                 return 147
             } else if let _ = searchResults[indexPath.row] as? User {
-                return 197
+                return 100
             } else {
                 return 382
             }
@@ -82,13 +82,13 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // MARK: Causing TableView Crash
-        /*
+        
         if tableView == self.tableView {
-            super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+            //super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
         } else if let user = searchResults[indexPath.row] as? User {
             performSegueWithIdentifier("ShowUser", sender: user)
         }
-        */
+        
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -102,8 +102,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController {
                 let cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserSummaryTableViewCell
                 
                 // Configure the cell...
+                
                 cell.user = user
-                cell.nameLabel.hidden = true
+                cell.nameLabel.hidden = false
                 
                 return cell
             } else {

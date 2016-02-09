@@ -53,7 +53,7 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 143
+            return 100
         default:
             return 392
         }
@@ -66,6 +66,7 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
             
             // Configure the cell...
             cell.user = user
+            cell.nameLabel.hidden = false
             return cell
             
         default:
