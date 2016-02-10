@@ -218,8 +218,8 @@ extension DraftPreview: MomentPlayerControllerDelegate {
         
         main {
         UIView.animateWithDuration(0.5, animations: {
-            self.previousPlayButton.alpha = momentPlayerController.isFirst ? 0.0 : 1.0
-            self.nextPlayButton.alpha = momentPlayerController.isLast ? 0.0 : 1.0
+            self.previousPlayButton.alpha = momentPlayerController.isFirst ? 0.0 : 0.5
+            self.nextPlayButton.alpha = momentPlayerController.isLast ? 0.0 : 0.5
             
             (self.previousPlayButton.hidden, self.nextPlayButton.hidden) = (false, false)
             
