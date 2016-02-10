@@ -86,6 +86,13 @@ class MomentPlayerController: NSObject {
     }
     
     func previous() {
+        
+//        let alert = UIAlertView()
+//        alert.title = ""
+//        alert.message = "loading moment."
+//        alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
+//        alert.show()
+        
         print("previous: \(self.currentIndex)")
         self.queuePlayer.seekToTime(kCMTimeZero)
         //queue.addOperationWithBlock {
@@ -170,6 +177,12 @@ class MomentPlayerController: NSObject {
     }
     
     func next() {
+//        let alert = UIAlertView()
+//        alert.title = ""
+//        alert.message = "loading moment."
+//        alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
+//        alert.show()
+        
         print("next: \(self.currentIndex)")
         //queue.addOperationWithBlock {
             if self.queuePlayer.items().count > 1 {
