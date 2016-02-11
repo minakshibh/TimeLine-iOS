@@ -21,6 +21,17 @@ class DraftBarCollectionReusableView: UICollectionReusableView {
             }
             
             self.sendToTimelineButton.enabled = moment?.duration ?? Int.max <= 10
+//            print("\(LocalizedString.DurationFormatSeconds1d)*****\(moment?.duration)")
+            
+            
+            let user = NSUserDefaults.standardUserDefaults()
+            
+            if(moment?.duration != nil)
+            {
+                let selectedVideoTime = moment!.duration
+//                print("-----------\(selectedVideoTime)----------------")
+                user.setObject(selectedVideoTime, forKey: "selectedVideoTime")
+            }
             self.durationLabel?.text = lformat(LocalizedString.DurationFormatSeconds1d, moment?.duration ?? 0)
         }
     }

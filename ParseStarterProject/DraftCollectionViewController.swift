@@ -53,7 +53,8 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         // self.clearsSelectionOnViewWillAppear = false
         
         // Do any additional setup after loading the view.
-
+        self.collectionView?.reloadData()
+        
         if let tl = timeline,
             let _ = navigationController
         {
@@ -390,10 +391,38 @@ extension DraftCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension DraftCollectionViewController {
-
+    
     @IBAction func sendMoment() {
         headerView?.draftPreview.stop()
-
+        
+        print("\(Storage.session.currentUser?.timelines.count)")
+        if(Storage.session.currentUser?.timelines.count != nil)
+        {  if(Storage.session.currentUser!.timelines.count==1)
+        {
+            Storage.session.currentUser?.timelines.each({ tl in
+                //                print("\(tl.fullName) ******\(tl.duration) ***** )  ***** \(local(.DraftAlertConfirmUploadMessage))")
+                //                print("-------\(tl.duration)-------")
+                let profileTimeUsed = tl.duration as Int
+                let selectedVideoTime = NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoTime") as! Int
+                let totalTime = selectedVideoTime + profileTimeUsed
+                let leftTime = 300 - profileTimeUsed;
+//                print("profileTimeUsed = \(profileTimeUsed) and selectedVideoTime= \(selectedVideoTime)")
+                if(totalTime>25)
+                {
+                    let alert=UIAlertController(title: "Limit Exceed", message: "You have \(leftTime)s self. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    //no event handler (just close dialog box)
+                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
+                    //event handler with closure
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                }
+                
+            })
+            return
+            }
+        }
+        
         if let _ = timeline {
             performSegueWithIdentifier("Upload", sender: nil)
         } else {
@@ -401,9 +430,31 @@ extension DraftCollectionViewController {
                 message: local(.DraftAlertPickTimelineMessage),
                 preferredStyle: .ActionSheet)
             alert.addAction(title: local(.DraftAlertPickTimelineCancel), style: .Cancel, handler: nil)
-
+            
+            //             print(" \(LocalizedString.DurationFormatSeconds1d)   **** \(self.moment?.duration))")
+            
             Storage.session.currentUser?.timelines.each({ tl in
                 alert.addAction(title: tl.fullName, style: .Default, handler: { (_) -> Void in
+                    
+                    //--- check if loged in user timline limit exceeds
+                    let profileTimeUsed = tl.duration as Int
+                    let selectedVideoTime = NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoTime") as! Int
+                    let totalTime = selectedVideoTime + profileTimeUsed
+                    let leftTime = 300 - profileTimeUsed;
+//                    print("profileTimeUsed = \(profileTimeUsed) and selectedVideoTime= \(selectedVideoTime)")
+                    if(totalTime>25)
+                    {
+                        let alert=UIAlertController(title: local(.DraftAlertPickTimelineTitle), message: "You have \(leftTime)s self. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        //no event handler (just close dialog box)
+                        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
+                        //event handler with closure
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        return
+                    }
+                    //------
+                    
+                    
                     let confirm = UIAlertController(title: lformat(.DraftAlertConfirmUploadTitle1s, tl.fullName),
                         message: local(.DraftAlertConfirmUploadMessage),
                         preferredStyle: .Alert)
@@ -412,9 +463,11 @@ extension DraftCollectionViewController {
                         handler: nil)
                     confirm.addAction(title: local(.DraftAlertConfirmUploadUpload),
                         style: .Default) { _ in
+                            
                             self.timeline = tl
                             self.performSegueWithIdentifier("Upload", sender: nil)
                     }
+                    print("\(tl.fullName) ******\(tl.duration) *****   ***** \(local(.DraftAlertConfirmUploadMessage))")
                     self.presentAlertController(confirm)
                 })
             })
@@ -422,5 +475,5 @@ extension DraftCollectionViewController {
             presentAlertController(alert)
         }
     }
-
+    
 }
