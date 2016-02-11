@@ -217,6 +217,9 @@ extension DraftPreview: MomentPlayerControllerDelegate {
     func momentPlayerControllerItemDidChange(momentPlayerController: MomentPlayerController, moment: Moment?) {
         
         main {
+            self.previousPlayButton.userInteractionEnabled = momentPlayerController.isFirst ? false : true
+            self.nextPlayButton.userInteractionEnabled = momentPlayerController.isLast ? false : true
+
         UIView.animateWithDuration(0.5, animations: {
             self.previousPlayButton.alpha = momentPlayerController.isFirst ? 0.0 : 0.5
             self.nextPlayButton.alpha = momentPlayerController.isLast ? 0.0 : 0.5

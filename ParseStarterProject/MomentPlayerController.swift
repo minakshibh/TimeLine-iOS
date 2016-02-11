@@ -72,7 +72,7 @@ class MomentPlayerController: NSObject {
     }
     
     func currentMoment() -> Moment? {
-        if currentIndex < items.count {
+        if currentIndex >= 0 && currentIndex < items.count {
             let current = items[currentIndex].0
             return current
         } else if let current = self.queuePlayer.currentItem {
@@ -94,21 +94,24 @@ class MomentPlayerController: NSObject {
 //        alert.show()
         
         print("previous: \(self.currentIndex)")
-        self.queuePlayer.seekToTime(kCMTimeZero)
-        //queue.addOperationWithBlock {
-        if self.currentMoment() == nil {
-            var prev: AVPlayerItem? = nil
-            for i in (self.items.map { $0.1 }) {
-                self.queuePlayer.insertItem(i, afterItem: prev)
-                prev = i
-            }
-        } else {
-            if --currentIndex < items.count {
-                let previous =  self.items[self.currentIndex].1
-                let current = self.queuePlayer.currentItem
-                self.queuePlayer.replaceCurrentItemWithPlayerItem(previous)
-                self.queuePlayer.insertItem(current!, afterItem: previous)
-                self.queuePlayer.seekToTime(kCMTimeZero)
+        if self.currentIndex > 0
+        {
+            self.queuePlayer.seekToTime(kCMTimeZero)
+            //queue.addOperationWithBlock {
+            if self.currentMoment() == nil {
+                var prev: AVPlayerItem? = nil
+                for i in (self.items.map { $0.1 }) {
+                    self.queuePlayer.insertItem(i, afterItem: prev)
+                    prev = i
+                }
+            } else {
+                if --currentIndex < items.count {
+                    let previous =  self.items[self.currentIndex].1
+                    let current = self.queuePlayer.currentItem
+                    self.queuePlayer.replaceCurrentItemWithPlayerItem(previous)
+                    self.queuePlayer.insertItem(current!, afterItem: previous)
+                    self.queuePlayer.seekToTime(kCMTimeZero)
+                }
             }
             
         }
