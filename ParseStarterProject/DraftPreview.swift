@@ -43,7 +43,7 @@ class DraftPreview: UIView {
             momentPlayerController?.pause()
             momentPlayerController = nil
             playbackContainer.hidden = true
-            bufferIndicator.hidden = true
+//            bufferIndicator.hidden = true
         }
     }
     func setTimeline(timeline: Timeline?) {
@@ -118,6 +118,7 @@ class DraftPreview: UIView {
         
         switch rightError {
         case .Viewable:
+            bufferIndicator .startAnimating()
             if momentPlayerController == nil {
                 momentPlayerController = MomentPlayerController(moments: moments, inView: playbackContainer)
                 momentPlayerController?.delegate = self
@@ -149,30 +150,35 @@ class DraftPreview: UIView {
     }
     
     @IBAction func play() {
+        bufferIndicator.startAnimating()
         pausePlayButton.hidden = false
         playPlayButton.hidden = true
         momentPlayerController?.play()
     }
     
     @IBAction func pause() {
+        bufferIndicator.stopAnimating()
         pausePlayButton.hidden = true
         playPlayButton.hidden = false
         momentPlayerController?.pause()
     }
     
     @IBAction func previous() {
+        bufferIndicator.startAnimating()
         momentPlayerController?.previous()
     }
     
     @IBAction func next() {
+        bufferIndicator.startAnimating()
         momentPlayerController?.next()
     }
     
     @IBAction func stop() {
+        bufferIndicator.stopAnimating()
         momentPlayerController?.stop()
         momentPlayerController = nil
         playbackContainer.hidden = true
-        bufferIndicator.hidden = true
+//        bufferIndicator.hidden = true
 
         serialHook.perform(key: .StopAllPlaybacks, argument: ())
     }
@@ -197,7 +203,7 @@ extension DraftPreview: MomentPlayerControllerDelegate {
     func momentPlayerControllerDidFinishPlaying(momentPlayerController: MomentPlayerController?) {
         main {
             self.playbackContainer.hidden = true
-            self.bufferIndicator.hidden = true
+//            self.bufferIndicator.hidden = true
             self.stop()
         }
     }
@@ -206,10 +212,8 @@ extension DraftPreview: MomentPlayerControllerDelegate {
         main {
             if isBuffering {
                 self.bufferIndicator.startAnimating()
-                self.bufferIndicator.hidden = false
             } else {
                 self.bufferIndicator.stopAnimating()
-                self.bufferIndicator.hidden = true
             }
         }
     }

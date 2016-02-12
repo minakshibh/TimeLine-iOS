@@ -119,6 +119,7 @@ class MomentPlayerController: NSObject {
     }
     
     func play() {
+        main{
         //queue.addOperationWithBlock {
         if self.currentMoment() == nil {
             var prev: AVPlayerItem? = nil
@@ -144,7 +145,7 @@ class MomentPlayerController: NSObject {
         
         self.queuePlayer.play()
         self.playing = true
-        //}
+        }
     }
     func stalled(notification: NSNotification) {
         print("stalled")

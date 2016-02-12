@@ -114,7 +114,7 @@
                         <constraint firstAttribute="centerX" secondItem="8u0-H3-dgq" secondAttribute="centerX" id="wtS-8B-kTp"/>
                     </constraints>
                 </view>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uwZ-dp-iXz">
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uwZ-dp-iXz">
                     <rect key="frame" x="141" y="142" width="37" height="37"/>
                 </activityIndicatorView>
             </subviews>
