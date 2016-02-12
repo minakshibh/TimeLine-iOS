@@ -407,7 +407,7 @@ extension DraftCollectionViewController {
                 let totalTime = selectedVideoTime + profileTimeUsed
                 let leftTime = 300 - profileTimeUsed;
 //                print("profileTimeUsed = \(profileTimeUsed) and selectedVideoTime= \(selectedVideoTime)")
-                if(totalTime>25)
+                if(totalTime>300)
                 {
                     let alert=UIAlertController(title: "Limit Exceed", message: "You have \(leftTime)s self. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
                     
@@ -442,7 +442,7 @@ extension DraftCollectionViewController {
                     let totalTime = selectedVideoTime + profileTimeUsed
                     let leftTime = 300 - profileTimeUsed;
 //                    print("profileTimeUsed = \(profileTimeUsed) and selectedVideoTime= \(selectedVideoTime)")
-                    if(totalTime>25)
+                    if(totalTime>300)
                     {
                         let alert=UIAlertController(title: local(.DraftAlertPickTimelineTitle), message: "You have \(leftTime)s self. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
                         
