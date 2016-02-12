@@ -409,17 +409,21 @@ extension DraftCollectionViewController {
 //                print("profileTimeUsed = \(profileTimeUsed) and selectedVideoTime= \(selectedVideoTime)")
                 if(totalTime>300)
                 {
-                    let alert=UIAlertController(title: "Limit Exceed", message: "You have \(leftTime)s self. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
+                    let alert=UIAlertController(title: "Limit Exceed", message: "You have \(leftTime)s left. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
                     
                     //no event handler (just close dialog box)
-                    alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
+                    alert.addAction(title: "Okay",
+                        style: .Default) { _ in
+                            
+                            self.trimVideo(leftTime)
+                    }
                     //event handler with closure
                     self.presentViewController(alert, animated: true, completion: nil)
-                    
+                   return 
                 }
                 
             })
-            return
+            
             }
         }
         
@@ -444,10 +448,14 @@ extension DraftCollectionViewController {
 //                    print("profileTimeUsed = \(profileTimeUsed) and selectedVideoTime= \(selectedVideoTime)")
                     if(totalTime>300)
                     {
-                        let alert=UIAlertController(title: local(.DraftAlertPickTimelineTitle), message: "You have \(leftTime)s self. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
+                        let alert=UIAlertController(title: "Limit Exceed", message: "You have \(leftTime)s left. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
                         
                         //no event handler (just close dialog box)
-                        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
+                        alert.addAction(title: "Okay",
+                            style: .Default) { _ in
+                                
+                                self.trimVideo(leftTime)
+                        }
                         //event handler with closure
                         self.presentViewController(alert, animated: true, completion: nil)
                         return
@@ -475,5 +483,26 @@ extension DraftCollectionViewController {
             presentAlertController(alert)
         }
     }
-    
+    func trimVideo(videoTime: Int)  {
+        headerView?.draftPreview.stop()
+        
+        let editor = UIVideoEditorController()
+        editor.delegate = self
+        editor.videoQuality = .TypeHigh
+        editor.videoMaximumDuration = Double(videoTime)
+        editor.videoPath = drafts[selectedIndex].localVideoURL!.path!
+        presentViewController(editor, animated: true) {
+            editor.navigationBar.tintColor = .barButtonTintColor()
+            editor.navigationBar.barTintColor = .topBarTintColor()
+            editor.toolbar.barStyle = .Black
+            editor.toolbar.tintColor = .barButtonTintColor()
+            editor.toolbar.barTintColor = .bottomBarTintColor()
+        }
+        editor.navigationBar.tintColor = UIColor.barButtonTintColor()
+        editor.navigationBar.barTintColor = UIColor.topBarTintColor()
+        editor.toolbar.barStyle = .Black
+        editor.toolbar.tintColor = UIColor.barButtonTintColor()
+        editor.toolbar.barTintColor = UIColor.bottomBarTintColor()
+        
+    }
 }
