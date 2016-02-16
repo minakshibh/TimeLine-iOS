@@ -101,6 +101,11 @@
 		BAF593391B9600A100C7E8AE /* Session+InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF593381B9600A100C7E8AE /* Session+InAppPurchase.swift */; };
 		BAF5933B1B960BA100C7E8AE /* PendingInAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF5933A1B960BA100C7E8AE /* PendingInAppViewController.swift */; };
 		BE86307804EAC41D198E236B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472C1B472FC01F506711759 /* Pods.framework */; };
+		D9B3408B1C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */; };
+		D9B3408C1C72EABB00EC3BFF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */; };
+		D9B3408D1C72EABB00EC3BFF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340881C72EABB00EC3BFF /* FBSDKLoginKit.framework */; };
+		D9B3408E1C72EABB00EC3BFF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340891C72EABB00EC3BFF /* FBSDKShareKit.framework */; };
+		D9B340911C72F28600EC3BFF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340901C72F28600EC3BFF /* libz.tbd */; };
 		DA167DFD1B7D211C00608A6C /* VideoSquareCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167DFC1B7D211C00608A6C /* VideoSquareCropper.m */; };
 		DA167E091B7D351F00608A6C /* UIAppearence+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E081B7D351F00608A6C /* UIAppearence+Swift.m */; };
 		DA167E0E1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E0B1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m */; };
@@ -351,6 +356,11 @@
 		BAF593361B95FC7A00C7E8AE /* SKProduct+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProduct+Additions.swift"; sourceTree = "<group>"; };
 		BAF593381B9600A100C7E8AE /* Session+InAppPurchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+InAppPurchase.swift"; sourceTree = "<group>"; };
 		BAF5933A1B960BA100C7E8AE /* PendingInAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInAppViewController.swift; sourceTree = "<group>"; };
+		D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		D9B340881C72EABB00EC3BFF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		D9B340891C72EABB00EC3BFF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		D9B340901C72F28600EC3BFF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DA0342991B7BBC67008DAB69 /* record-end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "record-end.mp3"; sourceTree = "<group>"; };
 		DA03429A1B7BBC67008DAB69 /* record-start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "record-start.mp3"; sourceTree = "<group>"; };
 		DA167DFB1B7D211C00608A6C /* VideoSquareCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSquareCropper.h; sourceTree = "<group>"; };
@@ -462,6 +472,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9B340911C72F28600EC3BFF /* libz.tbd in Frameworks */,
+				D9B3408D1C72EABB00EC3BFF /* FBSDKLoginKit.framework in Frameworks */,
 				81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */,
 				BA9696531B9C909D00D17D5A /* WebKit.framework in Frameworks */,
 				BAF593191B95F51300C7E8AE /* StoreKit.framework in Frameworks */,
@@ -474,7 +486,10 @@
 				81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */,
 				81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */,
 				81BA81771A49E0D500E65899 /* libsqlite3.dylib in Frameworks */,
+				D9B3408E1C72EABB00EC3BFF /* FBSDKShareKit.framework in Frameworks */,
+				D9B3408C1C72EABB00EC3BFF /* FBSDKCoreKit.framework in Frameworks */,
 				BE86307804EAC41D198E236B /* Pods.framework in Frameworks */,
+				D9B3408B1C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +548,11 @@
 		81BA816A1A49DB5600E65899 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D9B340901C72F28600EC3BFF /* libz.tbd */,
+				D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */,
+				D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */,
+				D9B340881C72EABB00EC3BFF /* FBSDKLoginKit.framework */,
+				D9B340891C72EABB00EC3BFF /* FBSDKShareKit.framework */,
 				BAEBFC9C1C18E2AE00FE558D /* ConclurerHook.xcodeproj */,
 				BA9696521B9C909D00D17D5A /* WebKit.framework */,
 				BAF593181B95F51300C7E8AE /* StoreKit.framework */,
@@ -1595,6 +1615,10 @@
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
 				PROVISIONING_PROFILE = "ee15ea52-873d-4231-a316-b0312059910a";
@@ -1625,6 +1649,10 @@
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
 				PROVISIONING_PROFILE = "ee15ea52-873d-4231-a316-b0312059910a";
