@@ -107,7 +107,8 @@ class LogInViewController: PFLogInViewController {
             
             let isFacebook = NSUserDefaults.standardUserDefaults().valueForKey("facebook_login")
             
-            if(isFacebook!.lowercaseString == "yes")
+            
+            if(isFacebook != nil)
             {
                 let facebookInfo = ApiRequest.getFacebookInfo(accessToken.tokenString)
                 
@@ -199,6 +200,8 @@ class LogInViewController: PFLogInViewController {
                     self.alert?.dismissViewControllerWithAnimation(self)
                 }
             }
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut()
         
         }
     }
