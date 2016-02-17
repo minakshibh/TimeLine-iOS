@@ -6,6 +6,7 @@ PODS:
   - Bolts/AppLinks (1.5.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.5.0)
+  - KGModal (0.0.1)
   - Parse (1.11.0):
     - Bolts/Tasks (~> 1.5)
   - ParseCrashReporting (1.9.2):
@@ -23,6 +24,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Bolts
+  - KGModal (~> 0.0.1)
   - Parse
   - ParseCrashReporting
   - ParseUI
@@ -33,6 +35,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
+  KGModal: d2759dbd6d5e70e7a60bb0c3ddc7c0ece6040128
   Parse: 886af46a0a677402f6374bb97ac212e795f70afe
   ParseCrashReporting: 33b760facc649d4fd99eef8f35dcda6a406099e5
   ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b

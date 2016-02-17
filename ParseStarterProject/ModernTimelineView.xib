@@ -192,6 +192,14 @@
                         <outletCollection property="gestureRecognizers" destination="cC5-F5-vor" appends="YES" id="Smt-3i-eYX"/>
                     </connections>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymc-ol-e8e">
+                    <rect key="frame" x="347" y="4" width="33" height="30"/>
+                    <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="more"/>
+                    <connections>
+                        <action selector="timelineCommentClick" destination="iN0-l3-epB" eventType="touchUpInside" id="Fol-FS-xlT"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="a0D-So-pvo" firstAttribute="leading" secondItem="dZX-FB-9P2" secondAttribute="trailing" constant="8" id="0Bu-Hf-Mhg"/>
@@ -225,6 +233,7 @@
                 <constraint firstItem="rdV-je-7Td" firstAttribute="width" secondItem="Ekh-71-eJd" secondAttribute="width" id="fgT-lJ-cMr"/>
                 <constraint firstItem="YRI-Jb-ZXO" firstAttribute="top" secondItem="dZX-FB-9P2" secondAttribute="bottom" constant="-5" id="gIL-ie-rOt"/>
                 <constraint firstItem="rdV-je-7Td" firstAttribute="top" secondItem="Ekh-71-eJd" secondAttribute="bottom" constant="7" id="hlH-25-o9A"/>
+                <constraint firstItem="Ymc-ol-e8e" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="iJo-Sb-pBR"/>
                 <constraint firstItem="MRr-Jw-1xW" firstAttribute="width" secondItem="rdV-je-7Td" secondAttribute="width" id="jym-jY-6tV"/>
                 <constraint firstItem="YRI-Jb-ZXO" firstAttribute="top" secondItem="dZX-FB-9P2" secondAttribute="bottom" constant="12" id="lz8-5b-Mhg"/>
                 <constraint firstItem="HVl-oO-cuI" firstAttribute="height" secondItem="j8U-pc-cJ2" secondAttribute="height" priority="250" id="mXO-P7-IN7"/>
@@ -233,6 +242,7 @@
                 <constraint firstItem="rdV-je-7Td" firstAttribute="centerX" secondItem="Ekh-71-eJd" secondAttribute="centerX" id="pEg-n4-5L9"/>
                 <constraint firstItem="YRI-Jb-ZXO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="pUG-18-BDq"/>
                 <constraint firstItem="MRr-Jw-1xW" firstAttribute="centerX" secondItem="rdV-je-7Td" secondAttribute="centerX" id="rOh-7R-FjV"/>
+                <constraint firstAttribute="trailing" secondItem="Ymc-ol-e8e" secondAttribute="trailing" constant="34" id="ryF-Vq-R6u"/>
                 <constraint firstItem="IKO-PQ-lb0" firstAttribute="trailing" secondItem="j8U-pc-cJ2" secondAttribute="trailing" id="sNX-89-Oki"/>
                 <constraint firstItem="Ekh-71-eJd" firstAttribute="width" secondItem="Ekh-71-eJd" secondAttribute="height" multiplier="1:1" id="skM-6C-BqY"/>
                 <constraint firstItem="ev8-a6-ir2" firstAttribute="width" secondItem="MRr-Jw-1xW" secondAttribute="width" id="uQs-Wy-gfx"/>
@@ -258,6 +268,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="commentButton" destination="Ymc-ol-e8e" id="8WC-7D-3c1"/>
                 <outlet property="durationLabel" destination="a0D-So-pvo" id="aOd-Su-E2O"/>
                 <outlet property="firstMomentPreview" destination="j8U-pc-cJ2" id="Afl-hd-l59"/>
                 <outlet property="followButton" destination="IKO-PQ-lb0" id="cBt-8d-ddc"/>
@@ -282,6 +293,7 @@
                 <outletCollection property="previewItems" destination="Qua-Bu-xhg" collectionClass="NSMutableArray" id="NGA-I8-LAj"/>
                 <outletCollection property="previewItems" destination="1aP-Uc-Olc" collectionClass="NSMutableArray" id="UVx-gs-vA7"/>
                 <outletCollection property="playbackItems" destination="HVl-oO-cuI" collectionClass="NSMutableArray" id="xJj-Q2-QCa"/>
+                <outletCollection property="previewItems" destination="Ymc-ol-e8e" collectionClass="NSMutableArray" id="TsA-AR-DLm"/>
             </connections>
             <point key="canvasLocation" x="477" y="433.5"/>
         </view>

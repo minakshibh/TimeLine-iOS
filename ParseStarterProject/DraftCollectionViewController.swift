@@ -475,7 +475,7 @@ extension DraftCollectionViewController {
                             self.timeline = tl
                             self.performSegueWithIdentifier("Upload", sender: nil)
                     }
-                    print("\(tl.fullName) ******\(tl.duration) *****   ***** \(local(.DraftAlertConfirmUploadMessage))")
+                    //print("\(tl.fullName) ******\(tl.duration) *****   ***** \(local(.DraftAlertConfirmUploadMessage))")
                     self.presentAlertController(confirm)
                 })
             })

@@ -91,7 +91,7 @@
                         </mask>
                     </variation>
                 </view>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" misplaced="YES" image="Total Love" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-FE-KG8">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" image="Total Love" translatesAutoresizingMaskIntoConstraints="NO" id="lH3-FE-KG8">
                     <rect key="frame" x="16" y="37" width="9" height="8"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="8" id="IsA-tm-4sl"/>
