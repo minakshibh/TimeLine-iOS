@@ -19,8 +19,11 @@ class LogInViewController: PFLogInViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        facebookPermissions =    ["public_profile", "email"]
         // Do any additional setup after loading the view.
-        fields = [PFLogInFields.UsernameAndPassword, .LogInButton, .SignUpButton, .PasswordForgotten]
+        fields = [PFLogInFields.UsernameAndPassword, .LogInButton, .SignUpButton, .PasswordForgotten, .Facebook]
+        
+        logInView?.facebookButton?.addTarget(self, action: "_loginWithFacebook", forControlEvents: .TouchUpInside)
         
         // bug-fix: PFLogInViewController always displays dismissButton
         logInView?.dismissButton?.hidden = true
@@ -71,6 +74,8 @@ class LogInViewController: PFLogInViewController {
         alert = UIAlertController(title: local(.LoginAlertWaitTitle), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
         presentAlertController(alert!)
         
+//        print("Token --- \(ApiRequest.GetToken(PFUser.currentUser()!.sessionToken!))")
+        
         let tokenRequest = ApiRequest.GetToken(PFUser.currentUser()!.sessionToken!)
         Storage.performRequest(tokenRequest) { (json) -> Void in
             if let e = json["error"] as? String {
@@ -81,42 +86,123 @@ class LogInViewController: PFLogInViewController {
                 return
             }
 
-            if let jwt = json["jwt"] as? String,
-                let id = json["id"] as? String,
-                let name = json["name"] as? String,
-                let email = json["email"] as? String,
-                let timelinesPublic = json["timelines_public"] as? Bool,
-                let approveFollowers = json["approve_followers"] as? Bool,
-                let followersCount = json["followers_count"] as? Int,
-                let allowedTimelinesCount = json["allowed_timelines_count"] as? Int,
-                let followingCount = json["followees_users_count"] as? Int,
-                let likersCount = json["likers_count"] as? Int,
-                let externalID = json["external_id"] as? String
+//            print("\(json["jwt"])")
+//            print("\(json["id"])")
+//            print("\(json["name"])")
+//            print("\(json["email"])")
+//            print("\(json["timelines_public"])")
+//            print("\(json["approve_followers"])")
+//            print("\(json["followers_count"])")
+//            print("\(json["allowed_timelines_count"])")
+//            print("\(json["followees_users_count"])")
+//            print("\(json["likers_count"])")
+//            print("\(json["external_id"])")
+            
+            //----get facebook access token
+            let accessToken = FBSDKAccessToken.currentAccessToken()
+            if(accessToken != nil) //should be != nil
             {
-                
-                let pendingFollowersCount = json["pending_followers"] as? Int
-                
-                Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json))], drafts:Storage.session.drafts)
-                Storage.save()
-                
-                do {
-                    try NSFileManager.defaultManager().createDirectoryAtPath(Moment.basePath, withIntermediateDirectories: false, attributes: nil)
-                } catch _ {
-                }
-                
-                PFInstallation.currentInstallation().user = PFUser.currentUser()
-                PFInstallation.currentInstallation().saveInBackground()
-                
-                self.alert?.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    print("first")
-                        let delegate = UIApplication.sharedApplication().delegate as? AppDelegate
-                        delegate?.initializeRootViewController()
-                })
-            } else {
-                print("not called")
-                self.alert?.dismissViewControllerWithAnimation(self)
+                print(accessToken.tokenString)
             }
             
+            let isFacebook = NSUserDefaults.standardUserDefaults().valueForKey("facebook_login")
+            
+            
+            if(isFacebook != nil)
+            {
+                let facebookInfo = ApiRequest.getFacebookInfo(accessToken.tokenString)
+                
+                Storage.performRequest(facebookInfo) { (jsonFB) -> Void in
+                    if let e = json["error"] as? String {
+                        self.alert?.dismissViewControllerWithAnimation(self)
+                        self.alert = UIAlertController(title: "Error", message: e, preferredStyle: .Alert)
+                        self.alert?.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                        delay(0.5) { self.presentAlertController(self.alert!) }
+                        return
+                    }
+                    print("\(jsonFB["name"]))")
+                    print("\(jsonFB["email"])")
+                    
+                    if let jwt = json["jwt"] as? String,
+                        let id = json["id"] as? String,
+                        let name = jsonFB["name"] as? String,
+                        let email = jsonFB["email"] as? String,
+                        let timelinesPublic = json["timelines_public"] as? Bool,
+                        let approveFollowers = json["approve_followers"] as? Bool,
+                        let followersCount = json["followers_count"] as? Int,
+                        let allowedTimelinesCount = json["allowed_timelines_count"] as? Int,
+                        let followingCount = json["followees_users_count"] as? Int,
+                        let likersCount = json["likers_count"] as? Int,
+                        let externalID = json["external_id"] as? String
+                    {
+                        
+                        let pendingFollowersCount = json["pending_followers"] as? Int
+                        
+                        Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json))], drafts:Storage.session.drafts)
+                        Storage.save()
+                        
+                        do {
+                            try NSFileManager.defaultManager().createDirectoryAtPath(Moment.basePath, withIntermediateDirectories: false, attributes: nil)
+                        } catch _ {
+                        }
+                        
+                        PFInstallation.currentInstallation().user = PFUser.currentUser()
+                        PFInstallation.currentInstallation().saveInBackground()
+                        
+                        NSUserDefaults.standardUserDefaults().setObject("no", forKey: "facebook_login")
+                        
+                        self.alert?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                            print("first")
+                            let delegate = UIApplication.sharedApplication().delegate as? AppDelegate
+                            delegate?.initializeRootViewController()
+                        })
+                    } else {
+                        print("not called")
+                        self.alert?.dismissViewControllerWithAnimation(self)
+                    }
+                }
+                
+            }else{
+            
+                if let jwt = json["jwt"] as? String,
+                    let id = json["id"] as? String,
+                    let name = json["name"] as? String,
+                    let email = json["email"] as? String,
+                    let timelinesPublic = json["timelines_public"] as? Bool,
+                    let approveFollowers = json["approve_followers"] as? Bool,
+                    let followersCount = json["followers_count"] as? Int,
+                    let allowedTimelinesCount = json["allowed_timelines_count"] as? Int,
+                    let followingCount = json["followees_users_count"] as? Int,
+                    let likersCount = json["likers_count"] as? Int,
+                    let externalID = json["external_id"] as? String
+                {
+                
+                    let pendingFollowersCount = json["pending_followers"] as? Int
+                
+                    Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json))], drafts:Storage.session.drafts)
+                    Storage.save()
+                
+                    do {
+                        try NSFileManager.defaultManager().createDirectoryAtPath(Moment.basePath,   withIntermediateDirectories: false, attributes: nil)
+                    } catch _ {
+                    }
+                    
+                    PFInstallation.currentInstallation().user = PFUser.currentUser()
+                    PFInstallation.currentInstallation().saveInBackground()
+                
+                    self.alert?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        print("first")
+                            let delegate = UIApplication.sharedApplication().delegate as?   AppDelegate
+                            delegate?.initializeRootViewController()
+                    })
+                } else {
+                    print("not called")
+                    self.alert?.dismissViewControllerWithAnimation(self)
+                }
+            }
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut()
+        
         }
     }
     

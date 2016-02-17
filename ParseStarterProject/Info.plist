@@ -25,6 +25,7 @@
 			<string>inc.reebay.$(PRODUCT_NAME:rfc1034identifier)</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>fb163207474057525</string>
 				<string>mytimelineapp</string>
 			</array>
 		</dict>
@@ -35,9 +36,44 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>facebook.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>fbcdn.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>akamaihd.net</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
+	<key>FacebookAppID</key>
+	<string>163207474057525</string>
+	<key>FacebookDisplayName</key>
+	<string>socialNetworks</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

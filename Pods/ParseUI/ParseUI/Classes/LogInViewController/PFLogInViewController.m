@@ -356,6 +356,7 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
         }
 
         if (user) {
+            [[NSUserDefaults standardUserDefaults]setObject:@"yes" forKey:@"facebook_login"];
             [sself _loginDidSucceedWithUser:user];
         } else if (error) {
             [sself _loginDidFailWithError:error];

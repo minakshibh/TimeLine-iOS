@@ -20,5 +20,9 @@
 #import "BadgeStyle.h"
 #import "CustomBadge.h"
 #import "NSURL+Parameters.h"
-
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import <Bolts/BFTask.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #endif

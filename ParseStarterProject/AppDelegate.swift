@@ -8,6 +8,9 @@ import UIKit
 
 import Bolts
 import Parse
+import ParseFacebookUtilsV4
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 // If you want to use Crash Reporting - uncomment this line
 import ParseCrashReporting
@@ -38,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Uncomment and fill in with your Parse credentials:
         Parse.setApplicationId("LiynFqjSP5wmP8QfzLQLgm8tGStY3Jt5FeH34lhS",
             clientKey: "TSMwY8Asxa08Br0pB0QR03bpGA5GjMLPYia9Ljka")
+        
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         let defaultACL = PFACL()
         
@@ -147,7 +152,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             currentInstallation.badge = 0
             currentInstallation.saveEventually()
         }
-        
+        FBSDKAppEvents.activateApp()
 //        if let _ = Storage.session.currentUser {
 //            Storage.performRequest(ApiRequest.UserNotifications, completion: { (json) -> Void in
 //                print(json)
@@ -344,4 +349,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func application(application: UIApplication,
+        openURL url: NSURL,
+        sourceApplication: String?,
+        annotation: AnyObject?) -> Bool {
+            return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
 }

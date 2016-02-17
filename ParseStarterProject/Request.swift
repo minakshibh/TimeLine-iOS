@@ -129,6 +129,8 @@ enum ApiRequest {
     /// GET /api/user/:id/likers
     case UserLikersList(UUID)
     
+    case getFacebookInfo(String)
+    
     var urlRequest: NSMutableURLRequest {
         let urlString: String
         let urlRequest = NSMutableURLRequest()
@@ -314,6 +316,11 @@ enum ApiRequest {
         case .UserLikersList(let uuid):
             urlString = "/api/user/\(uuid.urlEncoded)/likers"
             urlRequest.HTTPMethod = "GET"
+            
+        case .getFacebookInfo(let token):
+            urlString = "https://graph.facebook.com/me?access_token=\(token)&fields=email,name,id"
+            urlRequest.HTTPMethod = "GET"
+            
         }
         urlRequest.URL = NSURL(string: urlString, relativeToURL: ApiRequest.baseUrl)
         return urlRequest
