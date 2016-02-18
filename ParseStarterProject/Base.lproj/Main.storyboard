@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -1324,7 +1325,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="pqp-p9-mtJ" customClass="EditPasswordTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="6zF-QL-jjB">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -1589,7 +1590,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Xbc-8Z-o3Z" customClass="EditEmailTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="naj-kV-wKa">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -2751,6 +2752,7 @@ Effective as of September 14, 2015
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="146"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <color key="tintColor" red="0.9882352941176471" green="0.50588235294117645" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="58" id="xEO-4t-B6A" customClass="UserTableViewCell" customModule="Timeline" customModuleProvider="target">
@@ -2795,11 +2797,26 @@ Effective as of September 14, 2015
                                 <action selector="dismissViewControllerWithAnimation:" destination="jSH-I8-dWf" id="fcP-K8-Juc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Back to Record" id="vbN-s2-Ouq">
-                            <connections>
-                                <action selector="dismissViewControllerWithAnimation:" destination="jSH-I8-dWf" id="x62-NX-7Co"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="Back to Record" id="vbN-s2-Ouq">
+                                <connections>
+                                    <action selector="dismissViewControllerWithAnimation:" destination="jSH-I8-dWf" id="x62-NX-7Co"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="Fvn-V9-OZk">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C9O-HA-PQy">
+                                    <rect key="frame" x="385" y="7" width="133" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                    <state key="normal" title="Invite">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="btnInvite:" destination="jSH-I8-dWf" eventType="touchUpInside" id="0IN-W8-pw8"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="u7d-PF-efQ">
                         <autoresizingMask key="autoresizingMask"/>
@@ -2807,12 +2824,18 @@ Effective as of September 14, 2015
                     </refreshControl>
                     <connections>
                         <outlet property="searchDisplayController" destination="Eu6-IA-evK" id="Pxf-de-BKW"/>
+                        <outlet property="tableViewContact" destination="6os-Im-sta" id="Ewm-l0-2Ui"/>
                         <segue destination="gpQ-ln-8o1" kind="presentation" identifier="WalkthroughTrending" id="wPR-Ua-TlF"/>
                         <segue destination="R3t-tK-2PC" kind="presentation" identifier="TimelineCreated" id="3ER-K8-eo8"/>
                         <segue destination="dpZ-pz-TmS" kind="show" identifier="ShowUserList" id="UDh-ad-jqq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTi-xf-7Ar" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6os-Im-sta">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
                 <searchDisplayController id="Eu6-IA-evK">
                     <connections>
                         <outlet property="delegate" destination="jSH-I8-dWf" id="33I-Rj-HZk"/>
@@ -2823,7 +2846,7 @@ Effective as of September 14, 2015
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-2636" y="1722"/>
+            <point key="canvasLocation" x="-2664" y="1722"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2L8-aE-hNZ">
@@ -4139,19 +4162,19 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9SA-Oc-iuS"/>
-        <segue reference="3ER-K8-eo8"/>
         <segue reference="SrR-ph-ZEC"/>
         <segue reference="fy0-iv-eFM"/>
         <segue reference="dHW-RB-S8H"/>
         <segue reference="pyd-yG-wzP"/>
-        <segue reference="wPR-Ua-TlF"/>
         <segue reference="UDh-ad-jqq"/>
+        <segue reference="3ER-K8-eo8"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="9SA-Oc-iuS"/>
         <segue reference="kNn-C3-4Z5"/>
+        <segue reference="UZr-rR-uSk"/>
         <segue reference="8W1-I7-grp"/>
         <segue reference="5f9-3x-iDp"/>
         <segue reference="JUD-Gk-HWr"/>
-        <segue reference="UZr-rR-uSk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

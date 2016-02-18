@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/LogInViewController.swift"
-            timestampString = "477294866.726739"
+            filePath = "ParseStarterProject/TrendingTimelineTableViewController.swift"
+            timestampString = "477476005.318067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "logInSuccessful(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/LogInViewController.swift"
-            timestampString = "477294890.482933"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "logInSuccessful(_:)"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "btnInvite(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

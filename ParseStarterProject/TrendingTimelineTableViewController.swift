@@ -7,11 +7,25 @@
 //
 
 import UIKit
+import Social
+import MessageUI
+import AddressBookUI
+import AddressBook
 
 
-class TrendingTimelineTableViewController: FlatTimelineTableViewController {
+class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBSDKAppInviteDialogDelegate ,ABPeoplePickerNavigationControllerDelegate{
     
+    var searchTag:String = "@"
     var searching: Bool = false
+    var picker:ABPeoplePickerNavigationController!
+    var scrollView: UIScrollView!
+    
+    @IBOutlet var tableViewContact: UITableView!
+    
+    var numberArray: NSMutableArray! = []
+    var nameArray: NSMutableArray! = []
+    var selectedPeople: NSMutableArray! = []
+    var emptyDictionary: CFDictionaryRef?
     var searchResults: [AnyObject] = [] {
         didSet {
             searching = false
@@ -26,9 +40,22 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController {
 
         tableView.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
 
+        tableViewContact = UITableView(frame: CGRectMake(50, 50, 300, 300), style: .Plain)
+        tableViewContact.delegate = self
+        tableViewContact.dataSource = self
+        tableViewContact.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCellcontact")
+        
+        
         // Do any additional setup after loading the view.
         searchDisplayController?.searchBar.delegate = self
         searchDisplayController?.delegate = self
+        
+        searchDisplayController?.searchBar.scopeButtonTitles = [NSLocalizedString("Users", comment: "Country"),NSLocalizedString("Timeline", comment: "Capital")]
+            
+        
+        
+        
+        
         
         delay(0.001) {
             if !Storage.session.walkedThroughTrends {
@@ -48,6 +75,93 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController {
             first = false
         }
     }
+    @IBAction func btnInvite(sender: AnyObject) {
+        
+        let confirm = UIAlertController(title: "Send Invites", message: "", preferredStyle:UIAlertControllerStyle.ActionSheet)
+        confirm.addAction(title: "Cancel",
+            style: .Cancel,
+            handler: nil)
+        confirm.addAction(title: "To facebook Friends",
+            style: .Default) { _ in
+                let inviteDialog:FBSDKAppInviteDialog = FBSDKAppInviteDialog()
+                if(inviteDialog.canShow()){
+                    let inviteContent = FBSDKAppInviteContent.init()
+                    inviteContent.appLinkURL = NSURL(string: "https://www.mydomain.com/myapplink")!
+                    inviteContent.appInvitePreviewImageURL = NSURL(string: "https://www.mydomain.com/my_invite_image.jpg")!
+                    inviteDialog.content = inviteContent
+                    inviteDialog.delegate = self
+                    inviteDialog.show()
+                }
+               
+        }
+        confirm.addAction(title: "To send locally",
+            style: .Default) { _ in
+                
+                
+                
+    
+                
+                
+                // user previously denied, to tell them to fix that in settings
+                let status = ABAddressBookGetAuthorizationStatus()
+                if status == .Denied || status == .Restricted {
+                    return
+                }
+                
+                var error: Unmanaged<CFError>?
+                let addressBook: ABAddressBook? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()
+                if addressBook == nil {
+                    print(error?.takeRetainedValue())
+                    return
+                }
+                
+                // request permission to use it
+                ABAddressBookRequestAccessWithCompletion(addressBook) {
+                    granted, error in
+                    if !granted {
+                        // warn the user that because they just denied permission, this functionality won't work
+                        // also let them know that they have to fix this in settings
+                        return
+                    }
+                    
+                    
+                   // addressBook = !ABAddressBookCreateWithOptions(emptyDictionary,nil)
+                    var contactList: NSArray = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue()
+                    print("records in the array \(contactList.count)") // returns 0
+                    
+                    for record:ABRecordRef in contactList {
+                        var contactPerson: ABRecordRef = record
+                        var contactName: String = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
+                        self.nameArray.addObject(contactName)
+                        print ("contactName \(contactName)")
+                        let numbers:ABMultiValue = ABRecordCopyValue(
+                            contactPerson, kABPersonPhoneProperty).takeRetainedValue()
+                        for ix in 0 ..< ABMultiValueGetCount(numbers) {
+                            let label = ABMultiValueCopyLabelAtIndex(numbers,ix).takeRetainedValue() as String
+                            let value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
+                            print("Phonenumber \(label) is \(value)")
+                            self.numberArray.addObject(value)
+                            break
+                        }
+                        
+                        
+                        
+                    }
+                    
+                    
+                    self.view.addSubview(self.tableViewContact)
+                    self.tableViewContact.reloadData()
+           
+        }
+            
+    } //---end of confirm action
+        
+        self.presentAlertController(confirm)
+        
+        
+        
+       
+  }
     
     override func removeTimelineFromCache(uuid: UUID) {
         Storage.session.trendingCache = Storage.session.trendingCache.filter { $0 != uuid }
@@ -59,62 +173,98 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.tableView {
-            return super.tableView(tableView, numberOfRowsInSection: section)
-        } else {
-            return searching && searchResults.count == 0 ? 1 : searchResults.count
+        
+        if tableView == tableViewContact{
+            return nameArray.count
+        }else{
+            
+            if tableView == self.tableView {
+                return super.tableView(tableView, numberOfRowsInSection: section)
+            } else {
+                return searching && searchResults.count == 0 ? 1 : searchResults.count
+            }
         }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if tableView == self.tableView {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
-        } else {
-            if searching && searchResults.count == 0 {
-                return 147
-            } else if let _ = searchResults[indexPath.row] as? User {
-                return 100
+        if tableView == tableViewContact{
+            return 50
+        }else{
+        
+        
+            if tableView == self.tableView {
+                return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
             } else {
-                return 382
+                if searching && searchResults.count == 0 {
+                    return 147
+                } else if let _ = searchResults[indexPath.row] as? User {
+                    return 100
+                } else {
+                    return 382
+                }
+            
             }
         }
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // MARK: Causing TableView Crash
-        
-        if tableView == self.tableView {
-            //super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
-        } else if let user = searchResults[indexPath.row] as? User {
-            performSegueWithIdentifier("ShowUser", sender: user)
+        if tableView == tableViewContact{
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+             let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+            var person = nameArray[indexPath.row]
+            if cell.accessoryType == .None {
+                cell.accessoryType = .Checkmark
+                selectedPeople.addObject(person)
+            }else if cell.accessoryType == .Checkmark {
+                cell.accessoryType = .None
+                selectedPeople.removeObject(person)
+            }
+            
+            print("\(selectedPeople)")
+            
+        }else{
+            if tableView == self.tableView {
+                //super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+            } else if let user = searchResults[indexPath.row] as? User {
+                    performSegueWithIdentifier("ShowUser", sender: user)
+            }
         }
-        
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if tableView == self.tableView {
-            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
-        } else {
-            if searching && searchResults.count == 0 {
-                let cell = self.tableView.dequeueReusableCellWithIdentifier("ActivityCell", forIndexPath: indexPath) 
-                return cell
-            } else if let user = searchResults[indexPath.row] as? User {
-                let cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserSummaryTableViewCell
-                
-                // Configure the cell...
-                
-                cell.user = user
-                cell.nameLabel.hidden = false
-                
-                return cell
+        if tableView == tableViewContact{
+            let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("UserCellcontact")! as UITableViewCell
+            
+            cell.textLabel?.text = nameArray[indexPath.row] as? String
+            cell.detailTextLabel?.text = numberArray[indexPath.row] as? String
+            
+            return cell
+       }else{
+         if tableView == self.tableView {
+                return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
             } else {
-                let timeline = searchResults[indexPath.row] as! Timeline
-                let cell = self.tableView.dequeueReusableCellWithIdentifier("TimelineCell", forIndexPath: indexPath) as! ModernTimelineTableViewCell
+                if searching && searchResults.count == 0 {
+                    let cell = self.tableView.dequeueReusableCellWithIdentifier("ActivityCell", forIndexPath: indexPath)
+                    return cell
+                } else if let user = searchResults[indexPath.row] as? User {
+                    let cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserSummaryTableViewCell
                 
-                // Configure the cell...
-                cell.timeline = timeline
+                    // Configure the cell...
                 
-                return cell
+                    cell.user = user
+                    cell.nameLabel.hidden = false
+                
+                    return cell
+                } else {
+                    let timeline = searchResults[indexPath.row] as! Timeline
+                    let cell = self.tableView.dequeueReusableCellWithIdentifier("TimelineCell",     forIndexPath: indexPath) as! ModernTimelineTableViewCell
+                
+                    // Configure the cell...
+                    cell.timeline = timeline
+                
+                    return cell
+                }
             }
         }
     }
@@ -177,11 +327,17 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         var replacement = String(temp.characters.filter { (c: Character) -> Bool in
             return "abcdefghijklmnopqrstuvwxyz0123456789".rangeOfString(String(c).lowercaseString) != nil
             })
-        if range.location == 0 && string.hasPrefix("#") {
-            replacement = "#" + replacement
+//        if range.location == 0 && string.hasPrefix("#") {
+//            replacement = "#" + replacement
+//        }
+//        if range.location == 0 && string.hasPrefix("@") {
+//            replacement = "@" + replacement
+//        }
+        if range.location == 0 && searchTag == "#" {
+//            replacement = "#" + replacement
         }
-        if range.location == 0 && string.hasPrefix("@") {
-            replacement = "@" + replacement
+        if range.location == 0 && searchTag == "@" {
+//            replacement = "@" + replacement
         }
         if let stringRange = searchBar.text?.rangeFromNSRange(range)
         {
@@ -196,10 +352,15 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         var text: String = String((searchBar.text ?? "").characters.filter { (c: Character) -> Bool in
             return "abcdefghijklmnopqrstuvwxyz0123456789".rangeOfString(String(c).lowercaseString) != nil
             })
-        if text.characters.count < 2 { return }
-        if searchText.hasPrefix("#") {
+//        if text.characters.count < 2 { return }
+//        if searchText.hasPrefix("#") {
+//            text = "#" + text
+//        } else if searchText.hasPrefix("@") {
+//            text = "@" + text
+//        }
+        if searchTag == "#" {
             text = "#" + text
-        } else if searchText.hasPrefix("@") {
+        } else if searchTag == "@" {
             text = "@" + text
         }
         if searchResults.count == 0 {
@@ -250,5 +411,34 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
             }
         })
     }
+   
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if selectedScope==0 {
+            print("----button pressed 11111-----")
+            searchTag = "@"
+            searchBar.text = ""
+        }else{
+            print("----button pressed 222222-----")
+            searchTag = "#"
+            searchBar.text = ""
+        }
+    }
     
+    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didCompleteWithResults results: [NSObject : AnyObject]!) {
+        print("Complete invite without error")
+    }
+    
+    func appInviteDialog(appInviteDialog: FBSDKAppInviteDialog!, didFailWithError error: NSError!) {
+        print("Error in invite \(error)")
+    }
+    
+    func peoplePickerNavigationControllerDidCancel(peoplePicker: ABPeoplePickerNavigationController!) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController!, didSelectPerson person: ABRecord!) {
+        let nameCFString : CFString = ABRecordCopyCompositeName(person).takeRetainedValue()
+        let name : NSString = nameCFString as NSString
+    }
 }
