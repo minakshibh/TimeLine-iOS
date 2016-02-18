@@ -87,12 +87,6 @@ class MomentPlayerController: NSObject {
     
     func previous() {
         
-//        let alert = UIAlertView()
-//        alert.title = ""
-//        alert.message = "loading moment."
-//        alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
-//        alert.show()
-        
         print("previous: \(self.currentIndex)")
         if self.currentIndex > 0
         {
@@ -181,11 +175,6 @@ class MomentPlayerController: NSObject {
     }
     
     func next() {
-//        let alert = UIAlertView()
-//        alert.title = ""
-//        alert.message = "loading moment."
-//        alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
-//        alert.show()
         
         print("next: \(self.currentIndex)")
         //queue.addOperationWithBlock {

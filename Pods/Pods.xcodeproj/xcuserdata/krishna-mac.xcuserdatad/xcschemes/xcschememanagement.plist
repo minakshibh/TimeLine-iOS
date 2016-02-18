@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KGModal.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,12 +57,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0BBA17F2EE070A0DC727F8D33214F27A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2D3B8EB693292EEAE009E82298B6E1B7</key>
+		<key>1912133FD7980CCC2D84517B0468F14A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,7 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6D82EFA26D740F7E7348A54138E37AA0</key>
+		<key>64E24F2E9210368F972DC5039161CCBB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>730CFE4962B3C78EFCE8EF305F5AD64F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B4755459F36E3DAC8DA0A67F24712E32</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,7 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F6603BDF1A3744D9EFF98E94B03796A1</key>
+		<key>F48DB69C2E236C0162BE610F38D631DD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

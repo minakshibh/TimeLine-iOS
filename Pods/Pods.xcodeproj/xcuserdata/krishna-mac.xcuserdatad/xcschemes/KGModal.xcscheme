@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '11176C85C72633931106ADF0'
-               BlueprintName = 'SCRecorder'
+               BlueprintIdentifier = '38C281B961861561EDBDB82E'
+               BlueprintName = 'KGModal'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SCRecorder.framework'>
+               BuildableName = 'KGModal.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

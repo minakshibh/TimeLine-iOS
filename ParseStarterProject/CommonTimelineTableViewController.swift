@@ -63,6 +63,7 @@ class CommonTimelineTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TimelineCell", forIndexPath: indexPath) as! ModernTimelineTableViewCell
         
         // Configure the cell...
+        
         cell.timelineView.timeline = users[indexPath.section].timelines[indexPath.row]
 
         //cell.deletionCallback = self.deletionCallback()
