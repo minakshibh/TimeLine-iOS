@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DraftPreview" customModule="Timeline" customModuleProvider="target"/>
@@ -18,7 +19,7 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tvY-GW-Lgf">
                     <rect key="frame" x="141" y="142" width="37" height="37"/>
                 </activityIndicatorView>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFZ-4u-yBn">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFZ-4u-yBn">
                     <rect key="frame" x="115" y="115" width="90" height="90"/>
                     <state key="normal" image="Play Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,6 +28,9 @@
                         <action selector="playMoment" destination="csb-QR-16h" eventType="touchUpInside" id="sMs-Ke-lSO"/>
                     </connections>
                 </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uwZ-dp-iXz">
+                    <rect key="frame" x="141" y="142" width="37" height="37"/>
+                </activityIndicatorView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leo-Yk-aoL" userLabel="Playback Container" customClass="PlayerView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                     <subviews>
@@ -55,22 +59,6 @@
                             </view>
                             <blurEffect style="light"/>
                         </visualEffectView>
-                        <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9a5-vt-yJT" userLabel="Play">
-                            <rect key="frame" x="117" y="280" width="87" height="32"/>
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" image="Play Player"/>
-                            <connections>
-                                <action selector="play" destination="csb-QR-16h" eventType="touchUpInside" id="lik-F6-aC7"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8u0-H3-dgq" userLabel="Pause">
-                            <rect key="frame" x="128" y="290" width="64" height="22"/>
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" image="Pause Player"/>
-                            <connections>
-                                <action selector="pause" destination="csb-QR-16h" eventType="touchUpInside" id="wnj-EJ-qV8"/>
-                            </connections>
-                        </button>
                         <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OV7-vj-LV9" userLabel="Previous">
                             <rect key="frame" x="8" y="290" width="64" height="22"/>
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,6 +82,35 @@
                                 <action selector="stop" destination="csb-QR-16h" eventType="touchUpInside" id="ctz-Cz-D6L"/>
                             </connections>
                         </button>
+                        <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9a5-vt-yJT" userLabel="Play">
+                            <rect key="frame" x="74" y="280" width="85" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="9a5-vt-yJT" secondAttribute="height" multiplier="87:32" constant="-2" id="I5m-HQ-aTN"/>
+                            </constraints>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="Play Player"/>
+                            <connections>
+                                <action selector="play" destination="csb-QR-16h" eventType="touchUpInside" id="lik-F6-aC7"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5a-9L-GaU" userLabel="Comments">
+                            <rect key="frame" x="161" y="280" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="E5a-9L-GaU" secondAttribute="height" id="yyq-U8-3D8"/>
+                            </constraints>
+                            <state key="normal" image="close"/>
+                            <connections>
+                                <action selector="commentButtonClick" destination="csb-QR-16h" eventType="touchUpInside" id="XHv-zB-BP2"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8u0-H3-dgq" userLabel="Pause">
+                            <rect key="frame" x="85" y="290" width="64" height="22"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="Pause Player"/>
+                            <connections>
+                                <action selector="pause" destination="csb-QR-16h" eventType="touchUpInside" id="wnj-EJ-qV8"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -101,22 +118,22 @@
                         <constraint firstItem="Aoq-yw-VBh" firstAttribute="top" secondItem="leo-Yk-aoL" secondAttribute="top" constant="50" id="878-Mq-hvk"/>
                         <constraint firstItem="Aoq-yw-VBh" firstAttribute="width" secondItem="leo-Yk-aoL" secondAttribute="width" id="DsL-6p-eef"/>
                         <constraint firstAttribute="centerX" secondItem="Aoq-yw-VBh" secondAttribute="centerX" id="I5I-4z-HbP"/>
-                        <constraint firstAttribute="centerX" secondItem="9a5-vt-yJT" secondAttribute="centerX" constant="-0.5" id="INS-l1-61l"/>
+                        <constraint firstAttribute="centerX" secondItem="9a5-vt-yJT" secondAttribute="centerX" constant="43.5" id="INS-l1-61l"/>
+                        <constraint firstItem="9a5-vt-yJT" firstAttribute="leading" secondItem="leo-Yk-aoL" secondAttribute="leading" constant="74" id="OCE-74-qPH"/>
                         <constraint firstItem="pbR-vn-rok" firstAttribute="top" secondItem="leo-Yk-aoL" secondAttribute="top" constant="8" id="OSA-Oj-g0D"/>
                         <constraint firstAttribute="bottom" secondItem="OV7-vj-LV9" secondAttribute="bottom" constant="8" id="RNy-Lk-zg8"/>
                         <constraint firstItem="Aoq-yw-VBh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="leo-Yk-aoL" secondAttribute="top" priority="999" constant="8" id="VYp-sM-tJq"/>
                         <constraint firstAttribute="bottom" secondItem="1ug-7a-dXv" secondAttribute="bottom" constant="8" id="XJ1-cV-8tn"/>
                         <constraint firstAttribute="bottom" secondItem="9a5-vt-yJT" secondAttribute="bottom" constant="8" id="XUC-Ff-gwB"/>
                         <constraint firstItem="OV7-vj-LV9" firstAttribute="leading" secondItem="leo-Yk-aoL" secondAttribute="leading" constant="8" id="j6P-f4-SqV"/>
+                        <constraint firstItem="E5a-9L-GaU" firstAttribute="leading" secondItem="9a5-vt-yJT" secondAttribute="trailing" constant="2" id="m0K-IC-aAM"/>
+                        <constraint firstAttribute="bottom" secondItem="E5a-9L-GaU" secondAttribute="bottom" constant="8" id="mCi-xR-wey"/>
                         <constraint firstAttribute="trailing" secondItem="1ug-7a-dXv" secondAttribute="trailing" constant="8" id="rr5-IH-gko"/>
                         <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Aoq-yw-VBh" secondAttribute="bottom" priority="998" constant="-48" id="w4U-ov-6pd"/>
                         <constraint firstItem="pbR-vn-rok" firstAttribute="leading" secondItem="OV7-vj-LV9" secondAttribute="leading" id="wDb-LJ-u6s"/>
-                        <constraint firstAttribute="centerX" secondItem="8u0-H3-dgq" secondAttribute="centerX" id="wtS-8B-kTp"/>
+                        <constraint firstAttribute="centerX" secondItem="8u0-H3-dgq" secondAttribute="centerX" constant="43" id="wtS-8B-kTp"/>
                     </constraints>
                 </view>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uwZ-dp-iXz">
-                    <rect key="frame" x="141" y="142" width="37" height="37"/>
-                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -140,6 +157,7 @@
                 <outlet property="activityIndicatorView" destination="tvY-GW-Lgf" id="HSL-fG-ROk"/>
                 <outlet property="bottomLayoutConstraint" destination="w4U-ov-6pd" id="aSR-hu-TqV"/>
                 <outlet property="bufferIndicator" destination="uwZ-dp-iXz" id="lTG-f3-Aed"/>
+                <outlet property="commentButton" destination="E5a-9L-GaU" id="zUi-qd-7UR"/>
                 <outlet property="nextPlayButton" destination="1ug-7a-dXv" id="gR5-Rr-b51"/>
                 <outlet property="pausePlayButton" destination="8u0-H3-dgq" id="8Ba-7M-IfO"/>
                 <outlet property="playButton" destination="EFZ-4u-yBn" id="5fS-2B-PAW"/>

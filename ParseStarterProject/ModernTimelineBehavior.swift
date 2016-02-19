@@ -204,7 +204,7 @@ extension ModernTimelineBehavior {
             }
         })
     }
-
+    
     func tappedItem(sender: UITapGestureRecognizer) {
         guard let target = sender.view,
             let tlview = modernTimelineView

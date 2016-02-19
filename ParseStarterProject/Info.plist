@@ -22,7 +22,7 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>inc.reebay.$(PRODUCT_NAME:rfc1034identifier)</string>
+			<string>inc.reebay.Timeline</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb163207474057525</string>
@@ -31,7 +31,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>96</string>
+	<string>98</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

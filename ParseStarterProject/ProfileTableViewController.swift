@@ -86,8 +86,17 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         if PFUser.currentUser()?.authenticated ?? false {
             let user = PFUser.currentUser()!
             navigationItem.title = "@\(user.username!)"
-            nameLabel.text = "\(user.username!)"
-            emailLabel.text = "\(user.email!)"
+            let isFacebook = NSUserDefaults.standardUserDefaults().valueForKey("facebook_login")
+            if(isFacebook != nil)
+            {
+//            nameLabel.text = "\(user.username!)"
+//            emailLabel.text = "\(user.email!)"
+                nameLabel.text = "\(NSUserDefaults.standardUserDefaults().valueForKey("fb_username")!)"
+                emailLabel.text = "\(NSUserDefaults.standardUserDefaults().valueForKey("fb_email")!)"
+            }else{
+                nameLabel.text = "\(user.username!)"
+                emailLabel.text = "\(user.email!)"
+            }
             
             timelinesPublicSwitch.on = Storage.session.currentUser!.timelinesPublic!
             approveFollowersSwitch.on = Storage.session.currentUser!.approveFollowers!

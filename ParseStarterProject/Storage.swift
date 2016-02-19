@@ -55,7 +55,18 @@ extension Storage {
     
     static func logout(delete: Bool = true) {
 //        main {
+        let isFacebook = NSUserDefaults.standardUserDefaults().valueForKey("facebook_login")
+        if(isFacebook != nil)
+        {
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("fb_username")
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("fb_email")
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("facebook_login")
+            
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut()
+        }
             PFUser.logOut()
+        
             let drafts = Storage.session.drafts
             print(drafts.count)
             Storage.session = Session()

@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 
+
 private func timelineOrder(l: Timeline, r: Timeline) -> Bool {
     return l.state.updatedAt > r.state.updatedAt
 }
