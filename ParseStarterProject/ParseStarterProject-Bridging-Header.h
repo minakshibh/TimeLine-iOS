@@ -25,4 +25,8 @@
 #import <Bolts/BFTask.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
+#import "MobileCoreServices/MobileCoreServices.h"
+
+
 #endif

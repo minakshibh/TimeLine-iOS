@@ -122,10 +122,23 @@ class LogInViewController: PFLogInViewController {
                     }
                     print("\(jsonFB["name"]))")
                     print("\(jsonFB["email"])")
+                    let fbemail = jsonFB["email"] as? String
+                    let fullName = jsonFB["name"] as? String
+                    let fullNameArr = fullName!.characters.split{$0 == " "}.map(String.init)
+                    var userNameStr = ""
+                    if fullNameArr.count == 0{
+                        userNameStr = ""
+                    }else if fullNameArr.count == 1{
+                        userNameStr = ("\(fullNameArr[0])")
+                    }else{
+                       userNameStr = ("\(fullNameArr[0])_\(fullNameArr[1])")
+                    }
+                    NSUserDefaults.standardUserDefaults().setObject(userNameStr, forKey: "fb_username")
+                     NSUserDefaults.standardUserDefaults().setObject(fbemail, forKey: "fb_email")
                     
                     if let jwt = json["jwt"] as? String,
                         let id = json["id"] as? String,
-                        let name = jsonFB["name"] as? String,
+                        let name = userNameStr as? String,
                         let email = jsonFB["email"] as? String,
                         let timelinesPublic = json["timelines_public"] as? Bool,
                         let approveFollowers = json["approve_followers"] as? Bool,
@@ -149,7 +162,7 @@ class LogInViewController: PFLogInViewController {
                         PFInstallation.currentInstallation().user = PFUser.currentUser()
                         PFInstallation.currentInstallation().saveInBackground()
                         
-                        NSUserDefaults.standardUserDefaults().setObject("no", forKey: "facebook_login")
+//                        NSUserDefaults.standardUserDefaults().setObject("no", forKey: "facebook_login")
                         
                         self.alert?.dismissViewControllerAnimated(true, completion: { () -> Void in
                             print("first")
@@ -200,8 +213,7 @@ class LogInViewController: PFLogInViewController {
                     self.alert?.dismissViewControllerWithAnimation(self)
                 }
             }
-            let loginManager = FBSDKLoginManager()
-            loginManager.logOut()
+           
         
         }
     }
