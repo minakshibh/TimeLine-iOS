@@ -1325,7 +1325,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="pqp-p9-mtJ" customClass="EditPasswordTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="6zF-QL-jjB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -1590,7 +1590,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Xbc-8Z-o3Z" customClass="EditEmailTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="naj-kV-wKa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -2824,18 +2824,12 @@ Effective as of September 14, 2015
                     </refreshControl>
                     <connections>
                         <outlet property="searchDisplayController" destination="Eu6-IA-evK" id="Pxf-de-BKW"/>
-                        <outlet property="tableViewContact" destination="6os-Im-sta" id="Ewm-l0-2Ui"/>
                         <segue destination="gpQ-ln-8o1" kind="presentation" identifier="WalkthroughTrending" id="wPR-Ua-TlF"/>
                         <segue destination="R3t-tK-2PC" kind="presentation" identifier="TimelineCreated" id="3ER-K8-eo8"/>
                         <segue destination="dpZ-pz-TmS" kind="show" identifier="ShowUserList" id="UDh-ad-jqq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTi-xf-7Ar" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6os-Im-sta">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
                 <searchDisplayController id="Eu6-IA-evK">
                     <connections>
                         <outlet property="delegate" destination="jSH-I8-dWf" id="33I-Rj-HZk"/>

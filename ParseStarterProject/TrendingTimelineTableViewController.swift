@@ -11,20 +11,24 @@ import Social
 import MessageUI
 import AddressBookUI
 import AddressBook
+import KGModal
 
 
-class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBSDKAppInviteDialogDelegate ,ABPeoplePickerNavigationControllerDelegate{
+
+
+class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBSDKAppInviteDialogDelegate ,ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate{
     
     var searchTag:String = "@"
     var searching: Bool = false
     var picker:ABPeoplePickerNavigationController!
     var scrollView: UIScrollView!
-    
-    @IBOutlet var tableViewContact: UITableView!
-    
+    let timelineCommentView = UIView()
+    var tableViewContact: UITableView!
+    var recipients = [String]()
     var numberArray: NSMutableArray! = []
     var nameArray: NSMutableArray! = []
     var selectedPeople: NSMutableArray! = []
+    var errorText:UILabel?
     var emptyDictionary: CFDictionaryRef?
     var searchResults: [AnyObject] = [] {
         didSet {
@@ -43,7 +47,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         tableViewContact = UITableView(frame: CGRectMake(50, 50, 300, 300), style: .Plain)
         tableViewContact.delegate = self
         tableViewContact.dataSource = self
-        tableViewContact.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCellcontact")
+        tableViewContact.registerClass(UITableViewCell.self, forCellReuseIdentifier: "commentCellss")
         
         
         // Do any additional setup after loading the view.
@@ -63,8 +67,91 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 self.performSegueWithIdentifier("WalkthroughTrending", sender: self)
             }
         }
+        
+        
+        let screenRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenRect.size.width;
+        let screenHeight = screenRect.size.height;
+        self.timelineCommentView.frame = CGRectMake(0, 0, screenWidth-60, screenHeight-110);
+        self.timelineCommentView.backgroundColor = UIColor(white: 1 , alpha: 1)
+//        self.timelineCommentView.alpha = 1
+        self.tableViewContact.frame = CGRectMake(0, 0, screenWidth-60, screenHeight-160);
+        self.timelineCommentView.layer.cornerRadius = 8.0
+        self.tableViewContact.layer.cornerRadius = 8.0
+        self.timelineCommentView.addSubview(self.tableViewContact)
+        
+        let Invitebutton: UIButton = UIButton(frame: CGRectMake(0, tableViewContact.frame.size.height, tableViewContact.frame.size.width, 50))
+        Invitebutton.setTitle("Send Invites", forState: .Normal)
+        Invitebutton.addTarget(self, action: "Invitebuttontapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        Invitebutton.backgroundColor = UIColor.blackColor()
+        Invitebutton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        Invitebutton.titleLabel?.font = UIFont.systemFontOfSize(20)
+        self.timelineCommentView.addSubview(Invitebutton)
+        
+        
+        errorText = UILabel.init(frame: CGRectMake(0, Invitebutton.frame.origin.y-30 , Invitebutton.frame.size.width, 30 ))
+        errorText!.font = UIFont.systemFontOfSize(15)
+        errorText!.textColor = UIColor.redColor ()
+        errorText!.textAlignment = NSTextAlignment.Center;
+        
+        
+        
+        var button: UIBarButtonItem = UIBarButtonItem(title: "Logout", style: .Done, target: self, action: nil)
+        button.setBackgroundVerticalPositionAdjustment(-20.0, forBarMetrics: .Default)
+        self.navigationItem.rightBarButtonItem = button
+        
+//        self.fetchContacts()
+        var error: Unmanaged<CFError>?
+        let addressBook: ABAddressBook? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()
+        if addressBook == nil {
+            print(error?.takeRetainedValue())
+            return
+        }
+        ABAddressBookRequestAccessWithCompletion(addressBook) {
+            granted, error in
+            if !granted {
+                // warn the user that because they just denied permission, this functionality won't work
+                // also let them know that they have to fix this in settings
+                return
+            }
+        }
     }
-
+    
+    
+    func Invitebuttontapped(sender: UIButton!)
+    {
+        if selectedPeople.count == 0
+        {
+            errorText!.text = "Atleast Select one contact to send invite."
+            self.timelineCommentView.addSubview(errorText!)
+            return
+        }
+        
+        
+        if (MFMessageComposeViewController.canSendText()) {
+            for (var i=0; i < selectedPeople.count; i++) {
+               
+                
+                print("\(selectedPeople[i])")
+                
+                recipients.append(selectedPeople[i] as! String)
+            }
+            
+            
+            let controller = MFMessageComposeViewController()
+            controller.body = "Message Body"
+            controller.recipients = recipients
+            controller.messageComposeDelegate = self
+            self.presentViewController(controller, animated: true, completion: nil)
+        }else{
+            errorText!.font = UIFont.systemFontOfSize(13)
+            errorText!.text = "Invite through contacts not supported on this device";
+            self.timelineCommentView.addSubview(errorText!)
+            return
+        }
+    }
+    
+    
     override func refreshTableView() {
         var first = true
         Timeline.getTimelines(.TimelineTrending) { tls in
@@ -81,12 +168,12 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         confirm.addAction(title: "Cancel",
             style: .Cancel,
             handler: nil)
-        confirm.addAction(title: "To facebook Friends",
+        confirm.addAction(title: "Facebook Friends",
             style: .Default) { _ in
                 let inviteDialog:FBSDKAppInviteDialog = FBSDKAppInviteDialog()
                 if(inviteDialog.canShow()){
                     let inviteContent = FBSDKAppInviteContent.init()
-                    inviteContent.appLinkURL = NSURL(string: "https://www.mydomain.com/myapplink")!
+                    inviteContent.appLinkURL = NSURL(string: "https://fb.me/170661636645442")!
                     inviteContent.appInvitePreviewImageURL = NSURL(string: "https://www.mydomain.com/my_invite_image.jpg")!
                     inviteDialog.content = inviteContent
                     inviteDialog.delegate = self
@@ -94,74 +181,103 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 }
                
         }
-        confirm.addAction(title: "To send locally",
+        confirm.addAction(title: "Contacts",
             style: .Default) { _ in
                 
+                self.fetchContacts()
+           
+                self.tableViewContact.reloadData()
+                KGModal.sharedInstance().showWithContentView(self.timelineCommentView)
+                KGModal.sharedInstance().showCloseButton = true
+                //                    self.view.addSubview(self.tableViewContact)
                 
-                
+                self.tableViewContact.reloadData()
+            
+    } //---end of confirm action
+        self.tableViewContact.reloadData()
+        self.presentAlertController(confirm)
+  }
     
+    
+    func fetchContacts(){
+        
+        // user previously denied, to tell them to fix that in settings
+        let status = ABAddressBookGetAuthorizationStatus()
+        if status == .Denied || status == .Restricted {
+            return
+        }
+        
+        var error: Unmanaged<CFError>?
+        let addressBook: ABAddressBook? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()
+        if addressBook == nil {
+            print(error?.takeRetainedValue())
+            return
+        }
+        
+        // request permission to use it
+        ABAddressBookRequestAccessWithCompletion(addressBook) {
+            granted, error in
+            if !granted {
+                // warn the user that because they just denied permission, this functionality won't work
+                // also let them know that they have to fix this in settings
+                return
+            }
+            
+            
+            // addressBook = !ABAddressBookCreateWithOptions(emptyDictionary,nil)
+            let contactList: NSArray = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue()
+            print("records in the array \(contactList.count)") // returns 0
+            
+            self.nameArray = []
+            self.numberArray = []
+            self.selectedPeople = []
+            
+            for record:ABRecordRef in contactList {
+                let contactPerson: ABRecordRef = record
+//                print("\(ABRecordCopyCompositeName(contactPerson).takeRetainedValue())")
+//                let contactName: String = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
                 
                 
-                // user previously denied, to tell them to fix that in settings
-                let status = ABAddressBookGetAuthorizationStatus()
-                if status == .Denied || status == .Restricted {
-                    return
+                if var contactName = ABRecordCopyCompositeName(contactPerson)?.takeRetainedValue(){
+                    contactName = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
+                    self.nameArray.addObject(contactName )
                 }
                 
-                var error: Unmanaged<CFError>?
-                let addressBook: ABAddressBook? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()
-                if addressBook == nil {
-                    print(error?.takeRetainedValue())
-                    return
-                }
                 
-                // request permission to use it
-                ABAddressBookRequestAccessWithCompletion(addressBook) {
-                    granted, error in
-                    if !granted {
-                        // warn the user that because they just denied permission, this functionality won't work
-                        // also let them know that they have to fix this in settings
-                        return
-                    }
-                    
-                    
-                   // addressBook = !ABAddressBookCreateWithOptions(emptyDictionary,nil)
-                    var contactList: NSArray = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue()
-                    print("records in the array \(contactList.count)") // returns 0
-                    
-                    for record:ABRecordRef in contactList {
-                        var contactPerson: ABRecordRef = record
-                        var contactName: String = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
-                        self.nameArray.addObject(contactName)
-                        print ("contactName \(contactName)")
-                        let numbers:ABMultiValue = ABRecordCopyValue(
+                
+                
+                
+//                let numbers:ABMultiValue = ABRecordCopyValue(
+//                    contactPerson, kABPersonPhoneProperty).takeRetainedValue()
+                if var numbers = ABRecordCopyValue(
+                    contactPerson, kABPersonPhoneProperty)?.takeRetainedValue(){
+                        numbers = ABRecordCopyValue(
                             contactPerson, kABPersonPhoneProperty).takeRetainedValue()
+
                         for ix in 0 ..< ABMultiValueGetCount(numbers) {
-                            let label = ABMultiValueCopyLabelAtIndex(numbers,ix).takeRetainedValue() as String
+//                            let label = ABMultiValueCopyLabelAtIndex(numbers,ix).takeRetainedValue() as String
                             let value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
-                            print("Phonenumber \(label) is \(value)")
-                            self.numberArray.addObject(value)
+                            
+                            if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
+                                value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
+                                print("Phonenumber  is \(value)")
+                                self.numberArray.addObject(value)
+                            }
                             break
                         }
                         
-                        
-                        
-                    }
                     
-                    
-                    self.view.addSubview(self.tableViewContact)
-                    self.tableViewContact.reloadData()
-           
-        }
+                }
+                
+                
+                
+                
+                
+            }
             
-    } //---end of confirm action
-        
-        self.presentAlertController(confirm)
-        
-        
-        
-       
-  }
+            
+        }
+    }
     
     override func removeTimelineFromCache(uuid: UUID) {
         Storage.session.trendingCache = Storage.session.trendingCache.filter { $0 != uuid }
@@ -188,7 +304,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if tableView == tableViewContact{
-            return 50
+            return 80
         }else{
         
         
@@ -210,9 +326,13 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // MARK: Causing TableView Crash
         if tableView == tableViewContact{
+            
+            errorText!.removeFromSuperview()
+            
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
              let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-            var person = nameArray[indexPath.row]
+            let person = nameArray[indexPath.row]
+            
             if cell.accessoryType == .None {
                 cell.accessoryType = .Checkmark
                 selectedPeople.addObject(person)
@@ -234,11 +354,40 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == tableViewContact{
-            let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("UserCellcontact")! as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("commentCellss", forIndexPath: indexPath)
             
-            cell.textLabel?.text = nameArray[indexPath.row] as? String
-            cell.detailTextLabel?.text = numberArray[indexPath.row] as? String
             
+            for object in cell.contentView.subviews
+            {
+                object.removeFromSuperview();
+            }
+            
+//            let cellView = UIView()
+//            cell.contentView.frame = CGRectMake(0, 5, cell.contentView.frame.size.width, 75)
+//            cell.contentView.backgroundColor = UIColor(white: 0, alpha: 0.25)
+//            cell.addSubview(cellView)
+            
+            let text1:UILabel = UILabel.init(frame: CGRectMake(20, 10, 350, 30))
+            text1.font = UIFont.systemFontOfSize(23)
+            text1.text = nameArray[indexPath.row] as? String
+            cell.contentView.addSubview(text1)
+            
+            let text2:UILabel = UILabel.init(frame: CGRectMake(20, text1.frame.origin.y+text1.frame.size.height , 350, 30 ))
+            text2.font = UIFont.systemFontOfSize(15)
+            text2.text = numberArray[indexPath.row] as? String
+            text2.textColor = UIColor.lightGrayColor()
+            cell.contentView.addSubview(text2)
+            
+            
+            let text3:UILabel = UILabel.init(frame: CGRectMake(0, text2.frame.origin.y+text2.frame.size.height+6 , 350, 1 ))
+            text3.font = UIFont.systemFontOfSize(15)
+            text3.backgroundColor = UIColor.darkGrayColor()
+            cell.contentView.addSubview(text3)
+            
+            
+//            tableView.separatorStyle = .None
+
+//            cell.textLabel!.font = UIFont.systemFontOfSize(18)
             return cell
        }else{
          if tableView == self.tableView {
@@ -440,5 +589,25 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
     func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController!, didSelectPerson person: ABRecord!) {
         let nameCFString : CFString = ABRecordCopyCompositeName(person).takeRetainedValue()
         let name : NSString = nameCFString as NSString
+    }
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+        switch (result) {
+        case MessageComposeResultSent: NSLog("SENT");
+        self.dismissViewControllerAnimated(true, completion: nil)
+        break;
+            
+        case MessageComposeResultFailed: NSLog("FAILED");
+        self.dismissViewControllerAnimated(true, completion: nil)
+        break;
+            
+        case MessageComposeResultCancelled: NSLog("CANCELLED");
+        self.dismissViewControllerAnimated(true, completion: nil)
+        break;
+        
+        default:
+         self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

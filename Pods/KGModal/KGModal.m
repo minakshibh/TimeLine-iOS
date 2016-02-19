@@ -314,7 +314,7 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     static UIImage *closeButtonImage;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        //closeButtonImage = [self closeButtonImage];
+        closeButtonImage = [self closeButtonImage];
     });
     [self setBackgroundImage:closeButtonImage forState:UIControlStateNormal];
     return self;
@@ -393,5 +393,6 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     
     return image;
 }
+
 
 @end

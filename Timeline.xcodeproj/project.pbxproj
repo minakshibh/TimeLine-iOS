@@ -101,6 +101,7 @@
 		BAF593391B9600A100C7E8AE /* Session+InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF593381B9600A100C7E8AE /* Session+InAppPurchase.swift */; };
 		BAF5933B1B960BA100C7E8AE /* PendingInAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF5933A1B960BA100C7E8AE /* PendingInAppViewController.swift */; };
 		BE86307804EAC41D198E236B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472C1B472FC01F506711759 /* Pods.framework */; };
+		D9AA74B71C75F9050008E3EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9AA74B61C75F9050008E3EC /* MessageUI.framework */; };
 		D9B3408B1C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */; };
 		D9B3408C1C72EABB00EC3BFF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */; };
 		D9B3408D1C72EABB00EC3BFF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340881C72EABB00EC3BFF /* FBSDKLoginKit.framework */; };
@@ -356,6 +357,7 @@
 		BAF593361B95FC7A00C7E8AE /* SKProduct+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProduct+Additions.swift"; sourceTree = "<group>"; };
 		BAF593381B9600A100C7E8AE /* Session+InAppPurchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+InAppPurchase.swift"; sourceTree = "<group>"; };
 		BAF5933A1B960BA100C7E8AE /* PendingInAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInAppViewController.swift; sourceTree = "<group>"; };
+		D9AA74B61C75F9050008E3EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		D9B340881C72EABB00EC3BFF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9AA74B71C75F9050008E3EC /* MessageUI.framework in Frameworks */,
 				D9B340911C72F28600EC3BFF /* libz.tbd in Frameworks */,
 				D9B3408D1C72EABB00EC3BFF /* FBSDKLoginKit.framework in Frameworks */,
 				81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */,
@@ -548,6 +551,7 @@
 		81BA816A1A49DB5600E65899 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D9AA74B61C75F9050008E3EC /* MessageUI.framework */,
 				D9B340901C72F28600EC3BFF /* libz.tbd */,
 				D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */,
 				D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */,
@@ -1527,8 +1531,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeffrey Garibay (7WH2H4QHZW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeffrey Garibay (7WH2H4QHZW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1549,7 +1553,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "89edb553-afe4-428d-a07f-0a1273f279d8";
+				PROVISIONING_PROFILE = "b38b11ae-8689-42f8-9c38-737a081d8a0f";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1573,8 +1577,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeffrey Garibay (7WH2H4QHZW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeffrey Garibay (7WH2H4QHZW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1587,7 +1591,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "89edb553-afe4-428d-a07f-0a1273f279d8";
+				PROVISIONING_PROFILE = "b38b11ae-8689-42f8-9c38-737a081d8a0f";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1600,7 +1604,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				CURRENT_PROJECT_VERSION = 98;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
@@ -1621,7 +1625,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "ee15ea52-873d-4231-a316-b0312059910a";
+				PROVISIONING_PROFILE = "b38b11ae-8689-42f8-9c38-737a081d8a0f";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1634,7 +1638,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				CURRENT_PROJECT_VERSION = 98;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
@@ -1655,7 +1659,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "ee15ea52-873d-4231-a316-b0312059910a";
+				PROVISIONING_PROFILE = "b38b11ae-8689-42f8-9c38-737a081d8a0f";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
