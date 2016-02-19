@@ -16,6 +16,10 @@ import FBSDKLoginKit
 import ParseCrashReporting
 
 var followLoadingCountDidChange: ((Bool) -> Void)? = nil
+var showActivityIndicator: Void?
+var hideActivityIndicator : Void?
+var notificationAPI : Void?
+
 var followLoadingCount: Int = 0 {
     didSet {
         followLoadingCountDidChange?(followLoadingCount > 0)
@@ -27,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var walkDelegate: WalkthroughDelegate?
+    var notificationCount : Int!
+    var activityIndicator: UIActivityIndicatorView!
 
     //--------------------------------------
     // MARK: - UIApplicationDelegate
@@ -93,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func initializeRootViewController() {
         print("initroot")
+        notificationCount = 0
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let nav = window?.rootViewController as? UINavigationController else {
             print("AppDelegate.initializeRootViewController() nav not an UINavigationController")
@@ -122,20 +129,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-            
-            Storage.performRequest(ApiRequest.UserNotifications, completion: { (json) -> Void in
-                print(json)
-                if let results = json["result"] as? [[String: AnyObject]] {
-                    for not in results {
-                        if let raw = not["payload"] as? NSString,
-                            let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
-                        let payload = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? [String: AnyObject]
-                        {
-                            self.process(payload: payload)
-                        }
-                    }
-                }
-            })
+            notificationAPI()
+//            Storage.performRequest(ApiRequest.UserNotifications, completion: { (json) -> Void in
+//                print(json)
+//                if let results = json["result"] as? [[String: AnyObject]] {
+//                    self.notificationCount = results.count
+//                    for not in results {
+//                        if let raw = not["payload"] as? NSString,
+//                            let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
+//                        let payload = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? [String: AnyObject]
+//                        {
+//                            self.process(payload: payload)
+//                        }
+//                    }
+//                }
+//            })
         } else {
             walkDelegate = WalkthroughDelegate.instantiateDefaultWalkthrough()
             nav.topViewController?.dismissViewControllerAnimated(false, completion: nil)
@@ -146,6 +154,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func notificationAPI()
+    {
+        Storage.performRequest(ApiRequest.UserNotifications, completion: { (json) -> Void in
+            print(json)
+            if let results = json["result"] as? [[String: AnyObject]] {
+                self.notificationCount = results.count
+                for not in results {
+                    if let raw = not["payload"] as? NSString,
+                        let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
+                        let payload = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? [String: AnyObject]
+                    {
+                        self.process(payload: payload)
+                    }
+                }
+            }
+        })
+    }
     func applicationDidBecomeActive(application: UIApplication) {
         let currentInstallation = PFInstallation.currentInstallation()
         if currentInstallation.badge != 0 {
@@ -354,5 +379,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sourceApplication: String?,
         annotation: AnyObject?) -> Bool {
             return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    func showActivityIndicator()
+    {
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.window!.center
+        self.window!.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    func hideActivityIndicator()
+    {
+        main{
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.removeFromSuperview()
+        }
     }
 }

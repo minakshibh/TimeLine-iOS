@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18DF0CEE1C745F380042F16B /* AllNotificationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF0CEC1C745F380042F16B /* AllNotificationList.swift */; };
+		18DF0CEF1C745F380042F16B /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF0CED1C745F380042F16B /* NotificationTableViewCell.swift */; };
 		81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814A1A49DA1800E65899 /* AppDelegate.swift */; };
 		81BA814D1A49DA1800E65899 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814C1A49DA1800E65899 /* LogInViewController.swift */; };
 		81BA81501A49DA1800E65899 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BA814E1A49DA1800E65899 /* Main.storyboard */; };
@@ -237,6 +239,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		18DF0CEC1C745F380042F16B /* AllNotificationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllNotificationList.swift; sourceTree = "<group>"; };
+		18DF0CED1C745F380042F16B /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		81BA81451A49DA1800E65899 /* Timeline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timeline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BA81491A49DA1800E65899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81BA814A1A49DA1800E65899 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -847,6 +851,8 @@
 				DA57C77F1B53EC2B00C51BC0 /* Capture */,
 				DAFBADFF1B86126800F3906E /* Timelines */,
 				DA2CF5961B7632B0000ABF96 /* CreateTimelineViewController.swift */,
+				18DF0CEC1C745F380042F16B /* AllNotificationList.swift */,
+				18DF0CED1C745F380042F16B /* NotificationTableViewCell.swift */,
 				DA5115661B7E66AF00B0776A /* SendMomentTableViewController.swift */,
 				DA7546571B8283D600FADDE5 /* ModalUploadViewController.swift */,
 				DAF09E8F1B851B89007DE11D /* MomentPlayerController.swift */,
@@ -1318,6 +1324,7 @@
 				BA95609D1BB4844800747411 /* RotationNavigationController.swift in Sources */,
 				DA799AEB1B65081400EA4982 /* RoundImageView.swift in Sources */,
 				DA2B8A441B5918DD00D25AED /* AVAsset.swift in Sources */,
+				18DF0CEE1C745F380042F16B /* AllNotificationList.swift in Sources */,
 				DA167E0F1B7D61E800608A6C /* CSStickyHeaderFlowLayoutAttributes.m in Sources */,
 				DA3FF4E41B6C0ABC006CC0D7 /* Request.swift in Sources */,
 				DA1DF2111B5544A000BD6011 /* AVCaptureVideoOrientation+UIInterfaceOrientation.swift in Sources */,
@@ -1427,6 +1434,7 @@
 				81BA814D1A49DA1800E65899 /* LogInViewController.swift in Sources */,
 				BAEE09561C1709260095F6CE /* AlertViewAction.swift in Sources */,
 				DA95401B1B837FA600392C75 /* MGSwipeButton.m in Sources */,
+				18DF0CEF1C745F380042F16B /* NotificationTableViewCell.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 				BADDE80D1C19F21B00872FEC /* BlockableBehavior.swift in Sources */,
 				BA8607A31C166BA6001D73EE /* Durationial.swift in Sources */,

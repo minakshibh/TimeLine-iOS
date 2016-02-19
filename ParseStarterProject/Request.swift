@@ -9,10 +9,13 @@
 import Foundation
 
 typealias UUID = String
+typealias PAGE_ID = String
 
 enum ApiRequest {
     
-    private static let baseUrl = NSURL(string: "http://timeline-server.elasticbeanstalk.com")!
+    private static let baseUrl = NSURL(string: "http://54.191.110.86")!
+//    private static let baseUrl = NSURL(string: "http://timeline-server.elasticbeanstalk.com")!
+
     
     /// GET /api/user/get_token
     /// Header: X-Parse-Session-Token String
@@ -115,6 +118,8 @@ enum ApiRequest {
     /// GET /api/user/notifications
     /// - parameter date:
     case UserNotifications
+    
+    case UserAllNotifications(PAGE_ID)
     
     /// POST /api/user/increment_timelines
     case IncrementTimelineMax
@@ -301,6 +306,12 @@ enum ApiRequest {
         case .UserNotifications:
             let dateString = SynchronizationState.formatter.stringFromDate(Storage.session.notificationDate ?? NSDate())
             urlString = "/api/user/notifications?date=\(dateString.urlEncoded)"
+            urlRequest.HTTPMethod = "GET"
+            
+        case .UserAllNotifications(let page_id):
+            let dateString = SynchronizationState.formatter.stringFromDate(Storage.session.notificationDate ?? NSDate())
+            urlString = "/api/user/timeline_notifications?date=\(dateString.urlEncoded)&page_id=\(page_id)"
+//            urlString = "/api/user/notifications?date=2016-02-11T12%3A46%3A24.461Z"
             urlRequest.HTTPMethod = "GET"
 
         case .TimelineFollowerList(let uuid):
