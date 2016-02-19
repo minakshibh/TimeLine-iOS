@@ -63,7 +63,6 @@ class CommonTimelineTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TimelineCell", forIndexPath: indexPath) as! ModernTimelineTableViewCell
         
         // Configure the cell...
-        
         cell.timelineView.timeline = users[indexPath.section].timelines[indexPath.row]
 
         //cell.deletionCallback = self.deletionCallback()
@@ -82,6 +81,10 @@ class CommonTimelineTableViewController: UITableViewController {
         headerView.user = users[section]
         return headerView
     }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //print(Storage.findTimeline(tid))
+    }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowTimeline" {

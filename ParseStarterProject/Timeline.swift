@@ -134,6 +134,7 @@ extension Timeline {
             var timelines = [Timeline]()
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
                 for td in timelineDicts {
+                    print(timelineDicts)
                     if let userID = td["user_id"] as? UUID
                     {
                         let owner: User

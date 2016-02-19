@@ -93,12 +93,12 @@
                                 <action selector="play" destination="csb-QR-16h" eventType="touchUpInside" id="lik-F6-aC7"/>
                             </connections>
                         </button>
-                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5a-9L-GaU" userLabel="Comments">
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5a-9L-GaU" userLabel="Comments">
                             <rect key="frame" x="161" y="280" width="32" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="E5a-9L-GaU" secondAttribute="height" id="yyq-U8-3D8"/>
                             </constraints>
-                            <state key="normal" image="close"/>
+                            <state key="normal" image="commentWhite"/>
                             <connections>
                                 <action selector="commentButtonClick" destination="csb-QR-16h" eventType="touchUpInside" id="XHv-zB-BP2"/>
                             </connections>
@@ -180,5 +180,6 @@
         <image name="Play Player" width="32" height="32"/>
         <image name="Previous Player" width="32" height="32"/>
         <image name="close" width="31" height="32"/>
+        <image name="commentWhite" width="30" height="30"/>
     </resources>
 </document>

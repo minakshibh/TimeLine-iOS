@@ -192,10 +192,10 @@
                         <outletCollection property="gestureRecognizers" destination="cC5-F5-vor" appends="YES" id="Smt-3i-eYX"/>
                     </connections>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymc-ol-e8e">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymc-ol-e8e">
                     <rect key="frame" x="347" y="4" width="33" height="30"/>
                     <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" image="more"/>
+                    <state key="normal" image="Comment"/>
                     <connections>
                         <action selector="timelineCommentClick" destination="iN0-l3-epB" eventType="touchUpInside" id="Fol-FS-xlT"/>
                     </connections>
@@ -324,6 +324,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="Comment" width="30" height="30"/>
         <image name="Play Button" width="90" height="90"/>
         <image name="comments" width="16" height="15"/>
         <image name="follower" width="16" height="15"/>

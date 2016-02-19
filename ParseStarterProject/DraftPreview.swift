@@ -227,7 +227,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource{
         button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
         commentTextfeildView.addSubview(button)
-        
+        KGModal.sharedInstance().closeButtonType = KGModalCloseButtonType.None
         KGModal.sharedInstance().showWithContentView(timelineCommentView)
         
         

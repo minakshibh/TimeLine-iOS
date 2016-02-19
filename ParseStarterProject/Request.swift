@@ -12,8 +12,9 @@ typealias UUID = String
 
 enum ApiRequest {
     
-    private static let baseUrl = NSURL(string: "http://timeline-server.elasticbeanstalk.com")!
-    
+//    private static let baseUrl = NSURL(string: "http://timeline-server.elasticbeanstalk.com")!
+    private static let baseUrl = NSURL(string: "http://54.191.110.86")!
+//
     /// GET /api/user/get_token
     /// Header: X-Parse-Session-Token String
     case GetToken(String)
@@ -54,7 +55,8 @@ enum ApiRequest {
     case TimelineMe
     /// GET /api/timeline/user/:user_id
     case TimelineUser(UUID)
-    
+    /// GET /api/timeline/id/comment
+    case TimelineComments(UUID)
     /// GET /timeline/trending
     case TimelineTrending
     
@@ -134,6 +136,7 @@ enum ApiRequest {
     var urlRequest: NSMutableURLRequest {
         let urlString: String
         let urlRequest = NSMutableURLRequest()
+        print(Storage.session.webToken)
         urlRequest.setValue(Storage.session.webToken, forHTTPHeaderField: "X-Timeline-Authentication")
         
         switch self {
@@ -194,6 +197,10 @@ enum ApiRequest {
             
         case .TimelineUser(let uuid):
             urlString = "/api/timeline/user/\(uuid.urlEncoded)"
+            urlRequest.HTTPMethod = "GET"
+        
+        case .TimelineComments(let uuid):
+            urlString = "/api/timeline/\(uuid.urlEncoded)/comment"
             urlRequest.HTTPMethod = "GET"
             
         case .TimelineFollowing:

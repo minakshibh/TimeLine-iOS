@@ -89,7 +89,7 @@ class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
         button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
         commentTextfeildView.addSubview(button)
-        
+        KGModal.sharedInstance().closeButtonType = KGModalCloseButtonType.None
         KGModal.sharedInstance().showWithContentView(timelineCommentView)
 
         
