@@ -82,7 +82,7 @@ class CommonTimelineTableViewController: UITableViewController {
         return headerView
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //print(Storage.findTimeline(tid))
+        print(users[indexPath.section].timelines[indexPath.row].uuid)
     }
 
     
