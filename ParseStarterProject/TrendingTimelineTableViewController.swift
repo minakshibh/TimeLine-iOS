@@ -185,7 +185,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
            
                 self.tableViewContact.reloadData()
                 KGModal.sharedInstance().showWithContentView(self.timelineCommentView)
-                KGModal.sharedInstance().showCloseButton = true
+                KGModal.sharedInstance().closeButtonType = .None
+                //KGModal.sharedInstance().showCloseButton = true
                 //                    self.view.addSubview(self.tableViewContact)
                 
                 self.tableViewContact.reloadData()

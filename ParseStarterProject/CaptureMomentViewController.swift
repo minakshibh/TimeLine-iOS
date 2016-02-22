@@ -36,9 +36,12 @@ class CaptureMomentViewController: UIViewController {
     
     @IBOutlet var profileMenuButton: UIButton!
     @IBOutlet var timelineMenuButton: UIButton!
+    @IBOutlet var allNotificationMenuButton: UIButton!
+
     var profileMenuBadge: CustomBadge?
     var timelineMenuBadge: CustomBadge?
-    
+    var notificationsMenuBadge: CustomBadge?
+
     var startDate: NSDate?
     var endTimer: NSTimer?
     
@@ -100,50 +103,74 @@ class CaptureMomentViewController: UIViewController {
     }
     
     func reloadBadges() {
-        if !badgeTimerEnabled {
-            return
-        }
-        let style = BadgeStyle.defaultStyle()
-        let user = PFUser.currentUser()
-        
-        user?.badgeUserAndPendingInBackground { uc, pc in
-            main {
-                if uc + pc > 0 {
-                    let text = String(uc + pc)
-                    if self.profileMenuBadge == nil {
-                        self.profileMenuBadge = CustomBadge(string: text, withStyle: style)
-                        self.profileMenuButton.superview?.insertSubview(self.profileMenuBadge!, aboveSubview: self.profileMenuButton)
-                        self.profileMenuBadge?.frame.origin = CGPoint(
-                            x: self.profileMenuButton!.frame.origin.x + self.profileMenuButton!.frame.width / 2.0,
-                            y: self.profileMenuButton!.frame.origin.y
-                        )
-                    }
-                    self.profileMenuBadge?.badgeText = text
-                    self.profileMenuBadge?.autoBadgeSizeWithString(text)
-                } else {
-                    self.profileMenuBadge?.removeFromSuperview()
-                }
-            }
-        }
-        
-        user?.badgeMineAndFollowingInBackground { mc, fc in
-            if mc + fc > 0 {
-                self.timelineMenuBadge?.removeFromSuperview()
-                let text = String(mc + fc)
-                self.timelineMenuBadge = CustomBadge(string: text, withStyle: style)
-                self.timelineMenuButton.superview?.insertSubview(self.timelineMenuBadge!, aboveSubview: self.timelineMenuButton)
-                self.timelineMenuBadge?.frame.origin = CGPoint(
-                    x: self.timelineMenuButton!.frame.origin.x + self.timelineMenuButton!.frame.width / 2.0,
-                    y: self.timelineMenuButton!.frame.origin.y
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.notificationCount > 0{
+             let style = BadgeStyle.defaultStyle()
+            let text = String(appDelegate.notificationCount)
+            if self.notificationsMenuBadge == nil {
+                self.notificationsMenuBadge = CustomBadge(string: text, withStyle: style)
+                self.allNotificationMenuButton.superview?.insertSubview(self.notificationsMenuBadge!, aboveSubview: self.allNotificationMenuButton)
+                self.notificationsMenuBadge?.frame.origin = CGPoint(
+                    x: self.allNotificationMenuButton!.frame.origin.x + self.allNotificationMenuButton!.frame.width / 1.5,
+                    y: self.allNotificationMenuButton!.frame.origin.y-10
                 )
-                self.timelineMenuBadge?.autoBadgeSizeWithString(text)
-            } else {
-                self.timelineMenuBadge?.removeFromSuperview()
             }
+            self.notificationsMenuBadge?.badgeText = text
+            self.notificationsMenuBadge?.autoBadgeSizeWithString(text)
+            self.notificationsMenuBadge?.hidden = false
+        } else {
+            self.notificationsMenuBadge?.hidden = true
         }
+
     }
+
+//    func reloadBadges() {
+//        if !badgeTimerEnabled {
+//            return
+//        }
+//        let style = BadgeStyle.defaultStyle()
+//        let user = PFUser.currentUser()
+//        
+//        user?.badgeUserAndPendingInBackground { uc, pc in
+//            main {
+//                if uc + pc > 0 {
+//                    let text = String(uc + pc)
+//                    if self.profileMenuBadge == nil {
+//                        self.profileMenuBadge = CustomBadge(string: text, withStyle: style)
+//                        self.profileMenuButton.superview?.insertSubview(self.profileMenuBadge!, aboveSubview: self.profileMenuButton)
+//                        self.profileMenuBadge?.frame.origin = CGPoint(
+//                            x: self.profileMenuButton!.frame.origin.x + self.profileMenuButton!.frame.width / 2.0,
+//                            y: self.profileMenuButton!.frame.origin.y
+//                        )
+//                    }
+//                    self.profileMenuBadge?.badgeText = text
+//                    self.profileMenuBadge?.autoBadgeSizeWithString(text)
+//                } else {
+//                    self.profileMenuBadge?.removeFromSuperview()
+//                }
+//            }
+//        }
+//        
+//        user?.badgeMineAndFollowingInBackground { mc, fc in
+//            if mc + fc > 0 {
+//                self.timelineMenuBadge?.removeFromSuperview()
+//                let text = String(mc + fc)
+//                self.timelineMenuBadge = CustomBadge(string: text, withStyle: style)
+//                self.timelineMenuButton.superview?.insertSubview(self.timelineMenuBadge!, aboveSubview: self.timelineMenuButton)
+//                self.timelineMenuBadge?.frame.origin = CGPoint(
+//                    x: self.timelineMenuButton!.frame.origin.x + self.timelineMenuButton!.frame.width / 2.0,
+//                    y: self.timelineMenuButton!.frame.origin.y
+//                )
+//                self.timelineMenuBadge?.autoBadgeSizeWithString(text)
+//            } else {
+//                self.timelineMenuBadge?.removeFromSuperview()
+//            }
+//        }
+//    }
     
     override func viewWillAppear(animated: Bool) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.notificationAPI ()
         recorder.startRunning()
         
         delay (0.01) {
@@ -254,6 +281,7 @@ extension CaptureMomentViewController {
             self.torchEnabled = false
             self.profileMenuBadge?.alpha = 0.0
             self.timelineMenuBadge?.alpha = 0.0
+            self.notificationsMenuBadge?.alpha=0.0
             }) { (flag) -> Void in
                 self.menuControls.each { $0.enabled = false }
         }
@@ -293,6 +321,7 @@ extension CaptureMomentViewController {
             self.torchEnabled = true
             self.profileMenuBadge?.alpha = 1.0
             self.timelineMenuBadge?.alpha = 1.0
+            self.notificationsMenuBadge?.alpha = 1.0
             }) { (flag) -> Void in
                 self.countdownLabel.hidden = false
                 self.menuControls.each { $0.enabled = true }

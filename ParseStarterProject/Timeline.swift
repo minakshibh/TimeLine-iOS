@@ -134,6 +134,7 @@ extension Timeline {
             var timelines = [Timeline]()
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
                 for td in timelineDicts {
+                    print(timelineDicts)
                     if let userID = td["user_id"] as? UUID
                     {
                         let owner: User
@@ -248,6 +249,7 @@ extension Timeline {
         Storage.performRequest(ApiRequest.ViewTimelineVideos(state.uuid!), completion: { (json) -> Void in
             var dirty = false
             if let videos = json["videos"] as? [[String: AnyObject]] {
+                print(videos)
                 for v in videos {
                     if let _ = Storage.findMoment(v["id"] as! UUID) {
                         // do nothing

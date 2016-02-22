@@ -12,7 +12,14 @@
 CGFloat const kFadeInAnimationDuration = 0.3;
 CGFloat const kTransformPart1AnimationDuration = 0.2;
 CGFloat const kTransformPart2AnimationDuration = 0.1;
+CGFloat const kDefaultCloseButtonPadding = 17.0;
+
 NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
+
+NSString *const KGModalWillShowNotification = @"KGModalWillShowNotification";
+NSString *const KGModalDidShowNotification = @"KGModalDidShowNotification";
+NSString *const KGModalWillHideNotification = @"KGModalWillHideNotification";
+NSString *const KGModalDidHideNotification = @"KGModalDidHideNotification";
 
 @interface KGModalGradientView : UIView
 @end
@@ -58,17 +65,26 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     self.shouldRotate = YES;
     self.tapOutsideToDismiss = YES;
     self.animateWhenDismissed = YES;
-    self.showCloseButton = YES;
-    //self.modalBackgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-    
+    self.closeButtonType = KGModalCloseButtonTypeLeft;
+    self.modalBackgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     
     return self;
 }
 
-- (void)setShowCloseButton:(BOOL)showCloseButton{
-    if(_showCloseButton != showCloseButton){
-        _showCloseButton = showCloseButton;
-        [self.closeButton setHidden:!self.showCloseButton];
+-(void)setCloseButtonType:(KGModalCloseButtonType)closeButtonType {
+    _closeButtonType = closeButtonType;
+    if(closeButtonType == KGModalCloseButtonTypeNone){
+        [self.closeButton setHidden:YES];
+    }else{
+        [self.closeButton setHidden:NO];
+        
+        CGRect closeFrame = self.closeButton.frame;
+        if(closeButtonType == KGModalCloseButtonTypeRight){
+            closeFrame.origin.x = round(CGRectGetWidth(self.containerView.frame)-kDefaultCloseButtonPadding-CGRectGetWidth(closeFrame)/2);
+        }else{
+            closeFrame.origin.x = 0;
+        }
+        self.closeButton.frame = closeFrame;
     }
 }
 
@@ -110,10 +126,19 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     self.containerView = containerView;
     
     KGModalCloseButton *closeButton = [[KGModalCloseButton alloc] init];
+    
+    if(self.closeButtonType == KGModalCloseButtonTypeRight){
+        CGRect closeFrame = closeButton.frame;
+        closeFrame.origin.x = CGRectGetWidth(containerView.bounds)-CGRectGetWidth(closeFrame);
+        closeButton.frame = closeFrame;
+    }
+    
     [closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
-    [closeButton setHidden:!self.showCloseButton];
     [containerView addSubview:closeButton];
     self.closeButton = closeButton;
+    
+    // Force adjust visibility and placing
+    [self setCloseButtonType:self.closeButtonType];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tapCloseAction:)
                                                  name:KGModalGradientViewTapped object:nil];
@@ -121,6 +146,7 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     // The window has to be un-hidden on the main thread
     // This will cause the window to display
     dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:KGModalWillShowNotification object:self];
         [self.window makeKeyAndVisible];
         
         if(animated){
@@ -141,6 +167,7 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
                     containerView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
                 } completion:^(BOOL finished2) {
                     containerView.layer.shouldRasterize = NO;
+                    [[NSNotificationCenter defaultCenter] postNotificationName:KGModalDidShowNotification object:self];
                 }];
             }];
         }
@@ -176,6 +203,8 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:KGModalWillHideNotification object:self];
+
         [UIView animateWithDuration:kFadeInAnimationDuration animations:^{
             self.viewController.styleView.alpha = 0;
         }];
@@ -192,6 +221,7 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
                 if(completion){
                     completion();
                 }
+                [[NSNotificationCenter defaultCenter] postNotificationName:KGModalDidHideNotification object:self];
             }];
         }];
     });
@@ -242,6 +272,10 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     return [[KGModal sharedInstance] shouldRotate];
 }
 
+- (BOOL)shouldAutorotate{
+    return [[KGModal sharedInstance] shouldRotate];
+}
+
 @end
 
 @implementation KGModalContainerView
@@ -253,13 +287,11 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     
     CALayer *styleLayer = [[CALayer alloc] init];
     styleLayer.cornerRadius = 4;
-    //styleLayer.shadowColor= [[UIColor blackColor] CGColor];
-    styleLayer.shadowColor= [[UIColor clearColor] CGColor];
+    styleLayer.shadowColor= [[UIColor blackColor] CGColor];
     styleLayer.shadowOffset = CGSizeMake(0, 0);
     styleLayer.shadowOpacity = 0.5;
     styleLayer.borderWidth = 1;
-    //styleLayer.borderColor = [[UIColor whiteColor] CGColor];
-    styleLayer.borderColor = [[UIColor clearColor] CGColor];
+    styleLayer.borderColor = [[UIColor whiteColor] CGColor];
     styleLayer.frame = CGRectInset(self.bounds, 12, 12);
     [self.layer addSublayer:styleLayer];
     self.styleLayer = styleLayer;
