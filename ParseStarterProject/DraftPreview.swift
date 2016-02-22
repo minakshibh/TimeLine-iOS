@@ -11,10 +11,10 @@ import MediaPlayer
 import KGModal
 
 
-class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource{
+class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UITextFieldDelegate{
     let timelineCommentView = UIView()
     var momentCommentView = UIViewController()
-    
+    let commentTextField = UITextField()
     enum RightError {
     case BlockedTimeline(String, String)
     case BlockedUser(String, String)
@@ -167,7 +167,22 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource{
         momentPlayerController?.pause()
     }
     
+    var commentArray = NSMutableArray()
+    
     @IBAction func commentButtonClick(){
+        print(moment?.state.uuid!)
+        
+        Storage.performRequest(ApiRequest.MomentComments((moment?.state.uuid)!), completion: { (json) -> Void in
+            print(json)
+            
+                    if let raw = json["result"] as? NSString,
+                        let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
+                        let payload = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? [String: AnyObject]
+                    {
+                        print(payload)
+                    }
+
+        })
         
         let screenRect = UIScreen.mainScreen().bounds
         let screenWidth = screenRect.size.width;
@@ -208,7 +223,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource{
         commentTextfeildView.backgroundColor = UIColor(white: 1, alpha: 0.1)
         timelineCommentView.addSubview(commentTextfeildView)
         
-        let commentTextField = UITextField()
+        
         commentTextField.frame = CGRectMake(10, 15, 280, 50)
         commentTextField.layer.cornerRadius = 4
         commentTextField.backgroundColor = UIColor(white: 1, alpha: 0.3)
@@ -224,13 +239,21 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource{
         button.layer.cornerRadius = 4
         button.backgroundColor = UIColor.redColor()
         button.setTitle("Send", forState: UIControlState.Normal)
-        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: "MomentPostComment", forControlEvents: UIControlEvents.TouchUpInside)
         
         commentTextfeildView.addSubview(button)
         KGModal.sharedInstance().closeButtonType = KGModalCloseButtonType.None
         KGModal.sharedInstance().showWithContentView(timelineCommentView)
         
         
+    }
+    func MomentPostComment(){
+    
+        Storage.performRequest(ApiRequest.MomentPostComment((moment?.state.uuid)!, commentTextField.text!), completion: { (json) -> Void in
+            print(json)
+    
+    
+        })
     }
     
     var data = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
@@ -259,7 +282,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource{
         let cellView = UIView()
         cellView.frame = CGRectMake(0, 5, cell.contentView.frame.size.width, 75)
         cellView.backgroundColor = UIColor(white: 0, alpha: 0.25)
-        cell.addSubview(cellView)
+        cell.contentView.addSubview(cellView)
         
         let userImage = UIImageView()
         userImage.frame = CGRectMake(5, 10, 60, 60)
