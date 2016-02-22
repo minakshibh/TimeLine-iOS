@@ -28,6 +28,7 @@ extension TimelineMoreButtonBehavior where Self: UIViewController, Self: Reloada
     }
     
     func triggerMoreButtonWithoutUserButtonBehavior(timeline: Timeline) {
+        
         let sheet = UIAlertController(title: lformat(.TimelineSheetMoreButtonTitle1s, timeline.name), message: local(.TimelineSheetMoreButtonMessage), preferredStyle: .ActionSheet)
         sheet.addAction(title: local(.TimelineSheetMoreButtonCancel), style: .Cancel, handler: nil)
         
@@ -56,6 +57,7 @@ extension TimelineMoreButtonBehavior where Self: UIViewController, Self: Reloada
     }
     
     func triggerMoreButtonBehavior(timeline: Timeline) {
+        print(timeline.uuid)
         let sheet = UIAlertController(title: lformat(.TimelineSheetMoreButtonTitle1s, timeline.name), message: local(.TimelineSheetMoreButtonMessage), preferredStyle: .ActionSheet)
         sheet.addAction(title: local(.TimelineSheetMoreButtonCancel), style: .Cancel, handler: nil)
 

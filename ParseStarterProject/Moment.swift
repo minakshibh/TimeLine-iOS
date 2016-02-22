@@ -39,6 +39,7 @@ class Moment: Synchronized, DictConvertable {
     var remoteVideoURL: NSURL?
     var remoteThumbURL: NSURL?
     var contentType: String?
+    var id : String?
     var size: Int?
     var duration: Int = 0
     
@@ -82,6 +83,7 @@ class Moment: Synchronized, DictConvertable {
     }
     
     convenience required init(dict: [String: AnyObject], parent: ParentType? = nil) {
+        
         let bug = (dict["persistent"] as? Bool) ?? true
         let state = SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict)
         let duration = dict["duration"] as? Float

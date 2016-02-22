@@ -10,6 +10,7 @@ import Foundation
 
 typealias UUID = String
 typealias PAGE_ID = String
+typealias PARAMS = String
 
 enum ApiRequest {
     
@@ -57,8 +58,12 @@ enum ApiRequest {
     case TimelineMe
     /// GET /api/timeline/user/:user_id
     case TimelineUser(UUID)
-    /// GET /api/timeline/id/comment
+    /// GET /api/timeline/id/comments
     case TimelineComments(UUID)
+    case TimelinePostComment(UUID,PARAMS)
+    case MomentPostComment(UUID,PARAMS)
+    /// GET /api/video/id/comments
+    case MomentComments(UUID)
     /// GET /timeline/trending
     case TimelineTrending
     
@@ -137,6 +142,8 @@ enum ApiRequest {
     
     case getFacebookInfo(String)
     
+    case getFacebookImage
+    
     var urlRequest: NSMutableURLRequest {
         let urlString: String
         let urlRequest = NSMutableURLRequest()
@@ -204,7 +211,21 @@ enum ApiRequest {
             urlRequest.HTTPMethod = "GET"
         
         case .TimelineComments(let uuid):
+            urlString = "/api/timeline/\(uuid.urlEncoded)/comments"
+            urlRequest.HTTPMethod = "GET"
+            
+        case .TimelinePostComment(let uuid,let params):
             urlString = "/api/timeline/\(uuid.urlEncoded)/comment"
+            urlRequest.HTTPMethod = "POST"
+            urlRequest.HTTPBody = "comment=\(params.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        
+        case .MomentPostComment(let uuid,let params):
+            urlString = "/api/video/\(uuid.urlEncoded)/comment"
+            urlRequest.HTTPMethod = "POST"
+            urlRequest.HTTPBody = "comment=\(params.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        
+        case .MomentComments(let uuid):
+            urlString = "/api/video/\(uuid.urlEncoded)/comments"
             urlRequest.HTTPMethod = "GET"
             
         case .TimelineFollowing:

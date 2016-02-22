@@ -85,19 +85,7 @@ class LogInViewController: PFLogInViewController {
                 delay(0.5) { self.presentAlertController(self.alert!) }
                 return
             }
-
-//            print("\(json["jwt"])")
-//            print("\(json["id"])")
-//            print("\(json["name"])")
-//            print("\(json["email"])")
-//            print("\(json["timelines_public"])")
-//            print("\(json["approve_followers"])")
-//            print("\(json["followers_count"])")
-//            print("\(json["allowed_timelines_count"])")
-//            print("\(json["followees_users_count"])")
-//            print("\(json["likers_count"])")
-//            print("\(json["external_id"])")
-            
+      
             //----get facebook access token
             let accessToken = FBSDKAccessToken.currentAccessToken()
             if(accessToken != nil) //should be != nil
@@ -134,7 +122,7 @@ class LogInViewController: PFLogInViewController {
                        userNameStr = ("\(fullNameArr[0])_\(fullNameArr[1])")
                     }
                     NSUserDefaults.standardUserDefaults().setObject(userNameStr, forKey: "fb_username")
-                     NSUserDefaults.standardUserDefaults().setObject(fbemail, forKey: "fb_email")
+                    NSUserDefaults.standardUserDefaults().setObject(fbemail, forKey: "fb_email")
                     
                     if let jwt = json["jwt"] as? String,
                         let id = json["id"] as? String,

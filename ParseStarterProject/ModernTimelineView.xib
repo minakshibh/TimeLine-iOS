@@ -197,7 +197,7 @@
                     <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" image="Comment"/>
                     <connections>
-                        <action selector="timelineCommentClick" destination="iN0-l3-epB" eventType="touchUpInside" id="Fol-FS-xlT"/>
+                        <action selector="timelineCommentClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="AVa-d8-8Hj"/>
                     </connections>
                 </button>
             </subviews>

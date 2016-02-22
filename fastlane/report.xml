@@ -3,39 +3,39 @@
   <testsuite name="run">
     
       
-      <testcase name="0: Verifying required fastlane version" time="0.000754">
+      <testcase name="0: Verifying required fastlane version" time="0.00053">
         
       </testcase>
     
       
-      <testcase name="1: default_platform" time="0.000311">
+      <testcase name="1: default_platform" time="0.000292">
         
       </testcase>
     
       
-      <testcase name="2: cocoapods" time="121.508919">
+      <testcase name="2: cocoapods" time="73.531108">
         
       </testcase>
     
       
-      <testcase name="3: carthage" time="81.880809">
+      <testcase name="3: carthage" time="66.560723">
         
       </testcase>
     
       
-      <testcase name="4: increment_build_number" time="13.421136">
+      <testcase name="4: increment_build_number" time="5.727428">
         
       </testcase>
     
       
-      <testcase name="5: sigh" time="102.61575">
+      <testcase name="5: sigh" time="37.54129">
         
           <failure message="/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/actions/actions_helper.rb:33:in `execute_action'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:128:in `block in execute_action'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:127:in `chdir'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:127:in `execute_action'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/fast_file.rb:149:in `method_missing'&#10;Fastfile:55:in `block (2 levels) in parsing_binding'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/lane.rb:36:in `call'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/lane.rb:36:in `call'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:52:in `block in execute'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:46:in `chdir'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:46:in `execute'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/lane_manager.rb:46:in `cruise_lane'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/command_line_handler.rb:30:in `handle'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/bin/fastlane:37:in `block (2 levels) in run'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/command.rb:178:in `call'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/command.rb:178:in `call'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/command.rb:153:in `run'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/runner.rb:428:in `run_active_command'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/runner.rb:68:in `run!'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/delegates.rb:15:in `run!'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/bin/fastlane:149:in `run'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/bin/fastlane:155:in `&lt;top (required)&gt;'&#10;/usr/local/bin/fastlane:23:in `load'&#10;/usr/local/bin/fastlane:23:in `&lt;main&gt;'&#10;&#10;Invalid User Credentials" />
         
       </testcase>
     
       
-      <testcase name="6: slack" time="2.845188">
+      <testcase name="6: slack" time="0.952684">
         
           <failure message="/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/actions/actions_helper.rb:33:in `execute_action'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:128:in `block in execute_action'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:127:in `chdir'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:127:in `execute_action'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/fast_file.rb:149:in `method_missing'&#10;Fastfile:91:in `block (2 levels) in parsing_binding'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:66:in `call'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:66:in `block in execute'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:62:in `chdir'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:62:in `rescue in execute'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/runner.rb:45:in `execute'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/lane_manager.rb:46:in `cruise_lane'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/lib/fastlane/command_line_handler.rb:30:in `handle'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/bin/fastlane:37:in `block (2 levels) in run'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/command.rb:178:in `call'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/command.rb:178:in `call'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/command.rb:153:in `run'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/runner.rb:428:in `run_active_command'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/runner.rb:68:in `run!'&#10;/Library/Ruby/Gems/2.0.0/gems/commander-4.3.7/lib/commander/delegates.rb:15:in `run!'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/bin/fastlane:149:in `run'&#10;/Library/Ruby/Gems/2.0.0/gems/fastlane-1.53.0/bin/fastlane:155:in `&lt;top (required)&gt;'&#10;/usr/local/bin/fastlane:23:in `load'&#10;/usr/local/bin/fastlane:23:in `&lt;main&gt;'&#10;&#10;[31mError pushing Slack message, maybe the integration has no permission to post on this channel? Try removing the channel parameter in your Fastfile.[0m" />
         
