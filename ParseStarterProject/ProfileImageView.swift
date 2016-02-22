@@ -49,25 +49,38 @@ class ProfileImageView: RoundImageView {
     }
     
     func setNeedsUpdate() {
-        if let externalID = self.user?.externalID {
-            if let image = userProfileImageCache.objectForKey(externalID) as? UIImage {
-                self.image = image
-                return
-            }
-            self.image = UIImage(assetIdentifier: .DefaultUserProfile)
-            PFUser(withoutDataWithObjectId: externalID).getProfileImageInBackground { (image, error) -> Void in
-                if let image = image {
-                    userProfileImageCache.setObject(image, forKey: externalID)
-                    main {
-                        self.image = image
-                    }
-                } else {
-                    main { self.image = UIImage(assetIdentifier: .DefaultUserProfile) }
-                }
-            }
+        let isFacebook = NSUserDefaults.standardUserDefaults().valueForKey("facebook_login")
+        
+        
+        if(isFacebook != nil)
+        {
             
-        } else {
-            self.image = UIImage(assetIdentifier: .DefaultUserProfile)
+            
+            
+            
+            
+        }else{
+            if let externalID = self.user?.externalID {
+                if let image = userProfileImageCache.objectForKey(externalID) as? UIImage {
+                    self.image = image
+                    return
+                }
+                self.image = UIImage(assetIdentifier: .DefaultUserProfile)
+                PFUser(withoutDataWithObjectId: externalID).getProfileImageInBackground { (image, error) -> Void in
+                    if let image = image {
+                        userProfileImageCache.setObject(image, forKey: externalID)
+                        main {
+                            self.image = image
+                        }
+                    } else {
+                        main { self.image = UIImage(assetIdentifier: .DefaultUserProfile) }
+                    }
+                }
+            
+            } else {
+                self.image = UIImage(assetIdentifier: .DefaultUserProfile)
+            }
+        
         }
     }
     
