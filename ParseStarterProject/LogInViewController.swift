@@ -113,7 +113,7 @@ class LogInViewController: PFLogInViewController {
                 let facebookInfo = ApiRequest.getFacebookInfo(accessToken.tokenString)
                 
                 Storage.performRequest(facebookInfo) { (jsonFB) -> Void in
-                    if let e = json["error"] as? String {
+                    if let e = jsonFB["error"] as? String {
                         self.alert?.dismissViewControllerWithAnimation(self)
                         self.alert = UIAlertController(title: "Error", message: e, preferredStyle: .Alert)
                         self.alert?.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
@@ -122,8 +122,10 @@ class LogInViewController: PFLogInViewController {
                     }
                     print("\(jsonFB["name"]))")
                     print("\(jsonFB["email"])")
+                    print("\(jsonFB["id"])")
                     let fbemail = jsonFB["email"] as? String
                     let fullName = jsonFB["name"] as? String
+                    let facebookID = jsonFB["id"] as? String
                     let fullNameArr = fullName!.characters.split{$0 == " "}.map(String.init)
                     var userNameStr = ""
                     if fullNameArr.count == 0{
@@ -135,6 +137,7 @@ class LogInViewController: PFLogInViewController {
                     }
                     NSUserDefaults.standardUserDefaults().setObject(userNameStr, forKey: "fb_username")
                      NSUserDefaults.standardUserDefaults().setObject(fbemail, forKey: "fb_email")
+                    NSUserDefaults.standardUserDefaults().setObject(facebookID, forKey: "facebookID")
                     
                     if let jwt = json["jwt"] as? String,
                         let id = json["id"] as? String,

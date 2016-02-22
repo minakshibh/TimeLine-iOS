@@ -73,12 +73,13 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         let screenWidth = screenRect.size.width;
         let screenHeight = screenRect.size.height;
         self.timelineCommentView.frame = CGRectMake(0, 0, screenWidth-60, screenHeight-110);
-        self.timelineCommentView.backgroundColor = UIColor(white: 1 , alpha: 1)
+        self.timelineCommentView.backgroundColor = UIColor(white: 1 , alpha: 0)
 //        self.timelineCommentView.alpha = 1
         self.tableViewContact.frame = CGRectMake(0, 0, screenWidth-60, screenHeight-160);
         self.timelineCommentView.layer.cornerRadius = 8.0
         self.tableViewContact.layer.cornerRadius = 8.0
         self.timelineCommentView.addSubview(self.tableViewContact)
+        
         
         let Invitebutton: UIButton = UIButton(frame: CGRectMake(0, tableViewContact.frame.size.height, tableViewContact.frame.size.width, 50))
         Invitebutton.setTitle("Send Invites", forState: .Normal)
@@ -87,7 +88,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         Invitebutton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         Invitebutton.titleLabel?.font = UIFont.systemFontOfSize(20)
         self.timelineCommentView.addSubview(Invitebutton)
-        
+        Invitebutton.layer.cornerRadius = 8.0
         
         errorText = UILabel.init(frame: CGRectMake(0, Invitebutton.frame.origin.y-30 , Invitebutton.frame.size.width, 30 ))
         errorText!.font = UIFont.systemFontOfSize(15)
@@ -160,7 +161,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         }
     }
     @IBAction func btnInvite(sender: AnyObject) {
-        
+
         let confirm = UIAlertController(title: "Send Invites", message: "", preferredStyle:UIAlertControllerStyle.ActionSheet)
         confirm.addAction(title: "Cancel",
             style: .Cancel,
@@ -184,8 +185,11 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 self.fetchContacts()
            
                 self.tableViewContact.reloadData()
+                tableView.reloadData()
+                
                 KGModal.sharedInstance().showWithContentView(self.timelineCommentView)
-                KGModal.sharedInstance().closeButtonType = .None
+                KGModal.sharedInstance().closeButtonType = .Right
+                
                 //KGModal.sharedInstance().showCloseButton = true
                 //                    self.view.addSubview(self.tableViewContact)
                 
@@ -254,7 +258,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 
                         for ix in 0 ..< ABMultiValueGetCount(numbers) {
 //                            let label = ABMultiValueCopyLabelAtIndex(numbers,ix).takeRetainedValue() as String
-                            let value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
+//                            let value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
                             
                             if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
                                 value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
@@ -438,7 +442,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 user = cell.user
             }
             dest?.user = user
-        } else {
+        } else if segue.identifier == "sample1" {
+          super.prepareForSegue(segue, sender: sender)
+        }else {
             super.prepareForSegue(segue, sender: sender)
         }
     }
