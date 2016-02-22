@@ -1340,7 +1340,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="pqp-p9-mtJ" customClass="EditPasswordTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="6zF-QL-jjB">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -1605,7 +1605,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Xbc-8Z-o3Z" customClass="EditEmailTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="naj-kV-wKa">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -1793,8 +1793,8 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#tagyourtimeline" textAlignment="center" minimumFontSize="17" background="#Tag Input" translatesAutoresizingMaskIntoConstraints="NO" id="zAa-9y-rbp">
-                                <rect key="frame" x="16" y="179" width="568" height="68"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#tagyourtimeline" textAlignment="center" minimumFontSize="17" background="#Tag Input" translatesAutoresizingMaskIntoConstraints="NO" id="zAa-9y-rbp">
+                                <rect key="frame" x="16" y="99" width="568" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="Dfa-PX-xbz"/>
                                     <constraint firstAttribute="height" constant="68" id="M35-OB-uRc"/>
@@ -1813,23 +1813,23 @@ Effective as of September 14, 2015
                                     <outlet property="delegate" destination="TOd-Hl-c3P" id="b9h-wX-sea"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G45-E9-SAm">
-                                <rect key="frame" x="16" y="326" width="568" height="90"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isn-NQ-Sb4">
+                                <rect key="frame" x="16" y="377" width="568" height="90"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="WH7-NL-Zgs"/>
+                                    <constraint firstAttribute="height" constant="90" id="Ug4-ai-Xtg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Done" backgroundImage="Button">
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="INDIVIDUAL TIMELINE" backgroundImage="Button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="submitAction" destination="TOd-Hl-c3P" eventType="touchUpInside" id="WRE-xK-OTa"/>
+                                    <action selector="submitAction" destination="TOd-Hl-c3P" eventType="touchUpInside" id="Ws5-93-XOW"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Timelines must be tagged alphanumerically." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1By-6o-PfB">
-                                <rect key="frame" x="16" y="92" width="288" height="21"/>
+                                <rect key="frame" x="16" y="58" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.89019607840000003" green="0.25882352939999997" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1840,23 +1840,41 @@ Effective as of September 14, 2015
                                     <rect key="frame" x="201" y="176" width="336" height="21"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G45-E9-SAm">
+                                <rect key="frame" x="16" y="265" width="568" height="90"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="WH7-NL-Zgs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="GROUP TIMELINE" backgroundImage="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="groupTimelineButtonAction:" destination="TOd-Hl-c3P" eventType="touchUpInside" id="DJB-bT-kzc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="G45-E9-SAm" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" id="2tb-3K-0Rk"/>
-                            <constraint firstItem="1XW-qz-FwA" firstAttribute="top" secondItem="G45-E9-SAm" secondAttribute="bottom" constant="120" id="4g2-Ho-ePs"/>
+                            <constraint firstItem="G45-E9-SAm" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" constant="-4" id="2tb-3K-0Rk"/>
+                            <constraint firstItem="1XW-qz-FwA" firstAttribute="top" secondItem="G45-E9-SAm" secondAttribute="bottom" constant="181" id="4g2-Ho-ePs"/>
                             <constraint firstItem="zAa-9y-rbp" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" id="8U3-th-3kO"/>
-                            <constraint firstItem="zAa-9y-rbp" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" id="8vh-xB-Vp9"/>
+                            <constraint firstItem="zAa-9y-rbp" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" constant="-4" id="8vh-xB-Vp9"/>
                             <constraint firstItem="zAa-9y-rbp" firstAttribute="trailing" secondItem="9o4-Ng-jBv" secondAttribute="trailingMargin" id="AeF-TF-umf"/>
-                            <constraint firstItem="zAa-9y-rbp" firstAttribute="trailing" secondItem="9o4-Ng-jBv" secondAttribute="trailingMargin" id="G93-b7-Kf6"/>
-                            <constraint firstItem="zAa-9y-rbp" firstAttribute="top" secondItem="1By-6o-PfB" secondAttribute="bottom" constant="16" id="Qi5-17-ckf"/>
+                            <constraint firstItem="zAa-9y-rbp" firstAttribute="trailing" secondItem="9o4-Ng-jBv" secondAttribute="trailingMargin" constant="4" id="G93-b7-Kf6"/>
+                            <constraint firstItem="zAa-9y-rbp" firstAttribute="top" secondItem="1By-6o-PfB" secondAttribute="bottom" constant="20" id="Qi5-17-ckf"/>
+                            <constraint firstItem="Isn-NQ-Sb4" firstAttribute="centerX" secondItem="9o4-Ng-jBv" secondAttribute="centerX" id="Y9d-0m-Ed8"/>
                             <constraint firstItem="1By-6o-PfB" firstAttribute="width" relation="lessThanOrEqual" secondItem="zAa-9y-rbp" secondAttribute="width" id="bKH-0W-i0K"/>
-                            <constraint firstItem="G45-E9-SAm" firstAttribute="trailing" secondItem="9o4-Ng-jBv" secondAttribute="trailingMargin" id="fDT-RO-587"/>
+                            <constraint firstItem="1XW-qz-FwA" firstAttribute="top" secondItem="Isn-NQ-Sb4" secondAttribute="bottom" constant="69" id="f4H-t5-6b0"/>
+                            <constraint firstItem="G45-E9-SAm" firstAttribute="trailing" secondItem="9o4-Ng-jBv" secondAttribute="trailingMargin" constant="4" id="fDT-RO-587"/>
                             <constraint firstAttribute="centerX" secondItem="G45-E9-SAm" secondAttribute="centerX" id="hl6-19-D7V"/>
-                            <constraint firstItem="zAa-9y-rbp" firstAttribute="centerX" secondItem="1By-6o-PfB" secondAttribute="centerX" id="j68-WO-qWD"/>
-                            <constraint firstAttribute="centerY" secondItem="zAa-9y-rbp" secondAttribute="centerY" constant="89.5" id="qqw-09-rWk"/>
+                            <constraint firstItem="zAa-9y-rbp" firstAttribute="centerX" secondItem="1By-6o-PfB" secondAttribute="centerX" constant="140" id="j68-WO-qWD"/>
+                            <constraint firstAttribute="centerY" secondItem="zAa-9y-rbp" secondAttribute="centerY" constant="135" id="qqw-09-rWk"/>
                             <constraint firstItem="G45-E9-SAm" firstAttribute="top" secondItem="zAa-9y-rbp" secondAttribute="bottom" constant="23" id="tUS-Zd-sgk"/>
+                            <constraint firstItem="Isn-NQ-Sb4" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" constant="-4" id="weL-aY-qOk"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -1873,7 +1891,8 @@ Effective as of September 14, 2015
                     <navigationItem key="navigationItem" title="Create Timeline" id="m0g-Hy-lb0"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="submitButton" destination="G45-E9-SAm" id="aZY-fQ-5YI"/>
+                        <outlet property="groupTimelineButton" destination="G45-E9-SAm" id="468-pF-AiQ"/>
+                        <outlet property="submitButton" destination="Isn-NQ-Sb4" id="JmX-nv-S4I"/>
                         <outlet property="warningLabel" destination="1By-6o-PfB" id="u87-QC-gd8"/>
                         <outletCollection property="textFields" destination="zAa-9y-rbp" collectionClass="NSMutableArray" id="Zh4-bB-Tfd"/>
                         <segue destination="ZMq-hf-VJs" kind="show" identifier="BuyUpgrade" id="U58-7K-X9n"/>
@@ -4256,19 +4275,19 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SrR-ph-ZEC"/>
+        <segue reference="8W1-I7-grp"/>
         <segue reference="fy0-iv-eFM"/>
-        <segue reference="dHW-RB-S8H"/>
+        <segue reference="SrR-ph-ZEC"/>
         <segue reference="pyd-yG-wzP"/>
+        <segue reference="wPR-Ua-TlF"/>
         <segue reference="UDh-ad-jqq"/>
         <segue reference="3ER-K8-eo8"/>
-        <segue reference="wPR-Ua-TlF"/>
         <segue reference="9SA-Oc-iuS"/>
         <segue reference="kNn-C3-4Z5"/>
-        <segue reference="UZr-rR-uSk"/>
-        <segue reference="8W1-I7-grp"/>
-        <segue reference="5f9-3x-iDp"/>
+        <segue reference="dHW-RB-S8H"/>
+        <segue reference="U58-7K-X9n"/>
         <segue reference="JUD-Gk-HWr"/>
+        <segue reference="UZr-rR-uSk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
