@@ -142,6 +142,8 @@ enum ApiRequest {
     
     case getFacebookInfo(String)
     
+    case getFacebookImage
+    
     var urlRequest: NSMutableURLRequest {
         let urlString: String
         let urlRequest = NSMutableURLRequest()

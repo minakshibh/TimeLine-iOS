@@ -96,10 +96,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         
         
         
-        var button: UIBarButtonItem = UIBarButtonItem(title: "Logout", style: .Done, target: self, action: nil)
-        button.setBackgroundVerticalPositionAdjustment(-20.0, forBarMetrics: .Default)
-        self.navigationItem.rightBarButtonItem = button
-        
+       
 //        self.fetchContacts()
         var error: Unmanaged<CFError>?
         let addressBook: ABAddressBook? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()

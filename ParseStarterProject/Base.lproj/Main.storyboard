@@ -4265,10 +4265,10 @@ Effective as of September 14, 2015
         <segue reference="wPR-Ua-TlF"/>
         <segue reference="9SA-Oc-iuS"/>
         <segue reference="kNn-C3-4Z5"/>
-        <segue reference="UZr-rR-uSk"/>
         <segue reference="8W1-I7-grp"/>
         <segue reference="5f9-3x-iDp"/>
         <segue reference="JUD-Gk-HWr"/>
+        <segue reference="UZr-rR-uSk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
