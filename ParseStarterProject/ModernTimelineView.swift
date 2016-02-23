@@ -12,9 +12,14 @@ import ConclurerHook
 import KGModal
 import Alamofire
 
-class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
+class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     let timelineCommentView = UIView()
     let commentTextField = UITextField()
+    var payloadArray :NSMutableArray = []
+    let notificationListArray : NSMutableArray = []
+    let commentlist = UITableView()
+    let commentTextfeildView = UIView()
+    
     lazy var behavior: ModernTimelineBehavior = {
         let behavior = ModernTimelineBehavior()
         behavior.modernTimelineView = self
@@ -30,18 +35,31 @@ class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
             refresh()
         }
     }
-    var commentArray: NSArray = []
-//    var raw: NSString = ""
-//    var commentData: NSData?
+    
+    var commentArray = NSMutableArray()
     @IBAction func timelineCommentClick(sender: UIButton!){
         print("timeline id: \(timeline!.uuid!)")
         
         Storage.performRequest(ApiRequest.TimelineComments(timeline!.uuid!), completion: { (json) -> Void in
-            print(json["result"])
-            self.commentArray = (json["result"] as? NSArray)!
-            print(self.commentArray)
+            print(json)
             
-
+            self.commentArray = json["result"] as! NSMutableArray
+            print(self.commentArray)
+            self.commentlist.reloadData()
+            
+//            if let results = json["result"] as? [[String: AnyObject]]
+//            {
+//                for not in results {
+//                    if let raw = not["comment"] as? NSString
+//                    
+//                    {
+//                        //self.notificationListArray.addObject(raw)
+//                        self.payloadArray.addObject(raw)
+//                       // print(self.notificationListArray)
+//                        print(self.payloadArray)
+//                    }
+//                }
+//            }
             
         })
 
@@ -49,28 +67,28 @@ class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
         let screenWidth = screenRect.size.width;
         let screenHeight = screenRect.size.height;
         self.timelineCommentView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-        self.timelineCommentView.backgroundColor = UIColor(white: 0 , alpha: 0.5)
+        self.timelineCommentView.backgroundColor = UIColor(white: 1 , alpha: 1)
         self.timelineCommentView.alpha = 1
         
         let commentScreenTitle = UILabel()
         commentScreenTitle.frame = CGRectMake(0, 0, screenWidth, 64)
-        commentScreenTitle.font = UIFont.boldSystemFontOfSize(20)
+        commentScreenTitle.font = UIFont.systemFontOfSize(18)
         commentScreenTitle.textAlignment = .Center
-        commentScreenTitle.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        commentScreenTitle.backgroundColor = UIColor(red:235.0/255.0,green:129.0/255.0,blue:40.0/255.0,alpha:1.0)
         commentScreenTitle.textColor = UIColor.whiteColor()
-        commentScreenTitle.text = "Moment 2 Comments"
+        commentScreenTitle.text = "Comments"
         self.timelineCommentView.addSubview(commentScreenTitle)
         
         // close button comment section
         let closeButton  = UIButton()
-        closeButton.frame = CGRectMake(5, 20, 30, 30);
-        closeButton.setImage(UIImage(named: "close") as UIImage?, forState: .Normal)
+        closeButton.frame = CGRectMake(0, 20, 50, 44);
+        closeButton.setImage(UIImage(assetIdentifier: .BackIndicator) as UIImage?, forState: .Normal)
         closeButton.addTarget(self, action: "btnTouched", forControlEvents:.TouchUpInside)
         self.timelineCommentView.addSubview(closeButton)
         
         // table view declaration
-        let commentlist = UITableView()
-        commentlist.frame         =   CGRectMake(10, 80, self.timelineCommentView.frame.width-20, self.timelineCommentView.frame.height-200);
+        
+        commentlist.frame         =   CGRectMake(10, 64, self.timelineCommentView.frame.width-20, self.timelineCommentView.frame.height-200);
         commentlist.delegate      =   self
         commentlist.dataSource    =   self
         commentlist.backgroundColor = UIColor.clearColor()
@@ -81,15 +99,22 @@ class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
         
         let commentTextfeildView = UIView()
         commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
-        commentTextfeildView.backgroundColor = UIColor(white: 1, alpha: 0.1)
+        commentTextfeildView.backgroundColor = UIColor.groupTableViewBackgroundColor()
         self.timelineCommentView.addSubview(commentTextfeildView)
         
         
         commentTextField.frame = CGRectMake(10, 15, 280, 50)
         commentTextField.layer.cornerRadius = 4
-        commentTextField.backgroundColor = UIColor(white: 1, alpha: 0.3)
+        commentTextField.backgroundColor = UIColor.whiteColor()
+        
+        let arrow = UIImageView()
+        arrow.frame = CGRectMake(0.0, 0.0, 10.0, 50);
+        arrow.contentMode = UIViewContentMode.Center
+        commentTextField.leftViewMode = UITextFieldViewMode.Always
+        commentTextField.leftView = arrow
+        commentTextField.delegate = self
         let attributes = [
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            //NSForegroundColorAttributeName: UIColor.whiteColor(),
             NSFontAttributeName : UIFont.boldSystemFontOfSize(20)
         ]
         commentTextField.attributedPlaceholder = NSAttributedString(string: "Share a comment", attributes:attributes)
@@ -105,23 +130,26 @@ class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
         commentTextfeildView.addSubview(button)
         KGModal.sharedInstance().closeButtonType = KGModalCloseButtonType.None
         KGModal.sharedInstance().showWithContentView(self.timelineCommentView)
-        
-
-        
+  
     }
+    
     func CommentSendButtonAction(){
         Storage.performRequest(ApiRequest.TimelinePostComment(timeline!.uuid!, commentTextField.text!), completion: { (json) -> Void in
             print(json)
-            
-            
+ 
         })
     }
     
-    var data = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
-        "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
-        "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
-        "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
-        "Pear", "Pineapple", "Raspberry", "Strawberry"]
+    func textFieldDidBeginEditing(textField: UITextField) {
+        <#code#>
+    }
+    
+//    var data = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
+//        "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
+//        "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
+//        "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
+//        "Pear", "Pineapple", "Raspberry", "Strawberry"]
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
     }
@@ -133,8 +161,6 @@ class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath)
         
-        cell.prepareForReuse()
-        
         for object in cell.contentView.subviews
         {
             object.removeFromSuperview();
@@ -144,7 +170,7 @@ class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
         cell.backgroundColor = UIColor.clearColor()
         let cellView = UIView()
         cellView.frame = CGRectMake(0, 5, cell.contentView.frame.size.width, 75)
-        cellView.backgroundColor = UIColor(white: 0, alpha: 0.25)
+        cellView.backgroundColor = UIColor.whiteColor()
         cell.contentView.addSubview(cellView)
         
         let userImage = UIImageView()
@@ -157,14 +183,20 @@ class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
         username.frame = CGRectMake(80, 5, 250, 30)
         username.font = UIFont.boldSystemFontOfSize(18)
         //username.backgroundColor = UIColor(white: 0, alpha: 0.25)
-        username.textColor = UIColor.whiteColor()
-        username.text = "@\(data[indexPath.row])"
+        username.textColor = UIColor.blackColor()
+        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+        {
+            let notifyStr = raw["username"] as! String
+            username.text = "@\(notifyStr)"
+        }
+        
         cellView.addSubview(username)
         
-        //let :[String:String]
-        //let dict = [:] = self.commentArray.objectAtIndex(indexPath.row)
-//        var emptyDic = [String: String]() = self.commentArray.objectAtIndex(indexPath.row) as! [String : String]
-//        let strEmo =   emptyDic["comment"]                    //"Hello 🐶🐮 🇩🇪"
+        
+        //let strEmo = "Hello 🐶🐮 🇩🇪"
+        //let strEmo = self.payloadArray.objectAtIndex(indexPath.row) as? String
+        
+
         
 //        let emoData = strEmo.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
 //        let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
@@ -175,8 +207,13 @@ class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
         let commentMessage = UILabel()
         commentMessage.frame = CGRectMake(80, 40, 150, 30)
         commentMessage.font = UIFont.systemFontOfSize(15)
-        commentMessage.textColor = UIColor.whiteColor()
-       // commentMessage.text = strEmo! as String
+        commentMessage.textColor = UIColor.blackColor()
+        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+        {
+          let notifyStr = raw["comment"] as! String
+            commentMessage.text = notifyStr
+        }
+        
 
         cellView.addSubview(commentMessage)
         
@@ -186,6 +223,9 @@ class ModernTimelineView: UIView , UITableViewDataSource , UITableViewDelegate {
     
     func btnTouched(){
         KGModal.sharedInstance().hideAnimated(true)
+        //self.payloadArray.removeAllObjects()
+        self.timelineCommentView.removeFromSuperview()
+        
     }
 
     @IBOutlet var firstMomentPreview: MomentImageView!

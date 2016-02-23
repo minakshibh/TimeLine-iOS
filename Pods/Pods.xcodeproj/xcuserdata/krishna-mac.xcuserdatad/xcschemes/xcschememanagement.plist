@@ -49,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SWFrameButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,12 +62,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1912133FD7980CCC2D84517B0468F14A</key>
+		<key>432ECC54282C84882B482CCB4CF227FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>432ECC54282C84882B482CCB4CF227FC</key>
+		<key>4CD3A21FFAE8660AF2B4FC7E6E22B682</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>64E24F2E9210368F972DC5039161CCBB</key>
+		<key>63701697369FED70BCCFEABA34467FB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>730CFE4962B3C78EFCE8EF305F5AD64F</key>
+		<key>6E66E71AFC51CBE1BFA17F0A8F222A7D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7689FC8854E8920AECBF21B73D59266C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9FE89816416F33A1E83B09AC5DD49C95</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,11 +108,6 @@
 			<true/>
 		</dict>
 		<key>CE9387695D2BA7F9FC4492ACE5896A30</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F48DB69C2E236C0162BE610F38D631DD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

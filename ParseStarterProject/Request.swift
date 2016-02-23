@@ -359,6 +359,9 @@ enum ApiRequest {
             urlString = "https://graph.facebook.com/me?access_token=\(token)&fields=email,name,id"
             urlRequest.HTTPMethod = "GET"
             
+        default:
+            urlString = ""
+            
         }
         urlRequest.URL = NSURL(string: urlString, relativeToURL: ApiRequest.baseUrl)
         return urlRequest

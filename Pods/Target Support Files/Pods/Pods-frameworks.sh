@@ -92,6 +92,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/ParseUI.framework"
   install_framework "Pods/RMStore.framework"
   install_framework "Pods/SCRecorder.framework"
+  install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/SWFrameButton.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -103,5 +104,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/ParseUI.framework"
   install_framework "Pods/RMStore.framework"
   install_framework "Pods/SCRecorder.framework"
+  install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/SWFrameButton.framework"
 fi
