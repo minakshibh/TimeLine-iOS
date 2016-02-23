@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -1340,7 +1340,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="pqp-p9-mtJ" customClass="EditPasswordTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="6zF-QL-jjB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -1605,7 +1605,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Xbc-8Z-o3Z" customClass="EditEmailTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="naj-kV-wKa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -2562,14 +2562,14 @@ Effective as of September 14, 2015
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="Hl9-S0-dVb" kind="presentation" identifier="ShowTimeline" id="UZr-rR-uSk"/>
                         <segue destination="tDS-AT-rfR" kind="presentation" identifier="ShowUser" id="Odf-Iw-TZ0"/>
-                        <segue destination="Hl9-S0-dVb" kind="presentation" identifier="ShowMoment" id="cCd-ok-by7"/>
+                        <segue destination="YM6-8A-qq8" kind="presentation" identifier="ShowMoment" id="cIQ-gy-69w"/>
+                        <segue destination="YM6-8A-qq8" kind="presentation" identifier="ShowTimeline" id="gqI-eh-cAa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hF-Ui-0Ho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5365" y="253"/>
+            <point key="canvasLocation" x="-5365" y="175"/>
         </scene>
         <!--Walkthrough Template View Controller-->
         <scene sceneID="B0Y-7o-cws">
@@ -2927,7 +2927,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="2TK-H5-g5m" customClass="UserSummaryTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="M00-gH-iuK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -3422,9 +3422,9 @@ Effective as of September 14, 2015
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ju6-or-esL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4191" y="603"/>
+            <point key="canvasLocation" x="-4037" y="483"/>
         </scene>
-        <!--Timeline Playback View Controller-->
+        <!--Timeline Playback-->
         <scene sceneID="x2Z-K2-ciu">
             <objects>
                 <viewController storyboardIdentifier="TimelinePlaybackViewController" id="Hl9-S0-dVb" customClass="TimelinePlaybackViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
@@ -3433,10 +3433,10 @@ Effective as of September 14, 2015
                         <viewControllerLayoutGuide type="bottom" id="8jx-yZ-fTW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LNh-i7-ble">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0t-BK-5Sc" userLabel="Back">
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0t-BK-5Sc" userLabel="Back">
                                 <rect key="frame" x="11" y="20" width="33" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="AXW-l1-O3L"/>
@@ -3447,14 +3447,14 @@ Effective as of September 14, 2015
                                     <action selector="dismissViewControllerWithAnimation:" destination="Hl9-S0-dVb" eventType="touchUpInside" id="92U-BA-zxG"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EUc-wh-uxV" customClass="DraftPreviewView" customModule="Timeline" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EUc-wh-uxV" customClass="DraftPreviewView" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="300" y="300" width="0.0" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="EUc-wh-uxV" secondAttribute="height" multiplier="1:1" id="7yb-mf-tkz"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9P-SS-6Tp" userLabel="Follow">
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9P-SS-6Tp" userLabel="Follow">
                                 <rect key="frame" x="496" y="20" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="W9P-SS-6Tp" secondAttribute="height" multiplier="60:47" id="2Ev-KW-sOp"/>
@@ -3474,7 +3474,7 @@ Effective as of September 14, 2015
                                     <action selector="toggleFollow" destination="Hl9-S0-dVb" eventType="touchUpInside" id="IbO-in-mDE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fde-eo-MrJ" userLabel="Heart">
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fde-eo-MrJ" userLabel="Heart">
                                 <rect key="frame" x="448" y="20" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fde-eo-MrJ" secondAttribute="height" multiplier="60:47" id="IPU-ca-KkF"/>
@@ -3493,7 +3493,7 @@ Effective as of September 14, 2015
                                     <action selector="toggleLike" destination="Hl9-S0-dVb" eventType="touchUpInside" id="c7F-77-1Wa"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B27-UX-TAH" userLabel="Flag">
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B27-UX-TAH" userLabel="Flag">
                                 <rect key="frame" x="544" y="20" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="B27-UX-TAH" secondAttribute="height" multiplier="16:19" id="cGC-7Z-87Y"/>
@@ -3510,7 +3510,7 @@ Effective as of September 14, 2015
                                     <action selector="deleteOrFlag" destination="Hl9-S0-dVb" eventType="touchUpInside" id="acA-Lg-u90"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBb-MW-iHx" userLabel="Share">
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBb-MW-iHx" userLabel="Share">
                                 <rect key="frame" x="400" y="20" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aBb-MW-iHx" secondAttribute="height" multiplier="27:28" id="Kkc-Y1-hxD"/>
@@ -3527,7 +3527,7 @@ Effective as of September 14, 2015
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
@@ -3593,6 +3593,9 @@ Effective as of September 14, 2015
                             <outletCollection property="gestureRecognizers" destination="0ys-CH-dlP" appends="YES" id="Mx2-Bd-Sna"/>
                         </connections>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Timeline Playback" id="cqj-3P-ad2"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="deleteOrFlagButton" destination="B27-UX-TAH" id="xUg-JG-adh"/>
                         <outlet property="draftPreviewView" destination="EUc-wh-uxV" id="hNT-oX-ffX"/>
@@ -3614,7 +3617,7 @@ Effective as of September 14, 2015
                 </swipeGestureRecognizer>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEl-ch-Bpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4717" y="1010"/>
+            <point key="canvasLocation" x="-4637" y="1001"/>
         </scene>
         <!--Walkthrough View Controller-->
         <scene sceneID="3tP-Eb-ToX">
@@ -4275,6 +4278,25 @@ Effective as of September 14, 2015
             </objects>
             <point key="canvasLocation" x="-1838" y="-1893"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zir-j0-bnP">
+            <objects>
+                <navigationController id="YM6-8A-qq8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="lGq-4L-nuO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Hl9-S0-dVb" kind="relationship" relationship="rootViewController" id="OKQ-Q2-0e1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g06-uI-muu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4637" y="175"/>
+        </scene>
     </scenes>
     <resources>
         <image name="#Tag Input" width="331" height="72"/>
@@ -4319,30 +4341,19 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kNn-C3-4Z5"/>
-        <segue reference="3ER-K8-eo8"/>
         <segue reference="SrR-ph-ZEC"/>
-        <segue reference="fy0-iv-eFM"/>
-        <segue reference="dHW-RB-S8H"/>
-        <segue reference="wPR-Ua-TlF"/>
-        <segue reference="UDh-ad-jqq"/>
-        <segue reference="pyd-yG-wzP"/>
-        <segue reference="9SA-Oc-iuS"/>
         <segue reference="8W1-I7-grp"/>
-        <segue reference="SrR-ph-ZEC"/>
         <segue reference="5f9-3x-iDp"/>
-        <segue reference="XhF-7W-aYm"/>
-        <segue reference="ndx-Tw-tdZ"/>
-        <segue reference="zbe-iw-8oa"/>
-        <segue reference="q73-lW-ew6"/>
-        <segue reference="2FX-5X-rOO"/>
-        <segue reference="fwL-Xz-bm9"/>
-        <segue reference="Dfs-9N-LUZ"/>
-        <segue reference="Dix-wx-o8R"/>
-        <segue reference="kNn-C3-4Z5"/>
-        <segue reference="UZr-rR-uSk"/>
         <segue reference="JUD-Gk-HWr"/>
-        <segue reference="cCd-ok-by7"/>
+        <segue reference="q73-lW-ew6"/>
+        <segue reference="zbe-iw-8oa"/>
+        <segue reference="2FX-5X-rOO"/>
+        <segue reference="ndx-Tw-tdZ"/>
+        <segue reference="T9S-G7-mh0"/>
+        <segue reference="Mq8-L9-ocP"/>
+        <segue reference="gqI-eh-cAa"/>
+        <segue reference="ji8-C3-1Lo"/>
+        <segue reference="kNn-C3-4Z5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

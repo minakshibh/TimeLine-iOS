@@ -23,19 +23,21 @@ class AllNotificationList: UITableViewController {
         }
            // Do any additional setup after loading the view.
     }
-    
+    override func viewDidDisappear(animated: Bool) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.hideActivityIndicator()
+    }
      func allNotificationsAPi() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.showActivityIndicator()
         
         Storage.performRequest(ApiRequest.UserAllNotifications(page_id), completion: { (json) -> Void in
             print(json)
+            if let pageId = json["page_id"] {
+                self.page_id = String(pageId)
+            }
             if let results = json["result"] as? [[String: AnyObject]]
             {
-                if let pageId = json["page_id"] {
-                    self.page_id = String(pageId)
-                }
-                
                 for not in results {
                     if let raw = not["payload"] as? NSString,
                         let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
@@ -78,18 +80,13 @@ class AllNotificationList: UITableViewController {
             let endDate:NSDate = f.dateFromString(dateStr)!
             let elapsedTime = NSDate().timeIntervalSinceDate(endDate)
 
-            let notifyStr = raw["notification"] as! String
-            cell.notificationTxtLabel?.text = notifyStr
-            let payload = self.payloadArray[indexPath.row] as! [String : AnyObject]
-            let userNameStr = payload["name"] as? String ?? ""
-            cell.userNameLabel?.text = "@" + userNameStr
-            var timeStr = "1d"
+            var timeStr = ""
             let duration = Int(elapsedTime)
             let minutes = duration / 60
             let hours = minutes / 60
             let days = hours / 24
             let months = days / 30
-            let years = days / 365 // 0.00273972528690934
+            let years = days / 365
             
             if (years != 0)
             {
@@ -115,14 +112,39 @@ class AllNotificationList: UITableViewController {
                 timeStr = String(duration) + "s"
             }
             
-
+            let notifyStr = raw["notification"] as! String
+            let userNameStr = raw["username"] as? String ?? ""
+            
+            cell.userNameLabel?.text = "@" + userNameStr
+            cell.notificationTxtLabel?.text = notifyStr
             cell.timeLabel?.text = timeStr
+
+            
+            let imageName = raw["user_image"] as? String ?? ""
+            if imageName.isEmpty
+            {
+                cell.photoImageView.image = nil
+            }
+            else
+            {
+                if let url = NSURL(string: raw["user_image"] as? String ?? "")
+                {
+                    let request = NSURLRequest(URL: url)
+                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
+                        (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+                        if let imageData = data as NSData? {
+                            cell.photoImageView.image = UIImage(data: imageData)
+                        }
+                    }
+                }
+            }
         }
       
       //  cell.photoImageView.image = UIImage(named : self.itemsImages[indexPath.row])
         
         return cell
     }
+   
   
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let isEqual = (page_id == "<null>")
@@ -240,6 +262,7 @@ class AllNotificationList: UITableViewController {
         }
         return link
     }
+   
     func processAsync(payload payload: [String: AnyObject], completion: (DeepLink?) -> Void) {
         let link = DeepLink.from(payload: payload)
         

@@ -139,11 +139,11 @@ class PushFetchViewController: UIViewController {
             dest.user = sender as! User
             
         case "ShowTimeline":
-            let dest = segue.destinationViewController as! TimelinePlaybackViewController
+            let dest = (segue.destinationViewController as! UINavigationController).topViewController as! TimelinePlaybackViewController
             dest.timeline = sender as! Timeline
             
         case "ShowMoment":
-            let dest = segue.destinationViewController as! TimelinePlaybackViewController
+            let dest = (segue.destinationViewController as! UINavigationController).topViewController as! TimelinePlaybackViewController
             dest.moment = sender as? Moment
             
         default:
