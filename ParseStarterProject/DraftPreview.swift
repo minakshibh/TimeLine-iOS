@@ -15,6 +15,8 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     let timelineCommentView = UIView()
     var momentCommentView = UIViewController()
     let commentTextField = UITextField()
+    let commentlist = UITableView()
+    
     enum RightError {
     case BlockedTimeline(String, String)
     case BlockedUser(String, String)
@@ -175,12 +177,15 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         Storage.performRequest(ApiRequest.MomentComments((moment?.state.uuid)!), completion: { (json) -> Void in
             print(json)
             
-                    if let raw = json["result"] as? NSString,
-                        let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
-                        let payload = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? [String: AnyObject]
-                    {
-                        print(payload)
-                    }
+            self.commentArray = json["result"] as! NSMutableArray
+            print(self.commentArray)
+            self.commentlist.reloadData()
+//                    if let raw = json["result"] as? NSString,
+//                        let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
+//                        let payload = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? [String: AnyObject]
+//                    {
+//                        print(payload)
+//                    }
 
         })
         
@@ -208,7 +213,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         timelineCommentView.addSubview(closeButton)
         
         // table view declaration
-        let commentlist = UITableView()
+        
         commentlist.frame         =   CGRectMake(10, 80, timelineCommentView.frame.width-20, timelineCommentView.frame.height-200);
         commentlist.delegate      =   self
         commentlist.dataSource    =   self
@@ -256,17 +261,17 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         })
     }
     
-    var data = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
-        "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
-        "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
-        "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
-        "Pear", "Pineapple", "Raspberry", "Strawberry"]
+//    var data = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",
+//        "Clementine", "Coconut", "Cranberry", "Fig", "Grape", "Grapefruit",
+//        "Kiwi fruit", "Lemon", "Lime", "Lychee", "Mandarine", "Mango",
+//        "Melon", "Nectarine", "Olive", "Orange", "Papaya", "Peach",
+//        "Pear", "Pineapple", "Raspberry", "Strawberry"]
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return self.commentArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -295,21 +300,29 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         username.font = UIFont.boldSystemFontOfSize(18)
         //username.backgroundColor = UIColor(white: 0, alpha: 0.25)
         username.textColor = UIColor.whiteColor()
-        username.text = "@\(data[indexPath.row])"
+        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+        {
+            let notifyStr = raw["username"] as! String
+            username.text = "@\(notifyStr)"
+        }
         cellView.addSubview(username)
         
-        let strEmo = "U+1F514"
-        let emoData = strEmo.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
-        let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
-        
-        let emoData1 = goodValue!.dataUsingEncoding(NSUTF8StringEncoding)
-        let emoStringConverted = NSString.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as NSString
+//        let strEmo = "U+1F514"
+//        let emoData = strEmo.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
+//        let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
+//        
+//        let emoData1 = goodValue!.dataUsingEncoding(NSUTF8StringEncoding)
+//        let emoStringConverted = NSString.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as NSString
         
         let commentMessage = UILabel()
         commentMessage.frame = CGRectMake(80, 40, 150, 30)
         commentMessage.font = UIFont.systemFontOfSize(15)
         commentMessage.textColor = UIColor.whiteColor()
-        commentMessage.text = emoStringConverted as String
+        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+        {
+            let notifyStr = raw["comment"] as! String
+            commentMessage.text = notifyStr
+        }
         
         cellView.addSubview(commentMessage)
         

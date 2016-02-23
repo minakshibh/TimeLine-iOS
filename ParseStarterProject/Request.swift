@@ -363,6 +363,7 @@ enum ApiRequest {
         case .getFacebookImage(let facebookId):
             urlString = "https://graph.facebook.com/\(facebookId)/picture?type=large&return_ssl_resources=1"
             urlRequest.HTTPMethod = "GET"
+
             
         }
         urlRequest.URL = NSURL(string: urlString, relativeToURL: ApiRequest.baseUrl)

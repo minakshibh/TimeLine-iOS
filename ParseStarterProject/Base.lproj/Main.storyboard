@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -4343,6 +4344,21 @@ Effective as of September 14, 2015
     <inferredMetricsTieBreakers>
         <segue reference="SrR-ph-ZEC"/>
         <segue reference="8W1-I7-grp"/>
+        <segue reference="fy0-iv-eFM"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="sHs-6J-bIg"/>
+        <segue reference="hFd-TA-2wg"/>
+        <segue reference="MIt-vp-hHF"/>
+        <segue reference="dHW-RB-S8H"/>
+        <segue reference="U58-7K-X9n"/>
+        <segue reference="dHW-RB-S8H"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="UDh-ad-jqq"/>
+        <segue reference="pyd-yG-wzP"/>
+        <segue reference="9SA-Oc-iuS"/>
+        <segue reference="8W1-I7-grp"/>
+        <segue reference="JUD-Gk-HWr"/>
+        <segue reference="SrR-ph-ZEC"/>
         <segue reference="5f9-3x-iDp"/>
         <segue reference="JUD-Gk-HWr"/>
         <segue reference="q73-lW-ew6"/>
