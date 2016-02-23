@@ -142,7 +142,8 @@ enum ApiRequest {
     
     case getFacebookInfo(String)
     
-    case getFacebookImage
+//    case getFacebookImage
+    case getFacebookImage(String)
     
     var urlRequest: NSMutableURLRequest {
         let urlString: String
@@ -359,8 +360,10 @@ enum ApiRequest {
             urlString = "https://graph.facebook.com/me?access_token=\(token)&fields=email,name,id"
             urlRequest.HTTPMethod = "GET"
             
-        default:
-            urlString = ""
+        case .getFacebookImage(let facebookId):
+            urlString = "https://graph.facebook.com/\(facebookId)/picture?type=large&return_ssl_resources=1"
+            urlRequest.HTTPMethod = "GET"
+
             
         }
         urlRequest.URL = NSURL(string: urlString, relativeToURL: ApiRequest.baseUrl)

@@ -61,6 +61,7 @@ extension Storage {
             NSUserDefaults.standardUserDefaults().removeObjectForKey("fb_username")
             NSUserDefaults.standardUserDefaults().removeObjectForKey("fb_email")
             NSUserDefaults.standardUserDefaults().removeObjectForKey("facebook_login")
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("facebookID")
             
             let loginManager = FBSDKLoginManager()
             loginManager.logOut()

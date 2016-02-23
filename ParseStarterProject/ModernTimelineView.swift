@@ -141,7 +141,7 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        <#code#>
+      //  <#code#>
     }
     
 //    var data = ["Apple", "Apricot", "Banana", "Blueberry", "Cantaloupe", "Cherry",

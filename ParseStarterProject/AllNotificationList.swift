@@ -68,8 +68,55 @@ class AllNotificationList: UITableViewController {
         
     if let raw = self.notificationListArray[indexPath.row] as? NSDictionary
         {
+            let dateStr = raw["created_at"] as! String
+            
+            let f = NSDateFormatter()
+            f.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+            f.timeZone = NSTimeZone(name: "UTC")
+            f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'"
+            
+            let endDate:NSDate = f.dateFromString(dateStr)!
+            let elapsedTime = NSDate().timeIntervalSinceDate(endDate)
+
             let notifyStr = raw["notification"] as! String
-            cell.nameLabel?.text = notifyStr
+            cell.notificationTxtLabel?.text = notifyStr
+            let payload = self.payloadArray[indexPath.row] as! [String : AnyObject]
+            let userNameStr = payload["name"] as? String ?? ""
+            cell.userNameLabel?.text = "@" + userNameStr
+            var timeStr = "1d"
+            let duration = Int(elapsedTime)
+            let minutes = duration / 60
+            let hours = minutes / 60
+            let days = hours / 24
+            let months = days / 30
+            let years = days / 365 // 0.00273972528690934
+            
+            if (years != 0)
+            {
+                timeStr = String(years) + "y"
+            }
+            if (months != 0)
+            {
+                timeStr = String(months) + "m"
+            }
+            else if(days != 0)
+            {
+                timeStr = String(days) + "d"
+            }
+            else if(hours != 0)
+            {
+                timeStr = String(hours) + "h"
+            }
+            else if(minutes != 0)
+            {
+                timeStr = String(minutes) + "m"
+            }
+            else{
+                timeStr = String(duration) + "s"
+            }
+            
+
+            cell.timeLabel?.text = timeStr
         }
       
       //  cell.photoImageView.image = UIImage(named : self.itemsImages[indexPath.row])
@@ -108,6 +155,8 @@ class AllNotificationList: UITableViewController {
     func loadMoreTapped(sender: UIButton!) {
         let btnsendtag: UIButton = sender
         if btnsendtag.tag == 1 {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.hideActivityIndicator()
             allNotificationsAPi()
         }
     }
