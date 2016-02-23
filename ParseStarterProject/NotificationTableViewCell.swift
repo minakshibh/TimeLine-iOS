@@ -16,7 +16,9 @@ class NotificationTableViewCell: UITableViewCell {
     // MARK: Properties
     
     @IBOutlet var photoImageView: ProfileImageView!
-    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var userNameLabel: UILabel!
+    @IBOutlet var notificationTxtLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
