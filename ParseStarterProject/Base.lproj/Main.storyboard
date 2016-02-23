@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -400,7 +400,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2479" y="-486"/>
+            <point key="canvasLocation" x="-2634" y="-442"/>
         </scene>
         <!--@UserNameHere-->
         <scene sceneID="BUB-Nk-rhs">
@@ -2847,6 +2847,7 @@ Effective as of September 14, 2015
                                     </state>
                                     <connections>
                                         <action selector="btnInvite:" destination="jSH-I8-dWf" eventType="touchUpInside" id="0IN-W8-pw8"/>
+                                        <segue destination="Hdx-b0-Wa8" kind="show" identifier="sample1" id="tx3-mr-On6"/>
                                     </connections>
                                 </button>
                             </barButtonItem>
@@ -3396,6 +3397,32 @@ Effective as of September 14, 2015
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-4717" y="2485"/>
+        </scene>
+        <!--Sample-->
+        <scene sceneID="TSv-X4-FS5">
+            <objects>
+                <viewController id="Hdx-b0-Wa8" customClass="sample" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OjH-Vz-r58"/>
+                        <viewControllerLayoutGuide type="bottom" id="6f8-wf-rJp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f9P-WN-ux6">
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wAI-0m-Lko">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="wAI-0m-Lko" id="Gpz-eE-y9U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ju6-or-esL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4191" y="603"/>
         </scene>
         <!--Timeline Playback View Controller-->
         <scene sceneID="x2Z-K2-ciu">
@@ -4292,6 +4319,15 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="kNn-C3-4Z5"/>
+        <segue reference="3ER-K8-eo8"/>
+        <segue reference="SrR-ph-ZEC"/>
+        <segue reference="fy0-iv-eFM"/>
+        <segue reference="dHW-RB-S8H"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="UDh-ad-jqq"/>
+        <segue reference="pyd-yG-wzP"/>
+        <segue reference="9SA-Oc-iuS"/>
         <segue reference="8W1-I7-grp"/>
         <segue reference="SrR-ph-ZEC"/>
         <segue reference="5f9-3x-iDp"/>
@@ -4305,6 +4341,8 @@ Effective as of September 14, 2015
         <segue reference="Dix-wx-o8R"/>
         <segue reference="kNn-C3-4Z5"/>
         <segue reference="UZr-rR-uSk"/>
+        <segue reference="JUD-Gk-HWr"/>
+        <segue reference="cCd-ok-by7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
