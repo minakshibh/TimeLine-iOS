@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		18DF0CEE1C745F380042F16B /* AllNotificationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF0CEC1C745F380042F16B /* AllNotificationList.swift */; };
 		18DF0CEF1C745F380042F16B /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF0CED1C745F380042F16B /* NotificationTableViewCell.swift */; };
+		18ECB2821C7D7ECA001EA23B /* EditNameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ECB2811C7D7ECA001EA23B /* EditNameTableViewController.swift */; };
+		18ECB2851C7D8249001EA23B /* EditWebsiteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ECB2841C7D8249001EA23B /* EditWebsiteTableViewController.swift */; };
+		18ECB2871C7D82C6001EA23B /* EditOthersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ECB2861C7D82C6001EA23B /* EditOthersViewController.swift */; };
+		18ECB2891C7D8C60001EA23B /* EditBioTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ECB2881C7D8C60001EA23B /* EditBioTableViewController.swift */; };
 		81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814A1A49DA1800E65899 /* AppDelegate.swift */; };
 		81BA814D1A49DA1800E65899 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814C1A49DA1800E65899 /* LogInViewController.swift */; };
 		81BA81501A49DA1800E65899 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BA814E1A49DA1800E65899 /* Main.storyboard */; };
@@ -242,6 +246,10 @@
 /* Begin PBXFileReference section */
 		18DF0CEC1C745F380042F16B /* AllNotificationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllNotificationList.swift; sourceTree = "<group>"; };
 		18DF0CED1C745F380042F16B /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		18ECB2811C7D7ECA001EA23B /* EditNameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNameTableViewController.swift; sourceTree = "<group>"; };
+		18ECB2841C7D8249001EA23B /* EditWebsiteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditWebsiteTableViewController.swift; sourceTree = "<group>"; };
+		18ECB2861C7D82C6001EA23B /* EditOthersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditOthersViewController.swift; sourceTree = "<group>"; };
+		18ECB2881C7D8C60001EA23B /* EditBioTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBioTableViewController.swift; sourceTree = "<group>"; };
 		81BA81451A49DA1800E65899 /* Timeline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timeline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BA81491A49DA1800E65899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81BA814A1A49DA1800E65899 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -874,7 +882,11 @@
 				DABC10361B73CF3100E15698 /* SettingsTableViewController.swift */,
 				DABC10381B73D29D00E15698 /* EditProfileTableViewController.swift */,
 				DA47FA371B740CB7005747E3 /* EditEmailTableViewController.swift */,
+				18ECB2811C7D7ECA001EA23B /* EditNameTableViewController.swift */,
+				18ECB2881C7D8C60001EA23B /* EditBioTableViewController.swift */,
 				DA47FA391B740CC4005747E3 /* EditPasswordTableViewController.swift */,
+				18ECB2841C7D8249001EA23B /* EditWebsiteTableViewController.swift */,
+				18ECB2861C7D82C6001EA23B /* EditOthersViewController.swift */,
 				BAF593161B95F08400C7E8AE /* UpgradeTableViewController.swift */,
 				BAF5933A1B960BA100C7E8AE /* PendingInAppViewController.swift */,
 				BA9696541B9C999E00D17D5A /* SupportViewController.swift */,
@@ -1344,6 +1356,7 @@
 				BA8607A11C166623001D73EE /* Ownable.swift in Sources */,
 				DA2CF5991B763473000ABF96 /* SubmitViewController.swift in Sources */,
 				BA9696591B9CA28A00D17D5A /* NSURL+Parameters.m in Sources */,
+				18ECB2821C7D7ECA001EA23B /* EditNameTableViewController.swift in Sources */,
 				DA3FF4E61B6C107B006CC0D7 /* String+Additions.swift in Sources */,
 				BA0578801C1A3B630098C3A1 /* UserSummaryTableViewCell.swift in Sources */,
 				DA47FA341B73F6A0005747E3 /* PFUser+Additions.swift in Sources */,
@@ -1372,6 +1385,7 @@
 				DA95401C1B837FA600392C75 /* MGSwipeTableCell.m in Sources */,
 				BA8607AB1C166D37001D73EE /* NamedBehavior.swift in Sources */,
 				DA40BBB81B7FBF190070BEE9 /* DraftPreview.swift in Sources */,
+				18ECB2891C7D8C60001EA23B /* EditBioTableViewController.swift in Sources */,
 				DA873BA31B7E97F400A8BB06 /* TimelineCollectionViewCell.swift in Sources */,
 				DAB91DAF1B7A3685005516F2 /* UIImage+Additions.swift in Sources */,
 				DAB91DB31B7A476A005516F2 /* DraftPreviewCollectionReusableView.swift in Sources */,
@@ -1438,6 +1452,7 @@
 				81BA814D1A49DA1800E65899 /* LogInViewController.swift in Sources */,
 				BAEE09561C1709260095F6CE /* AlertViewAction.swift in Sources */,
 				DA95401B1B837FA600392C75 /* MGSwipeButton.m in Sources */,
+				18ECB2871C7D82C6001EA23B /* EditOthersViewController.swift in Sources */,
 				18DF0CEF1C745F380042F16B /* NotificationTableViewCell.swift in Sources */,
 				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 				BADDE80D1C19F21B00872FEC /* BlockableBehavior.swift in Sources */,
@@ -1445,6 +1460,7 @@
 				DA167E151B7D720A00608A6C /* DraftBarCollectionReusableView.swift in Sources */,
 				DA2BA53C1B78D18600DE6300 /* Synchronized.swift in Sources */,
 				DAA525591B55812E002BB56B /* CachedSource.swift in Sources */,
+				18ECB2851C7D8249001EA23B /* EditWebsiteTableViewController.swift in Sources */,
 				DAA5254D1B557ACF002BB56B /* CoreDataSource.swift in Sources */,
 				DA75465E1B82AA8A00FADDE5 /* TrendingTimelineTableViewController.swift in Sources */,
 				BAF593171B95F08400C7E8AE /* UpgradeTableViewController.swift in Sources */,
@@ -1561,7 +1577,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e29f183e-a2f6-4737-aac3-af1c1c66cabe";
+				PROVISIONING_PROFILE = "770cec7a-c726-4401-a1ce-077165b77725";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1585,8 +1601,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Rocky Uppal (T5DY39F2BR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rocky Uppal (T5DY39F2BR)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1599,7 +1615,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "e29f183e-a2f6-4737-aac3-af1c1c66cabe";
+				PROVISIONING_PROFILE = "c7d9c1f7-3f52-4000-b83a-f59754a4531d";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1613,7 +1629,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 99;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1633,8 +1649,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "e29f183e-a2f6-4737-aac3-af1c1c66cabe";
-				PROVISIONING_PROFILE = "ee15ea52-873d-4231-a316-b0312059910a";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1648,7 +1663,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 99;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1668,8 +1683,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "e29f183e-a2f6-4737-aac3-af1c1c66cabe";
-				PROVISIONING_PROFILE = "ee15ea52-873d-4231-a316-b0312059910a";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
