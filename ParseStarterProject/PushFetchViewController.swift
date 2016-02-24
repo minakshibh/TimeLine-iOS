@@ -44,6 +44,23 @@ enum DeepLink {
         }
         return nil
     }
+    static func fromNotification(payload payload: [String: AnyObject]?) -> DeepLink? {
+        if let payload = payload {
+            let link: DeepLink?
+        
+            if  let name = payload["username"] as? String,
+                let uid = payload["user_id"] as? String
+            {
+                // deep link to profile
+                link = DeepLink.UserLink(name, "", uid)
+            }
+            else {
+                link = nil
+            }
+            return link
+        }
+        return nil
+    }
     
     static func user(uuid uuid: UUID, completion: (User) -> Void) {
         if let user = Storage.findUser(uuid) {

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Parse
+import SDWebImage
 
 class AllNotificationList: UITableViewController {
     
@@ -120,28 +121,17 @@ class AllNotificationList: UITableViewController {
             cell.timeLabel?.text = timeStr
 
             
+            let placeHolderimg = UIImage(named: "default-user-profile")
             let imageName = raw["user_image"] as? String ?? ""
-            if imageName.isEmpty
-            {
-                cell.photoImageView.image = nil
-            }
-            else
-            {
-                if let url = NSURL(string: raw["user_image"] as? String ?? "")
-                {
-                    let request = NSURLRequest(URL: url)
-                    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
-                        (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-                        if let imageData = data as NSData? {
-                            cell.photoImageView.image = UIImage(data: imageData)
-                        }
-                    }
-                }
-            }
+            cell.photoImageView.sd_setImageWithURL(NSURL (string: imageName), placeholderImage:placeHolderimg)
+            
+            let showProfileBtn: UIButton = UIButton(frame: CGRectMake(0, 3, 60, 54))
+            showProfileBtn.backgroundColor = UIColor.clearColor()
+            showProfileBtn.addTarget(self, action: "showProfileBtn:", forControlEvents: UIControlEvents.TouchUpInside)
+            showProfileBtn.tag = indexPath.row               // change tag property
+            cell.contentView.addSubview(showProfileBtn) // add to view as subview
+
         }
-      
-      //  cell.photoImageView.image = UIImage(named : self.itemsImages[indexPath.row])
-        
         return cell
     }
    
@@ -297,5 +287,44 @@ class AllNotificationList: UITableViewController {
     private func finish(payload payload: [String: AnyObject]) {
         Storage.session.notificationDate = NSDate()
         Storage.save()
+    }
+    
+    func showProfileBtn(sender: UIButton!) {
+        let btnsendtag: UIButton = sender
+        let payload = self.notificationListArray[btnsendtag.tag] as! [String : AnyObject]
+        processAsyncForUser(payload: payload) { link in
+            self.handle(deepLink: link)
+        }
+    }
+    
+    func processAsyncForUser(payload payload: [String: AnyObject], completion: (DeepLink?) -> Void) {
+        let link = DeepLink.fromNotification(payload: payload)
+        
+        // increase counter
+        if let link = link {
+            switch link {
+            case .MomentLink(_, let uuid, _):
+                DeepLink.user(uuid: uuid, completion: { (u) -> Void in
+                    u.hasNews = true
+                    self.finish(payload: payload)
+                    completion(link)
+                })
+            case .TimelineLink(_, let uuid):
+                DeepLink.user(uuid: uuid, completion: { (u) -> Void in
+                    u.hasNews = true
+                    self.finish(payload: payload)
+                    completion(link)
+                })
+            case .UserLink(_, _, let uuid):
+                DeepLink.user(uuid: uuid, completion: { (u) -> Void in
+                    u.hasNews = true
+                    self.finish(payload: payload)
+                    completion(link)
+                })
+            }
+        }
+        else {
+            completion(nil)
+        }
     }
 }
