@@ -121,11 +121,16 @@ extension PFUser {
         profilePictureQueue.addOperationWithBlock {
             guard let data = UIImageJPEGRepresentation(image, 0.85) else { return }
             let file = PFFile(name: "profile.png", data: data)
-            file?.saveInBackgroundWithBlock(handler, progressBlock: progressBlock)
+            //            file?.saveInBackgroundWithBlock(handler, progressBlock: progressBlock)
             
+            file?.saveInBackgroundWithBlock { (success, error) -> Void in
+                if success {
+                    Storage.performRequest(.UserUpdate) { (json) -> Void in
+                    }
+                }
+            }
             self.profilePicture = file
             self.saveInBackground()
         }
     }
-    
 }

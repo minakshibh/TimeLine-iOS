@@ -9,13 +9,15 @@
 import UIKit
 import MediaPlayer
 import KGModal
-
+import SDWebImage
 
 class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UITextFieldDelegate{
     let timelineCommentView = UIView()
     var momentCommentView = UIViewController()
     let commentTextField = UITextField()
     let commentlist = UITableView()
+    let commentTextfeildView = UIView()
+    var scrollView = UIScrollView()
     
     enum RightError {
     case BlockedTimeline(String, String)
@@ -170,6 +172,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     }
     
     var commentArray = NSMutableArray()
+    var tagArray = NSMutableArray()
     
     @IBAction func commentButtonClick(){
         print(moment?.state.uuid!)
@@ -177,17 +180,22 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         Storage.performRequest(ApiRequest.MomentComments((moment?.state.uuid)!), completion: { (json) -> Void in
             print(json)
             
-            self.commentArray = json["result"] as! NSMutableArray
-            print(self.commentArray)
+            if let raw = json["result"] as? NSMutableArray{
+                self.commentArray = raw
+            }
+            //print(self.commentArray)
             self.commentlist.reloadData()
-//                    if let raw = json["result"] as? NSString,
-//                        let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
-//                        let payload = (try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)) as? [String: AnyObject]
-//                    {
-//                        print(payload)
-//                    }
-
+            main{
+                self.showCommentPopup()
+            }
         })
+        
+        
+        
+        
+    }
+    
+    func showCommentPopup(){
         
         let screenRect = UIScreen.mainScreen().bounds
         let screenWidth = screenRect.size.width;
@@ -202,7 +210,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         commentScreenTitle.textAlignment = .Center
         commentScreenTitle.backgroundColor = UIColor(white: 0, alpha: 0.5)
         commentScreenTitle.textColor = UIColor.whiteColor()
-        commentScreenTitle.text = "Moment 2 Comments"
+        commentScreenTitle.text = "Comments"
         timelineCommentView.addSubview(commentScreenTitle)
         
         // close button comment section
@@ -223,7 +231,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         commentlist.registerClass(UITableViewCell.self, forCellReuseIdentifier: "commentCell")
         timelineCommentView.addSubview(commentlist)
         
-        let commentTextfeildView = UIView()
+        
         commentTextfeildView.frame = CGRectMake(0, timelineCommentView.frame.size.height-80, timelineCommentView.frame.size.width, 80)
         commentTextfeildView.backgroundColor = UIColor(white: 1, alpha: 0.1)
         timelineCommentView.addSubview(commentTextfeildView)
@@ -231,7 +239,14 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         
         commentTextField.frame = CGRectMake(10, 15, 280, 50)
         commentTextField.layer.cornerRadius = 4
+        commentTextField.textColor = UIColor.whiteColor()
         commentTextField.backgroundColor = UIColor(white: 1, alpha: 0.3)
+        let arrow = UIImageView()
+        arrow.frame = CGRectMake(0.0, 0.0, 10.0, 50);
+        arrow.contentMode = UIViewContentMode.Center
+        commentTextField.leftViewMode = UITextFieldViewMode.Always
+        commentTextField.leftView = arrow
+        commentTextField.delegate = self
         let attributes = [
             NSForegroundColorAttributeName: UIColor.whiteColor(),
             NSFontAttributeName : UIFont.boldSystemFontOfSize(20)
@@ -249,14 +264,93 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         commentTextfeildView.addSubview(button)
         KGModal.sharedInstance().closeButtonType = KGModalCloseButtonType.None
         KGModal.sharedInstance().showWithContentView(timelineCommentView)
-        
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-325, self.timelineCommentView.frame.size.width, 80)
+        })
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
+            textField.resignFirstResponder()
+            
+        })
+        return true
         
     }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if(textField == self.commentTextField)
+        {
+            if(string == "@"){
+                print("hello")
+                Storage.performRequest(ApiRequest.GetTagUsers, completion: { (json) -> Void in
+                    // print(json)
+                    if let raw = json["result"] as? NSMutableArray{
+                        self.tagArray = raw
+                        print(self.tagArray)
+                        
+                        
+                        //self.scrollView.contentSize = CGSizeMake(1000, 1000)
+                        
+                    }
+                    
+                    main{
+                        self.scrollView.frame = CGRectMake(0, self.commentTextfeildView.frame.origin.y-250, self.timelineCommentView.frame.size.width, 250)
+                        self.scrollView.delegate = self
+                        
+                        for villain in self.tagArray{
+                            
+                            let villainButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.commentTextfeildView.frame.size.width, height: 30))
+                            
+                            villainButton.layer.cornerRadius = 0
+                            villainButton.backgroundColor = UIColor.redColor()
+                            if let raw = villain as? NSDictionary
+                            {
+                                villainButton.setTitle("@\(raw["name"]!)", forState: UIControlState.Normal)
+                            }
+                            villainButton.addTarget(self, action: "villainButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+                            //villainButton.tag = Int(element.id)
+                            self.scrollView.addSubview(villainButton)
+                        }
+                        self.scrollView.backgroundColor = UIColor.lightGrayColor()
+                        self.timelineCommentView.addSubview(self.scrollView)
+                    }
+                })
+            }
+        }
+        return true
+    }
+    
+    func villainButtonPressed(sender:UIButton!){
+        print(sender.tag)
+        self.scrollView.removeFromSuperview()
+        if let raw = self.tagArray[sender.tag] as? NSDictionary{
+            commentTextField.text = commentTextField.text!.stringByAppendingString("\(raw["name"] as! String)")
+        }
+        
+    }
+    
     func MomentPostComment(){
-    
-        Storage.performRequest(ApiRequest.MomentPostComment((moment?.state.uuid)!, commentTextField.text!), completion: { (json) -> Void in
+        let emoData = commentTextField.text!.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
+        let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
+
+        Storage.performRequest(ApiRequest.MomentPostComment((moment?.state.uuid)!, goodValue! as PARAMS), completion: { (json) -> Void in
             print(json)
-    
+            main{
+                
+                self.commentTextField.text = ""
+                self.commentTextField.resignFirstResponder()
+                self.commentlist.reloadData()
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
+                    
+                })
+            }
+
     
         })
     }
@@ -293,6 +387,13 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         userImage.frame = CGRectMake(5, 10, 60, 60)
         userImage.backgroundColor = UIColor.lightGrayColor()
         userImage.layer.cornerRadius = 30
+        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+        {
+            let notifyStr = raw["user_image"] as! String
+            print(notifyStr)
+            userImage.sd_setImageWithURL(NSURL(string: notifyStr))
+        }
+        userImage.clipsToBounds = true
         cellView.addSubview(userImage)
         
         let username = UILabel()
@@ -307,6 +408,19 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         }
         cellView.addSubview(username)
         
+//        let timeStamp = UILabel()
+//        timeStamp.frame = CGRectMake(cellView.frame.size.width-105, 5, 100, 30)
+//        timeStamp.font = UIFont.boldSystemFontOfSize(18)
+//        //username.backgroundColor = UIColor(white: 0, alpha: 0.25)
+//        timeStamp.textColor = UIColor.whiteColor()
+//        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+//        {
+//            let notifyStr = raw["username"] as! String
+//            timeStamp.text = "@\(notifyStr)"
+//            timeStamp.textAlignment = .Center
+//        }
+//        cellView.addSubview(timeStamp)
+        
 //        let strEmo = "U+1F514"
 //        let emoData = strEmo.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
 //        let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
@@ -315,13 +429,18 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
 //        let emoStringConverted = NSString.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as NSString
         
         let commentMessage = UILabel()
-        commentMessage.frame = CGRectMake(80, 40, 150, 30)
+        commentMessage.frame = CGRectMake(80, 40, 250, 30)
         commentMessage.font = UIFont.systemFontOfSize(15)
         commentMessage.textColor = UIColor.whiteColor()
         if let raw = self.commentArray[indexPath.row] as? NSDictionary
         {
             let notifyStr = raw["comment"] as! String
-            commentMessage.text = notifyStr
+            
+            let emoData1 = notifyStr.dataUsingEncoding(NSUTF8StringEncoding)
+            let emoStringConverted = String.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as String
+            
+            
+            commentMessage.text = emoStringConverted
         }
         
         cellView.addSubview(commentMessage)
@@ -332,6 +451,8 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     
     func btnTouched(){
         KGModal.sharedInstance().hideAnimated(true)
+        self.timelineCommentView.removeFromSuperview()
+        self.scrollView.removeFromSuperview()
     }
     
     @IBAction func previous() {

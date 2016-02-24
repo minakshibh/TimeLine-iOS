@@ -62,6 +62,8 @@ enum ApiRequest {
     case TimelineComments(UUID)
     case TimelinePostComment(UUID,PARAMS)
     case MomentPostComment(UUID,PARAMS)
+    /// GET /api/user/my_followers
+    case GetTagUsers
     /// GET /api/video/id/comments
     case MomentComments(UUID)
     /// GET /timeline/trending
@@ -321,6 +323,10 @@ enum ApiRequest {
             
         case CurrentUserBlocked:
             urlString = "/api/user/blocked"
+            urlRequest.HTTPMethod = "GET"
+            
+        case .GetTagUsers:
+            urlString = "api/user/my_followers"
             urlRequest.HTTPMethod = "GET"
             
         case CurrentTimelineBlocked:
