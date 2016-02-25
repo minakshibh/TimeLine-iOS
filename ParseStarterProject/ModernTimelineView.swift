@@ -40,8 +40,10 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
     
     var commentArray = NSMutableArray()
     var tagArray = NSMutableArray()
+   
     @IBAction func timelineCommentClick(sender: UIButton!){
         print("timeline id: \(timeline!.uuid!)")
+//        print(timeline!.dict["moments"]!.count)
 
         Storage.performRequest(ApiRequest.TimelineComments(timeline!.uuid!), completion: { (json) -> Void in
             print(json)

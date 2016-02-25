@@ -114,6 +114,13 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
     
     @IBAction func groupTimelineButtonAction(sender: UIButton) {
         main {
+            
+            let alert = UIAlertController(title:local(.TimelineAlertCreateMissingTitle), message: "Functionality in progress..", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: local(.TimelineAlertCreateMissingDismiss), style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+            
+            
             guard let title = self.textFields.first!.text else { return }
             if title == "" {
                 let alert = UIAlertController(title: local(.TimelineAlertCreateMissingTitle), message: local(.TimelineAlertCreateMissingMessage), preferredStyle: .Alert)

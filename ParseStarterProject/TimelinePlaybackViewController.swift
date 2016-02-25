@@ -28,6 +28,12 @@ class TimelinePlaybackViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "@\(self.timeline.name ?? String())"
+        if navigationController?.viewControllers[0] == self {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(assetIdentifier: UIImage.AssetIdentifier.BackIndicator), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissViewControllerWithAnimation:")
+        }
+        
+        
         refresh()
         
         // Do any additional setup after loading the view.

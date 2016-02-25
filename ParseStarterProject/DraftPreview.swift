@@ -176,7 +176,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     
     @IBAction func commentButtonClick(){
         print(moment?.state.uuid!)
-        
+        momentPlayerController?.pause()
         Storage.performRequest(ApiRequest.MomentComments((moment?.state.uuid)!), completion: { (json) -> Void in
             print(json)
             
@@ -451,18 +451,23 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     
     func btnTouched(){
         KGModal.sharedInstance().hideAnimated(true)
+        momentPlayerController?.play()
         self.timelineCommentView.removeFromSuperview()
         self.scrollView.removeFromSuperview()
     }
     
     @IBAction func previous() {
-        bufferIndicator.startAnimating()
-        momentPlayerController?.previous()
+        main{
+        self.bufferIndicator.startAnimating()
+        self.momentPlayerController?.previous()
+        }
     }
     
     @IBAction func next() {
-        bufferIndicator.startAnimating()
-        momentPlayerController?.next()
+        main{
+        self.bufferIndicator.startAnimating()
+        self.momentPlayerController?.next()
+        }
     }
     
     @IBAction func stop() {

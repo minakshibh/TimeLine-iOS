@@ -44,6 +44,23 @@ enum DeepLink {
         }
         return nil
     }
+    static func fromNotification(payload payload: [String: AnyObject]?) -> DeepLink? {
+        if let payload = payload {
+            let link: DeepLink?
+        
+            if  let name = payload["username"] as? String,
+                let uid = payload["user_id"] as? String
+            {
+                // deep link to profile
+                link = DeepLink.UserLink(name, "", uid)
+            }
+            else {
+                link = nil
+            }
+            return link
+        }
+        return nil
+    }
     
     static func user(uuid uuid: UUID, completion: (User) -> Void) {
         if let user = Storage.findUser(uuid) {
@@ -139,11 +156,11 @@ class PushFetchViewController: UIViewController {
             dest.user = sender as! User
             
         case "ShowTimeline":
-            let dest = segue.destinationViewController as! TimelinePlaybackViewController
+            let dest = (segue.destinationViewController as! UINavigationController).topViewController as! TimelinePlaybackViewController
             dest.timeline = sender as! Timeline
             
         case "ShowMoment":
-            let dest = segue.destinationViewController as! TimelinePlaybackViewController
+            let dest = (segue.destinationViewController as! UINavigationController).topViewController as! TimelinePlaybackViewController
             dest.moment = sender as? Moment
             
         default:

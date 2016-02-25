@@ -16,7 +16,12 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var userImageView: ProfileImageView!
-    
+    @IBOutlet var bioLabel: UILabel!
+    @IBOutlet var firstNameLabel: UILabel!
+    @IBOutlet var websiteLabel: UILabel!
+    @IBOutlet var lastNameLabel: UILabel!
+    @IBOutlet var otherLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +32,11 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
             userNameLabel.text = user.username
             emailLabel.text = user.email
             userImageView.user = Storage.session.currentUser
+            bioLabel.text = "Bio Details"
+            firstNameLabel.text = "First Name"
+            lastNameLabel.text = "Last Name"
+            websiteLabel.text = "website"
+            otherLabel.text = "Others"
         }
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
