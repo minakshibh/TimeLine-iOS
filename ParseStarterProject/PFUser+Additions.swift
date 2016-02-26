@@ -120,9 +120,7 @@ extension PFUser {
     func setProfileImageInBackground(image: UIImage, handler: PFBooleanResultBlock? = nil, progressBlock: PFProgressBlock? = nil) {
         profilePictureQueue.addOperationWithBlock {
             guard let data = UIImageJPEGRepresentation(image, 0.85) else { return }
-            let file = PFFile(name: "profile.png", data: data)
-//            file?.saveInBackgroundWithBlock(handler, progressBlock: progressBlock)
-            
+            let file = PFFile(name: "profile.png", data: data)            
             file?.saveInBackgroundWithBlock { (success, error) -> Void in
                 if success {
                     Storage.performRequest(.UserUpdate) { (json) -> Void in
@@ -133,5 +131,4 @@ extension PFUser {
             self.saveInBackground()
         }
     }
-    
 }

@@ -14,8 +14,11 @@ import SCRecorder
 
 /// The central view controller.
 /// Contains a capture view and controls for navigation.
-class CaptureMomentViewController: UIViewController {
+class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     
+    var scrollView = UIScrollView()
+    let closeButton  = UIButton()
+    var drafts :NSMutableArray = []
     var recorder: SCRecorder!
     var badgeTimer: NSTimer!
     var badgeTimerEnabled: Bool = true
@@ -103,6 +106,63 @@ class CaptureMomentViewController: UIViewController {
             }
         }
     }
+    func removeScrollView() {
+        self.scrollView.removeFromSuperview()
+        self.drafts.removeAllObjects()
+        closeButton.removeFromSuperview()
+
+    }
+    func addScrollView() {
+        //Scroll view with preview of videos
+        self.scrollView = UIScrollView(frame: view.bounds)
+        self.scrollView.frame = CGRectMake(0,70, self.view.frame.width, 65)
+        self.scrollView.backgroundColor = UIColor.clearColor()
+        self.scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        self.scrollView.contentOffset = CGPoint(x: 1000, y: 450)
+        self.scrollView.delegate = self
+        self.view.addSubview(self.scrollView)
+        
+        // close button
+        closeButton.frame = CGRectMake(10, self.previewView.frame.origin.y + 10, 30, 30);
+        closeButton.setImage(UIImage(named: "close") as UIImage?, forState: .Normal)
+        closeButton.addTarget(self, action: "closeViewButton", forControlEvents:.TouchUpInside)
+        self.view.addSubview(closeButton)
+        self.closeButton.hidden = true
+
+    }
+    
+    
+    func addImagesToScrollView()
+    {
+        let subViews = self.scrollView.subviews
+        for subview in subViews{
+            subview.removeFromSuperview()
+        }
+        self.scrollView.frame = CGRectMake(0,self.previewView.frame.origin.y-70, self.view.frame.width, 65)
+        self.closeButton.frame = CGRectMake(10, self.previewView.frame.origin.y + 10, 30, 30);
+
+        let scrollViewWidth:CGFloat = self.scrollView.frame.width/4
+        let scrollViewHeight:CGFloat = self.scrollView.frame.height
+        let momentsDraft = self.drafts.reverse()
+        
+        for var index = 0; index < momentsDraft.count; ++index {
+              let previewImg = UIImageView(frame: CGRectMake(scrollViewWidth * CGFloat(index), 0,scrollViewWidth-4, scrollViewHeight))
+            UIImage.getImage(momentsDraft[index] as! Moment) { image in
+                main {
+                    previewImg.image = image
+                    self.scrollView.addSubview(previewImg)
+                    self.closeButton.hidden = false
+                }
+            }
+        }
+        self.scrollView.contentSize = CGSizeMake(scrollViewWidth * CGFloat(self.drafts.count), self.scrollView.frame.height)
+    }
+    
+    func closeViewButton()
+    {
+        self.performSegueWithIdentifier("ShowMoments", sender: self)
+    }
+
     
     func reloadBadges() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -171,6 +231,7 @@ class CaptureMomentViewController: UIViewController {
 //    }
     
     override func viewWillAppear(animated: Bool) {
+        self.addScrollView()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.notificationAPI ()
         recorder.startRunning()
@@ -184,6 +245,7 @@ class CaptureMomentViewController: UIViewController {
         self.recorder.stopRunning()
         self.refreshTorches()
         self.reloadBadges()
+        self.removeScrollView()
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -284,6 +346,8 @@ extension CaptureMomentViewController {
             self.profileMenuBadge?.alpha = 0.0
             self.timelineMenuBadge?.alpha = 0.0
             self.notificationsMenuBadge?.alpha=0.0
+            self.scrollView.alpha = 0.0
+            self.closeButton.alpha = 0.0
             }) { (flag) -> Void in
                 self.menuControls.each { $0.enabled = false }
         }
@@ -324,6 +388,9 @@ extension CaptureMomentViewController {
             self.profileMenuBadge?.alpha = 1.0
             self.timelineMenuBadge?.alpha = 1.0
             self.notificationsMenuBadge?.alpha = 1.0
+            self.scrollView.alpha = 1.0
+            self.closeButton.alpha = 1.0
+
             }) { (flag) -> Void in
                 self.countdownLabel.hidden = false
                 self.menuControls.each { $0.enabled = true }
@@ -364,10 +431,16 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                     try NSFileManager.defaultManager().moveItemAtURL(url, toURL: newURL)
                     let asset = AVURLAsset(URL: newURL, options: nil)
                     let seconds = Int(round(CMTimeGetSeconds(asset.duration)))
-                    Storage.session.drafts.append(Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil))
+                    let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil)
+                    
+                    
+                    Storage.session.drafts.append(newMoment)
                     Storage.save()
                     
-                    self.performSegueWithIdentifier("ShowMoments", sender: self)
+                    self.drafts.addObject(newMoment)
+                    self.addImagesToScrollView()
+
+                    //  self.performSegueWithIdentifier("ShowMoments", sender: self)
                     print("segued")
                 } catch {
                     print(error)
