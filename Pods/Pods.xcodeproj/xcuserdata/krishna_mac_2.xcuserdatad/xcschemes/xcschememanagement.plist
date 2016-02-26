@@ -17,42 +17,47 @@
 		<key>KGModal.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>11</integer>
 		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>4</integer>
 		</dict>
 		<key>ParseCrashReporting.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>5</integer>
 		</dict>
 		<key>ParseUI.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>6</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>7</integer>
 		</dict>
 		<key>RMStore.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>8</integer>
 		</dict>
 		<key>SCRecorder.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>9</integer>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 		<key>SWFrameButton.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>10</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -77,12 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4CD3A21FFAE8660AF2B4FC7E6E22B682</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>511B536F0DE06D9C3BD65397A91990C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>57ADC05E440A960212657DE6DA1FEDD5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63701697369FED70BCCFEABA34467FB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +112,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6E66E71AFC51CBE1BFA17F0A8F222A7D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>730CFE4962B3C78EFCE8EF305F5AD64F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7689FC8854E8920AECBF21B73D59266C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9FE89816416F33A1E83B09AC5DD49C95</key>
 		<dict>
 			<key>primary</key>
 			<true/>

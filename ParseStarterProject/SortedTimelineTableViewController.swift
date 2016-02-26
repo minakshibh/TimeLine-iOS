@@ -18,12 +18,23 @@ class SortedTimelineTableViewController: UITableViewController {
     
     func setTimelines(timelines: [Timeline]) {
         var secs: [UUID: (User, [Timeline])] = [:]
+//        for t in timelines {
+//            print("\(t.parent)")
+//            if let uid = t.parent?.uuid {
+//                if secs[uid] == nil {
+//                    secs[uid] = (t.parent!, [])
+//                }
+//                secs[uid]!.1.append(t)
+//            }
+//        }
         for t in timelines {
+            print("\(t.parent)")
             if let uid = t.parent?.uuid {
-                if secs[uid] == nil {
-                    secs[uid] = (t.parent!, [])
+                let indexUid = "\(secs.count)\(uid)"
+                if secs[indexUid] == nil {
+                    secs[indexUid] = (t.parent!, [])
                 }
-                secs[uid]!.1.append(t)
+                secs[indexUid]!.1.append(t)
             }
         }
         let resultingSecs = secs.values.map { uts in
@@ -53,10 +64,12 @@ class SortedTimelineTableViewController: UITableViewController {
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // Return the number of sections.
+        print("\(sections.count)")
         return sections.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("\(sections[section].1.count)")
         return sections[section].1.count
     }
     

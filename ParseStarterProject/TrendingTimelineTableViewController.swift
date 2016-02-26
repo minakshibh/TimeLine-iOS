@@ -42,6 +42,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        self.hidesBottomBarWhenPushed = true
         tableView.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
 
         tableViewContact = UITableView(frame: CGRectMake(50, 50, 300, 300), style: .Plain)
@@ -130,14 +131,22 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             for (var i=0; i < selectedPeople.count; i++) {
                
                 
-                print("\(selectedPeople[i])")
+//                print("\(selectedPeople[i])")
+//                if selectedPeople[i] as! String == "--"{
+//                    continue
+//                }
+//                
+                
                 
                 recipients.append(selectedPeople[i] as! String)
             }
             
+            selectedPeople = []
+            self.timelineCommentView.removeFromSuperview()
+            KGModal.sharedInstance().hideAnimated(true)
             
             let controller = MFMessageComposeViewController()
-            controller.body = "Message Body"
+            controller.body = "This is for testing to send invites to multiple users..."
             controller.recipients = recipients
             controller.messageComposeDelegate = self
             self.presentViewController(controller, animated: true, completion: nil)
@@ -171,7 +180,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 let inviteDialog:FBSDKAppInviteDialog = FBSDKAppInviteDialog()
                 if(inviteDialog.canShow()){
                     let inviteContent = FBSDKAppInviteContent.init()
-                    inviteContent.appLinkURL = NSURL(string: "https://fb.me/170661636645442")!
+                    inviteContent.appLinkURL = NSURL(string: "https://fb.me/175079332870339")!
                     inviteContent.appInvitePreviewImageURL = NSURL(string: "https://www.mydomain.com/my_invite_image.jpg")!
                     inviteDialog.content = inviteContent
                     inviteDialog.delegate = self
@@ -185,6 +194,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 self.fetchContacts()
            
                 self.tableViewContact.reloadData()
+                self.tableViewContact.reloadData()
                 self.tableView.reloadData()
                 
                 KGModal.sharedInstance().showWithContentView(self.timelineCommentView)
@@ -194,12 +204,17 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 //                    self.view.addSubview(self.tableViewContact)
                 
                 self.tableViewContact.reloadData()
+                
+                let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
             
     } //---end of confirm action
         self.tableViewContact.reloadData()
         self.presentAlertController(confirm)
   }
     
+    func update() {
+       self.tableViewContact.reloadData()
+    }
     
     func fetchContacts(){
         
@@ -241,7 +256,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 
                 
                 if var contactName = ABRecordCopyCompositeName(contactPerson)?.takeRetainedValue(){
+                    
                     contactName = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
+                    print("\(contactName)")
                     self.nameArray.addObject(contactName )
                 }
                 
@@ -253,22 +270,29 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 //                    contactPerson, kABPersonPhoneProperty).takeRetainedValue()
                 if var numbers = ABRecordCopyValue(
                     contactPerson, kABPersonPhoneProperty)?.takeRetainedValue(){
+                        
                         numbers = ABRecordCopyValue(
                             contactPerson, kABPersonPhoneProperty).takeRetainedValue()
-
+                        print("\(ABMultiValueGetCount(numbers))")
+                        if (ABMultiValueGetCount(numbers) == 0)
+                        {
+                            self.numberArray.addObject("--")
+                            
+                        }
+                        
                         for ix in 0 ..< ABMultiValueGetCount(numbers) {
 //                            let label = ABMultiValueCopyLabelAtIndex(numbers,ix).takeRetainedValue() as String
 //                            let value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
+                            
                             
                             if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
                                 value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
                                 print("Phonenumber  is \(value)")
                                 self.numberArray.addObject(value)
+                                break
                             }
-                            break
+                            
                         }
-                        
-                    
                 }
                 
                 
@@ -277,7 +301,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 
             }
             
-            
+            self.tableViewContact.reloadData()
         }
     }
     
@@ -293,6 +317,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableView == tableViewContact{
+            print("\(nameArray.count)")
+            print("\(numberArray.count)")
             return nameArray.count
         }else{
             
@@ -333,7 +359,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
              let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-            let person = nameArray[indexPath.row]
+            let person = numberArray[indexPath.row]
             
             if cell.accessoryType == .None {
                 cell.accessoryType = .Checkmark

@@ -58,6 +58,8 @@ class CaptureMomentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = true
+        
         
         badgeTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "reloadBadges", userInfo: nil, repeats: true)
         

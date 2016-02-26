@@ -107,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         if let _ = Storage.session.webToken, let _ = Storage.session.currentUser, let _ = Storage.session.sessionToken {
-            let vc = storyboard.instantiateViewControllerWithIdentifier("Capture")
+            let vc = storyboard.instantiateViewControllerWithIdentifier("drawerID")
             nav.popViewControllerAnimated(false)
             nav.pushViewController(vc, animated: false)
             
