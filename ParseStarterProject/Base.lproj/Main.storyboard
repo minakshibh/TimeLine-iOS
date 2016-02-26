@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -3094,7 +3094,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="2TK-H5-g5m" customClass="UserSummaryTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="M00-gH-iuK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -4271,7 +4271,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="dpZ-pz-TmS" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="fjd-4e-PdK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -4310,7 +4310,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="mAi-gA-dKZ" userLabel="Followers" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlA-cD-rtE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -4365,7 +4365,7 @@ Effective as of September 14, 2015
             </objects>
             <point key="canvasLocation" x="-1914" y="-1190"/>
         </scene>
-        <!--Notifications-->
+        <!--Activity-->
         <scene sceneID="oQz-Aa-og3">
             <objects>
                 <tableViewController id="h8c-CJ-WKs" customClass="AllNotificationList" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
@@ -4390,8 +4390,8 @@ Effective as of September 14, 2015
                                                 <constraint firstAttribute="height" constant="40" id="WdB-og-Wwa"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="a3g-A9-UDx">
-                                            <rect key="frame" x="63" y="18" width="394" height="28"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="a3g-A9-UDx">
+                                            <rect key="frame" x="63" y="18" width="220" height="28"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -4400,8 +4400,12 @@ Effective as of September 14, 2015
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="1d" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="Y2g-yn-QTg">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1d" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="Y2g-yn-QTg">
                                             <rect key="frame" x="478" y="3" width="90" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="F2i-xn-v28"/>
+                                                <constraint firstAttribute="width" constant="30" id="kWs-4f-mRi"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -4433,17 +4437,23 @@ Effective as of September 14, 2015
                             <outlet property="delegate" destination="h8c-CJ-WKs" id="Yrb-jB-HQC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notifications" id="fNZ-Po-G9b">
+                    <navigationItem key="navigationItem" title="Activity" id="fNZ-Po-G9b">
                         <barButtonItem key="leftBarButtonItem" image="Back to previous screen" id="xfB-9h-qlK">
                             <connections>
                                 <action selector="dismissViewControllerWithAnimation:" destination="ULZ-gt-pE8" id="ijA-vO-qg7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="B3u-qt-79W">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshTable:" destination="h8c-CJ-WKs" eventType="valueChanged" id="f2e-5l-2Nv"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULZ-gt-pE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1838" y="-1893"/>
+            <point key="canvasLocation" x="-1924" y="-1898"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zir-j0-bnP">
@@ -4775,31 +4785,20 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JUD-Gk-HWr"/>
-        <segue reference="zbe-iw-8oa"/>
-        <segue reference="8W1-I7-grp"/>
-        <segue reference="fy0-iv-eFM"/>
         <segue reference="SrR-ph-ZEC"/>
-        <segue reference="dHW-RB-S8H"/>
-        <segue reference="MIt-vp-hHF"/>
-        <segue reference="hFd-TA-2wg"/>
-        <segue reference="kNn-C3-4Z5"/>
-        <segue reference="9SA-Oc-iuS"/>
         <segue reference="wPR-Ua-TlF"/>
-        <segue reference="fKI-df-tTm"/>
-        <segue reference="JSH-Rm-O8t"/>
-        <segue reference="5f9-3x-iDp"/>
-        <segue reference="iK2-rd-jlM"/>
-        <segue reference="3Xw-TM-u6h"/>
+        <segue reference="hFd-TA-2wg"/>
+        <segue reference="dHW-RB-S8H"/>
+        <segue reference="0Uq-5l-w5H"/>
+        <segue reference="T9S-G7-mh0"/>
+        <segue reference="ji8-C3-1Lo"/>
         <segue reference="kNn-C3-4Z5"/>
+        <segue reference="8W1-I7-grp"/>
         <segue reference="5f9-3x-iDp"/>
         <segue reference="JUD-Gk-HWr"/>
         <segue reference="iK2-rd-jlM"/>
-        <segue reference="L3f-Vr-cBz"/>
-        <segue reference="ji8-C3-1Lo"/>
-        <segue reference="ndx-Tw-tdZ"/>
-        <segue reference="2FX-5X-rOO"/>
         <segue reference="q73-lW-ew6"/>
+        <segue reference="ndx-Tw-tdZ"/>
         <segue reference="gqI-eh-cAa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
