@@ -20,7 +20,9 @@
 		81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81781A49E0DB00E65899 /* AudioToolbox.framework */; };
 		81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */; };
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
+		975E4F9A1C80702300DAEF0E /* UILabel+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 975E4F991C80702300DAEF0E /* UILabel+helper.m */; };
 		979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */; };
+		97AE039C1C80389400C17D98 /* HelperIphoneCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */; };
 		BA05786E1C1A0FC10098C3A1 /* NormalButtonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */; };
 		BA05787A1C1A39470098C3A1 /* UserSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0578791C1A39470098C3A1 /* UserSummaryView.xib */; };
 		BA0578801C1A3B630098C3A1 /* UserSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05787F1C1A3B630098C3A1 /* UserSummaryTableViewCell.swift */; };
@@ -262,7 +264,11 @@
 		81BA81821A49E27F00E65899 /* ParseStarterProject-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ParseStarterProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		8809B3C606F182C848542489 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9472C1B472FC01F506711759 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		975E4F981C80702300DAEF0E /* UILabel+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+helper.h"; path = "Objective-C classes/UILabel+helper.h"; sourceTree = SOURCE_ROOT; };
+		975E4F991C80702300DAEF0E /* UILabel+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+helper.m"; path = "Objective-C classes/UILabel+helper.m"; sourceTree = SOURCE_ROOT; };
 		979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatTimelineTableViewControllerWithoutUsername.swift; sourceTree = "<group>"; };
+		97AE039A1C80389400C17D98 /* HelperIphoneCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelperIphoneCheck.h; path = "../Objective-C classes/HelperIphoneCheck.h"; sourceTree = "<group>"; };
+		97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelperIphoneCheck.m; path = "../Objective-C classes/HelperIphoneCheck.m"; sourceTree = "<group>"; };
 		BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalButtonProperties.swift; sourceTree = "<group>"; };
 		BA0578791C1A39470098C3A1 /* UserSummaryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSummaryView.xib; sourceTree = "<group>"; };
 		BA05787F1C1A3B630098C3A1 /* UserSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSummaryTableViewCell.swift; sourceTree = "<group>"; };
@@ -832,6 +838,10 @@
 				DA1DF2101B5544A000BD6011 /* AVCaptureVideoOrientation+UIInterfaceOrientation.swift */,
 				DA2B8A3F1B590FC800D25AED /* Std+Additions.swift */,
 				DA2B8A431B5918DD00D25AED /* AVAsset.swift */,
+				975E4F981C80702300DAEF0E /* UILabel+helper.h */,
+				975E4F991C80702300DAEF0E /* UILabel+helper.m */,
+				97AE039A1C80389400C17D98 /* HelperIphoneCheck.h */,
+				97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */,
 				DA167DFB1B7D211C00608A6C /* VideoSquareCropper.h */,
 				DA167DFC1B7D211C00608A6C /* VideoSquareCropper.m */,
 				DA2B8A451B59196500D25AED /* AVMutableComposition.swift */,
@@ -1292,20 +1302,20 @@
 		};
 		BA0578831C1AF52D0098C3A1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "#if which swiftlint >/dev/null; then\n#    swiftlint\n#else\n#    echo \"SwiftLint does not exist, download from user `$ brew install swiftlint` or run https://github.com/realm/SwiftLint\"\n#fi";
 		};
 		BA24ED521B95859E0093177B /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -1313,7 +1323,7 @@
 			name = "Run Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=/usr/local/bin:$PATH\ncd CloudCode\n\nparse symbols Timeline --path=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\necho \"\"";
 		};
@@ -1343,6 +1353,7 @@
 				18DF0CEE1C745F380042F16B /* AllNotificationList.swift in Sources */,
 				DA167E0F1B7D61E800608A6C /* CSStickyHeaderFlowLayoutAttributes.m in Sources */,
 				DA3FF4E41B6C0ABC006CC0D7 /* Request.swift in Sources */,
+				97AE039C1C80389400C17D98 /* HelperIphoneCheck.m in Sources */,
 				DA1DF2111B5544A000BD6011 /* AVCaptureVideoOrientation+UIInterfaceOrientation.swift in Sources */,
 				BA9696551B9C999E00D17D5A /* SupportViewController.swift in Sources */,
 				DA3FF4DB1B6BAD27006CC0D7 /* NibIdentifier.swift in Sources */,
@@ -1461,6 +1472,7 @@
 				DA2BA53C1B78D18600DE6300 /* Synchronized.swift in Sources */,
 				DAA525591B55812E002BB56B /* CachedSource.swift in Sources */,
 				18ECB2851C7D8249001EA23B /* EditWebsiteTableViewController.swift in Sources */,
+				975E4F9A1C80702300DAEF0E /* UILabel+helper.m in Sources */,
 				DAA5254D1B557ACF002BB56B /* CoreDataSource.swift in Sources */,
 				DA75465E1B82AA8A00FADDE5 /* TrendingTimelineTableViewController.swift in Sources */,
 				BAF593171B95F08400C7E8AE /* UpgradeTableViewController.swift in Sources */,
@@ -1647,10 +1659,35 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"KGModal\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseCrashReporting\"",
+					"-framework",
+					"\"ParseUI\"",
+					"-framework",
+					"\"RMStore\"",
+					"-framework",
+					"\"SCRecorder\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SWFrameButton\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
 				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
-				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1681,10 +1718,35 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"KGModal\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseCrashReporting\"",
+					"-framework",
+					"\"ParseUI\"",
+					"-framework",
+					"\"RMStore\"",
+					"-framework",
+					"\"SCRecorder\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SWFrameButton\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
 				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
-				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

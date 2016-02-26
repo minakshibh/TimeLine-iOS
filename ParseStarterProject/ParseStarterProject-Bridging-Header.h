@@ -27,5 +27,7 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import "MobileCoreServices/MobileCoreServices.h"
+#import "HelperIphoneCheck.h"
+#import "UILabel+helper.h"
 
 #endif
