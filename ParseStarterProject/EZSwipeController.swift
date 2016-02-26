@@ -47,15 +47,15 @@ public class EZSwipeController: UIViewController {
         public static var StatusBarHeight: CGFloat {
             get {
 //                return UIApplication.sharedApplication().statusBarFrame.height
-                return 0
+                return 20
             }
         }
         public static var ScreenHeightWithoutStatusBar: CGFloat {
             get {
                 if UIInterfaceOrientationIsPortrait(Orientation) {
-                    return UIScreen.mainScreen().bounds.size.height - StatusBarHeight
+                    return UIScreen.mainScreen().bounds.size.height+2
                 } else {
-                    return UIScreen.mainScreen().bounds.size.width - StatusBarHeight
+                    return UIScreen.mainScreen().bounds.size.width
                 }
             }
         }
@@ -134,7 +134,7 @@ public class EZSwipeController: UIViewController {
 
             if let nav = navigationBar {
                 if navigationBarShouldBeOnBottom {
-                    nav.frame = CGRect(x: 0, y: Constants.ScreenHeightWithoutStatusBar - Constants.navigationBarHeight, width: Constants.ScreenWidth, height: Constants.navigationBarHeight)
+                    nav.frame = CGRect(x: 0, y: 0, width: Constants.ScreenWidth, height: Constants.navigationBarHeight)
                 } else {
                     nav.frame = CGRect(x: 0, y: 0, width: Constants.ScreenWidth, height: Constants.navigationBarHeight)
                 }
@@ -162,7 +162,7 @@ public class EZSwipeController: UIViewController {
             let pageVC = UIViewController()
             if !navigationBarShouldBeOnBottom {
                 if !navigationBarShouldNotExist {
-                    stackVC[index].view.frame.origin.y += Constants.navigationBarHeight
+                    stackVC[index].view.frame.origin.y = -20
                 }
             }
             pageVC.addChildViewController(stackVC[index])
@@ -185,16 +185,27 @@ public class EZSwipeController: UIViewController {
         var pageViewControllerH: CGFloat = 0
         if navigationBarShouldNotExist {
             pageViewControllerY = 0
-            pageViewControllerH = Constants.ScreenHeight
+            pageViewControllerH = Constants.ScreenHeightWithoutStatusBar
         } else {
-            pageViewControllerY = Constants.StatusBarHeight
+            pageViewControllerY = 0
             pageViewControllerH = Constants.ScreenHeightWithoutStatusBar
         }
-        pageViewController.view.frame = CGRect(x: 0, y: pageViewControllerY, width: Constants.ScreenWidth, height: pageViewControllerH)
+        pageViewController.view.frame = CGRect(x: 0, y: 0, width: Constants.ScreenWidth, height: pageViewControllerH)
+        
+        
         pageViewController.view.backgroundColor = UIColor.clearColor()
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMoveToParentViewController(self)
+        
+        for v: UIView in pageViewController.view.subviews {
+            if (v is UIScrollView) {
+                let scroll = v as! UIScrollView
+                scroll.setContentOffset(CGPointMake(0, 0), animated: false)
+                print("----")
+            }
+        }
+        
     }
 
     public func setupView() {
@@ -216,6 +227,8 @@ public class EZSwipeController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .None)
+
     }
 
     @objc private func clickedLeftButton() {

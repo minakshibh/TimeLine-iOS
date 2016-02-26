@@ -1155,7 +1155,7 @@
 				TargetAttributes = {
 					81BA81441A49DA1800E65899 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = B4F2Z6ZQE6;
+						DevelopmentTeam = T5DY39F2BR;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1636,11 +1636,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
-				CURRENT_PROJECT_VERSION = 99;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reebay Inc. (B4F2Z6ZQE6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 102;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1658,12 +1655,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Krishnais.autoaves2;
-				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "a2e4e3e3-612a-4cd7-895a-8321f7ed4aff";
 				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1677,7 +1671,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reebay Inc. (B4F2Z6ZQE6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 102;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1695,12 +1689,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Krishnais.autoaves2;
-				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "7db2436d-ed3e-402f-838c-b25ea7418dfb";
 				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";

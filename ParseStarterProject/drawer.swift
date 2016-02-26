@@ -16,6 +16,14 @@ class drawer: EZSwipeController {
     override func viewDidLoad() {
         self.navigationController?.navigationBarHidden = true
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+       
+        self.view.frame = CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y-20, self.view.bounds.size.width, self.view.bounds.size.height)
+        
+        }
+    
 }
 extension drawer: EZSwipeControllerDataSource {
     func viewControllerData() -> [UIViewController] {

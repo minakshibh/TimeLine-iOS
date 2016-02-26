@@ -393,7 +393,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 //            let cellView = UIView()
 //            cell.contentView.frame = CGRectMake(0, 5, cell.contentView.frame.size.width, 75)
 //            cell.contentView.backgroundColor = UIColor(white: 0, alpha: 0.25)
-//            cell.addSubview(cellView)
+//            cell.addSubview(cellView)how should i do that...means should i have to
             
             let text1:UILabel = UILabel.init(frame: CGRectMake(20, 10, 350, 30))
             text1.font = UIFont.systemFontOfSize(23)
@@ -413,6 +413,22 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             cell.contentView.addSubview(text3)
             
             
+//            let result = selectedPeople.filter { $0 as! NSObject==numberArray[indexPath.row] as? String }
+//            if result.isEmpty {
+//                print("element does not exist in array")
+//                cell.accessoryType = .None
+//            } else {
+//                print("element exists")
+//                cell.accessoryType = .Checkmark
+//                // element exists
+//            }
+//            
+//            if (selectedPeople.contains(numberArray[indexPath.row])){
+//                cell.accessoryType = .Checkmark
+//            }
+//            else{
+//                cell.accessoryType = .None
+//            }
 //            tableView.separatorStyle = .None
 
 //            cell.textLabel!.font = UIFont.systemFontOfSize(18)
