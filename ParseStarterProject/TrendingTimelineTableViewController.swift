@@ -413,16 +413,16 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             cell.contentView.addSubview(text3)
             
             
-//            let result = selectedPeople.filter { $0 as! NSObject==numberArray[indexPath.row] as? String }
-//            if result.isEmpty {
-//                print("element does not exist in array")
-//                cell.accessoryType = .None
-//            } else {
-//                print("element exists")
-//                cell.accessoryType = .Checkmark
-//                // element exists
-//            }
-//            
+            let result = selectedPeople.filter { $0 as! NSObject==numberArray[indexPath.row] as? String }
+            if result.isEmpty {
+                print("element does not exist in array")
+                cell.accessoryType = .None
+            } else {
+                print("element exists")
+                cell.accessoryType = .Checkmark
+                // element exists
+            }
+            
 //            if (selectedPeople.contains(numberArray[indexPath.row])){
 //                cell.accessoryType = .Checkmark
 //            }
