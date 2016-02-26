@@ -11,7 +11,8 @@
         <!--View Controller-->
         <scene sceneID="zNo-lp-gKv">
             <objects>
-                <viewController storyboardIdentifier="Dummy" id="y9g-MS-xDc" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47H-3U-8oi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="Dummy" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y9g-MS-xDc" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="svF-YZ-lPT"/>
                         <viewControllerLayoutGuide type="bottom" id="OC8-nj-Ytu"/>
@@ -26,7 +27,6 @@
                         <segue destination="Qj8-N8-GTa" kind="show" identifier="Valid" id="u22-9s-Zhr"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="47H-3U-8oi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3449" y="-476"/>
         </scene>
@@ -39,7 +39,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dub-gh-rHt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XkS-L7-QhD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -4793,12 +4793,21 @@ Effective as of September 14, 2015
         <segue reference="T9S-G7-mh0"/>
         <segue reference="ji8-C3-1Lo"/>
         <segue reference="kNn-C3-4Z5"/>
+        <segue reference="fy0-iv-eFM"/>
+        <segue reference="3Xw-TM-u6h"/>
+        <segue reference="9SA-Oc-iuS"/>
+        <segue reference="uwx-Vf-wTk"/>
+        <segue reference="kNn-C3-4Z5"/>
+        <segue reference="wPR-Ua-TlF"/>
         <segue reference="8W1-I7-grp"/>
         <segue reference="5f9-3x-iDp"/>
         <segue reference="JUD-Gk-HWr"/>
         <segue reference="iK2-rd-jlM"/>
         <segue reference="q73-lW-ew6"/>
         <segue reference="ndx-Tw-tdZ"/>
+        <segue reference="L3f-Vr-cBz"/>
+        <segue reference="ji8-C3-1Lo"/>
+        <segue reference="2FX-5X-rOO"/>
         <segue reference="gqI-eh-cAa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
