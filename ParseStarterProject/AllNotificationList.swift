@@ -20,7 +20,7 @@ class AllNotificationList: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delay (0.01) {
-            self.allNotificationsAPi()
+            self.allNotificationsAPI()
         }
            // Do any additional setup after loading the view.
     }
@@ -28,13 +28,26 @@ class AllNotificationList: UITableViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.hideActivityIndicator()
     }
-     func allNotificationsAPi() {
+ 
+    @IBAction func refreshTable(sender: AnyObject) {
+        self.page_id = ""
+        self.allNotificationsAPI()
+        self.refreshControl!.endRefreshing()
+
+    }
+    
+     func allNotificationsAPI() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.showActivityIndicator()
         
         Storage.performRequest(ApiRequest.UserAllNotifications(page_id), completion: { (json) -> Void in
             print(json)
             if let pageId = json["page_id"] {
+               if (self.page_id.isEmpty)
+               {
+                self.notificationListArray.removeAllObjects()
+                self.payloadArray.removeAllObjects()
+                }
                 self.page_id = String(pageId)
             }
             if let results = json["result"] as? [[String: AnyObject]]
@@ -131,79 +144,77 @@ class AllNotificationList: UITableViewController {
             showProfileBtn.tag = indexPath.row               // change tag property
             cell.contentView.addSubview(showProfileBtn) // add to view as subview
 
+            if (indexPath.row == self.notificationListArray.count - 1 && page_id != "<null>")
+            {
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.hideActivityIndicator()
+                allNotificationsAPI()
+            }
+            tableView.allowsSelection = true
+            cell.selectionStyle = UITableViewCellSelectionStyle.Gray
+
+
         }
         return cell
     }
-   
-  
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        let isEqual = (page_id == "<null>")
-        if isEqual || page_id.isEmpty
-        {
-            return 0.0
-        }
-        else
-        {
-            return 40.0
-        }
-    }
-
-    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
-        footerView.backgroundColor = UIColor.blackColor()
-        
-        
-        
-        let btn: UIButton = UIButton(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
-        btn.backgroundColor = UIColor.clearColor()
-        btn.setTitle("Load More", forState: UIControlState.Normal)
-        btn.addTarget(self, action: "loadMoreTapped:", forControlEvents: UIControlEvents.TouchUpInside)
-        btn.tag = 1               // change tag property
-        footerView.addSubview(btn) // add to view as subview
-        
-        return footerView
-    }
     
-    func loadMoreTapped(sender: UIButton!) {
-        let btnsendtag: UIButton = sender
-        if btnsendtag.tag == 1 {
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.hideActivityIndicator()
-            allNotificationsAPi()
-        }
-    }
+//    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        let isEqual = (page_id == "<null>")
+//        if isEqual || page_id.isEmpty
+//        {
+//            return 0.0
+//        }
+//        else
+//        {
+//            return 40.0
+//        }
+//    }
+//
+//    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
+//        footerView.backgroundColor = UIColor.blackColor()
+//        
+//        
+//        
+//        let btn: UIButton = UIButton(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
+//        btn.backgroundColor = UIColor.clearColor()
+//        btn.setTitle("Load More", forState: UIControlState.Normal)
+//        btn.addTarget(self, action: "loadMoreTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+//        btn.tag = 1               // change tag property
+//        footerView.addSubview(btn) // add to view as subview
+//        
+//        return footerView
+//    }
+//    
+//    func loadMoreTapped(sender: UIButton!) {
+//        let btnsendtag: UIButton = sender
+//        if btnsendtag.tag == 1 {
+//            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//            appDelegate.hideActivityIndicator()
+//            allNotificationsAPI()
+//        }
+//    }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let notificationPayload = self.notificationListArray[indexPath.row] as! [String : AnyObject]
         let payload = self.payloadArray[indexPath.row] as! [String : AnyObject]
-      
+
+//         if let tid = payload["timeline_id"] as? String
+//        {
+//            self.timeline_id = tid
+//        }
         processAsync(payload: payload) { link in
             if let link = link {
                     self.handle(deepLink: link)
                 }
         }
 
-        self.process(payload: payload)
-        switch payload["action"] as? String ?? "" {
-        case "follow_request":
-            print("follow_request")
-            break
-
-        case "create":
-            print("create")
-            break
-            
-        case "like" :
-            print("like")
-            break
-            
-        case "follow":
-            print("follow")
-            break
-            
-            
-        default:
-            break
-        }
+//        processAsyncForUser(payload: notificationPayload) { link in
+//            if let link = link {
+//                self.handle(deepLink: link)
+//            }
+//        }
+        
     }
        // navigationItem.title = order
     
@@ -291,12 +302,26 @@ class AllNotificationList: UITableViewController {
     
     func showProfileBtn(sender: UIButton!) {
         let btnsendtag: UIButton = sender
+        let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! NotificationTableViewCell
+        
+
+        UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            cell.photoImageView.alpha = 0.3
+            }, completion: nil)
+        UIView.animateWithDuration(0.3, delay: 0.3, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            cell.photoImageView.alpha = 1.0
+            }, completion: nil)
+        
+        delay(0.4) {
         let payload = self.notificationListArray[btnsendtag.tag] as! [String : AnyObject]
-        processAsyncForUser(payload: payload) { link in
+        self.processAsyncForUser(payload: payload) { link in
             self.handle(deepLink: link)
         }
+        }
     }
-    
+
     func processAsyncForUser(payload payload: [String: AnyObject], completion: (DeepLink?) -> Void) {
         let link = DeepLink.fromNotification(payload: payload)
         

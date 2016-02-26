@@ -47,6 +47,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         tabBarController?.delegate = self
         navigationController?.delegate = self
         
+//         self.hidesBottomBarWhenPushed = true
         //navigationItem.setRightBarButtonItems(buttons, animated: true)
         
         // Uncomment the following line to preserve selection between presentations

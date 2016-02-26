@@ -11,6 +11,7 @@ import Parse
 import ParseFacebookUtilsV4
 import FBSDKCoreKit
 import FBSDKLoginKit
+import QuartzCore
 
 // If you want to use Crash Reporting - uncomment this line
 import ParseCrashReporting
@@ -32,7 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var walkDelegate: WalkthroughDelegate?
     var notificationCount : Int!
-    var activityIndicator: UIActivityIndicatorView!
+    var activityIndicator = UIActivityIndicatorView()
+    let activityIndicatorView = UIView()
 
     //--------------------------------------
     // MARK: - UIApplicationDelegate
@@ -107,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         if let _ = Storage.session.webToken, let _ = Storage.session.currentUser, let _ = Storage.session.sessionToken {
-            let vc = storyboard.instantiateViewControllerWithIdentifier("Capture")
+            let vc = storyboard.instantiateViewControllerWithIdentifier("drawerID")
             nav.popViewControllerAnimated(false)
             nav.pushViewController(vc, animated: false)
             
@@ -382,17 +384,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func showActivityIndicator()
     {
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        activityIndicator.center = self.window!.center
-        self.window!.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
+        main{
+            self.activityIndicatorView.frame = CGRectMake(0, 0, 70, 70);
+            self.activityIndicatorView.backgroundColor = UIColor.grayColor()
+            self.activityIndicatorView.alpha = 1
+            self.activityIndicatorView.center = self.window!.center
+            self.activityIndicatorView.layer.cornerRadius = 4
+            self.window!.addSubview(self.activityIndicatorView)
+            
+            self.activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+            self.activityIndicator.frame = CGRect(x: 0, y: 7, width: 70, height: 50)
+            self.activityIndicatorView.addSubview(self.activityIndicator)
+            self.activityIndicator.startAnimating()
+            
+            let indicatorTitle = UILabel()
+            indicatorTitle.frame = CGRectMake(0, 50, 70, 20)
+            indicatorTitle.font = UIFont.boldSystemFontOfSize(9)
+            indicatorTitle.textAlignment = .Center
+            indicatorTitle.textColor = UIColor.whiteColor()
+            indicatorTitle.text = "Please wait.."
+            self.activityIndicatorView.addSubview(indicatorTitle)
+        }
     }
+    
     func hideActivityIndicator()
     {
         main{
             self.activityIndicator.stopAnimating()
             self.activityIndicator.removeFromSuperview()
+            self.activityIndicatorView.removeFromSuperview()
         }
     }
 }
