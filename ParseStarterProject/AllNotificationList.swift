@@ -16,7 +16,8 @@ class AllNotificationList: UITableViewController {
     var payloadArray :NSMutableArray = []
     let notificationListArray : NSMutableArray = []
     var page_id :String=""
-    
+    var timeline_id :String=""
+    var timelineLikeOrComment :Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         delay (0.01) {
@@ -129,9 +130,24 @@ class AllNotificationList: UITableViewController {
             let notifyStr = raw["notification"] as! String
             let userNameStr = raw["username"] as? String ?? ""
             
+            var notifyStrArr = notifyStr.componentsSeparatedByString(" ")
+            var userName : String = notifyStrArr [0]
+            
             cell.userNameLabel?.text = "@" + userNameStr
             cell.notificationTxtLabel?.text = notifyStr
             cell.timeLabel?.text = timeStr
+
+//            cell.notificationTxtLabel?.text.attributedText = attributedText(userName)
+            
+            var attributedString = NSMutableAttributedString(string: notifyStr as String, attributes: [NSFontAttributeName:UIFont.systemFontOfSize(13.0)])
+            
+            let boldFontAttribute = [NSFontAttributeName: UIFont.boldSystemFontOfSize(13.0)]
+            
+            
+            // Part of string to be bold
+            attributedString.addAttributes(boldFontAttribute, range:  NSRange(location: 0,length: userName.characters.count))
+            
+            cell.notificationTxtLabel?.attributedText = attributedString
 
             
             let placeHolderimg = UIImage(named: "default-user-profile")
@@ -157,6 +173,7 @@ class AllNotificationList: UITableViewController {
         }
         return cell
     }
+    
     
 //    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 //        let isEqual = (page_id == "<null>")
@@ -196,24 +213,49 @@ class AllNotificationList: UITableViewController {
 //    }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let notificationPayload = self.notificationListArray[indexPath.row] as! [String : AnyObject]
+        let notificationPayload = self.notificationListArray[indexPath.row] as! [String : AnyObject]
         let payload = self.payloadArray[indexPath.row] as! [String : AnyObject]
-
-//         if let tid = payload["timeline_id"] as? String
-//        {
-//            self.timeline_id = tid
-//        }
-        processAsync(payload: payload) { link in
-            if let link = link {
-                    self.handle(deepLink: link)
-                }
+        timelineLikeOrComment = false
+        
+         if let tid = payload["timeline_id"] as? String
+        {
+            self.timeline_id = tid
+            switch payload["action"] as? String ?? "" {
+            case "follow_request":
+                print("follow_request")
+                break
+                
+            case "create":
+                print("create")
+                break
+                
+            case "like" :
+                timelineLikeOrComment = true
+                print("like")
+                break
+                
+            case "follow":
+                timelineLikeOrComment = true
+                print("follow")
+                break
+                
+                
+            default:
+                break
+            }
         }
 
-//        processAsyncForUser(payload: notificationPayload) { link in
+//        processAsync(payload: payload) { link in
 //            if let link = link {
-//                self.handle(deepLink: link)
-//            }
+//                    self.handle(deepLink: link)
+//                }
 //        }
+
+        processAsyncForUser(payload: notificationPayload) { link in
+            if let link = link {
+                self.handle(deepLink: link)
+            }
+        }
         
     }
        // navigationItem.title = order
@@ -230,6 +272,8 @@ class AllNotificationList: UITableViewController {
             let push = storyboard.instantiateViewControllerWithIdentifier("PushFetchViewController") as! PushFetchViewController
             if PFUser.currentUser() != nil {
                 push.link = link
+                push.timeline_id = self.timeline_id
+
                 self.presentViewController(push, animated: true, completion: nil)
             }
 
@@ -323,7 +367,7 @@ class AllNotificationList: UITableViewController {
     }
 
     func processAsyncForUser(payload payload: [String: AnyObject], completion: (DeepLink?) -> Void) {
-        let link = DeepLink.fromNotification(payload: payload)
+        let link = DeepLink.fromNotification(payload: payload , likeOrCreateTimeline:                 timelineLikeOrComment )
         
         // increase counter
         if let link = link {

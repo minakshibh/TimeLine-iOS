@@ -11,7 +11,8 @@ import UIKit
 enum DeepLink {
     typealias Name = String
     typealias ExternalID = String
-    
+    typealias timelineID = String
+
     case UserLink(Name, ExternalID, UUID)
     case TimelineLink(Name, UUID)
     case MomentLink(Name, UUID, UUID)
@@ -44,21 +45,56 @@ enum DeepLink {
         }
         return nil
     }
-    static func fromNotification(payload payload: [String: AnyObject]?) -> DeepLink? {
-        if let payload = payload {
-            let link: DeepLink?
+
+    static func fromNotification(payload payload: [String: AnyObject]? , likeOrCreateTimeline : Bool ) -> DeepLink? {
         
-            if  let name = payload["username"] as? String,
-                let uid = payload["user_id"] as? String
-            {
-                // deep link to profile
-                link = DeepLink.UserLink(name, "", uid)
+        if likeOrCreateTimeline
+        {
+            if let payload = payload {
+                let link: DeepLink?
+                
+                if let uid = payload["user_id"] as? String
+                {
+                    // deep link to profile
+                    link = DeepLink.UserLink( "", "", uid)
+                }
+                else {
+                    link = nil
+                }
+                return link
             }
-            else {
-                link = nil
-            }
-            return link
         }
+        else
+        {
+            if let payload = payload {
+                let link: DeepLink?
+                
+                if  let name = payload["username"] as? String,
+                    let uid = payload["username_id"] as? String
+                {
+                    // deep link to profile
+                    link = DeepLink.UserLink(name, "", uid)
+                }
+                else {
+                    link = nil
+                }
+                return link
+            }
+        }
+//        if let payload = payload {
+//            let link: DeepLink?
+//        
+//            if  let name = payload["username"] as? String,
+//                let uid = payload["username_id"] as? String
+//            {
+//                // deep link to profile
+//                link = DeepLink.UserLink(name, "", uid)
+//            }
+//            else {
+//                link = nil
+//            }
+//            return link
+//        }
         return nil
     }
     
@@ -116,7 +152,7 @@ class PushFetchViewController: UIViewController {
     
     var link: DeepLink!
     var finished: Bool = false
-    
+    var timeline_id : NSString = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -126,6 +162,7 @@ class PushFetchViewController: UIViewController {
     func fetchData() {
         main {
         switch self.link! {
+            
         case let .UserLink(_, _, uuid):
             DeepLink.user(uuid: uuid) { u in
                 self.performSegueWithIdentifier("ShowUser", sender: u)
@@ -153,10 +190,12 @@ class PushFetchViewController: UIViewController {
         switch segue.identifier ?? "" {
         case "ShowUser":
             let dest = (segue.destinationViewController as! UINavigationController).topViewController as! UserSummaryTableViewController
+            dest.timeline_id = self.timeline_id
             dest.user = sender as! User
             
         case "ShowTimeline":
             let dest = (segue.destinationViewController as! UINavigationController).topViewController as! TimelinePlaybackViewController
+    
             dest.timeline = sender as! Timeline
             
         case "ShowMoment":
