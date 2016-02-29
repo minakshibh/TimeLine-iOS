@@ -11,7 +11,6 @@
         <!--View Controller-->
         <scene sceneID="zNo-lp-gKv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="47H-3U-8oi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Dummy" useStoryboardIdentifierAsRestorationIdentifier="YES" id="y9g-MS-xDc" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="svF-YZ-lPT"/>
@@ -27,6 +26,7 @@
                         <segue destination="Qj8-N8-GTa" kind="show" identifier="Valid" id="u22-9s-Zhr"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47H-3U-8oi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3449" y="-476"/>
         </scene>
@@ -39,7 +39,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dub-gh-rHt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XkS-L7-QhD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1412,7 +1412,7 @@ Effective as of September 14, 2015
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="VH6-fM-LGF" kind="show" id="12U-WH-H1i"/>
+                                            <segue destination="tRi-7B-wrg" kind="show" id="t5C-0B-vqr"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="BL6-z9-gam" detailTextLabel="fuG-Yp-1Ky" style="IBUITableViewCellStyleValue1" id="rlV-9e-wg1">
@@ -4271,7 +4271,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="dpZ-pz-TmS" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="fjd-4e-PdK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -4310,7 +4310,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="mAi-gA-dKZ" userLabel="Followers" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlA-cD-rtE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -4474,10 +4474,10 @@ Effective as of September 14, 2015
             </objects>
             <point key="canvasLocation" x="-4637" y="175"/>
         </scene>
-        <!--Change Name-->
+        <!--Change Firstname-->
         <scene sceneID="FtB-xp-Nem">
             <objects>
-                <tableViewController id="VH6-fM-LGF" customClass="EditNameTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="VH6-fM-LGF" customClass="EditFirstNameTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ge1-jx-fFC">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4505,48 +4505,25 @@ Effective as of September 14, 2015
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Last Name" id="nTu-cJ-TAp">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="uQF-jR-7Ho">
-                                        <rect key="frame" x="0.0" y="137" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uQF-jR-7Ho" id="s1K-3R-Ihu">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tA5-Iv-Gvd">
-                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="VH6-fM-LGF" id="OxW-cI-hYZ"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="delegate" destination="VH6-fM-LGF" id="08R-Yb-XNN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Change Name" id="0l4-Qk-u5o">
+                    <navigationItem key="navigationItem" title="Change Firstname" id="0l4-Qk-u5o">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="fIy-DJ-RUO">
                             <connections>
-                                <action selector="save" destination="VH6-fM-LGF" id="rfu-91-rOe"/>
+                                <action selector="save" destination="VH6-fM-LGF" id="6fx-cH-VKO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="fNameField" destination="89V-d4-KTS" id="hjI-Fz-kUb"/>
-                        <outlet property="lNameField" destination="tA5-Iv-Gvd" id="v2t-5T-U4T"/>
+                        <outlet property="fNameField" destination="89V-d4-KTS" id="Ya7-L3-lOZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Iw-dh-9GA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="635" y="-1178"/>
+            <point key="canvasLocation" x="693" y="-1013"/>
         </scene>
         <!--Change Other-->
         <scene sceneID="mKf-Ou-LYp">
@@ -4741,6 +4718,57 @@ Effective as of September 14, 2015
             </objects>
             <point key="canvasLocation" x="-2494" y="340"/>
         </scene>
+        <!--Change Lastname-->
+        <scene sceneID="Vqp-hI-rqT">
+            <objects>
+                <tableViewController id="tRi-7B-wrg" customClass="EditLastNameTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="KPp-K1-1T2">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection headerTitle="Last Name" id="9qV-2T-GES">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="YdE-Sw-eiG">
+                                        <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YdE-Sw-eiG" id="JQb-8g-K9S">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UxY-vW-tjv">
+                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="tRi-7B-wrg" id="e6z-ou-CCQ"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="delegate" destination="tRi-7B-wrg" id="Py4-Ep-KIT"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Change Lastname" id="lW3-5f-QOK">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="PjO-Dc-IBn">
+                            <connections>
+                                <action selector="save" destination="tRi-7B-wrg" id="dTk-bk-XE1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="lNameField" destination="UxY-vW-tjv" id="NpP-dI-72b"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ebH-1K-5PR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="933" y="-535"/>
+        </scene>
     </scenes>
     <resources>
         <image name="#Tag Input" width="331" height="72"/>
@@ -4786,29 +4814,19 @@ Effective as of September 14, 2015
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SrR-ph-ZEC"/>
+        <segue reference="U58-7K-X9n"/>
+        <segue reference="Q72-pv-Wqo"/>
         <segue reference="wPR-Ua-TlF"/>
-        <segue reference="hFd-TA-2wg"/>
-        <segue reference="dHW-RB-S8H"/>
-        <segue reference="0Uq-5l-w5H"/>
-        <segue reference="T9S-G7-mh0"/>
-        <segue reference="ji8-C3-1Lo"/>
+        <segue reference="3ER-K8-eo8"/>
+        <segue reference="pyd-yG-wzP"/>
+        <segue reference="UDh-ad-jqq"/>
         <segue reference="kNn-C3-4Z5"/>
-        <segue reference="fy0-iv-eFM"/>
-        <segue reference="3Xw-TM-u6h"/>
-        <segue reference="9SA-Oc-iuS"/>
-        <segue reference="uwx-Vf-wTk"/>
-        <segue reference="kNn-C3-4Z5"/>
-        <segue reference="wPR-Ua-TlF"/>
-        <segue reference="8W1-I7-grp"/>
-        <segue reference="5f9-3x-iDp"/>
-        <segue reference="JUD-Gk-HWr"/>
-        <segue reference="iK2-rd-jlM"/>
-        <segue reference="q73-lW-ew6"/>
-        <segue reference="ndx-Tw-tdZ"/>
-        <segue reference="L3f-Vr-cBz"/>
-        <segue reference="ji8-C3-1Lo"/>
-        <segue reference="2FX-5X-rOO"/>
         <segue reference="gqI-eh-cAa"/>
+        <segue reference="8W1-I7-grp"/>
+        <segue reference="JUD-Gk-HWr"/>
+        <segue reference="q73-lW-ew6"/>
+        <segue reference="2FX-5X-rOO"/>
+        <segue reference="ndx-Tw-tdZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

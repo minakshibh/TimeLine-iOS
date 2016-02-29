@@ -32,21 +32,97 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
             userNameLabel.text = user.username
             emailLabel.text = user.email
             userImageView.user = Storage.session.currentUser
-            bioLabel.text = "Bio Details"
-            firstNameLabel.text = "First Name"
-            lastNameLabel.text = "Last Name"
-            websiteLabel.text = "website"
-            otherLabel.text = "Others"
+
+            if let firstName = user["firstname"] as? String {
+                firstNameLabel.text = firstName
+            }
+            if let lastname = user["lastname"] as? String {
+                lastNameLabel.text = lastname
+            }
+            if let website = user["website"] as? String {
+                websiteLabel.text = website
+            }
+            if let other = user["other"] as? String {
+                otherLabel.text = other
+            }
+            if let bio = user["bio"] as? String {
+                bioLabel.text = bio
+            }
         }
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Done, target: self, action: "saveUser")
+    }
+    override func viewWillAppear(animated: Bool) {
+        if let user = PFUser.currentUser() {
+            userNameLabel.text = user.username
+            emailLabel.text = user.email
+            userImageView.user = Storage.session.currentUser
+            
+            if let firstName = user["firstname"] as? String {
+                firstNameLabel.text = firstName
+            }
+            if let lastname = user["lastname"] as? String {
+                lastNameLabel.text = lastname
+            }
+            if let website = user["website"] as? String {
+                websiteLabel.text = website
+            }
+            if let other = user["other"] as? String {
+                otherLabel.text = other
+            }
+            if let bio = user["bio"] as? String {
+                bioLabel.text = bio
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        var cellHeight : CGFloat = 44.0
+        let font = UIFont.systemFontOfSize(6)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = .ByWordWrapping;
+        let attributes = [NSFontAttributeName:font,
+            NSParagraphStyleAttributeName:paragraphStyle.copy()]
+
+        
+        if indexPath.row == 4
+        {
+            
+            if let bio = PFUser.currentUser()!["bio"] as? String {
+                let text = bio as NSString
+                let size = CGSizeMake(bioLabel.frame.width,CGFloat.max)
+                let rect = text.boundingRectWithSize(size, options:.UsesLineFragmentOrigin, attributes: attributes, context:nil)
+                bioLabel.autosizeForWidth()
+                cellHeight = CGFloat(rect.size.height + 5)
+                
+            }
+        }
+        if indexPath.row == 8
+        {
+            if let other = PFUser.currentUser()!["other"] as? String {
+                let text = other as NSString
+                let size = CGSizeMake(otherLabel.frame.width,CGFloat.max)
+                let rect = text.boundingRectWithSize(size, options:.UsesLineFragmentOrigin, attributes: attributes, context:nil)
+                otherLabel.autosizeForWidth()
+                cellHeight = CGFloat(rect.size.height + 5)
+
+            }
+        }
+        if cellHeight < 44.0
+        {
+            cellHeight = 44.0
+        }
+        return cellHeight
+    }
+    
+
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.item {
