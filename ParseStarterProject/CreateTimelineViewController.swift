@@ -280,10 +280,10 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         
         if let dataDict = dataArray[indexPath.row] as? NSDictionary
         {
-            if let firstName = dataDict["name"] as? NSString
+            if let firstName = dataDict["firstname"] as? NSString
             {
                 var fullname = firstName
-                if let lastName = dataDict["name"] as? NSString
+                if let lastName = dataDict["lastname"] as? NSString
                 {
                     fullname = "\(firstName) \(lastName)"
                 }
