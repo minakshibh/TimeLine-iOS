@@ -12,7 +12,8 @@ import Parse
 class EditProfileTableViewController: TintedHeaderTableViewController {
 
     var imagePicker: UIImagePickerController?
-    
+    var font = UIFont.systemFontOfSize(6)
+
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var userImageView: ProfileImageView!
@@ -28,32 +29,19 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
         // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = true
         
-        if let user = PFUser.currentUser() {
-            userNameLabel.text = user.username
-            emailLabel.text = user.email
-            userImageView.user = Storage.session.currentUser
-
-            if let firstName = user["firstname"] as? String {
-                firstNameLabel.text = firstName
-            }
-            if let lastname = user["lastname"] as? String {
-                lastNameLabel.text = lastname
-            }
-            if let website = user["website"] as? String {
-                websiteLabel.text = website
-            }
-            if let other = user["other"] as? String {
-                otherLabel.text = other
-            }
-            if let bio = user["bio"] as? String {
-                bioLabel.text = bio
-            }
-        }
+        self.dispalyDataInLabels()
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Done, target: self, action: "saveUser")
     }
     override func viewWillAppear(animated: Bool) {
+        self.dispalyDataInLabels()
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+    }
+
+    func dispalyDataInLabels()
+    {
         if let user = PFUser.currentUser() {
             userNameLabel.text = user.username
             emailLabel.text = user.email
@@ -76,7 +64,6 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
             }
         }
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -85,7 +72,7 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         var cellHeight : CGFloat = 44.0
-        let font = UIFont.systemFontOfSize(6)
+//        let font = UIFont.systemFontOfSize(6)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .ByWordWrapping;
         let attributes = [NSFontAttributeName:font,
@@ -125,6 +112,8 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
 
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        font = UIFont.systemFontOfSize(17)
+
         switch indexPath.item {
         case 1:
             self.changeProfileImage()
