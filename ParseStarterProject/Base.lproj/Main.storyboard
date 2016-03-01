@@ -1500,7 +1500,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="pqp-p9-mtJ" customClass="EditPasswordTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="6zF-QL-jjB">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -1765,7 +1765,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Xbc-8Z-o3Z" customClass="EditEmailTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="naj-kV-wKa">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -1924,7 +1924,7 @@ Effective as of September 14, 2015
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="New Timeline" id="i40-Ga-Z6k">
                             <connections>
-                                <segue destination="TOd-Hl-c3P" kind="show" id="Mp7-JG-jyO"/>
+                                <action selector="createTimelineActionButton:" destination="qfZ-8f-OL2" id="ul4-y1-6aw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1936,11 +1936,12 @@ Effective as of September 14, 2015
                         <segue destination="SRB-sd-SLO" kind="presentation" identifier="WalkthroughMy" id="dHW-RB-S8H"/>
                         <segue destination="2TK-H5-g5m" kind="show" identifier="ShowUser" id="hFd-TA-2wg"/>
                         <segue destination="dpZ-pz-TmS" kind="show" identifier="ShowUserList" id="sHs-6J-bIg"/>
+                        <segue destination="TOd-Hl-c3P" kind="show" identifier="ShowCreateTimeline" id="HAd-wS-i9i"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgs-fD-JOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4000" y="1712"/>
+            <point key="canvasLocation" x="-4000" y="1730"/>
         </scene>
         <!--Create Timeline-->
         <scene sceneID="ewK-wh-kW0">
@@ -1955,7 +1956,7 @@ Effective as of September 14, 2015
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#tagyourtimeline" textAlignment="center" minimumFontSize="17" background="#Tag Input" translatesAutoresizingMaskIntoConstraints="NO" id="zAa-9y-rbp">
-                                <rect key="frame" x="16" y="99" width="568" height="68"/>
+                                <rect key="frame" x="16" y="74" width="568" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="Dfa-PX-xbz"/>
                                     <constraint firstAttribute="height" constant="68" id="M35-OB-uRc"/>
@@ -1975,13 +1976,13 @@ Effective as of September 14, 2015
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isn-NQ-Sb4">
-                                <rect key="frame" x="16" y="377" width="568" height="90"/>
+                                <rect key="frame" x="16" y="397" width="568" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="Ug4-ai-Xtg"/>
+                                    <constraint firstAttribute="height" constant="70" id="Ug4-ai-Xtg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="INDIVIDUAL TIMELINE" backgroundImage="Button">
+                                <state key="normal" title="DONE" backgroundImage="Button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1989,8 +1990,8 @@ Effective as of September 14, 2015
                                     <action selector="submitAction" destination="TOd-Hl-c3P" eventType="touchUpInside" id="Ws5-93-XOW"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Timelines must be tagged alphanumerically." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1By-6o-PfB">
-                                <rect key="frame" x="16" y="58" width="288" height="21"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Timelines must be tagged alphanumerically." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="1By-6o-PfB">
+                                <rect key="frame" x="16" y="46" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.89019607840000003" green="0.25882352939999997" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2001,48 +2002,51 @@ Effective as of September 14, 2015
                                     <rect key="frame" x="201" y="176" width="336" height="21"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G45-E9-SAm">
-                                <rect key="frame" x="16" y="265" width="568" height="90"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AtV-Qz-eyv">
+                                <rect key="frame" x="16" y="167" width="564" height="152"/>
+                                <color key="backgroundColor" red="0.60054978839999995" green="0.62826969580000003" blue="0.70312501989999998" alpha="0.32000000000000001" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="WH7-NL-Zgs"/>
+                                    <constraint firstAttribute="width" constant="564" id="6Rh-w3-ejg"/>
+                                    <constraint firstAttribute="height" constant="120" id="oRV-Qr-RDG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="GROUP TIMELINE" backgroundImage="Button">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                 <connections>
-                                    <action selector="groupTimelineButtonAction:" destination="TOd-Hl-c3P" eventType="touchUpInside" id="DJB-bT-kzc"/>
+                                    <outlet property="delegate" destination="TOd-Hl-c3P" id="sd6-wG-uQP"/>
                                 </connections>
-                            </button>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Describe group feedeo..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e61-m9-gJR">
+                                <rect key="frame" x="27" y="171" width="541" height="31"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="0.45000000000000001" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="G45-E9-SAm" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" constant="-4" id="2tb-3K-0Rk"/>
-                            <constraint firstItem="1XW-qz-FwA" firstAttribute="top" secondItem="G45-E9-SAm" secondAttribute="bottom" constant="181" id="4g2-Ho-ePs"/>
+                            <constraint firstItem="AtV-Qz-eyv" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" constant="-4" id="07T-m1-4u4"/>
+                            <constraint firstItem="e61-m9-gJR" firstAttribute="centerX" secondItem="9o4-Ng-jBv" secondAttribute="centerX" constant="-2.5" id="8HE-fk-0Kx"/>
                             <constraint firstItem="zAa-9y-rbp" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" id="8U3-th-3kO"/>
                             <constraint firstItem="zAa-9y-rbp" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" constant="-4" id="8vh-xB-Vp9"/>
                             <constraint firstItem="zAa-9y-rbp" firstAttribute="trailing" secondItem="9o4-Ng-jBv" secondAttribute="trailingMargin" id="AeF-TF-umf"/>
+                            <constraint firstItem="e61-m9-gJR" firstAttribute="top" secondItem="zAa-9y-rbp" secondAttribute="bottom" constant="35" id="Dcn-98-6t4"/>
                             <constraint firstItem="zAa-9y-rbp" firstAttribute="trailing" secondItem="9o4-Ng-jBv" secondAttribute="trailingMargin" constant="4" id="G93-b7-Kf6"/>
-                            <constraint firstItem="zAa-9y-rbp" firstAttribute="top" secondItem="1By-6o-PfB" secondAttribute="bottom" constant="20" id="Qi5-17-ckf"/>
+                            <constraint firstItem="AtV-Qz-eyv" firstAttribute="trailing" secondItem="9o4-Ng-jBv" secondAttribute="trailingMargin" id="L1u-fi-8L7"/>
+                            <constraint firstItem="zAa-9y-rbp" firstAttribute="top" secondItem="1By-6o-PfB" secondAttribute="bottom" constant="7" id="Qi5-17-ckf"/>
+                            <constraint firstItem="AtV-Qz-eyv" firstAttribute="top" secondItem="zAa-9y-rbp" secondAttribute="bottom" constant="32" id="U3d-D9-AfD"/>
                             <constraint firstItem="Isn-NQ-Sb4" firstAttribute="centerX" secondItem="9o4-Ng-jBv" secondAttribute="centerX" id="Y9d-0m-Ed8"/>
                             <constraint firstItem="1By-6o-PfB" firstAttribute="width" relation="lessThanOrEqual" secondItem="zAa-9y-rbp" secondAttribute="width" id="bKH-0W-i0K"/>
+                            <constraint firstItem="e61-m9-gJR" firstAttribute="centerY" secondItem="9o4-Ng-jBv" secondAttribute="centerY" constant="-75.5" id="dRs-4G-tMX"/>
                             <constraint firstItem="1XW-qz-FwA" firstAttribute="top" secondItem="Isn-NQ-Sb4" secondAttribute="bottom" constant="69" id="f4H-t5-6b0"/>
-                            <constraint firstItem="G45-E9-SAm" firstAttribute="trailing" secondItem="9o4-Ng-jBv" secondAttribute="trailingMargin" constant="4" id="fDT-RO-587"/>
-                            <constraint firstAttribute="centerX" secondItem="G45-E9-SAm" secondAttribute="centerX" id="hl6-19-D7V"/>
-                            <constraint firstItem="zAa-9y-rbp" firstAttribute="centerX" secondItem="1By-6o-PfB" secondAttribute="centerX" constant="140" id="j68-WO-qWD"/>
-                            <constraint firstAttribute="centerY" secondItem="zAa-9y-rbp" secondAttribute="centerY" constant="135" id="qqw-09-rWk"/>
-                            <constraint firstItem="G45-E9-SAm" firstAttribute="top" secondItem="zAa-9y-rbp" secondAttribute="bottom" constant="23" id="tUS-Zd-sgk"/>
+                            <constraint firstAttribute="centerY" secondItem="zAa-9y-rbp" secondAttribute="centerY" constant="160" id="qqw-09-rWk"/>
                             <constraint firstItem="Isn-NQ-Sb4" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" constant="-4" id="weL-aY-qOk"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="8U3-th-3kO"/>
                                 <exclude reference="AeF-TF-umf"/>
-                                <exclude reference="hl6-19-D7V"/>
-                                <exclude reference="tUS-Zd-sgk"/>
                             </mask>
                         </variation>
                         <connections>
@@ -2052,8 +2056,9 @@ Effective as of September 14, 2015
                     <navigationItem key="navigationItem" title="Create Timeline" id="m0g-Hy-lb0"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="groupTimelineButton" destination="G45-E9-SAm" id="468-pF-AiQ"/>
+                        <outlet property="DescribeTimelineHeaderLabel" destination="e61-m9-gJR" id="hAm-fm-ToE"/>
                         <outlet property="submitButton" destination="Isn-NQ-Sb4" id="JmX-nv-S4I"/>
+                        <outlet property="timelineDetailTxtView" destination="AtV-Qz-eyv" id="YyT-Ed-EXx"/>
                         <outlet property="warningLabel" destination="1By-6o-PfB" id="u87-QC-gd8"/>
                         <outletCollection property="textFields" destination="zAa-9y-rbp" collectionClass="NSMutableArray" id="Zh4-bB-Tfd"/>
                         <segue destination="ZMq-hf-VJs" kind="show" identifier="BuyUpgrade" id="U58-7K-X9n"/>
@@ -2066,7 +2071,7 @@ Effective as of September 14, 2015
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-4000" y="2485"/>
+            <point key="canvasLocation" x="-4050" y="2579"/>
         </scene>
         <!--Moments-->
         <scene sceneID="g7Z-9J-FKC">
@@ -4479,7 +4484,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="VH6-fM-LGF" customClass="EditFirstNameTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ge1-jx-fFC">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -4530,7 +4535,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Ev4-Ms-jSR" customClass="EditOthersTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Rda-9L-y3k">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -4592,7 +4597,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Ytn-dy-lMq" customClass="EditWebsiteTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ta0-b9-g93">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -4643,7 +4648,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="ddZ-Mz-lWg" customClass="EditBioTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Wyx-aB-jzH">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -4723,7 +4728,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="tRi-7B-wrg" customClass="EditLastNameTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="KPp-K1-1T2">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -4813,20 +4818,20 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SrR-ph-ZEC"/>
-        <segue reference="U58-7K-X9n"/>
-        <segue reference="Q72-pv-Wqo"/>
-        <segue reference="wPR-Ua-TlF"/>
-        <segue reference="3ER-K8-eo8"/>
-        <segue reference="pyd-yG-wzP"/>
-        <segue reference="UDh-ad-jqq"/>
-        <segue reference="kNn-C3-4Z5"/>
-        <segue reference="gqI-eh-cAa"/>
         <segue reference="8W1-I7-grp"/>
+        <segue reference="SrR-ph-ZEC"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="0Uq-5l-w5H"/>
+        <segue reference="MIt-vp-hHF"/>
+        <segue reference="hFd-TA-2wg"/>
+        <segue reference="sHs-6J-bIg"/>
+        <segue reference="dHW-RB-S8H"/>
+        <segue reference="U58-7K-X9n"/>
+        <segue reference="kNn-C3-4Z5"/>
         <segue reference="JUD-Gk-HWr"/>
-        <segue reference="q73-lW-ew6"/>
-        <segue reference="2FX-5X-rOO"/>
         <segue reference="ndx-Tw-tdZ"/>
+        <segue reference="q73-lW-ew6"/>
+        <segue reference="gqI-eh-cAa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

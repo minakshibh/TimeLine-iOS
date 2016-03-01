@@ -11,6 +11,10 @@ import Foundation
 typealias UUID = String
 typealias PAGE_ID = String
 typealias PARAMS = String
+typealias members = String
+typealias groupdescription = String
+typealias owner = String
+typealias timeLinename = String
 
 enum ApiRequest {
     
@@ -33,6 +37,7 @@ enum ApiRequest {
     /// user_id: UUID of the user
     case CreateTimeline(String)
     
+    case CreateGroupTimeline(timeLinename,members,groupdescription,owner)
     /// GET /api/video/:id
     /// id: UUID of the video
     case ViewVideo(UUID)
@@ -175,6 +180,11 @@ enum ApiRequest {
             urlString = "/api/timeline/create"
             urlRequest.HTTPMethod = "POST"
             urlRequest.HTTPBody = "name=\(name.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            
+        case let .CreateGroupTimeline(timeLinename,members,groupdescription,owner):
+            let bodyData = "name=\(timeLinename.urlEncoded)&members=\(members.urlEncoded)&description=\(groupdescription.urlEncoded)&owner=\(owner.urlEncoded)"
+            urlString = "/api/timeline/create_group_timeline?\(bodyData)"
+            urlRequest.HTTPMethod = "POST"
             
         case let .ViewVideo(uuid):
             urlString = "/api/video/\(uuid.urlEncoded)"
