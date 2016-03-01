@@ -105,9 +105,11 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
     }
     func CreateSingleTimelineButtonAction() {
         main {
-           
             guard let title = self.textFields.first!.text else { return }
-            Storage.performRequest(.CreateTimeline(title)) { (json) -> Void in
+            guard let description = self.timelineDetailTxtView.text else { return }
+            Storage.performRequest(.CreateTimeline(title,description)) { (json) -> Void in
+                print("timelime API response :\(json)")
+
                 switch json["status_code"] as? Int ?? 400 {
                 case 400, 402: // payment required
                     let alert = UIAlertController(title: local(LocalizedString.TimelineAlertLimitRequiredTitle),
@@ -354,13 +356,13 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
             }
             else
             {
-                InvitedFriendsIdSTr = "\(InvitedFriendsIdSTr), \(ids)"
+                InvitedFriendsIdSTr = "\(InvitedFriendsIdSTr),\(ids)"
             }
         }
         guard let title = self.textFields.first!.text else { return }
         guard let description = self.timelineDetailTxtView.text else { return }
 
-        Storage.performRequest(.CreateGroupTimeline(title,InvitedFriendsIdSTr  as members,description as groupdescription,  Storage.session.uuid!)) { (json) -> Void in
+        Storage.performRequest(.CreateGroupTimeline(title,InvitedFriendsIdSTr  as members,description as groupdescription)) { (json) -> Void in
             print("Group timelime API response :\(json)")
             
             KGModal.sharedInstance().hideAnimated(true)

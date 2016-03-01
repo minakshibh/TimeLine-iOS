@@ -35,9 +35,9 @@ enum ApiRequest {
     /// POST /api/timeline/create
     /// name: Name of the Timeline
     /// user_id: UUID of the user
-    case CreateTimeline(String)
+    case CreateTimeline(String,groupdescription)
     
-    case CreateGroupTimeline(timeLinename,members,groupdescription,owner)
+    case CreateGroupTimeline(timeLinename,members,groupdescription)
     /// GET /api/video/:id
     /// id: UUID of the video
     case ViewVideo(UUID)
@@ -176,14 +176,18 @@ enum ApiRequest {
             urlString = "/api/timeline/\(uuid.urlEncoded)/"
             urlRequest.HTTPMethod = "DELETE"
             
-        case let .CreateTimeline(name):
-            urlString = "/api/timeline/create"
+        case let .CreateTimeline(name,groupdescription):
+//            urlString = "/api/timeline/create"
+//            urlRequest.HTTPMethod = "POST"
+////            description
+//            urlRequest.HTTPBody = "name=\(name.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            let bodyData = "name=\(name.urlEncoded)&description=\(groupdescription.urlEncoded)"
+            urlString = "/api/timeline/create?\(bodyData)"
             urlRequest.HTTPMethod = "POST"
-            urlRequest.HTTPBody = "name=\(name.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
             
-        case let .CreateGroupTimeline(timeLinename,members,groupdescription,owner):
-            let bodyData = "name=\(timeLinename.urlEncoded)&members=\(members.urlEncoded)&description=\(groupdescription.urlEncoded)&owner=\(owner.urlEncoded)"
-            urlString = "/api/timeline/create_group_timeline?\(bodyData)"
+        case let .CreateGroupTimeline(timeLinename,members,groupdescription):
+            let bodyData = "name=\(timeLinename.urlEncoded)&participants=\(members.urlEncoded)&description=\(groupdescription.urlEncoded)&group_timeline=1"
+            urlString = "/api/timeline/create?\(bodyData)"
             urlRequest.HTTPMethod = "POST"
             
         case let .ViewVideo(uuid):
