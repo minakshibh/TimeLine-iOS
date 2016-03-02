@@ -1914,7 +1914,7 @@ Effective as of September 14, 2015
                             <outlet property="delegate" destination="qfZ-8f-OL2" id="mER-ut-CeJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Timelines" id="1Lz-Nz-xZS" userLabel="Timelines">
+                    <navigationItem key="navigationItem" title="My Feedeos" id="1Lz-Nz-xZS" userLabel="Timelines">
                         <barButtonItem key="backBarButtonItem" title=" " id="2H8-BH-End"/>
                         <barButtonItem key="leftBarButtonItem" image="Back to previous screen" id="7jh-k9-ZQ4">
                             <connections>
@@ -4834,17 +4834,17 @@ Effective as of September 14, 2015
     <inferredMetricsTieBreakers>
         <segue reference="8W1-I7-grp"/>
         <segue reference="SrR-ph-ZEC"/>
-        <segue reference="wPR-Ua-TlF"/>
-        <segue reference="0Uq-5l-w5H"/>
-        <segue reference="MIt-vp-hHF"/>
-        <segue reference="hFd-TA-2wg"/>
         <segue reference="sHs-6J-bIg"/>
         <segue reference="dHW-RB-S8H"/>
-        <segue reference="U58-7K-X9n"/>
+        <segue reference="0Uq-5l-w5H"/>
+        <segue reference="hFd-TA-2wg"/>
+        <segue reference="MIt-vp-hHF"/>
         <segue reference="kNn-C3-4Z5"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="5f9-3x-iDp"/>
         <segue reference="JUD-Gk-HWr"/>
-        <segue reference="ndx-Tw-tdZ"/>
         <segue reference="q73-lW-ew6"/>
+        <segue reference="ndx-Tw-tdZ"/>
         <segue reference="gqI-eh-cAa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
