@@ -6,19 +6,19 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "2x",
-      "filename" : "Orange Background-1.png"
+      "filename" : "Background_750x1334.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "Orange Background@2x4.png",
+      "filename" : "Background_1020x1920.png",
       "subtype" : "retina4",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "scale" : "3x",
-      "filename" : "Background@3x.png"
+      "filename" : "Background_1242x2208.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
