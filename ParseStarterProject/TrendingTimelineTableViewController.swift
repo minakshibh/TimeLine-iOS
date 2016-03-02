@@ -30,6 +30,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var selectedPeople: NSMutableArray! = []
     var errorText:UILabel?
     var emptyDictionary: CFDictionaryRef?
+    var view1:UIView!
+    var view2:UIView!
     var searchResults: [AnyObject] = [] {
         didSet {
             searching = false
@@ -45,10 +47,11 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 //        self.hidesBottomBarWhenPushed = true
         tableView.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
 
-        tableViewContact = UITableView(frame: CGRectMake(50, 50, 300, 300), style: .Plain)
-        tableViewContact.delegate = self
-        tableViewContact.dataSource = self
-        tableViewContact.registerClass(UITableViewCell.self, forCellReuseIdentifier: "commentCellss")
+        view1 = UIView(frame: CGRectMake(0,0,25,25))
+        view1.backgroundColor = UIColor.blackColor()
+        
+        view2 = UIView(frame: CGRectMake(0,0,25,25))
+        view2.backgroundColor = UIColor.yellowColor()
         
         
         // Do any additional setup after loading the view.
@@ -57,9 +60,17 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         
         searchDisplayController?.searchBar.scopeButtonTitles = [NSLocalizedString("Users", comment: "Country"),NSLocalizedString("Timeline", comment: "Capital")]
             
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+
+
         
-        
-        
+        let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to Record"), style: .Plain, target: self, action: "goToRecordScreen")
+//        (title: "Save", style: .Plain, target: self, action: "SaveImage")
+        let Add: UIBarButtonItem = UIBarButtonItem(title: "Invite", style: .Plain, target: self, action: "btnInvite")
+//        (barButtonSystemItem: .Add, target: self, action: "AddComment:")
+
+    
+        navigationItem.rightBarButtonItems = [right,Add]
         
         
         delay(0.001) {
@@ -73,23 +84,49 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         let screenRect = UIScreen.mainScreen().bounds
         let screenWidth = screenRect.size.width;
         let screenHeight = screenRect.size.height;
-        self.timelineCommentView.frame = CGRectMake(0, 0, screenWidth-60, screenHeight-110);
+        self.timelineCommentView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
         self.timelineCommentView.backgroundColor = UIColor(white: 1 , alpha: 0)
 //        self.timelineCommentView.alpha = 1
-        self.tableViewContact.frame = CGRectMake(0, 0, screenWidth-60, screenHeight-160);
-        self.timelineCommentView.layer.cornerRadius = 8.0
-        self.tableViewContact.layer.cornerRadius = 8.0
-        self.timelineCommentView.addSubview(self.tableViewContact)
         
+        let headerView = UIView(frame: CGRectMake(0, 0, timelineCommentView.frame.size.width, (navigationController?.navigationBar.frame.size.height)!+20))
+        headerView.backgroundColor = UIColor.redColor()
         
-        let Invitebutton: UIButton = UIButton(frame: CGRectMake(0, tableViewContact.frame.size.height, tableViewContact.frame.size.width, 50))
-        Invitebutton.setTitle("Send Invites", forState: .Normal)
+        let headerTitle = UILabel(frame: CGRectMake(0, headerView.frame.size.height-50,headerView.frame.size.width , 50))
+        headerTitle.text = "Select Contacts"
+        headerTitle.font = UIFont.boldSystemFontOfSize(20.0)
+        headerTitle.textAlignment = .Center
+        headerTitle.textColor = UIColor.whiteColor()
+        headerView.addSubview(headerTitle)
+        
+        let Invitebutton: UIButton = UIButton(frame: CGRectMake(headerView.frame.size.width-70-10, headerView.frame.size.height/4+5, 70, 35))
+        Invitebutton.setTitle("Invite", forState: .Normal)
         Invitebutton.addTarget(self, action: "Invitebuttontapped:", forControlEvents: UIControlEvents.TouchUpInside)
         Invitebutton.backgroundColor = UIColor.blackColor()
         Invitebutton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         Invitebutton.titleLabel?.font = UIFont.systemFontOfSize(20)
-        self.timelineCommentView.addSubview(Invitebutton)
         Invitebutton.layer.cornerRadius = 8.0
+        headerView.addSubview(Invitebutton)
+        
+        let btnBack: UIButton = UIButton(frame: CGRectMake(15, headerView.frame.size.height/4+5, 30, 35))
+        btnBack.addTarget(self, action: "btnBackContact", forControlEvents: UIControlEvents.TouchUpInside)
+        btnBack.setImage(UIImage(named: "Back to previous screen"), forState: .Normal)
+        headerView.addSubview(btnBack)
+        
+        self.timelineCommentView.addSubview(headerView)
+        
+        
+        
+        tableViewContact = UITableView(frame: CGRectMake(50, 50, 300, 300), style: .Plain)
+        tableViewContact.delegate = self
+        tableViewContact.dataSource = self
+        tableViewContact.registerClass(UITableViewCell.self, forCellReuseIdentifier: "commentCellss")
+        self.tableViewContact.frame = CGRectMake(0, headerView.frame.size.height, screenWidth, screenHeight);
+        self.timelineCommentView.layer.cornerRadius = 8.0
+//        self.tableViewContact.layer.cornerRadius = 8.0
+        self.timelineCommentView.addSubview(self.tableViewContact)
+        
+        
+        
         
         errorText = UILabel.init(frame: CGRectMake(0, Invitebutton.frame.origin.y-30 , Invitebutton.frame.size.width, 30 ))
         errorText!.font = UIFont.systemFontOfSize(15)
@@ -97,7 +134,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         errorText!.textAlignment = NSTextAlignment.Center;
         
         
-        
+        self.tableViewContact.separatorStyle = .None
        
 //        self.fetchContacts()
         var error: Unmanaged<CFError>?
@@ -115,8 +152,12 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             }
         }
     }
-    
-    
+    func btnBackContact(){
+        KGModal.sharedInstance().hideAnimated(true)
+    }
+    func goToRecordScreen(){
+         performSegueWithIdentifier("goToCapture", sender: nil)
+    }
     func Invitebuttontapped(sender: UIButton!)
     {
         if selectedPeople.count == 0
@@ -169,13 +210,13 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             first = false
         }
     }
-    @IBAction func btnInvite(sender: AnyObject) {
+    func btnInvite() {
 
         let confirm = UIAlertController(title: "Send Invites", message: "", preferredStyle:UIAlertControllerStyle.ActionSheet)
         confirm.addAction(title: "Cancel",
             style: .Cancel,
             handler: nil)
-        confirm.addAction(title: "Facebook Friends",
+        confirm.addAction(title: "Facebook",
             style: .Default) { _ in
                 let inviteDialog:FBSDKAppInviteDialog = FBSDKAppInviteDialog()
                 if(inviteDialog.canShow()){
@@ -197,15 +238,19 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 self.tableViewContact.reloadData()
                 self.tableView.reloadData()
                 
+                KGModal.sharedInstance().closeButtonType = .None
                 KGModal.sharedInstance().showWithContentView(self.timelineCommentView)
-                KGModal.sharedInstance().closeButtonType = .Right
-                
+//                KGModal.sharedInstance().closeButtonType = .Right
+//                KGModal.sharedInstance().closeButtonType = none
                 //KGModal.sharedInstance().showCloseButton = true
                 //                    self.view.addSubview(self.tableViewContact)
                 
                 self.tableViewContact.reloadData()
                 
                 let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
+                
+//                 self.performSegueWithIdentifier("toContactView", sender: nil)
+                
             
     } //---end of confirm action
         self.tableViewContact.reloadData()
@@ -214,6 +259,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     
     func update() {
        self.tableViewContact.reloadData()
+        NSUserDefaults.standardUserDefaults().setObject(self.nameArray, forKey: "nameArray")
+        NSUserDefaults.standardUserDefaults().setObject(self.numberArray, forKey: "numberArray")
     }
     
     func fetchContacts(){
@@ -357,12 +404,17 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             
             errorText!.removeFromSuperview()
             
+            
+            
+            
+            
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
              let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
             let person = numberArray[indexPath.row]
             
             if cell.accessoryType == .None {
                 cell.accessoryType = .Checkmark
+                print("\(cell.accessoryType)")
                 selectedPeople.addObject(person)
             }else if cell.accessoryType == .Checkmark {
                 cell.accessoryType = .None
@@ -407,10 +459,12 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             cell.contentView.addSubview(text2)
             
             
-            let text3:UILabel = UILabel.init(frame: CGRectMake(0, text2.frame.origin.y+text2.frame.size.height+6 , 350, 1 ))
+            let text3:UILabel = UILabel.init(frame: CGRectMake(0, text2.frame.origin.y+text2.frame.size.height+6 , cell.frame.size.width, 1 ))
             text3.font = UIFont.systemFontOfSize(15)
             text3.backgroundColor = UIColor.darkGrayColor()
             cell.contentView.addSubview(text3)
+            
+            
             
             
             let result = selectedPeople.filter { $0 as! NSObject==numberArray[indexPath.row] as? String }
@@ -422,6 +476,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 cell.accessoryType = .Checkmark
                 // element exists
             }
+            cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0)
             
 //            if (selectedPeople.contains(numberArray[indexPath.row])){
 //                cell.accessoryType = .Checkmark
@@ -486,6 +541,10 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             dest?.user = user
         } else if segue.identifier == "sample1" {
           super.prepareForSegue(segue, sender: sender)
+        }else if segue.identifier == "goToCapture"{
+        super.prepareForSegue(segue, sender: sender)
+        }else if segue.identifier == "toContactView"{
+        super.prepareForSegue(segue, sender: sender)
         }else {
             super.prepareForSegue(segue, sender: sender)
         }

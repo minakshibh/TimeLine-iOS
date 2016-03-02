@@ -11,6 +11,7 @@ import AVFoundation
 import AudioToolbox
 import Parse
 import SCRecorder
+import CoreMedia
 
 /// The central view controller.
 /// Contains a capture view and controls for navigation.
@@ -320,7 +321,7 @@ extension CaptureMomentViewController {
     }
     
     @IBAction func focusAndExposeTap(sender: UITapGestureRecognizer) {
-        recorder.continuousFocusAtPoint(recorder.convertToPointOfInterestFromViewCoordinates(sender.locationInView(previewView)))
+//        recorder.continuousFocusAtPoint(recorder.convertToPointOfInterestFromViewCoordinates(sender.locationInView(previewView)))
     }
     
     @IBAction func flipCamera(sender: AnyObject!) {
@@ -413,7 +414,7 @@ extension CaptureMomentViewController {
     
     func enableAllControls(enabled: Bool) {
         recordButton.enabled = enabled
-        nonRecordGestureRecognizers.each { $0.enabled = enabled }
+//        nonRecordGestureRecognizers.each { $0.enabled = enabled }
         menuControls.each { $0.enabled = enabled }
     }
     
@@ -428,10 +429,58 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                 let name = Moment.newName()
                 let newURL = Moment.documentURL(name, suffix: "mp4")
                 do {
+                    
+                    let asset1 = AVURLAsset(URL: url, options: nil)
+                    let seconds1 = Int(round(CMTimeGetSeconds(asset1.duration)))
+                    
+                    if seconds1 > 10 {
+                        
+                        let tenSecsVideo = seconds1/10 as Int
+                        let remainingTime  = seconds1 - tenSecsVideo*10
+                        
+                        var status = 0;
+                        if (remainingTime > 0) {
+                            status = 1
+                        }
+                        let count = tenSecsVideo + status
+                        
+//                        self.cropVideo(url)
+                        
+                        if status==1{
+                        //for loop with status
+                            for (var a=0;a<count;a++){
+                                var stattime:Int
+                                var endTime:Int
+                                
+                                let left = count-1
+                                if (a == left){
+                                    stattime = 0+10*a
+                                    endTime = stattime + remainingTime
+                                }else{
+                                stattime = 0 + 10*a
+                                endTime = 10 + 10*a
+                                }
+                                self.cropVideo(url, statTime: Float(stattime), endTime: Float(endTime))
+                            }
+                        }
+                         if status==0{
+                        //for loop without status
+                            for (var a=0;a<count-1;a++){
+                                
+                                let stattime = 0 + 10*a
+                                let endTime = 10 + 10*a
+                                self.cropVideo(url, statTime: Float(stattime), endTime: Float(endTime))
+                            }
+                        }
+                        return
+                        
+        }
+                    return
                     try NSFileManager.defaultManager().moveItemAtURL(url, toURL: newURL)
                     let asset = AVURLAsset(URL: newURL, options: nil)
                     let seconds = Int(round(CMTimeGetSeconds(asset.duration)))
-                    let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil)
+                    
+                let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil)
                     
                     
                     Storage.session.drafts.append(newMoment)
@@ -459,6 +508,84 @@ extension CaptureMomentViewController: SCRecorderDelegate {
         print("complete")
     }
     
+    func cropVideo(sourceURL1: NSURL, statTime:Float, endTime:Float)
+    {
+        let manager = NSFileManager.defaultManager()
+        
+        guard let documentDirectory = try? manager.URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true) else {return}
+        guard let mediaType = "mp4" as? String else {return}
+        guard let url = sourceURL1 as? NSURL else {return}
+        
+        if mediaType == kUTTypeMovie as String || mediaType == "mp4" as String {
+            let asset = AVAsset(URL: url)
+            let length = Float(asset.duration.value) / Float(asset.duration.timescale)
+            print("video length: \(length) seconds")
+            
+            let start = statTime
+            let end = endTime
+            
+            var outputURL = documentDirectory.URLByAppendingPathComponent("output")
+            do {
+                try manager.createDirectoryAtURL(outputURL, withIntermediateDirectories: true, attributes: nil)
+                let name = Moment.newName()
+                outputURL = outputURL.URLByAppendingPathComponent("\(name).mp4")
+            }catch let error {
+                print(error)
+            }
+            
+            //Remove existing file
+            _ = try? manager.removeItemAtURL(outputURL)
+            
+            
+            guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else {return}
+            exportSession.outputURL = outputURL
+            exportSession.outputFileType = AVFileTypeMPEG4
+            
+            let startTime = CMTime(seconds: Double(start ?? 0), preferredTimescale: 1000)
+            let endTime = CMTime(seconds: Double(end ?? length), preferredTimescale: 1000)
+            let timeRange = CMTimeRange(start: startTime, end: endTime)
+            
+            exportSession.timeRange = timeRange
+            exportSession.exportAsynchronouslyWithCompletionHandler{
+                switch exportSession.status {
+                case .Completed:
+                    print("exported at \(outputURL)")
+                   self.saveVideoTimeline(outputURL)
+                case .Failed:
+                    print("failed \(exportSession.error)")
+                    
+                case .Cancelled:
+                    print("cancelled \(exportSession.error)")
+                    
+                default: break
+                }
+            }
+        }
+    }
+    
+    func saveVideoTimeline(url:NSURL) {
+        let name = Moment.newName()
+        let newURL = Moment.documentURL(name, suffix: "mp4")
+        do {
+            try NSFileManager.defaultManager().moveItemAtURL(url, toURL: newURL)
+            let asset = AVURLAsset(URL: newURL, options: nil)
+            let seconds = Int(round(CMTimeGetSeconds(asset.duration)))
+            let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil)
+            
+            
+            Storage.session.drafts.append(newMoment)
+            Storage.save()
+            
+            self.drafts.addObject(newMoment)
+            self.addImagesToScrollView()
+            
+            //  self.performSegueWithIdentifier("ShowMoments", sender: self)
+            print("segued")
+        } catch {
+            print(error)
+        }
+    }
+    //-------------------------
     /**
     Called when the flashMode has changed
     */
