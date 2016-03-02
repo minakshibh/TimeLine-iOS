@@ -12,6 +12,7 @@ import ConclurerHook
 class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUsername {
     
     var user: User!
+    var timeline_id : NSString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +28,30 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
     
     override func refreshTableView() {
         timelines = user.timelines ?? []
+       
         user.reloadUser {
             main {
                 self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forItem: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)
             }
         }
         user.reloadTimelines {
-            main { self.timelines = self.user.timelines ?? [] }
+            main {
+                self.timelines = self.user.timelines ?? []
+                if !self.timeline_id .isEqual("")
+                {
+                    print("self.timeline_id==\(self.timeline_id)")
+                    
+                    for i in 0..<self.timelines.count {
+                        let timeline = self.timelines[i]
+                        if self.timeline_id .isEqual(timeline.state.uuid)
+                        {
+                            print("same t_id")
+                            let indexPath = NSIndexPath(forRow: i, inSection: 0)
+                            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+                        }
+                    }
+                }
+            }
         }
     }
     

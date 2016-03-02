@@ -16,6 +16,7 @@ class TimelineTableHeaderView: UIView {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var followerLabel: UILabel!
     @IBOutlet var likeLabel: UILabel!
+    @IBOutlet var fullNameLabel: UILabel!
     
     var user: User? {
         didSet {

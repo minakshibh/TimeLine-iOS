@@ -15,6 +15,7 @@ class drawer: EZSwipeController {
     }
     override func viewDidLoad() {
         self.navigationController?.navigationBarHidden = true
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
     
     override func viewWillAppear(animated: Bool) {

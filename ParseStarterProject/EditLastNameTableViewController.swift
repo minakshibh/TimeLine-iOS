@@ -1,5 +1,5 @@
 //
-//  EditWebsiteTableViewController.swift
+//  EditNameTableViewController.swift
 //  Timeline
 //
 //  Created by Br@R on 24/02/16.
@@ -10,19 +10,16 @@ import Foundation
 import UIKit
 import Parse
 
-class EditWebsiteTableViewController: TintedHeaderTableViewController, UITextFieldDelegate {
+class EditLastNameTableViewController: TintedHeaderTableViewController, UITextFieldDelegate {
     
-    @IBOutlet var websiteField: UITextField!
+    @IBOutlet var lNameField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let website = PFUser.currentUser()!["website"] as? String {
-            websiteField.placeholder = website
-        }
-        else{
-            websiteField.placeholder=local(.SettingsPlaceholderEmailText)
-        }
+        if let lastName = PFUser.currentUser()!["lastname"] as? String {
+            lNameField.placeholder = lastName
+        }        
     }
     override func viewDidDisappear(animated: Bool) {
         main{
@@ -37,10 +34,10 @@ class EditWebsiteTableViewController: TintedHeaderTableViewController, UITextFie
     
     @IBAction func save() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if websiteField.text != "" {
+        if lNameField.text != "" {
             let user = PFUser.currentUser()
             appDelegate.showActivityIndicator()
-            user!.setObject(websiteField.text!, forKey: "website")
+            user!.setObject(lNameField.text!, forKey: "lastname")
             user?.saveInBackgroundWithBlock { (success, error) -> Void in
                 appDelegate.hideActivityIndicator()
                 if success {
@@ -49,32 +46,23 @@ class EditWebsiteTableViewController: TintedHeaderTableViewController, UITextFie
                     }
                 }
             }
-        } else {
+        }
+        else {
             let alert = UIAlertController(title: local(.SettingsAlertEmailMissingTitle), message: local(.SettingsAlertEmailMissingMessage), preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: local(.SettingsAlertEmailMissingActionDismiss), style: UIAlertActionStyle.Default, handler: nil))
             presentAlertController(alert)
         }
     }
     
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         switch textField {
-        case websiteField:
-            websiteField.resignFirstResponder()
+        case lNameField:
+            lNameField.resignFirstResponder()
             save()
             return false
         default:
             return false
         }
     }
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
 }

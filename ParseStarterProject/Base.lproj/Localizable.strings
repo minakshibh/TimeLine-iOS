@@ -112,6 +112,7 @@
 "Timeline-Alert-Create-Missing-Title" = "Create Timeline";
 "Timeline-Alert-Create-Missing-Message" = "Please name your Timeline.";
 "Timeline-Alert-Create-Missing-Dismiss" = "Ok";
+"Timeline-Alert-Create-Missing-Detail-Message"="Please enter description about timeline";
 
 "Timeline-Alert-Create-Error-Title" = "Create Timeline";
 "Timeline-Alert-Create-Error-Action-Dismiss" = "Ok";
@@ -245,4 +246,9 @@
 "Draft-Alert-ConfirmUpload-Upload" = "Upload";
 "Draft-Alert-ConfirmUpload-Cancel" = "Cancel";
 
-
+// MARK: - 92
+"User-Create-Single-Timeline-Message" = "Create Feedeo";
+"User-Create-Group-Timeline-Message" = "Create Group Feedeo";
+"User-Create-Group-Timeline-Title" = "";
+"User-Create-Group-Timeline-Cancel" = "Cancel";
+"User-Create-Timeline-AlertMessage" = "";

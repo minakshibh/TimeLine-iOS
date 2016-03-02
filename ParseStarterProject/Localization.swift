@@ -121,7 +121,8 @@ enum LocalizedString: String, Localized {
     case TimelineAlertCreateMissingTitle = "Timeline-Alert-Create-Missing-Title"
     case TimelineAlertCreateMissingMessage = "Timeline-Alert-Create-Missing-Message"
     case TimelineAlertCreateMissingDismiss = "Timeline-Alert-Create-Missing-Dismiss"
-    
+    case TimelineAlertCreateMissingDetailMessage = "Timeline-Alert-Create-Missing-Detail-Message"
+
     case TimelineAlertCreateErrorTitle = "Timeline-Alert-Create-Error-Title"
     case TimelineAlertCreateErrorActionDismiss = "Timeline-Alert-Create-Error-Action-Dismiss"
     
@@ -253,6 +254,15 @@ enum LocalizedString: String, Localized {
     case DraftAlertConfirmUploadMessage = "Draft-Alert-ConfirmUpload-Message"
     case DraftAlertConfirmUploadUpload = "Draft-Alert-ConfirmUpload-Upload"
     case DraftAlertConfirmUploadCancel = "Draft-Alert-ConfirmUpload-Cancel"
+    
+    // MARK: - 92
+    case CreateGroupTimelineTitle = "User-Create-Group-Timeline-Title"
+    case CreateGroupTimelineMessage = "User-Create-Group-Timeline-Message"
+    case CreateSingleTimelineMessage = "User-Create-Single-Timeline-Message"
+    case CreateGroupTimelineCancel = "User-Create-Group-Timeline-Cancel"
+    case CreateTimelineAlertMessage = "User-Create-Timeline-AlertMessage"
+    
+    
 
     var localized: String {
         get {

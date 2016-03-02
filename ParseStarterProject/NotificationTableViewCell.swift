@@ -19,6 +19,7 @@ class NotificationTableViewCell: UITableViewCell {
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var notificationTxtLabel: UILabel!
+    @IBOutlet var fullNameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

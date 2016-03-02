@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -12,19 +12,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@DjMike" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NtT-Pe-xfr">
-                    <rect key="frame" x="81" y="15" width="64" height="20"/>
+                    <rect key="frame" x="81" y="26" width="185" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="tYq-qT-ctD"/>
+                    </constraints>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="38" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVc-sm-Ozx">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Firstname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncK-Qq-GsO">
+                    <rect key="frame" x="81" y="7" width="198" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="38" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVc-sm-Ozx">
                     <rect key="frame" x="98" y="35" width="14" height="15"/>
                     <color key="tintColor" red="0.95686274510000002" green="0.38431372549999998" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                     <color key="textColor" red="0.95686274510000002" green="0.38431372549999998" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hEW-dE-saB" customClass="ProfileImageView" customModule="Timeline" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEW-dE-saB" customClass="ProfileImageView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="8" y="4" width="50" height="50"/>
                     <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -32,19 +42,19 @@
                         <constraint firstAttribute="height" constant="50" id="R5v-BG-3oI"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Followers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieY-SR-sE6">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Followers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieY-SR-sE6">
                     <rect key="frame" x="120" y="35" width="54" height="15"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                     <color key="textColor" red="0.99215686270000003" green="0.58039215690000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1,231" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tm4-X8-yW0">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="1,231" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tm4-X8-yW0">
                     <rect key="frame" x="178" y="35" width="32" height="15"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                     <color key="textColor" red="0.99215686270000003" green="0.58039215690000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="Total Love" translatesAutoresizingMaskIntoConstraints="NO" id="xa4-7B-OYU">
+                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" misplaced="YES" image="37FF3657-837E-41D7-930D-A65E6FAB1390" translatesAutoresizingMaskIntoConstraints="NO" id="xa4-7B-OYU">
                     <rect key="frame" x="81" y="38" width="9" height="8"/>
                     <color key="tintColor" red="0.95686274510000002" green="0.38431372549999998" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
@@ -53,16 +63,19 @@
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="ieY-SR-sE6" firstAttribute="leading" secondItem="hVc-sm-Ozx" secondAttribute="trailing" constant="8" id="5oo-k0-ccK"/>
-                <constraint firstItem="NtT-Pe-xfr" firstAttribute="leading" secondItem="hEW-dE-saB" secondAttribute="trailing" constant="23" id="8OA-nd-90I"/>
+                <constraint firstItem="NtT-Pe-xfr" firstAttribute="leading" secondItem="hEW-dE-saB" secondAttribute="trailing" constant="15" id="8OA-nd-90I"/>
                 <constraint firstItem="xa4-7B-OYU" firstAttribute="leading" secondItem="NtT-Pe-xfr" secondAttribute="leading" id="8j1-Fh-0Qf"/>
                 <constraint firstItem="xa4-7B-OYU" firstAttribute="centerY" secondItem="hVc-sm-Ozx" secondAttribute="centerY" id="MPY-Dd-Dd0"/>
+                <constraint firstItem="ncK-Qq-GsO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="O9f-oC-ryc"/>
                 <constraint firstItem="hVc-sm-Ozx" firstAttribute="leading" secondItem="xa4-7B-OYU" secondAttribute="trailing" constant="8" symbolic="YES" id="P97-fk-rki"/>
                 <constraint firstItem="tm4-X8-yW0" firstAttribute="leading" secondItem="ieY-SR-sE6" secondAttribute="trailing" constant="4" id="Tsw-bn-Wzg"/>
                 <constraint firstItem="NtT-Pe-xfr" firstAttribute="centerY" secondItem="hEW-dE-saB" secondAttribute="centerY" constant="-4" id="VO1-h3-puf"/>
                 <constraint firstItem="hEW-dE-saB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="asX-hp-8fR"/>
+                <constraint firstItem="ncK-Qq-GsO" firstAttribute="leading" secondItem="hEW-dE-saB" secondAttribute="trailing" constant="15" id="dIf-sx-rEs"/>
                 <constraint firstItem="hEW-dE-saB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="ddG-Cw-hw4"/>
-                <constraint firstItem="xa4-7B-OYU" firstAttribute="top" secondItem="NtT-Pe-xfr" secondAttribute="bottom" constant="3" id="j8k-D6-Qkb"/>
+                <constraint firstAttribute="bottom" secondItem="NtT-Pe-xfr" secondAttribute="bottom" constant="12" id="jZn-pY-Aux"/>
                 <constraint firstItem="tm4-X8-yW0" firstAttribute="centerY" secondItem="ieY-SR-sE6" secondAttribute="centerY" id="m72-x7-KHB"/>
+                <constraint firstItem="NtT-Pe-xfr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="qvr-dU-p9u"/>
                 <constraint firstItem="hVc-sm-Ozx" firstAttribute="centerY" secondItem="ieY-SR-sE6" secondAttribute="centerY" id="ugJ-uL-0z7"/>
                 <constraint firstAttribute="centerY" secondItem="hEW-dE-saB" secondAttribute="centerY" id="w32-0e-U6p"/>
             </constraints>
@@ -74,6 +87,7 @@
             </variation>
             <connections>
                 <outlet property="followerLabel" destination="tm4-X8-yW0" id="B2S-Hj-ryr"/>
+                <outlet property="fullNameLabel" destination="ncK-Qq-GsO" id="uae-qE-eHo"/>
                 <outlet property="imageView" destination="hEW-dE-saB" id="Mod-d1-Vod"/>
                 <outlet property="likeLabel" destination="hVc-sm-Ozx" id="At2-xm-Bfr"/>
                 <outlet property="titleLabel" destination="NtT-Pe-xfr" id="c0l-Gj-QiQ"/>
@@ -88,6 +102,60 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="Total Love" width="9" height="8"/>
+        <image name="37FF3657-837E-41D7-930D-A65E6FAB1390" width="9" height="8">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
+GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
+c1dOU0NvbG9ygAKADRIgwAAAgAOAC1Z7OSwgOH3SFQoWGFpOUy5vYmplY3RzoReABIAK0hUKGh2iGxyA
+BYAGgAkQANIgCiEiXxAUTlNUSUZGUmVwcmVzZW50YXRpb26AB4AITxEJjk1NACoAAAEoAAABAUoAR1mC
+AH+dWABVbBkAGB9YAFVsggB/nUoAR1kBAAICbABqhtYA0P/ZANL/1gDQ/78AuunWAND/2QDS/9YA0P9m
+AGN90wDM/9QAzv/TAMz/0wDM/9YA0P/TAMz/0wDM/9UAz/+/ALrpkwCOstoA1P/TAMz/0wDM/9MAzP/T
+AMz/0wDM/9sA1P+JAISlFgAWG7AAqtPdANX/0wDM/9MAzP/TAMz/3QDV/7AAqtMVABYbAAAAACMAISqw
+AKzU3QDW/9MAzP/dANb/sACs1CMAISoAAAAAAAAAAAAAAAAXABYdmgCVu94A1/+aAJW7FwAWHQAAAAAA
+AAAAAAAAAAAAAAAAAAAADwAOEnIAbooPAA4SAAAAAAAAAAAAAAAAAA4BAAADAAAAAQAJAAABAQADAAAA
+AQAIAAABAgADAAAABAAAAdYBAwADAAAAAQABAAABBgADAAAAAQACAAABEQAEAAAAAQAAAAgBEgADAAAA
+AQABAAABFQADAAAAAQAEAAABFgADAAAAAQAIAAABFwAEAAAAAQAAASABHAADAAAAAQABAAABUgADAAAA
+AQABAAABUwADAAAABAAAAd6HcwAHAAAHqAAAAeYAAAAAAAgACAAIAAgAAQABAAEAAQAAB6hhcHBsAiAA
+AG1udHJSR0IgWFlaIAfZAAIAGQALABoAC2Fjc3BBUFBMAAAAAGFwcGwAAAAAAAAAAAAAAAAAAAAAAAD2
+1gABAAAAANMtYXBwbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+C2Rlc2MAAAEIAAAAb2RzY20AAAF4AAAFbGNwcnQAAAbkAAAAOHd0cHQAAAccAAAAFHJYWVoAAAcwAAAA
+FGdYWVoAAAdEAAAAFGJYWVoAAAdYAAAAFHJUUkMAAAdsAAAADmNoYWQAAAd8AAAALGJUUkMAAAdsAAAA
+DmdUUkMAAAdsAAAADmRlc2MAAAAAAAAAFEdlbmVyaWMgUkdCIFByb2ZpbGUAAAAAAAAAAAAAABRHZW5l
+cmljIFJHQiBQcm9maWxlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAABtbHVjAAAAAAAAAB4AAAAMc2tTSwAAACgAAAF4aHJIUgAAACgAAAGgY2FFUwAAACQAAAHIcHRC
+UgAAACYAAAHsdWtVQQAAACoAAAISZnJGVQAAACgAAAI8emhUVwAAABYAAAJkaXRJVAAAACgAAAJ6bmJO
+TwAAACYAAAKia29LUgAAABYAAALIY3NDWgAAACIAAALeaGVJTAAAAB4AAAMAZGVERQAAACwAAAMeaHVI
+VQAAACgAAANKc3ZTRQAAACYAAAKiemhDTgAAABYAAANyamFKUAAAABoAAAOIcm9STwAAACQAAAOiZWxH
+UgAAACIAAAPGcHRQTwAAACYAAAPobmxOTAAAACgAAAQOZXNFUwAAACYAAAPodGhUSAAAACQAAAQ2dHJU
+UgAAACIAAARaZmlGSQAAACgAAAR8cGxQTAAAACwAAASkcnVSVQAAACIAAATQYXJFRwAAACYAAATyZW5V
+UwAAACYAAAUYZGFESwAAAC4AAAU+AFYBYQBlAG8AYgBlAGMAbgD9ACAAUgBHAEIAIABwAHIAbwBmAGkA
+bABHAGUAbgBlAHIAaQENAGsAaQAgAFIARwBCACAAcAByAG8AZgBpAGwAUABlAHIAZgBpAGwAIABSAEcA
+QgAgAGcAZQBuAOgAcgBpAGMAUABlAHIAZgBpAGwAIABSAEcAQgAgAEcAZQBuAOkAcgBpAGMAbwQXBDAE
+MwQwBDsETAQ9BDgEOQAgBD8EQAQ+BEQEMAQ5BDsAIABSAEcAQgBQAHIAbwBmAGkAbAAgAGcA6QBuAOkA
+cgBpAHEAdQBlACAAUgBWAEKQGnUoACAAUgBHAEIAIIJyX2ljz4/wAFAAcgBvAGYAaQBsAG8AIABSAEcA
+QgAgAGcAZQBuAGUAcgBpAGMAbwBHAGUAbgBlAHIAaQBzAGsAIABSAEcAQgAtAHAAcgBvAGYAaQBsx3y8
+GAAgAFIARwBCACDVBLhc0wzHfABPAGIAZQBjAG4A/QAgAFIARwBCACAAcAByAG8AZgBpAGwF5AXoBdUF
+5AXZBdwAIABSAEcAQgAgBdsF3AXcBdkAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAAUgBHAEIALQBQAHIA
+bwBmAGkAbADBAGwAdABhAGwA4QBuAG8AcwAgAFIARwBCACAAcAByAG8AZgBpAGxmbpAaACAAUgBHAEIA
+IGPPj/Blh072TgCCLAAgAFIARwBCACAw1zDtMNUwoTCkMOsAUAByAG8AZgBpAGwAIABSAEcAQgAgAGcA
+ZQBuAGUAcgBpAGMDkwO1A70DuQO6A8wAIAPAA8EDvwPGA68DuwAgAFIARwBCAFAAZQByAGYAaQBsACAA
+UgBHAEIAIABnAGUAbgDpAHIAaQBjAG8AQQBsAGcAZQBtAGUAZQBuACAAUgBHAEIALQBwAHIAbwBmAGkA
+ZQBsDkIOGw4jDkQOHw4lDkwAIABSAEcAQgAgDhcOMQ5IDicORA4bAEcAZQBuAGUAbAAgAFIARwBCACAA
+UAByAG8AZgBpAGwAaQBZAGwAZQBpAG4AZQBuACAAUgBHAEIALQBwAHIAbwBmAGkAaQBsAGkAVQBuAGkA
+dwBlAHIAcwBhAGwAbgB5ACAAcAByAG8AZgBpAGwAIABSAEcAQgQeBDEESQQ4BDkAIAQ/BEAEPgREBDgE
+OwRMACAAUgBHAEIGRQZEBkEAIAYqBjkGMQZKBkEAIABSAEcAQgAgBicGRAY5BicGRQBHAGUAbgBlAHIA
+aQBjACAAUgBHAEIAIABQAHIAbwBmAGkAbABlAEcAZQBuAGUAcgBlAGwAIABSAEcAQgAtAGIAZQBzAGsA
+cgBpAHYAZQBsAHMAZXRleHQAAAAAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyBy
+ZXNlcnZlZC4AWFlaIAAAAAAAAPNSAAEAAAABFs9YWVogAAAAAAAAdE0AAD3uAAAD0FhZWiAAAAAAAABa
+dQAArHMAABc0WFlaIAAAAAAAACgaAAAVnwAAuDZjdXJ2AAAAAAAAAAEBzQAAc2YzMgAAAAAAAQxCAAAF
+3v//8yYAAAeSAAD9kf//+6L///2jAAAD3AAAwGzSJSYnKFokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNC
+aXRtYXBJbWFnZVJlcKMpKitfEBBOU0JpdG1hcEltYWdlUmVwWk5TSW1hZ2VSZXBYTlNPYmplY3TSJSYt
+LldOU0FycmF5oi0r0iUmMDFeTlNNdXRhYmxlQXJyYXmjMC0r0zM0CjU2N1dOU1doaXRlXE5TQ29sb3JT
+cGFjZUQwIDAAEAOADNIlJjk6V05TQ29sb3KiOSvSJSY8PVdOU0ltYWdlojwrXxAPTlNLZXllZEFyY2hp
+dmVy0UBBVHJvb3SAAQAIABEAGgAjAC0AMgA3AEYATABXAF4AZQByAHkAgQCDAIUAigCMAI4AlQCaAKUA
+pwCpAKsAsACzALUAtwC5ALsAwADXANkA2wptCnIKfQqGCpkKnQqwCrsKxArJCtEK1ArZCugK7ArzCvsL
+CAsNCw8LEQsWCx4LIQsmCy4LMQtDC0YLSwAAAAAAAAIBAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAtNA
+</mutableData>
+        </image>
     </resources>
 </document>
