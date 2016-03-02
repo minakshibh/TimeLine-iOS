@@ -4416,6 +4416,19 @@ Effective as of September 14, 2015
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="USER" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="CIL-dG-kPn">
+                                            <rect key="frame" x="63" y="24" width="465" height="30"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="a3g-A9-UDx">
+                                            <rect key="frame" x="63" y="46" width="455" height="25"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1d" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="Y2g-yn-QTg">
                                             <rect key="frame" x="552" y="22" width="30" height="31"/>
                                             <constraints>
@@ -4847,6 +4860,16 @@ Effective as of September 14, 2015
         <segue reference="5f9-3x-iDp"/>
         <segue reference="JUD-Gk-HWr"/>
         <segue reference="iK2-rd-jlM"/>
+        <segue reference="ndx-Tw-tdZ"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="0Uq-5l-w5H"/>
+        <segue reference="MIt-vp-hHF"/>
+        <segue reference="hFd-TA-2wg"/>
+        <segue reference="sHs-6J-bIg"/>
+        <segue reference="dHW-RB-S8H"/>
+        <segue reference="U58-7K-X9n"/>
+        <segue reference="kNn-C3-4Z5"/>
+        <segue reference="JUD-Gk-HWr"/>
         <segue reference="ndx-Tw-tdZ"/>
         <segue reference="wPR-Ua-TlF"/>
         <segue reference="0Uq-5l-w5H"/>
