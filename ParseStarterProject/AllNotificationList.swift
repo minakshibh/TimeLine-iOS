@@ -16,7 +16,8 @@ class AllNotificationList: UITableViewController {
     var payloadArray :NSMutableArray = []
     let notificationListArray : NSMutableArray = []
     var page_id :String=""
-    
+    var timeline_id :String=""
+    var timelineLikeOrComment :Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         delay (0.01) {
@@ -45,6 +46,8 @@ class AllNotificationList: UITableViewController {
             if let pageId = json["page_id"] {
                if (self.page_id.isEmpty)
                {
+                Storage.session.notificationDate = NSDate()
+                Storage.save()
                 self.notificationListArray.removeAllObjects()
                 self.payloadArray.removeAllObjects()
                 }
@@ -129,9 +132,55 @@ class AllNotificationList: UITableViewController {
             let notifyStr = raw["notification"] as! String
             let userNameStr = raw["username"] as? String ?? ""
             
-            cell.userNameLabel?.text = "@" + userNameStr
-            cell.notificationTxtLabel?.text = notifyStr
+            var notifyStrArr = notifyStr.componentsSeparatedByString(" ")
+            let userName : String = notifyStrArr [0]
+            cell.fullNameLabel?.text = ""
+
+            var fullname : NSString = ""
+            if let firstName = raw["first_name"] as? NSString
+            {
+                fullname = firstName
+                if let lastName = raw["last_name"] as? NSString
+                {
+                    fullname = "\(firstName) \(lastName)"
+                }
+            }
+           
+          
+           
             cell.timeLabel?.text = timeStr
+            
+            let attributedString = NSMutableAttributedString(string: notifyStr as String, attributes: [NSFontAttributeName:UIFont.systemFontOfSize(11.0)])
+            
+            let boldFontAttribute = [NSFontAttributeName: UIFont.boldSystemFontOfSize(11.0)]
+            
+            
+            // Part of string to be bold
+            attributedString.addAttributes(boldFontAttribute, range:  NSRange(location: 0,length: userName.characters.count))
+//            cell.fullNameLabel.text = "FirstName"
+
+            if (fullname == "")
+            {
+                cell.fullNameLabel.font = UIFont.boldSystemFontOfSize(10.0)
+                cell.userNameLabel.font = UIFont.systemFontOfSize(11.0)
+                cell.userNameLabel.textColor = UIColor.blackColor()
+                cell.fullNameLabel.textColor = UIColor.grayColor()
+
+                cell.fullNameLabel?.text = "@" + userNameStr
+                cell.userNameLabel?.attributedText = attributedString
+                cell.notificationTxtLabel?.text = ""
+            }
+            else
+            {
+                cell.fullNameLabel.font = UIFont.boldSystemFontOfSize(11.0)
+                cell.userNameLabel.font = UIFont.systemFontOfSize(10.0)
+                cell.userNameLabel.textColor = UIColor.grayColor()
+                cell.fullNameLabel.textColor = UIColor.blackColor()
+                
+                cell.fullNameLabel?.text = fullname as String
+                cell.userNameLabel?.text = "@" + userNameStr
+                cell.notificationTxtLabel?.attributedText = attributedString
+            }
 
             
             let placeHolderimg = UIImage(named: "default-user-profile")
@@ -158,62 +207,51 @@ class AllNotificationList: UITableViewController {
         return cell
     }
     
-//    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        let isEqual = (page_id == "<null>")
-//        if isEqual || page_id.isEmpty
-//        {
-//            return 0.0
-//        }
-//        else
-//        {
-//            return 40.0
-//        }
-//    }
-//
-//    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let footerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
-//        footerView.backgroundColor = UIColor.blackColor()
-//        
-//        
-//        
-//        let btn: UIButton = UIButton(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
-//        btn.backgroundColor = UIColor.clearColor()
-//        btn.setTitle("Load More", forState: UIControlState.Normal)
-//        btn.addTarget(self, action: "loadMoreTapped:", forControlEvents: UIControlEvents.TouchUpInside)
-//        btn.tag = 1               // change tag property
-//        footerView.addSubview(btn) // add to view as subview
-//        
-//        return footerView
-//    }
-//    
-//    func loadMoreTapped(sender: UIButton!) {
-//        let btnsendtag: UIButton = sender
-//        if btnsendtag.tag == 1 {
-//            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//            appDelegate.hideActivityIndicator()
-//            allNotificationsAPI()
-//        }
-//    }
-
+  
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let notificationPayload = self.notificationListArray[indexPath.row] as! [String : AnyObject]
+        let notificationPayload = self.notificationListArray[indexPath.row] as! [String : AnyObject]
         let payload = self.payloadArray[indexPath.row] as! [String : AnyObject]
-
-//         if let tid = payload["timeline_id"] as? String
-//        {
-//            self.timeline_id = tid
-//        }
-        processAsync(payload: payload) { link in
-            if let link = link {
-                    self.handle(deepLink: link)
-                }
+        timelineLikeOrComment = false
+        
+         if let tid = payload["timeline_id"] as? String
+        {
+            self.timeline_id = tid
+            switch payload["action"] as? String ?? "" {
+            case "follow_request":
+                print("follow_request")
+                break
+                
+            case "create":
+                print("create")
+                break
+                
+            case "like" :
+                timelineLikeOrComment = true
+                print("like")
+                break
+                
+            case "follow":
+                timelineLikeOrComment = true
+                print("follow")
+                break
+                
+                
+            default:
+                break
+            }
         }
 
-//        processAsyncForUser(payload: notificationPayload) { link in
+//        processAsync(payload: payload) { link in
 //            if let link = link {
-//                self.handle(deepLink: link)
-//            }
+//                    self.handle(deepLink: link)
+//                }
 //        }
+
+        processAsyncForUser(payload: notificationPayload) { link in
+            if let link = link {
+                self.handle(deepLink: link)
+            }
+        }
         
     }
        // navigationItem.title = order
@@ -230,40 +268,14 @@ class AllNotificationList: UITableViewController {
             let push = storyboard.instantiateViewControllerWithIdentifier("PushFetchViewController") as! PushFetchViewController
             if PFUser.currentUser() != nil {
                 push.link = link
+                push.timeline_id = self.timeline_id
+
                 self.presentViewController(push, animated: true, completion: nil)
             }
 
         }
     }
     
-    func process(payload payload: [String: AnyObject]) -> DeepLink? {
-        let link = DeepLink.from(payload: payload)
-        
-        // increase counter
-        if let link = link {
-            switch link {
-            case .MomentLink(_, let uuid, _):
-                DeepLink.timeline(uuid: uuid, completion: { (tl) -> Void in
-                    tl.hasNews = true
-                    tl.parent?.hasNews = true
-                    self.finish(payload: payload)
-                })
-            case .TimelineLink(_, let uuid):
-                DeepLink.timeline(uuid: uuid, completion: { (tl) -> Void in
-                    tl.hasNews = true
-                    tl.parent?.hasNews = true
-                    self.finish(payload: payload)
-                })
-            case .UserLink(_, _, let uuid):
-                DeepLink.user(uuid: uuid, completion: { (u) -> Void in
-                    u.hasNews = true
-                    self.finish(payload: payload)
-                })
-            }
-        }
-        return link
-    }
-   
     func processAsync(payload payload: [String: AnyObject], completion: (DeepLink?) -> Void) {
         let link = DeepLink.from(payload: payload)
         
@@ -274,30 +286,23 @@ class AllNotificationList: UITableViewController {
                 DeepLink.timeline(uuid: uuid, completion: { (tl) -> Void in
                     tl.hasNews = true
                     tl.parent?.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             case .TimelineLink(_, let uuid):
                 DeepLink.timeline(uuid: uuid, completion: { (tl) -> Void in
                     tl.hasNews = true
                     tl.parent?.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             case .UserLink(_, _, let uuid):
                 DeepLink.user(uuid: uuid, completion: { (u) -> Void in
                     u.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             }
         } else {
             completion(nil)
         }
-    }
-    private func finish(payload payload: [String: AnyObject]) {
-        Storage.session.notificationDate = NSDate()
-        Storage.save()
     }
     
     func showProfileBtn(sender: UIButton!) {
@@ -323,7 +328,7 @@ class AllNotificationList: UITableViewController {
     }
 
     func processAsyncForUser(payload payload: [String: AnyObject], completion: (DeepLink?) -> Void) {
-        let link = DeepLink.fromNotification(payload: payload)
+        let link = DeepLink.fromNotification(payload: payload , likeOrCreateTimeline: timelineLikeOrComment )
         
         // increase counter
         if let link = link {
@@ -331,19 +336,16 @@ class AllNotificationList: UITableViewController {
             case .MomentLink(_, let uuid, _):
                 DeepLink.user(uuid: uuid, completion: { (u) -> Void in
                     u.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             case .TimelineLink(_, let uuid):
                 DeepLink.user(uuid: uuid, completion: { (u) -> Void in
                     u.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             case .UserLink(_, _, let uuid):
                 DeepLink.user(uuid: uuid, completion: { (u) -> Void in
                     u.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             }
