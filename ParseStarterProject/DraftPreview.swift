@@ -20,6 +20,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     let commentTextfeildView = UIView()
     var scrollView = UIScrollView()
     
+    
     enum RightError {
     case BlockedTimeline(String, String)
     case BlockedUser(String, String)
@@ -175,22 +176,21 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     var commentArray = NSMutableArray()
     var tagArray = NSMutableArray()
     
-    @IBAction func commentButtonClick(){
-        print(moment?.state.uuid!)
+    @IBAction func commentButtonClick(sender: UIButton){
+        print(momentPlayerController?.currentMoment()?.state.uuid)
+        print(momentPlayerController?.currentIndexOfMoment())
+        
         pausePlayButton.hidden = true
         playPlayButton.hidden = false
-
         momentPlayerController?.pause()
-        
-        
+        main{
         self.showCommentPopup()
-        
-        
+        }
     }
     
     func showCommentPopup(){
-        
-        Storage.performRequest(ApiRequest.MomentComments((moment?.state.uuid)!), completion: { (json) -> Void in
+        if(moment?.state.uuid != "nil"){
+        Storage.performRequest(ApiRequest.MomentComments((momentPlayerController?.currentMoment()?.state.uuid)!), completion: { (json) -> Void in
             print(json)
             
             if let raw = json["result"] as? NSMutableArray{
@@ -210,9 +210,9 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 commentScreenTitle.frame = CGRectMake(0, 0, screenWidth, 64)
                 commentScreenTitle.font = UIFont.boldSystemFontOfSize(20)
                 commentScreenTitle.textAlignment = .Center
-                commentScreenTitle.backgroundColor = UIColor(white: 0, alpha: 0.5)
+                commentScreenTitle.backgroundColor = UIColor(white: 0, alpha: 1)
                 commentScreenTitle.textColor = UIColor.whiteColor()
-                commentScreenTitle.text = "Comments"
+                commentScreenTitle.text = "Moment \((self.momentPlayerController?.currentIndexOfMoment())! + 1) Comments"
                 self.timelineCommentView.addSubview(commentScreenTitle)
                 
                 // close button comment section
@@ -268,7 +268,8 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 KGModal.sharedInstance().showWithContentView(self.timelineCommentView)
             }
         })
-        
+    }
+    
         
     }
     
@@ -308,13 +309,22 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                         var Yaxis: CGFloat = 0
                         for villain in self.tagArray{
                             
-                            let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.commentTextfeildView.frame.size.width, height: 30))
+                            let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.commentTextfeildView.frame.size.width, height: 50))
                             
                             villainButton.layer.cornerRadius = 0
-                            villainButton.backgroundColor = UIColor.redColor()
+                            villainButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                            villainButton.titleEdgeInsets = UIEdgeInsetsMake(
+                                0, -210, 0.0, 0)
+                            villainButton.backgroundColor = UIColor.whiteColor()
                             if let raw = villain as? NSDictionary
                             {
                                 villainButton.setTitle("@\(raw["name"]!)", forState: UIControlState.Normal)
+                                let userimage = UIImageView()
+                                userimage.frame = CGRectMake(10, 5, 40, 40)
+                                userimage.layer.cornerRadius = 20
+                                userimage.clipsToBounds = true
+                                userimage.sd_setImageWithURL(NSURL(string: (raw["image"] as? String)!))
+                                villainButton.addSubview(userimage)
                             }
                             villainButton.addTarget(self, action: "villainButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
                             //villainButton.tag = Int(element.id)
@@ -322,7 +332,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                             Yaxis = Yaxis + 30
                         }
                         self.scrollView.contentSize = CGSizeMake(self.timelineCommentView.frame.size.width, Yaxis)
-                        self.scrollView.backgroundColor = UIColor.lightGrayColor()
+                        self.scrollView.backgroundColor = UIColor.groupTableViewBackgroundColor()
                         self.timelineCommentView.addSubview(self.scrollView)
                     }
                 })
@@ -341,13 +351,22 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     }
     
     func MomentPostComment(){
+        if(commentTextField.text == ""){
+            let alert = UIAlertView()
+            alert.title = ""
+            alert.message = "Please enter your comment first."
+            alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
+            alert.show()
+            return
+        }
+        
         let emoData = commentTextField.text!.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
         let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
 
-        Storage.performRequest(ApiRequest.MomentPostComment((moment?.state.uuid)!, goodValue! as PARAMS), completion: { (json) -> Void in
+        Storage.performRequest(ApiRequest.MomentPostComment((momentPlayerController?.currentMoment()?.state.uuid)!, goodValue! as PARAMS), completion: { (json) -> Void in
             print(json)
             main{
-                Storage.performRequest(ApiRequest.MomentComments((self.moment?.state.uuid)!), completion: { (json) -> Void in
+                Storage.performRequest(ApiRequest.MomentComments((self.momentPlayerController?.currentMoment()?.state.uuid)!), completion: { (json) -> Void in
                     print(json)
                     if let raw = json["result"] as? NSMutableArray{
                         self.commentArray = raw
@@ -417,16 +436,19 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         cellView.backgroundColor = UIColor(white: 0, alpha: 0.25)
         cell.contentView.addSubview(cellView)
         
-        let userImage = UIImageView()
+        let userImage = UIButton()
         userImage.frame = CGRectMake(5, 10, 60, 60)
         userImage.backgroundColor = UIColor.lightGrayColor()
         userImage.layer.cornerRadius = 30
+        userImage.tag = indexPath.row
         if let raw = self.commentArray[indexPath.row] as? NSDictionary
         {
+            
             let notifyStr = raw["user_image"] as! String
-            print(notifyStr)
-            userImage.sd_setImageWithURL(NSURL(string: notifyStr))
+            //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
+            userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
         }
+        userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
         userImage.clipsToBounds = true
         cellView.addSubview(userImage)
         
@@ -519,11 +541,98 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     }
     
     
+    func UserImageClick(sender: UIButton){
+        print(sender.tag)
+        if let raw = self.commentArray[sender.tag] as? NSDictionary
+        {
+            print(raw)
+            let payload = raw["payload"]
+            
+            let data = payload!.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: false)
+            do {
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                
+                if let dict = json as? [String: AnyObject] {
+                    print(dict)
+                    processAsync(payload: dict ) { link in
+                        if let link = link {
+                            
+                            self.handle(deepLink: link)
+                        }
+                    }
+                    
+                }
+                
+            }
+            catch {
+                print(error)
+            }
+            
+        }
+    }
+    
+    func handle(deepLink link: DeepLink?) {
+        main {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let push = storyboard.instantiateViewControllerWithIdentifier("PushFetchViewController") as! PushFetchViewController
+            if PFUser.currentUser() != nil {
+                push.link = link
+                if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+                    
+                    topController.presentViewController(push, animated: true, completion: nil)
+                    
+                }
+            }
+            
+        }
+    }
+    var notificationActivity: AllNotificationList?
+    
+    func processAsync(payload payload: [String: AnyObject], completion: (DeepLink?) -> Void) {
+        let link = DeepLink.from(payload: payload)
+        
+        // increase counter
+        if let link = link {
+            switch link {
+            case .MomentLink(_, let uuid, _):
+                DeepLink.timeline(uuid: uuid, completion: { (tl) -> Void in
+                    tl.hasNews = true
+                    tl.parent?.hasNews = true
+                    self.finish(payload: payload)
+                    completion(link)
+                })
+            case .TimelineLink(_, let uuid):
+                DeepLink.timeline(uuid: uuid, completion: { (tl) -> Void in
+                    tl.hasNews = true
+                    tl.parent?.hasNews = true
+                    self.finish(payload: payload)
+                    completion(link)
+                })
+            case .UserLink(_, _, let uuid):
+                DeepLink.user(uuid: uuid, completion: { (u) -> Void in
+                    u.hasNews = true
+                    self.finish(payload: payload)
+                    completion(link)
+                })
+            }
+        } else {
+            completion(nil)
+        }
+    }
+    private func finish(payload payload: [String: AnyObject]) {
+        Storage.session.notificationDate = NSDate()
+        Storage.save()
+    }
+
+    
     func btnTouched(){
         KGModal.sharedInstance().hideAnimated(true)
         pausePlayButton.hidden = false
         playPlayButton.hidden = true
         momentPlayerController?.play()
+        self.commentArray = []
+        self.tagArray = []
+        self.commentlist.removeFromSuperview()
         self.timelineCommentView.removeFromSuperview()
         self.scrollView.removeFromSuperview()
     }

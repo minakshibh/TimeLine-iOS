@@ -30,7 +30,6 @@ class CommonTimelineTableViewController: UITableViewController {
     var callbacks: [AnyObject?] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
         callbacks.append(setUpReloadable())
 
         tabBarController?.delegate = self

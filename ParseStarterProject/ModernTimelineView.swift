@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import SWFrameButton
 import ConclurerHook
 import KGModal
@@ -14,7 +15,7 @@ import Alamofire
 import SDWebImage
 
 
-class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate , UIScrollViewDelegate {
     let timelineCommentView = UIView()
     let commentTextField = UITextField()
     var payloadArray :NSMutableArray = []
@@ -22,7 +23,8 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
     let commentlist = UITableView()
     let commentTextfeildView = UIView()
     var scrollView = UIScrollView()
-    
+    var scrollMomentArray : NSArray = []
+
     lazy var behavior: ModernTimelineBehavior = {
         let behavior = ModernTimelineBehavior()
         behavior.modernTimelineView = self
@@ -34,26 +36,56 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
             return behavior.timeline
         }
         set {
+            //momentScroller?.frame = CGRectMake(0, 0, 50, 100)
+           // print(timeline!.dict["moments"])
+            //scrollMomentArray = behavior.timeline?.dict["moments"]! as! NSArray
+            var Yaxis :CGFloat = 0
+
+            self.momentScroller.delegate = self
+            self.momentScroller.showsVerticalScrollIndicator = false
+            for villain in data{
+                print(villain)
+                
+                let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.momentScroller.frame.size.width, height: self.momentScroller.frame.size.width))
+                
+                villainButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+               
+                villainButton.backgroundColor = UIColor.grayColor()
+//                if let raw = villain as? String
+//                {
+                    villainButton.setTitle("\(villain)", forState: UIControlState.Normal)
+                    
+//                }
+                villainButton.addTarget(self, action: "momentButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+                //villainButton.tag = Int(element.id)
+                self.momentScroller.addSubview(villainButton)
+                Yaxis = Yaxis + self.momentScroller.frame.size.width
+            }
+            self.momentScroller.contentSize = CGSizeMake(self.momentScroller.frame.size.width, Yaxis)
+            self.momentScroller.backgroundColor = UIColor.groupTableViewBackgroundColor()
+            
             behavior.timeline = newValue
             refresh()
+            
         }
     }
-    
+    func momentButtonPressed(sender: UIButton){
+        print(sender.tag)
+    }
     var commentArray = NSMutableArray()
     var tagArray = NSMutableArray()
+    var momentArray = NSMutableArray()
     
     @IBAction func timelineCommentClick(sender: UIButton!){
         print("timeline id: \(timeline!.uuid!)")
-        //        print(timeline!.dict["moments"]!.count)
+        print(timeline!.dict["moments"]!)  //show all moments
         
         main{
             self.showCommentPopup()
         }
-        
-        
+ 
     }
-    
-    
+    var data = ["1", "2","3","4","5","6"]
     func showCommentPopup(){
         
         Storage.performRequest(ApiRequest.TimelineComments(timeline!.uuid!), completion: { (json) -> Void in
@@ -145,6 +177,15 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
     }
     
     func CommentSendButtonAction(){
+        if(commentTextField.text == ""){
+        let alert = UIAlertView()
+        alert.title = ""
+        alert.message = "Please enter your comment first."
+        alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
+        alert.show()
+            return
+        }
+        
         let emoData = commentTextField.text!.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
         let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
         
@@ -199,14 +240,11 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
             if(string == "@"){
                 print("hello")
                 Storage.performRequest(ApiRequest.GetTagUsers, completion: { (json) -> Void in
-                    // print(json)
+                     print(json)
                     if let raw = json["result"] as? NSMutableArray{
                         self.tagArray = raw
                         print(self.tagArray)
-                        
-                        
-                        
-                        
+ 
                     }
                     
                     main{
@@ -217,13 +255,23 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
                         
                         for villain in self.tagArray{
                             
-                            let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.commentTextfeildView.frame.size.width, height: 30))
+                            let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.commentTextfeildView.frame.size.width, height: 50))
                             
                             villainButton.layer.cornerRadius = 0
-                            villainButton.backgroundColor = UIColor.redColor()
+                            villainButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                            villainButton.titleEdgeInsets = UIEdgeInsetsMake(
+                                0, -210, 0.0, 0)
+                            villainButton.backgroundColor = UIColor.whiteColor()
                             if let raw = villain as? NSDictionary
                             {
                                 villainButton.setTitle("@\(raw["name"]!)", forState: UIControlState.Normal)
+                                let userimage = UIImageView()
+                                userimage.frame = CGRectMake(10, 5, 40, 40)
+                                userimage.layer.cornerRadius = 20
+                                userimage.clipsToBounds = true
+                                userimage.sd_setImageWithURL(NSURL(string: (raw["image"] as? String)!))
+                                villainButton.addSubview(userimage)
+//                                villainButton.sd_setBackgroundImageWithURL(NSURL(string: (raw["image"] as? String)!), forState: .Normal)
                             }
                             villainButton.addTarget(self, action: "villainButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
                             //villainButton.tag = Int(element.id)
@@ -231,7 +279,7 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
                            Yaxis = Yaxis + 30
                         }
                         self.scrollView.contentSize = CGSizeMake(self.timelineCommentView.frame.size.width, Yaxis)
-                        self.scrollView.backgroundColor = UIColor.lightGrayColor()
+                        self.scrollView.backgroundColor = UIColor.groupTableViewBackgroundColor()
                         self.timelineCommentView.addSubview(self.scrollView)
                     }
                 })
@@ -289,16 +337,19 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
         cellView.backgroundColor = UIColor.whiteColor()
         cell.contentView.addSubview(cellView)
         
-        let userImage = UIImageView()
+        let userImage = UIButton()
         userImage.frame = CGRectMake(5, 10, 60, 60)
         userImage.backgroundColor = UIColor.lightGrayColor()
         userImage.layer.cornerRadius = 30
+        userImage.tag = indexPath.row
         if let raw = self.commentArray[indexPath.row] as? NSDictionary
         {
             
             let notifyStr = raw["user_image"] as! String
-            userImage.sd_setImageWithURL(NSURL(string: notifyStr))
+            //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
+            userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
         }
+        userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
         userImage.clipsToBounds = true
         cellView.addSubview(userImage)
         
@@ -387,9 +438,93 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
         return cell
     }
     
+    func UserImageClick(sender: UIButton){
+        print(sender.tag)
+        if let raw = self.commentArray[sender.tag] as? NSDictionary
+        {
+            print(raw)
+            let payload = raw["payload"]
+            
+            let data = payload!.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: false)
+            do {
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                
+                if let dict = json as? [String: AnyObject] {
+                    print(dict)
+                    processAsync(payload: dict ) { link in
+                        if let link = link {
+                            
+                            self.handle(deepLink: link)
+                        }
+                    }
+
+                    }
+  
+            }
+            catch {
+                print(error)
+            }
+ 
+        }
+    }
+    
+    func handle(deepLink link: DeepLink?) {
+        main {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let push = storyboard.instantiateViewControllerWithIdentifier("PushFetchViewController") as! PushFetchViewController
+            if PFUser.currentUser() != nil {
+                push.link = link
+                if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+
+                    topController.presentViewController(push, animated: true, completion: nil)
+
+                }
+            }
+            
+        }
+    }
+    var notificationActivity: AllNotificationList?
+    
+    func processAsync(payload payload: [String: AnyObject], completion: (DeepLink?) -> Void) {
+        let link = DeepLink.from(payload: payload)
+        
+        // increase counter
+        if let link = link {
+            switch link {
+            case .MomentLink(_, let uuid, _):
+                DeepLink.timeline(uuid: uuid, completion: { (tl) -> Void in
+                    tl.hasNews = true
+                    tl.parent?.hasNews = true
+                    self.finish(payload: payload)
+                    completion(link)
+                })
+            case .TimelineLink(_, let uuid):
+                DeepLink.timeline(uuid: uuid, completion: { (tl) -> Void in
+                    tl.hasNews = true
+                    tl.parent?.hasNews = true
+                    self.finish(payload: payload)
+                    completion(link)
+                })
+            case .UserLink(_, _, let uuid):
+                DeepLink.user(uuid: uuid, completion: { (u) -> Void in
+                    u.hasNews = true
+                    self.finish(payload: payload)
+                    completion(link)
+                })
+            }
+        } else {
+            completion(nil)
+        }
+    }
+    private func finish(payload payload: [String: AnyObject]) {
+        Storage.session.notificationDate = NSDate()
+        Storage.save()
+    }
     
     func btnTouched(){
         KGModal.sharedInstance().hideAnimated(true)
+        self.commentArray = []
+        self.tagArray = []
         self.timelineCommentView.removeFromSuperview()
         self.scrollView.removeFromSuperview()
         
@@ -425,6 +560,15 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
     @IBOutlet var durationLabel: UILabel!
     
     @IBOutlet var commentButton: UIButton!
+    
+    @IBOutlet var momentScroller: UIScrollView!
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+       
+        
+    }
+    
     
 }
 

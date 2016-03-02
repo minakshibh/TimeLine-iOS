@@ -198,6 +198,7 @@ class AllNotificationList: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        let notificationPayload = self.notificationListArray[indexPath.row] as! [String : AnyObject]
         let payload = self.payloadArray[indexPath.row] as! [String : AnyObject]
+        print(payload)
 
 //         if let tid = payload["timeline_id"] as? String
 //        {
@@ -224,7 +225,7 @@ class AllNotificationList: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func handle(deepLink link: DeepLink?) {
+    func handle(deepLink link: DeepLink?) {
         main {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let push = storyboard.instantiateViewControllerWithIdentifier("PushFetchViewController") as! PushFetchViewController

@@ -30,6 +30,9 @@ enum DeepLink {
                 let name = payload["name"] as? String,
                 let uid = payload["user_id"] as? String
             {
+                print(name)
+                print(eid)
+                print(uid)
                 // deep link to profile
                 link = DeepLink.UserLink(name, eid, uid)
             }
@@ -44,6 +47,39 @@ enum DeepLink {
         }
         return nil
     }
+    
+//    static func commentfrom(payload payload: [String: AnyObject]?) -> DeepLink? {
+//        if let payload = payload {
+//            let link: DeepLink?
+//            if let name = payload["name"] as? String,
+//                let tid = payload["timeline_id"] as? String,
+//                let vid = payload["video_id"] as? String
+//            {
+//                // deep link to video
+//                link = DeepLink.MomentLink(name, tid, vid)
+//            }
+//            else if let eid = payload["external_id"] as? String,
+//                let name = payload["name"] as? String,
+//                let uid = payload["user_id"] as? String
+//            {
+//                print(name)
+//                print(eid)
+//                print(uid)
+//                // deep link to profile
+//                link = DeepLink.UserLink(name, eid, uid)
+//            }
+//            else if let name = payload["name"] as? String,
+//                let tid = payload["timeline_id"] as? String
+//            {
+//                link = DeepLink.TimelineLink(name, tid)
+//            } else {
+//                link = nil
+//            }
+//            return link
+//        }
+//        return nil
+//    }
+    
     static func fromNotification(payload payload: [String: AnyObject]?) -> DeepLink? {
         if let payload = payload {
             let link: DeepLink?

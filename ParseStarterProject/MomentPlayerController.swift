@@ -84,7 +84,11 @@ class MomentPlayerController: NSObject {
         }
         return nil
     }
-    
+    func currentIndexOfMoment() -> Int {
+        
+        return currentIndex
+        
+    }
     func previous() {
         
         print("previous: \(self.currentIndex)")

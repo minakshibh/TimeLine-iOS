@@ -351,7 +351,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    private func handle(deepLink link: DeepLink?) {
+    func handle(deepLink link: DeepLink?) {
         main {
         let story = UIStoryboard(name: "Main", bundle: nil)
         if let push = story.instantiateViewControllerWithIdentifier("PushFetchViewController") as? PushFetchViewController,
@@ -379,7 +379,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
         openURL url: NSURL,
         sourceApplication: String?,
-        annotation: AnyObject?) -> Bool {
+        annotation: AnyObject) -> Bool {
             return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     func showActivityIndicator()

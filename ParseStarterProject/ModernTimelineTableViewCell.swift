@@ -15,6 +15,7 @@ class ModernTimelineTableViewCell: UITableViewCell {
             return timelineView.timeline
         }
         set {
+            
             timelineView.timeline = newValue
         }
     }
@@ -30,6 +31,8 @@ class ModernTimelineTableViewCell: UITableViewCell {
         timelineView = UINib(nibName: "ModernTimelineView", bundle: nil).instantiateWithOwner(self, options: nil).first as! ModernTimelineView
         contentView.addSubview(timelineView)
         timelineView.frame = innerFrame()
+ 
+        
     }
 
     override func layoutSubviews() {
@@ -41,6 +44,7 @@ class ModernTimelineTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
         // Initialization code
     }
 

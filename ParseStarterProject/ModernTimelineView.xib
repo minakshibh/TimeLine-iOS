@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -200,6 +200,10 @@
                         <action selector="timelineCommentClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="AVa-d8-8Hj"/>
                     </connections>
                 </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DJC-KO-Bc0">
+                    <rect key="frame" x="293" y="75" width="71" height="306"/>
+                    <color key="backgroundColor" red="0.4046309366587848" green="1" blue="0.84363538522572346" alpha="1" colorSpace="calibratedRGB"/>
+                </scrollView>
             </subviews>
             <constraints>
                 <constraint firstItem="a0D-So-pvo" firstAttribute="leading" secondItem="dZX-FB-9P2" secondAttribute="trailing" constant="8" id="0Bu-Hf-Mhg"/>
@@ -273,6 +277,7 @@
                 <outlet property="firstMomentPreview" destination="j8U-pc-cJ2" id="Afl-hd-l59"/>
                 <outlet property="followButton" destination="IKO-PQ-lb0" id="cBt-8d-ddc"/>
                 <outlet property="likeButton" destination="YRI-Jb-ZXO" id="Mds-Xz-aRb"/>
+                <outlet property="momentScroller" destination="DJC-KO-Bc0" id="Rg7-Rj-3fy"/>
                 <outlet property="nameLabel" destination="dZX-FB-9P2" id="TPP-Tq-fV0"/>
                 <outlet property="playerView" destination="HVl-oO-cuI" id="1aw-xQ-RO1"/>
                 <outletCollection property="lastMomentPreviews" destination="Ekh-71-eJd" collectionClass="NSMutableArray" id="wDY-pE-VPf"/>
@@ -294,6 +299,7 @@
                 <outletCollection property="previewItems" destination="1aP-Uc-Olc" collectionClass="NSMutableArray" id="UVx-gs-vA7"/>
                 <outletCollection property="playbackItems" destination="HVl-oO-cuI" collectionClass="NSMutableArray" id="xJj-Q2-QCa"/>
                 <outletCollection property="previewItems" destination="Ymc-ol-e8e" collectionClass="NSMutableArray" id="TsA-AR-DLm"/>
+                <outletCollection property="previewItems" destination="DJC-KO-Bc0" collectionClass="NSMutableArray" id="dI6-Jj-3yH"/>
             </connections>
             <point key="canvasLocation" x="477" y="433.5"/>
         </view>
