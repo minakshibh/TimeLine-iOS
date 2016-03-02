@@ -46,6 +46,8 @@ class AllNotificationList: UITableViewController {
             if let pageId = json["page_id"] {
                if (self.page_id.isEmpty)
                {
+                Storage.session.notificationDate = NSDate()
+                Storage.save()
                 self.notificationListArray.removeAllObjects()
                 self.payloadArray.removeAllObjects()
                 }
@@ -284,30 +286,23 @@ class AllNotificationList: UITableViewController {
                 DeepLink.timeline(uuid: uuid, completion: { (tl) -> Void in
                     tl.hasNews = true
                     tl.parent?.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             case .TimelineLink(_, let uuid):
                 DeepLink.timeline(uuid: uuid, completion: { (tl) -> Void in
                     tl.hasNews = true
                     tl.parent?.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             case .UserLink(_, _, let uuid):
                 DeepLink.user(uuid: uuid, completion: { (u) -> Void in
                     u.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             }
         } else {
             completion(nil)
         }
-    }
-    private func finish(payload payload: [String: AnyObject]) {
-        Storage.session.notificationDate = NSDate()
-        Storage.save()
     }
     
     func showProfileBtn(sender: UIButton!) {
@@ -341,19 +336,16 @@ class AllNotificationList: UITableViewController {
             case .MomentLink(_, let uuid, _):
                 DeepLink.user(uuid: uuid, completion: { (u) -> Void in
                     u.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             case .TimelineLink(_, let uuid):
                 DeepLink.user(uuid: uuid, completion: { (u) -> Void in
                     u.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             case .UserLink(_, _, let uuid):
                 DeepLink.user(uuid: uuid, completion: { (u) -> Void in
                     u.hasNews = true
-                    self.finish(payload: payload)
                     completion(link)
                 })
             }
