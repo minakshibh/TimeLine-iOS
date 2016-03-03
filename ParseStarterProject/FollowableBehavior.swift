@@ -24,10 +24,9 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
 
     func refreshFollowableBehavior() {
         followButton.cornerRadius =!= 7
-        followButton.tintColor =!= .followableTintColor
+//        followButton.tintColor =!= .followableTintColor
         followButton.normalImage =!= UIImage(assetIdentifier: .FollowableButton)
         followButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 0)
-
         followButton.setNeedsLayout()
         
         if let target = behaviorTarget {
@@ -35,6 +34,8 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
             followButton.selected =!= target.followed != .NotFollowing && !target.isOwn
             followButton.enabled =!= true
             followButton.borderWidth =!= target.isOwn ? 0 : 1.5
+            followButton.tintColor =!= target.isOwn ? UIColor.blackColor() : .followableTintColor
+
         } else {
             followButton.enabled =!= false
             followButton.selected =!= false

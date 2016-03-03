@@ -35,10 +35,12 @@ class Timeline: Synchronized, DictConvertable {
     var duration: Int = 0
     var hasNews: Bool
     var persistent: Bool
+    var groupTimeline: Bool
+
     weak var parent: ParentType?
     
     typealias ParentType = User
-    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, parent: User? = nil) {
+    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, parent: User? = nil) {
         self.name = name
         self.parent = parent
         self.state = state
@@ -50,7 +52,7 @@ class Timeline: Synchronized, DictConvertable {
         self.duration = duration ?? 0
         self.hasNews = hasNews
         self.persistent = persistent
-        
+        self.groupTimeline = grouptimeline
         
         self.moments = moments.sort { lhs, rhs in
             switch (lhs.state, rhs.state) {
@@ -87,12 +89,13 @@ class Timeline: Synchronized, DictConvertable {
             duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
             moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
             state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
+            grouptimeline: dict["group_timeline"] as? Bool ?? false ,
             parent: parent
         )
     }
     
     var dict: [String: AnyObject] {
-        return ["state": state.dict, "name": name, "followers_count": followersCount, "likes_count": likesCount, "moments": moments.map { $0.dict }, "liked": liked, "followed": followed.rawValue, "moments_duration": duration ?? 0, "blocked": blocked, "hasNews": hasNews, "persistent": persistent]
+        return ["state": state.dict, "name": name, "followers_count": followersCount, "likes_count": likesCount, "moments": moments.map { $0.dict }, "liked": liked, "followed": followed.rawValue, "moments_duration": duration ?? 0, "blocked": blocked, "hasNews": hasNews, "persistent": persistent , "group_timeline" : groupTimeline]
     }
     
     var uuid: UUID? {
@@ -144,7 +147,11 @@ extension Timeline {
                             owner = user
                         } else
                         { // set up user
-                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), parent: Storage.session)
+//                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), parent: Storage.session)
+                            
+                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil , parent: Storage.session)
+
+                            
                             Storage.session.users.append(owner)
                             
                             Storage.performRequest(ApiRequest.UserProfile(userID), completion: { (json) -> Void in
@@ -212,6 +219,10 @@ extension Timeline {
                             if let dr = td["moments_duration"] as? Int {
                                 existing.duration = dr
                             }
+                            if let gt = td["group_timeline"] as? Bool {
+                                existing.groupTimeline = gt
+                            }
+                            
                             existing.state = SynchronizationState(dict: td)
                             
                             tl = existing

@@ -24,7 +24,7 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
 
     func refreshLikeableBehavior() {
         likeButton.cornerRadius =!= 7
-        likeButton.tintColor =!= .likeableTintColor
+//        likeButton.tintColor =!= .likeableTintColor
         likeButton.normalImage =!= UIImage(assetIdentifier: .LikeableButton)
         likeButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 0)
 
@@ -35,6 +35,7 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
             likeButton.selected =!= behaviorTarget.liked
             likeButton.enabled =!= true
             likeButton.borderWidth =!= behaviorTarget.isOwn ? 0 : 1.5
+            likeButton.tintColor =!= behaviorTarget.isOwn ? UIColor.blackColor() : .likeableTintColor
         } else {
             likeButton.enabled =!= false
             likeButton.selected =!= false

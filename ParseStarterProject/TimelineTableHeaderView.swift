@@ -28,6 +28,7 @@ class TimelineTableHeaderView: UIView {
         let empty = ""
         likeLabel.text = "\(user?.likesCount ?? 0)"
         titleLabel.text = "@\(user?.name ?? empty)"
+        fullNameLabel.text = "\(user?.userfullName ?? empty)"
         followerLabel.text = "\(user?.followersCount ?? 0)"
         imageView.user = user
     }

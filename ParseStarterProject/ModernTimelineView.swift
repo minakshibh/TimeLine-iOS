@@ -24,6 +24,7 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
     let commentTextfeildView = UIView()
     var scrollView = UIScrollView()
     var scrollMomentArray : NSArray = []
+    @IBOutlet var groupTimelineButton: UIButton!
 
     lazy var behavior: ModernTimelineBehavior = {
         let behavior = ModernTimelineBehavior()
@@ -67,6 +68,7 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
             behavior.timeline = newValue
             refresh()
             
+           self.groupTimelineButton.hidden = !(behavior.timeline?.groupTimeline)!
         }
     }
     func momentButtonPressed(sender: UIButton){
@@ -76,6 +78,22 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
     var tagArray = NSMutableArray()
     var momentArray = NSMutableArray()
     
+    @IBAction func groupTimelineButtonAction(sender: AnyObject) {
+        
+        let controller = activeController()
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        alert.addAction(title: local(.ShowViewMembersGroupTimelineMessage), style: .Destructive) { _ in
+            //            self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
+            
+        }
+        alert.addAction(title: local(.ShowLeaveGroupTimelineMessage), style: .Default) { _ in
+//            self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
+        }
+      
+        alert.addAction(title: local(.ShowGroupTimelineCancel), style: .Cancel, handler: nil)
+        
+        controller!.presentAlertController(alert)
+    }
     @IBAction func timelineCommentClick(sender: UIButton!){
         print("timeline id: \(timeline!.uuid!)")
         print(timeline!.dict["moments"]!)  //show all moments
