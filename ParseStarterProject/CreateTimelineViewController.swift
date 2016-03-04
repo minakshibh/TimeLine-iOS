@@ -512,6 +512,12 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         {
             DescribeTimelineHeaderLabel.hidden = true
         }
+        if(newLength > 150)
+        {
+            textView.resignFirstResponder()
+            return false
+        }
+
         if(text == "\n") {
             if (text == "\n" && newLength == 1)
             {
