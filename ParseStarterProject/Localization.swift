@@ -262,6 +262,13 @@ enum LocalizedString: String, Localized {
     case CreateGroupTimelineCancel = "User-Create-Group-Timeline-Cancel"
     case CreateTimelineAlertMessage = "User-Create-Timeline-AlertMessage"
     
+    // MARK: - 93
+    case ShowGroupTimelineTitle = "Show-Group-Timeline-Title"
+    case ShowLeaveGroupTimelineMessage = "Show-Leave-Group-Timeline-Message"
+    case ShowViewMembersGroupTimelineMessage = "Show-View-Members-Group-Timeline-Message"
+    case ShowGroupTimelineCancel = "Show-Group-Timeline-Cancel"
+    case ShowTimelineAlertMessage = "Show-Timeline-AlertMessage"
+
     
 
     var localized: String {

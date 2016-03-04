@@ -51,6 +51,17 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
     return configuration;
 }
 
++ (PFActionButtonConfiguration *)_defaultLoginButtonConfiguration {
+    PFActionButtonConfiguration *configuration = [[PFActionButtonConfiguration alloc] initWithBackgroundImageColor:[PFColor loginButtonBackgroundColor]
+                                                                                                             image:nil];
+    NSString *title = PFLocalizedString(@"Log In", @"Log In");
+    [configuration setTitle:title forButtonStyle:PFActionButtonStyleNormal];
+    [configuration setTitle:title forButtonStyle:PFActionButtonStyleWide];
+    
+    
+    return configuration;
+}
+
 + (PFActionButtonConfiguration *)_defaultFacebookButtonConfiguration {
     PFActionButtonConfiguration *configuration = [[PFActionButtonConfiguration alloc] initWithBackgroundImageColor:[PFColor facebookButtonBackgroundColor]
                                                                                                              image:[PFImage imageNamed:PFLogInViewDefaultFacebookButtonImageName]];
@@ -171,8 +182,16 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
 
     if (_fields & PFLogInFieldsLogInButton) {
         if (!_logInButton) {
-            _logInButton = [[PFPrimaryButton alloc] initWithBackgroundImageColor:[PFColor loginButtonBackgroundColor]];
-            [_logInButton setTitle:PFLocalizedString(@"Log In", @"Log In") forState:UIControlStateNormal];
+//            _logInButton = [[PFPrimaryButton alloc] initWithBackgroundImageColor:[PFColor loginButtonBackgroundColor]];
+            _logInButton = [[PFActionButton alloc] initWithConfiguration:[[self class] _defaultLoginButtonConfiguration]
+                                                              buttonStyle:PFActionButtonStyleNormal];
+            
+            
+            
+            
+            _logInButton.titleLabel.font = [_logInButton.titleLabel.font fontWithSize:25];
+//            _logInButton.layer.cornerRadius = 10;
+//            [_logInButton setTitle:PFLocalizedString(@"Log In", @"Log In") forState:UIControlStateNormal];
             [self addSubview:_logInButton];
         }
     } else {
@@ -337,6 +356,9 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
         CGFloat loginButtonTopInset = floorf(24.0f * contentSizeScale.height);
 
         CGRect frame = PFRectMakeWithSizeCenteredInRect([_logInButton sizeThatFits:loginContentSize], loginContentRect);
+        frame.size.width = frame.size.width-30;
+        frame.size.height = frame.size.height+15;
+        frame.origin.x =  frame.origin.x +15;
         frame.origin.y = currentY + loginButtonTopInset;
         _logInButton.frame = frame;
 
@@ -381,8 +403,12 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
     if (_logInButton) {
         CGFloat loginButtonTopInset = 24.0f * contentSizeScale.height;
 
-        CGSize buttonSize = [_logInButton sizeThatFits:boundingSize];
-
+        float wid = boundingSize.width-100;
+        float hei = boundingSize.height+100;
+        CGSize newSize = CGSizeMake(wid, hei);
+        CGSize buttonSize = [_logInButton sizeThatFits:newSize];
+//        CGSize buttonSize = [_logInButton sizeThatFits:boundingSize];
+        
         size.height += buttonSize.height + loginButtonTopInset;
     }
     if (_passwordForgottenButton) {

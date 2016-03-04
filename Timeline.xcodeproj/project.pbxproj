@@ -14,7 +14,6 @@
 		18ECB2851C7D8249001EA23B /* EditWebsiteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ECB2841C7D8249001EA23B /* EditWebsiteTableViewController.swift */; };
 		18ECB2871C7D82C6001EA23B /* EditOthersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ECB2861C7D82C6001EA23B /* EditOthersViewController.swift */; };
 		18ECB2891C7D8C60001EA23B /* EditBioTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ECB2881C7D8C60001EA23B /* EditBioTableViewController.swift */; };
-		81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814A1A49DA1800E65899 /* AppDelegate.swift */; };
 		81BA814D1A49DA1800E65899 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BA814C1A49DA1800E65899 /* LogInViewController.swift */; };
 		81BA81501A49DA1800E65899 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BA814E1A49DA1800E65899 /* Main.storyboard */; };
 		81BA81771A49E0D500E65899 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81761A49E0D500E65899 /* libsqlite3.dylib */; };
@@ -23,6 +22,7 @@
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
 		975E4F9A1C80702300DAEF0E /* UILabel+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 975E4F991C80702300DAEF0E /* UILabel+helper.m */; };
 		979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */; };
+		97ADC8791C89B0BF00546A9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ADC8781C89B0BF00546A9B /* AppDelegate.swift */; };
 		97AE039C1C80389400C17D98 /* HelperIphoneCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */; };
 		BA05786E1C1A0FC10098C3A1 /* NormalButtonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */; };
 		BA05787A1C1A39470098C3A1 /* UserSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0578791C1A39470098C3A1 /* UserSummaryView.xib */; };
@@ -258,7 +258,6 @@
 		18ECB2881C7D8C60001EA23B /* EditBioTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBioTableViewController.swift; sourceTree = "<group>"; };
 		81BA81451A49DA1800E65899 /* Timeline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timeline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BA81491A49DA1800E65899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81BA814A1A49DA1800E65899 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81BA814C1A49DA1800E65899 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		81BA814F1A49DA1800E65899 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		81BA81761A49E0D500E65899 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -271,6 +270,7 @@
 		975E4F981C80702300DAEF0E /* UILabel+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+helper.h"; path = "Objective-C classes/UILabel+helper.h"; sourceTree = SOURCE_ROOT; };
 		975E4F991C80702300DAEF0E /* UILabel+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+helper.m"; path = "Objective-C classes/UILabel+helper.m"; sourceTree = SOURCE_ROOT; };
 		979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatTimelineTableViewControllerWithoutUsername.swift; sourceTree = "<group>"; };
+		97ADC8781C89B0BF00546A9B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97AE039A1C80389400C17D98 /* HelperIphoneCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelperIphoneCheck.h; path = "../Objective-C classes/HelperIphoneCheck.h"; sourceTree = "<group>"; };
 		97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelperIphoneCheck.m; path = "../Objective-C classes/HelperIphoneCheck.m"; sourceTree = "<group>"; };
 		BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalButtonProperties.swift; sourceTree = "<group>"; };
@@ -545,13 +545,13 @@
 		81BA81471A49DA1800E65899 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				97ADC8781C89B0BF00546A9B /* AppDelegate.swift */,
 				D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */,
 				BA452AEC1BFB2EEF00FF4598 /* TimelineViewRight.swift */,
 				D94042531C7EBE1000FDCD46 /* drawer.swift */,
 				BA380BB41C1613A000013053 /* TimelineTraits */,
 				DA57C7841B53F77000C51BC0 /* Convenience */,
 				DAA525351B5573EA002BB56B /* Model */,
-				81BA814A1A49DA1800E65899 /* AppDelegate.swift */,
 				BA9696491B9B633B00D17D5A /* PushFetchViewController.swift */,
 				DA799AE61B64F76500EA4982 /* Constant.swift */,
 				DA3FF4D41B6BA611006CC0D7 /* TimelineTableViewController.swift */,
@@ -1445,6 +1445,7 @@
 				DAF09E901B851B89007DE11D /* MomentPlayerController.swift in Sources */,
 				DA1DF20E1B55397700BD6011 /* AVCaptureSession+Additions.swift in Sources */,
 				DA57C77E1B53EC2500C51BC0 /* CapturePreviewView.swift in Sources */,
+				97ADC8791C89B0BF00546A9B /* AppDelegate.swift in Sources */,
 				DA1DF2041B55295A00BD6011 /* async.swift in Sources */,
 				BADDE7FE1C19E9CA00872FEC /* PushableBehavior.swift in Sources */,
 				DAA525571B558104002BB56B /* PersistentSource.swift in Sources */,
@@ -1477,7 +1478,6 @@
 				DA95401B1B837FA600392C75 /* MGSwipeButton.m in Sources */,
 				18ECB2871C7D82C6001EA23B /* EditOthersViewController.swift in Sources */,
 				18DF0CEF1C745F380042F16B /* NotificationTableViewCell.swift in Sources */,
-				81BA814B1A49DA1800E65899 /* AppDelegate.swift in Sources */,
 				BADDE80D1C19F21B00872FEC /* BlockableBehavior.swift in Sources */,
 				BA8607A31C166BA6001D73EE /* Durationial.swift in Sources */,
 				DA167E151B7D720A00608A6C /* DraftBarCollectionReusableView.swift in Sources */,

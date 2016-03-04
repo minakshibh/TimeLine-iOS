@@ -41,7 +41,28 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
             }
         }
         
+        let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
+        navigationItem.leftBarButtonItem = right
+        
+        
     }
+    func goToRecordScreen(){
+        
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+        
+        hidesBottomBarWhenPushed = true
+        
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.25
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
+        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.navigationController!.pushViewController(vc, animated: false)
+    }
+    
     
     private var leftBarButtonItems: [AnyObject]?
     private var rightBarButtonItems: [AnyObject]?

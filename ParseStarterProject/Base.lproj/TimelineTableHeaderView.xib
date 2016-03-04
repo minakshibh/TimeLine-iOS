@@ -54,7 +54,7 @@
                     <color key="textColor" red="0.99215686270000003" green="0.58039215690000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" misplaced="YES" image="37FF3657-837E-41D7-930D-A65E6FAB1390" translatesAutoresizingMaskIntoConstraints="NO" id="xa4-7B-OYU">
+                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" misplaced="YES" image="5D2886A9-87D5-4EF7-912B-6A8D4C0FAAE8" translatesAutoresizingMaskIntoConstraints="NO" id="xa4-7B-OYU">
                     <rect key="frame" x="81" y="38" width="9" height="8"/>
                     <color key="tintColor" red="0.95686274510000002" green="0.38431372549999998" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
@@ -69,10 +69,10 @@
                 <constraint firstItem="ncK-Qq-GsO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="O9f-oC-ryc"/>
                 <constraint firstItem="hVc-sm-Ozx" firstAttribute="leading" secondItem="xa4-7B-OYU" secondAttribute="trailing" constant="8" symbolic="YES" id="P97-fk-rki"/>
                 <constraint firstItem="tm4-X8-yW0" firstAttribute="leading" secondItem="ieY-SR-sE6" secondAttribute="trailing" constant="4" id="Tsw-bn-Wzg"/>
-                <constraint firstItem="NtT-Pe-xfr" firstAttribute="centerY" secondItem="hEW-dE-saB" secondAttribute="centerY" constant="-4" id="VO1-h3-puf"/>
+                <constraint firstItem="NtT-Pe-xfr" firstAttribute="centerY" secondItem="hEW-dE-saB" secondAttribute="centerY" constant="2" id="VO1-h3-puf"/>
                 <constraint firstItem="hEW-dE-saB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="asX-hp-8fR"/>
                 <constraint firstItem="ncK-Qq-GsO" firstAttribute="leading" secondItem="hEW-dE-saB" secondAttribute="trailing" constant="15" id="dIf-sx-rEs"/>
-                <constraint firstItem="hEW-dE-saB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="ddG-Cw-hw4"/>
+                <constraint firstItem="hEW-dE-saB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="ddG-Cw-hw4"/>
                 <constraint firstAttribute="bottom" secondItem="NtT-Pe-xfr" secondAttribute="bottom" constant="12" id="jZn-pY-Aux"/>
                 <constraint firstItem="tm4-X8-yW0" firstAttribute="centerY" secondItem="ieY-SR-sE6" secondAttribute="centerY" id="m72-x7-KHB"/>
                 <constraint firstItem="NtT-Pe-xfr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="qvr-dU-p9u"/>
@@ -102,7 +102,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="37FF3657-837E-41D7-930D-A65E6FAB1390" width="9" height="8">
+        <image name="5D2886A9-87D5-4EF7-912B-6A8D4C0FAAE8" width="9" height="8">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

@@ -12,6 +12,7 @@ import AudioToolbox
 import Parse
 import SCRecorder
 import CoreMedia
+import MediaPlayer
 
 /// The central view controller.
 /// Contains a capture view and controls for navigation.
@@ -23,11 +24,15 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     var recorder: SCRecorder!
     var badgeTimer: NSTimer!
     var badgeTimerEnabled: Bool = true
+    var momentPlayerController: MomentPlayerController?
+
     @IBOutlet var previewView: CameraPreviewView!
     @IBOutlet var recordButton: UIButton!
     @IBOutlet var torchOnButton: UIButton!
     @IBOutlet var torchOffButton: UIButton!
     @IBOutlet var countdownLabel: UILabel!
+    var videoPlayView: PlayerView!
+
     var countdown: Int = 1
     var timer: NSTimer? {
         didSet {
@@ -60,7 +65,26 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         return player
         }()*/
     
+    @IBAction func timelineMenuButton(sender: AnyObject) {
+       
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("Left") as! drawer
+        
+        hidesBottomBarWhenPushed = true
+        
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.25
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.navigationController!.pushViewController(vc, animated: false)
+        
+    }
     override func viewDidLoad() {
+//        hidesBottomBarWhenPushed = true
+        tabBarController?.tabBar.hidden = true
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
         
@@ -109,6 +133,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     }
     func removeScrollView() {
         self.scrollView.removeFromSuperview()
+        self.videoPlayView.removeFromSuperview()
         self.drafts.removeAllObjects()
         closeButton.removeFromSuperview()
 
@@ -123,13 +148,19 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         self.scrollView.delegate = self
         self.view.addSubview(self.scrollView)
         
-        // close button
-        closeButton.frame = CGRectMake(10, self.previewView.frame.origin.y + 10, 30, 30);
-        closeButton.setImage(UIImage(named: "close") as UIImage?, forState: .Normal)
-        closeButton.addTarget(self, action: "closeViewButton", forControlEvents:.TouchUpInside)
-        self.view.addSubview(closeButton)
-        self.closeButton.hidden = true
+        self.videoPlayView = PlayerView(frame: previewView.bounds)
+        self.videoPlayView.frame = CGRectMake(0,135, self.view.frame.width, self.previewView.frame.size.height)
+        self.videoPlayView.backgroundColor = UIColor.blackColor()
+        self.videoPlayView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        self.view.addSubview(self.videoPlayView)
+        self.videoPlayView.hidden = true
 
+        // close button
+        self.closeButton.frame = CGRectMake(10, self.videoPlayView.frame.origin.y + 10, 30, 30);
+        self.closeButton.setImage(UIImage(named: "close") as UIImage?, forState: .Normal)
+        self.closeButton.addTarget(self, action: "closeViewButton", forControlEvents:.TouchUpInside)
+        self.view.addSubview(self.closeButton)
+        self.closeButton.hidden = true
     }
     
     
@@ -148,20 +179,71 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         
         for var index = 0; index < momentsDraft.count; ++index {
               let previewImg = UIImageView(frame: CGRectMake(scrollViewWidth * CGFloat(index), 0,scrollViewWidth-4, scrollViewHeight))
+            previewImg.tag = index
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("videoImageTapped:"))
+            previewImg.userInteractionEnabled = true
+            previewImg.addGestureRecognizer(tapGestureRecognizer)
+            
             UIImage.getImage(momentsDraft[index] as! Moment) { image in
                 main {
                     previewImg.image = image
                     self.scrollView.addSubview(previewImg)
-                    self.closeButton.hidden = false
                 }
             }
         }
         self.scrollView.contentSize = CGSizeMake(scrollViewWidth * CGFloat(self.drafts.count), self.scrollView.frame.height)
     }
     
+    func videoImageTapped(gestureRecognizer: UITapGestureRecognizer) {
+        //tappedImageView will be the image view that was tapped.
+        //dismiss it, animate it off screen, whatever.
+        let tappedImageView = gestureRecognizer.view!
+        let index : Int = tappedImageView.tag
+        let momentsDraftsArray = self.drafts.reverse()
+        let moment = momentsDraftsArray[index]
+        
+        UIView.animateWithDuration(0.2,animations: { () -> Void in
+            self.menuControls.each { $0.alpha = 0.5 }
+            self.torchEnabled = false
+            self.profileMenuBadge?.alpha = 0.5
+            self.timelineMenuBadge?.alpha = 0.5
+            self.notificationsMenuBadge?.alpha = 0.5
+            self.recordButton.alpha = 0.5
+            self.scrollView.hidden = true
+            self.previewView.hidden = true
+            self.recordButton.enabled = false
+            }) { (flag) -> Void in
+            self.menuControls.each { $0.enabled = false }
+        }
+        self.videoPlayView.hidden = false
+        self.closeButton.hidden = false
+
+        let moments: [Moment] = [moment as! Moment]
+        if momentPlayerController == nil {
+            momentPlayerController = MomentPlayerController(moments: moments , inView: videoPlayView)
+        }
+        momentPlayerController?.play()
+    }
+    
     func closeViewButton()
     {
-        self.performSegueWithIdentifier("ShowMoments", sender: self)
+        momentPlayerController?.pause()
+        UIView.animateWithDuration(0.2,animations: { () -> Void in
+            self.menuControls.each { $0.alpha = 1.0 }
+            self.torchEnabled = true
+            self.profileMenuBadge?.alpha = 1.0
+            self.timelineMenuBadge?.alpha = 1.0
+            self.notificationsMenuBadge?.alpha = 1.0
+            self.recordButton.alpha = 1.0
+            self.scrollView.hidden = false
+            self.previewView.hidden = false
+            self.recordButton.enabled = true
+            }) { (flag) -> Void in
+                self.menuControls.each { $0.enabled = true }
+        }
+        self.videoPlayView.hidden = true
+        self.closeButton.hidden = true
+        momentPlayerController = nil
     }
 
     
@@ -232,6 +314,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //    }
     
     override func viewWillAppear(animated: Bool) {
+//        videoPreviewView.hidden = true
         self.addScrollView()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.notificationAPI ()
@@ -244,9 +327,11 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     
     override func viewDidDisappear(animated: Bool) {
         self.recorder.stopRunning()
+        self.closeViewButton()
         self.refreshTorches()
         self.reloadBadges()
         self.removeScrollView()
+//        videoPreviewView.hidden = true
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -473,14 +558,13 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                             }
                         }
                         return
-                        
-        }
-                    return
+                    }
+//                    return
                     try NSFileManager.defaultManager().moveItemAtURL(url, toURL: newURL)
                     let asset = AVURLAsset(URL: newURL, options: nil)
                     let seconds = Int(round(CMTimeGetSeconds(asset.duration)))
                     
-                let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil)
+                    let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil)
                     
                     
                     Storage.session.drafts.append(newMoment)

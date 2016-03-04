@@ -20,20 +20,23 @@
  */
 
 #import "PFSignUpViewController.h"
-
+#import "PFActionButton.h"
 #import <Parse/PFConstants.h>
 #import <Parse/PFUser.h>
-
+#import <Parse/PFFile.h>
 #import "PFUIAlertView.h"
 #import "PFLocalization.h"
 #import "PFPrimaryButton.h"
 #import "PFTextField.h"
+
 
 NSString *const PFSignUpSuccessNotification = @"com.parse.ui.signup.success";
 NSString *const PFSignUpFailureNotification = @"com.parse.ui.signup.failure";
 NSString *const PFSignUpCancelNotification = @"com.parse.ui.signup.cancel";
 
 // Keys that are used to pass information to the delegate on `signUpViewController:shouldBeginSignUp`.
+static NSString *const PFSignUpViewControllerDelegateInfoFirstnameKey = @"firstname";
+static NSString *const PFSignUpViewControllerDelegateInfoLastNameKey = @"lastname";
 static NSString *const PFSignUpViewControllerDelegateInfoUsernameKey = @"username";
 static NSString *const PFSignUpViewControllerDelegateInfoPasswordKey = @"password";
 static NSString *const PFSignUpViewControllerDelegateInfoEmailKey = @"email";
@@ -176,6 +179,15 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == _signUpView.firstNameField) {
+        [_signUpView.lastNameField becomeFirstResponder];
+        return YES;
+    }
+    if (textField == _signUpView.lastNameField) {
+        [_signUpView.usernameField becomeFirstResponder];
+        return YES;
+    }
+    
     if (textField == _signUpView.usernameField) {
         [_signUpView.passwordField becomeFirstResponder];
         return YES;
@@ -222,10 +234,16 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
     [_signUpView.dismissButton addTarget:self
                                   action:@selector(_dismissAction)
                         forControlEvents:UIControlEventTouchUpInside];
+    _signUpView.firstNameField.delegate = self;
+    _signUpView.lastNameField.delegate = self;
     _signUpView.usernameField.delegate = self;
     _signUpView.passwordField.delegate = self;
     _signUpView.emailField.delegate = self;
+    
     _signUpView.additionalField.delegate = self;
+    [_signUpView.addProfilePicture addTarget:self
+                                 action:@selector(_addProfilePicture)
+                       forControlEvents:UIControlEventTouchUpInside];
     [_signUpView.signUpButton addTarget:self
                                  action:@selector(_signUpAction)
                        forControlEvents:UIControlEventTouchUpInside];
@@ -236,7 +254,16 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
     gestureRecognizer.cancelsTouchesInView = NO;
     [_signUpView addGestureRecognizer:gestureRecognizer];
 }
-
+- (void)_addProfilePicture {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  destructiveButtonTitle:@"Photo Library"
+                                  otherButtonTitles:@"Camera",nil];
+    actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
+    [actionSheet showInView:self.view];
+}
 - (void)_dismissAction {
     [self _cancelSignUp];
 
@@ -255,7 +282,8 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
     }
 
     [self _dismissKeyboard];
-
+    NSString *firstName = _signUpView.firstNameField.text ?: @"";
+    NSString *lastName = _signUpView.lastNameField.text ?: @"";
     NSString *username = _signUpView.usernameField.text ?: @"";
     NSString *password = _signUpView.passwordField.text ?: @"";
     NSString *email = (self.emailAsUsername ? username : _signUpView.emailField.text);
@@ -264,8 +292,9 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
     NSString *additional = _signUpView.additionalField.text;
 
     NSMutableDictionary *dictionary = [@{ PFSignUpViewControllerDelegateInfoUsernameKey : username,
-                                          PFSignUpViewControllerDelegateInfoPasswordKey : password } mutableCopy];
+                                          PFSignUpViewControllerDelegateInfoPasswordKey : password, PFSignUpViewControllerDelegateInfoFirstnameKey : firstName, PFSignUpViewControllerDelegateInfoLastNameKey : lastName  } mutableCopy];
 
+    
     if (email) {
         dictionary[PFSignUpViewControllerDelegateInfoEmailKey] = email;
     }
@@ -278,7 +307,31 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
             return;
         }
     }
-
+    if (firstName.length == 0){
+        NSString *errorMessage = PFLocalizedString(@"Kindly enter first name.",
+                                                   @"Kindly enter first name.");
+        errorMessage = [NSString stringWithFormat:errorMessage, (unsigned long)_minPasswordLength];
+        NSError *error = [NSError errorWithDomain:PFParseErrorDomain
+                                             code:0
+                                         userInfo:@{ NSLocalizedDescriptionKey : errorMessage }];
+        [self _signUpDidFailWithError:error];
+        [_signUpView.firstNameField becomeFirstResponder];
+        
+        return;
+    }
+    if (lastName.length == 0){
+        NSString *errorMessage = PFLocalizedString(@"Kindly enter last name.",
+                                                   @"Kindly enter last name.");
+        errorMessage = [NSString stringWithFormat:errorMessage, (unsigned long)_minPasswordLength];
+        NSError *error = [NSError errorWithDomain:PFParseErrorDomain
+                                             code:0
+                                         userInfo:@{ NSLocalizedDescriptionKey : errorMessage }];
+        [self _signUpDidFailWithError:error];
+        [_signUpView.lastNameField becomeFirstResponder];
+        
+        return;
+    }
+    
     if ([password length] < _minPasswordLength) {
         NSString *errorMessage = PFLocalizedString(@"Password must be at least %d characters.",
                                                    @"Password too short error message in PFSignUpViewController");
@@ -291,11 +344,28 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
 
         return;
     }
+    
+    if (_imageDataProfile == nil){
+        NSString *errorMessage = PFLocalizedString(@"Kindly select a profile image.",
+                                                   @"Kindly select a profile image.");
+        errorMessage = [NSString stringWithFormat:errorMessage, (unsigned long)_minPasswordLength];
+        NSError *error = [NSError errorWithDomain:PFParseErrorDomain
+                                             code:0
+                                         userInfo:@{ NSLocalizedDescriptionKey : errorMessage }];
+        [self _signUpDidFailWithError:error];
+        [_signUpView.firstNameField becomeFirstResponder];
+        
+        return;
+    }
 
     PFUser *user = [PFUser user];
     user.username = username;
     user.password = password;
-
+    user.firstname = firstName;
+    user.lastname = lastName;
+    
+    
+    
     if (email) {
         user.email = email;
     }
@@ -304,22 +374,34 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
     }
 
     self.loading = YES;
-    if ([_signUpView.signUpButton isKindOfClass:[PFPrimaryButton class]]) {
-        [(PFPrimaryButton *)_signUpView.signUpButton setLoading:YES];
+    if ([_signUpView.signUpButton isKindOfClass:[PFActionButton class]]) {
+        [(PFActionButton *)_signUpView.signUpButton setLoading:YES];
     }
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         self.loading = NO;
-        if ([_signUpView.signUpButton isKindOfClass:[PFPrimaryButton class]]) {
-            [(PFPrimaryButton *)_signUpView.signUpButton setLoading:NO];
+        if ([_signUpView.signUpButton isKindOfClass:[PFActionButton class]]) {
+            [(PFActionButton *)_signUpView.signUpButton setLoading:NO];
         }
-
         if (succeeded) {
+            
+            PFFile *imageFile = [PFFile fileWithName:@"profile.png" data:_imageDataProfile];
+            [user setObject:imageFile forKey:@"profile_picture"];
+            [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    NSLog(@"Image uploaded successfully 121");
+                }else{
+                    
+                }
+            }];
             [self _signUpDidSuceedWithUser:user];
         }
         else {
             [self _signUpDidFailWithError:error];
         }
     }];
+    
+   
+    
 }
 
 - (void)_signUpDidSuceedWithUser:(PFUser *)user {
@@ -520,5 +602,73 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
         _signUpView.dismissButton.enabled = !self.loading;
     }
 }
+#pragma  mark - ActionSheet Delegates
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+{
+    if (buttonIndex == 1)
+    {
+        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:picker
+                           animated:YES completion:nil];
+    }
+    if (buttonIndex==0)
+    {
+        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        //        [self presentViewController:picker animated:YES completion:nil];
+        
+            [self presentModalViewController:picker animated:YES];
+        
+    }
+    
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:picker
+                           animated:YES completion:nil];
+    }
+    if (buttonIndex==0)
+    {
+        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        //        [self presentViewController:picker animated:YES completion:nil];
+        
+            [self presentModalViewController:picker animated:YES];
+        
+    }
+    
+}
+#pragma mark - Image Picker Delegates
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+
+{
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    _imageDataProfile = UIImageJPEGRepresentation(chosenImage, 0.85);
+    
+//    _signUpView = [[PFSignUpView alloc]init];
+//    [_signUpView.imageView setImage: chosenImage];
+//    _signUpView.imageView.image = chosenImage;
+//   _signUpView.image.image = [UIImage imageWithData:data];
+//    _signUpView.image.backgroundColor = [UIColor yellowColor];
+//    [_signUpView setImage:chosenImage];
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+  
+    
+}
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    //   [self.view makeToast:@"Operation canceled"];
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
 @end

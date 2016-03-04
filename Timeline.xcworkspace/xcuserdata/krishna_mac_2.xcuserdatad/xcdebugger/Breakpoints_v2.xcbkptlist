@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/CaptureMomentViewController.swift"
-            timestampString = "478505300.695402"
+            timestampString = "478709330.666493"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
-            landmarkName = "recorder(_:didCompleteSegment:inSession:error:)"
+            startingLineNumber = "474"
+            endingLineNumber = "474"
+            landmarkName = "stop()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -64,6 +64,22 @@
             startingLineNumber = "147"
             endingLineNumber = "147"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/ParseUI/ParseUI/Classes/SignUpViewController/PFSignUpViewController.m"
+            timestampString = "478781150.147431"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
+            landmarkName = "-_signUpAction"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

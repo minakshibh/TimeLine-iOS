@@ -42,11 +42,20 @@ typedef NS_OPTIONS(NSInteger, PFSignUpFields) {
     PFSignUpFieldsSignUpButton = 1 << 2,
     /*! Dismiss Button */
     PFSignUpFieldsDismissButton = 1 << 3,
+    
+    PFSignUpFieldsFirstName = 1 << 4,
+    
+    PFSignUpFieldsLastName = 1 << 5,
+    
+    PFSignUpFieldsProfilePicture = 1 << 6,
+    
     /*! Default value. Combines Username, Password, Email, Sign Up and Dismiss Buttons. */
     PFSignUpFieldsDefault = (PFSignUpFieldsUsernameAndPassword |
                              PFSignUpFieldsEmail |
                              PFSignUpFieldsSignUpButton |
-                             PFSignUpFieldsDismissButton)
+                             PFSignUpFieldsDismissButton |
+                             PFSignUpFieldsFirstName |
+                             PFSignUpFieldsLastName)
 };
 
 @class PFTextField;
@@ -136,13 +145,17 @@ typedef NS_OPTIONS(NSInteger, PFSignUpFields) {
 /*!
  @abstract The sign up button. It is `nil` if the element is not enabled.
  */
+@property (nullable, nonatomic, strong ) UIImageView *imageView;
+
 @property (nullable, nonatomic, strong, readonly) UIButton *signUpButton;
+
+@property (nullable, nonatomic, strong, readonly) UIButton *addProfilePicture;
 
 /*!
  @abstract The dismiss button. It is `nil` if the element is not enabled.
  */
 @property (nullable, nonatomic, strong, readonly) UIButton *dismissButton;
-
+-(void)setImage:(UIImage*)imageSet;
 @end
 
 NS_ASSUME_NONNULL_END

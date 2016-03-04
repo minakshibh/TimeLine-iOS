@@ -35,13 +35,35 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         navigationController?.delegate = self
+        
+//        let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
+//        
+//        navigationItem.leftBarButtonItem = left
+
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         cleanUpHooking()
+        
+        
     }
-
+    func goToRecordScreen(){
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+        
+        hidesBottomBarWhenPushed = true
+        
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.25
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.navigationController!.pushViewController(vc, animated: false)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setUpHooking()
