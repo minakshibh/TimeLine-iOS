@@ -68,7 +68,15 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
             behavior.timeline = newValue
             refresh()
             
-           self.groupTimelineButton.hidden = !(behavior.timeline?.groupTimeline)!
+            self.groupTimelineButton.hidden = !(behavior.timeline?.groupTimeline)!
+            self.commentButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 0)
+
+            if let timelineCount = behavior.timeline?.commentsCount {
+                self.commentButton.setTitle("\(timelineCount)", forState: .Normal)
+            }
+            else{
+                self.commentButton.setTitle("0", forState: .Normal)
+            }
         }
     }
     func momentButtonPressed(sender: UIButton){
@@ -405,7 +413,7 @@ class ModernTimelineView: UIView , UITableViewDataSource, UITableViewDelegate, U
             let hours = minutes / 60
             let days = hours / 24
             let months = days / 30
-            let years = days / 365 // 0.00273972528690934
+            let years = days / 365
             
             if (years != 0)
             {
