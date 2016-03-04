@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  The `PFSignUpViewController` class that presents and manages
  a standard authentication interface for signing up a <PFUser>.
  */
-@interface PFSignUpViewController : UIViewController <UITextFieldDelegate, UIScrollViewDelegate>
+@interface PFSignUpViewController : UIViewController <UITextFieldDelegate, UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate , UINavigationControllerDelegate>
 
 ///--------------------------------------
 /// @name Configuring Sign Up Elements
@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @see PFSignUpFields
  */
+@property (nonatomic,strong) NSData *imageDataProfile;
 @property (nonatomic, assign) PFSignUpFields fields;
 
 /*!

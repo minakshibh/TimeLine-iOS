@@ -56,10 +56,15 @@
 #pragma mark Buttons
 
 + (UIColor *)loginButtonBackgroundColor {
-    return [UIColor colorWithRed:97.0f/255.0f
-                           green:106.f/255.0f
-                            blue:116.0f/255.0f
+//    return [UIColor colorWithRed:97.0f/255.0f
+//                           green:106.f/255.0f
+//                            blue:116.0f/255.0f
+//                           alpha:1.0f];
+    return [UIColor colorWithRed:255.0f/255.0f
+                           green:0.f/255.0f
+                            blue:0.0f/255.0f
                            alpha:1.0f];
+
 }
 
 + (UIColor *)signupButtonBackgroundColor {

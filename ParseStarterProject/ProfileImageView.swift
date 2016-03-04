@@ -61,15 +61,12 @@ class ProfileImageView: RoundImageView {
                 }
             
             let facebooIDStr = NSUserDefaults.standardUserDefaults().valueForKey("facebookID") as! String
-            
             let url = NSURL(string: "https://graph.facebook.com/\(facebooIDStr)/picture?type=large&return_ssl_resources=1")
             let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
 //            imageURL.image = UIImage(data: data!)
                 
                 self.image = UIImage(data: data!)
-           
             }
-            
         }else{
             if let externalID = self.user?.externalID {
                 if let image = userProfileImageCache.objectForKey(externalID) as? UIImage {

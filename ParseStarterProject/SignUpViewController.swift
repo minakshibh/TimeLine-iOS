@@ -11,12 +11,14 @@ import Bolts
 import Parse
 import ParseUI
 
-class SignUpViewController: PFSignUpViewController {
+class SignUpViewController: PFSignUpViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        fields = [PFSignUpFields.Email,.UsernameAndPassword,.SignUpButton]
         
         // adjust color
         let tintedImage = signUpView?.dismissButton?.imageView?.image?.imageWithRenderingMode(.AlwaysTemplate)
@@ -38,6 +40,12 @@ class SignUpViewController: PFSignUpViewController {
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[back]-0-|", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: ["back": backgroundView]))
         
         signUpView?.usernameField?.delegate = self
+        
+//        var text1:UITextField = UITextField(frame: CGRectMake(0, 10, 350, 30))
+//        text1.placeholder = "text11111"
+//        text1.backgroundColor = UIColor.whiteColor()
+//        self.view.addSubview(text1)
+        
     }
 
 //    override func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {

@@ -46,12 +46,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 
 //        self.hidesBottomBarWhenPushed = true
         tableView.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
-
-        view1 = UIView(frame: CGRectMake(0,0,25,25))
-        view1.backgroundColor = UIColor.blackColor()
         
-        view2 = UIView(frame: CGRectMake(0,0,25,25))
-        view2.backgroundColor = UIColor.yellowColor()
         
         
         // Do any additional setup after loading the view.
@@ -68,10 +63,10 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 //        (title: "Save", style: .Plain, target: self, action: "SaveImage")
         let Add: UIBarButtonItem = UIBarButtonItem(title: "Invite", style: .Plain, target: self, action: "btnInvite")
 //        (barButtonSystemItem: .Add, target: self, action: "AddComment:")
-
+        let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
     
         navigationItem.rightBarButtonItems = [right,Add]
-        
+        navigationItem.leftBarButtonItem = left
         
         delay(0.001) {
             if !Storage.session.walkedThroughTrends {
@@ -152,11 +147,40 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             }
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+//        0.0, 687.0, 414.0, 49.0
+        
+        
+        
+//        self.tabBarController?.tabBar.frame = CGRectMake(0, self.view.bounds.height, self.view.bounds.width, self.view.bounds.height);
+    }
     func btnBackContact(){
         KGModal.sharedInstance().hideAnimated(true)
     }
     func goToRecordScreen(){
-         performSegueWithIdentifier("goToCapture", sender: nil)
+        
+            
+        
+        
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+        
+        hidesBottomBarWhenPushed = true
+        
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.25
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
+        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.navigationController!.pushViewController(vc, animated: false)
+        //        let navigationController = UINavigationController(rootViewController: vc)
+        //
+        //        self.presentViewController(navigationController, animated: true, completion: nil)
+        
+        
     }
     func Invitebuttontapped(sender: UIButton!)
     {
@@ -259,8 +283,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     
     func update() {
        self.tableViewContact.reloadData()
-        NSUserDefaults.standardUserDefaults().setObject(self.nameArray, forKey: "nameArray")
-        NSUserDefaults.standardUserDefaults().setObject(self.numberArray, forKey: "numberArray")
+        
     }
     
     func fetchContacts(){

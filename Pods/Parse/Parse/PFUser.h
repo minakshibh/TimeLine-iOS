@@ -95,6 +95,10 @@ typedef void(^PFUserLogoutResultBlock)(NSError *__nullable error);
  */
 @property (nullable, nonatomic, strong) NSString *username;
 
+@property (nullable, nonatomic, strong) NSString *firstname;
+
+@property (nullable, nonatomic, strong) NSString *lastname;
+
 /**!
  The password for the `PFUser`.
 

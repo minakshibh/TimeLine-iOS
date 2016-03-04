@@ -53,7 +53,9 @@ public class EZSwipeController: UIViewController {
         public static var ScreenHeightWithoutStatusBar: CGFloat {
             get {
                 if UIInterfaceOrientationIsPortrait(Orientation) {
-                    return UIScreen.mainScreen().bounds.size.height+2
+                    
+                        return UIScreen.mainScreen().bounds.size.height+0.2
+                    
                 } else {
                     return UIScreen.mainScreen().bounds.size.width
                 }

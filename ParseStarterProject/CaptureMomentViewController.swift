@@ -60,7 +60,26 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         return player
         }()*/
     
+    @IBAction func timelineMenuButton(sender: AnyObject) {
+       
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("Left") as! drawer
+        
+        hidesBottomBarWhenPushed = true
+        
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.25
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
+        self.navigationController!.pushViewController(vc, animated: false)
+        
+    }
     override func viewDidLoad() {
+//        hidesBottomBarWhenPushed = true
+        tabBarController?.tabBar.hidden = true
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
         
