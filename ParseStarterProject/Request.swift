@@ -11,6 +11,7 @@ import Foundation
 typealias UUID = String
 typealias PAGE_ID = String
 typealias PARAMS = String
+typealias UserIdString = String
 typealias members = String
 typealias groupdescription = String
 typealias owner = String
@@ -65,8 +66,8 @@ enum ApiRequest {
     case TimelineUser(UUID)
     /// GET /api/timeline/id/comments
     case TimelineComments(UUID)
-    case TimelinePostComment(UUID,PARAMS)
-    case MomentPostComment(UUID,PARAMS)
+    case TimelinePostComment(UUID,PARAMS,UserIdString)
+    case MomentPostComment(UUID,PARAMS,UserIdString)
     /// GET /api/user/my_followers
     case GetTagUsers
     /// GET /api/video/id/comments
@@ -231,15 +232,15 @@ enum ApiRequest {
             urlString = "/api/timeline/\(uuid.urlEncoded)/comments"
             urlRequest.HTTPMethod = "GET"
             
-        case .TimelinePostComment(let uuid,let params):
+        case .TimelinePostComment(let uuid,let params, let IdString):
             urlString = "/api/timeline/\(uuid.urlEncoded)/comment"
             urlRequest.HTTPMethod = "POST"
-            urlRequest.HTTPBody = "comment=\(params.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            urlRequest.HTTPBody = "comment=\(params.urlEncoded)&tag_users=\(IdString.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         
-        case .MomentPostComment(let uuid,let params):
+        case .MomentPostComment(let uuid,let params, let IdString):
             urlString = "/api/video/\(uuid.urlEncoded)/comment"
             urlRequest.HTTPMethod = "POST"
-            urlRequest.HTTPBody = "comment=\(params.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            urlRequest.HTTPBody = "comment=\(params.urlEncoded)&tag_users=\(IdString.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         
         case .MomentComments(let uuid):
             urlString = "/api/video/\(uuid.urlEncoded)/comments"

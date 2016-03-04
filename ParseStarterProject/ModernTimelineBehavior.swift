@@ -206,6 +206,7 @@ extension ModernTimelineBehavior {
     }
     
     func tappedItem(sender: UITapGestureRecognizer) {
+        //print(sender.view)
         guard let target = sender.view,
             let tlview = modernTimelineView
             else { return }
@@ -226,6 +227,7 @@ extension ModernTimelineBehavior {
             
             return
         }
+        
         playMoment(target, moment: m)
     }
 

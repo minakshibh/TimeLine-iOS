@@ -19,7 +19,9 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     let commentlist = UITableView()
     let commentTextfeildView = UIView()
     var scrollView = UIScrollView()
-    
+    var invitedFriendsArray : NSMutableArray = []
+    var InvitedFriends_id : NSMutableArray = []
+    var InvitedFriendsIdSTr : NSString = ""
     
     enum RightError {
     case BlockedTimeline(String, String)
@@ -85,7 +87,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     @IBOutlet var previewImageView: MomentImageView!
     @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet var playButton: UIButton!
-
+    @IBOutlet var modernTimeline : ModernTimelineView!
     var momentPlayerController: MomentPlayerController?
     @IBOutlet var playbackContainer: PlayerView!
     @IBOutlet var bufferIndicator: UIActivityIndicatorView!
@@ -212,7 +214,10 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 commentScreenTitle.textAlignment = .Center
                 commentScreenTitle.backgroundColor = UIColor(white: 0, alpha: 1)
                 commentScreenTitle.textColor = UIColor.whiteColor()
-                commentScreenTitle.text = "Moment \((self.momentPlayerController?.currentIndexOfMoment())! + 1) Comments"
+                if let raw : Int = (self.momentPlayerController?.currentIndexOfMoment())!{
+                    commentScreenTitle.text = "Moment \(raw + 1) Comments"
+                }
+                
                 self.timelineCommentView.addSubview(commentScreenTitle)
                 
                 // close button comment section
@@ -235,19 +240,20 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 
                 
                 self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
-                self.commentTextfeildView.backgroundColor = UIColor(white: 1, alpha: 0.1)
+                self.commentTextfeildView.backgroundColor = UIColor(white: 0.5, alpha: 0.3)
                 self.timelineCommentView.addSubview(self.commentTextfeildView)
                 
                 
                 self.commentTextField.frame = CGRectMake(10, 15, CGFloat(295+40*isiphone6Plus()-55*isiPhone5()), 50)
                 self.commentTextField.layer.cornerRadius = 4
                 self.commentTextField.textColor = UIColor.whiteColor()
-                self.commentTextField.backgroundColor = UIColor(white: 1, alpha: 0.3)
-                let arrow = UIImageView()
-                arrow.frame = CGRectMake(0.0, 0.0, 10.0, 50);
-                arrow.contentMode = UIViewContentMode.Center
+                self.commentTextField.backgroundColor = UIColor(white: 0.5, alpha: 0.95)
+                self.commentTextField.autocorrectionType = .No
+                let leftPadding = UIImageView()
+                leftPadding.frame = CGRectMake(0.0, 0.0, 10.0, 50);
+                leftPadding.contentMode = UIViewContentMode.Center
                 self.commentTextField.leftViewMode = UITextFieldViewMode.Always
-                self.commentTextField.leftView = arrow
+                self.commentTextField.leftView = leftPadding
                 self.commentTextField.delegate = self
                 let attributes = [
                     NSForegroundColorAttributeName: UIColor.whiteColor(),
@@ -275,7 +281,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     
     func textFieldDidBeginEditing(textField: UITextField) {
         UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-325, self.timelineCommentView.frame.size.width, 80)
+            self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-290, self.timelineCommentView.frame.size.width, 80)
         })
     }
     
@@ -307,16 +313,18 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                         self.scrollView.frame = CGRectMake(0, self.commentTextfeildView.frame.origin.y-250, self.timelineCommentView.frame.size.width, 250)
                         self.scrollView.delegate = self
                         var Yaxis: CGFloat = 0
-                        for villain in self.tagArray{
+                        for var i = 0; i < self.tagArray.count; i++ {
                             
                             let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.commentTextfeildView.frame.size.width, height: 50))
                             
                             villainButton.layer.cornerRadius = 0
                             villainButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                            villainButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
                             villainButton.titleEdgeInsets = UIEdgeInsetsMake(
-                                0, -210, 0.0, 0)
+                                0, 60, 0.0, 0)
                             villainButton.backgroundColor = UIColor.whiteColor()
-                            if let raw = villain as? NSDictionary
+                            villainButton.tag = i
+                            if let raw = self.tagArray[i] as? NSDictionary
                             {
                                 villainButton.setTitle("@\(raw["name"]!)", forState: UIControlState.Normal)
                                 let userimage = UIImageView()
@@ -329,7 +337,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                             villainButton.addTarget(self, action: "villainButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
                             //villainButton.tag = Int(element.id)
                             self.scrollView.addSubview(villainButton)
-                            Yaxis = Yaxis + 30
+                            Yaxis = Yaxis + 51
                         }
                         self.scrollView.contentSize = CGSizeMake(self.timelineCommentView.frame.size.width, Yaxis)
                         self.scrollView.backgroundColor = UIColor.groupTableViewBackgroundColor()
@@ -343,12 +351,46 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     
     func villainButtonPressed(sender:UIButton!){
         print(sender.tag)
+        var user_id : NSString = ""
+        if let dataDict = self.tagArray[sender.tag] as? NSDictionary
+        {
+            user_id = (dataDict["id"] as? String!)!
+        }
+        
+        if invitedFriendsArray .containsObject(sender.tag)
+        {
+            
+            invitedFriendsArray .removeObject(sender.tag)
+            InvitedFriends_id .removeObject(user_id)
+        }
+        else
+        {
+            
+            invitedFriendsArray .addObject(sender.tag)
+            InvitedFriends_id .addObject(user_id)
+        }
+        print(InvitedFriends_id)
         self.scrollView.removeFromSuperview()
         if let raw = self.tagArray[sender.tag] as? NSDictionary{
+            print(raw["id"]!)
+            
+            InvitedFriendsIdSTr = ""
+            for ids in InvitedFriends_id{
+                if InvitedFriendsIdSTr == ""
+                {
+                    InvitedFriendsIdSTr = "\(ids)"
+                }
+                else
+                {
+                    InvitedFriendsIdSTr = "\(InvitedFriendsIdSTr),\(ids)"
+                }
+            }
+            print(InvitedFriendsIdSTr)
             commentTextField.text = commentTextField.text!.stringByAppendingString("\(raw["name"] as! String)")
         }
         
     }
+
     
     func MomentPostComment(){
         if(commentTextField.text == ""){
@@ -363,7 +405,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         let emoData = commentTextField.text!.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
         let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
 
-        Storage.performRequest(ApiRequest.MomentPostComment((momentPlayerController?.currentMoment()?.state.uuid)!, goodValue! as PARAMS), completion: { (json) -> Void in
+        Storage.performRequest(ApiRequest.MomentPostComment((momentPlayerController?.currentMoment()?.state.uuid)!, goodValue! as PARAMS, InvitedFriendsIdSTr as UserIdString), completion: { (json) -> Void in
             print(json)
             main{
                 Storage.performRequest(ApiRequest.MomentComments((self.momentPlayerController?.currentMoment()?.state.uuid)!), completion: { (json) -> Void in
@@ -653,6 +695,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     
     @IBAction func stop() {
         bufferIndicator.stopAnimating()
+        
         momentPlayerController?.stop()
         momentPlayerController = nil
         playbackContainer.hidden = true
