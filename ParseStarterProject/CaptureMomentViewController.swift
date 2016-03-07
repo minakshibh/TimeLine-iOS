@@ -21,6 +21,8 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     var scrollView = UIScrollView()
     let closeButton  = UIButton()
     var drafts :NSMutableArray = []
+    var reverseDrafts :NSMutableArray = []
+
     var recorder: SCRecorder!
     var badgeTimer: NSTimer!
     var badgeTimerEnabled: Bool = true
@@ -170,21 +172,35 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         for subview in subViews{
             subview.removeFromSuperview()
         }
-        self.scrollView.frame = CGRectMake(0,self.previewView.frame.origin.y-70, self.view.frame.width, 65)
+        self.scrollView.frame = CGRectMake(0,self.previewView.frame.origin.y - self.view.frame.width / 4, self.view.frame.width, self.view.frame.width / 4 )
         self.closeButton.frame = CGRectMake(10, self.previewView.frame.origin.y + 10, 30, 30);
 
         let scrollViewWidth:CGFloat = self.scrollView.frame.width/4
         let scrollViewHeight:CGFloat = self.scrollView.frame.height
-        let momentsDraft = self.drafts.reverse()
+//        let momentsDraft = self.drafts.reverse()
         
-        for var index = 0; index < momentsDraft.count; ++index {
-              let previewImg = UIImageView(frame: CGRectMake(scrollViewWidth * CGFloat(index), 0,scrollViewWidth-4, scrollViewHeight))
+        var start: Int = 0
+        var end: Int = self.drafts.count-1
+        self.reverseDrafts.removeAllObjects()
+        self.reverseDrafts = self.drafts.mutableCopy() as! NSMutableArray
+        while start < end {
+            self.reverseDrafts.exchangeObjectAtIndex(start, withObjectAtIndex: end)
+            start++
+            end--
+        }
+
+        
+        
+        
+        
+        for var index = 0; index < self.reverseDrafts.count; ++index {
+              let previewImg = UIImageView(frame: CGRectMake(scrollViewWidth * CGFloat(index), 0,scrollViewWidth-4, scrollViewHeight-4))
             previewImg.tag = index
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("videoImageTapped:"))
             previewImg.userInteractionEnabled = true
             previewImg.addGestureRecognizer(tapGestureRecognizer)
             
-            UIImage.getImage(momentsDraft[index] as! Moment) { image in
+            UIImage.getImage(self.reverseDrafts[index] as! Moment) { image in
                 main {
                     previewImg.image = image
                     self.scrollView.addSubview(previewImg)
@@ -197,11 +213,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     func videoImageTapped(gestureRecognizer: UITapGestureRecognizer) {
         //tappedImageView will be the image view that was tapped.
         //dismiss it, animate it off screen, whatever.
-        let tappedImageView = gestureRecognizer.view!
-        let index : Int = tappedImageView.tag
-        let momentsDraftsArray = self.drafts.reverse()
-        let moment = momentsDraftsArray[index]
-        
+        momentPlayerController = nil
         UIView.animateWithDuration(0.2,animations: { () -> Void in
             self.menuControls.each { $0.alpha = 0.5 }
             self.torchEnabled = false
@@ -209,7 +221,6 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
             self.timelineMenuBadge?.alpha = 0.5
             self.notificationsMenuBadge?.alpha = 0.5
             self.recordButton.alpha = 0.5
-            self.scrollView.hidden = true
             self.previewView.hidden = true
             self.recordButton.enabled = false
             }) { (flag) -> Void in
@@ -217,10 +228,14 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         }
         self.videoPlayView.hidden = false
         self.closeButton.hidden = false
-
+        
+        let tappedImageView = gestureRecognizer.view!
+        let index : Int = tappedImageView.tag
+        let moment = self.reverseDrafts[index]
         let moments: [Moment] = [moment as! Moment]
+        
         if momentPlayerController == nil {
-            momentPlayerController = MomentPlayerController(moments: moments , inView: videoPlayView)
+            momentPlayerController = MomentPlayerController(moments: moments   , inView: videoPlayView)
         }
         momentPlayerController?.play()
     }
@@ -228,6 +243,8 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     func closeViewButton()
     {
         momentPlayerController?.pause()
+        momentPlayerController = nil
+
         UIView.animateWithDuration(0.2,animations: { () -> Void in
             self.menuControls.each { $0.alpha = 1.0 }
             self.torchEnabled = true
@@ -235,7 +252,6 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
             self.timelineMenuBadge?.alpha = 1.0
             self.notificationsMenuBadge?.alpha = 1.0
             self.recordButton.alpha = 1.0
-            self.scrollView.hidden = false
             self.previewView.hidden = false
             self.recordButton.enabled = true
             }) { (flag) -> Void in
@@ -243,7 +259,6 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         }
         self.videoPlayView.hidden = true
         self.closeButton.hidden = true
-        momentPlayerController = nil
     }
 
     
