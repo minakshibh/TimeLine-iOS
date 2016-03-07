@@ -364,7 +364,8 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
 
         Storage.performRequest(.CreateGroupTimeline(title,InvitedFriendsIdSTr  as members,description as groupdescription)) { (json) -> Void in
             print("Group timelime API response :\(json)")
-            
+            self.InvitedFriends_id.removeAllObjects()
+            self.invitedFriendsArray.removeAllObjects()
             KGModal.sharedInstance().hideAnimated(true)
             main {
                 self.textFields.first!.text = ""
