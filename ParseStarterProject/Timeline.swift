@@ -37,11 +37,12 @@ class Timeline: Synchronized, DictConvertable {
     var persistent: Bool
     var groupTimeline: Bool
     var commentsCount: Int = 0
+    var description: String
 
     weak var parent: ParentType?
     
     typealias ParentType = User
-    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, commentscount: Int? , parent: User? = nil) {
+    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, commentscount: Int? , description: String , parent: User? = nil) {
         self.name = name
         self.parent = parent
         self.state = state
@@ -55,6 +56,7 @@ class Timeline: Synchronized, DictConvertable {
         self.persistent = persistent
         self.groupTimeline = grouptimeline
         self.commentsCount = commentscount! ?? 0
+        self.description = description
         
         self.moments = moments.sort { lhs, rhs in
             switch (lhs.state, rhs.state) {
@@ -91,12 +93,12 @@ class Timeline: Synchronized, DictConvertable {
             duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
             moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
             state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-            grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 , parent: parent
+            grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , parent: parent
         )
     }
     
     var dict: [String: AnyObject] {
-        return ["state": state.dict, "name": name, "followers_count": followersCount, "likes_count": likesCount, "moments": moments.map { $0.dict }, "liked": liked, "followed": followed.rawValue, "moments_duration": duration ?? 0, "blocked": blocked, "hasNews": hasNews, "persistent": persistent , "group_timeline" : groupTimeline , "comments_count" : commentsCount ?? 0]
+        return ["state": state.dict, "name": name, "followers_count": followersCount, "likes_count": likesCount, "moments": moments.map { $0.dict }, "liked": liked, "followed": followed.rawValue, "moments_duration": duration ?? 0, "blocked": blocked, "hasNews": hasNews, "persistent": persistent , "group_timeline" : groupTimeline , "comments_count" : commentsCount ?? 0 , "description" :description]
     }
     
     var uuid: UUID? {
@@ -227,8 +229,9 @@ extension Timeline {
                             if let cc = td["comments_count"] as? Int {
                                 existing.commentsCount = cc
                             }
-                            
-                            
+                            if let dec = td["description"] as? String {
+                                existing.description = dec
+                            }
                             existing.state = SynchronizationState(dict: td)
                             
                             tl = existing

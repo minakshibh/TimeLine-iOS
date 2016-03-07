@@ -30,6 +30,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     var InvitedFriendsIdSTr : NSString = ""
     var selectedTimelineMomentArray : NSArray = []
     @IBOutlet var groupTimelineButton: UIButton!
+    @IBOutlet var descriptionLabel: UILabel!
 
 
     lazy var behavior: ModernTimelineBehavior = {
@@ -104,6 +105,11 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             else{
                 self.commentButton.setTitle("0", forState: .Normal)
             }
+            if let description = behavior.timeline?.description {
+                self.descriptionLabel.text = description
+            }
+
+            
         }
     }
     
