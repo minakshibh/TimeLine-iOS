@@ -28,6 +28,9 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        headerLabelSTr = appDelegate.headerLabelSTr
+        GroupTimeline = appDelegate.GroupTimeline
 
         navigationItem.title = headerLabelSTr as String
         if GroupTimeline{
