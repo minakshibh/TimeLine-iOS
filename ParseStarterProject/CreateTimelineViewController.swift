@@ -199,18 +199,25 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         self.friendsListView.backgroundColor = UIColor.whiteColor()
         self.friendsListView.alpha = 1
         
+        let headerBackView = UILabel()
+        headerBackView.frame = CGRectMake(0, 0, screenWidth, 70)
+        headerBackView.textAlignment = .Center
+        headerBackView.backgroundColor = UIColor(red:235.0/255.0,green:129.0/255.0,blue:40.0/255.0,alpha:1.0)
+        headerBackView.text = ""
+        self.friendsListView.addSubview(headerBackView)
+        
         let viewTitle = UILabel()
-        viewTitle.frame = CGRectMake(0, 0, screenWidth, 70)
-        viewTitle.font = UIFont.boldSystemFontOfSize(20)
+        viewTitle.frame = CGRectMake(0, 30, screenWidth, 30)
+        viewTitle.font = UIFont.boldSystemFontOfSize(17)
         viewTitle.textAlignment = .Center
-        viewTitle.backgroundColor = UIColor(red:235.0/255.0,green:129.0/255.0,blue:40.0/255.0,alpha:1.0)
+        viewTitle.backgroundColor = UIColor.clearColor()
         viewTitle.textColor = UIColor.whiteColor()
         viewTitle.text = "Select Members"
         self.friendsListView.addSubview(viewTitle)
         
         // close button comment section
         let closeButton  = UIButton()
-        closeButton.frame = CGRectMake(5, 20, 30, 30);
+        closeButton.frame = CGRectMake(5, 30, 30, 30);
         closeButton.setImage(UIImage(named: "Back to previous screen") as UIImage?, forState: .Normal)
         closeButton.addTarget(self, action: "closeViewButton", forControlEvents:.TouchUpInside)
         self.friendsListView.addSubview(closeButton)
@@ -221,7 +228,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         
         // DONE button comment section
         let doneButton   = UIButton()
-        doneButton.frame = CGRectMake(self.view.frame.size.width - 70.0 , 20, 65, 30)
+        doneButton.frame = CGRectMake(self.view.frame.size.width - 70.0 , 30, 65, 30)
         doneButton.layer.cornerRadius = 4
         
         doneButton.setTitleColor (UIColor.whiteColor() ,forState: .Normal)
