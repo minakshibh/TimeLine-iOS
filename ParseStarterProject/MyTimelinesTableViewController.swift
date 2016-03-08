@@ -172,17 +172,18 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         
         let controller = activeController()
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        alert.addAction(title: local(.CreateGroupTimelineMessage), style: .Default) { _ in
-            self.GroupTimeline = true
-            self.headerLabelSTr = local(.CreateGroupTimelineMessage)
-            self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
-                    }
-        alert.addAction(title: local(.CreateSingleTimelineMessage), style: .Destructive) { _ in
+               alert.addAction(title: local(.CreateSingleTimelineMessage), style: .Destructive) { _ in
             self.GroupTimeline = false
             self.headerLabelSTr = local(.CreateSingleTimelineMessage)
             self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
           
         }
+        alert.addAction(title: local(.CreateGroupTimelineMessage), style: .Default) { _ in
+            self.GroupTimeline = true
+            self.headerLabelSTr = local(.CreateGroupTimelineMessage)
+            self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
+        }
+
         alert.addAction(title: local(.CreateGroupTimelineCancel), style: .Cancel, handler: nil)
         
         controller!.presentAlertController(alert)

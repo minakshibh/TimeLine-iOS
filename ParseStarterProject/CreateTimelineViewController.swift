@@ -31,17 +31,21 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
 
         navigationItem.title = headerLabelSTr as String
         if GroupTimeline{
-            submitButton.titleLabel?.text = "NEXT"
+            submitButton.setTitle("NEXT", forState: UIControlState.Normal)
+            self.textFields.first!.placeholder = "#tagyourgroupfeedeo"
+            DescribeTimelineHeaderLabel?.text = "Describe group feedeo.."
+
+            self.getFriendsList()
+            self.addFriendsListView()
         }
         else{
             submitButton.titleLabel?.text = "DONE"
+            submitButton.setTitle("DONE", forState: UIControlState.Normal)
+            self.textFields.first!.placeholder = "#tagyourfeedeo"
+            DescribeTimelineHeaderLabel?.text = "Describe feedeo.."
         }
         timelineDetailTxtView.layer.cornerRadius = 4
         DescribeTimelineHeaderLabel.hidden = false
-
-        self.getFriendsList()
-        self.addFriendsListView()
-
         self.friendsListView.hidden=true
         //tabBarController?.delegate = self
         //navigationController?.delegate = self
