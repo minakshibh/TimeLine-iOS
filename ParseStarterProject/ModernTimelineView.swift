@@ -136,7 +136,10 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         
         let controller = activeController()
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        
+        if !(self.timeline?.isOwn)!
+        {
+            return
+        }
         if self.timeline?.parent?.uuid != Storage.session.uuid
         {
             alert.addAction(title: local(.ShowViewMembersGroupTimelineMessage), style: .Default) { _ in
