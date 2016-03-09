@@ -169,7 +169,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
 
         let controller = activeController()
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-               alert.addAction(title: local(.CreateSingleTimelineMessage), style: .Destructive) { _ in
+               alert.addAction(title: local(.CreateSingleTimelineMessage), style: .Default) { _ in
             appDelegate.GroupTimeline = false
             appDelegate.headerLabelSTr = local(.CreateSingleTimelineMessage)
             main{
