@@ -1269,14 +1269,14 @@ Effective as of September 14, 2015
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Profile Picture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8q-Kr-t7r">
-                                                    <rect key="frame" x="8" y="12" width="102" height="20"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Profile Picture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8q-Kr-t7r">
+                                                    <rect key="frame" x="15" y="12" width="102" height="20"/>
                                                     <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Up-UE-pS9" customClass="ProfileImageView" customModule="Timeline" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Up-UE-pS9" customClass="ProfileImageView" customModule="Timeline" customModuleProvider="target">
                                                     <rect key="frame" x="524" y="4" width="35" height="35"/>
                                                     <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1288,9 +1288,6 @@ Effective as of September 14, 2015
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="4Up-UE-pS9" secondAttribute="trailing" id="8Vn-6y-T60"/>
-                                                <constraint firstAttribute="centerY" secondItem="n8q-Kr-t7r" secondAttribute="centerY" id="Kae-5u-XdB"/>
-                                                <constraint firstItem="n8q-Kr-t7r" firstAttribute="leading" secondItem="xpI-Ql-IV2" secondAttribute="leadingMargin" id="e3c-QY-hZS"/>
-                                                <constraint firstItem="n8q-Kr-t7r" firstAttribute="centerY" secondItem="4Up-UE-pS9" secondAttribute="centerY" id="oNo-BY-u9b"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
