@@ -185,6 +185,7 @@ extension ModernTimelineBehavior {
         guard let playerView = modernTimelineView?.playerView else { return }
 
         for v in self.modernTimelineView?.previewItems ?? [] {
+            
             v.hidden = false
         }
         UIView.animateWithDuration(animated ? 0.01 : 0.0, animations: {
@@ -200,6 +201,7 @@ extension ModernTimelineBehavior {
             self.centerConstraints = []
             self.modernTimelineView?.playerView.draftPreview.stop()
             for v in self.modernTimelineView?.playbackItems ?? [] {
+                self.modernTimelineView?.momentScroller.hidden = false
                 v.hidden = true
             }
         })

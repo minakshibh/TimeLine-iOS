@@ -35,7 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var notificationCount : Int!
     var activityIndicator = UIActivityIndicatorView()
     let activityIndicatorView = UIView()
-
+    var GroupTimeline : Bool = false
+    var headerLabelSTr : (NSString) = ""
+    
     //--------------------------------------
     // MARK: - UIApplicationDelegate
     //--------------------------------------

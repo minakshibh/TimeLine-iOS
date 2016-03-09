@@ -117,6 +117,15 @@
 "Timeline-Alert-Create-Error-Title" = "Create Timeline";
 "Timeline-Alert-Create-Error-Action-Dismiss" = "Ok";
 
+/* MARK: Invite Friend GroupTimeline Creation */
+
+"Invite-Friends-Missing-Title" = "Invite Friends" ;
+"Invite-Friends-Missing-Message" = "Please add friends to create group timeline." ;
+"Invite-Friends-Missing-Dismiss" = "OK" ;
+"Invite-Friends-Missing-Detail-Message" = "" ;
+
+
+
 /* MARK: Timeline Cell */
 "Timeline-Button-Cell-Pending-Title" = "Pending";
 
@@ -259,6 +268,8 @@
 "Show-Leave-Group-Timeline-Message" = "Leave Group";
 "Show-View-Members-Group-Timeline-Message" = "View Members";
 "Show-Group-Timeline-Cancel" = "Cancel";
+"Show-Exit-Group-Timeline-Message" = "Delete Group";
+"User-Leave-Group-Timeline-Cancel-Alert-Message" = "OK";
 
 
 
