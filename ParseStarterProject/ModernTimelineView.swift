@@ -131,22 +131,36 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     var tagArray = NSMutableArray()
     var momentArray = NSMutableArray()
     
+
     @IBAction func groupTimelineButtonAction(sender: AnyObject) {
         
         let controller = activeController()
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        alert.addAction(title: local(.ShowViewMembersGroupTimelineMessage), style: .Destructive) { _ in
-            //            self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
-            
-        }
-        alert.addAction(title: local(.ShowLeaveGroupTimelineMessage), style: .Default) { _ in
-//            self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
-        }
-      
-        alert.addAction(title: local(.ShowGroupTimelineCancel), style: .Cancel, handler: nil)
         
+        if self.timeline?.parent?.uuid != Storage.session.uuid
+        {
+            alert.addAction(title: local(.ShowViewMembersGroupTimelineMessage), style: .Default) { _ in
+            }
+        }
+        else if self.timeline?.adminId == self.timeline?.parent?.uuid
+        {
+            alert.addAction(title: local(.ShowViewMembersGroupTimelineMessage), style: .Default) { _ in
+            }
+            alert.addAction(title: local(.ShowExitGroupTimelineMessage), style: .Default) { _ in
+            }
+        }
+        else
+        {
+            alert.addAction(title: local(.ShowViewMembersGroupTimelineMessage), style: .Default) { _ in
+            }
+            alert.addAction(title: local(.ShowLeaveGroupTimelineMessage), style: .Default) { _ in
+            }
+        }
+        alert.addAction(title: local(.ShowGroupTimelineCancel), style: .Cancel, handler: nil)
         controller!.presentAlertController(alert)
     }
+    
+    
     @IBAction func timelineCommentClick(sender: UIButton!){
         print("timeline id: \(timeline!.uuid!)")
         print(timeline!.dict["moments"]!)  //show all moments

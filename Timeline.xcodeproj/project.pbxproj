@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18DBC7101C902A67006AFE68 /* ModernTimelineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DBC70F1C902A67006AFE68 /* ModernTimelineView.xib */; };
 		18DF0CEE1C745F380042F16B /* AllNotificationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF0CEC1C745F380042F16B /* AllNotificationList.swift */; };
 		18DF0CEF1C745F380042F16B /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF0CED1C745F380042F16B /* NotificationTableViewCell.swift */; };
 		18E9AA6C1C844DD60026C9AB /* EditFirstNameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9AA6B1C844DD50026C9AB /* EditFirstNameTableViewController.swift */; };
@@ -56,7 +57,6 @@
 		BA3DB6641B986AA5004E061A /* UIAnimationCurve+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3DB6631B986AA5004E061A /* UIAnimationCurve+Additions.swift */; };
 		BA42085F1BF1050400FC214C /* Each.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA42085E1BF1050400FC214C /* Each.swift */; };
 		BA4372B41B94BD27009341F2 /* PFInstalltion+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4372B31B94BD27009341F2 /* PFInstalltion+Additions.swift */; };
-		BA452AE71BFB1CD000FF4598 /* ModernTimelineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA452AE61BFB1CD000FF4598 /* ModernTimelineView.xib */; };
 		BA452AE91BFB21BC00FF4598 /* ModernTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA452AE81BFB21BC00FF4598 /* ModernTimelineView.swift */; };
 		BA452AEB1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA452AEA1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift */; };
 		BA452AED1BFB2EEF00FF4598 /* TimelineViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA452AEC1BFB2EEF00FF4598 /* TimelineViewRight.swift */; };
@@ -249,6 +249,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		18DBC70F1C902A67006AFE68 /* ModernTimelineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModernTimelineView.xib; sourceTree = "<group>"; };
 		18DF0CEC1C745F380042F16B /* AllNotificationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllNotificationList.swift; sourceTree = "<group>"; };
 		18DF0CED1C745F380042F16B /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		18E9AA6B1C844DD50026C9AB /* EditFirstNameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFirstNameTableViewController.swift; sourceTree = "<group>"; };
@@ -305,7 +306,6 @@
 		BA3DB6631B986AA5004E061A /* UIAnimationCurve+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAnimationCurve+Additions.swift"; sourceTree = "<group>"; };
 		BA42085E1BF1050400FC214C /* Each.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Each.swift; sourceTree = "<group>"; };
 		BA4372B31B94BD27009341F2 /* PFInstalltion+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PFInstalltion+Additions.swift"; sourceTree = "<group>"; };
-		BA452AE61BFB1CD000FF4598 /* ModernTimelineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModernTimelineView.xib; sourceTree = "<group>"; };
 		BA452AE81BFB21BC00FF4598 /* ModernTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModernTimelineView.swift; sourceTree = "<group>"; };
 		BA452AEA1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModernTimelineTableViewCell.swift; sourceTree = "<group>"; };
 		BA452AEC1BFB2EEF00FF4598 /* TimelineViewRight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewRight.swift; sourceTree = "<group>"; };
@@ -1105,7 +1105,7 @@
 				BA452AE81BFB21BC00FF4598 /* ModernTimelineView.swift */,
 				BA452AEA1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift */,
 				BAC4F0E41BFB62D4009C395D /* ModernTimelineBehavior.swift */,
-				BA452AE61BFB1CD000FF4598 /* ModernTimelineView.xib */,
+				18DBC70F1C902A67006AFE68 /* ModernTimelineView.xib */,
 				DA38C4DF1B87DB68004C3A14 /* TimelineView.xib */,
 			);
 			name = Timeline;
@@ -1243,7 +1243,7 @@
 				DA167E131B7D6C6D00608A6C /* DraftPreview.xib in Resources */,
 				81BA81501A49DA1800E65899 /* Main.storyboard in Resources */,
 				DA38C4E01B87DB74004C3A14 /* TimelineTableHeaderView.xib in Resources */,
-				BA452AE71BFB1CD000FF4598 /* ModernTimelineView.xib in Resources */,
+				18DBC7101C902A67006AFE68 /* ModernTimelineView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

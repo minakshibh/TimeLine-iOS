@@ -12,7 +12,7 @@ import SDWebImage
 import QuartzCore
 
 class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource , UITableViewDelegate {
-
+    
     @IBOutlet var submitButton: UIButton!
     @IBOutlet var warningLabel: UILabel!
     let friendsListView = UIView()
@@ -25,37 +25,44 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
     var headerLabelSTr : (NSString) = ""
     @IBOutlet var timelineDetailTxtView: UITextView!
     @IBOutlet var DescribeTimelineHeaderLabel: UILabel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        headerLabelSTr = appDelegate.headerLabelSTr
+        GroupTimeline = appDelegate.GroupTimeline
+        
         navigationItem.title = headerLabelSTr as String
         if GroupTimeline{
-            submitButton.titleLabel?.text = "NEXT"
+            submitButton.setTitle("NEXT", forState: UIControlState.Normal)
+            self.textFields.first!.placeholder = "#tagyourgroupfeedeo"
+            DescribeTimelineHeaderLabel?.text = "Describe group feedeo.."
+            
+            self.getFriendsList()
+            self.addFriendsListView()
         }
         else{
             submitButton.titleLabel?.text = "DONE"
+            submitButton.setTitle("DONE", forState: UIControlState.Normal)
+            self.textFields.first!.placeholder = "#tagyourfeedeo"
+            DescribeTimelineHeaderLabel?.text = "Describe feedeo.."
         }
         timelineDetailTxtView.layer.cornerRadius = 4
         DescribeTimelineHeaderLabel.hidden = false
-
-        self.getFriendsList()
-        self.addFriendsListView()
-
         self.friendsListView.hidden=true
         //tabBarController?.delegate = self
         //navigationController?.delegate = self
-
+        
         // Do any additional setup after loading the view.
     }
     func getFriendsList()
     {
         Storage.performRequest(ApiRequest.GetTagUsers, completion: { (json) -> Void in
             // print(json)
-//            if let results = json["result"] as? [[String: AnyObject]]
-//            {
-//                
-//            }
+            //            if let results = json["result"] as? [[String: AnyObject]]
+            //            {
+            //
+            //            }
             if let results = json["result"] as? NSMutableArray{
                 self.dataArray = results
                 print(self.dataArray)
@@ -67,7 +74,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
             submitAction()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -81,7 +88,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
             self.presentAlertController(alert)
             return
         }
-
+        
         guard let detailTimeline = self.timelineDetailTxtView.text else { return }
         if detailTimeline == "" {
             let alert = UIAlertController(title: local(.TimelineAlertCreateMissingTitle), message: local(.TimelineAlertCreateMissingDetailMessage), preferredStyle: .Alert)
@@ -109,24 +116,26 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
             guard let description = self.timelineDetailTxtView.text else { return }
             Storage.performRequest(.CreateTimeline(title,description)) { (json) -> Void in
                 print("timelime API response :\(json)")
-
+                
                 switch json["status_code"] as? Int ?? 400 {
                 case 400, 402: // payment required
-                    let alert = UIAlertController(title: local(LocalizedString.TimelineAlertLimitRequiredTitle),
-                        message: local(LocalizedString.TimelineAlertLimitRequiredMessage),
-                        preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: local(LocalizedString.TimelineAlertLimitRequiredActionUpgrade),
-                        style: UIAlertActionStyle.Default,
-                        handler: { _ in
-                            self.upgrading = true
-                            self.performSegueWithIdentifier("BuyUpgrade", sender: self)
-                    }))
-                    alert.addAction(UIAlertAction(title: local(LocalizedString.TimelineAlertLimitRequiredActionCancel),
-                        style: UIAlertActionStyle.Cancel,
-                        handler: { _ in
-                            self.navigationController?.popViewControllerAnimated(true)
-                    }))
-                    self.presentAlertController(alert)
+                    main {
+                        let alert = UIAlertController(title: local(LocalizedString.TimelineAlertLimitRequiredTitle),
+                            message: local(LocalizedString.TimelineAlertLimitRequiredMessage),
+                            preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: local(LocalizedString.TimelineAlertLimitRequiredActionUpgrade),
+                            style: UIAlertActionStyle.Default,
+                            handler: { _ in
+                                self.upgrading = true
+                                self.performSegueWithIdentifier("BuyUpgrade", sender: self)
+                        }))
+                        alert.addAction(UIAlertAction(title: local(LocalizedString.TimelineAlertLimitRequiredActionCancel),
+                            style: UIAlertActionStyle.Cancel,
+                            handler: { _ in
+                                self.navigationController?.popViewControllerAnimated(true)
+                        }))
+                        self.presentAlertController(alert)
+                    }
                     
                 default:
                     if let error = (json["error"] as? String) ?? (json["error"] as? [AnyObject])?.first as? String {
@@ -192,18 +201,25 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         self.friendsListView.backgroundColor = UIColor.whiteColor()
         self.friendsListView.alpha = 1
         
+        let headerBackView = UILabel()
+        headerBackView.frame = CGRectMake(0, 0, screenWidth, 70)
+        headerBackView.textAlignment = .Center
+        headerBackView.backgroundColor = UIColor.redColor()
+        headerBackView.text = ""
+        self.friendsListView.addSubview(headerBackView)
+        
         let viewTitle = UILabel()
-        viewTitle.frame = CGRectMake(0, 0, screenWidth, 70)
-        viewTitle.font = UIFont.boldSystemFontOfSize(20)
+        viewTitle.frame = CGRectMake(0, 30, screenWidth, 30)
+        viewTitle.font = UIFont.boldSystemFontOfSize(17)
         viewTitle.textAlignment = .Center
-        viewTitle.backgroundColor = UIColor.redNavbarColor()
+        viewTitle.backgroundColor = UIColor.clearColor()
         viewTitle.textColor = UIColor.whiteColor()
         viewTitle.text = "Select Members"
         self.friendsListView.addSubview(viewTitle)
         
         // close button comment section
         let closeButton  = UIButton()
-        closeButton.frame = CGRectMake(5, 20, 30, 30);
+        closeButton.frame = CGRectMake(5, 30, 30, 30);
         closeButton.setImage(UIImage(named: "Back to previous screen") as UIImage?, forState: .Normal)
         closeButton.addTarget(self, action: "closeViewButton", forControlEvents:.TouchUpInside)
         self.friendsListView.addSubview(closeButton)
@@ -214,7 +230,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         
         // DONE button comment section
         let doneButton   = UIButton()
-        doneButton.frame = CGRectMake(self.view.frame.size.width - 70.0 , 20, 65, 30)
+        doneButton.frame = CGRectMake(self.view.frame.size.width - 70.0 , 30, 65, 30)
         doneButton.layer.cornerRadius = 4
         
         doneButton.setTitleColor (UIColor.whiteColor() ,forState: .Normal)
@@ -223,7 +239,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         doneButton.setTitle("Done", forState: UIControlState.Normal)
         doneButton.addTarget(self, action: "doneButtonAction", forControlEvents:.TouchUpInside)
         self.friendsListView.addSubview(doneButton)
-
+        
         
         
         // table view declaration
@@ -236,7 +252,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         friendslistTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.friendsListView.addSubview(friendslistTableView)
         
-          }
+    }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60
@@ -274,7 +290,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         fullName.textColor = UIColor.blackColor()
         fullName.text = ""
         fullName.hidden = false
-
+        
         let username = UILabel()
         username.frame = CGRectMake(70, 26, 250, 25)
         username.font = UIFont.boldSystemFontOfSize(16)
@@ -296,17 +312,17 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
                 username.frame = fullName.frame
                 fullName.hidden = true
             }
-//            fullName.text = "Firstname"+"LastName"
+            //            fullName.text = "Firstname"+"LastName"
             username.text = "@" + (dataDict["name"] as? String)!
             let placeHolderimg = UIImage(named: "default-user-profile")
             let imageName = dataDict["image"] as? String ?? ""
             userImage.sd_setImageWithURL(NSURL (string: imageName), placeholderImage:placeHolderimg)
         }
-
+        
         cellView.addSubview(userImage)
         cellView.addSubview(username)
         cellView.addSubview(fullName)
-
+        
         let gap : CGFloat = 15
         let buttonHeight: CGFloat = 30
         let buttonWidth: CGFloat = 30
@@ -318,7 +334,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         inviteButton.backgroundColor = UIColor.whiteColor()
         inviteButton.layer.borderColor = UIColor.blackColor().CGColor;
         inviteButton.layer.borderWidth = 2.0
-
+        
         inviteButton.tag = indexPath.row
         if invitedFriendsArray .containsObject(inviteButton.tag)
         {
@@ -348,13 +364,6 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
     }
     func doneButtonAction()
     {
-        if InvitedFriends_id.count == 0
-        {
-            let alert = UIAlertController(title: local(.InviteFriendsToGroupTimelineAlertMissingTitle), message: local(.InviteFriendsToGroupTimelineMissingMessage), preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: local(.InviteFriendsToGroupTimelineCreateMissingDismiss), style: .Default, handler: nil))
-            self.presentAlertController(alert)
-            return
-        }
         var InvitedFriendsIdSTr : NSString = ""
         for ids in InvitedFriends_id{
             if InvitedFriendsIdSTr == ""
@@ -368,10 +377,11 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         }
         guard let title = self.textFields.first!.text else { return }
         guard let description = self.timelineDetailTxtView.text else { return }
-
+        
         Storage.performRequest(.CreateGroupTimeline(title,InvitedFriendsIdSTr  as members,description as groupdescription)) { (json) -> Void in
             print("Group timelime API response :\(json)")
-            
+            self.InvitedFriends_id.removeAllObjects()
+            self.invitedFriendsArray.removeAllObjects()
             KGModal.sharedInstance().hideAnimated(true)
             main {
                 self.textFields.first!.text = ""
@@ -382,9 +392,10 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
                 self.navigationItem.setHidesBackButton(false, animated: true)
                 self.friendsListView.hidden=false
             }
-
+            
             switch json["status_code"] as? Int ?? 400 {
             case 400, 402: // payment required
+                main {
                 let alert = UIAlertController(title: local(LocalizedString.TimelineAlertLimitRequiredTitle),
                     message: local(LocalizedString.TimelineAlertLimitRequiredMessage),
                     preferredStyle: .Alert)
@@ -400,6 +411,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
                         self.navigationController?.popViewControllerAnimated(true)
                 }))
                 self.presentAlertController(alert)
+                }
                 
             default:
                 if let error = (json["error"] as? String) ?? (json["error"] as? [AnyObject])?.first as? String {
@@ -446,7 +458,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         {
             user_id = (dataDict["id"] as? String!)!
         }
-
+        
         if invitedFriendsArray .containsObject(indexPath.row)
         {
             inviteButton.backgroundColor = UIColor.whiteColor()
@@ -461,9 +473,9 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         }
         print("inviteButton: \(indexPath.row)")
     }
-
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
@@ -476,16 +488,16 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
             break
         }
     }
-
+    
     // MARK: - TextFieldDelegate
-
+    
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         // ALGORITHM HARDCODED - SEE TRENDING SEARCH
         let data = string.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
         let temp = NSString(data: data!, encoding: NSASCIIStringEncoding) as! String
         let replacement = String(temp.characters.filter { (c: Character) -> Bool in
             return "abcdefghijklmnopqrstuvwxyz0123456789".rangeOfString(String(c).lowercaseString) != nil
-        }).lowercaseString
+            }).lowercaseString
         if warningLabel.hidden == true && string.characters.count != replacement.characters.count {
             warningLabel.alpha = 0.0
             warningLabel.hidden = false
@@ -524,7 +536,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
             textView.resignFirstResponder()
             return false
         }
-
+        
         if(text == "\n") {
             if (text == "\n" && newLength == 1)
             {

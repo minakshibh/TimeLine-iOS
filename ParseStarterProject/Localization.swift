@@ -281,6 +281,8 @@ enum LocalizedString: String, Localized {
     case ShowViewMembersGroupTimelineMessage = "Show-View-Members-Group-Timeline-Message"
     case ShowGroupTimelineCancel = "Show-Group-Timeline-Cancel"
     case ShowTimelineAlertMessage = "Show-Timeline-AlertMessage"
+    case ShowExitGroupTimelineMessage = "Show-Exit-Group-Timeline-Message"
+    case ShowLeaveGroupTimelineAlertDismissMessage = "User-Leave-Group-Timeline-Cancel-Alert-Message"
 
     
 
