@@ -119,6 +119,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
 
                 switch json["status_code"] as? Int ?? 400 {
                 case 400, 402: // payment required
+                    main {
                     let alert = UIAlertController(title: local(LocalizedString.TimelineAlertLimitRequiredTitle),
                         message: local(LocalizedString.TimelineAlertLimitRequiredMessage),
                         preferredStyle: .Alert)
@@ -134,6 +135,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
                             self.navigationController?.popViewControllerAnimated(true)
                     }))
                     self.presentAlertController(alert)
+                    }
                     
                 default:
                     if let error = (json["error"] as? String) ?? (json["error"] as? [AnyObject])?.first as? String {

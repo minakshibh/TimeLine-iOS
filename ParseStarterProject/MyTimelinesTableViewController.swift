@@ -172,19 +172,19 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
                alert.addAction(title: local(.CreateSingleTimelineMessage), style: .Destructive) { _ in
             appDelegate.GroupTimeline = false
             appDelegate.headerLabelSTr = local(.CreateSingleTimelineMessage)
-            self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
-          
+            main{
+                self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
+            }
         }
         alert.addAction(title: local(.CreateGroupTimelineMessage), style: .Default) { _ in
             appDelegate.GroupTimeline = true
             appDelegate.headerLabelSTr = local(.CreateGroupTimelineMessage)
-            self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
+            main{
+                self.performSegueWithIdentifier("ShowCreateTimeline", sender: self)
+            }
         }
-
         alert.addAction(title: local(.CreateGroupTimelineCancel), style: .Cancel, handler: nil)
-        
         controller!.presentAlertController(alert)
-        
     }
     
     
