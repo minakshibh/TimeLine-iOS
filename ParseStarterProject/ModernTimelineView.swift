@@ -57,7 +57,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 
                 }
             }
-            self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), 80, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(275 + 30*isiphone6Plus()-45*isiPhone5()))
+            self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), CGFloat(80+3*isiPhone5()), CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(275 + 30*isiphone6Plus()-44*isiPhone5()))
             self.momentScroller.delegate = self
             self.momentScroller.showsVerticalScrollIndicator = false
             for var i = 0; i < self.scrollMomentArray.count; i++ {
