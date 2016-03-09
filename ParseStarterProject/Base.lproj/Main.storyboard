@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -19,7 +19,8 @@
                     <view key="view" contentMode="scaleToFill" id="KAc-PL-YXb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="eyb-43-Zah"/>
                     <connections>
@@ -39,9 +40,10 @@
                         <viewControllerLayoutGuide type="bottom" id="dub-gh-rHt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XkS-L7-QhD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="agx-gi-Ltj"/>
                 </viewController>
@@ -63,6 +65,7 @@
                         <subviews>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgA-dF-4nn" userLabel="Torch On">
                                 <rect key="frame" x="16" y="544" width="24" height="36"/>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" image="Flash On">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,7 +79,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ab-op-X4a" userLabel="Timeline Menu">
-                                <rect key="frame" x="16" y="36" width="32" height="32"/>
+                                <rect key="frame" x="16" y="15" width="32" height="32"/>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" image="Timelines">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -90,6 +94,7 @@
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="rHK-jr-uvR">
                                 <rect key="frame" x="267" y="36" width="67" height="72"/>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -98,7 +103,8 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMt-W2-JPI" userLabel="Profile Menu">
-                                <rect key="frame" x="558" y="36" width="26" height="22"/>
+                                <rect key="frame" x="558" y="15" width="26" height="22"/>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="Settings_Profile">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -108,11 +114,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCF-BM-4Pb">
-                                <rect key="frame" x="284" y="36" width="32" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="28" id="Irv-vI-kMF"/>
-                                    <constraint firstAttribute="height" constant="28" id="eAU-Es-MFc"/>
-                                </constraints>
+                                <rect key="frame" x="284" y="15" width="32" height="32"/>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Notification"/>
                                 <connections>
                                     <segue destination="JHn-XN-scc" kind="presentation" id="rwK-at-l0Q"/>
@@ -120,6 +123,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIn-Pj-rdw" userLabel="Torch Off">
                                 <rect key="frame" x="16" y="544" width="24" height="36"/>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" image="Flash Off">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -140,8 +144,9 @@
                                         <variation key="heightClass=compact" constant="186"/>
                                     </constraint>
                                 </constraints>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Video_Pic Capture">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -165,6 +170,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3B-rK-3Ak" userLabel="Change Camera">
                                 <rect key="frame" x="554" y="550" width="30" height="30"/>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" image="Camera View">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -182,6 +188,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pqZ-nY-ene" customClass="CameraPreviewView" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="105" y="160" width="390" height="308"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pqZ-nY-ene" secondAttribute="height" multiplier="1:1" priority="999" constant="30" id="x8J-GI-pw9"/>
@@ -207,7 +214,7 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AMt-W2-JPI" firstAttribute="trailing" secondItem="1iv-mN-kL6" secondAttribute="trailingMargin" id="12n-6G-May"/>
                             <constraint firstItem="2Ab-op-X4a" firstAttribute="leading" secondItem="1iv-mN-kL6" secondAttribute="leadingMargin" id="5Wh-na-I2J"/>
@@ -227,16 +234,17 @@
                                 <variation key="heightClass=regular" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="JgA-dF-4nn" firstAttribute="trailing" secondItem="oSk-df-zaU" secondAttribute="trailing" id="HNi-sV-Nrx"/>
+                            <constraint firstItem="AMt-W2-JPI" firstAttribute="centerY" secondItem="2Ab-op-X4a" secondAttribute="centerY" id="I5w-88-Pme"/>
                             <constraint firstItem="AMt-W2-JPI" firstAttribute="centerX" secondItem="E3B-rK-3Ak" secondAttribute="centerX" constant="2" id="IiJ-hy-BUA">
                                 <variation key="heightClass=regular" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="2Ab-op-X4a" firstAttribute="top" secondItem="rHK-jr-uvR" secondAttribute="top" id="JiM-Kx-Oet"/>
-                            <constraint firstItem="LCF-BM-4Pb" firstAttribute="top" secondItem="ruH-Es-YDo" secondAttribute="bottom" constant="25" id="JpI-rd-7tK"/>
                             <constraint firstAttribute="centerY" secondItem="pqZ-nY-ene" secondAttribute="centerY" id="K8W-Fc-Vtb">
                                 <variation key="heightClass=compact" constant="0.0"/>
                                 <variation key="heightClass=regular" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="oSk-df-zaU" firstAttribute="bottom" secondItem="rIn-Pj-rdw" secondAttribute="bottom" id="LlB-ZD-iGJ"/>
+                            <constraint firstItem="LCF-BM-4Pb" firstAttribute="centerY" secondItem="2Ab-op-X4a" secondAttribute="centerY" id="MBo-mK-5Yj"/>
                             <constraint firstItem="TFR-Ke-ONa" firstAttribute="top" secondItem="2Ab-op-X4a" secondAttribute="bottom" constant="20" id="OPY-4q-aby"/>
                             <constraint firstItem="oSk-df-zaU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pqZ-nY-ene" secondAttribute="trailing" constant="8" id="R9V-XR-FAb">
                                 <variation key="heightClass=compact" constant="16"/>
@@ -266,6 +274,7 @@
                             <constraint firstItem="oSk-df-zaU" firstAttribute="trailing" secondItem="E3B-rK-3Ak" secondAttribute="trailing" id="hyh-hK-Pde"/>
                             <constraint firstItem="AMt-W2-JPI" firstAttribute="leading" secondItem="2Ab-op-X4a" secondAttribute="leading" id="hzl-dj-Rmr"/>
                             <constraint firstItem="pqZ-nY-ene" firstAttribute="width" secondItem="1iv-mN-kL6" secondAttribute="width" id="i8w-4W-7mY"/>
+                            <constraint firstItem="2Ab-op-X4a" firstAttribute="top" secondItem="ruH-Es-YDo" secondAttribute="bottom" constant="-5" id="jo0-el-fGp"/>
                             <constraint firstItem="2Ab-op-X4a" firstAttribute="top" secondItem="rHK-jr-uvR" secondAttribute="top" id="k0S-BW-FCN"/>
                             <constraint firstItem="rIn-Pj-rdw" firstAttribute="centerX" secondItem="2Ab-op-X4a" secondAttribute="centerX" constant="-4" id="oBB-eK-4pb">
                                 <variation key="heightClass=regular" constant="0.0"/>
@@ -299,13 +308,6 @@
                                 <exclude reference="fE3-6V-Y2E"/>
                                 <exclude reference="hqm-5e-bBJ"/>
                                 <exclude reference="oBB-eK-4pb"/>
-                                <exclude reference="G7x-S1-Lws"/>
-                                <exclude reference="LlB-ZD-iGJ"/>
-                                <exclude reference="R9V-XR-FAb"/>
-                                <exclude reference="RIN-lX-Fvb"/>
-                                <exclude reference="cul-YK-IEI"/>
-                                <exclude reference="hyh-hK-Pde"/>
-                                <exclude reference="y1s-s1-lyy"/>
                                 <exclude reference="12n-6G-May"/>
                                 <exclude reference="CBd-cf-o5k"/>
                                 <exclude reference="IiJ-hy-BUA"/>
@@ -315,6 +317,13 @@
                                 <exclude reference="otJ-x3-daP"/>
                                 <exclude reference="q1a-ic-OXf"/>
                                 <exclude reference="wI5-C1-u5F"/>
+                                <exclude reference="G7x-S1-Lws"/>
+                                <exclude reference="LlB-ZD-iGJ"/>
+                                <exclude reference="R9V-XR-FAb"/>
+                                <exclude reference="RIN-lX-Fvb"/>
+                                <exclude reference="cul-YK-IEI"/>
+                                <exclude reference="hyh-hK-Pde"/>
+                                <exclude reference="y1s-s1-lyy"/>
                                 <exclude reference="OPY-4q-aby"/>
                                 <exclude reference="gkV-au-6ng"/>
                                 <exclude reference="Fft-xn-czW"/>
@@ -332,15 +341,15 @@
                                 <include reference="quh-cz-t7Y"/>
                                 <include reference="9Wr-Ji-2tw"/>
                                 <include reference="SeP-Le-L3m"/>
-                                <include reference="R9V-XR-FAb"/>
-                                <include reference="cul-YK-IEI"/>
-                                <include reference="hyh-hK-Pde"/>
                                 <include reference="Z2h-8M-F37"/>
                                 <include reference="Zp1-qp-udW"/>
                                 <include reference="hzl-dj-Rmr"/>
                                 <include reference="otJ-x3-daP"/>
                                 <include reference="q1a-ic-OXf"/>
                                 <exclude reference="wI5-C1-u5F"/>
+                                <include reference="R9V-XR-FAb"/>
+                                <include reference="cul-YK-IEI"/>
+                                <include reference="hyh-hK-Pde"/>
                                 <include reference="OPY-4q-aby"/>
                                 <include reference="Fft-xn-czW"/>
                             </mask>
@@ -357,13 +366,13 @@
                                 <exclude reference="fE3-6V-Y2E"/>
                                 <include reference="hqm-5e-bBJ"/>
                                 <include reference="oBB-eK-4pb"/>
+                                <include reference="12n-6G-May"/>
+                                <include reference="CBd-cf-o5k"/>
+                                <include reference="IiJ-hy-BUA"/>
                                 <include reference="G7x-S1-Lws"/>
                                 <include reference="LlB-ZD-iGJ"/>
                                 <include reference="RIN-lX-Fvb"/>
                                 <include reference="y1s-s1-lyy"/>
-                                <include reference="12n-6G-May"/>
-                                <include reference="CBd-cf-o5k"/>
-                                <include reference="IiJ-hy-BUA"/>
                                 <include reference="gkV-au-6ng"/>
                                 <include reference="SVC-0c-fXi"/>
                             </mask>
@@ -429,7 +438,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Profile" id="rlN-Gg-hIo">
                                 <cells>
@@ -729,7 +738,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Make my timelines public?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfC-Mq-j4H">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Make my feedeos public?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfC-Mq-j4H">
                                                     <rect key="frame" x="8" y="12" width="194" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -737,7 +746,7 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Po6-Ak-TEf">
                                                     <rect key="frame" x="543" y="6" width="51" height="31"/>
-                                                    <color key="onTintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="onTintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="toggleTimelinesPublic" destination="h9D-gl-vWt" eventType="valueChanged" id="JRy-Je-J7B"/>
                                                     </connections>
@@ -774,7 +783,7 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E6C-09-CMS">
                                                     <rect key="frame" x="543" y="6" width="51" height="31"/>
-                                                    <color key="onTintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="onTintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="toggleFollowersApprove" destination="h9D-gl-vWt" eventType="valueChanged" id="LCe-g2-KhZ"/>
                                                     </connections>
@@ -837,10 +846,11 @@
         <scene sceneID="2bI-Ey-kXI">
             <objects>
                 <tableViewController id="dAr-3w-PJi" customClass="SettingsTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="p9b-Yk-vEt">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" id="p9b-Yk-vEt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="General" id="DRi-dD-pQ4">
                                 <cells>
@@ -949,7 +959,7 @@
                             <tableViewSection headerTitle="Following" id="Sos-tS-jws">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="6tj-TI-rOa" style="IBUITableViewCellStyleDefault" id="G1U-Y0-ZjU">
-                                        <rect key="frame" x="0.0" y="377" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="368" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G1U-Y0-ZjU" id="g83-zb-IFs">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -969,7 +979,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="1Hl-xC-c0z" style="IBUITableViewCellStyleDefault" id="FB2-Nb-PLb">
-                                        <rect key="frame" x="0.0" y="421" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="412" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FB2-Nb-PLb" id="6Ts-4Q-8Ob">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -993,7 +1003,7 @@
                             <tableViewSection headerTitle="Blocked" id="JnY-Mw-X16">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Lr1-Gc-II9" style="IBUITableViewCellStyleDefault" id="AAA-ym-SBt">
-                                        <rect key="frame" x="0.0" y="508" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="490" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AAA-ym-SBt" id="eGO-Tx-ZBn">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -1013,13 +1023,13 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="pn6-qt-JT8" style="IBUITableViewCellStyleDefault" id="LxQ-Np-C8Y">
-                                        <rect key="frame" x="0.0" y="552" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="534" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LxQ-Np-C8Y" id="i9w-O0-Y3e">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Blocked Timelines" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pn6-qt-JT8">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Blocked Feedeos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pn6-qt-JT8">
                                                     <rect key="frame" x="15" y="0.0" width="550" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1037,7 +1047,7 @@
                             <tableViewSection headerTitle="Account" id="9qE-uX-5Jt">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Vbw-OJ-oaV">
-                                        <rect key="frame" x="0.0" y="639" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="612" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vbw-OJ-oaV" id="ivO-R7-cq9">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1046,7 +1056,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCf-Y2-ZMv">
                                                     <rect key="frame" x="273" y="11" width="54" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1057,7 +1067,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rty-Bf-Z5j">
-                                        <rect key="frame" x="0.0" y="683" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="656" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rty-Bf-Z5j" id="ktq-Lc-97n">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1066,7 +1076,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Delete Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0GT-yF-uGp">
                                                     <rect key="frame" x="255" y="11" width="90" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1236,6 +1246,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rnd-Mo-fTd">
                                                     <rect key="frame" x="15" y="12" width="81" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1243,6 +1254,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e6X-Cm-CCa">
                                                     <rect key="frame" x="543" y="12" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1257,15 +1269,17 @@ Effective as of September 14, 2015
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Profile Picture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8q-Kr-t7r">
-                                                    <rect key="frame" x="8" y="12" width="102" height="20"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Profile Picture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8q-Kr-t7r">
+                                                    <rect key="frame" x="15" y="12" width="102" height="20"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Up-UE-pS9" customClass="ProfileImageView" customModule="Timeline" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Up-UE-pS9" customClass="ProfileImageView" customModule="Timeline" customModuleProvider="target">
                                                     <rect key="frame" x="524" y="4" width="35" height="35"/>
                                                     <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="Veh-zr-NJv"/>
                                                         <constraint firstAttribute="width" secondItem="4Up-UE-pS9" secondAttribute="height" multiplier="1:1" id="zlX-9o-SUD"/>
@@ -1274,9 +1288,6 @@ Effective as of September 14, 2015
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="4Up-UE-pS9" secondAttribute="trailing" id="8Vn-6y-T60"/>
-                                                <constraint firstAttribute="centerY" secondItem="n8q-Kr-t7r" secondAttribute="centerY" id="Kae-5u-XdB"/>
-                                                <constraint firstItem="n8q-Kr-t7r" firstAttribute="leading" secondItem="xpI-Ql-IV2" secondAttribute="leadingMargin" id="e3c-QY-hZS"/>
-                                                <constraint firstItem="n8q-Kr-t7r" firstAttribute="centerY" secondItem="4Up-UE-pS9" secondAttribute="centerY" id="oNo-BY-u9b"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1290,6 +1301,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MHa-18-KFk">
                                                     <rect key="frame" x="15" y="12" width="39" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1297,6 +1309,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qha-8H-Gze">
                                                     <rect key="frame" x="523" y="12" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1317,6 +1330,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AGd-vf-Gfq">
                                                     <rect key="frame" x="15" y="12" width="70" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1324,6 +1338,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="●●●●●●" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tkY-lF-vmo">
                                                     <rect key="frame" x="504" y="12" width="61" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1344,6 +1359,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Bio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="shi-jw-eUm">
                                                     <rect key="frame" x="15" y="12" width="23" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1351,6 +1367,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Ld-pu-0y9">
                                                     <rect key="frame" x="523" y="12" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1371,6 +1388,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="First Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uYW-Ci-exT">
                                                     <rect key="frame" x="15" y="12" width="79" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1378,6 +1396,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hEJ-ix-nqo">
                                                     <rect key="frame" x="523" y="12" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1398,6 +1417,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PZo-FK-bZz">
                                                     <rect key="frame" x="15" y="12" width="78" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1405,6 +1425,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5pK-pE-Qj9">
                                                     <rect key="frame" x="523" y="12" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1425,6 +1446,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Website" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BL6-z9-gam">
                                                     <rect key="frame" x="15" y="12" width="59" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1432,6 +1454,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fuG-Yp-1Ky">
                                                     <rect key="frame" x="523" y="12" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1452,6 +1475,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Other" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="evx-F1-zNB">
                                                     <rect key="frame" x="15" y="12" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1459,6 +1483,7 @@ Effective as of September 14, 2015
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8rY-Gf-PIe">
                                                     <rect key="frame" x="523" y="12" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1500,9 +1525,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="pqp-p9-mtJ" customClass="EditPasswordTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="6zF-QL-jjB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="New password" id="QOb-Di-aok">
                                 <cells>
@@ -1630,8 +1656,9 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
-                            <tableViewSection headerTitle="timeline maximum" id="ZoJ-CH-cNI">
+                            <tableViewSection headerTitle="Feedeo maximum" id="ZoJ-CH-cNI">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Kua-3w-xCL" detailTextLabel="RIh-1M-0b2" style="IBUITableViewCellStyleValue1" id="FTw-4L-Q2k">
                                         <rect key="frame" x="0.0" y="114" width="600" height="44"/>
@@ -1640,8 +1667,8 @@ Effective as of September 14, 2015
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Current Timelines" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kua-3w-xCL">
-                                                    <rect key="frame" x="15" y="12" width="129" height="20"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Current Feedeos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kua-3w-xCL">
+                                                    <rect key="frame" x="15" y="12" width="122" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1664,8 +1691,8 @@ Effective as of September 14, 2015
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Maximum Timelines" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xtn-Cb-yI8">
-                                                    <rect key="frame" x="15" y="12" width="144" height="20"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Maximum Feedeos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xtn-Cb-yI8">
+                                                    <rect key="frame" x="15" y="12" width="137" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1688,8 +1715,8 @@ Effective as of September 14, 2015
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Unsynced additional Timelines" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ccJ-Hq-euz">
-                                                    <rect key="frame" x="15" y="12" width="222" height="20"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Unsynced additional Feedeos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ccJ-Hq-euz">
+                                                    <rect key="frame" x="15" y="12" width="214" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1717,8 +1744,8 @@ Effective as of September 14, 2015
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="One additional Timeline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tx8-mp-4dQ">
-                                                    <rect key="frame" x="15" y="12" width="171" height="20"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="One additional Feedeo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tx8-mp-4dQ">
+                                                    <rect key="frame" x="15" y="12" width="163" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1765,9 +1792,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Xbc-8Z-o3Z" customClass="EditEmailTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="naj-kV-wKa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="new email" id="Vm8-Fl-546">
                                 <cells>
@@ -1825,7 +1853,7 @@ Effective as of September 14, 2015
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Walkthrough Camera" translatesAutoresizingMaskIntoConstraints="NO" id="hKV-Yd-cga">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="NOi-Xg-Ulc" appends="YES" id="hBK-Tw-ORt"/>
@@ -1843,6 +1871,7 @@ Effective as of September 14, 2015
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" secondItem="hKV-Yd-cga" secondAttribute="height" id="1dx-Ji-GXU"/>
                             <constraint firstAttribute="centerX" secondItem="hKV-Yd-cga" secondAttribute="centerX" id="3Cb-UM-iKc"/>
@@ -1894,9 +1923,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController title="Timelines" id="qfZ-8f-OL2" customClass="MyTimelinesTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="392" sectionHeaderHeight="58" sectionFooterHeight="22" id="5rW-fe-grA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="147" id="MVh-f8-WXY" customClass="ModernTimelineTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="58" width="600" height="147"/>
@@ -1952,10 +1982,10 @@ Effective as of September 14, 2015
                         <viewControllerLayoutGuide type="bottom" id="1XW-qz-FwA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9o4-Ng-jBv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#tagyourtimeline" textAlignment="center" minimumFontSize="17" background="#Tag Input" translatesAutoresizingMaskIntoConstraints="NO" id="zAa-9y-rbp">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#tagyourfeedeo" textAlignment="center" minimumFontSize="17" background="#Tag Input" translatesAutoresizingMaskIntoConstraints="NO" id="zAa-9y-rbp">
                                 <rect key="frame" x="16" y="74" width="568" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="Dfa-PX-xbz"/>
@@ -1975,13 +2005,14 @@ Effective as of September 14, 2015
                                     <outlet property="delegate" destination="TOd-Hl-c3P" id="b9h-wX-sea"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isn-NQ-Sb4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isn-NQ-Sb4">
                                 <rect key="frame" x="16" y="397" width="568" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Ug4-ai-Xtg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="DONE" backgroundImage="Button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2002,15 +2033,21 @@ Effective as of September 14, 2015
                                     <rect key="frame" x="201" y="176" width="336" height="21"/>
                                 </variation>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AtV-Qz-eyv">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AtV-Qz-eyv">
                                 <rect key="frame" x="16" y="167" width="564" height="152"/>
                                 <color key="backgroundColor" red="0.60054978839999995" green="0.62826969580000003" blue="0.70312501989999998" alpha="0.32000000000000001" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="564" id="6Rh-w3-ejg"/>
                                     <constraint firstAttribute="height" constant="120" id="oRV-Qr-RDG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="rect" keyPath="contentInset">
+                                        <rect key="value" x="5" y="7" width="5" height="-7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="TOd-Hl-c3P" id="sd6-wG-uQP"/>
                                 </connections>
@@ -2024,6 +2061,7 @@ Effective as of September 14, 2015
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="AtV-Qz-eyv" firstAttribute="leading" secondItem="9o4-Ng-jBv" secondAttribute="leadingMargin" constant="-4" id="07T-m1-4u4"/>
@@ -2078,9 +2116,10 @@ Effective as of September 14, 2015
             <objects>
                 <collectionViewController id="xZg-r6-kPa" customClass="DraftCollectionViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="4DT-OS-qMe">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="3" id="PGJ-31-8nD" customClass="CSStickyHeaderFlowLayout">
                             <size key="itemSize" width="100" height="100"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
@@ -2425,6 +2464,7 @@ Effective as of September 14, 2015
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="0my-ps-arm" firstAttribute="trailing" secondItem="BHx-lr-a0z" secondAttribute="trailing" priority="250" id="3DB-dv-YNB"/>
@@ -2519,9 +2559,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="cMO-Jl-BtP" customClass="SendMomentTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="392" sectionHeaderHeight="22" sectionFooterHeight="22" id="pg7-Ot-9x9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="147" id="8Sa-cH-M2O" customClass="ModernTimelineTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="600" height="147"/>
@@ -2751,7 +2792,7 @@ Effective as of September 14, 2015
                     <view key="view" contentMode="scaleToFill" id="xg8-6Y-jug">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
@@ -2787,6 +2828,7 @@ Effective as of September 14, 2015
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="BJW-Bi-wEA" secondAttribute="centerX" id="7we-bT-4N4"/>
                             <constraint firstAttribute="centerY" secondItem="BJW-Bi-wEA" secondAttribute="centerY" id="Mn5-yu-Spy"/>
@@ -2816,6 +2858,7 @@ Effective as of September 14, 2015
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Uo1-Ef-F0D" secondAttribute="centerX" id="Blf-BY-LnD"/>
                             <constraint firstAttribute="height" secondItem="Uo1-Ef-F0D" secondAttribute="height" id="F12-r4-7oJ"/>
@@ -2884,9 +2927,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController title="Timelines" id="HaX-lv-h0Q" customClass="FollowingTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="392" sectionHeaderHeight="60" sectionFooterHeight="22" id="9Ms-OX-Vbv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="147" id="5Qj-p6-LHT" customClass="ModernTimelineTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="60" width="600" height="147"/>
@@ -2936,9 +2980,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController title="Timelines" id="jSH-I8-dWf" customClass="TrendingTimelineTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="392" sectionHeaderHeight="22" sectionFooterHeight="22" id="Uit-M0-7Mq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" text="" placeholder="search @users and #timelines" translucent="NO" id="dnb-1y-RYo">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -2980,7 +3025,7 @@ Effective as of September 14, 2015
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RSq-hv-8CE">
                                             <rect key="frame" x="282" y="54" width="37" height="37"/>
-                                            <color key="color" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="color" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </activityIndicatorView>
                                     </subviews>
                                     <constraints>
@@ -3099,6 +3144,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="147" id="JqU-iW-ILt" customClass="ModernTimelineTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="600" height="147"/>
@@ -3279,6 +3325,7 @@ Effective as of September 14, 2015
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4UZ-3p-LwX" firstAttribute="top" secondItem="ZXc-Kq-Vbg" secondAttribute="bottom" constant="-64" id="4l3-bt-h5P"/>
                             <constraint firstItem="4UZ-3p-LwX" firstAttribute="leading" secondItem="qhr-cv-ntQ" secondAttribute="leadingMargin" constant="-16" id="6wy-m6-ofH"/>
@@ -3324,6 +3371,7 @@ Effective as of September 14, 2015
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="GFU-P5-u6l" firstAttribute="height" secondItem="bAD-Zk-YhE" secondAttribute="height" id="7r1-0n-D2r"/>
                             <constraint firstItem="GFU-P5-u6l" firstAttribute="width" secondItem="bAD-Zk-YhE" secondAttribute="width" id="Ccl-ff-0x3"/>
@@ -3349,6 +3397,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="Vyx-Ju-BtR" customClass="UserSummaryTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="191"/>
@@ -3388,6 +3437,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Walkthroughs" id="5dS-zX-hpy">
                                 <cells>
@@ -3438,7 +3488,7 @@ Effective as of September 14, 2015
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="My Timelines" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XDr-H9-bnC">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="My Feedeos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XDr-H9-bnC">
                                                     <rect key="frame" x="15" y="0.0" width="550" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -3520,7 +3570,7 @@ Effective as of September 14, 2015
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Walkthrough My" translatesAutoresizingMaskIntoConstraints="NO" id="VMf-0x-mAU">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
@@ -3542,6 +3592,7 @@ Effective as of September 14, 2015
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="VMf-0x-mAU" secondAttribute="centerY" id="0f1-Rs-jiS"/>
                             <constraint firstAttribute="height" secondItem="VMf-0x-mAU" secondAttribute="height" id="4Hw-P5-EYb"/>
@@ -3584,6 +3635,7 @@ Effective as of September 14, 2015
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="wAI-0m-Lko" id="Gpz-eE-y9U"/>
@@ -3593,7 +3645,7 @@ Effective as of September 14, 2015
             </objects>
             <point key="canvasLocation" x="-4037" y="483"/>
         </scene>
-        <!--Timeline Playback-->
+        <!--Feedeo Playback-->
         <scene sceneID="x2Z-K2-ciu">
             <objects>
                 <viewController storyboardIdentifier="TimelinePlaybackViewController" id="Hl9-S0-dVb" customClass="TimelinePlaybackViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
@@ -3763,7 +3815,7 @@ Effective as of September 14, 2015
                         </connections>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Timeline Playback" id="cqj-3P-ad2"/>
+                    <navigationItem key="navigationItem" title="Feedeo Playback" id="cqj-3P-ad2"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="deleteOrFlagButton" destination="B27-UX-TAH" id="xUg-JG-adh"/>
@@ -3802,7 +3854,7 @@ Effective as of September 14, 2015
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Walkthrough Moments" translatesAutoresizingMaskIntoConstraints="NO" id="i2b-CA-gfe">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
@@ -3824,6 +3876,7 @@ Effective as of September 14, 2015
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="i2b-CA-gfe" secondAttribute="centerY" id="7na-lO-haJ"/>
                             <constraint firstAttribute="height" secondItem="i2b-CA-gfe" secondAttribute="height" id="MrM-HJ-XkB"/>
@@ -3863,7 +3916,7 @@ Effective as of September 14, 2015
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Walkthrough Trending" translatesAutoresizingMaskIntoConstraints="NO" id="VD5-Qx-OW1">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
@@ -3884,6 +3937,7 @@ Effective as of September 14, 2015
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" secondItem="VD5-Qx-OW1" secondAttribute="height" id="4bM-1x-JnS"/>
                             <constraint firstAttribute="centerX" secondItem="VD5-Qx-OW1" secondAttribute="centerX" id="HJ9-TF-ICB"/>
@@ -3917,6 +3971,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="AN2-f2-gcV" customClass="UserSummaryTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="191"/>
@@ -3956,6 +4011,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="IHa-mw-dIk" customClass="UserTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="191"/>
@@ -3995,6 +4051,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="RPi-cJ-dd4" customClass="UserSummaryTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="191"/>
@@ -4051,6 +4108,7 @@ Effective as of September 14, 2015
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="MJb-L3-ISs" firstAttribute="top" secondItem="A3O-3y-2TF" secondAttribute="bottom" constant="-64" id="D5N-Nh-dYH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MJb-L3-ISs" secondAttribute="trailing" constant="-16" id="FeL-mO-sMw"/>
@@ -4082,6 +4140,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="147" id="9Sv-3C-G1z" customClass="ModernTimelineTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="147"/>
@@ -4099,7 +4158,7 @@ Effective as of September 14, 2015
                             <outlet property="delegate" destination="v9J-Bp-uB0" id="v6x-eg-52y"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Blocked Timelines" id="GEj-h6-KO5" userLabel="Timelines"/>
+                    <navigationItem key="navigationItem" title="Blocked Feedeos" id="GEj-h6-KO5" userLabel="Timelines"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ZR0-Sh-7eh">
                         <autoresizingMask key="autoresizingMask"/>
@@ -4122,6 +4181,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="147" id="BZ0-tu-gQC" customClass="ModernTimelineTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="147"/>
@@ -4139,7 +4199,7 @@ Effective as of September 14, 2015
                             <outlet property="delegate" destination="mlr-cY-kK3" id="H0h-qL-95Q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Followed Timelines" id="1Ke-jX-5hp" userLabel="Timelines"/>
+                    <navigationItem key="navigationItem" title="Followed Feedeos" id="1Ke-jX-5hp" userLabel="Timelines"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="L4A-LY-k7O">
                         <autoresizingMask key="autoresizingMask"/>
@@ -4154,7 +4214,7 @@ Effective as of September 14, 2015
             </objects>
             <point key="canvasLocation" x="458" y="1295"/>
         </scene>
-        <!--Timeline Followers-->
+        <!--Feedeo Followers-->
         <scene sceneID="Xup-uS-vbc">
             <objects>
                 <tableViewController id="ddf-D2-psk" customClass="TimelineFollowersUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
@@ -4162,6 +4222,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="oKs-rv-2Mq" customClass="UserSummaryTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="191"/>
@@ -4180,7 +4241,7 @@ Effective as of September 14, 2015
                             <outlet property="delegate" destination="ddf-D2-psk" id="Ozy-os-VRP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Timeline Followers" id="3P3-OW-9mv" userLabel="Timeline Followers"/>
+                    <navigationItem key="navigationItem" title="Feedeo Followers" id="3P3-OW-9mv" userLabel="Timeline Followers"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="rJF-2S-Q7c">
                         <autoresizingMask key="autoresizingMask"/>
@@ -4201,6 +4262,7 @@ Effective as of September 14, 2015
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aOU-Ci-bKI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -4225,7 +4287,7 @@ Effective as of September 14, 2015
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Walkthrough Approve" translatesAutoresizingMaskIntoConstraints="NO" id="NpN-pU-Hd7">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="9H5-Nl-sIS" appends="YES" id="PDe-ek-F0y"/>
@@ -4243,6 +4305,7 @@ Effective as of September 14, 2015
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="KtB-Kx-akB" firstAttribute="leading" secondItem="LYw-mb-7Jn" secondAttribute="leadingMargin" id="57M-fO-mh9"/>
                             <constraint firstAttribute="centerY" secondItem="NpN-pU-Hd7" secondAttribute="centerY" id="CFg-JX-13k"/>
@@ -4276,6 +4339,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="PwJ-zs-3eS" customClass="UserTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="191"/>
@@ -4315,6 +4379,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="VDT-x5-Gy0" customClass="UserTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="600" height="191"/>
@@ -4375,6 +4440,7 @@ Effective as of September 14, 2015
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotificationTableViewCell" rowHeight="90" id="u5Q-8x-7rG" customClass="NotificationTableViewCell" customModule="Timeline" customModuleProvider="target">
@@ -4495,9 +4561,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="VH6-fM-LGF" customClass="EditFirstNameTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ge1-jx-fFC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="First Name" id="FeW-wa-L0J">
                                 <cells>
@@ -4546,9 +4613,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Ev4-Ms-jSR" customClass="EditOthersTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Rda-9L-y3k">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Other" id="9Fx-ld-E0D">
                                 <cells>
@@ -4608,9 +4676,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="Ytn-dy-lMq" customClass="EditWebsiteTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ta0-b9-g93">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Website" id="lA3-IO-Ou4">
                                 <cells>
@@ -4659,9 +4728,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="ddZ-Mz-lWg" customClass="EditBioTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Wyx-aB-jzH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Bio" id="8du-c4-VL8">
                                 <cells>
@@ -4739,9 +4809,10 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="tRi-7B-wrg" customClass="EditLastNameTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="KPp-K1-1T2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Last Name" id="9qV-2T-GES">
                                 <cells>
@@ -4811,7 +4882,7 @@ Effective as of September 14, 2015
         <image name="Search-Template" width="33" height="33"/>
         <image name="Send to Timeline" width="30" height="32"/>
         <image name="Settings" width="128" height="128"/>
-        <image name="Settings_Profile" width="26" height="19"/>
+        <image name="Settings_Profile" width="32" height="32"/>
         <image name="Share" width="128" height="128"/>
         <image name="Timelines" width="32" height="32"/>
         <image name="Timelines I Follow - Original" width="36" height="30"/>
@@ -4829,20 +4900,20 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8W1-I7-grp"/>
-        <segue reference="fy0-iv-eFM"/>
-        <segue reference="fKI-df-tTm"/>
-        <segue reference="5f9-3x-iDp"/>
         <segue reference="JSH-Rm-O8t"/>
-        <segue reference="JUD-Gk-HWr"/>
+        <segue reference="8W1-I7-grp"/>
+        <segue reference="5f9-3x-iDp"/>
+        <segue reference="fKI-df-tTm"/>
+        <segue reference="wv1-Qf-qrk"/>
+        <segue reference="XM0-UC-LPO"/>
+        <segue reference="BJd-cD-9l3"/>
         <segue reference="ndx-Tw-tdZ"/>
-        <segue reference="3Xw-TM-u6h"/>
-        <segue reference="kl0-Qw-wCr"/>
-        <segue reference="dHW-RB-S8H"/>
-        <segue reference="pyd-yG-wzP"/>
-        <segue reference="wPR-Ua-TlF"/>
-        <segue reference="kNn-C3-4Z5"/>
+        <segue reference="2FX-5X-rOO"/>
+        <segue reference="q73-lW-ew6"/>
+        <segue reference="JUD-Gk-HWr"/>
         <segue reference="gqI-eh-cAa"/>
+        <segue reference="kl0-Qw-wCr"/>
+        <segue reference="wPR-Ua-TlF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
