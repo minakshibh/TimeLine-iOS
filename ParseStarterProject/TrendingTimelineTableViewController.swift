@@ -16,7 +16,7 @@ import KGModal
 
 
 
-class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBSDKAppInviteDialogDelegate ,ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate{
+class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBSDKAppInviteDialogDelegate ,ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate,UISearchResultsUpdating{
     
     var searchTag:String = "@"
     var searching: Bool = false
@@ -28,10 +28,16 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var numberArray: NSMutableArray! = []
     var nameArray: NSMutableArray! = []
     var selectedPeople: NSMutableArray! = []
+    var contactDict: NSMutableDictionary! = [:]
     var errorText:UILabel?
     var emptyDictionary: CFDictionaryRef?
     var view1:UIView!
     var view2:UIView!
+    var invitedFriendsArray: NSMutableArray! = []
+    
+    var filteredTableData = [String]()
+    var resultSearchController = UISearchController()
+    
     var searchResults: [AnyObject] = [] {
         didSet {
             searching = false
@@ -41,9 +47,11 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         }
     }
     
-    override func viewDidLoad() {
+       override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
 //        self.hidesBottomBarWhenPushed = true
         tableView.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
         
@@ -95,7 +103,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         
         let Invitebutton: UIButton = UIButton(frame: CGRectMake(headerView.frame.size.width-70-10, headerView.frame.size.height/4+5, 70, 35))
         Invitebutton.setTitle("Invite", forState: .Normal)
-        Invitebutton.addTarget(self, action: "Invitebuttontapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        Invitebutton.addTarget(self, action: "Invitebuttontapped", forControlEvents: UIControlEvents.TouchUpInside)
         Invitebutton.backgroundColor = UIColor.blackColor()
         Invitebutton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         Invitebutton.titleLabel?.font = UIFont.systemFontOfSize(20)
@@ -123,7 +131,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         
         
         
-        errorText = UILabel.init(frame: CGRectMake(0, Invitebutton.frame.origin.y-30 , Invitebutton.frame.size.width, 30 ))
+        errorText = UILabel.init(frame: CGRectMake(0,tableViewContact.frame.size.height-30, tableViewContact.frame.size.width, 30 ))
         errorText!.font = UIFont.systemFontOfSize(15)
         errorText!.textColor = UIColor.redColor ()
         errorText!.textAlignment = NSTextAlignment.Center;
@@ -146,6 +154,20 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 return
             }
         }
+        
+        self.resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            
+            tableViewContact.tableHeaderView = controller.searchBar
+            
+            return controller
+        })()
+        
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -182,7 +204,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         
         
     }
-    func Invitebuttontapped(sender: UIButton!)
+    func Invitebuttontapped()
     {
         if selectedPeople.count == 0
         {
@@ -194,16 +216,16 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         
         if (MFMessageComposeViewController.canSendText()) {
             for (var i=0; i < selectedPeople.count; i++) {
-               
                 
-//                print("\(selectedPeople[i])")
-//                if selectedPeople[i] as! String == "--"{
-//                    continue
-//                }
-//                
-                
-                
-                recipients.append(selectedPeople[i] as! String)
+                let phoneno = selectedPeople[i] as! String
+                let phonenoArr = phoneno.componentsSeparatedByString(",")
+                if(phonenoArr.count==1){
+                    recipients.append(selectedPeople[i] as! String)
+                }else{
+                    for(var g=0;g<phonenoArr.count;g++){
+                    recipients.append(phonenoArr[g])
+                    }
+               }
             }
             
             selectedPeople = []
@@ -350,6 +372,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                             
                         }
                         
+                        var randomArray: NSMutableArray! = []
                         for ix in 0 ..< ABMultiValueGetCount(numbers) {
 //                            let label = ABMultiValueCopyLabelAtIndex(numbers,ix).takeRetainedValue() as String
 //                            let value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
@@ -358,19 +381,50 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                             if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
                                 value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
                                 print("Phonenumber  is \(value)")
-                                self.numberArray.addObject(value)
-                                break
+                               randomArray.addObject(value)
+                                
                             }
                             
                         }
+                        var arrStr:String = ""
+                        let count:Int = randomArray.count
+                        if(count == 1){
+                           self.numberArray.addObject(randomArray[0])
+                        }else{
+                        for(var a=0;a<randomArray.count;a++){
+                            if(a==0){
+                               arrStr = "\(randomArray[a])"
+                            }else{
+                            arrStr = "\(arrStr),\(randomArray[a])"
+                            }
+                        }
+                           self.numberArray.addObject(arrStr)
+                        }
                 }
-                
-                
-                
-                
-                
             }
             
+            for(var k=0;k<self.nameArray.count;k++){
+                self.contactDict.setValue(self.numberArray[k], forKey: self.nameArray[k] as! String)
+            }
+            print("\(self.contactDict.allKeys)")
+           
+            let sortedArray = self.nameArray.sortedArrayUsingComparator {
+                (obj1, obj2) -> NSComparisonResult in
+                
+                let p1 = obj1 as! String
+                let p2 = obj2 as! String
+                let result = p1.compare(p2)
+                return result
+            }
+           self.nameArray.removeAllObjects()
+           
+            for(var v=0;v<sortedArray.count;v++)
+            {
+                self.nameArray.addObject(sortedArray[v])
+            }
+            print("\(self.numberArray)")
+            print("\(self.nameArray)")
+            self.selectedPeople = []
             self.tableViewContact.reloadData()
         }
     }
@@ -385,6 +439,11 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if (self.resultSearchController.active) {
+            return self.filteredTableData.count
+        }
+        
         
         if tableView == tableViewContact{
             print("\(nameArray.count)")
@@ -412,7 +471,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 if searching && searchResults.count == 0 {
                     return 147
                 } else if let _ = searchResults[indexPath.row] as? User {
-                    return 100
+//                    return 100
+                    return 60
                 } else {
                     return 382
                 }
@@ -424,28 +484,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // MARK: Causing TableView Crash
         if tableView == tableViewContact{
-            
-            errorText!.removeFromSuperview()
-            
-            
-            
-            
-            
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
-             let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
-            let person = numberArray[indexPath.row]
-            
-            if cell.accessoryType == .None {
-                cell.accessoryType = .Checkmark
-                print("\(cell.accessoryType)")
-                selectedPeople.addObject(person)
-            }else if cell.accessoryType == .Checkmark {
-                cell.accessoryType = .None
-                selectedPeople.removeObject(person)
-            }
-            
-            print("\(selectedPeople)")
-            
+             errorText?.removeFromSuperview()
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }else{
             if tableView == self.tableView {
                 //super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
@@ -456,6 +496,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         if tableView == tableViewContact{
             let cell = tableView.dequeueReusableCellWithIdentifier("commentCellss", forIndexPath: indexPath)
             
@@ -465,19 +506,33 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 object.removeFromSuperview();
             }
             
-//            let cellView = UIView()
-//            cell.contentView.frame = CGRectMake(0, 5, cell.contentView.frame.size.width, 75)
-//            cell.contentView.backgroundColor = UIColor(white: 0, alpha: 0.25)
-//            cell.addSubview(cellView)how should i do that...means should i have to
+            
+            
             
             let text1:UILabel = UILabel.init(frame: CGRectMake(20, 10, 350, 30))
             text1.font = UIFont.systemFontOfSize(23)
-            text1.text = nameArray[indexPath.row] as? String
+            if (self.resultSearchController.active) {
+                 text1.text = filteredTableData[indexPath.row]
+            }else{
+                 text1.text = nameArray[indexPath.row] as? String
+            }
             cell.contentView.addSubview(text1)
             
-            let text2:UILabel = UILabel.init(frame: CGRectMake(20, text1.frame.origin.y+text1.frame.size.height , 350, 30 ))
+            var text2:UILabel = UILabel.init(frame: CGRectMake(20, text1.frame.origin.y+text1.frame.size.height , 350, 30 ))
             text2.font = UIFont.systemFontOfSize(15)
-            text2.text = numberArray[indexPath.row] as? String
+            let str = numberArray[indexPath.row] as? String
+            let arr = str?.componentsSeparatedByString(",")
+            if(arr?.count>3)
+            {
+                 text2 = UILabel.init(frame: CGRectMake(text2.frame.origin.x, text2.frame.origin.y-8, text2.frame.size.width, text2.frame.size.height+30))
+                text2.numberOfLines = 2;
+            }
+            if (self.resultSearchController.active) {
+                text2.text = self.contactDict.valueForKey(filteredTableData[indexPath.row]) as! String
+            }else{
+                text2.text = self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as! String
+            }
+            
             text2.textColor = UIColor.lightGrayColor()
             cell.contentView.addSubview(text2)
             
@@ -487,29 +542,32 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             text3.backgroundColor = UIColor.darkGrayColor()
             cell.contentView.addSubview(text3)
             
+            let gap : CGFloat = 15
+            let buttonHeight: CGFloat = 30
+            let buttonWidth: CGFloat = 30
+            let inviteButton = UIButton()
             
+            inviteButton .setTitleColor( UIColor(red:235.0/255.0,green:129.0/255.0,blue:40.0/255.0,alpha:1.0), forState: .Normal)
+            inviteButton.frame = CGRectMake(cell.frame.size.width - gap - buttonWidth, cell.frame.size.height/3-3, buttonWidth, buttonHeight)
+            inviteButton.layer.cornerRadius = 0.5 * inviteButton.bounds.size.width
+            inviteButton.backgroundColor = UIColor.whiteColor()
+            inviteButton.layer.borderColor = UIColor.blackColor().CGColor;
+            inviteButton.layer.borderWidth = 1.0
             
-            
-            let result = selectedPeople.filter { $0 as! NSObject==numberArray[indexPath.row] as? String }
-            if result.isEmpty {
-                print("element does not exist in array")
-                cell.accessoryType = .None
-            } else {
-                print("element exists")
-                cell.accessoryType = .Checkmark
-                // element exists
+            inviteButton.tag = indexPath.row
+            print("\(selectedPeople)")
+            if selectedPeople.containsObject(text2.text!)
+            {
+                inviteButton.backgroundColor = UIColor.redColor()
             }
-            cell.separatorInset = UIEdgeInsetsMake(0, 10000, 0, 0)
+            else
+            {
+                inviteButton.backgroundColor = UIColor.whiteColor()
+            }
+            inviteButton.addTarget(self, action: "inviteButton:", forControlEvents: UIControlEvents.TouchUpInside)
+            inviteButton.titleLabel!.font = UIFont.boldSystemFontOfSize(17)
+            cell.addSubview(inviteButton)
             
-//            if (selectedPeople.contains(numberArray[indexPath.row])){
-//                cell.accessoryType = .Checkmark
-//            }
-//            else{
-//                cell.accessoryType = .None
-//            }
-//            tableView.separatorStyle = .None
-
-//            cell.textLabel!.font = UIFont.systemFontOfSize(18)
             return cell
        }else{
          if tableView == self.tableView {
@@ -525,7 +583,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 
                     cell.user = user
                     cell.nameLabel.hidden = false
-                
+                    cell.nameLabel1.hidden = false
                     return cell
                 } else {
                     let timeline = searchResults[indexPath.row] as! Timeline
@@ -539,7 +597,59 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             }
         }
     }
-    
+    func updateSearchResultsForSearchController(searchController: UISearchController)
+    {
+        filteredTableData.removeAll(keepCapacity: false)
+        
+        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
+        let array = (nameArray as NSArray).filteredArrayUsingPredicate(searchPredicate)
+        filteredTableData = array as! [String]
+        
+        tableViewContact.reloadData()
+    }
+    func inviteButton(sender: UIButton) {
+        let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        let inviteButton = sender as UIButton
+        
+        let person = numberArray[indexPath.row]
+        
+        
+        var containObj :String = ""
+        if(filteredTableData.count>0){
+            containObj = "\(self.contactDict.valueForKey(filteredTableData[indexPath.row])!)"
+        }else{
+           containObj =  "\(self.contactDict.valueForKey(nameArray[indexPath.row] as! String)!)"
+        }
+        
+        
+        
+        
+        if selectedPeople .containsObject(containObj)
+        {
+            inviteButton.backgroundColor = UIColor.whiteColor()
+            invitedFriendsArray .removeObject(indexPath.row)
+            
+            if(filteredTableData.count>0){
+                selectedPeople.removeObject(self.contactDict.valueForKey(filteredTableData[indexPath.row]) as! String)
+            }else{
+             selectedPeople.removeObject(self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as! String)
+            }
+        }
+        else
+        {
+            inviteButton.backgroundColor = UIColor.redColor()
+            invitedFriendsArray .addObject(indexPath.row)
+            if(filteredTableData.count>0){
+            selectedPeople.addObject(self.contactDict.valueForKey(filteredTableData[indexPath.row]) as! String)
+            }else{
+            selectedPeople.addObject(self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as! String)
+            }
+        }
+        
+        print("\(filteredTableData)-----")
+        print("\(selectedPeople)")
+        print("inviteButton: \(indexPath.row)")
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowTimeline" {
             let dest = segue.destinationViewController as! TimelineSummaryTableViewController
@@ -736,6 +846,6 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         default:
          self.dismissViewControllerAnimated(true, completion: nil)
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+//        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

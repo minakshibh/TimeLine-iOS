@@ -10,10 +10,14 @@ protocol NamedBehavior {
     typealias TargetBehaviorType: Named
     var behaviorTarget: TargetBehaviorType? { get }
     var nameLabel: UILabel! { get }
+//    var nameLabel1: UILabel! { get }
 }
 
 extension NamedBehavior {
     func refreshNamedBehavior() {
+        print("^^^^\(behaviorTarget?.name)")
+        
         nameLabel.text =!= TargetBehaviorType.prefix.stringByAppendingString(behaviorTarget?.name ?? "")
+        
     }
 }

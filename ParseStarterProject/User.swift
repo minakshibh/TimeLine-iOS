@@ -33,6 +33,7 @@ class User: Synchronized {
     var hasNews: Bool
     var externalID: String?
     var userfullName: String = ""
+    var updated_at: String = ""
     weak var parent: ParentType?
     
     required init(name: String?, email: String?, externalID: String?, timelinesPublic: Bool?, approveFollowers: Bool?, pendingFollowersCount: Int?, followersCount: Int?, followingCount: Int?, likersCount: Int?, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, timelines: [Timeline], state: SynchronizationState, userfullname: String? , parent: ParentType? = nil) {

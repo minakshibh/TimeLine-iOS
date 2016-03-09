@@ -34,6 +34,7 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
             likeButton.setTitle("\(behaviorTarget.likesCount)", forState: .Normal)
             likeButton.selected =!= behaviorTarget.liked
             likeButton.enabled =!= true
+            print("\(behaviorTarget.likesCount)-----\(behaviorTarget.isOwn)")
             likeButton.borderWidth =!= behaviorTarget.isOwn ? 0 : 1.5
             likeButton.tintColor =!= behaviorTarget.isOwn ? UIColor.blackColor() : .likeableTintColor
         } else {

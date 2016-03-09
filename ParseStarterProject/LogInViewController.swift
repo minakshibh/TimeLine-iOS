@@ -128,16 +128,7 @@ class LogInViewController: PFLogInViewController {
                     NSUserDefaults.standardUserDefaults().setObject(facebookID, forKey: "facebookID")
                     NSUserDefaults.standardUserDefaults().setObject(fbemail, forKey: "fb_email")
                     
-                    var userFullNameStr : (NSString) = ""
-                    if let userFirstNameStr = json["firstname"] as? String
-                    {
-                        userFullNameStr = userFirstNameStr
-                        if let userLasstNameStr = json["lastname"] as? String
-                        {
-                            userFullNameStr = "\(userFirstNameStr) \(userLasstNameStr)"
-                        }
-                    }
-
+                    var userFullNameStr : (NSString) = fullName!
                     
                     if let jwt = json["jwt"] as? String,
                         let id = json["id"] as? String,

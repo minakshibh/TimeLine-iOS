@@ -12,8 +12,11 @@ import SWFrameButton
 class UserSummaryTableViewCell: UITableViewCell {
 
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var nameLabel1: UILabel!
     @IBOutlet var profileImageView: ProfileImageView!
     @IBOutlet var likeButton: SWFrameButton!
+    
+    @IBOutlet var likeButton1: SWFrameButton!
     @IBOutlet var followButton: SWFrameButton!
     @IBOutlet var approveButton: SWFrameButton!
     @IBOutlet var approveConstraint: NSLayoutConstraint!
@@ -27,11 +30,11 @@ class UserSummaryTableViewCell: UITableViewCell {
     }
 
     var refreshers: [() -> ()] {
-        return [refreshLikeableBehavior, refreshFollowableBehavior, refreshApproveableBehavior, refreshNamedBehavior]
+        return [refreshLikeableBehavior, refreshFollowableBehavior, refreshApproveableBehavior, refreshNamedBehavior ,refreshFirstLastName, refreshLikeableBehavior2]
     }
 }
 
-extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBehavior, ApproveableBehavior, NamedBehavior {
+extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBehavior, ApproveableBehavior, NamedBehavior ,FirstLastName, LikeableBehavior2 {
 
     typealias TargetBehaviorType = User
     var behaviorTarget: TargetBehaviorType? {
@@ -40,6 +43,9 @@ extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBeh
 
     @IBAction func tappedLikeButton() {
         toggleLiked()
+    }
+    @IBAction func tappedLikeButton1() {
+        toggleLiked2()
     }
     @IBAction func tappedFollowButton() {
         toggleFollowState()

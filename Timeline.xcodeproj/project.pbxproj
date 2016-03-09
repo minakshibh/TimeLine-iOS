@@ -110,8 +110,12 @@
 		BAF593391B9600A100C7E8AE /* Session+InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF593381B9600A100C7E8AE /* Session+InAppPurchase.swift */; };
 		BAF5933B1B960BA100C7E8AE /* PendingInAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF5933A1B960BA100C7E8AE /* PendingInAppViewController.swift */; };
 		BE86307804EAC41D198E236B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472C1B472FC01F506711759 /* Pods.framework */; };
+		D925C5A81C8EAC8B00D9238B /* User-lists.png in Resources */ = {isa = PBXBuildFile; fileRef = D925C5A71C8EAC8B00D9238B /* User-lists.png */; };
+		D937FA871C900F6B00C53274 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937FA861C900F6B00C53274 /* MyPageViewController.swift */; };
 		D94042541C7EBE1000FDCD46 /* drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94042531C7EBE1000FDCD46 /* drawer.swift */; };
 		D94042571C7EBF7700FDCD46 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */; };
+		D9934DDC1C8D55D200CC06B4 /* FirstLastName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9934DDB1C8D55D200CC06B4 /* FirstLastName.swift */; };
+		D9934DDF1C8D7F9400CC06B4 /* LikeableBehavior2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9934DDE1C8D7F9400CC06B4 /* LikeableBehavior2.swift */; };
 		D9AA74B71C75F9050008E3EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9AA74B61C75F9050008E3EC /* MessageUI.framework */; };
 		D9B3408B1C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */; };
 		D9B3408C1C72EABB00EC3BFF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */; };
@@ -379,8 +383,12 @@
 		BAF593361B95FC7A00C7E8AE /* SKProduct+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProduct+Additions.swift"; sourceTree = "<group>"; };
 		BAF593381B9600A100C7E8AE /* Session+InAppPurchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+InAppPurchase.swift"; sourceTree = "<group>"; };
 		BAF5933A1B960BA100C7E8AE /* PendingInAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInAppViewController.swift; sourceTree = "<group>"; };
+		D925C5A71C8EAC8B00D9238B /* User-lists.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "User-lists.png"; sourceTree = "<group>"; };
+		D937FA861C900F6B00C53274 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		D94042531C7EBE1000FDCD46 /* drawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawer.swift; sourceTree = "<group>"; };
 		D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
+		D9934DDB1C8D55D200CC06B4 /* FirstLastName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLastName.swift; sourceTree = "<group>"; };
+		D9934DDE1C8D7F9400CC06B4 /* LikeableBehavior2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeableBehavior2.swift; sourceTree = "<group>"; };
 		D9AA74B61C75F9050008E3EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -546,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				97ADC8781C89B0BF00546A9B /* AppDelegate.swift */,
+				D937FA861C900F6B00C53274 /* MyPageViewController.swift */,
 				D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */,
 				BA452AEC1BFB2EEF00FF4598 /* TimelineViewRight.swift */,
 				D94042531C7EBE1000FDCD46 /* drawer.swift */,
@@ -638,6 +647,8 @@
 			isa = PBXGroup;
 			children = (
 				BADDE8031C19EB7400872FEC /* Protocols */,
+				D9934DDB1C8D55D200CC06B4 /* FirstLastName.swift */,
+				D9934DDE1C8D7F9400CC06B4 /* LikeableBehavior2.swift */,
 				BA380BB21C1612B400013053 /* LikeableBehavior.swift */,
 				BA380BBB1C16159100013053 /* FollowableBehavior.swift */,
 				BA8607A41C166C10001D73EE /* DurationalBehavior.swift */,
@@ -1014,6 +1025,7 @@
 		DAFBADFE1B860CE800F3906E /* Specific Timelines */ = {
 			isa = PBXGroup;
 			children = (
+				D925C5A71C8EAC8B00D9238B /* User-lists.png */,
 				DA7546591B82943200FADDE5 /* TimelineSummaryTableViewController.swift */,
 				DAF09E931B854709007DE11D /* UserSummaryTableViewController.swift */,
 				BA0578791C1A39470098C3A1 /* UserSummaryView.xib */,
@@ -1168,7 +1180,7 @@
 				TargetAttributes = {
 					81BA81441A49DA1800E65899 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = B4F2Z6ZQE6;
+						DevelopmentTeam = T5DY39F2BR;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1229,6 +1241,7 @@
 				BA05787A1C1A39470098C3A1 /* UserSummaryView.xib in Resources */,
 				BA14B76D1B9DB368006A5843 /* APParallaxHeader.license in Resources */,
 				DA57C7851B53FDE600C51BC0 /* Localizable.strings in Resources */,
+				D925C5A81C8EAC8B00D9238B /* User-lists.png in Resources */,
 				BA14B7721B9DB3A3006A5843 /* SCRecorder.license in Resources */,
 				BA14B7691B9DB349006A5843 /* MGSwipeTableCell.license in Resources */,
 				DA167E111B7D6A9200608A6C /* EmptyCollectionViewReusableView.xib in Resources */,
@@ -1460,6 +1473,7 @@
 				BAF593371B95FC7A00C7E8AE /* SKProduct+Additions.swift in Sources */,
 				BA0578821C1A50990098C3A1 /* Approveable.swift in Sources */,
 				BA3CF64C1B9CE71B007BB3A6 /* PendingUserTableViewController.swift in Sources */,
+				D9934DDF1C8D7F9400CC06B4 /* LikeableBehavior2.swift in Sources */,
 				BA0578851C1B1D000098C3A1 /* UserMoreButtonBehavior.swift in Sources */,
 				DA2BA53E1B78FA2200DE6300 /* NSDate+Additions.swift in Sources */,
 				DA2BA53A1B78C80600DE6300 /* Moment.swift in Sources */,
@@ -1496,11 +1510,13 @@
 				BA14B7761B9DBC40006A5843 /* TimelineFollowersUserTableViewController.swift in Sources */,
 				BA452AEB1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift in Sources */,
 				DA1DF2021B55263F00BD6011 /* AVCaptureDeviceAdditions.swift in Sources */,
+				D9934DDC1C8D55D200CC06B4 /* FirstLastName.swift in Sources */,
 				DA5115651B7E615A00B0776A /* Storage+Find.swift in Sources */,
 				DA38C4E41B87DCC0004C3A14 /* AppRotation.swift in Sources */,
 				DAF09E921B85216E007DE11D /* PlayerView.swift in Sources */,
 				BA96964A1B9B633B00D17D5A /* PushFetchViewController.swift in Sources */,
 				DABC10371B73CF3100E15698 /* SettingsTableViewController.swift in Sources */,
+				D937FA871C900F6B00C53274 /* MyPageViewController.swift in Sources */,
 				BA14B7781B9DD6A1006A5843 /* SortedTimelineTableViewController.swift in Sources */,
 				BAEE044D1BA2F33500B61DA7 /* WalkthroughTemplateViewController.swift in Sources */,
 				DAB739FE1B7E820900C6B147 /* DraftCollectionViewController.swift in Sources */,
@@ -1652,8 +1668,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Reebay Inc. (B4F2Z6ZQE6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reebay Inc. (B4F2Z6ZQE6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				CURRENT_PROJECT_VERSION = 104;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1695,9 +1711,9 @@
 					"-framework",
 					"\"SWFrameButton\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Krishnais.autoaves;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
+				PROVISIONING_PROFILE = "af612e28-0953-4018-ab50-160a586ec704";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1711,8 +1727,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Reebay Inc. (B4F2Z6ZQE6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reebay Inc. (B4F2Z6ZQE6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Rocky Uppal (T5DY39F2BR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Rocky Uppal (T5DY39F2BR)";
 				CURRENT_PROJECT_VERSION = 104;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1754,9 +1770,9 @@
 					"-framework",
 					"\"SWFrameButton\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Krishnais.autoaves;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
+				PROVISIONING_PROFILE = "ba551ec8-dbeb-4c13-808c-76b8e8270611";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;

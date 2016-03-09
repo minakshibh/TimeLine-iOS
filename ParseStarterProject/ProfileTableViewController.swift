@@ -39,9 +39,14 @@ class ProfileTableViewController: TintedHeaderTableViewController {
 //        let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
 //        
 //        navigationItem.leftBarButtonItem = left
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
 
     }
-
+    
+    func update(){
+//        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+2)
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         cleanUpHooking()

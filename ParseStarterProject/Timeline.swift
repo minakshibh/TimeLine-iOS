@@ -26,6 +26,7 @@ class Timeline: Synchronized, DictConvertable {
     var state: SynchronizationState
     
     var name: String
+    var updated_at:String
     var moments: [Moment]
     var followersCount: Int
     var likesCount: Int
@@ -41,8 +42,9 @@ class Timeline: Synchronized, DictConvertable {
     weak var parent: ParentType?
     
     typealias ParentType = User
-    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, commentscount: Int? , parent: User? = nil) {
+    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, commentscount: Int? , parent: User? = nil, updated_at: String) {
         self.name = name
+        self.updated_at = updated_at
         self.parent = parent
         self.state = state
         self.followersCount = followersCount
@@ -81,6 +83,7 @@ class Timeline: Synchronized, DictConvertable {
     convenience required init(dict: [String: AnyObject], parent: ParentType? = nil) {
         let duration = dict["moments_duration"] as? Float
         self.init(name: (dict["name"] as? String) ?? "",
+            
             followersCount: (dict["followers_count"] as? Int) ?? 0,
             likesCount: (dict["likes_count"] as? Int) ?? 0,
             liked: dict["liked"] as? Bool ?? false,
@@ -91,7 +94,7 @@ class Timeline: Synchronized, DictConvertable {
             duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
             moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
             state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-            grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 , parent: parent
+            grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 , parent: parent,updated_at: (dict["updated_at"] as? String) ?? ""
         )
     }
     
@@ -174,6 +177,9 @@ extension Timeline {
                                 if let v = json["followers_count"] as? Int {
                                     owner.followersCount = v
                                 }
+                                if let v = json["updated_at"] as? String {
+                                    owner.updated_at = v
+                                }
                                 if let v = json["followees_users_count"] as? Int {
                                     owner.followingCount = v
                                 }
@@ -220,6 +226,9 @@ extension Timeline {
                             }
                             if let dr = td["moments_duration"] as? Int {
                                 existing.duration = dr
+                            }
+                            if let dr = td["updated_at"] as? String {
+                                existing.updated_at = dr
                             }
                             if let gt = td["group_timeline"] as? Bool {
                                 existing.groupTimeline = gt

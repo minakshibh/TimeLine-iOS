@@ -35,13 +35,55 @@ class SortedTimelineTableViewController: UITableViewController {
                     secs[indexUid] = (t.parent!, [])
                 }
                 secs[indexUid]!.1.append(t)
+                
             }
         }
+
+        //2016-01-11T04:25:50.000Z
+        
         let resultingSecs = secs.values.map { uts in
             (uts.0, uts.1.sort(<))
         }.sort { (luts, ruts) -> Bool in
-            luts.0.name < ruts.0.name
+            
+            var date1:NSString = ""
+            var date2:NSString = ""
+            
+             for t in luts.1 {
+               date1 =  t.updated_at
+                print("%%%%\(date1)")
+            }
+            for t in ruts.1 {
+                date2 =  t.updated_at
+                print("%%%%\(date1)")
+            }
+            
+            
+            
+            if (date1 != "") {
+            var arr = date1.componentsSeparatedByString("T")
+            date1 = arr[0]
+            arr = arr[1].componentsSeparatedByString(".")
+            date1 = "\(date1) \(arr[0])"
+                print("1111111---\(date1)")
+            }
+            if (date2 != "") {
+            var arr1 = date2.componentsSeparatedByString("T")
+            date2 = arr1[0]
+            arr1 = arr1[1].componentsSeparatedByString(".")
+            date2 = "\(date2) \(arr1[0])"
+                print("2222222---\(date2)")
+            }
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            
+
+            let status:Bool = dateFormatter.dateFromString(date1 as String)?.compare((dateFormatter.dateFromString(date2 as String))!) == NSComparisonResult.OrderedAscending
+            
+            
+        return status
         }
+        
         sections = Array(resultingSecs)
     }
     

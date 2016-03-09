@@ -27,16 +27,16 @@ extension ApproveableBehavior where TargetBehaviorType: Named {
 
     func refreshApproveableBehavior() {
         main {
-            self.approveButton.cornerRadius =!= 7
+//            self.approveButton.cornerRadius =!= 7
             self.approveButton.tintColor =!= .approveableTintColor
             self.approveButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 0)
 
             self.approveButton.setTitle(local(.UserButtonRespondTitle), forState: .Normal)
             self.approveButton.enabled =!= true
             self.approveButton.borderWidth =!= 1.5
-            self.approveButton.titleLabel?.numberOfLines = 1
-            self.approveButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            self.approveButton.titleLabel?.lineBreakMode = .ByClipping
+//            self.approveButton.titleLabel?.numberOfLines = 1
+//            self.approveButton.titleLabel?.adjustsFontSizeToFitWidth = true
+//            self.approveButton.titleLabel?.lineBreakMode = .ByClipping
             self.approveButton.hidden = self.hidesApproveButton
             self.approveConstraint.active = !self.hidesApproveButton
 

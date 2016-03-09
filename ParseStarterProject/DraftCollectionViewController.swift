@@ -80,8 +80,17 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
         navigationItem.leftBarButtonItem = left
         navigationItem.rightBarButtonItem = right
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
+
     }
-    
+    func update(){
+//        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+1)
+    }
+    override func viewWillAppear(animated: Bool) {
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
+
+    }
     func goToRecordScreen () {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer

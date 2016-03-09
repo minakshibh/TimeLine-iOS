@@ -42,6 +42,10 @@ extension UIImage {
         case FollowableButton = "follower"
 
         case DefaultUserProfile = "default-user-profile"
+        
+        case likeImage = "likeImage"
+        
+        case dislikeImage = "dislikeImage"
     }
     
     convenience init!(assetIdentifier: AssetIdentifier) {
