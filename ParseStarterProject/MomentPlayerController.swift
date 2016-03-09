@@ -18,6 +18,7 @@ class MomentPlayerController: NSObject {
     var playing: Bool = false
     var finished: Bool = false
     var observing: Bool = false
+    var modernTimeline : ModernTimelineView!
     
     weak var delegate: MomentPlayerControllerDelegate?
     //lazy var queue: NSOperationQueue = SerialOperationQueue(name: "queue player")
@@ -26,7 +27,7 @@ class MomentPlayerController: NSObject {
         let moms = TimelineViewingRight.viewableMoments(timeline)
         self.init(moments: moms, inView: view)
     }
-
+    
     init(moments: [Moment], inView view: PlayerView) {
         
         items = moments.sort(<).map { ($0, AVPlayerItem(URL: $0.bestVideoURL ?? $0.alternativeVideoURL!)) }

@@ -54,6 +54,8 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             momentPlayerController?.pause()
             momentPlayerController = nil
             playbackContainer.hidden = true
+            
+            self.commentButton.frame = CGRectMake(self.commentButton.frame.origin.x + CGFloat(32*isiPhone5()) , self.commentButton.frame.origin.y, self.commentButton.frame.size.width, self.commentButton.frame.size.height)
 //            bufferIndicator.hidden = true
         }
     }
@@ -111,7 +113,6 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     
     // MARK: Overlay end
     // MARK: -
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         self.previewImageView?.frame = self.bounds
@@ -393,7 +394,12 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
 
     
     func MomentPostComment(){
-        if(commentTextField.text == ""){
+        
+        let TrimString = commentTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        print(TrimString)
+        
+        if(TrimString == ""){
             let alert = UIAlertView()
             alert.title = ""
             alert.message = "Please enter your comment first."
@@ -695,9 +701,9 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     
     @IBAction func stop() {
         bufferIndicator.stopAnimating()
-        
         momentPlayerController?.stop()
         momentPlayerController = nil
+        
         playbackContainer.hidden = true
 //        bufferIndicator.hidden = true
 

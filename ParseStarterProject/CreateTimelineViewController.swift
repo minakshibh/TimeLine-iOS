@@ -196,7 +196,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         viewTitle.frame = CGRectMake(0, 0, screenWidth, 70)
         viewTitle.font = UIFont.boldSystemFontOfSize(20)
         viewTitle.textAlignment = .Center
-        viewTitle.backgroundColor = UIColor(red:235.0/255.0,green:129.0/255.0,blue:40.0/255.0,alpha:1.0)
+        viewTitle.backgroundColor = UIColor.redNavbarColor()
         viewTitle.textColor = UIColor.whiteColor()
         viewTitle.text = "Select Members"
         self.friendsListView.addSubview(viewTitle)
@@ -348,6 +348,13 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
     }
     func doneButtonAction()
     {
+        if InvitedFriends_id.count == 0
+        {
+            let alert = UIAlertController(title: local(.InviteFriendsToGroupTimelineAlertMissingTitle), message: local(.InviteFriendsToGroupTimelineMissingMessage), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: local(.InviteFriendsToGroupTimelineCreateMissingDismiss), style: .Default, handler: nil))
+            self.presentAlertController(alert)
+            return
+        }
         var InvitedFriendsIdSTr : NSString = ""
         for ids in InvitedFriends_id{
             if InvitedFriendsIdSTr == ""

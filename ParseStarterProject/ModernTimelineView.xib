@@ -44,7 +44,7 @@
                             <rect key="frame" x="72" y="89" width="160" height="127"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.90958822706935105" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="j95-K4-6Qt" firstAttribute="centerY" secondItem="j8U-pc-cJ2" secondAttribute="centerY" id="C9T-Dg-Whi"/>
@@ -55,23 +55,7 @@
                         <outletCollection property="gestureRecognizers" destination="Pwz-aJ-f1i" appends="YES" id="yvb-Un-znv"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ekh-71-eJd" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
-                    <rect key="frame" x="328" y="76" width="71" height="71"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="Ekh-71-eJd" secondAttribute="height" multiplier="1:1" id="xun-ZM-YuE"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="xun-ZM-YuE"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="X9B-N1-dFJ" appends="YES" id="VYz-ff-sUR"/>
-                    </connections>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRr-Jw-1xW" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRr-Jw-1xW" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="328" y="232" width="71" height="71"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
@@ -160,7 +144,7 @@
                         <action selector="likeButtonTapped" destination="iN0-l3-epB" eventType="touchUpInside" id="uBH-8V-XDP"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-a6-ir2" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-a6-ir2" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="328" y="310" width="71" height="71"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
@@ -176,7 +160,7 @@
                         <outletCollection property="gestureRecognizers" destination="du8-JZ-SKG" appends="YES" id="dOJ-o1-h9i"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-je-7Td" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-je-7Td" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="328" y="155" width="71" height="71"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
@@ -212,6 +196,22 @@
                         <action selector="groupTimelineButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="VdF-OQ-Nyj"/>
                     </connections>
                 </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ekh-71-eJd" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                    <rect key="frame" x="328" y="76" width="71" height="71"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Ekh-71-eJd" secondAttribute="height" multiplier="1:1" id="xun-ZM-YuE"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="xun-ZM-YuE"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="X9B-N1-dFJ" appends="YES" id="VYz-ff-sUR"/>
+                    </connections>
+                </view>
             </subviews>
             <constraints>
                 <constraint firstItem="a0D-So-pvo" firstAttribute="leading" secondItem="dZX-FB-9P2" secondAttribute="trailing" constant="8" id="0Bu-Hf-Mhg"/>
@@ -294,10 +294,6 @@
                 <outlet property="likeButton" destination="YRI-Jb-ZXO" id="Mds-Xz-aRb"/>
                 <outlet property="nameLabel" destination="dZX-FB-9P2" id="TPP-Tq-fV0"/>
                 <outlet property="playerView" destination="HVl-oO-cuI" id="1aw-xQ-RO1"/>
-                <outletCollection property="lastMomentPreviews" destination="Ekh-71-eJd" collectionClass="NSMutableArray" id="wDY-pE-VPf"/>
-                <outletCollection property="lastMomentPreviews" destination="rdV-je-7Td" collectionClass="NSMutableArray" id="u5X-eB-hhg"/>
-                <outletCollection property="lastMomentPreviews" destination="MRr-Jw-1xW" collectionClass="NSMutableArray" id="bbd-zX-QI3"/>
-                <outletCollection property="lastMomentPreviews" destination="ev8-a6-ir2" collectionClass="NSMutableArray" id="nXe-CL-7TJ"/>
                 <outletCollection property="previewItems" destination="dZX-FB-9P2" collectionClass="NSMutableArray" id="hm1-kY-Is4"/>
                 <outletCollection property="previewItems" destination="YRI-Jb-ZXO" collectionClass="NSMutableArray" id="9ff-rw-2Da"/>
                 <outletCollection property="previewItems" destination="IKO-PQ-lb0" collectionClass="NSMutableArray" id="9Gf-Ft-c7y"/>

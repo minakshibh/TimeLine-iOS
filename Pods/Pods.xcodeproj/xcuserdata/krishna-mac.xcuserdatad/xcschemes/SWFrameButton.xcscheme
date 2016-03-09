@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7AA088E41C270D91E255F6AC'
+               BlueprintIdentifier = '6720E92797AF55846C3BBCB4'
                BlueprintName = 'SWFrameButton'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'SWFrameButton.framework'>

@@ -424,7 +424,7 @@ extension CaptureMomentViewController {
         self.countdown = 1
         self.countdownLabel.text = "1"
         
-        UIView.animateWithDuration(0.2/* SOUND: startRecording.duration*/,animations: { () -> Void in
+        UIView.animateWithDuration(0.0/* SOUND: startRecording.duration*/,animations: { () -> Void in
             self.menuControls.each { $0.alpha = 0.0 }
             self.countdownLabel.alpha = 1.0
             self.countdownLabel.hidden = false

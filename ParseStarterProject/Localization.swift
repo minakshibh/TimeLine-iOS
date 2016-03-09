@@ -122,9 +122,22 @@ enum LocalizedString: String, Localized {
     case TimelineAlertCreateMissingMessage = "Timeline-Alert-Create-Missing-Message"
     case TimelineAlertCreateMissingDismiss = "Timeline-Alert-Create-Missing-Dismiss"
     case TimelineAlertCreateMissingDetailMessage = "Timeline-Alert-Create-Missing-Detail-Message"
+    
 
     case TimelineAlertCreateErrorTitle = "Timeline-Alert-Create-Error-Title"
     case TimelineAlertCreateErrorActionDismiss = "Timeline-Alert-Create-Error-Action-Dismiss"
+    
+    
+    
+    
+    
+    // MARK: Invite Friend GroupTimeline Creation
+    case InviteFriendsToGroupTimelineAlertMissingTitle = "Invite-Friends-Missing-Title"
+    case InviteFriendsToGroupTimelineMissingMessage = "Invite-Friends-Missing-Message"
+    case InviteFriendsToGroupTimelineCreateMissingDismiss = "Invite-Friends-Missing-Dismiss"
+    case InviteFriendsToGroupTimelineMissingDetailMessage = "Invite-Friends-Missing-Detail-Message"
+    
+    
     
     // MARK: Timeline Cell
     case TimelineButtonCellPendingTitle = "Timeline-Button-Cell-Pending-Title"

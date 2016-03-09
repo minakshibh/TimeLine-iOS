@@ -44,54 +44,58 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         }
         set {
             behavior.timeline = newValue
-            scrollMomentArray = []
-            scrollMomentArray = behavior.timeline?.dict["moments"]! as! NSArray
+            main{
+            self.scrollMomentArray = []
+            self.scrollMomentArray = self.behavior.timeline?.dict["moments"]! as! NSArray
             var Yaxis :CGFloat = 0
-            momentScroller.subviews.forEach {
+            self.momentScroller.subviews.forEach {
                 ( view) -> () in
                 if (view is UIButton) {
+                    
                     view.removeFromSuperview()
+                
                 }
             }
-            momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), 80, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(275 + 30*isiphone6Plus()-45*isiPhone5()))
-            momentScroller.delegate = self
-            momentScroller.showsVerticalScrollIndicator = false
-            for var i = 0; i < scrollMomentArray.count; i++ {
+            self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), 80, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(275 + 30*isiphone6Plus()-45*isiPhone5()))
+            self.momentScroller.delegate = self
+            self.momentScroller.showsVerticalScrollIndicator = false
+            for var i = 0; i < self.scrollMomentArray.count; i++ {
                 
-                let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: momentScroller.frame.size.width, height: momentScroller.frame.size.width))
+                let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.momentScroller.frame.size.width, height: self.momentScroller.frame.size.width))
                 villainButton.titleLabel?.font =  UIFont.boldSystemFontOfSize(15)
                 villainButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
                 
-                if let raw = scrollMomentArray[i] as? NSDictionary
+                if let raw = self.scrollMomentArray[i] as? NSDictionary
                 {
                     let notifyStr = raw["video_thumb"] as! String
-//                    villainButton.setTitle("\(i + 1)" , forState: UIControlState.Normal)
+                    
+                    let momentNumbering = UILabel()
+                    momentNumbering.frame = CGRectMake(CGFloat((villainButton.frame.size.width/2)-10), CGFloat((villainButton.frame.size.height/2)-10), 20, 20)
+                    momentNumbering.layer.cornerRadius = 10
+                    momentNumbering.layer.masksToBounds = true
+                    momentNumbering.font = UIFont.boldSystemFontOfSize(15)
+                    momentNumbering.textAlignment = .Center
+                    momentNumbering.backgroundColor = UIColor(white: 1, alpha: 0.35)
+                    momentNumbering.textColor = UIColor(white: 0, alpha: 0.7 )
+                    momentNumbering.text = "\(i + 1)"
+                    
+                    villainButton.addSubview(momentNumbering)
+                    
                     villainButton.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
                 }
                 villainButton.tag = i
                 villainButton.addTarget(self, action: "momentButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-                momentScroller.addSubview(villainButton)
                 
-//                var imageView : UIImageView
-//                imageView  = UIImageView(frame: CGRect(x: 0, y: Yaxis, width: momentScroller.frame.size.width, height: momentScroller.frame.size.width));
-//                if let raw = scrollMomentArray[i] as? NSDictionary
-//                {
-//                    let notifyStr = raw["video_thumb"] as! String
-//                    imageView.sd_setImageWithURL(NSURL(string : notifyStr))
-//                }
-//                imageView.tag = i
-//                
-//                let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
-//                singleTap.numberOfTapsRequired = 2
-//                imageView.addGestureRecognizer(singleTap)
-//                
-//                momentScroller.addSubview(imageView)
+                    self.momentScroller.addSubview(villainButton)
                 
-                Yaxis = Yaxis + momentScroller.frame.size.width
+                Yaxis = Yaxis + self.momentScroller.frame.size.width
             }
-            momentScroller.contentSize = CGSizeMake(momentScroller.frame.size.width, Yaxis)
-            momentScroller.backgroundColor = UIColor.lightGrayColor()
-            self.superview!.addSubview(momentScroller)
+            self.momentScroller.contentSize = CGSizeMake(self.momentScroller.frame.size.width, Yaxis)
+            self.momentScroller.backgroundColor = UIColor.from(hexString:"#e7e7e7")
+            
+            self.addSubview(self.momentScroller)
+//                self.previewItems.append(self.momentScroller)
+            }
             
             refresh()
             
@@ -109,15 +113,12 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     
     func momentButtonPressed(sender: UIButton){
         //print(sender.tag)
+        self.momentScroller.hidden = true
         selectedTimelineMomentArray = behavior.timeline?.dict["moments"]! as! NSArray
         print(selectedTimelineMomentArray[sender.tag])
-       // behavior.playMoment(sender, moment: selectedTimelineMomentArray[sender.tag] as! Moment)
+
+        behavior.playMoment(sender, moment: Moment.init(dict: selectedTimelineMomentArray[sender.tag] as! [String : AnyObject], parent: behavior.timeline))
         
-    }
-    
-    func handleSingleTap(sender: UITapGestureRecognizer){
-        
-        behavior.tappedItem(sender)
     }
     
     var commentArray = NSMutableArray()
@@ -169,14 +170,14 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 
                 let Statusbarview = UIView()
                 Statusbarview.frame = CGRectMake(0, 0, screenWidth, 20)
-                Statusbarview.backgroundColor = UIColor(red:235.0/255.0,green:129.0/255.0,blue:40.0/255.0,alpha:1.0)
+                Statusbarview.backgroundColor = UIColor.redNavbarColor()
                 self.timelineCommentView.addSubview(Statusbarview)
                 
                 let commentScreenTitle = UILabel()
                 commentScreenTitle.frame = CGRectMake(0, 20, screenWidth, 44)
                 commentScreenTitle.font = UIFont.systemFontOfSize(18)
                 commentScreenTitle.textAlignment = .Center
-                commentScreenTitle.backgroundColor = UIColor(red:235.0/255.0,green:129.0/255.0,blue:40.0/255.0,alpha:1.0)
+                commentScreenTitle.backgroundColor = UIColor.redNavbarColor()
                 commentScreenTitle.textColor = UIColor.whiteColor()
                 commentScreenTitle.text = "Comments"
                 self.timelineCommentView.addSubview(commentScreenTitle)
@@ -238,11 +239,16 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         
         
     }
-    func hideMomentScroller(){
-        self.momentScroller.hidden = false
-    }
+    
     func CommentSendButtonAction(){
-        if(commentTextField.text == ""){
+        
+        // Trim all whitespace
+        
+        let TrimString = commentTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        print(TrimString)
+        
+        if(TrimString == ""){
         let alert = UIAlertView()
         alert.title = ""
         alert.message = "Please enter your comment first."

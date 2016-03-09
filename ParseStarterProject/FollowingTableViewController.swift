@@ -69,14 +69,17 @@ class FollowingTableViewController: SortedTimelineTableViewController {
         
         Timeline.getTimelines(.TimelineFollowing) { tls in
             self.setTimelines(tls)
-            
-            if !first {
-                PFUser.currentUser()?.resetBadgeFollowingInBackground()
-                self.navigationController?.tabBarItem.badgeValue = nil
-                
-                self.active = false
-            } else {
-                first = !first
+            main{
+                if !first {
+                    PFUser.currentUser()?.resetBadgeFollowingInBackground()
+                    
+                    self.navigationController?.tabBarItem.badgeValue = nil
+                    
+                    
+                    self.active = false
+                } else {
+                    first = !first
+                }
             }
         }
     }

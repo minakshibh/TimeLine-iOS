@@ -26,6 +26,10 @@ extension UIColor {
         return UIColor(red: 255/255.0, green: 148/255.0, blue: 1/255.0, alpha: 1.0)
     }
     
+    static func redNavbarColor() -> UIColor{
+        return UIColor.from(hexString: "#e70000")!
+    }
+    
     // Creates a UIColor from a Hex string.
     static func from(hexString hex: String?) -> UIColor? {
         if let hex = hex {
