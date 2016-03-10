@@ -150,6 +150,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             alert.addAction(title: local(.ShowViewMembersGroupTimelineMessage), style: .Default) { _ in
             }
             alert.addAction(title: local(.ShowExitGroupTimelineMessage), style: .Default) { _ in
+                self.deleteGroupAPI()
             }
         }
         else
@@ -157,10 +158,82 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             alert.addAction(title: local(.ShowViewMembersGroupTimelineMessage), style: .Default) { _ in
             }
             alert.addAction(title: local(.ShowLeaveGroupTimelineMessage), style: .Default) { _ in
+                self.leaveGroupAPI()
             }
         }
         alert.addAction(title: local(.ShowGroupTimelineCancel), style: .Cancel, handler: nil)
         controller!.presentAlertController(alert)
+    }
+    
+    
+    func deleteGroupAPI()
+    {
+        let controller = activeController()
+        
+        self.timeline!.delete { (error) -> () in
+            if let error = error {
+                let alert = UIAlertController(title: local(.TimelineAlertDeleteErrorTitle), message: error, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: local(.TimelineAlertDeleteErrorActionDismiss), style: .Default, handler: nil))
+                controller!.presentAlertController(alert)
+                return
+            }
+            
+            for i in 0..<(Storage.session.currentUser?.timelines.count ?? 0) {
+                let t = Storage.session.currentUser!.timelines[i]
+                if self.timeline!.state.uuid == t.state.uuid {
+                    Storage.session.currentUser!.timelines.removeAtIndex(i)
+                    serialHook.perform(key: .ForceReloadData, argument: ())
+                    break
+                }
+            }
+        }
+    }
+    
+    func leaveGroupAPI()
+    {
+        let controller = activeController()
+        
+        self.leaveGroup({ (error) -> () in
+            if let error = error {
+                let alert = UIAlertController(title: local(.TimelineAlertDeleteErrorTitle), message: error, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: local(.TimelineAlertDeleteErrorActionDismiss), style: .Default, handler: nil))
+                controller!.presentAlertController(alert)
+                return
+            }
+            
+            for i in 0..<(Storage.session.currentUser?.timelines.count ?? 0) {
+                let t = Storage.session.currentUser!.timelines[i]
+                if self.timeline!.state.uuid == t.state.uuid {
+                    Storage.session.currentUser!.timelines.removeAtIndex(i)
+                    serialHook.perform(key: .ForceReloadData, argument: ())
+                    break
+                }
+            }
+        })
+    }
+    func leaveGroup(completion: (error: String?) -> ()) {
+        let user = Storage.session.uuid! as String
+        let timelineID = self.timeline?.state.uuid
+        Storage.performRequest(ApiRequest.LeaveGroupTimeline((self.timeline?.state.uuid!)!, Storage.session.uuid!), completion: { (json) -> Void in
+            if let error = json["error"] as? String {
+                defer { completion(error: error) }
+            } else {
+                completion(error: nil)
+                let moms = self.timeline?.moments
+                async {
+                    for m in moms! {
+                        if let url = m.localVideoURL {
+                            do {
+                                try NSFileManager.defaultManager().removeItemAtURL(url)
+                            } catch {
+                                print("Timeline.delete(completion:) could not remove \(url): \n\(error)")
+                            }
+                        }
+                    }
+                }
+            }
+        })
+        
     }
     
     
