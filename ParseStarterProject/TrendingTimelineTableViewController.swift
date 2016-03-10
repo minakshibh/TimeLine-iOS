@@ -350,7 +350,6 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 if var contactName = ABRecordCopyCompositeName(contactPerson)?.takeRetainedValue(){
                     
                     contactName = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
-                    print("\(contactName)")
                     self.nameArray.addObject(contactName )
                 }
                 
@@ -380,7 +379,6 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                             
                             if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
                                 value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
-                                print("Phonenumber  is \(value)")
                                randomArray.addObject(value)
                                 
                             }
@@ -406,7 +404,6 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             for(var k=0;k<self.nameArray.count;k++){
                 self.contactDict.setValue(self.numberArray[k], forKey: self.nameArray[k] as! String)
             }
-            print("\(self.contactDict.allKeys)")
            
             let sortedArray = self.nameArray.sortedArrayUsingComparator {
                 (obj1, obj2) -> NSComparisonResult in
@@ -422,8 +419,6 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             {
                 self.nameArray.addObject(sortedArray[v])
             }
-            print("\(self.numberArray)")
-            print("\(self.nameArray)")
             self.selectedPeople = []
             self.tableViewContact.reloadData()
         }
@@ -446,8 +441,6 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         
         
         if tableView == tableViewContact{
-            print("\(nameArray.count)")
-            print("\(numberArray.count)")
             return nameArray.count
         }else{
             
@@ -555,7 +548,6 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             inviteButton.layer.borderWidth = 1.0
             
             inviteButton.tag = indexPath.row
-            print("\(selectedPeople)")
             if selectedPeople.containsObject(text2.text!)
             {
                 inviteButton.backgroundColor = UIColor.redColor()
@@ -645,10 +637,6 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             selectedPeople.addObject(self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as! String)
             }
         }
-        
-        print("\(filteredTableData)-----")
-        print("\(selectedPeople)")
-        print("inviteButton: \(indexPath.row)")
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowTimeline" {

@@ -20,7 +20,6 @@ class BlockedTimelineTableViewController: FlatTimelineTableViewController {
         var first = true
         print("refresh")
         Timeline.getTimelines(ApiRequest.CurrentTimelineBlocked, completion: { (tls) -> Void in
-            print(tls)
             self.timelines = tls
             if !first {
                 main { self.refreshControl?.endRefreshing() }

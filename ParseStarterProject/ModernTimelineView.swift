@@ -250,7 +250,6 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     func showCommentPopup(){
         
         Storage.performRequest(ApiRequest.TimelineComments(timeline!.uuid!), completion: { (json) -> Void in
-            print(json)
             if let raw = json["result"] as? NSMutableArray{
                 self.commentArray = raw
             }
@@ -342,7 +341,6 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         
         let TrimString = commentTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
-        print(TrimString)
         
         if(TrimString == ""){
         let alert = UIAlertView()
@@ -357,10 +355,8 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
         
         Storage.performRequest(ApiRequest.TimelinePostComment(timeline!.uuid!, goodValue! as PARAMS , InvitedFriendsIdSTr as UserIdString), completion: { (json) -> Void in
-            print(json)
             main{
                 Storage.performRequest(ApiRequest.TimelineComments(self.timeline!.uuid!), completion: { (json) -> Void in
-                    print(json)
                     if let raw = json["result"] as? NSMutableArray{
                         self.commentArray = raw
                         
@@ -407,11 +403,8 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             if(string == "@"){
                 print("hello")
                 Storage.performRequest(ApiRequest.GetTagUsers, completion: { (json) -> Void in
-                     print(json)
                     if let raw = json["result"] as? NSMutableArray{
                         self.tagArray = raw
-                        print(self.tagArray)
- 
                     }
                     
                     main{
@@ -478,10 +471,8 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             invitedFriendsArray .addObject(sender.tag)
             InvitedFriends_id .addObject(user_id)
         }
-        print(InvitedFriends_id)
         self.scrollView.removeFromSuperview()
         if let raw = self.tagArray[sender.tag] as? NSDictionary{
-            print(raw["id"]!)
             
             InvitedFriendsIdSTr = ""
             for ids in InvitedFriends_id{
@@ -494,7 +485,6 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     InvitedFriendsIdSTr = "\(InvitedFriendsIdSTr),\(ids)"
                 }
             }
-            print(InvitedFriendsIdSTr)
             commentTextField.text = commentTextField.text!.stringByAppendingString("\(raw["name"] as! String)")
         }
         
@@ -645,7 +635,6 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         print(sender.tag)
         if let raw = self.commentArray[sender.tag] as? NSDictionary
         {
-            print(raw)
             let payload = raw["payload"]
             
             let data = payload!.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: false)
@@ -653,7 +642,6 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 
                 if let dict = json as? [String: AnyObject] {
-                    print(dict)
                     processAsync(payload: dict ) { link in
                         if let link = link {
                             

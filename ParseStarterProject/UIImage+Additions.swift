@@ -91,8 +91,6 @@ extension UIImage {
     }
 
     func rotateImageAppropriately(imageOrientation: UIImageOrientation) -> UIImage {
-        print(self.imageOrientation.rawValue)
-
         if (self.imageOrientation == UIImageOrientation.Up) {
             return self
         }

@@ -42,7 +42,6 @@ class AllNotificationList: UITableViewController {
         appDelegate.showActivityIndicator()
         
         Storage.performRequest(ApiRequest.UserAllNotifications(page_id), completion: { (json) -> Void in
-            print(json)
             if let pageId = json["page_id"] {
                if (self.page_id.isEmpty)
                {
