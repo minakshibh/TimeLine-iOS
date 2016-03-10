@@ -168,16 +168,17 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     
     func addImagesToScrollView()
     {
+
         let subViews = self.scrollView.subviews
         for subview in subViews{
             subview.removeFromSuperview()
         }
         self.scrollView.frame = CGRectMake(0,self.previewView.frame.origin.y - self.view.frame.width / 4, self.view.frame.width, self.view.frame.width / 4 )
         self.closeButton.frame = CGRectMake(10, self.previewView.frame.origin.y + 10, 30, 30);
+        self.videoPlayView.frame = CGRectMake(0,self.previewView.frame.origin.y, self.view.frame.width,self.previewView.frame.size.height)
 
         let scrollViewWidth:CGFloat = self.scrollView.frame.width/4
         let scrollViewHeight:CGFloat = self.scrollView.frame.height
-//        let momentsDraft = self.drafts.reverse()
         
         var start: Int = 0
         var end: Int = self.drafts.count-1
