@@ -23,6 +23,8 @@
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
 		975E4F9A1C80702300DAEF0E /* UILabel+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 975E4F991C80702300DAEF0E /* UILabel+helper.m */; };
 		979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */; };
+		9798648D1C9056E900C0A54C /* FirstLastName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9798648B1C9056E800C0A54C /* FirstLastName.swift */; };
+		9798648E1C9056E900C0A54C /* LikeableBehavior2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9798648C1C9056E800C0A54C /* LikeableBehavior2.swift */; };
 		97ADC8791C89B0BF00546A9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ADC8781C89B0BF00546A9B /* AppDelegate.swift */; };
 		97AE039C1C80389400C17D98 /* HelperIphoneCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */; };
 		BA05786E1C1A0FC10098C3A1 /* NormalButtonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */; };
@@ -271,6 +273,8 @@
 		975E4F981C80702300DAEF0E /* UILabel+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+helper.h"; path = "Objective-C classes/UILabel+helper.h"; sourceTree = SOURCE_ROOT; };
 		975E4F991C80702300DAEF0E /* UILabel+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+helper.m"; path = "Objective-C classes/UILabel+helper.m"; sourceTree = SOURCE_ROOT; };
 		979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatTimelineTableViewControllerWithoutUsername.swift; sourceTree = "<group>"; };
+		9798648B1C9056E800C0A54C /* FirstLastName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLastName.swift; sourceTree = "<group>"; };
+		9798648C1C9056E800C0A54C /* LikeableBehavior2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeableBehavior2.swift; sourceTree = "<group>"; };
 		97ADC8781C89B0BF00546A9B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97AE039A1C80389400C17D98 /* HelperIphoneCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelperIphoneCheck.h; path = "../Objective-C classes/HelperIphoneCheck.h"; sourceTree = "<group>"; };
 		97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelperIphoneCheck.m; path = "../Objective-C classes/HelperIphoneCheck.m"; sourceTree = "<group>"; };
@@ -545,6 +549,8 @@
 		81BA81471A49DA1800E65899 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				9798648B1C9056E800C0A54C /* FirstLastName.swift */,
+				9798648C1C9056E800C0A54C /* LikeableBehavior2.swift */,
 				97ADC8781C89B0BF00546A9B /* AppDelegate.swift */,
 				D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */,
 				BA452AEC1BFB2EEF00FF4598 /* TimelineViewRight.swift */,
@@ -1460,6 +1466,7 @@
 				BAF593371B95FC7A00C7E8AE /* SKProduct+Additions.swift in Sources */,
 				BA0578821C1A50990098C3A1 /* Approveable.swift in Sources */,
 				BA3CF64C1B9CE71B007BB3A6 /* PendingUserTableViewController.swift in Sources */,
+				9798648E1C9056E900C0A54C /* LikeableBehavior2.swift in Sources */,
 				BA0578851C1B1D000098C3A1 /* UserMoreButtonBehavior.swift in Sources */,
 				DA2BA53E1B78FA2200DE6300 /* NSDate+Additions.swift in Sources */,
 				DA2BA53A1B78C80600DE6300 /* Moment.swift in Sources */,
@@ -1496,6 +1503,7 @@
 				BA14B7761B9DBC40006A5843 /* TimelineFollowersUserTableViewController.swift in Sources */,
 				BA452AEB1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift in Sources */,
 				DA1DF2021B55263F00BD6011 /* AVCaptureDeviceAdditions.swift in Sources */,
+				9798648D1C9056E900C0A54C /* FirstLastName.swift in Sources */,
 				DA5115651B7E615A00B0776A /* Storage+Find.swift in Sources */,
 				DA38C4E41B87DCC0004C3A14 /* AppRotation.swift in Sources */,
 				DAF09E921B85216E007DE11D /* PlayerView.swift in Sources */,
