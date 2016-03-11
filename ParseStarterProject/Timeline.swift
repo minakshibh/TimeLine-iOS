@@ -142,8 +142,33 @@ extension Timeline {
         
         Storage.performRequest(request) { (json) -> Void in
             var timelines = [Timeline]()
-            print(json)
+            
+            let tempTimelinesArray : NSMutableArray = []
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
+                
+                for i in 0..<(Storage.session.currentUser?.timelines.count ?? 0) {
+                    let t = Storage.session.currentUser!.timelines[i]
+                    var containtl : Bool = false
+                    for td in timelineDicts
+                    {
+                        let tid = td["id"] as! UUID
+                        if tid == t.state.uuid
+                        {
+                            containtl = true
+                        }
+                    }
+                    if !containtl{
+                        tempTimelinesArray.addObject(i)
+                    }
+                }
+                if tempTimelinesArray.count > 0
+                {
+                    for i in 0..<(tempTimelinesArray.count ?? 0) {
+                        Storage.session.currentUser!.timelines.removeAtIndex(i)
+                        serialHook.perform(key: .ForceReloadData, argument: ())
+                    }
+                }
+                
                 for td in timelineDicts {
                     print(timelineDicts)
                     if let userID = td["user_id"] as? UUID

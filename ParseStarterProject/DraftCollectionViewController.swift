@@ -278,7 +278,6 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
     }
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        print(info)
         if let url = info[UIImagePickerControllerMediaURL] as? NSURL {
             let name = Moment.newName()
             let newURL = Moment.documentURL(name, suffix: "mp4")
@@ -431,8 +430,6 @@ extension DraftCollectionViewController {
     
     @IBAction func sendMoment() {
         headerView?.draftPreview.stop()
-        
-        print("\(Storage.session.currentUser?.timelines.count)")
         if(Storage.session.currentUser?.timelines.count != nil)
         {  if(Storage.session.currentUser!.timelines.count==1)
         {
