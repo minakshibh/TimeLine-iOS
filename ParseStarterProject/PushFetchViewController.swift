@@ -31,9 +31,7 @@ enum DeepLink {
                 let name = payload["name"] as? String,
                 let uid = payload["user_id"] as? String
             {
-                print(name)
-                print(eid)
-                print(uid)
+                
                 // deep link to profile
                 link = DeepLink.UserLink(name, eid, uid)
             }

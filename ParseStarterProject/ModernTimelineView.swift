@@ -15,6 +15,7 @@ import Alamofire
 import SDWebImage
 
 
+
 class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIScrollViewDelegate {
     let timelineCommentView = UIView()
     let commentTextField = UITextField()
@@ -214,7 +215,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 
                 // table view declaration
                 
-                self.commentlist.frame         =   CGRectMake(10, 64, self.timelineCommentView.frame.width-20, self.timelineCommentView.frame.height-144);
+                self.commentlist.frame         =   CGRectMake(0, 64, self.timelineCommentView.frame.width, self.timelineCommentView.frame.height-144);
                 self.commentlist.delegate      =   self
                 self.commentlist.dataSource    =   self
                 self.commentlist.backgroundColor = UIColor.clearColor()
@@ -453,7 +454,14 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath)
+//        let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath)
+        
+        let reuseIdentifier = "programmaticCell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as! MGSwipeTableCell!
+        if cell == nil
+        {
+            cell = MGSwipeTableCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: reuseIdentifier)
+        }
         
         for object in cell.contentView.subviews
         {
@@ -463,12 +471,12 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         
         cell.backgroundColor = UIColor.clearColor()
         let cellView = UIView()
-        cellView.frame = CGRectMake(0, 5, cell.contentView.frame.size.width, 75)
+        cellView.frame = CGRectMake(0, 5, self.frame.size.width, 75)
         cellView.backgroundColor = UIColor.whiteColor()
         cell.contentView.addSubview(cellView)
         
         let userImage = UIButton()
-        userImage.frame = CGRectMake(5, 10, 60, 60)
+        userImage.frame = CGRectMake(10, 10, 60, 60)
         userImage.backgroundColor = UIColor.lightGrayColor()
         userImage.layer.cornerRadius = 30
         userImage.tag = indexPath.row
@@ -495,7 +503,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         cellView.addSubview(username)
         
         let timeStamp = UILabel()
-        timeStamp.frame = CGRectMake(cellView.frame.size.width-105, 5, 100, 30)
+        timeStamp.frame = CGRectMake(cellView.frame.size.width-110, 5, 100, 30)
         timeStamp.font = UIFont.systemFontOfSize(14)
         //username.backgroundColor = UIColor(white: 0, alpha: 0.25)
         timeStamp.textColor = UIColor.blackColor()
@@ -565,8 +573,42 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         commentMessage.autosizeForWidth()
         cellView.addSubview(commentMessage)
         
-        return cell
+
+
+        let notifyStr : String
+        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+        {
+            
+            notifyStr = raw["user_id"] as! String
+            if (notifyStr == Storage.session.uuid)
+            {
+                //configure right buttons
+                cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
+                    (sender: MGSwipeTableCell!) -> Bool in
+                    print("Delete")
+                    return true
+                }),MGSwipeButton(title: "Edit",backgroundColor: UIColor.lightGrayColor(), callback: {
+                    (sender: MGSwipeTableCell!) -> Bool in
+                    print("Edit")
+                    return true
+                })]
+                cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
+            }
+            else if ((self.timeline?.isOwn  != nil) == true)
+            {
+                cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
+                    (sender: MGSwipeTableCell!) -> Bool in
+                    print("Delete")
+                    return true
+                })]
+                cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
+            }
+            
+        }
+        
+     return cell
     }
+    
     
     func UserImageClick(sender: UIButton){
         print(sender.tag)

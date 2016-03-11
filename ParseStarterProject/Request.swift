@@ -21,7 +21,8 @@ enum ApiRequest {
     
 
 //    private static let baseUrl = NSURL(string: "http://timeline-server.elasticbeanstalk.com")!
-    private static let baseUrl = NSURL(string: "http://54.191.110.86")!
+//    private static let baseUrl = NSURL(string: "http://54.191.110.86")!
+    private static let baseUrl = NSURL(string: "http://54.200.6.179")!
 
     /// GET /api/user/get_token
     /// Header: X-Parse-Session-Token String
