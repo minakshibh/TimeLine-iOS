@@ -48,8 +48,13 @@ class FollowingTableViewController: SortedTimelineTableViewController {
         navigationItem.leftBarButtonItem = left
     }
     func goToRecordScreen(){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        
+        nav = UINavigationController.init(rootViewController:vc )
         
         hidesBottomBarWhenPushed = true
         
@@ -59,8 +64,9 @@ class FollowingTableViewController: SortedTimelineTableViewController {
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
-        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
-        self.navigationController!.pushViewController(vc, animated: false)
+        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        appDelegate.window?.rootViewController = nav
+        appDelegate.window?.makeKeyAndVisible()
     }
     
     override func refreshTableView() {
