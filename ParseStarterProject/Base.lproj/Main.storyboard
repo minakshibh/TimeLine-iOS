@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -89,7 +89,7 @@
                                     <rect key="frame" x="16" y="348" width="32" height="32"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="9Mx-I1-skZ" kind="presentation" identifier="ShowTab" id="Blg-3U-J0k"/>
+                                    <action selector="timelineMenuButton:" destination="Qj8-N8-GTa" eventType="touchUpInside" id="heK-nA-Xei"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="rHK-jr-uvR">
@@ -841,12 +841,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="@UserNameHere" id="OyL-ov-dYp">
                         <barButtonItem key="backBarButtonItem" title=" " id="DpZ-xN-ocK"/>
-                        <barButtonItem key="leftBarButtonItem" image="Back to previous screen" id="iF3-5b-Q4h">
-                            <connections>
-                                <action selector="dismissViewControllerWithAnimation:" destination="h9D-gl-vWt" id="mK8-eC-FpU"/>
-                                <segue destination="n4o-qU-kAR" kind="show" id="fKI-df-tTm"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -4924,19 +4918,19 @@ Effective as of September 14, 2015
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kl0-Qw-wCr"/>
+        <segue reference="trc-F1-lO4"/>
         <segue reference="fy0-iv-eFM"/>
-        <segue reference="wPR-Ua-TlF"/>
-        <segue reference="gqI-eh-cAa"/>
-        <segue reference="JUD-Gk-HWr"/>
-        <segue reference="8W1-I7-grp"/>
-        <segue reference="5f9-3x-iDp"/>
-        <segue reference="fKI-df-tTm"/>
         <segue reference="JSH-Rm-O8t"/>
-        <segue reference="2FX-5X-rOO"/>
+        <segue reference="5f9-3x-iDp"/>
         <segue reference="ndx-Tw-tdZ"/>
-        <segue reference="wv1-Qf-qrk"/>
-        <segue reference="XM0-UC-LPO"/>
+        <segue reference="2FX-5X-rOO"/>
+        <segue reference="JUD-Gk-HWr"/>
+        <segue reference="3Xw-TM-u6h"/>
         <segue reference="BJd-cD-9l3"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="Y4K-mN-kMc"/>
+        <segue reference="Cnm-d8-vbZ"/>
+        <segue reference="gqI-eh-cAa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

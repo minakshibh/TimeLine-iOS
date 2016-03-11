@@ -36,6 +36,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         navigationController?.delegate = self
         
+        self.navigationController?.navigationBarHidden = false
         let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
 //
         navigationItem.leftBarButtonItem = left
