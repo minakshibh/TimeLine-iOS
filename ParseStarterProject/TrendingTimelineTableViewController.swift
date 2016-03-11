@@ -181,12 +181,13 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         KGModal.sharedInstance().hideAnimated(true)
     }
     func goToRecordScreen(){
-        
-            
-        
-        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        
+        nav = UINavigationController.init(rootViewController:vc )
         
         hidesBottomBarWhenPushed = true
         
@@ -196,14 +197,11 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
-        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
-        self.navigationController!.pushViewController(vc, animated: false)
-        //        let navigationController = UINavigationController(rootViewController: vc)
-        //
-        //        self.presentViewController(navigationController, animated: true, completion: nil)
-        
-        
+        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        appDelegate.window?.rootViewController = nav
+        appDelegate.window?.makeKeyAndVisible()
     }
+    
     func Invitebuttontapped()
     {
         if selectedPeople.count == 0
@@ -346,12 +344,41 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 //                print("\(ABRecordCopyCompositeName(contactPerson).takeRetainedValue())")
 //                let contactName: String = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
                 
-                
+                let randomArray: NSMutableArray! = []
                 if var contactName = ABRecordCopyCompositeName(contactPerson)?.takeRetainedValue(){
                     
                     contactName = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
                     print("\(contactName)")
                     self.nameArray.addObject(contactName )
+                    
+                    
+                    if var numbers = ABRecordCopyValue(
+                        contactPerson, kABPersonPhoneProperty)?.takeRetainedValue(){
+                            
+                            numbers = ABRecordCopyValue(
+                                contactPerson, kABPersonPhoneProperty).takeRetainedValue()
+                            print("\(ABMultiValueGetCount(numbers))")
+                            if (ABMultiValueGetCount(numbers) == 0)
+                            {
+                                self.numberArray.addObject("--")
+                                
+                            }
+                            
+                            
+                            for ix in 0 ..< ABMultiValueGetCount(numbers) {
+                                //                            let label = ABMultiValueCopyLabelAtIndex(numbers,ix).takeRetainedValue() as String
+                                //                            let value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
+                                
+                                
+                                if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
+                                    value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
+                                    print("Phonenumber  is \(value)")
+                                    randomArray.addObject(value)
+                                    
+                                }
+                                
+                            }
+
                 }
                 
                 
@@ -360,33 +387,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 
 //                let numbers:ABMultiValue = ABRecordCopyValue(
 //                    contactPerson, kABPersonPhoneProperty).takeRetainedValue()
-                if var numbers = ABRecordCopyValue(
-                    contactPerson, kABPersonPhoneProperty)?.takeRetainedValue(){
-                        
-                        numbers = ABRecordCopyValue(
-                            contactPerson, kABPersonPhoneProperty).takeRetainedValue()
-                        print("\(ABMultiValueGetCount(numbers))")
-                        if (ABMultiValueGetCount(numbers) == 0)
-                        {
-                            self.numberArray.addObject("--")
-                            
-                        }
-                        
-                        var randomArray: NSMutableArray! = []
-                        for ix in 0 ..< ABMultiValueGetCount(numbers) {
-//                            let label = ABMultiValueCopyLabelAtIndex(numbers,ix).takeRetainedValue() as String
-//                            let value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
-                            
-                            
-                            if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
-                                value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
-                                print("Phonenumber  is \(value)")
-                               randomArray.addObject(value)
-                                
-                            }
-                            
-                        }
-                        var arrStr:String = ""
+                                       var arrStr:String = ""
                         let count:Int = randomArray.count
                         if(count == 1){
                            self.numberArray.addObject(randomArray[0])
@@ -402,6 +403,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                         }
                 }
             }
+            print("\(self.nameArray)----\(self.nameArray.count)")
+            print("\(self.numberArray)---\(self.numberArray.count)")
+            
             
             for(var k=0;k<self.nameArray.count;k++){
                 self.contactDict.setValue(self.numberArray[k], forKey: self.nameArray[k] as! String)
@@ -520,13 +524,20 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             
             var text2:UILabel = UILabel.init(frame: CGRectMake(20, text1.frame.origin.y+text1.frame.size.height , 350, 30 ))
             text2.font = UIFont.systemFontOfSize(15)
-            let str = numberArray[indexPath.row] as? String
-            let arr = str?.componentsSeparatedByString(",")
-            if(arr?.count>3)
+//            let str = numberArray[indexPath.row] as? String
+            var str = ""
+            if (self.resultSearchController.active) {
+                str = self.contactDict.valueForKey(filteredTableData[indexPath.row]) as! String
+            }else{
+                str = self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as! String
+            }
+            let arr = str.componentsSeparatedByString(",")
+            if(arr.count>3)
             {
-                 text2 = UILabel.init(frame: CGRectMake(text2.frame.origin.x, text2.frame.origin.y-8, text2.frame.size.width, text2.frame.size.height+30))
+                 text2 = UILabel.init(frame: CGRectMake(text2.frame.origin.x, text2.frame.origin.y-6, text2.frame.size.width, text2.frame.size.height+11))
                 text2.numberOfLines = 2;
             }
+            
             if (self.resultSearchController.active) {
                 text2.text = self.contactDict.valueForKey(filteredTableData[indexPath.row]) as! String
             }else{

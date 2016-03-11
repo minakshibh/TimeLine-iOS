@@ -67,6 +67,31 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         return player
         }()*/
     
+    @IBAction func menuControls(sender: AnyObject) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc  = storyboard.instantiateViewControllerWithIdentifier("Left")
+        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        
+        nav = UINavigationController.init(rootViewController:vc )
+        
+        hidesBottomBarWhenPushed = true
+        
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.25
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        appDelegate.window?.rootViewController = nav
+        nav!.navigationBarHidden = true
+        appDelegate.window?.makeKeyAndVisible()
+
+        
+    }
     @IBAction func timelineMenuButton(sender: AnyObject) {
        
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -329,7 +354,13 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //    }
     
     override func viewWillAppear(animated: Bool) {
-//        videoPreviewView.hidden = true
+       NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
+       
+  }
+    
+    func update(){
+        
+        //        videoPreviewView.hidden = true
         self.addScrollView()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.notificationAPI ()
@@ -338,9 +369,11 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         delay (0.01) {
             self.reloadBadges()
         }
+        
     }
     
     override func viewDidDisappear(animated: Bool) {
+         self.update()
         self.recorder.stopRunning()
         self.closeViewButton()
         self.refreshTorches()
