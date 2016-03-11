@@ -243,9 +243,6 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         }
 
         
-        
-        
-        
         for var index = 0; index < self.reverseDrafts.count; ++index {
               let previewImg = UIImageView(frame: CGRectMake(scrollViewWidth * CGFloat(index), 0,scrollViewWidth-4, scrollViewHeight-4))
             previewImg.tag = index
@@ -257,6 +254,9 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
                 main {
                     previewImg.image = image
                     self.scrollView.addSubview(previewImg)
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    appDelegate.hideActivityIndicator()
+
                 }
             }
         }
@@ -584,6 +584,9 @@ extension CaptureMomentViewController {
 extension CaptureMomentViewController: SCRecorderDelegate {
     
     func recorder(recorder: SCRecorder, didCompleteSegment segment: SCRecordSessionSegment?, inSession session: SCRecordSession, error: NSError?) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.showActivityIndicator()
+
         recorder.flashMode = .Off
         recorder.session?.mergeSegmentsUsingPreset(AVAssetExportPresetHighestQuality, completionHandler: { (url, parentError) -> Void in
             if let url = url {
@@ -655,6 +658,7 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                     print(error)
                 }
             } else {
+                appDelegate.hideActivityIndicator()
                 print("parentError: \(parentError)")
             }
         })
@@ -735,7 +739,6 @@ extension CaptureMomentViewController: SCRecorderDelegate {
             
             Storage.session.drafts.append(newMoment)
             Storage.save()
-            
             self.drafts.addObject(newMoment)
             self.addImagesToScrollView()
             
