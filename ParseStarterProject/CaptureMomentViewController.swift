@@ -67,10 +67,15 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         return player
         }()*/
     
-    @IBAction func timelineMenuButton(sender: AnyObject) {
-       
+    @IBAction func menuControls(sender: AnyObject) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("Left") as! drawer
+        let vc  = storyboard.instantiateViewControllerWithIdentifier("Left")
+        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        
+        nav = UINavigationController.init(rootViewController:vc )
         
         hidesBottomBarWhenPushed = true
         
@@ -80,8 +85,55 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
-        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
-        self.navigationController!.pushViewController(vc, animated: false)
+        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        appDelegate.window?.rootViewController = nav
+        nav!.navigationBarHidden = true
+        appDelegate.window?.makeKeyAndVisible()
+    }
+    @IBAction func timelineProfileButton(sender: AnyObject) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc  = storyboard.instantiateViewControllerWithIdentifier("Right")
+        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        
+        nav = UINavigationController.init(rootViewController:vc )
+        
+        hidesBottomBarWhenPushed = true
+        
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.25
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        appDelegate.window?.rootViewController = nav
+        nav!.navigationBarHidden = true
+        appDelegate.window?.makeKeyAndVisible()
+    }
+    @IBAction func timelineMenuButton(sender: AnyObject) {
+       
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc  = storyboard.instantiateViewControllerWithIdentifier("Left")
+        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        
+        nav = UINavigationController.init(rootViewController:vc )
+        
+        hidesBottomBarWhenPushed = true
+        
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.25
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        appDelegate.window?.rootViewController = nav
+        nav!.navigationBarHidden = true
+        appDelegate.window?.makeKeyAndVisible()
         
     }
     override func viewDidLoad() {
@@ -168,16 +220,17 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     
     func addImagesToScrollView()
     {
+
         let subViews = self.scrollView.subviews
         for subview in subViews{
             subview.removeFromSuperview()
         }
         self.scrollView.frame = CGRectMake(0,self.previewView.frame.origin.y - self.view.frame.width / 4, self.view.frame.width, self.view.frame.width / 4 )
         self.closeButton.frame = CGRectMake(10, self.previewView.frame.origin.y + 10, 30, 30);
+        self.videoPlayView.frame = CGRectMake(0,self.previewView.frame.origin.y, self.view.frame.width,self.previewView.frame.size.height)
 
         let scrollViewWidth:CGFloat = self.scrollView.frame.width/4
         let scrollViewHeight:CGFloat = self.scrollView.frame.height
-//        let momentsDraft = self.drafts.reverse()
         
         var start: Int = 0
         var end: Int = self.drafts.count-1
@@ -190,9 +243,6 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         }
 
         
-        
-        
-        
         for var index = 0; index < self.reverseDrafts.count; ++index {
               let previewImg = UIImageView(frame: CGRectMake(scrollViewWidth * CGFloat(index), 0,scrollViewWidth-4, scrollViewHeight-4))
             previewImg.tag = index
@@ -204,6 +254,9 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
                 main {
                     previewImg.image = image
                     self.scrollView.addSubview(previewImg)
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    appDelegate.hideActivityIndicator()
+
                 }
             }
         }
@@ -329,7 +382,13 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //    }
     
     override func viewWillAppear(animated: Bool) {
-//        videoPreviewView.hidden = true
+       NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
+       
+  }
+    
+    func update(){
+        
+        //        videoPreviewView.hidden = true
         self.addScrollView()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.notificationAPI ()
@@ -338,9 +397,11 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         delay (0.01) {
             self.reloadBadges()
         }
+        
     }
     
     override func viewDidDisappear(animated: Bool) {
+         self.update()
         self.recorder.stopRunning()
         self.closeViewButton()
         self.refreshTorches()
@@ -523,6 +584,9 @@ extension CaptureMomentViewController {
 extension CaptureMomentViewController: SCRecorderDelegate {
     
     func recorder(recorder: SCRecorder, didCompleteSegment segment: SCRecordSessionSegment?, inSession session: SCRecordSession, error: NSError?) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.showActivityIndicator()
+
         recorder.flashMode = .Off
         recorder.session?.mergeSegmentsUsingPreset(AVAssetExportPresetHighestQuality, completionHandler: { (url, parentError) -> Void in
             if let url = url {
@@ -594,6 +658,7 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                     print(error)
                 }
             } else {
+                appDelegate.hideActivityIndicator()
                 print("parentError: \(parentError)")
             }
         })
@@ -674,7 +739,6 @@ extension CaptureMomentViewController: SCRecorderDelegate {
             
             Storage.session.drafts.append(newMoment)
             Storage.save()
-            
             self.drafts.addObject(newMoment)
             self.addImagesToScrollView()
             

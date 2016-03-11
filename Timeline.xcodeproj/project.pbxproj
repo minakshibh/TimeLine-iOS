@@ -23,8 +23,6 @@
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
 		975E4F9A1C80702300DAEF0E /* UILabel+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 975E4F991C80702300DAEF0E /* UILabel+helper.m */; };
 		979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */; };
-		9798648D1C9056E900C0A54C /* FirstLastName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9798648B1C9056E800C0A54C /* FirstLastName.swift */; };
-		9798648E1C9056E900C0A54C /* LikeableBehavior2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9798648C1C9056E800C0A54C /* LikeableBehavior2.swift */; };
 		97ADC8791C89B0BF00546A9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ADC8781C89B0BF00546A9B /* AppDelegate.swift */; };
 		97AE039C1C80389400C17D98 /* HelperIphoneCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */; };
 		BA05786E1C1A0FC10098C3A1 /* NormalButtonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */; };
@@ -112,6 +110,9 @@
 		BAF593391B9600A100C7E8AE /* Session+InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF593381B9600A100C7E8AE /* Session+InAppPurchase.swift */; };
 		BAF5933B1B960BA100C7E8AE /* PendingInAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF5933A1B960BA100C7E8AE /* PendingInAppViewController.swift */; };
 		BE86307804EAC41D198E236B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9472C1B472FC01F506711759 /* Pods.framework */; };
+		D937FA8E1C90556B00C53274 /* LikeableBehavior2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937FA8B1C90556B00C53274 /* LikeableBehavior2.swift */; };
+		D937FA8F1C90556B00C53274 /* User-lists.png in Resources */ = {isa = PBXBuildFile; fileRef = D937FA8C1C90556B00C53274 /* User-lists.png */; };
+		D937FA911C9055A600C53274 /* FirstLastName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937FA901C9055A600C53274 /* FirstLastName.swift */; };
 		D94042541C7EBE1000FDCD46 /* drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94042531C7EBE1000FDCD46 /* drawer.swift */; };
 		D94042571C7EBF7700FDCD46 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */; };
 		D9AA74B71C75F9050008E3EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9AA74B61C75F9050008E3EC /* MessageUI.framework */; };
@@ -273,8 +274,6 @@
 		975E4F981C80702300DAEF0E /* UILabel+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+helper.h"; path = "Objective-C classes/UILabel+helper.h"; sourceTree = SOURCE_ROOT; };
 		975E4F991C80702300DAEF0E /* UILabel+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+helper.m"; path = "Objective-C classes/UILabel+helper.m"; sourceTree = SOURCE_ROOT; };
 		979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatTimelineTableViewControllerWithoutUsername.swift; sourceTree = "<group>"; };
-		9798648B1C9056E800C0A54C /* FirstLastName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLastName.swift; sourceTree = "<group>"; };
-		9798648C1C9056E800C0A54C /* LikeableBehavior2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeableBehavior2.swift; sourceTree = "<group>"; };
 		97ADC8781C89B0BF00546A9B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97AE039A1C80389400C17D98 /* HelperIphoneCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelperIphoneCheck.h; path = "../Objective-C classes/HelperIphoneCheck.h"; sourceTree = "<group>"; };
 		97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelperIphoneCheck.m; path = "../Objective-C classes/HelperIphoneCheck.m"; sourceTree = "<group>"; };
@@ -383,6 +382,9 @@
 		BAF593361B95FC7A00C7E8AE /* SKProduct+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKProduct+Additions.swift"; sourceTree = "<group>"; };
 		BAF593381B9600A100C7E8AE /* Session+InAppPurchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+InAppPurchase.swift"; sourceTree = "<group>"; };
 		BAF5933A1B960BA100C7E8AE /* PendingInAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingInAppViewController.swift; sourceTree = "<group>"; };
+		D937FA8B1C90556B00C53274 /* LikeableBehavior2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeableBehavior2.swift; sourceTree = "<group>"; };
+		D937FA8C1C90556B00C53274 /* User-lists.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "User-lists.png"; sourceTree = "<group>"; };
+		D937FA901C9055A600C53274 /* FirstLastName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstLastName.swift; sourceTree = "<group>"; };
 		D94042531C7EBE1000FDCD46 /* drawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawer.swift; sourceTree = "<group>"; };
 		D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
 		D9AA74B61C75F9050008E3EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -549,8 +551,9 @@
 		81BA81471A49DA1800E65899 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
-				9798648B1C9056E800C0A54C /* FirstLastName.swift */,
-				9798648C1C9056E800C0A54C /* LikeableBehavior2.swift */,
+				D937FA901C9055A600C53274 /* FirstLastName.swift */,
+				D937FA8B1C90556B00C53274 /* LikeableBehavior2.swift */,
+				D937FA8C1C90556B00C53274 /* User-lists.png */,
 				97ADC8781C89B0BF00546A9B /* AppDelegate.swift */,
 				D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */,
 				BA452AEC1BFB2EEF00FF4598 /* TimelineViewRight.swift */,
@@ -1235,6 +1238,7 @@
 				BA05787A1C1A39470098C3A1 /* UserSummaryView.xib in Resources */,
 				BA14B76D1B9DB368006A5843 /* APParallaxHeader.license in Resources */,
 				DA57C7851B53FDE600C51BC0 /* Localizable.strings in Resources */,
+				D937FA8F1C90556B00C53274 /* User-lists.png in Resources */,
 				BA14B7721B9DB3A3006A5843 /* SCRecorder.license in Resources */,
 				BA14B7691B9DB349006A5843 /* MGSwipeTableCell.license in Resources */,
 				DA167E111B7D6A9200608A6C /* EmptyCollectionViewReusableView.xib in Resources */,
@@ -1382,6 +1386,7 @@
 				BA3CF64A1B9CE6FC007BB3A6 /* FollowingUserTableViewController.swift in Sources */,
 				BA8607A11C166623001D73EE /* Ownable.swift in Sources */,
 				DA2CF5991B763473000ABF96 /* SubmitViewController.swift in Sources */,
+				D937FA911C9055A600C53274 /* FirstLastName.swift in Sources */,
 				BA9696591B9CA28A00D17D5A /* NSURL+Parameters.m in Sources */,
 				DA3FF4E61B6C107B006CC0D7 /* String+Additions.swift in Sources */,
 				BA0578801C1A3B630098C3A1 /* UserSummaryTableViewCell.swift in Sources */,
@@ -1466,7 +1471,7 @@
 				BAF593371B95FC7A00C7E8AE /* SKProduct+Additions.swift in Sources */,
 				BA0578821C1A50990098C3A1 /* Approveable.swift in Sources */,
 				BA3CF64C1B9CE71B007BB3A6 /* PendingUserTableViewController.swift in Sources */,
-				9798648E1C9056E900C0A54C /* LikeableBehavior2.swift in Sources */,
+				D937FA8E1C90556B00C53274 /* LikeableBehavior2.swift in Sources */,
 				BA0578851C1B1D000098C3A1 /* UserMoreButtonBehavior.swift in Sources */,
 				DA2BA53E1B78FA2200DE6300 /* NSDate+Additions.swift in Sources */,
 				DA2BA53A1B78C80600DE6300 /* Moment.swift in Sources */,
@@ -1503,7 +1508,6 @@
 				BA14B7761B9DBC40006A5843 /* TimelineFollowersUserTableViewController.swift in Sources */,
 				BA452AEB1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift in Sources */,
 				DA1DF2021B55263F00BD6011 /* AVCaptureDeviceAdditions.swift in Sources */,
-				9798648D1C9056E900C0A54C /* FirstLastName.swift in Sources */,
 				DA5115651B7E615A00B0776A /* Storage+Find.swift in Sources */,
 				DA38C4E41B87DCC0004C3A14 /* AppRotation.swift in Sources */,
 				DAF09E921B85216E007DE11D /* PlayerView.swift in Sources */,
@@ -1660,7 +1664,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				CURRENT_PROJECT_VERSION = 105;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
@@ -1705,7 +1709,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "1cdae0e6-ce78-4344-ae2a-9109ba98a209";
+				PROVISIONING_PROFILE = "710bb1fe-b6db-451b-adea-7a6d6456bdac";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1719,7 +1723,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
 				CURRENT_PROJECT_VERSION = 105;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
@@ -1764,7 +1768,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "1cdae0e6-ce78-4344-ae2a-9109ba98a209";
+				PROVISIONING_PROFILE = "710bb1fe-b6db-451b-adea-7a6d6456bdac";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;

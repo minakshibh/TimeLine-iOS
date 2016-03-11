@@ -76,10 +76,10 @@ class SortedTimelineTableViewController: UITableViewController {
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            
-
-            let status:Bool = dateFormatter.dateFromString(date1 as String)?.compare((dateFormatter.dateFromString(date2 as String))!) == NSComparisonResult.OrderedAscending
-            
+            var status:Bool = false
+            if (date2 != "" && date1 != ""){
+             status = dateFormatter.dateFromString(date1 as String)?.compare((dateFormatter.dateFromString(date2 as String))!) == NSComparisonResult.OrderedAscending
+            }
             
         return status
         }

@@ -36,17 +36,14 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         navigationController?.delegate = self
         
-//        let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
-//        
-//        navigationItem.leftBarButtonItem = left
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
-
+        self.navigationController?.navigationBarHidden = false
+        let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
+//
+        navigationItem.leftBarButtonItem = left
+        
     }
     
-    func update(){
-//        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+2)
-    }
-    
+   
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         cleanUpHooking()
@@ -54,8 +51,13 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         
     }
     func goToRecordScreen(){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        
+        nav = UINavigationController.init(rootViewController:vc )
         
         hidesBottomBarWhenPushed = true
         
@@ -65,12 +67,19 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
-        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
-        self.navigationController!.pushViewController(vc, animated: false)
+        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        appDelegate.window?.rootViewController = nav
+        appDelegate.window?.makeKeyAndVisible()
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
+    }
+    
+    func update(){
+        
         setUpHooking()
         refresh()
         
@@ -104,6 +113,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 self.refresh()
             }
         })
+
     }
     
     private func refresh() {

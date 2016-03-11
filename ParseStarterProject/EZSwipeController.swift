@@ -194,7 +194,8 @@ public class EZSwipeController: UIViewController {
         }
         pageViewController.view.frame = CGRect(x: 0, y: 0, width: Constants.ScreenWidth, height: pageViewControllerH)
         
-        
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.edgesForExtendedLayout = .None
         pageViewController.view.backgroundColor = UIColor.clearColor()
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
@@ -230,7 +231,8 @@ public class EZSwipeController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .None)
-
+        
+       
     }
 
     @objc private func clickedLeftButton() {

@@ -65,7 +65,6 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
             //            }
             if let results = json["result"] as? NSMutableArray{
                 self.dataArray = results
-                print(self.dataArray)
             }
         })
     }
@@ -115,8 +114,6 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
             guard let title = self.textFields.first!.text else { return }
             guard let description = self.timelineDetailTxtView.text else { return }
             Storage.performRequest(.CreateTimeline(title,description)) { (json) -> Void in
-                print("timelime API response :\(json)")
-                
                 switch json["status_code"] as? Int ?? 400 {
                 case 400, 402: // payment required
                     main {
@@ -379,7 +376,6 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         guard let description = self.timelineDetailTxtView.text else { return }
         
         Storage.performRequest(.CreateGroupTimeline(title,InvitedFriendsIdSTr  as members,description as groupdescription)) { (json) -> Void in
-            print("Group timelime API response :\(json)")
             self.InvitedFriends_id.removeAllObjects()
             self.invitedFriendsArray.removeAllObjects()
             KGModal.sharedInstance().hideAnimated(true)
@@ -471,7 +467,6 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
             invitedFriendsArray .addObject(indexPath.row)
             InvitedFriends_id .addObject(user_id)
         }
-        print("inviteButton: \(indexPath.row)")
     }
     
     // MARK: - Navigation

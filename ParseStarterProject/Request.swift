@@ -16,6 +16,7 @@ typealias members = String
 typealias groupdescription = String
 typealias owner = String
 typealias timeLinename = String
+typealias timeLineId = String
 
 enum ApiRequest {
     
@@ -38,8 +39,20 @@ enum ApiRequest {
     /// name: Name of the Timeline
     /// user_id: UUID of the user
     case CreateTimeline(String,groupdescription)
-    
+    /// POST /api/timeline/create
+    //// "name=timeLinename&participants=members&description=groupdescription&group_timeline=1"
     case CreateGroupTimeline(timeLinename,members,groupdescription)
+    
+    //// DELETE /api/group_timeline/:id/remove_group_participant/:participant_id
+    case LeaveGroupTimeline(timeLineId,UUID)
+    
+    //// DELETE  /api/group_timeline/:id/destroy_group_timeline/admin_id
+    //// id : Group Timeline id  (mandatory)
+    //// admin_id : Id of group timeline admin (mandatory)
+    case DeleteGroupTimeline(timeLineId,UUID)
+
+    
+    
     /// GET /api/video/:id
     /// id: UUID of the video
     case ViewVideo(UUID)
@@ -191,6 +204,17 @@ enum ApiRequest {
             let bodyData = "name=\(timeLinename.urlEncoded)&participants=\(members.urlEncoded)&description=\(groupdescription.urlEncoded)&group_timeline=1"
             urlString = "/api/timeline/create?\(bodyData)"
             urlRequest.HTTPMethod = "POST"
+            
+            
+        case let.LeaveGroupTimeline(timeLineId,uuid):
+            let bodyData = "\(timeLineId.urlEncoded)/remove_group_participant/\(uuid.urlEncoded)"
+            urlString = "/api/group_timeline/\(bodyData)"
+            urlRequest.HTTPMethod = "DELETE"
+
+        case let.DeleteGroupTimeline(timeLineId,uuid):
+            let bodyData = "\(timeLineId.urlEncoded)/destroy_group_timeline/\(uuid.urlEncoded)"
+            urlString = "/api/group_timeline/\(bodyData)"
+            urlRequest.HTTPMethod = "DELETE"
             
         case let .ViewVideo(uuid):
             urlString = "/api/video/\(uuid.urlEncoded)"

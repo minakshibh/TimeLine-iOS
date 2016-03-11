@@ -108,9 +108,6 @@ class LogInViewController: PFLogInViewController {
                         delay(0.5) { self.presentAlertController(self.alert!) }
                         return
                     }
-                    print("\(jsonFB["name"]))")
-                    print("\(jsonFB["email"])")
-                    print("\(jsonFB["id"])")
                     let fbemail = jsonFB["email"] as? String
                     let fullName = jsonFB["name"] as? String
                     let facebookID = jsonFB["id"] as? String

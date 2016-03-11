@@ -12,20 +12,22 @@ import Parse
 class EditProfileTableViewController: TintedHeaderTableViewController {
 
     var imagePicker: UIImagePickerController?
-    var font = UIFont.systemFontOfSize(6)
-
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var userImageView: ProfileImageView!
-    @IBOutlet var bioLabel: UILabel!
     @IBOutlet var firstNameLabel: UILabel!
     @IBOutlet var websiteLabel: UILabel!
     @IBOutlet var lastNameLabel: UILabel!
     @IBOutlet var otherLabel: UILabel!
-
+        @IBOutlet var bioLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tableView.estimatedRowHeight = 500
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.tableFooterView = UIView()
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
         // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = true
         
@@ -36,8 +38,7 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
     }
     override func viewWillAppear(animated: Bool) {
         self.dispalyDataInLabels()
-        self.tableView.beginUpdates()
-        self.tableView.endUpdates()
+        self.tableView.reloadData()
     }
 
     func dispalyDataInLabels()
@@ -75,13 +76,12 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
 //        let font = UIFont.systemFontOfSize(6)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .ByWordWrapping;
-        let attributes = [NSFontAttributeName:font,
-            NSParagraphStyleAttributeName:paragraphStyle.copy()]
 
         
         if indexPath.row == 4
         {
-            
+            let attributes = [NSFontAttributeName:bioLabel.font,
+                NSParagraphStyleAttributeName:paragraphStyle.copy()]
             if let bio = PFUser.currentUser()!["bio"] as? String {
                 let text = bio as NSString
                 let size = CGSizeMake(bioLabel.frame.width,CGFloat.max)
@@ -93,6 +93,8 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
         }
         if indexPath.row == 8
         {
+            let attributes = [NSFontAttributeName:otherLabel.font,
+                NSParagraphStyleAttributeName:paragraphStyle.copy()]
             if let other = PFUser.currentUser()!["other"] as? String {
                 let text = other as NSString
                 let size = CGSizeMake(otherLabel.frame.width,CGFloat.max)
@@ -112,7 +114,7 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
 
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        font = UIFont.systemFontOfSize(17)
+//        font = UIFont.systemFontOfSize(7)
 
         switch indexPath.item {
         case 1:

@@ -194,7 +194,6 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     func showCommentPopup(){
         if(moment?.state.uuid != "nil"){
         Storage.performRequest(ApiRequest.MomentComments((momentPlayerController?.currentMoment()?.state.uuid)!), completion: { (json) -> Void in
-            print(json)
             
             if let raw = json["result"] as? NSMutableArray{
                 self.commentArray = raw
@@ -300,12 +299,10 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         if(textField == self.commentTextField)
         {
             if(string == "@"){
-                print("hello")
                 Storage.performRequest(ApiRequest.GetTagUsers, completion: { (json) -> Void in
                     // print(json)
                     if let raw = json["result"] as? NSMutableArray{
                         self.tagArray = raw
-                        print(self.tagArray)
                         //self.scrollView.contentSize = CGSizeMake(1000, 1000)
                         
                     }
@@ -351,7 +348,6 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     }
     
     func villainButtonPressed(sender:UIButton!){
-        print(sender.tag)
         var user_id : NSString = ""
         if let dataDict = self.tagArray[sender.tag] as? NSDictionary
         {
@@ -370,11 +366,8 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             invitedFriendsArray .addObject(sender.tag)
             InvitedFriends_id .addObject(user_id)
         }
-        print(InvitedFriends_id)
         self.scrollView.removeFromSuperview()
         if let raw = self.tagArray[sender.tag] as? NSDictionary{
-            print(raw["id"]!)
-            
             InvitedFriendsIdSTr = ""
             for ids in InvitedFriends_id{
                 if InvitedFriendsIdSTr == ""
@@ -386,7 +379,6 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                     InvitedFriendsIdSTr = "\(InvitedFriendsIdSTr),\(ids)"
                 }
             }
-            print(InvitedFriendsIdSTr)
             commentTextField.text = commentTextField.text!.stringByAppendingString("\(raw["name"] as! String)")
         }
         
@@ -396,8 +388,6 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     func MomentPostComment(){
         
         let TrimString = commentTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        
-        print(TrimString)
         
         if(TrimString == ""){
             let alert = UIAlertView()
@@ -412,10 +402,8 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
 
         Storage.performRequest(ApiRequest.MomentPostComment((momentPlayerController?.currentMoment()?.state.uuid)!, goodValue! as PARAMS, InvitedFriendsIdSTr as UserIdString), completion: { (json) -> Void in
-            print(json)
             main{
                 Storage.performRequest(ApiRequest.MomentComments((self.momentPlayerController?.currentMoment()?.state.uuid)!), completion: { (json) -> Void in
-                    print(json)
                     if let raw = json["result"] as? NSMutableArray{
                         self.commentArray = raw
                         
@@ -593,7 +581,6 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         print(sender.tag)
         if let raw = self.commentArray[sender.tag] as? NSDictionary
         {
-            print(raw)
             let payload = raw["payload"]
             
             let data = payload!.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: false)
@@ -601,7 +588,6 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 
                 if let dict = json as? [String: AnyObject] {
-                    print(dict)
                     processAsync(payload: dict ) { link in
                         if let link = link {
                             
