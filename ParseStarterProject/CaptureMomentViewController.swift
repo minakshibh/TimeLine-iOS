@@ -89,13 +89,15 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         appDelegate.window?.rootViewController = nav
         nav!.navigationBarHidden = true
         appDelegate.window?.makeKeyAndVisible()
-
-        
     }
-    @IBAction func timelineMenuButton(sender: AnyObject) {
-       
+    @IBAction func timelineProfileButton(sender: AnyObject) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("Left") as! drawer
+        let vc  = storyboard.instantiateViewControllerWithIdentifier("Right")
+        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        
+        nav = UINavigationController.init(rootViewController:vc )
         
         hidesBottomBarWhenPushed = true
         
@@ -105,8 +107,33 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
-        self.navigationController!.view.layer.addAnimation(transition, forKey: kCATransition)
-        self.navigationController!.pushViewController(vc, animated: false)
+        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        appDelegate.window?.rootViewController = nav
+        nav!.navigationBarHidden = true
+        appDelegate.window?.makeKeyAndVisible()
+    }
+    @IBAction func timelineMenuButton(sender: AnyObject) {
+       
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc  = storyboard.instantiateViewControllerWithIdentifier("Left")
+        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        
+        nav = UINavigationController.init(rootViewController:vc )
+        
+        hidesBottomBarWhenPushed = true
+        
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.25
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        appDelegate.window?.rootViewController = nav
+        nav!.navigationBarHidden = true
+        appDelegate.window?.makeKeyAndVisible()
         
     }
     override func viewDidLoad() {
