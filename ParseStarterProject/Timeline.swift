@@ -174,46 +174,46 @@ extension Timeline {
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
                 
                 
-                switch request {
-                    case .TimelineMe:
-                        for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i
-                        {
-                            let t = Storage.session.currentUser!.timelines[i]
-                            var containtl : Bool = false
-                            
-                            for td in timelineDicts
-                            {
-                                let tid = td["id"] as! UUID
-                                let tlCreaterID = td["user_id"] as? UUID
-                                let sameUserId = (currentUserId == tlCreaterID)
-                                
-                                if tid == t.state.uuid && sameUserId
-                                {
-                                    containtl = true
-                                }
-                            }
-                            if !containtl{
-                                tempTimelinesArray.addObject(i)
-                            }
-                        }
-                        if tempTimelinesArray.count > 0
-                        {
-                            for var i = 0; i < tempTimelinesArray.count; ++i
-                            {
-                                print(Storage.session.currentUser!.timelines.count)
-                                if (Storage.session.currentUser!.timelines.count >= i)
-                                {
-                                    Storage.session.currentUser!.timelines.removeAtIndex(i)
-                                    serialHook.perform(key: .ForceReloadData, argument: ())
-                                }
-                            }
-                        }
-                    
-
-                    
-                default:
-                    break
-                }
+//                switch request {
+//                    case .TimelineMe:
+//                        for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i
+//                        {
+//                            let t = Storage.session.currentUser!.timelines[i]
+//                            var containtl : Bool = false
+//                            
+//                            for td in timelineDicts
+//                            {
+//                                let tid = td["id"] as! UUID
+//                                let tlCreaterID = td["user_id"] as? UUID
+//                                let sameUserId = (currentUserId == tlCreaterID)
+//                                
+//                                if tid == t.state.uuid && sameUserId
+//                                {
+//                                    containtl = true
+//                                }
+//                            }
+//                            if !containtl{
+//                                tempTimelinesArray.addObject(i)
+//                            }
+//                        }
+//                        if tempTimelinesArray.count > 0
+//                        {
+//                            for var i = 0; i < tempTimelinesArray.count; ++i
+//                            {
+//                                print(Storage.session.currentUser!.timelines.count)
+//                                if (Storage.session.currentUser!.timelines.count >= i)
+//                                {
+//                                    Storage.session.currentUser!.timelines.removeAtIndex(i)
+//                                    serialHook.perform(key: .ForceReloadData, argument: ())
+//                                }
+//                            }
+//                        }
+//                    
+//
+//                    
+//                default:
+//                    break
+//                }
 
                 
                 for td in timelineDicts {
