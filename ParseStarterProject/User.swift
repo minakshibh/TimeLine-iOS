@@ -34,9 +34,11 @@ class User: Synchronized {
     var externalID: String?
     var userfullName: String = ""
     var updated_at: String = ""
+    var imageUrl: String = ""
+
     weak var parent: ParentType?
     
-    required init(name: String?, email: String?, externalID: String?, timelinesPublic: Bool?, approveFollowers: Bool?, pendingFollowersCount: Int?, followersCount: Int?, followingCount: Int?, likersCount: Int?, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, timelines: [Timeline], state: SynchronizationState, userfullname: String? , parent: ParentType? = nil) {
+    required init(name: String?, email: String?, externalID: String?, timelinesPublic: Bool?, approveFollowers: Bool?, pendingFollowersCount: Int?, followersCount: Int?, followingCount: Int?, likersCount: Int?, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, timelines: [Timeline], state: SynchronizationState, userfullname: String? , imageurl: String? , parent: ParentType? = nil) {
         self.name = name ?? ""
         self.email = email
         self.timelinesPublic = timelinesPublic
@@ -54,6 +56,7 @@ class User: Synchronized {
         self.timelines = timelines
         self.hasNews = hasNews
         self.userfullName = userfullname ?? ""
+        self.imageUrl = imageurl ?? ""
         
         for t in timelines ?? [] {
             t.parent = self
@@ -76,7 +79,7 @@ class User: Synchronized {
             hasNews: dict["hasNews"] as? Bool ?? false,
             timelines: (dict["timelines"] as? [[String: AnyObject]] ?? []).map { Timeline(dict: $0) },
             state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-            userfullname : dict["userfullname"]  as? String ,
+            userfullname : dict["userfullname"]  as? String , imageurl : dict["image"] as? String ,
             parent: parent
         )
     }
@@ -88,7 +91,7 @@ extension User: DictConvertable {
     var dict: [String: AnyObject] {
         let state = self.state.dict
         let timelines = (self.timelines ?? []).map { $0.dict }
-        let optionalPairs: [(String, AnyObject?)] = [("state", state), ("name", name), ("email", email), ("timelines", timelines), ("timelines_public", timelinesPublic), ("followers_count", followersCount), ("approve_followers", approveFollowers), ("liked", liked), ("followed", followed.rawValue), ("external_id", externalID), ("pending_followers", pendingFollowersCount), ("blocked", blocked), ("followees_users_count", followingCount), ("likers_count", likesCount), ("hasNews", hasNews) , ("userfullname", userfullName)]
+        let optionalPairs: [(String, AnyObject?)] = [("state", state), ("name", name), ("email", email), ("timelines", timelines), ("timelines_public", timelinesPublic), ("followers_count", followersCount), ("approve_followers", approveFollowers), ("liked", liked), ("followed", followed.rawValue), ("external_id", externalID), ("pending_followers", pendingFollowersCount), ("blocked", blocked), ("followees_users_count", followingCount), ("likers_count", likesCount), ("hasNews", hasNews) , ("userfullname", userfullName), ("image",imageUrl)]
         var result = [String: AnyObject]()
         for (k,ov) in optionalPairs {
             if let v: AnyObject = ov {
@@ -125,6 +128,7 @@ extension User {
                 self.liked = new.liked
                 self.blocked = new.blocked
                 self.userfullName = new.userfullName
+                self.imageUrl = new.imageUrl
                 Storage.save()
                 completion()
             })
@@ -377,7 +381,8 @@ extension User {
                         existing.blocked = u.blocked
                         existing.followed = u.followed
                         existing.userfullName = u.userfullName
-
+                        existing.imageUrl = u.imageUrl
+                      
                         users[i] = existing
                     } else {
                         Storage.session.users.append(u)

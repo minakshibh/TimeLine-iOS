@@ -40,11 +40,12 @@ class Timeline: Synchronized, DictConvertable {
     var commentsCount: Int = 0
     var description: String
     var adminId: String
+    var participants : NSMutableArray = []
 
     weak var parent: ParentType?
     
     typealias ParentType = User
-    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, commentscount: Int? , description: String , adminId: String , parent: User? = nil,updated_at: String) {
+    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, commentscount: Int? , description: String , adminId: String , parent: User? = nil , updated_at: String , participants: NSMutableArray) {
         self.name = name
         self.updated_at = updated_at
         self.parent = parent
@@ -61,7 +62,8 @@ class Timeline: Synchronized, DictConvertable {
         self.commentsCount = commentscount! ?? 0
         self.description = description
         self.adminId = adminId
-        
+        self.participants = participants.mutableCopy() as! NSMutableArray
+
         self.moments = moments.sort { lhs, rhs in
             switch (lhs.state, rhs.state) {
             case (.LocalOnly, _):
@@ -86,23 +88,44 @@ class Timeline: Synchronized, DictConvertable {
     }
     convenience required init(dict: [String: AnyObject], parent: ParentType? = nil) {
         let duration = dict["moments_duration"] as? Float
-        self.init(name: (dict["name"] as? String) ?? "",
-            followersCount: (dict["followers_count"] as? Int) ?? 0,
-            likesCount: (dict["likes_count"] as? Int) ?? 0,
-            liked: dict["liked"] as? Bool ?? false,
-            blocked: dict["blocked"] as? Bool ?? false,
-            followed: FollowState(rawValue: dict["followed"] as? String ?? "not following") ?? .NotFollowing,
-            hasNews: dict["hasNews"] as? Bool ?? false,
-            persistent: dict["persistent"] as? Bool ?? false,
-            duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
-            moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
-            state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-            grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent,updated_at: (dict["updated_at"] as? String) ?? ""
-        )
-    }
-    
+     let gtl = dict["group_timeline"] as? Bool ?? false
+        if gtl{
+            self.init(name: (dict["name"] as? String) ?? "",
+                followersCount: (dict["followers_count"] as? Int) ?? 0,
+                likesCount: (dict["likes_count"] as? Int) ?? 0,
+                liked: dict["liked"] as? Bool ?? false,
+                blocked: dict["blocked"] as? Bool ?? false,
+                followed: FollowState(rawValue: dict["followed"] as? String ?? "not following") ?? .NotFollowing,
+                hasNews: dict["hasNews"] as? Bool ?? false,
+                persistent: dict["persistent"] as? Bool ?? false,
+                duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
+                moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
+                state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
+                grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent,updated_at: (dict["updated_at"] as? String) ?? "" , participants : (dict["participants"] as? NSMutableArray) ?? []
+            )
+        }
+        else
+        {
+            self.init(name: (dict["name"] as? String) ?? "",
+                followersCount: (dict["followers_count"] as? Int) ?? 0,
+                likesCount: (dict["likes_count"] as? Int) ?? 0,
+                liked: dict["liked"] as? Bool ?? false,
+                blocked: dict["blocked"] as? Bool ?? false,
+                followed: FollowState(rawValue: dict["followed"] as? String ?? "not following") ?? .NotFollowing,
+                hasNews: dict["hasNews"] as? Bool ?? false,
+                persistent: dict["persistent"] as? Bool ?? false,
+                duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
+                moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
+                state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
+                grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent , updated_at: (dict["updated_at"] as? String) ?? "" , participants : [] )
+
+        }
+        
+        }
+
     var dict: [String: AnyObject] {
-        return ["state": state.dict, "name": name, "followers_count": followersCount, "likes_count": likesCount, "moments": moments.map { $0.dict }, "liked": liked, "followed": followed.rawValue, "moments_duration": duration ?? 0, "blocked": blocked, "hasNews": hasNews, "persistent": persistent , "group_timeline" : groupTimeline , "comments_count" : commentsCount ?? 0 , "description" :description ,"admin_id" : adminId]
+             return ["state": state.dict, "name": name, "followers_count": followersCount, "likes_count": likesCount, "moments": moments.map { $0.dict }, "liked": liked, "followed": followed.rawValue, "moments_duration": duration ?? 0, "blocked": blocked, "hasNews": hasNews, "persistent": persistent , "group_timeline" : groupTimeline , "comments_count" : commentsCount ?? 0 , "description" :description ,"admin_id" : adminId , "participants": participants]
+     
     }
     
     var uuid: UUID? {
@@ -142,32 +165,53 @@ extension Timeline {
         
         Storage.performRequest(request) { (json) -> Void in
             var timelines = [Timeline]()
-            
+            let currentUserId = Storage.session.currentUser?.uuid
+
             let tempTimelinesArray : NSMutableArray = []
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
                 
-                for i in 0..<(Storage.session.currentUser?.timelines.count ?? 0) {
-                    let t = Storage.session.currentUser!.timelines[i]
-                    var containtl : Bool = false
-                    for td in timelineDicts
-                    {
-                        let tid = td["id"] as! UUID
-                        if tid == t.state.uuid
+                
+                switch request {
+                    case .TimelineMe:
+                        for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i
                         {
-                            containtl = true
+                            let t = Storage.session.currentUser!.timelines[i]
+                            var containtl : Bool = false
+                            
+                            for td in timelineDicts
+                            {
+                                let tid = td["id"] as! UUID
+                                let tlCreaterID = td["user_id"] as? UUID
+                                let sameUserId = (currentUserId == tlCreaterID)
+                                
+                                if tid == t.state.uuid && sameUserId
+                                {
+                                    containtl = true
+                                }
+                            }
+                            if !containtl{
+                                tempTimelinesArray.addObject(i)
+                            }
                         }
-                    }
-                    if !containtl{
-                        tempTimelinesArray.addObject(i)
-                    }
+                        if tempTimelinesArray.count > 0
+                        {
+                            for var i = 0; i < tempTimelinesArray.count; ++i
+                            {
+                                print(Storage.session.currentUser!.timelines.count)
+                                if (Storage.session.currentUser!.timelines.count >= i)
+                                {
+                                    Storage.session.currentUser!.timelines.removeAtIndex(i)
+                                    serialHook.perform(key: .ForceReloadData, argument: ())
+                                }
+                            }
+                        }
+                    
+
+                    
+                default:
+                    break
                 }
-                if tempTimelinesArray.count > 0
-                {
-                    for i in 0..<(tempTimelinesArray.count ?? 0) {
-                        Storage.session.currentUser!.timelines.removeAtIndex(i)
-                        serialHook.perform(key: .ForceReloadData, argument: ())
-                    }
-                }
+
                 
                 for td in timelineDicts {
                     print(timelineDicts)
@@ -177,11 +221,12 @@ extension Timeline {
                         if let user = Storage.findUser(userID)
                         { // update user
                             owner = user
+
                         } else
                         { // set up user
 //                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), parent: Storage.session)
                             
-                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil , parent: Storage.session)
+                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil , imageurl: nil , parent: Storage.session)
 
                             
                             Storage.session.users.append(owner)
@@ -224,6 +269,20 @@ extension Timeline {
                                 }
                                 if let v = json["blocked"] as? Bool {
                                     owner.blocked = v
+                                }
+                                if let v = json["image"] as? String {
+                                    owner.imageUrl = v
+                                }
+                                var userFullNameStr : (NSString) = ""
+                                owner.userfullName = ""
+                                if let userFirstNameStr = json["firstname"] as? String
+                                {
+                                    userFullNameStr = "\(userFirstNameStr)"
+                                    if let userLasstNameStr = json["lastname"] as? String
+                                    {
+                                        userFullNameStr = "\(userFirstNameStr) \(userLasstNameStr)"
+                                    }
+                                    owner.userfullName = userFullNameStr as String
                                 }
                                
                                 owner.state = SynchronizationState(dict: json)
@@ -270,8 +329,10 @@ extension Timeline {
                             if let aId = td["admin_id"] as? String {
                                 existing.adminId = aId
                             }
+                            if let participants = td["participants"] as? NSArray{
+                                existing.participants = participants.mutableCopy() as! NSMutableArray
+                            }
                             existing.state = SynchronizationState(dict: td)
-                            
                             tl = existing
                         } else
                         { // set up timeline

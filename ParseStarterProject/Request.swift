@@ -21,8 +21,11 @@ typealias timeLineId = String
 enum ApiRequest {
     
 
-    private static let baseUrl = NSURL(string: "http://timeline-server.elasticbeanstalk.com")!
+//    private static let baseUrl = NSURL(string: "http://timeline-server.elasticbeanstalk.com")!
 //    private static let baseUrl = NSURL(string: "http://54.191.110.86")!
+    private static let baseUrl = NSURL(string: "http://54.187.225.1")!
+
+    
 
     /// GET /api/user/get_token
     /// Header: X-Parse-Session-Token String
@@ -41,6 +44,16 @@ enum ApiRequest {
     /// POST /api/timeline/create
     //// "name=timeLinename&participants=members&description=groupdescription&group_timeline=1"
     case CreateGroupTimeline(timeLinename,members,groupdescription)
+    
+    ///  Type : PATCH ,  base_url/api/group_timeline/id/add_remove_participant_by_admin/participant_id
+    
+    //// id : Group Timeline id  (mandatory)
+    ////participant_id : Id of that participant who want to add/remove by admin to the group timeline. (mandatory)
+    ////action_type :  action_type : 0 if a new participant added by admin
+    /////action_type : 1 if an existing participant deleted by admin
+    case AddParticipantInGroupTimeline(timeLineId,UUID)
+    case RemoveParticipantFromGroupTimeline(timeLineId,UUID)
+
     
     //// DELETE /api/group_timeline/:id/remove_group_participant/:participant_id
     case LeaveGroupTimeline(timeLineId,UUID)
@@ -203,6 +216,16 @@ enum ApiRequest {
             let bodyData = "name=\(timeLinename.urlEncoded)&participants=\(members.urlEncoded)&description=\(groupdescription.urlEncoded)&group_timeline=1"
             urlString = "/api/timeline/create?\(bodyData)"
             urlRequest.HTTPMethod = "POST"
+            
+        case let.AddParticipantInGroupTimeline(timeLineId,uuid):
+            let bodyData = "\(timeLineId.urlEncoded)/add_remove_participant_by_admin/\(uuid.urlEncoded)"
+            urlString = "/api/group_timeline/\(bodyData)?action_type=0"
+            urlRequest.HTTPMethod = "PATCH"
+        
+        case let.RemoveParticipantFromGroupTimeline(timeLineId,uuid):
+            let bodyData = "\(timeLineId.urlEncoded)/add_remove_participant_by_admin/\(uuid.urlEncoded)"
+            urlString = "/api/group_timeline/\(bodyData)?action_type=1"
+            urlRequest.HTTPMethod = "PATCH"
             
             
         case let.LeaveGroupTimeline(timeLineId,uuid):
@@ -409,7 +432,6 @@ enum ApiRequest {
             urlString = "https://graph.facebook.com/\(facebookId)/picture?type=large&return_ssl_resources=1"
             urlRequest.HTTPMethod = "GET"
 
-            
         }
         urlRequest.URL = NSURL(string: urlString, relativeToURL: ApiRequest.baseUrl)
         return urlRequest

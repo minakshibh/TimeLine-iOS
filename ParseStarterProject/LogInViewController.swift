@@ -142,7 +142,7 @@ class LogInViewController: PFLogInViewController {
                         
                         let pendingFollowersCount = json["pending_followers"] as? Int
                         
-                        Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json) , userfullname : userFullNameStr as String)], drafts:Storage.session.drafts)
+                        Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json) , userfullname : userFullNameStr as String, imageurl : json["image"] as? String ?? "")], drafts:Storage.session.drafts)
                         Storage.save()
                         
                         do {
@@ -192,7 +192,7 @@ class LogInViewController: PFLogInViewController {
                 
                     let pendingFollowersCount = json["pending_followers"] as? Int
                 
-                    Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json) , userfullname : userFullNameStr as String)], drafts:Storage.session.drafts)
+                    Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json) , userfullname : userFullNameStr as String, imageurl : json["image"] as? String ?? "")] ,drafts:Storage.session.drafts)
                     Storage.save()
                 
                     do {

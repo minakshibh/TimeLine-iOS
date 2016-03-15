@@ -13,17 +13,21 @@ import Parse
 struct Storage {
     
     static var session: Session = {
-        if let dict = NSUserDefaults.standardUserDefaults().dictionaryForKey("session") {
-            return Session(dict: dict, parent: nil)
-        } else {
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("session") as? NSData {
+            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data)  {
+                return Session(dict: dict as! [String : AnyObject] , parent: nil)
+            } else {
+                return Session(dict: [:], parent: nil)
+            }
+        }
+        else {
             return Session(dict: [:], parent: nil)
         }
     }()
     
     static func save() {
-        
-        NSUserDefaults.standardUserDefaults().setValue(session.dict, forKey: "session")
-        
+        let data = NSKeyedArchiver.archivedDataWithRootObject(session.dict)
+        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "session")
         if Storage.session.unsyncedTimelineIncrement - Storage.session.activeTimelineIncrementSyncs > 0 {
             Storage.session.updateProduct(String.additionalTimelineProduct, success: { self.save() }, failure: { error in print("Auto-Sync failure \(String.additionalTimelineProduct): \(error)") })
         }
