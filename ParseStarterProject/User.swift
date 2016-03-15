@@ -34,9 +34,12 @@ class User: Synchronized {
     var externalID: String?
     var userfullName: String = ""
     var updated_at: String = ""
+    var firstName:String = ""
+    var lastName:String = ""
+
     weak var parent: ParentType?
     
-    required init(name: String?, email: String?, externalID: String?, timelinesPublic: Bool?, approveFollowers: Bool?, pendingFollowersCount: Int?, followersCount: Int?, followingCount: Int?, likersCount: Int?, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, timelines: [Timeline], state: SynchronizationState, userfullname: String? , parent: ParentType? = nil) {
+    required init(name: String?, email: String?, externalID: String?, timelinesPublic: Bool?, approveFollowers: Bool?, pendingFollowersCount: Int?, followersCount: Int?, followingCount: Int?, likersCount: Int?, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, timelines: [Timeline], state: SynchronizationState, userfullname: String? ,firstname: String? ,lastname: String? , parent: ParentType? = nil) {
         self.name = name ?? ""
         self.email = email
         self.timelinesPublic = timelinesPublic
@@ -54,7 +57,9 @@ class User: Synchronized {
         self.timelines = timelines
         self.hasNews = hasNews
         self.userfullName = userfullname ?? ""
-        
+        self.firstName = firstname ?? ""
+        self.lastName = lastname ?? ""
+
         for t in timelines ?? [] {
             t.parent = self
         }
@@ -76,9 +81,27 @@ class User: Synchronized {
             hasNews: dict["hasNews"] as? Bool ?? false,
             timelines: (dict["timelines"] as? [[String: AnyObject]] ?? []).map { Timeline(dict: $0) },
             state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-            userfullname : dict["userfullname"]  as? String ,
+            userfullname : dict["userfullname"]  as? String , firstname : dict["firstname"] as? String , lastname : dict["lastname"] as? String ,
             parent: parent
         )
+//        self.init(name: dict["name"] as? String,
+//            email: dict["email"] as? String,
+//            externalID: dict["external_id"] as? String,
+//            timelinesPublic: dict["timelines_public"] as? Bool,
+//            approveFollowers: dict["approve_followers"] as? Bool,
+//            pendingFollowersCount: dict["pending_followers"] as? Int,
+//            followersCount: (dict["followers_count"] as? Int) ?? 0,
+//            followingCount: (dict["followees_users_count"] as? Int) ?? 0,
+//            likersCount: (dict["likers_count"] as? Int) ?? 0,
+//            liked: dict["liked"] as? Bool ?? false,
+//            blocked: dict["blocked"] as? Bool ?? false,
+//            followed: FollowState(rawValue: dict["followed"] as? String ?? "not following") ?? .NotFollowing,
+//            hasNews: dict["hasNews"] as? Bool ?? false,
+//            timelines: (dict["timelines"] as? [[String: AnyObject]] ?? []).map { Timeline(dict: $0) },
+//            state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
+//            userfullname : dict["userfullname"]  as? String , firstname : dict["firtname"] as? String , lastname : dict["lastname"] as? String ,  parent: parent
+//        )
+
     }
     
 }
@@ -125,6 +148,9 @@ extension User {
                 self.liked = new.liked
                 self.blocked = new.blocked
                 self.userfullName = new.userfullName
+                self.firstName = new.firstName
+                self.lastName = new.lastName
+
                 Storage.save()
                 completion()
             })
@@ -377,6 +403,8 @@ extension User {
                         existing.blocked = u.blocked
                         existing.followed = u.followed
                         existing.userfullName = u.userfullName
+                        existing.firstName = u.firstName
+                        existing.lastName = u.lastName
 
                         users[i] = existing
                     } else {

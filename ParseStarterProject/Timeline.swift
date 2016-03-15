@@ -27,6 +27,7 @@ class Timeline: Synchronized, DictConvertable {
     
     var name: String
     var updated_at:String
+    var userfullName:String
     var moments: [Moment]
     var followersCount: Int
     var likesCount: Int
@@ -44,9 +45,10 @@ class Timeline: Synchronized, DictConvertable {
     weak var parent: ParentType?
     
     typealias ParentType = User
-    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, commentscount: Int? , description: String , adminId: String , parent: User? = nil,updated_at: String) {
+    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, commentscount: Int? , description: String , adminId: String , parent: User? = nil,updated_at: String, userfullName :String) {
         self.name = name
         self.updated_at = updated_at
+        self.userfullName = userfullName
         self.parent = parent
         self.state = state
         self.followersCount = followersCount
@@ -97,7 +99,7 @@ class Timeline: Synchronized, DictConvertable {
             duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
             moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
             state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-            grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent,updated_at: (dict["updated_at"] as? String) ?? ""
+            grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent,updated_at: (dict["updated_at"] as? String) ?? "" , userfullName :(dict["userfullName"] as? String) ?? ""
         )
     }
     
@@ -170,7 +172,7 @@ extension Timeline {
                 }
                 
                 for td in timelineDicts {
-                    print(timelineDicts)
+//                    print(timelineDicts)
                     if let userID = td["user_id"] as? UUID
                     {
                         let owner: User
@@ -181,14 +183,21 @@ extension Timeline {
                         { // set up user
 //                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), parent: Storage.session)
                             
-                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil , parent: Storage.session)
+//                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil ,  parent: Storage.session)
 
+                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil , firstname: nil, lastname: nil, parent: Storage.session)
                             
                             Storage.session.users.append(owner)
                             
                             Storage.performRequest(ApiRequest.UserProfile(userID), completion: { (json) -> Void in
                                 if let v = json["name"] as? String {
                                     owner.name = v
+                                }
+                                if let v = json["firstname"] as? String {
+                                    owner.firstName = v
+                                }
+                                if let v = json["lastname"] as? String {
+                                    owner.lastName = v
                                 }
                                 if let v = json["email"] as? String {
                                     owner.email = v
@@ -213,6 +222,12 @@ extension Timeline {
                                 }
                                 if let v = json["updated_at"] as? String {
                                     owner.updated_at = v
+                                }
+                                
+                                if let v = json["lastname"] as? String {
+                                    let fname = json["firstname"] as? String
+                                    let lname = json["lastname"] as? String
+                                    owner.userfullName = "\(fname) \(lname)"
                                 }
                                 if let v = json["liked"] as? Bool {
                                     owner.liked = v

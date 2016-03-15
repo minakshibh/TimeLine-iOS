@@ -20,9 +20,10 @@ typealias timeLineId = String
 
 enum ApiRequest {
     
-
+// private static let baseUrl = NSURL(string: "http://54.187.225.1")!
     private static let baseUrl = NSURL(string: "http://timeline-server.elasticbeanstalk.com")!
 //    private static let baseUrl = NSURL(string: "http://54.191.110.86")!
+    
 
     /// GET /api/user/get_token
     /// Header: X-Parse-Session-Token String
@@ -169,7 +170,7 @@ enum ApiRequest {
     var urlRequest: NSMutableURLRequest {
         let urlString: String
         let urlRequest = NSMutableURLRequest()
-        print(Storage.session.webToken)
+//        print(Storage.session.webToken)
         urlRequest.setValue(Storage.session.webToken, forHTTPHeaderField: "X-Timeline-Authentication")
         
         switch self {

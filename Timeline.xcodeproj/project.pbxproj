@@ -121,6 +121,7 @@
 		D9B3408D1C72EABB00EC3BFF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340881C72EABB00EC3BFF /* FBSDKLoginKit.framework */; };
 		D9B3408E1C72EABB00EC3BFF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340891C72EABB00EC3BFF /* FBSDKShareKit.framework */; };
 		D9B340911C72F28600EC3BFF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340901C72F28600EC3BFF /* libz.tbd */; };
+		D9BE2D831C92DC830023494A /* Named1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE2D821C92DC820023494A /* Named1.swift */; };
 		DA167DFD1B7D211C00608A6C /* VideoSquareCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167DFC1B7D211C00608A6C /* VideoSquareCropper.m */; };
 		DA167E091B7D351F00608A6C /* UIAppearence+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E081B7D351F00608A6C /* UIAppearence+Swift.m */; };
 		DA167E0E1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E0B1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m */; };
@@ -393,6 +394,7 @@
 		D9B340881C72EABB00EC3BFF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		D9B340891C72EABB00EC3BFF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		D9B340901C72F28600EC3BFF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		D9BE2D821C92DC820023494A /* Named1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Named1.swift; sourceTree = "<group>"; };
 		DA0342991B7BBC67008DAB69 /* record-end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "record-end.mp3"; sourceTree = "<group>"; };
 		DA03429A1B7BBC67008DAB69 /* record-start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "record-start.mp3"; sourceTree = "<group>"; };
 		DA167DFB1B7D211C00608A6C /* VideoSquareCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSquareCropper.h; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 				BA380BB71C1614F800013053 /* Followable.swift */,
 				BA8607A21C166BA6001D73EE /* Durationial.swift */,
 				BA8607A81C166CE8001D73EE /* Named.swift */,
+				D9BE2D821C92DC820023494A /* Named1.swift */,
 				BAEE094F1C1678A60095F6CE /* Refreshable.swift */,
 				BAEE09531C1705EB0095F6CE /* Hooking.swift */,
 				BADDE8011C19EB1B00872FEC /* Shareable.swift */,
@@ -1368,6 +1371,7 @@
 				DA799AE51B64F69C00EA4982 /* CaptureMomentViewController.swift in Sources */,
 				DA3FF4E01B6BCD6A006CC0D7 /* UITabBarController+Additions.swift in Sources */,
 				BA95609D1BB4844800747411 /* RotationNavigationController.swift in Sources */,
+				D9BE2D831C92DC830023494A /* Named1.swift in Sources */,
 				DA799AEB1B65081400EA4982 /* RoundImageView.swift in Sources */,
 				DA2B8A441B5918DD00D25AED /* AVAsset.swift in Sources */,
 				18DF0CEE1C745F380042F16B /* AllNotificationList.swift in Sources */,

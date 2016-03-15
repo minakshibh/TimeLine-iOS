@@ -584,6 +584,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
          if tableView == self.tableView {
                 return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
             } else {
+            
+            
                 if searching && searchResults.count == 0 {
                     let cell = self.tableView.dequeueReusableCellWithIdentifier("ActivityCell", forIndexPath: indexPath)
                     return cell
@@ -605,6 +607,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 
                     return cell
                 }
+            
             }
         }
     }
@@ -790,7 +793,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
                             parent.timelines.append(timeline)
                             results.append(timeline)
                         } else {
-                            let _ = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [timeline], state: .Dummy(parentID), userfullname : nil , parent: nil)
+                            let _ = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [timeline], state: .Dummy(parentID), userfullname : nil , firstname : nil , lastname : nil , parent: nil)
                             results.append(timeline)
                             
                             Storage.performRequest(ApiRequest.UserProfile(parentID), completion: { (json) -> Void in

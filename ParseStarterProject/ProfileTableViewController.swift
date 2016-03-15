@@ -14,6 +14,8 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     @IBOutlet var userSummaryView: UserSummaryTableViewCell!
 
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var nameLabel1: UILabel!
+    @IBOutlet var lblBio: UILabel!
     @IBOutlet var emailLabel: UILabel!
     @IBOutlet var followingLabel: UILabel!
     @IBOutlet var followersLabel: UILabel!
@@ -128,13 +130,32 @@ class ProfileTableViewController: TintedHeaderTableViewController {
             {
 //            nameLabel.text = "\(user.username!)"
 //            emailLabel.text = "\(user.email!)"
-                nameLabel.text = "\(NSUserDefaults.standardUserDefaults().valueForKey("fb_username")!)"
+                let username = "\(NSUserDefaults.standardUserDefaults().valueForKey("fb_username")!)"
+                let nameArr = username.componentsSeparatedByString("_")
+                nameLabel1.text = "\(nameArr[0]) \(nameArr[1])"
+                
+                nameLabel.text = "\(username)"
                 emailLabel.text = "\(NSUserDefaults.standardUserDefaults().valueForKey("fb_email")!)"
                 navigationItem.title = "\(NSUserDefaults.standardUserDefaults().valueForKey("fb_username")!)"
+                
+                lblBio.text = "Bio: "
+                
+                let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: "Bio:  ")
+                attributedText.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
+                lblBio.attributedText = attributedText
             }else{
+                let firstname = user.firstname ?? ""
+                let lastname = user.lastname ?? ""
                 navigationItem.title = "@\(user.username!)"
-                nameLabel.text = "\(user.username!)"
+                nameLabel.text = "@\(user.username!)"
+                nameLabel1.text = "\(firstname) \(lastname)"
                 emailLabel.text = "\(user.email!)"
+                let k = user.objectForKey("bio")
+                lblBio.text = "Bio: \(k)"
+                
+                let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: "Bio: \(k)")
+                attributedText.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
+                lblBio.attributedText = attributedText
             }
             
             timelinesPublicSwitch.on = Storage.session.currentUser!.timelinesPublic!

@@ -142,7 +142,7 @@ class LogInViewController: PFLogInViewController {
                         
                         let pendingFollowersCount = json["pending_followers"] as? Int
                         
-                        Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json) , userfullname : userFullNameStr as String)], drafts:Storage.session.drafts)
+                        Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json) , userfullname : userFullNameStr as String , firstname : fullNameArr[0] as? String , lastname : fullNameArr[1] as? String)], drafts:Storage.session.drafts)
                         Storage.save()
                         
                         do {
@@ -169,12 +169,17 @@ class LogInViewController: PFLogInViewController {
             }else{
             
                 var userFullNameStr : (NSString) = ""
+                var firstNameStr : (NSString) = ""
+                var lastNameStr : (NSString) = ""
+
                 if let userFirstNameStr = json["firstname"] as? String
                 {
                     userFullNameStr = "\(userFirstNameStr)"
+                    firstNameStr = "\(userFirstNameStr)"
                     if let userLasstNameStr = json["lastname"] as? String
                     {
                         userFullNameStr = "\(userFirstNameStr) \(userLasstNameStr)"
+                        lastNameStr = "\(userLasstNameStr)"
                     }
                 }
                 if let jwt = json["jwt"] as? String,
@@ -192,7 +197,8 @@ class LogInViewController: PFLogInViewController {
                 
                     let pendingFollowersCount = json["pending_followers"] as? Int
                 
-                    Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json) , userfullname : userFullNameStr as String)], drafts:Storage.session.drafts)
+                    Storage.session = Session(uuid: id, webToken: jwt, sessionToken: PFUser.currentUser()?.sessionToken, allowedTimelinesCount: allowedTimelinesCount, users: [User(name: name, email: email, externalID: externalID, timelinesPublic: timelinesPublic, approveFollowers: approveFollowers, pendingFollowersCount: pendingFollowersCount, followersCount: followersCount, followingCount: followingCount, likersCount: likersCount, liked:  json["liked"] as? Bool ?? false, blocked: json["blocked"] as? Bool ?? false, followed: .NotFollowing, timelines: [], state: SynchronizationState(dict: json) , userfullname : userFullNameStr as String , firstname : firstNameStr  as String , lastname : lastNameStr as String )], drafts:Storage.session.drafts)
+                    
                     Storage.save()
                 
                     do {

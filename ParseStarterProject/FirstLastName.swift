@@ -1,16 +1,14 @@
 
 protocol FirstLastName {
-    typealias TargetBehaviorType: Named
+    typealias TargetBehaviorType: Named1
     var behaviorTarget: TargetBehaviorType? { get }
     var nameLabel1: UILabel! { get }
     //    var nameLabel1: UILabel! { get }
 }
 
 extension FirstLastName {
-    func refreshFirstLastName() {
-        print("^^^^\(behaviorTarget?.name)")
-        
-        nameLabel1.text =!= TargetBehaviorType.prefix.stringByAppendingString(behaviorTarget?.name ?? "")
+    func refreshFirstLastName() {        
+        nameLabel1.text =!= behaviorTarget?.fullName1 ?? ""
         
     }
 }

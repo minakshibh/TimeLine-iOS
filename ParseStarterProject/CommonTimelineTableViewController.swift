@@ -26,8 +26,9 @@ class CommonTimelineTableViewController: UITableViewController {
             }
         }
     }
-
+    var lblFeed:UILabel!
     var callbacks: [AnyObject?] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         callbacks.append(setUpReloadable())
@@ -38,11 +39,14 @@ class CommonTimelineTableViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
         self.refreshTableView()
         
+        NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "status")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
     }
 
     func refreshTableView() { }
@@ -55,6 +59,17 @@ class CommonTimelineTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(users[section].timelines.count == 0 && NSUserDefaults.standardUserDefaults().valueForKey("status") as? String == "yes"){
+            
+            self.tableView.addSubview(lblFeed)
+            NSUserDefaults.standardUserDefaults().setObject("no", forKey: "status")
+        }
+        if(users[section].timelines.count != 0)
+        {
+            lblFeed.removeFromSuperview()
+        }
+        
+        
         return users[section].timelines.count
     }
 
@@ -144,6 +159,10 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
 
     override func viewWillAppear(animated: Bool) {
         self.setUpHooking() // required for Hooking protocol
+        
+        lblFeed = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height))
+        lblFeed.textAlignment = NSTextAlignment.Center
+        lblFeed.text = "No Feedeos found"
     }
     override func viewWillDisappear(animated: Bool) {
         cleanUpHooking() // breaks cycles on disappear
