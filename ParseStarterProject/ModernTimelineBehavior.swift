@@ -199,7 +199,9 @@ extension ModernTimelineBehavior {
         completion: { bool in
             playerView.superview?.removeConstraints(self.centerConstraints)
             self.centerConstraints = []
+            main{
             self.modernTimelineView?.playerView.draftPreview.stop()
+            }
             for v in self.modernTimelineView?.playbackItems ?? [] {
                 self.modernTimelineView?.momentScroller.hidden = false
                 v.hidden = true
