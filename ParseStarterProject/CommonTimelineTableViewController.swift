@@ -73,7 +73,7 @@ class CommonTimelineTableViewController: UITableViewController {
             self.tableView.addSubview(lblFeed)
             NSUserDefaults.standardUserDefaults().setObject("no", forKey: "status")
         }
-        if(users[section].timelines.count != 0)
+        if(users[section].timelines.count > 0)
         {
             lblFeed.removeFromSuperview()
         }
@@ -89,7 +89,7 @@ class CommonTimelineTableViewController: UITableViewController {
         
         // Configure the cell...
         cell.timelineView.timeline = users[indexPath.section].timelines[indexPath.row]
-
+        lblFeed.removeFromSuperview()
         //cell.deletionCallback = self.deletionCallback()
         
         return cell
