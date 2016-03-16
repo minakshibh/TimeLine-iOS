@@ -169,10 +169,10 @@ extension ModernTimelineBehavior {
         })
             { bool in
                 for v in self.modernTimelineView?.previewItems ?? [] {
-                    v.hidden = true
+                    v.userInteractionEnabled = false
                 }
                 for v in self.modernTimelineView?.playbackItems ?? [] {
-                    v.hidden = false
+                    v.userInteractionEnabled = true
                 }
                 playerView.draftPreview.playMoment()
         }
@@ -187,7 +187,7 @@ extension ModernTimelineBehavior {
 
         for v in self.modernTimelineView?.previewItems ?? [] {
             
-            v.hidden = false
+            v.userInteractionEnabled = true
         }
         UIView.animateWithDuration(animated ? 0.01 : 0.0, animations: {
             for v in self.modernTimelineView?.previewItems ?? [] {

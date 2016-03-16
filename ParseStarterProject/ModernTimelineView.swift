@@ -36,8 +36,6 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     var commentId : String = ""
     
     var selectedTimelineMomentArray : NSArray = []
-    @IBOutlet var groupTimelineButton: UIButton!
-    @IBOutlet var descriptionLabel: UILabel!
     let friendsListView = UIView()
     let friendslistTableView = UITableView()
     var friendsListArray : NSMutableArray = []
@@ -331,6 +329,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             doneButton.addTarget(self, action: "doneButtonAction", forControlEvents:.TouchUpInside)
             self.friendsListView.addSubview(doneButton)
             self.participants_id.removeAllObjects()
+            self.InvitedFriends_id.removeAllObjects()
             for i in 0..<(self.friendsListArray.count ?? 0) {
                 if let dataDict = self.friendsListArray[i] as? NSDictionary
                 {
@@ -356,12 +355,10 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
 
     }
     func closeViewButton(){
+        
         KGModal.sharedInstance().hideAnimated(true)
         main {
-            self.InvitedFriends_id.removeAllObjects()
             self.invitedFriendsArray.removeAllObjects()
-            self.removedFriends_id.removeAllObjects()
-            self.participants_id.removeAllObjects()
             self.friendslistTableView.reloadData()
             self.friendsListView.removeFromSuperview()
         }
@@ -369,11 +366,11 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
 
     func doneButtonAction()
     {
-        if InvitedFriends_id.count > 0
+        if self.InvitedFriends_id.count > 0
         {
             self.addNewParticipantsAPI()
         }
-        if removedFriends_id.count > 0
+        if self.removedFriends_id.count > 0
         {
             self.removeParticipantsAPI()
         }
@@ -382,13 +379,15 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     {
         let addParticipantsList : NSMutableArray = []
         for i in 0..<self.InvitedFriends_id.count {
-            if !self.participants_id .containsObject(InvitedFriends_id[i])
+            if !self.participants_id .containsObject(self.InvitedFriends_id[i])
             {
-                 addParticipantsList.addObject(InvitedFriends_id[i])
+                 addParticipantsList.addObject(self.InvitedFriends_id[i])
             }
         }
         if addParticipantsList.count == 0
         {
+            self.InvitedFriends_id.removeAllObjects()
+
             self.closeViewButton()
             return
         }
@@ -406,12 +405,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         }
         
         Storage.performRequest(.AddParticipantInGroupTimeline((self.timeline?.uuid)! ,InvitedFriendsIdSTr  as members)) { (json) -> Void in
-            self.InvitedFriends_id.removeAllObjects()
-            self.invitedFriendsArray.removeAllObjects()
-            KGModal.sharedInstance().hideAnimated(true)
-            main {
-                self.closeViewButton()
-            }
+           
             let controller = activeController()
             
             switch json["status_code"] as? Int ?? 400 {
@@ -422,12 +416,21 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         alert.addAction(UIAlertAction(title: local(.TimelineAlertCreateErrorActionDismiss), style: .Default, handler: nil))
                         controller!.presentAlertController(alert)
                         self.closeViewButton()
+                        return()
                         
                     }
                 }
-                main {
-                    self.closeViewButton()
+                else
+                {
+                    for i in 0..<addParticipantsList.count
+                    {
+                        self.participants_id.addObject(addParticipantsList[i])
+                    }
                 }
+            }
+            self.InvitedFriends_id.removeAllObjects()
+            main {
+                self.closeViewButton()
             }
         }
     }
@@ -459,15 +462,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             }
         }
         
-        Storage.performRequest(.RemoveParticipantFromGroupTimeline((self.timeline?.uuid)! ,InvitedFriendsIdSTr  as members)) { (json) -> Void in
-            self.InvitedFriends_id.removeAllObjects()
-            self.invitedFriendsArray.removeAllObjects()
-            self.removedFriends_id.removeAllObjects()
-
-            KGModal.sharedInstance().hideAnimated(true)
-            main {
-                self.closeViewButton()
-            }
+        Storage.performRequest(.RemoveParticipantFromGroupTimeline((self.timeline?.uuid)! ,removedFriendsIdSTr  as members)) { (json) -> Void in
             let controller = activeController()
             
             switch json["status_code"] as? Int ?? 400 {
@@ -478,10 +473,26 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         alert.addAction(UIAlertAction(title: local(.TimelineAlertCreateErrorActionDismiss), style: .Default, handler: nil))
                         controller!.presentAlertController(alert)
                         self.closeViewButton()
+                        return
                         
                     }
                 }
+                else
+                {
+                    for i in 0..<removeParticipantsList.count
+                    {
+                        if self.participants_id.containsObject(removeParticipantsList[i])
+                        {
+                            self.participants_id.removeObject(removeParticipantsList[i])
+                        }
+                    }
+                }
             }
+            self.removedFriends_id.removeAllObjects()
+            main {
+                self.closeViewButton()
+            }
+
         }
     }
     func followButton(sender: UIButton) {
@@ -532,13 +543,13 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         if inviteButton.backgroundColor == UIColor.redColor()
         {
             inviteButton.backgroundColor = UIColor.whiteColor()
-            InvitedFriends_id .removeObject(user_id)
+            self.InvitedFriends_id .removeObject(user_id)
             removedFriends_id .addObject(user_id)
         }
         else
         {
             inviteButton.backgroundColor = UIColor.redColor()
-            InvitedFriends_id .addObject(user_id)
+            self.InvitedFriends_id .addObject(user_id)
             removedFriends_id .removeObject(user_id)
         }
     }
@@ -818,20 +829,20 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         if invitedFriendsArray .containsObject(sender.tag)
         {
             
-            invitedFriendsArray .removeObject(sender.tag)
-            InvitedFriends_id .removeObject(user_id)
+            self.invitedFriendsArray .removeObject(sender.tag)
+            self.InvitedFriends_id .removeObject(user_id)
         }
         else
         {
 
-            invitedFriendsArray .addObject(sender.tag)
-            InvitedFriends_id .addObject(user_id)
+            self.invitedFriendsArray .addObject(sender.tag)
+            self.InvitedFriends_id .addObject(user_id)
         }
         self.scrollView.removeFromSuperview()
         if let raw = self.tagArray[sender.tag] as? NSDictionary{
             
             InvitedFriendsIdSTr = ""
-            for ids in InvitedFriends_id{
+            for ids in self.InvitedFriends_id{
                 if InvitedFriendsIdSTr == ""
                 {
                     InvitedFriendsIdSTr = "\(ids)"
@@ -966,7 +977,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         inviteButton.layer.cornerRadius = 0.5 * inviteButton.bounds.size.width
                         inviteButton.layer.borderColor = UIColor.blackColor().CGColor;
                         inviteButton.layer.borderWidth = 2.0
-                        if InvitedFriends_id .containsObject(user!.uuid!)
+                        if self.InvitedFriends_id .containsObject(user!.uuid!)
                         {
                             inviteButton.backgroundColor = UIColor.redColor()
                         }
@@ -1329,6 +1340,9 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     @IBOutlet var previewItems: [UIView] = []
     @IBOutlet var playbackItems: [UIView] = []
     @IBOutlet var playerView: DraftPreviewView!
+    @IBOutlet var groupTimelineButton: UIButton!
+    @IBOutlet var descriptionLabel: UILabel!
+
     var newsBadge: CustomBadge?
     
     @IBAction func tappedItem(sender: UITapGestureRecognizer) {
