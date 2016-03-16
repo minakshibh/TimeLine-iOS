@@ -78,7 +78,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
+//        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
 
         if(isiphone6()==1 || isiPhone5()==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){

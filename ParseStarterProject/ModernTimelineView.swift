@@ -358,6 +358,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         
         KGModal.sharedInstance().hideAnimated(true)
         main {
+            //CommonTimelineTableViewController().update()
             self.invitedFriendsArray.removeAllObjects()
             self.friendslistTableView.reloadData()
             self.friendsListView.removeFromSuperview()

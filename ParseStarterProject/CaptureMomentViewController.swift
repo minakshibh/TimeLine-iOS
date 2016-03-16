@@ -585,7 +585,9 @@ extension CaptureMomentViewController: SCRecorderDelegate {
     
     func recorder(recorder: SCRecorder, didCompleteSegment segment: SCRecordSessionSegment?, inSession session: SCRecordSession, error: NSError?) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.showActivityIndicator()
+        main{
+            appDelegate.showActivityIndicator()
+        }
 
         recorder.flashMode = .Off
         recorder.session?.mergeSegmentsUsingPreset(AVAssetExportPresetHighestQuality, completionHandler: { (url, parentError) -> Void in
@@ -658,7 +660,10 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                     print(error)
                 }
             } else {
-                appDelegate.hideActivityIndicator()
+                main{
+                    appDelegate.hideActivityIndicator()
+                }
+                
                 print("parentError: \(parentError)")
             }
         })
