@@ -38,7 +38,7 @@ extension ApproveableBehavior where TargetBehaviorType: Named {
 //            self.approveButton.titleLabel?.adjustsFontSizeToFitWidth = true
 //            self.approveButton.titleLabel?.lineBreakMode = .ByClipping
             self.approveButton.hidden = self.hidesApproveButton
-            self.approveConstraint.active = !self.hidesApproveButton
+//            self.approveConstraint.active = !self.hidesApproveButton
 
             self.approveButton.setNeedsLayout()
         }

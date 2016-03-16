@@ -12,39 +12,52 @@ class CommonTimelineTableViewController: UITableViewController {
 
     var users: [User] = [] {
         didSet {
-            main { self.tableView.reloadData() }
             
-            for j in 0..<users.count {
-                let ts = users[j].timelines
-                for i in 0..<ts.count {
-                    users[j].timelines[i].reloadMoments {
-                        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
-                            cell.timeline = self.users[j].timelines[i]
-                        }
+            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update", userInfo: nil, repeats: false)
+        }
+    }
+    func update(){
+        main { self.tableView.reloadData() }
+        
+        for j in 0..<users.count {
+            let ts = users[j].timelines
+            for i in 0..<ts.count {
+                users[j].timelines[i].reloadMoments {
+                    if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
+                        cell.timeline = self.users[j].timelines[i]
                     }
                 }
             }
         }
-    }
 
+    }
+    
+    var lblFeed:UILabel!
     var callbacks: [AnyObject?] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        callbacks.append(setUpReloadable())
-
-        tabBarController?.delegate = self
-        navigationController?.delegate = self
-        
-        self.refreshControl?.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
-        self.refreshTableView()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update1", userInfo: nil, repeats: false)
 
+    }
+    func update1(){
+        callbacks.append(setUpReloadable())
+        
+        tabBarController?.delegate = self
+        navigationController?.delegate = self
+        
+        self.refreshControl?.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshTableView()
+        
+        NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "status")
+    }
     func refreshTableView() { }
     
     // MARK: - Table view data source
@@ -55,6 +68,17 @@ class CommonTimelineTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(users[section].timelines.count == 0 && NSUserDefaults.standardUserDefaults().valueForKey("status") as? String == "yes"){
+            
+            self.tableView.addSubview(lblFeed)
+            NSUserDefaults.standardUserDefaults().setObject("no", forKey: "status")
+        }
+        if(users[section].timelines.count != 0)
+        {
+            lblFeed.removeFromSuperview()
+        }
+        
+        
         return users[section].timelines.count
     }
 
@@ -140,13 +164,23 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
     }
     override func reloadData() {
         main {
-            self.refreshTableView()
-            self.tableView.reloadData()
+            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update2", userInfo: nil, repeats: false)
+
         }
     }
-
+    func update2(){
+        self.refreshTableView()
+        self.tableView.reloadData()
+    }
     override func viewWillAppear(animated: Bool) {
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update3", userInfo: nil, repeats: false)
+    }
+    func update3(){
         self.setUpHooking() // required for Hooking protocol
+        
+        lblFeed = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height))
+        lblFeed.textAlignment = NSTextAlignment.Center
+        lblFeed.text = "No Feedeos found"
     }
     override func viewWillDisappear(animated: Bool) {
         cleanUpHooking() // breaks cycles on disappear

@@ -27,6 +27,7 @@ class Timeline: Synchronized, DictConvertable {
     
     var name: String
     var updated_at:String
+    var userfullName:String
     var moments: [Moment]
     var followersCount: Int
     var likesCount: Int
@@ -40,13 +41,16 @@ class Timeline: Synchronized, DictConvertable {
     var commentsCount: Int = 0
     var description: String
     var adminId: String
+    var participants : NSMutableArray = []
 
     weak var parent: ParentType?
     
     typealias ParentType = User
-    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, commentscount: Int? , description: String , adminId: String , parent: User? = nil,updated_at: String) {
+
+    required init(name: String, followersCount: Int, likesCount: Int, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, persistent: Bool = false, duration: Int?, moments: [Moment], state: SynchronizationState, grouptimeline: Bool, commentscount: Int? , description: String , adminId: String , parent: User? = nil , updated_at: String ,userfullName :String, participants: NSMutableArray) {
         self.name = name
         self.updated_at = updated_at
+        self.userfullName = userfullName
         self.parent = parent
         self.state = state
         self.followersCount = followersCount
@@ -61,7 +65,8 @@ class Timeline: Synchronized, DictConvertable {
         self.commentsCount = commentscount! ?? 0
         self.description = description
         self.adminId = adminId
-        
+        self.participants = participants.mutableCopy() as! NSMutableArray
+
         self.moments = moments.sort { lhs, rhs in
             switch (lhs.state, rhs.state) {
             case (.LocalOnly, _):
@@ -86,23 +91,55 @@ class Timeline: Synchronized, DictConvertable {
     }
     convenience required init(dict: [String: AnyObject], parent: ParentType? = nil) {
         let duration = dict["moments_duration"] as? Float
-        self.init(name: (dict["name"] as? String) ?? "",
-            followersCount: (dict["followers_count"] as? Int) ?? 0,
-            likesCount: (dict["likes_count"] as? Int) ?? 0,
-            liked: dict["liked"] as? Bool ?? false,
-            blocked: dict["blocked"] as? Bool ?? false,
-            followed: FollowState(rawValue: dict["followed"] as? String ?? "not following") ?? .NotFollowing,
-            hasNews: dict["hasNews"] as? Bool ?? false,
-            persistent: dict["persistent"] as? Bool ?? false,
-            duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
-            moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
-            state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-            grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent,updated_at: (dict["updated_at"] as? String) ?? ""
-        )
-    }
-    
+
+        var userFullNameStr : (NSString) = ""
+        
+        if let userFirstNameStr = dict["firstname"] as? String
+        {
+            userFullNameStr = "\(userFirstNameStr)"
+            if let userLasstNameStr = dict["lastname"] as? String
+            {
+                userFullNameStr = "\(userFirstNameStr) \(userLasstNameStr)"
+            }
+        }
+        
+     let gtl = dict["group_timeline"] as? Bool ?? false
+        if gtl{
+            self.init(name: (dict["name"] as? String) ?? "",
+                followersCount: (dict["followers_count"] as? Int) ?? 0,
+                likesCount: (dict["likes_count"] as? Int) ?? 0,
+                liked: dict["liked"] as? Bool ?? false,
+                blocked: dict["blocked"] as? Bool ?? false,
+                followed: FollowState(rawValue: dict["followed"] as? String ?? "not following") ?? .NotFollowing,
+                hasNews: dict["hasNews"] as? Bool ?? false,
+                persistent: dict["persistent"] as? Bool ?? false,
+                duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
+                moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
+                state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
+                grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent,updated_at: (dict["updated_at"] as? String) ?? "" , userfullName :userFullNameStr as String,  participants : (dict["participants"] as? NSMutableArray) ?? []
+            )
+        }
+        else
+        {
+            self.init(name: (dict["name"] as? String) ?? "",
+                followersCount: (dict["followers_count"] as? Int) ?? 0,
+                likesCount: (dict["likes_count"] as? Int) ?? 0,
+                liked: dict["liked"] as? Bool ?? false,
+                blocked: dict["blocked"] as? Bool ?? false,
+                followed: FollowState(rawValue: dict["followed"] as? String ?? "not following") ?? .NotFollowing,
+                hasNews: dict["hasNews"] as? Bool ?? false,
+                persistent: dict["persistent"] as? Bool ?? false,
+                duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
+                moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
+                state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
+                grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent , updated_at: (dict["updated_at"] as? String) ?? "" , userfullName :(dict["userfullName"] as? String) ?? "", participants : [] )
+
+        }
+        
+        }
     var dict: [String: AnyObject] {
-        return ["state": state.dict, "name": name, "followers_count": followersCount, "likes_count": likesCount, "moments": moments.map { $0.dict }, "liked": liked, "followed": followed.rawValue, "moments_duration": duration ?? 0, "blocked": blocked, "hasNews": hasNews, "persistent": persistent , "group_timeline" : groupTimeline , "comments_count" : commentsCount ?? 0 , "description" :description ,"admin_id" : adminId]
+             return ["state": state.dict, "name": name, "followers_count": followersCount, "likes_count": likesCount, "moments": moments.map { $0.dict }, "liked": liked, "followed": followed.rawValue, "moments_duration": duration ?? 0, "blocked": blocked, "hasNews": hasNews, "persistent": persistent , "group_timeline" : groupTimeline , "comments_count" : commentsCount ?? 0 , "description" :description ,"admin_id" : adminId , "userfullName": userfullName, "participants": participants]
+     
     }
     
     var uuid: UUID? {
@@ -142,53 +179,98 @@ extension Timeline {
         
         Storage.performRequest(request) { (json) -> Void in
             var timelines = [Timeline]()
-            
+            let currentUserId = Storage.session.currentUser?.uuid
+
             let tempTimelinesArray : NSMutableArray = []
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
                 
-                for i in 0..<(Storage.session.currentUser?.timelines.count ?? 0) {
-                    let t = Storage.session.currentUser!.timelines[i]
-                    var containtl : Bool = false
-                    for td in timelineDicts
-                    {
-                        let tid = td["id"] as! UUID
-                        if tid == t.state.uuid
-                        {
-                            containtl = true
-                        }
-                    }
-                    if !containtl{
-                        tempTimelinesArray.addObject(i)
-                    }
-                }
-//                if tempTimelinesArray.count > 0
-//                {
-//                    for i in 0..<(tempTimelinesArray.count ?? 0) {
-//                        Storage.session.currentUser!.timelines.removeAtIndex(i)
-//                        serialHook.perform(key: .ForceReloadData, argument: ())
+//                for i in 0..<(Storage.session.currentUser?.timelines.count ?? 0) {
+//                    let t = Storage.session.currentUser!.timelines[i]
+//                    var containtl : Bool = false
+//                    for td in timelineDicts
+//                    {
+//                        let tid = td["id"] as! UUID
+//                        if tid == t.state.uuid
+//                        {
+//                            containtl = true
+//                        }
+//                    }
+//                    if !containtl{
+//                        tempTimelinesArray.addObject(i)
 //                    }
 //                }
+
+//                switch request {
+//                    case .TimelineMe:
+//                        for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i
+//                        {
+//                            let t = Storage.session.currentUser!.timelines[i]
+//                            var containtl : Bool = false
+//                            
+//                            for td in timelineDicts
+//                            {
+//                                let tid = td["id"] as! UUID
+//                                let tlCreaterID = td["user_id"] as? UUID
+//                                let sameUserId = (currentUserId == tlCreaterID)
+//                                
+//                                if tid == t.state.uuid && sameUserId
+//                                {
+//                                    containtl = true
+//                                }
+//                            }
+//                            if !containtl{
+//                                tempTimelinesArray.addObject(i)
+//                            }
+//                        }
+//                        if tempTimelinesArray.count > 0
+//                        {
+//                            for var i = 0; i < tempTimelinesArray.count; ++i
+//                            {
+//                                print(Storage.session.currentUser!.timelines.count)
+//                                if (Storage.session.currentUser!.timelines.count >= i)
+//                                {
+//                                    Storage.session.currentUser!.timelines.removeAtIndex(i)
+//                                    serialHook.perform(key: .ForceReloadData, argument: ())
+//                                }
+//                            }
+//                        }
+//                    
+//
+//                    
+//                default:
+//                    break
+//                }
+
                 
                 for td in timelineDicts {
-                    //print(timelineDicts)
                     if let userID = td["user_id"] as? UUID
                     {
                         let owner: User
                         if let user = Storage.findUser(userID)
                         { // update user
                             owner = user
+
                         } else
                         { // set up user
 //                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), parent: Storage.session)
                             
-                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil , parent: Storage.session)
 
+//                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil ,  parent: Storage.session)
+
+
+                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil , firstname: nil, lastname: nil, imageurl: nil, parent: Storage.session)
                             
                             Storage.session.users.append(owner)
                             
                             Storage.performRequest(ApiRequest.UserProfile(userID), completion: { (json) -> Void in
                                 if let v = json["name"] as? String {
                                     owner.name = v
+                                }
+                                if let v = json["firstname"] as? String {
+                                    owner.firstName = v
+                                }
+                                if let v = json["lastname"] as? String {
+                                    owner.lastName = v
                                 }
                                 if let v = json["email"] as? String {
                                     owner.email = v
@@ -214,6 +296,12 @@ extension Timeline {
                                 if let v = json["updated_at"] as? String {
                                     owner.updated_at = v
                                 }
+                                
+                                if let v = json["lastname"] as? String {
+                                    let fname = json["firstname"] as? String
+                                    let lname = json["lastname"] as? String
+                                    owner.userfullName = "\(fname) \(lname)"
+                                }
                                 if let v = json["liked"] as? Bool {
                                     owner.liked = v
                                 }
@@ -224,6 +312,20 @@ extension Timeline {
                                 }
                                 if let v = json["blocked"] as? Bool {
                                     owner.blocked = v
+                                }
+                                if let v = json["image"] as? String {
+                                    owner.imageUrl = v
+                                }
+                                var userFullNameStr : (NSString) = ""
+                                owner.userfullName = ""
+                                if let userFirstNameStr = json["firstname"] as? String
+                                {
+                                    userFullNameStr = "\(userFirstNameStr)"
+                                    if let userLasstNameStr = json["lastname"] as? String
+                                    {
+                                        userFullNameStr = "\(userFirstNameStr) \(userLasstNameStr)"
+                                    }
+                                    owner.userfullName = userFullNameStr as String
                                 }
                                
                                 owner.state = SynchronizationState(dict: json)
@@ -270,8 +372,10 @@ extension Timeline {
                             if let aId = td["admin_id"] as? String {
                                 existing.adminId = aId
                             }
+                            if let participants = td["participants"] as? NSArray{
+                                existing.participants = participants.mutableCopy() as! NSMutableArray
+                            }
                             existing.state = SynchronizationState(dict: td)
-                            
                             tl = existing
                         } else
                         { // set up timeline

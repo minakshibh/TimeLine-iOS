@@ -34,7 +34,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var view1:UIView!
     var view2:UIView!
     var invitedFriendsArray: NSMutableArray! = []
-    
+    var status:Bool = false
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
     
@@ -171,6 +171,27 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        
+        if(isiphone6()==1 || isiPhone5()==1){
+            if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
+                
+            }else{
+                self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
+                status = true
+            }
+        }
+        
+        if(isiphone6Plus()==1){
+            if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
+                
+            }else{
+                self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
+                status = true
+            }
+        }
+        
+
 //        0.0, 687.0, 414.0, 49.0
         
         
@@ -478,7 +499,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 //                    return 100
                     return 60
                 } else {
-                    return 382
+                    return 432
                 }
             
             }
@@ -584,6 +605,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
          if tableView == self.tableView {
                 return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
             } else {
+            
+            
                 if searching && searchResults.count == 0 {
                     let cell = self.tableView.dequeueReusableCellWithIdentifier("ActivityCell", forIndexPath: indexPath)
                     return cell
@@ -605,6 +628,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 
                     return cell
                 }
+            
             }
         }
     }
@@ -790,7 +814,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
                             parent.timelines.append(timeline)
                             results.append(timeline)
                         } else {
-                            let _ = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [timeline], state: .Dummy(parentID), userfullname : nil , parent: nil)
+                            let _ = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [timeline], state: .Dummy(parentID), userfullname : nil , firstname : nil , lastname : nil , imageurl : nil , parent: nil)
                             results.append(timeline)
                             
                             Storage.performRequest(ApiRequest.UserProfile(parentID), completion: { (json) -> Void in

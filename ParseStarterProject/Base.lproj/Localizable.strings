@@ -16,7 +16,7 @@
 "Setting-Internet-Error-Action-Dismiss" = "Ok";
 
 /* MARK: Blocking */
-"Timeline-Alert-Block-Title" = "Block Timeline";
+"Timeline-Alert-Block-Title" = "Block Feedeo";
 "Timeline-Alert-Block-Message-Name:%@" = "Do you want to block #%@?";
 "Timeline-Alert-Block-Action-Cancel" = "Cancel";
 "Timeline-Alert-Block-Action-Block" = "Block";
@@ -27,7 +27,7 @@
 "User-Alert-Block-Action-Block" = "Block";
 
 /* MARK: Unblocking */
-"Timeline-Alert-Unblock-Title" = "Unblock Timeline";
+"Timeline-Alert-Unblock-Title" = "Unblock Feedeo";
 "Timeline-Alert-Unblock-Message-Name:%@" = "Do you want to unblock #%@?";
 "Timeline-Alert-Unblock-Action-Cancel" = "Cancel";
 "Timeline-Alert-Unblock-Action-Unblock" = "Unblock";
@@ -38,8 +38,8 @@
 "User-Alert-Unblock-Action-Unblock" = "Unblock";
 
 /* MARK: Capture */
-"Capture-Authorization-Failure-Title" = "Timeline";
-"Capture-Authorization-Failure-Message" = "Timeline doesn't have permission to use Camera, change privacy settings for use.";
+"Capture-Authorization-Failure-Title" = "Feedeo";
+"Capture-Authorization-Failure-Message" = "Feedeo doesn't have permission to use Camera, change privacy settings for use.";
 "Capture-Authorization-Failure-Dismiss" = "Okay";
 
 "Capture-Record-Button-Start-Title" = "Record";
@@ -49,7 +49,7 @@
 "Login-Alert-Wait-Title" = "Performing login";
 
 /* MARK: Session Expired */
-"Session-Alert-Expired-Title" = "Timeline";
+"Session-Alert-Expired-Title" = "Feedeo";
 "Session-Alert-Expired-Message" = "Your session expired. Please log in again.";
 "Session-Alert-Expired-Action-Dismiss" = "Ok";
 
@@ -61,7 +61,7 @@
 
 /* MARK: Settings Delete */
 "Settings-Alert-Delete-Title" = "Delete Account";
-"Settings-Alert-Delete-Message" = "All your moments and timelines will be lost and can't be restored.";
+"Settings-Alert-Delete-Message" = "All your moments and Feedeos will be lost and can't be restored.";
 "Settings-Alert-Delete-Action-Cancel" = "Cancel";
 "Settings-Alert-Delete-Action-Delete" = "Delete Account";
 
@@ -85,7 +85,7 @@
 "Settings-Sheet-Image-Source-Action-Cancel" = "Cancel";
 
 /* MARK: Settings Timelines Public */
-"Settings-Alert-TimelinesPublic-Error-Title" = "Timelines Public";
+"Settings-Alert-TimelinesPublic-Error-Title" = "Feedeos Public";
 "Settings-Alert-TimelinesPublic-Error-Action-Dismiss" = "Ok";
 
 /* MARK: Settings Followers Approve */
@@ -97,30 +97,30 @@
 "Settings-String-Share-URL" = "http://www.mytimelineapp.com";
 
 /* MARK: Timeline Deletion */
-"Timeline-Alert-Delete-Wait-Title" = "Delete Timeline";
+"Timeline-Alert-Delete-Wait-Title" = "Delete Feedeo";
 "Timeline-Alert-Delete-Wait-Message" = "Performing action";
 
-"Timeline-Alert-Delete-Error-Title" = "Delete Timeline";
+"Timeline-Alert-Delete-Error-Title" = "Delete Feedeo";
 "Timeline-Alert-Delete-Error-Action-Dismiss" = "Ok";
 
-"Timeline-Alert-Delete-Confirm-Title" = "Delete Timeline";
-"Timeline-Alert-Delete-Confirm-Message" = "Do you really want to delete the Timeline?";
+"Timeline-Alert-Delete-Confirm-Title" = "Delete Feedeo";
+"Timeline-Alert-Delete-Confirm-Message" = "Do you really want to delete the Feedeo?";
 "Timeline-Alert-Delete-Confirm-Action-Delete" = "Delete";
 "Timeline-Alert-Delete-Confirm-Action-Cancel" = "Cancel";
 
 /* MARK: Timeline Creation */
-"Timeline-Alert-Create-Missing-Title" = "Create Timeline";
-"Timeline-Alert-Create-Missing-Message" = "Please name your Timeline.";
+"Timeline-Alert-Create-Missing-Title" = "Create Feedeo";
+"Timeline-Alert-Create-Missing-Message" = "Please name your Feedeo.";
 "Timeline-Alert-Create-Missing-Dismiss" = "Ok";
-"Timeline-Alert-Create-Missing-Detail-Message"="Please enter description about timeline";
+"Timeline-Alert-Create-Missing-Detail-Message"="Please enter description about Feedeo";
 
-"Timeline-Alert-Create-Error-Title" = "Create Timeline";
+"Timeline-Alert-Create-Error-Title" = "Create Feedeo";
 "Timeline-Alert-Create-Error-Action-Dismiss" = "Ok";
 
 /* MARK: Invite Friend GroupTimeline Creation */
 
 "Invite-Friends-Missing-Title" = "Invite Friends" ;
-"Invite-Friends-Missing-Message" = "Please add friends to create group timeline." ;
+"Invite-Friends-Missing-Message" = "Please add friends to create group Feedeo." ;
 "Invite-Friends-Missing-Dismiss" = "OK" ;
 "Invite-Friends-Missing-Detail-Message" = "" ;
 
@@ -130,20 +130,20 @@
 "Timeline-Button-Cell-Pending-Title" = "Pending";
 
 /* MARK: Timeline Limit */
-"Timeline-Alert-Limit-Error-Title" = "Timeline Limit";
+"Timeline-Alert-Limit-Error-Title" = "Feedeo Limit";
 "Timeline-Alert-Limit-Error-Default" = "";
 "Timeline-Alert-Limit-Error-Action-Later" = "Try Later";
 "Timeline-Alert-Limit-Error-Action-Retry" = "Retry Now";
 
 "Timeline-Alert-Limit-Error-Action-Dismiss" = "Ok";
 
-"Timeline-Alert-Limit-Required-Title" = "Timeline limit";
-"Timeline-Alert-Limit-Required-Message" = "You reached your timeline limit. To add a new timeline you need an upgrade.";
+"Timeline-Alert-Limit-Required-Title" = "Feedeo limit";
+"Timeline-Alert-Limit-Required-Message" = "You reached your Feedeo limit. To add a new Feedeo you need an upgrade.";
 "Timeline-Alert-Limit-Required-Action-Upgrade" = "Upgrade";
 "Timeline-Alert-Limit-Required-Action-Cancel" = "Cancel";
 
 // MARK: Timeline Share
-"Timeline-String-Share-Message-User:%@-Timeline:%@" = "Checkout @%1$@'s Timeline #%2$@";
+"Timeline-String-Share-Message-User:%@-Timeline:%@" = "Checkout @%1$@'s Feedeo #%2$@";
 "Timeline-String-Share-URL-User:%@-Timeline:%@" = "http://www.mytimelineapp.com/user/%1$@/timeline/%2$@";
 
 // MARK: User Share
@@ -184,7 +184,7 @@
 
 /* MARK: - 1.0.39 */
 /* MARK: Timeline Download */
-"Timeline-Alert-Download-Info-Title" = "Download Timeline";
+"Timeline-Alert-Download-Info-Title" = "Download Feedeo";
 "Timeline-Alert-Download-Info-Message-Timeline:%@" = "Do you want to download #%1$@ to  your app for full resolution playback?  This doesn't mean it is saved to your phone.";
 "Timeline-Alert-Download-Info-Action-Dismiss" = "Cancel";
 "Timeline-Alert-Download-Info-Action-Download" = "Download";
@@ -192,15 +192,15 @@
 /* MARK: - 1.0.41 */
 /* MARK: Timeline Playback Errors */
 "Timeline-Alert-BlockedTimeline-Title-Timeline:%@" = "#%1$@ blocked";
-"Timeline-Alert-BlockedTimeline-Message-User:%@-Timeline:%@" = "@%1$@'s timeline #%2$@ can't be played, because you blocked it.";
+"Timeline-Alert-BlockedTimeline-Message-User:%@-Timeline:%@" = "@%1$@'s Feedeo #%2$@ can't be played, because you blocked it.";
 "Timeline-Alert-BlockedTimeline-Action-Dismiss" = "Ok";
 
 "Timeline-Alert-BlockedUser-Title-User:%@" = "@%1$@ blocked";
 "Timeline-Alert-BlockedUser-Message-User:%@-Timeline:%@" = "You can't play #%2$@, because you blocked @%1$@.";
 "Timeline-Alert-BlockedUser-Action-Dismiss" = "Ok";
 
-"Timeline-Alert-NotPublic-Title-User:%@" = "Timeline not public";
-"Timeline-Alert-NotPublic-Message-User:%@" = "@%1$@'s timelines aren't public. You need to follow him, in order to see his timelines.";
+"Timeline-Alert-NotPublic-Title-User:%@" = "Feedeo not public";
+"Timeline-Alert-NotPublic-Message-User:%@" = "@%1$@'s Feedeos aren't public. You need to follow him, in order to see his Feedeos.";
 "Timeline-Alert-NotPublic-Action-Dismiss" = "Ok";
 
 // MARK: - 1.0.75
@@ -245,13 +245,13 @@
 "Timeline-Sheet-More-Button-Likers" = "Show Likes";
 
 // MARK: - 1.0.81
-"Draft-Alert-PickTimeline-Title" = "Choose Timeline";
+"Draft-Alert-PickTimeline-Title" = "Choose Feedeo";
 "Draft-Alert-PickTimeline-Message" = "";
 "Draft-Alert-PickTimeline-Cancel" = "Cancel";
 
 // MARK: - 91
 "Draft-Alert-ConfirmUpload-Title:%@" = "Upload to %@";
-"Draft-Alert-ConfirmUpload-Message" = "Uploading moments to a timeline cannot be undone.";
+"Draft-Alert-ConfirmUpload-Message" = "Uploading moments to a Feedeo cannot be undone.";
 "Draft-Alert-ConfirmUpload-Upload" = "Upload";
 "Draft-Alert-ConfirmUpload-Cancel" = "Cancel";
 
