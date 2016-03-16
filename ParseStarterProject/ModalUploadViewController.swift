@@ -35,6 +35,7 @@ class ModalUploadViewController: UIViewController {
         
         Storage.performUpload(moment: moment, timeline: timeline) { (response: Response<AnyObject, NSError>) -> Void in
             guard let json = response.result.value else { return }
+            print(json)
             if let dict = json as? [String: AnyObject] {
                 let state = SynchronizationState(dict: dict, parent: nil)
                 if let _ = dict["timeline_id"] as? UUID,

@@ -17,13 +17,15 @@ typealias groupdescription = String
 typealias owner = String
 typealias timeLinename = String
 typealias timeLineId = String
+typealias commentID = String
+typealias commentmessage = String
 
 enum ApiRequest {
     
 
 //    private static let baseUrl = NSURL(string: "http://timeline-server.elasticbeanstalk.com")!
 //    private static let baseUrl = NSURL(string: "http://54.191.110.86")!
-    private static let baseUrl = NSURL(string: "http://54.200.6.179")!
+    private static let baseUrl = NSURL(string: "http://54.187.225.1")!
 
     /// GET /api/user/get_token
     /// Header: X-Parse-Session-Token String
@@ -73,7 +75,10 @@ enum ApiRequest {
     case UserProfile(UUID)
     /// POST /api/user/settings
     case UserSettings(String, Bool)
-    
+    ////PATCH api/comment/id/edit/
+    case EditComment(commentID,commentmessage)
+    ////DELETE api/comment/id/delete/
+    case DeleteComment(commentID)
     /// GET /api/timeline/me
     case TimelineMe
     /// GET /api/timeline/user/:user_id
@@ -221,6 +226,7 @@ enum ApiRequest {
             urlRequest.HTTPMethod = "GET"
             
         case .CreateVideo(_, _):
+            
             urlString = "/api/video/create"
             urlRequest.HTTPMethod = "PUT"
             
@@ -235,10 +241,20 @@ enum ApiRequest {
         case .UserMe:
             urlString = "/api/user/me"
             urlRequest.HTTPMethod = "GET"
-            
+        
         case let .UserProfile(uuid):
             urlString = "/api/user/\(uuid.urlEncoded)"
             urlRequest.HTTPMethod = "GET"
+
+        case .EditComment(let commentID, let commentmessage):
+            print("commentmessage: \(commentmessage)")
+            let bodyData = "comment=\(commentmessage.urlEncoded)"
+            urlString = "api/comment/\(commentID.urlEncoded)/edit?\(bodyData)"
+            urlRequest.HTTPMethod = "PATCH"
+            
+        case .DeleteComment(let commentID):
+            urlString = "api/comment/\(commentID.urlEncoded)/delete"
+            urlRequest.HTTPMethod = "DELETE"
             
         case let .UserSettings(option, value):
             urlString = "/api/user/settings"

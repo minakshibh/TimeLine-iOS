@@ -32,7 +32,7 @@ extension LikeableBehavior2 where TargetBehaviorType: Ownable {
 
         if let behaviorTarget = behaviorTarget {
 //            likeButton1.setTitle("\(behaviorTarget.likesCount)", forState: .Normal)
-            print("****\(behaviorTarget.liked) 0-----\(behaviorTarget.isOwn)")
+           // print("****\(behaviorTarget.liked) 0-----\(behaviorTarget.isOwn)")
 //            likeButton1.selected =!= behaviorTarget.liked
             likeButton1.enabled =!= true
             likeButton1.selected = false

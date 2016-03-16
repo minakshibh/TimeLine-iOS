@@ -25,6 +25,7 @@
 		979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */; };
 		97ADC8791C89B0BF00546A9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ADC8781C89B0BF00546A9B /* AppDelegate.swift */; };
 		97AE039C1C80389400C17D98 /* HelperIphoneCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */; };
+		97F83CE31C99457E0079A657 /* ModernTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F83CE21C99457E0079A657 /* ModernTimelineView.swift */; };
 		BA05786E1C1A0FC10098C3A1 /* NormalButtonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */; };
 		BA05787A1C1A39470098C3A1 /* UserSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0578791C1A39470098C3A1 /* UserSummaryView.xib */; };
 		BA0578801C1A3B630098C3A1 /* UserSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05787F1C1A3B630098C3A1 /* UserSummaryTableViewCell.swift */; };
@@ -57,7 +58,6 @@
 		BA3DB6641B986AA5004E061A /* UIAnimationCurve+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3DB6631B986AA5004E061A /* UIAnimationCurve+Additions.swift */; };
 		BA42085F1BF1050400FC214C /* Each.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA42085E1BF1050400FC214C /* Each.swift */; };
 		BA4372B41B94BD27009341F2 /* PFInstalltion+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4372B31B94BD27009341F2 /* PFInstalltion+Additions.swift */; };
-		BA452AE91BFB21BC00FF4598 /* ModernTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA452AE81BFB21BC00FF4598 /* ModernTimelineView.swift */; };
 		BA452AEB1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA452AEA1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift */; };
 		BA452AED1BFB2EEF00FF4598 /* TimelineViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA452AEC1BFB2EEF00FF4598 /* TimelineViewRight.swift */; };
 		BA6729D51B998686000935A1 /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6729D41B998686000935A1 /* WalkthroughViewController.swift */; };
@@ -277,6 +277,7 @@
 		97ADC8781C89B0BF00546A9B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97AE039A1C80389400C17D98 /* HelperIphoneCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelperIphoneCheck.h; path = "../Objective-C classes/HelperIphoneCheck.h"; sourceTree = "<group>"; };
 		97AE039B1C80389400C17D98 /* HelperIphoneCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelperIphoneCheck.m; path = "../Objective-C classes/HelperIphoneCheck.m"; sourceTree = "<group>"; };
+		97F83CE21C99457E0079A657 /* ModernTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModernTimelineView.swift; sourceTree = "<group>"; };
 		BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalButtonProperties.swift; sourceTree = "<group>"; };
 		BA0578791C1A39470098C3A1 /* UserSummaryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSummaryView.xib; sourceTree = "<group>"; };
 		BA05787F1C1A3B630098C3A1 /* UserSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSummaryTableViewCell.swift; sourceTree = "<group>"; };
@@ -309,7 +310,6 @@
 		BA3DB6631B986AA5004E061A /* UIAnimationCurve+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAnimationCurve+Additions.swift"; sourceTree = "<group>"; };
 		BA42085E1BF1050400FC214C /* Each.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Each.swift; sourceTree = "<group>"; };
 		BA4372B31B94BD27009341F2 /* PFInstalltion+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PFInstalltion+Additions.swift"; sourceTree = "<group>"; };
-		BA452AE81BFB21BC00FF4598 /* ModernTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModernTimelineView.swift; sourceTree = "<group>"; };
 		BA452AEA1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModernTimelineTableViewCell.swift; sourceTree = "<group>"; };
 		BA452AEC1BFB2EEF00FF4598 /* TimelineViewRight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewRight.swift; sourceTree = "<group>"; };
 		BA6729D41B998686000935A1 /* WalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
@@ -1096,8 +1096,8 @@
 		DAFBAE041B86170800F3906E /* User */ = {
 			isa = PBXGroup;
 			children = (
-				DAE99AB11B7CF7540031A3BB /* ProfileImageView.swift */,
 				DA3FF4D61B6BA6F0006CC0D7 /* TimelineTableHeaderView.swift */,
+				DAE99AB11B7CF7540031A3BB /* ProfileImageView.swift */,
 				DA95401D1B839BE400392C75 /* UserTableViewCell.swift */,
 				BAC95FE81B9DEE0500CC9FD5 /* UserApproveViewCell.swift */,
 				DA38C4E21B87DB74004C3A14 /* TimelineTableHeaderView.xib */,
@@ -1111,7 +1111,7 @@
 				DA5115681B7E690400B0776A /* TimelineView.swift */,
 				DA51156C1B7E710A00B0776A /* TimelineCollectionViewCell.swift */,
 				DAFCE32B1B7E74C600F189AF /* SendMomentBarCollectionReusableView.swift */,
-				BA452AE81BFB21BC00FF4598 /* ModernTimelineView.swift */,
+				97F83CE21C99457E0079A657 /* ModernTimelineView.swift */,
 				BA452AEA1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift */,
 				BAC4F0E41BFB62D4009C395D /* ModernTimelineBehavior.swift */,
 				18DBC70F1C902A67006AFE68 /* ModernTimelineView.xib */,
@@ -1177,7 +1177,7 @@
 				TargetAttributes = {
 					81BA81441A49DA1800E65899 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = T5DY39F2BR;
+						DevelopmentTeam = B4F2Z6ZQE6;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1397,7 +1397,6 @@
 				BA3CF6431B9CE46F007BB3A6 /* CurrentTimelineFollowingTableViewController.swift in Sources */,
 				BA19378B1BA8AC070005BC69 /* TextViewViewController.swift in Sources */,
 				DA873BA41B7E991900A8BB06 /* SendMomentTableViewController.swift in Sources */,
-				BA452AE91BFB21BC00FF4598 /* ModernTimelineView.swift in Sources */,
 				BAEE09541C1705EB0095F6CE /* Hooking.swift in Sources */,
 				DAA525541B557E7C002BB56B /* TimelineDataSource.swift in Sources */,
 				DA57C7831B53F75C00C51BC0 /* Localization.swift in Sources */,
@@ -1496,6 +1495,7 @@
 				DA2BA53C1B78D18600DE6300 /* Synchronized.swift in Sources */,
 				DAA525591B55812E002BB56B /* CachedSource.swift in Sources */,
 				18ECB2851C7D8249001EA23B /* EditWebsiteTableViewController.swift in Sources */,
+				97F83CE31C99457E0079A657 /* ModernTimelineView.swift in Sources */,
 				975E4F9A1C80702300DAEF0E /* UILabel+helper.m in Sources */,
 				DAA5254D1B557ACF002BB56B /* CoreDataSource.swift in Sources */,
 				DA75465E1B82AA8A00FADDE5 /* TrendingTimelineTableViewController.swift in Sources */,
@@ -1664,8 +1664,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reebay Inc. (B4F2Z6ZQE6)";
 				CURRENT_PROJECT_VERSION = 105;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1707,9 +1707,9 @@
 					"-framework",
 					"\"SWFrameButton\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
+				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "710bb1fe-b6db-451b-adea-7a6d6456bdac";
+				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1723,8 +1723,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rocky Uppal (3R7VB3H8QT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reebay Inc. (B4F2Z6ZQE6)";
 				CURRENT_PROJECT_VERSION = 105;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1766,9 +1766,9 @@
 					"-framework",
 					"\"SWFrameButton\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
+				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "710bb1fe-b6db-451b-adea-7a6d6456bdac";
+				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;

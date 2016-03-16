@@ -117,6 +117,7 @@ extension Storage {
                 if let timelineID = timeline.uuid!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true),
                     let url = moment.localVideoURL {
                         multipartFormData.appendBodyPart(data: timelineID, name: "timeline_id")
+                        print("url: \(url)")
                         multipartFormData.appendBodyPart(fileURL: url, name: "video")
                         
                         if let text = moment.overlayText,

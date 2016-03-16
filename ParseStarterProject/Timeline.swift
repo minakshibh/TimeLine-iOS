@@ -161,16 +161,16 @@ extension Timeline {
                         tempTimelinesArray.addObject(i)
                     }
                 }
-                if tempTimelinesArray.count > 0
-                {
-                    for i in 0..<(tempTimelinesArray.count ?? 0) {
-                        Storage.session.currentUser!.timelines.removeAtIndex(i)
-                        serialHook.perform(key: .ForceReloadData, argument: ())
-                    }
-                }
+//                if tempTimelinesArray.count > 0
+//                {
+//                    for i in 0..<(tempTimelinesArray.count ?? 0) {
+//                        Storage.session.currentUser!.timelines.removeAtIndex(i)
+//                        serialHook.perform(key: .ForceReloadData, argument: ())
+//                    }
+//                }
                 
                 for td in timelineDicts {
-                    print(timelineDicts)
+                    //print(timelineDicts)
                     if let userID = td["user_id"] as? UUID
                     {
                         let owner: User
@@ -309,7 +309,7 @@ extension Timeline {
         Storage.performRequest(ApiRequest.ViewTimelineVideos(state.uuid!), completion: { (json) -> Void in
             var dirty = false
             if let videos = json["videos"] as? [[String: AnyObject]] {
-                print(videos)
+                //print(videos)
                 for v in videos {
                     if let _ = Storage.findMoment(v["id"] as! UUID) {
                         // do nothing

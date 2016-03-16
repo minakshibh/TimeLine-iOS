@@ -15,7 +15,7 @@ protocol NamedBehavior {
 
 extension NamedBehavior {
     func refreshNamedBehavior() {
-        print("^^^^\(behaviorTarget?.name)")
+        //print("^^^^\(behaviorTarget?.name)")
         
         nameLabel.text =!= TargetBehaviorType.prefix.stringByAppendingString(behaviorTarget?.name ?? "")
         

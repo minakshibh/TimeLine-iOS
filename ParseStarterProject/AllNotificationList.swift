@@ -110,7 +110,7 @@ class AllNotificationList: UITableViewController {
             }
             if (months != 0)
             {
-                timeStr = String(months) + "m"
+                timeStr = String(months) + "M"
             }
             else if(days != 0)
             {

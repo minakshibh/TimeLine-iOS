@@ -22,6 +22,9 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     var invitedFriendsArray : NSMutableArray = []
     var InvitedFriends_id : NSMutableArray = []
     var InvitedFriendsIdSTr : NSString = ""
+    var sendbutton = UIButton()
+    var Updatebutton = UIButton()
+    var commentId : String = ""
     
     enum RightError {
     case BlockedTimeline(String, String)
@@ -214,7 +217,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 commentScreenTitle.textAlignment = .Center
                 commentScreenTitle.backgroundColor = UIColor(white: 0, alpha: 1)
                 commentScreenTitle.textColor = UIColor.whiteColor()
-                if let raw : Int = (self.momentPlayerController?.currentIndexOfMoment())!{
+                if let raw : Int = (self.momentPlayerController?.currentIndexOfMoment()){
                     commentScreenTitle.text = "Moment \(raw + 1) Comments"
                 }
                 
@@ -229,7 +232,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 
                 // table view declaration
                 
-                self.commentlist.frame         =   CGRectMake(10, 80, self.timelineCommentView.frame.width-20, self.timelineCommentView.frame.height-144);
+                self.commentlist.frame         =   CGRectMake(0, 64, self.timelineCommentView.frame.width, self.timelineCommentView.frame.height-144);
                 self.commentlist.delegate      =   self
                 self.commentlist.dataSource    =   self
                 self.commentlist.backgroundColor = UIColor.clearColor()
@@ -262,14 +265,24 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 self.commentTextField.attributedPlaceholder = NSAttributedString(string: "Share a comment", attributes:attributes)
                 self.commentTextfeildView.addSubview(self.commentTextField)
                 
-                let button   = UIButton(type: UIButtonType.Custom) as UIButton
-                button.frame = CGRectMake(self.commentTextField.frame.origin.x + self.commentTextField.frame.size.width+10, 15, 50, 50)
-                button.layer.cornerRadius = 4
-                button.backgroundColor = UIColor.redColor()
-                button.setTitle("Send", forState: UIControlState.Normal)
-                button.addTarget(self, action: "MomentPostComment", forControlEvents: UIControlEvents.TouchUpInside)
+                self.sendbutton = UIButton(type: UIButtonType.Custom) as UIButton
+                self.sendbutton.frame = CGRectMake(self.commentTextField.frame.origin.x + self.commentTextField.frame.size.width+10, 15, 50, 50)
+                self.sendbutton.layer.cornerRadius = 4
+                self.sendbutton.hidden = false
+                self.sendbutton.backgroundColor = UIColor.redColor()
+                self.sendbutton.setTitle("Send", forState: UIControlState.Normal)
+                self.sendbutton.addTarget(self, action: "CommentSendButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
+                self.commentTextfeildView.addSubview(self.sendbutton)
                 
-                self.commentTextfeildView.addSubview(button)
+                self.Updatebutton = UIButton(type: UIButtonType.Custom) as UIButton
+                self.Updatebutton.frame = CGRectMake(self.commentTextField.frame.origin.x + self.commentTextField.frame.size.width+10, 15, 50, 50)
+                self.Updatebutton.layer.cornerRadius = 4
+                self.Updatebutton.hidden = true
+                self.Updatebutton.backgroundColor = UIColor.redColor()
+                self.Updatebutton.setTitle("Update", forState: UIControlState.Normal)
+                self.Updatebutton.addTarget(self, action: "CommentUpdateButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
+                self.commentTextfeildView.addSubview(self.Updatebutton)
+                
                 KGModal.sharedInstance().closeButtonType = KGModalCloseButtonType.None
                 KGModal.sharedInstance().showWithContentView(self.timelineCommentView)
             }
@@ -383,7 +396,53 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         }
         
     }
-
+    
+    func CommentUpdateButtonAction(){
+        
+        print("Update button Working")
+        let TrimString = commentTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        if(TrimString == ""){
+            let alert = UIAlertView()
+            alert.title = ""
+            alert.message = "Please enter your comment first."
+            alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
+            alert.show()
+            return
+        }
+        
+        let emoData = commentTextField.text!.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
+        let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
+        print(goodValue!)
+        Storage.performRequest(ApiRequest.EditComment(self.commentId as commentID, goodValue! as commentmessage), completion: { (json) -> Void in
+            main{
+                
+                Storage.performRequest(ApiRequest.MomentComments((self.momentPlayerController?.currentMoment()?.state.uuid)!), completion: { (json) -> Void in
+                    if let raw = json["result"] as? NSMutableArray{
+                        self.commentArray = raw
+                        
+                    }
+                    main{
+                        self.commentlist.reloadData()
+                    }
+                    
+                })
+                self.sendbutton.hidden = false
+                self.Updatebutton.hidden = true
+                
+                self.commentTextField.text = ""
+                self.commentTextField.resignFirstResponder()
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
+                    
+                })
+            }
+            
+            
+        })
+        
+        
+    }
     
     func MomentPostComment(){
         
@@ -450,7 +509,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         }
         commentMessage.autosizeForWidth()
         
-        return CGFloat(60+commentMessage.frame.size.height)
+        return CGFloat(50+commentMessage.frame.size.height)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -458,7 +517,14 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath)
+        //let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath)
+        
+        let reuseIdentifier = "programmaticCell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as! MGSwipeTableCell!
+        if cell == nil
+        {
+            cell = MGSwipeTableCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: reuseIdentifier)
+        }
         
         for object in cell.contentView.subviews
         {
@@ -468,14 +534,14 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         
         cell.backgroundColor = UIColor.clearColor()
         let cellView = UIView()
-        cellView.frame = CGRectMake(0, 5, cell.contentView.frame.size.width, 75)
+        cellView.frame = CGRectMake(0, 5, self.frame.size.width, 65)
         cellView.backgroundColor = UIColor(white: 0, alpha: 0.25)
         cell.contentView.addSubview(cellView)
         
         let userImage = UIButton()
-        userImage.frame = CGRectMake(5, 10, 60, 60)
+        userImage.frame = CGRectMake(15, 10, 50, 50)
         userImage.backgroundColor = UIColor.lightGrayColor()
-        userImage.layer.cornerRadius = 30
+        userImage.layer.cornerRadius = 25
         userImage.tag = indexPath.row
         if let raw = self.commentArray[indexPath.row] as? NSDictionary
         {
@@ -533,7 +599,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             }
             if (months != 0)
             {
-                timeStr = String(months) + "m"
+                timeStr = String(months) + "M"
             }
             else if(days != 0)
             {
@@ -557,7 +623,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         cellView.addSubview(timeStamp)
         
         let commentMessage = UILabel()
-        commentMessage.frame = CGRectMake(80, 40, CGFloat(250+40*isiphone6Plus()-55*isiPhone5()), 30)
+        commentMessage.frame = CGRectMake(80, 30, CGFloat(250+40*isiphone6Plus()-55*isiPhone5()), 30)
         commentMessage.font = UIFont.systemFontOfSize(15)
         commentMessage.textColor = UIColor.whiteColor()
         if let raw = self.commentArray[indexPath.row] as? NSDictionary
@@ -573,10 +639,87 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         commentMessage.autosizeForWidth()
         cellView.addSubview(commentMessage)
         
+        let notifyStr : String
+        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+        {
+            
+            notifyStr = raw["user_id"] as! String
+            if (notifyStr == Storage.session.uuid)
+            {
+                //configure right buttons
+                cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
+                    (sender: MGSwipeTableCell!) -> Bool in
+                    print("Delete: \(indexPath.row)")
+                    
+                    if let raw = self.commentArray[indexPath.row] as? NSDictionary
+                    {
+                        let notifyStr = raw["id"] as! String
+                        print(notifyStr)
+                        print(raw["commentable_id"] as! String)
+                        self.DeleteCommentAPI(notifyStr)
+                        
+                    }
+                    
+                    return true
+                }),MGSwipeButton(title: "Edit",backgroundColor: UIColor.lightGrayColor(), callback: {
+                    (sender: MGSwipeTableCell!) -> Bool in
+                    print("Edit")
+                    self.sendbutton.hidden = true
+                    self.Updatebutton.hidden = false
+                    if let raw = self.commentArray[indexPath.row] as? NSDictionary
+                    {
+                        //print(raw)
+                        self.commentTextField.text = raw["comment"] as? String
+                        self.commentId = (raw["id"] as? String)!
+                    }
+                    return true
+                })]
+                cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
+            }
+            else if  (momentPlayerController?.currentMoment()?.isOwn)!
+            {
+                cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
+                    (sender: MGSwipeTableCell!) -> Bool in
+                    print("Delete: \(indexPath.row)")
+                    
+                    if let raw = self.commentArray[indexPath.row] as? NSDictionary
+                    {
+                        let notifyStr = raw["id"] as! String
+                        print(notifyStr)
+                        print(raw["commentable_id"] as! String)
+                        self.DeleteCommentAPI(notifyStr)
+                    }
+                    
+                    return true
+                })]
+                cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
+            }
+            
+        }
+        
         return cell
     }
     
-    
+    func DeleteCommentAPI(commentid: String){
+        
+        Storage.performRequest(ApiRequest.DeleteComment(commentid as commentID), completion: { (json) -> Void in
+            print(json)
+            main{
+                Storage.performRequest(ApiRequest.MomentComments((self.momentPlayerController?.currentMoment()?.state.uuid)!), completion: { (json) -> Void in
+                    
+                    if let raw = json["result"] as? NSMutableArray{
+                        self.commentArray = raw
+                        
+                    }
+                    main{
+                        self.commentlist.reloadData()
+                    }
+                    
+                })
+            }
+        })
+    }
+
     func UserImageClick(sender: UIButton){
         print(sender.tag)
         if let raw = self.commentArray[sender.tag] as? NSDictionary

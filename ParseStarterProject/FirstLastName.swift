@@ -8,7 +8,7 @@ protocol FirstLastName {
 
 extension FirstLastName {
     func refreshFirstLastName() {
-        print("^^^^\(behaviorTarget?.name)")
+       // print("^^^^\(behaviorTarget?.name)")
         
         nameLabel1.text =!= TargetBehaviorType.prefix.stringByAppendingString(behaviorTarget?.name ?? "")
         

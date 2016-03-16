@@ -71,7 +71,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     private var rightBarButtonItems: [AnyObject]?
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
         
         
     }

@@ -38,12 +38,12 @@ extension TimelineMoreButtonBehavior where Self: UIViewController, Self: Reloada
 //            sheet.addAction(title: lformat(LocalizedString.TimelineSheetMoreButtonUser1s, user.name), style: .Default, handler: performPushableBehaviorAction(user))
 //        }
         
-        sheet.addAction(title: local(.TimelineSheetMoreButtonFollowers), style: .Default) { _ in
-            self.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: timeline))
-        }
-        sheet.addAction(title: local(.TimelineSheetMoreButtonLikers), style: .Default) { _ in
-            self.performSegueWithIdentifier("ShowUserList", sender: LikeableValue(likeable: timeline))
-        }
+//        sheet.addAction(title: local(.TimelineSheetMoreButtonFollowers), style: .Default) { _ in
+//            self.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: timeline))
+//        }
+//        sheet.addAction(title: local(.TimelineSheetMoreButtonLikers), style: .Default) { _ in
+//            self.performSegueWithIdentifier("ShowUserList", sender: LikeableValue(likeable: timeline))
+//        }
         
         if timeline.isOwn {
             sheet.addAction(title: local(.TimelineSheetMoreButtonAdd), style: .Default, handler: addMoment(timeline))
@@ -57,7 +57,7 @@ extension TimelineMoreButtonBehavior where Self: UIViewController, Self: Reloada
     }
     
     func triggerMoreButtonBehavior(timeline: Timeline) {
-        print(timeline.uuid)
+       // print(timeline.uuid)
         let sheet = UIAlertController(title: lformat(.TimelineSheetMoreButtonTitle1s, timeline.name), message: local(.TimelineSheetMoreButtonMessage), preferredStyle: .ActionSheet)
         sheet.addAction(title: local(.TimelineSheetMoreButtonCancel), style: .Cancel, handler: nil)
 
@@ -67,12 +67,12 @@ extension TimelineMoreButtonBehavior where Self: UIViewController, Self: Reloada
             sheet.addAction(title: lformat(LocalizedString.TimelineSheetMoreButtonUser1s, user.name), style: .Default, handler: performPushableBehaviorAction(user))
         }
 
-        sheet.addAction(title: local(.TimelineSheetMoreButtonFollowers), style: .Default) { _ in
-            self.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: timeline))
-        }
-        sheet.addAction(title: local(.TimelineSheetMoreButtonLikers), style: .Default) { _ in
-            self.performSegueWithIdentifier("ShowUserList", sender: LikeableValue(likeable: timeline))
-        }
+//        sheet.addAction(title: local(.TimelineSheetMoreButtonFollowers), style: .Default) { _ in
+//            self.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: timeline))
+//        }
+//        sheet.addAction(title: local(.TimelineSheetMoreButtonLikers), style: .Default) { _ in
+//            self.performSegueWithIdentifier("ShowUserList", sender: LikeableValue(likeable: timeline))
+//        }
 
         if timeline.isOwn {
             sheet.addAction(title: local(.TimelineSheetMoreButtonAdd), style: .Default, handler: addMoment(timeline))

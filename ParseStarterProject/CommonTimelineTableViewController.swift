@@ -59,7 +59,9 @@ class CommonTimelineTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("TimelineCell", forIndexPath: indexPath) as! ModernTimelineTableViewCell
+        
         
         // Configure the cell...
         cell.timelineView.timeline = users[indexPath.section].timelines[indexPath.row]
@@ -67,6 +69,7 @@ class CommonTimelineTableViewController: UITableViewController {
         //cell.deletionCallback = self.deletionCallback()
         
         return cell
+        
     }
     
     /*override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -81,7 +84,7 @@ class CommonTimelineTableViewController: UITableViewController {
         return headerView
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(users[indexPath.section].timelines[indexPath.row].uuid)
+       // print(users[indexPath.section].timelines[indexPath.row].uuid)
     }
 
     

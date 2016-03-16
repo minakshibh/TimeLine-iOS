@@ -311,7 +311,6 @@
                 <outletCollection property="previewItems" destination="N6K-aH-QGE" collectionClass="NSMutableArray" id="u4K-nH-Lrt"/>
                 <outletCollection property="previewItems" destination="j8U-pc-cJ2" collectionClass="NSMutableArray" id="6gg-4u-Vgt"/>
                 <outletCollection property="previewItems" destination="j95-K4-6Qt" collectionClass="NSMutableArray" id="rXk-NW-5EK"/>
-                <outletCollection property="previewItems" destination="Ekh-71-eJd" collectionClass="NSMutableArray" id="jwG-8Z-kI8"/>
                 <outletCollection property="previewItems" destination="rdV-je-7Td" collectionClass="NSMutableArray" id="W91-mn-2pW"/>
                 <outletCollection property="previewItems" destination="MRr-Jw-1xW" collectionClass="NSMutableArray" id="o7A-i2-xrh"/>
                 <outletCollection property="previewItems" destination="ev8-a6-ir2" collectionClass="NSMutableArray" id="iAR-As-nPp"/>
@@ -321,6 +320,10 @@
                 <outletCollection property="playbackItems" destination="HVl-oO-cuI" collectionClass="NSMutableArray" id="xJj-Q2-QCa"/>
                 <outletCollection property="previewItems" destination="Ymc-ol-e8e" collectionClass="NSMutableArray" id="TsA-AR-DLm"/>
                 <outletCollection property="previewItems" destination="GkD-2l-EIq" collectionClass="NSMutableArray" id="Any-e1-TbE"/>
+                <outletCollection property="lastMomentPreviews" destination="Ekh-71-eJd" collectionClass="NSMutableArray" id="4gb-F3-9ED"/>
+                <outletCollection property="lastMomentPreviews" destination="rdV-je-7Td" collectionClass="NSMutableArray" id="WWA-s1-JDc"/>
+                <outletCollection property="lastMomentPreviews" destination="MRr-Jw-1xW" collectionClass="NSMutableArray" id="MAZ-yY-Efa"/>
+                <outletCollection property="lastMomentPreviews" destination="ev8-a6-ir2" collectionClass="NSMutableArray" id="7hy-eq-bBN"/>
             </connections>
             <point key="canvasLocation" x="478" y="479"/>
         </view>

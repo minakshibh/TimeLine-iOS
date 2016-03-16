@@ -184,7 +184,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        print("Drafts: \(drafts.count)")
+        //print("Drafts: \(drafts.count)")
         return drafts.count
     }
 

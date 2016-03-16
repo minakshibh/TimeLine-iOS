@@ -9,6 +9,7 @@
 import Foundation
 import ConclurerHook
 
+
 extension HookKey {
     static var StopAllPlaybacks: HookKey<String, Void, Void> {
         return HookKey<String, Void, Void>(rawValue: "ModernTimelineBehavior.StopAllPlayback")
