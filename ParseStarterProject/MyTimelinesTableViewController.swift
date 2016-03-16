@@ -16,15 +16,21 @@ private func timelineOrder(l: Timeline, r: Timeline) -> Bool {
 
 class MyTimelinesTableViewController: CommonTimelineTableViewController {
     
+    
+    var status:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update6", userInfo: nil, repeats: false)
+
+        
+           }
+     func update6(){
         self.tableView.allowsMultipleSelectionDuringEditing = false
-        
-        
-        
+
         // Uncomment the following line to preserve selection between presentations
-         self.clearsSelectionOnViewWillAppear = false
+        self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -39,8 +45,6 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         
         let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
         navigationItem.leftBarButtonItem = right
-        
-        
     }
     func goToRecordScreen(){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -69,14 +73,32 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     
     private var leftBarButtonItems: [AnyObject]?
     private var rightBarButtonItems: [AnyObject]?
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
+        if(isiphone6()==1 || isiPhone5()==1){
+            if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
+                
+            }else{
+                self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
+                status = true
+            }
+        }
         
+        if(isiphone6Plus()==1){
+            if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
+                
+            }else{
+                self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
+                status = true
+            }
+        }
         
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update7", userInfo: nil, repeats: false)
     }
     
-    func update(){
+     func update7(){
         refreshTableView()
         
         for any: AnyObject in leftBarButtonItems ?? [] {
@@ -93,6 +115,13 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if (status) {
+//            self.tableView.headerViewForSection(0)?.frame = CGRectMake((self.tableView.headerViewForSection(0)?.frame.origin.x)!,(self.tableView.headerViewForSection(0)?.frame.origin.y)!-20,(self.tableView.headerViewForSection(0)?.frame.size.width)!,(self.tableView.headerViewForSection(0)?.frame.size.height)!)
+//            
+
+            status = false
+        }
         
         for any: AnyObject in leftBarButtonItems ?? [] {
             if let item = any as? UIBarButtonItem {

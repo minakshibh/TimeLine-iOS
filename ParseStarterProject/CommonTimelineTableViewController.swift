@@ -12,27 +12,44 @@ class CommonTimelineTableViewController: UITableViewController {
 
     var users: [User] = [] {
         didSet {
-            main { self.tableView.reloadData() }
             
-            for j in 0..<users.count {
-                let ts = users[j].timelines
-                for i in 0..<ts.count {
-                    users[j].timelines[i].reloadMoments {
-                        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
-                            cell.timeline = self.users[j].timelines[i]
-                        }
+            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update", userInfo: nil, repeats: false)
+        }
+    }
+    func update(){
+        main { self.tableView.reloadData() }
+        
+        for j in 0..<users.count {
+            let ts = users[j].timelines
+            for i in 0..<ts.count {
+                users[j].timelines[i].reloadMoments {
+                    if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
+                        cell.timeline = self.users[j].timelines[i]
                     }
                 }
             }
         }
+
     }
+    
     var lblFeed:UILabel!
     var callbacks: [AnyObject?] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        callbacks.append(setUpReloadable())
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+        
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update1", userInfo: nil, repeats: false)
 
+    }
+    func update1(){
+        callbacks.append(setUpReloadable())
+        
         tabBarController?.delegate = self
         navigationController?.delegate = self
         
@@ -40,15 +57,7 @@ class CommonTimelineTableViewController: UITableViewController {
         self.refreshTableView()
         
         NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "status")
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        
     }
-
     func refreshTableView() { }
     
     // MARK: - Table view data source
@@ -152,12 +161,18 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
     }
     override func reloadData() {
         main {
-            self.refreshTableView()
-            self.tableView.reloadData()
+            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update2", userInfo: nil, repeats: false)
+
         }
     }
-
+    func update2(){
+        self.refreshTableView()
+        self.tableView.reloadData()
+    }
     override func viewWillAppear(animated: Bool) {
+        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update3", userInfo: nil, repeats: false)
+    }
+    func update3(){
         self.setUpHooking() // required for Hooking protocol
         
         lblFeed = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height))
