@@ -217,14 +217,15 @@ enum ApiRequest {
             urlString = "/api/timeline/create?\(bodyData)"
             urlRequest.HTTPMethod = "POST"
             
+            
         case let.AddParticipantInGroupTimeline(timeLineId,uuid):
-            let bodyData = "\(timeLineId.urlEncoded)/add_remove_participant_by_admin/\(uuid.urlEncoded)"
-            urlString = "/api/group_timeline/\(bodyData)?action_type=0"
+            let bodyData = "\(timeLineId.urlEncoded)/add_remove_participant_by_admin?participants=\(uuid.urlEncoded)&action_type=0"
+            urlString = "/api/group_timeline/\(bodyData)"
             urlRequest.HTTPMethod = "PATCH"
         
         case let.RemoveParticipantFromGroupTimeline(timeLineId,uuid):
-            let bodyData = "\(timeLineId.urlEncoded)/add_remove_participant_by_admin/\(uuid.urlEncoded)"
-            urlString = "/api/group_timeline/\(bodyData)?action_type=1"
+            let bodyData = "\(timeLineId.urlEncoded)/add_remove_participant_by_admin?participants=\(uuid.urlEncoded)&action_type=1"
+            urlString = "/api/group_timeline/\(bodyData)"
             urlRequest.HTTPMethod = "PATCH"
             
             

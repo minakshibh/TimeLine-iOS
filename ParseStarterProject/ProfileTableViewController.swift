@@ -178,7 +178,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 nameLabel.text = "@\(user.username!)"
                 nameLabel1.text = "\(firstname) \(lastname)"
                 emailLabel.text = "\(user.email!)"
-                let k = user.objectForKey("bio")
+                let k = user.objectForKey("bio")!
                 lblBio.text = "Bio: \(k)"
                 
                 let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: "Bio: \(k)")
