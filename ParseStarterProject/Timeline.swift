@@ -92,6 +92,17 @@ class Timeline: Synchronized, DictConvertable {
     convenience required init(dict: [String: AnyObject], parent: ParentType? = nil) {
         let duration = dict["moments_duration"] as? Float
 
+        var userFullNameStr : (NSString) = ""
+        
+        if let userFirstNameStr = dict["firstname"] as? String
+        {
+            userFullNameStr = "\(userFirstNameStr)"
+            if let userLasstNameStr = dict["lastname"] as? String
+            {
+                userFullNameStr = "\(userFirstNameStr) \(userLasstNameStr)"
+            }
+        }
+        
      let gtl = dict["group_timeline"] as? Bool ?? false
         if gtl{
             self.init(name: (dict["name"] as? String) ?? "",
@@ -105,7 +116,7 @@ class Timeline: Synchronized, DictConvertable {
                 duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
                 moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
                 state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-                grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent,updated_at: (dict["updated_at"] as? String) ?? "" , userfullName :(dict["userfullName"] as? String) ?? "", participants : (dict["participants"] as? NSMutableArray) ?? []
+                grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent,updated_at: (dict["updated_at"] as? String) ?? "" , userfullName :userFullNameStr as String,  participants : (dict["participants"] as? NSMutableArray) ?? []
             )
         }
         else

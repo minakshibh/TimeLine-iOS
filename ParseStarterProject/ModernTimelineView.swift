@@ -913,29 +913,6 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 username.textColor = UIColor.grayColor()
                 
             
-                //            if let dataDict = self.followersArrayList[indexPath.row]
-                //            {
-                //                if let firstName = dataDict.["firstname"] as? NSString
-                //                {
-                //                    var fullname = firstName
-                //                    if let lastName = dataDict["lastname"] as? NSString
-                //                    {
-                //                        fullname = "\(firstName) \(lastName)"
-                //                    }
-                //                    fullName.text = fullname as String
-                //                }
-                //                if (fullName.text?.characters.count == 0)
-                //                {
-                //                    username.frame = fullName.frame
-                //                    fullName.hidden = true
-                //                }
-                //                //            fullName.text = "Firstname"+"LastName"
-                //                username.text = "@" + (dataDict["name"] as? String)!
-                //                let placeHolderimg = UIImage(named: "default-user-profile")
-                //                let imageName = dataDict["image"] as? String ?? ""
-                //                userImage.sd_setImageWithURL(NSURL (string: imageName), placeholderImage:placeHolderimg)
-                //            }
-                
                 cellView.addSubview(userImage)
                 cellView.addSubview(username)
                 cellView.addSubview(fullName)
@@ -954,7 +931,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 {
                     if let user : User?  = self.followersArrayList[indexPath.row]
                     {
-                        if let fullNameStr = user!.userfullName as? NSString
+                        if let fullNameStr = user?.userfullName
                         {
                             fullName.text = fullNameStr as String
                         }
@@ -964,7 +941,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                             fullName.hidden = true
                         }
                         
-                        username.text = "@" + user!.name as? String
+                        username.text = "@" + (user?.name)!
                         let placeHolderimg = UIImage(named: "default-user-profile")
                         let imageName = user!.imageUrl as? String ?? ""
                         userImage.sd_setImageWithURL(NSURL (string: imageName), placeholderImage:placeHolderimg)
@@ -987,23 +964,46 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 }
                 else
                 {
-                    if let user : User?  = self.friendsListArray[indexPath.row] as? User
+                    if let dataDict = self.friendsListArray[indexPath.row] as? NSMutableDictionary
                     {
-                        if let fullNameStr = user!.userfullName as? NSString
+                        if let firstName = dataDict["firstname"] as? NSString
                         {
-                            fullName.text = fullNameStr as String
+                            var fullname = firstName
+                            if let lastName = dataDict["lastname"] as? NSString
+                            {
+                                fullname = "\(firstName) \(lastName)"
+                            }
+                            fullName.text = fullname as String
                         }
                         if (fullName.text?.characters.count == 0)
                         {
                             username.frame = fullName.frame
                             fullName.hidden = true
                         }
-                        
-                        username.text = "@" + user!.name as? String
+                        //            fullName.text = "Firstname"+"LastName"
+                        username.text = "@" + (dataDict["name"] as? String)!
                         let placeHolderimg = UIImage(named: "default-user-profile")
-                        let imageName = user!.imageUrl as? String ?? ""
+                        let imageName = dataDict["image"] as? String ?? ""
                         userImage.sd_setImageWithURL(NSURL (string: imageName), placeholderImage:placeHolderimg)
                     }
+                    
+//                    if let user : User?  = self.friendsListArray[indexPath.row] as? User
+//                    {
+//                        if let fullNameStr = user!.userfullName
+//                        {
+//                            fullName.text = fullNameStr as String
+//                        }
+//                        if (fullName.text?.characters.count == 0)
+//                        {
+//                            username.frame = fullName.frame
+//                            fullName.hidden = true
+//                        }
+//                        
+//                        username.text = "@" + user!.name as? String
+//                        let placeHolderimg = UIImage(named: "default-user-profile")
+//                        let imageName = user!.imageUrl as? String ?? ""
+//                        userImage.sd_setImageWithURL(NSURL (string: imageName), placeholderImage:placeHolderimg)
+//                    }
 
                     
                     
