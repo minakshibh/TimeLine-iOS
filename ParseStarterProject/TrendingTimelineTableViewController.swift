@@ -61,7 +61,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         searchDisplayController?.searchBar.delegate = self
         searchDisplayController?.delegate = self
         
-        searchDisplayController?.searchBar.scopeButtonTitles = [NSLocalizedString("Users", comment: "Country"),NSLocalizedString("Timeline", comment: "Capital")]
+        searchDisplayController?.searchBar.scopeButtonTitles = [NSLocalizedString("Users", comment: "Country"),NSLocalizedString("Feedeo", comment: "Capital")]
             
         UIApplication.sharedApplication().statusBarStyle = .LightContent
 

@@ -33,14 +33,17 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
             followButton.setTitle("\(target.followersCount)", forState: .Normal)
             followButton.selected =!= target.followed != .NotFollowing && !target.isOwn
             followButton.enabled =!= true
-            followButton.borderWidth =!= target.isOwn ? 0 : 1.5
-            followButton.tintColor =!= target.isOwn ? UIColor.blackColor() : .followableTintColor
-
+//            followButton.borderWidth =!= target.isOwn ? 0 : 1.5
+            //            followButton.tintColor =!= target.isOwn ? UIColor.blackColor() : .followableTintColor
+            followButton.borderWidth =!= 0 
+            followButton.tintColor =!= UIColor.blackColor()
         } else {
             followButton.enabled =!= false
             followButton.selected =!= false
             followButton.normalTitle =!= "0"
-            followButton.borderWidth =!= 1.5
+            followButton.borderWidth =!= 0
+//            followButton.borderWidth =!= 1.5
+
         }
     }
 
