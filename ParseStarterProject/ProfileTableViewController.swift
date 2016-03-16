@@ -26,7 +26,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     @IBOutlet var approveFollowersSwitch: UISwitch!
     
     @IBOutlet var userImageView: ProfileImageView!
-    
+    var status:Bool = false
     var pendingBadge: CustomBadge?
     
     override func viewDidLoad() {
@@ -42,10 +42,10 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
 //
         navigationItem.leftBarButtonItem = left
-        
+       
     }
     
-   
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         cleanUpHooking()
@@ -78,8 +78,36 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
+//        self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
+        print("\(self.navigationController!.navigationBar.frame)")
+        
+        if(isiphone6()==1 || isiPhone5()==1){
+            if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
+                
+            }else{
+                self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
+                status = true
+            }
+        }
+        
+        if(isiphone6Plus()==1){
+            if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
+                
+            }else{
+                self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
+                status = true
+            }
+        }
     }
-    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if (status && isiphone6Plus()==1) {
+         self.tableView.headerViewForSection(0)?.frame = CGRectMake((self.tableView.headerViewForSection(0)?.frame.origin.x)!,(self.tableView.headerViewForSection(0)?.frame.origin.y)!-20,(self.tableView.headerViewForSection(0)?.frame.size.width)!,(self.tableView.headerViewForSection(0)?.frame.size.height)!)
+
+        userSummaryView.frame = CGRectMake(userSummaryView.frame.origin.x,userSummaryView.frame.origin.y-20,userSummaryView.frame.size.width,userSummaryView.frame.size.height)
+            status = false
+        }
+    }
     func update(){
         
         setUpHooking()

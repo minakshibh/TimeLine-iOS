@@ -1713,7 +1713,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "710bb1fe-b6db-451b-adea-7a6d6456bdac";
+				PROVISIONING_PROFILE = "e94cae10-ab46-4761-99bb-19dcdf5a4c88";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1772,7 +1772,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "710bb1fe-b6db-451b-adea-7a6d6456bdac";
+				PROVISIONING_PROFILE = "e94cae10-ab46-4761-99bb-19dcdf5a4c88";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;

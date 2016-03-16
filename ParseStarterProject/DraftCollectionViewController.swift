@@ -15,6 +15,8 @@ private let reuseIdentifier = "DraftCell"
 class DraftCollectionViewController: UICollectionViewController, UIVideoEditorControllerDelegate, UIImagePickerControllerDelegate {
     
     var timeline: Timeline?
+    var status:Bool = false
+     var trimstatus:Bool = false
     
     private var layout: CSStickyHeaderFlowLayout? {
         return collectionViewLayout as? CSStickyHeaderFlowLayout
@@ -83,11 +85,13 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
 
+        self.navigationController!.navigationBar.frame = CGRectMake(0, 40, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+40)
     }
     func update(){
 //        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+1)
     }
     override func viewWillAppear(animated: Bool) {
+       
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
 
     }
@@ -386,7 +390,23 @@ extension DraftCollectionViewController {
         }))
         editor.presentAlertController(alert)
     }
-    
+        
+    func videoEditorControllerDidCancel(editor: UIVideoEditorController) {
+        print("-------operation cancled-------")
+        trimstatus = true
+         self.dismissViewControllerAnimated(true, completion: nil)
+//       
+//        let label = UILabel(frame: CGRectMake(0,0,320,64))
+//        label.backgroundColor = UIColor.redColor()
+//        self.view.addSubview(label)
+//        self.view.bringSubviewToFront(label)
+//        navigationController?.navigationBarHidden = true 
+        
+//        self.navigationController!.navigationBar.frame = CGRectMake(0, 40, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+40)
+//        self.view.frame = CGRectMake(0, 20, self.view.frame.size.height, self.view.frame.size.width)
+
+        
+    }
 }
 
 extension DraftCollectionViewController: UICollectionViewDelegateFlowLayout {

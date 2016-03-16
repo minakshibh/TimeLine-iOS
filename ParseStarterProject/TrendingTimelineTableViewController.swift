@@ -34,7 +34,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var view1:UIView!
     var view2:UIView!
     var invitedFriendsArray: NSMutableArray! = []
-    
+    var status:Bool = false
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
     
@@ -171,6 +171,27 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        
+        if(isiphone6()==1 || isiPhone5()==1){
+            if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
+                
+            }else{
+                self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
+                status = true
+            }
+        }
+        
+        if(isiphone6Plus()==1){
+            if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
+                
+            }else{
+                self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
+                status = true
+            }
+        }
+        
+
 //        0.0, 687.0, 414.0, 49.0
         
         
