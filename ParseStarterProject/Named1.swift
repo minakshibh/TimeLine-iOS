@@ -7,7 +7,7 @@
 //
 
 protocol Named1 {
-    var firstName: String { get }
+    var userfullName: String { get }
     var lastName: String { get }
    var name: String { get }
     static var prefix: String { get }
@@ -24,6 +24,6 @@ extension User: Named1 {
 extension Named1 {
     var fullName1: String {
         print("name")
-        return Self.prefix + firstName + lastName
+        return  userfullName
     }
 }

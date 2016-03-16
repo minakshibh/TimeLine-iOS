@@ -69,6 +69,21 @@ class User: Synchronized {
     }
     
     convenience required init(dict: [String: AnyObject], parent: Session? = nil) {
+        var userFullNameStr : (NSString) = ""
+        var firstNameStr : (NSString) = ""
+        var lastNameStr : (NSString) = ""
+        
+        if let userFirstNameStr = dict["firstname"] as? String
+        {
+            userFullNameStr = "\(userFirstNameStr)"
+            firstNameStr = "\(userFirstNameStr)"
+            if let userLasstNameStr = dict["lastname"] as? String
+            {
+                userFullNameStr = "\(userFirstNameStr) \(userLasstNameStr)"
+                lastNameStr = "\(userLasstNameStr)"
+            }
+        }
+        
         self.init(name: dict["name"] as? String,
             email: dict["email"] as? String,
             externalID: dict["external_id"] as? String,
@@ -84,7 +99,7 @@ class User: Synchronized {
             hasNews: dict["hasNews"] as? Bool ?? false,
             timelines: (dict["timelines"] as? [[String: AnyObject]] ?? []).map { Timeline(dict: $0) },
             state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-            userfullname : dict["userfullname"]  as? String , firstname : dict["firstname"] as? String , lastname : dict["lastname"] as? String , imageurl : dict["image"] as? String , parent: parent
+            userfullname : userFullNameStr as String , firstname : dict["firstname"] as? String , lastname : dict["lastname"] as? String , imageurl : dict["image"] as? String , parent: parent
         )
 //        self.init(name: dict["name"] as? String,
 //            email: dict["email"] as? String,
@@ -406,6 +421,7 @@ extension User {
                         existing.userfullName = u.userfullName
                         existing.firstName = u.firstName
                         existing.lastName = u.lastName
+                        
                             
                         existing.imageUrl = u.imageUrl
                         users[i] = existing

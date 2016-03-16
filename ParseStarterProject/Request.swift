@@ -234,7 +234,7 @@ enum ApiRequest {
             urlRequest.HTTPMethod = "DELETE"
 
         case let.DeleteGroupTimeline(timeLineId,uuid):
-            let bodyData = "\(timeLineId.urlEncoded)/destroy_group_timeline/\(uuid.urlEncoded)"
+            let bodyData = "\(timeLineId.urlEncoded)/destroy_group_timeline/"
             urlString = "/api/group_timeline/\(bodyData)"
             urlRequest.HTTPMethod = "DELETE"
             

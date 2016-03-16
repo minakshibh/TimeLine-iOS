@@ -92,6 +92,17 @@ class Timeline: Synchronized, DictConvertable {
     convenience required init(dict: [String: AnyObject], parent: ParentType? = nil) {
         let duration = dict["moments_duration"] as? Float
 
+        var userFullNameStr : (NSString) = ""
+        
+        if let userFirstNameStr = dict["firstname"] as? String
+        {
+            userFullNameStr = "\(userFirstNameStr)"
+            if let userLasstNameStr = dict["lastname"] as? String
+            {
+                userFullNameStr = "\(userFirstNameStr) \(userLasstNameStr)"
+            }
+        }
+        
      let gtl = dict["group_timeline"] as? Bool ?? false
         if gtl{
             self.init(name: (dict["name"] as? String) ?? "",
@@ -105,7 +116,7 @@ class Timeline: Synchronized, DictConvertable {
                 duration: duration != nil ? Int(floor(duration!)) : (dict["moments_duration"] as? Int),
                 moments: (dict["moments"] as? [[String: AnyObject]] ?? []).map { Moment(dict: $0) },
                 state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-                grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent,updated_at: (dict["updated_at"] as? String) ?? "" , userfullName :(dict["userfullName"] as? String) ?? "", participants : (dict["participants"] as? NSMutableArray) ?? []
+                grouptimeline: dict["group_timeline"] as? Bool ?? false , commentscount: (dict["comments_count"] as? Int) ?? 0 ,description :(dict["description"] as? String) ?? "" , adminId : (dict["admin_id"] as? String) ?? "" , parent: parent,updated_at: (dict["updated_at"] as? String) ?? "" , userfullName :userFullNameStr as String,  participants : (dict["participants"] as? NSMutableArray) ?? []
             )
         }
         else
@@ -174,46 +185,46 @@ extension Timeline {
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
                 
                 
-                switch request {
-                    case .TimelineMe:
-                        for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i
-                        {
-                            let t = Storage.session.currentUser!.timelines[i]
-                            var containtl : Bool = false
-                            
-                            for td in timelineDicts
-                            {
-                                let tid = td["id"] as! UUID
-                                let tlCreaterID = td["user_id"] as? UUID
-                                let sameUserId = (currentUserId == tlCreaterID)
-                                
-                                if tid == t.state.uuid && sameUserId
-                                {
-                                    containtl = true
-                                }
-                            }
-                            if !containtl{
-                                tempTimelinesArray.addObject(i)
-                            }
-                        }
-                        if tempTimelinesArray.count > 0
-                        {
-                            for var i = 0; i < tempTimelinesArray.count; ++i
-                            {
-                                print(Storage.session.currentUser!.timelines.count)
-                                if (Storage.session.currentUser!.timelines.count >= i)
-                                {
-                                    Storage.session.currentUser!.timelines.removeAtIndex(i)
-                                    serialHook.perform(key: .ForceReloadData, argument: ())
-                                }
-                            }
-                        }
-                    
-
-                    
-                default:
-                    break
-                }
+//                switch request {
+//                    case .TimelineMe:
+//                        for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i
+//                        {
+//                            let t = Storage.session.currentUser!.timelines[i]
+//                            var containtl : Bool = false
+//                            
+//                            for td in timelineDicts
+//                            {
+//                                let tid = td["id"] as! UUID
+//                                let tlCreaterID = td["user_id"] as? UUID
+//                                let sameUserId = (currentUserId == tlCreaterID)
+//                                
+//                                if tid == t.state.uuid && sameUserId
+//                                {
+//                                    containtl = true
+//                                }
+//                            }
+//                            if !containtl{
+//                                tempTimelinesArray.addObject(i)
+//                            }
+//                        }
+//                        if tempTimelinesArray.count > 0
+//                        {
+//                            for var i = 0; i < tempTimelinesArray.count; ++i
+//                            {
+//                                print(Storage.session.currentUser!.timelines.count)
+//                                if (Storage.session.currentUser!.timelines.count >= i)
+//                                {
+//                                    Storage.session.currentUser!.timelines.removeAtIndex(i)
+//                                    serialHook.perform(key: .ForceReloadData, argument: ())
+//                                }
+//                            }
+//                        }
+//                    
+//
+//                    
+//                default:
+//                    break
+//                }
 
                 
                 for td in timelineDicts {
