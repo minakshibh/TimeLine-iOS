@@ -358,7 +358,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         
         KGModal.sharedInstance().hideAnimated(true)
         main {
-            //CommonTimelineTableViewController().update()
+            
             self.invitedFriendsArray.removeAllObjects()
             self.friendslistTableView.reloadData()
             self.friendsListView.removeFromSuperview()
@@ -925,7 +925,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             let userImage = UIImageView()
             userImage.frame = CGRectMake(5, 5, 50, 50)
             userImage.backgroundColor = UIColor.lightGrayColor()
-            userImage.layer.cornerRadius = 30
+            userImage.layer.cornerRadius = 25
             userImage.layer.masksToBounds = true
             userImage.layer.cornerRadius = userImage.frame.size.width/2
             
@@ -1066,14 +1066,14 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 
                 cell.backgroundColor = UIColor.clearColor()
                 let cellView = UIView()
-                cellView.frame = CGRectMake(0, 5, cell.contentView.frame.size.width, 75)
+                cellView.frame = CGRectMake(0, 0, self.frame.size.width, 65)
                 cellView.backgroundColor = UIColor.whiteColor()
                 cell.contentView.addSubview(cellView)
                 
                 let userImage = UIButton()
-                userImage.frame = CGRectMake(5, 10, 60, 60)
+                userImage.frame = CGRectMake(15, 10, 50, 50)
                 userImage.backgroundColor = UIColor.lightGrayColor()
-                userImage.layer.cornerRadius = 30
+                userImage.layer.cornerRadius = 25
                 userImage.tag = indexPath.row
                 if let raw = self.commentArray[indexPath.row] as? NSDictionary
                 {
@@ -1151,7 +1151,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 cellView.addSubview(timeStamp)
                 
                 let commentMessage = UILabel()
-                commentMessage.frame = CGRectMake(80, 40, CGFloat(250+40*isiphone6Plus()-55*isiPhone5()), 30)
+                commentMessage.frame = CGRectMake(80, 30, CGFloat(250+40*isiphone6Plus()-55*isiPhone5()), 30)
                 commentMessage.font = UIFont.systemFontOfSize(15)
                 commentMessage.textColor = UIColor.blackColor()
                 if let raw = self.commentArray[indexPath.row] as? NSDictionary
