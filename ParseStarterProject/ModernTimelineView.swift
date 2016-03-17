@@ -362,6 +362,8 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             self.invitedFriendsArray.removeAllObjects()
             self.friendslistTableView.reloadData()
             self.friendsListView.removeFromSuperview()
+            serialHook.perform(key: .ForceReloadData, argument: ())
+            
         }
     }
 
