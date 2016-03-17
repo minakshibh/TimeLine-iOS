@@ -13,7 +13,7 @@ class CommonTimelineTableViewController: UITableViewController {
     var users: [User] = [] {
         didSet {
             
-            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update", userInfo: nil, repeats: false)
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
         }
     }
     func update(){
@@ -44,7 +44,7 @@ class CommonTimelineTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update1", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update1", userInfo: nil, repeats: false)
 
     }
     func update1(){
@@ -164,7 +164,7 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
     }
     override func reloadData() {
         main {
-            NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update2", userInfo: nil, repeats: false)
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update2", userInfo: nil, repeats: false)
 
         }
     }
@@ -173,7 +173,7 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
         self.tableView.reloadData()
     }
     override func viewWillAppear(animated: Bool) {
-        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update3", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update3", userInfo: nil, repeats: false)
     }
     func update3(){
         self.setUpHooking() // required for Hooking protocol
