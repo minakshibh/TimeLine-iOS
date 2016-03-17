@@ -771,6 +771,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if(textField == self.commentTextField)
         {
+            
             if(string == "@"){
                 
                 Storage.performRequest(ApiRequest.GetTagUsers, completion: { (json) -> Void in
@@ -820,6 +821,8 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     }
                 })
             }
+            print(textField.text?.characters.count)
+            
         }
         return true
     }
