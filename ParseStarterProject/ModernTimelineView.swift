@@ -646,7 +646,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 self.Updatebutton.layer.cornerRadius = 4
                 self.Updatebutton.hidden = true
                 self.Updatebutton.backgroundColor = UIColor.redColor()
-                self.Updatebutton.setTitle("Update", forState: UIControlState.Normal)
+                self.Updatebutton.setTitle("Done", forState: UIControlState.Normal)
                 self.Updatebutton.addTarget(self, action: "CommentUpdateButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
                 self.commentTextfeildView.addSubview(self.Updatebutton)
                 
