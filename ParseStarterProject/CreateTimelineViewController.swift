@@ -113,7 +113,11 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         main {
             guard let title = self.textFields.first!.text else { return }
             guard let description = self.timelineDetailTxtView.text else { return }
-            Storage.performRequest(.CreateTimeline(title,description)) { (json) -> Void in
+            
+            let emoData = description.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
+            let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
+            
+            Storage.performRequest(.CreateTimeline(title,goodValue! as groupdescription)) { (json) -> Void in
                 switch json["status_code"] as? Int ?? 400 {
                 case 400, 402: // payment required
                     main {
@@ -375,7 +379,11 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         guard let title = self.textFields.first!.text else { return }
         guard let description = self.timelineDetailTxtView.text else { return }
         
-        Storage.performRequest(.CreateGroupTimeline(title,InvitedFriendsIdSTr  as members,description as groupdescription)) { (json) -> Void in
+        
+        let emoData = description.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
+        let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
+        
+        Storage.performRequest(.CreateGroupTimeline(title,InvitedFriendsIdSTr  as members,goodValue! as groupdescription)) { (json) -> Void in
             self.InvitedFriends_id.removeAllObjects()
             self.invitedFriendsArray.removeAllObjects()
             KGModal.sharedInstance().hideAnimated(true)

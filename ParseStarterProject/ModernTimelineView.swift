@@ -131,7 +131,10 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 self.commentButton.setTitle("0", forState: .Normal)
             }
             if let description = behavior.timeline?.description {
-                self.descriptionLabel.text = description
+                
+                let emoData1 = description.dataUsingEncoding(NSUTF8StringEncoding)
+                let emoStringConverted = String.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as String
+                self.descriptionLabel.text = emoStringConverted
             }
             if let participants = behavior.timeline?.participants {
                 self.friendsListArray = participants.mutableCopy() as! NSMutableArray

@@ -16,7 +16,7 @@ extension Timeline: Deleteable {
     func delete(completion: (error: String?) -> ()) {
         if(self.groupTimeline)
         {
-            Storage.performRequest(ApiRequest.DeleteGroupTimeline(self.state.uuid!, Storage.session.uuid!), completion: { (json) -> Void in
+            Storage.performRequest(ApiRequest.DeleteGroupTimeline(self.state.uuid!), completion: { (json) -> Void in
                 if let error = json["error"] as? String {
                     defer { completion(error: error) }
                 } else {

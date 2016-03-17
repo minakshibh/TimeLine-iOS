@@ -61,7 +61,7 @@ enum ApiRequest {
     //// DELETE  /api/group_timeline/:id/destroy_group_timeline/admin_id
     //// id : Group Timeline id  (mandatory)
     //// admin_id : Id of group timeline admin (mandatory)
-    case DeleteGroupTimeline(timeLineId,UUID)
+    case DeleteGroupTimeline(timeLineId)
 
     
     
@@ -207,18 +207,21 @@ enum ApiRequest {
             urlRequest.HTTPMethod = "DELETE"
             
         case let .CreateTimeline(name,groupdescription):
-//            urlString = "/api/timeline/create"
-//            urlRequest.HTTPMethod = "POST"
-////            description
-//            urlRequest.HTTPBody = "name=\(name.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
             let bodyData = "name=\(name.urlEncoded)&description=\(groupdescription.urlEncoded)"
             urlString = "/api/timeline/create?\(bodyData)"
             urlRequest.HTTPMethod = "POST"
             
+//        case let .CreateGroupTimeline(timeLinename,members,groupdescription):
+//            let bodyData = "name=\(timeLinename.urlEncoded)&participants=\(members.urlEncoded)&description=\(groupdescription.urlEncoded)&group_timeline=1"
+//            urlString = "/api/timeline/create?\(bodyData)"
+//            urlRequest.HTTPMethod = "POST"
+            
         case let .CreateGroupTimeline(timeLinename,members,groupdescription):
-            let bodyData = "name=\(timeLinename.urlEncoded)&participants=\(members.urlEncoded)&description=\(groupdescription.urlEncoded)&group_timeline=1"
-            urlString = "/api/timeline/create?\(bodyData)"
+            urlString = "/api/timeline/create"
             urlRequest.HTTPMethod = "POST"
+            urlRequest.HTTPBody = "name=\(timeLinename.urlEncoded)&participants=\(members.urlEncoded)&description=\(groupdescription.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            
+
             
             
         case let.AddParticipantInGroupTimeline(timeLineId,uuid):
@@ -237,8 +240,15 @@ enum ApiRequest {
             urlString = "/api/group_timeline/\(bodyData)"
             urlRequest.HTTPMethod = "DELETE"
 
-        case let.DeleteGroupTimeline(timeLineId,uuid):
-            let bodyData = "\(timeLineId.urlEncoded)/destroy_group_timeline/"
+//            API Path : base_url/api/group_timeline/id/destroy_group_timeline_by_admin
+//            Request Type : DELETE
+//            Params :
+//            id : Group Timeline id  (mandatory)
+
+            
+            
+        case let.DeleteGroupTimeline(timeLineId):
+            let bodyData = "\(timeLineId.urlEncoded)/destroy_group_timeline_by_admin/"
             urlString = "/api/group_timeline/\(bodyData)"
             urlRequest.HTTPMethod = "DELETE"
             

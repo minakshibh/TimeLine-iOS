@@ -78,7 +78,12 @@ extension TimelineMoreButtonBehavior where Self: UIViewController, Self: Reloada
             sheet.addAction(title: local(.TimelineSheetMoreButtonAdd), style: .Default, handler: addMoment(timeline))
             sheet.addAction(title: local(timeline.persistent ? .TimelineSheetMoreButtonNoDownload: .TimelineSheetMoreButtonDownload), style: .Default, handler: toggleTimelinePersistence(timeline))
 
-            sheet.addAction(title: local(.TimelineSheetMoreButtonDelete), style: .Destructive, handler: confirmDeleteableBehavior(timeline))
+            if !timeline.groupTimeline
+            {
+                sheet.addAction(title: local(.TimelineSheetMoreButtonDelete), style: .Destructive, handler: confirmDeleteableBehavior(timeline))
+            }
+
+//            sheet.addAction(title: local(.TimelineSheetMoreButtonDelete), style: .Destructive, handler: confirmDeleteableBehavior(timeline))
         } else {
             sheet.addAction(title: local(timeline.blocked ? .TimelineSheetMoreButtonUnblock: .TimelineSheetMoreButtonBlock), style: .Destructive, handler: confirmBlockableBehavior(timeline))
         }
