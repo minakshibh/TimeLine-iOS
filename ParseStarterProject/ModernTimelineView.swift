@@ -197,7 +197,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             }
         }
         alert.addAction(title: local(.ShowGroupTimelineCancel), style: .Cancel, handler: nil)
-        controller!.presentAlertController(alert)
+        controller?.presentAlertController(alert)
     }
     
     

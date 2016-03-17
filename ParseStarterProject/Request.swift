@@ -190,6 +190,7 @@ enum ApiRequest {
         
         switch self {
         case let .GetToken(parse):
+            print(parse)
             urlString = "/api/user/get_token"
             urlRequest.HTTPMethod = "GET"
             urlRequest.setValue(parse.urlEncoded, forHTTPHeaderField: "X-Parse-Session-Token")

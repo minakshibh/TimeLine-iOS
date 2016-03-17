@@ -51,6 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Uncomment and fill in with your Parse credentials:
         Parse.setApplicationId("LiynFqjSP5wmP8QfzLQLgm8tGStY3Jt5FeH34lhS",
             clientKey: "TSMwY8Asxa08Br0pB0QR03bpGA5GjMLPYia9Ljka")
+//        Parse.setApplicationId("Zlos4Gg3l7oIeyfekTgMNrA5ENWoHmyKGuRiM39C",
+//            clientKey: "XAGhmOVc3POrGugXHlVYuySyWuOj0Q6hET3SE2fW")
+
         
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
