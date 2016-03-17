@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -40,7 +40,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dub-gh-rHt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XkS-L7-QhD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2469,13 +2469,13 @@ Effective as of September 14, 2015
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="cMO-Jl-BtP" kind="show" identifier="SendMoment" id="wue-tu-Rb7"/>
-                        <segue destination="8Wo-wM-6iM" kind="show" identifier="Upload" id="kNn-C3-4Z5"/>
+                        <segue destination="8Wo-wM-6iM" kind="presentation" identifier="Upload" id="kNn-C3-4Z5"/>
                         <segue destination="KDB-lM-xys" kind="presentation" identifier="WalkthroughMoments" id="9SA-Oc-iuS"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ep-C1-ZaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3290" y="1730"/>
+            <point key="canvasLocation" x="-3296" y="1635"/>
         </scene>
         <!--Moment Title-->
         <scene sceneID="JJH-YW-ZUD">
@@ -2744,7 +2744,7 @@ Effective as of September 14, 2015
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3rN-1c-A1A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2000" y="2485"/>
+            <point key="canvasLocation" x="-2001" y="2522"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gai-yB-5qi">
@@ -3078,7 +3078,7 @@ Effective as of September 14, 2015
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             <connections>
                                 <outlet property="delegate" destination="jSH-I8-dWf" id="Pkm-W6-fke"/>
@@ -3237,7 +3237,7 @@ Effective as of September 14, 2015
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="147" id="JqU-iW-ILt" customClass="ModernTimelineTableViewCell" customModule="Timeline" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="86" width="600" height="147"/>
+                                <rect key="frame" x="0.0" y="22" width="600" height="147"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JqU-iW-ILt" id="2pr-Ic-Plg">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="146"/>
@@ -3245,7 +3245,7 @@ Effective as of September 14, 2015
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="216" id="DKR-7h-Qon" customClass="UserSummaryTableViewCell" customModule="Timeline" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="233" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="169" width="600" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DKR-7h-Qon" id="fOj-74-R4g">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
@@ -4995,17 +4995,17 @@ Effective as of September 14, 2015
     <inferredMetricsTieBreakers>
         <segue reference="trc-F1-lO4"/>
         <segue reference="fy0-iv-eFM"/>
-        <segue reference="beo-jQ-91G"/>
-        <segue reference="L3f-Vr-cBz"/>
-        <segue reference="ndx-Tw-tdZ"/>
         <segue reference="JUD-Gk-HWr"/>
-        <segue reference="Dix-wx-o8R"/>
-        <segue reference="BJd-cD-9l3"/>
+        <segue reference="UDh-ad-jqq"/>
         <segue reference="kl0-Qw-wCr"/>
-        <segue reference="wPR-Ua-TlF"/>
-        <segue reference="Q72-pv-Wqo"/>
         <segue reference="dHW-RB-S8H"/>
         <segue reference="U58-7K-X9n"/>
+        <segue reference="pyd-yG-wzP"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="3ER-K8-eo8"/>
+        <segue reference="9SA-Oc-iuS"/>
+        <segue reference="uwx-Vf-wTk"/>
+        <segue reference="kNn-C3-4Z5"/>
         <segue reference="gqI-eh-cAa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>

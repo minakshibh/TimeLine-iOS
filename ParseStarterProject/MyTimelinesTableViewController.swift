@@ -22,7 +22,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         super.viewDidLoad()
         
         
-        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update6", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update6", userInfo: nil, repeats: false)
 
         
            }
@@ -99,7 +99,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
             }
         }
         
-        NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "update7", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update7", userInfo: nil, repeats: false)
     }
     
      func update7(){
