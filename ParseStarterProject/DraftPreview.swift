@@ -59,6 +59,8 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             playbackContainer.hidden = true
             
             self.commentButton.frame = CGRectMake(self.commentButton.frame.origin.x + CGFloat(32*isiPhone5()) , self.commentButton.frame.origin.y, self.commentButton.frame.size.width, self.commentButton.frame.size.height)
+            
+            self.playPlayButton.frame = CGRectMake(self.playPlayButton.frame.origin.x , self.playPlayButton.frame.origin.y + 17, self.playPlayButton.frame.size.width, self.playPlayButton.frame.size.height)
 //            bufferIndicator.hidden = true
         }
     }
@@ -279,7 +281,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 self.Updatebutton.layer.cornerRadius = 4
                 self.Updatebutton.hidden = true
                 self.Updatebutton.backgroundColor = UIColor.redColor()
-                self.Updatebutton.setTitle("Update", forState: UIControlState.Normal)
+                self.Updatebutton.setTitle("Done", forState: UIControlState.Normal)
                 self.Updatebutton.addTarget(self, action: "CommentUpdateButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
                 self.commentTextfeildView.addSubview(self.Updatebutton)
                 
@@ -444,7 +446,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         
     }
     
-    func MomentPostComment(){
+    func CommentSendButtonAction(){
         
         let TrimString = commentTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
