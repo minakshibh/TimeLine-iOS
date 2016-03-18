@@ -160,7 +160,7 @@ extension Storage {
                 //print("Error: \(request.urlRequest.URL?.absoluteString ?? "")\n\(error)\n\n")
                 return
             }
-            print(response)
+            //print(response)
             func perform() {
                 var error: NSError?
                 var json : [String: AnyObject]?
