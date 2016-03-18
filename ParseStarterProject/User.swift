@@ -178,6 +178,7 @@ extension User {
             var old = Set(self.timelines.map { $0.state.uuid ?? "" })
             var dirty = false
             if let timelines = json["result"] as? [[String: AnyObject]] {
+                 self.timelines = []
                 for t in timelines {
                     let uuid = t["id"] as? UUID ?? ""
                     old.remove(uuid)
