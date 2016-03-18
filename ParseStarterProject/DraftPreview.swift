@@ -323,6 +323,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                     }
                     
                     main{
+                        if(self.tagArray.count > 0){
                         self.scrollView.frame = CGRectMake(0, self.commentTextfeildView.frame.origin.y-250, self.timelineCommentView.frame.size.width, 250)
                         self.scrollView.delegate = self
                         var Yaxis: CGFloat = 0
@@ -355,6 +356,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                         self.scrollView.contentSize = CGSizeMake(self.timelineCommentView.frame.size.width, Yaxis)
                         self.scrollView.backgroundColor = UIColor.groupTableViewBackgroundColor()
                         self.timelineCommentView.addSubview(self.scrollView)
+                    }
                     }
                 })
             }

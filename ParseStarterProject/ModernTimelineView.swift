@@ -730,9 +730,10 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 Storage.performRequest(ApiRequest.TimelineComments(self.timeline!.uuid!), completion: { (json) -> Void in
                     if let raw = json["result"] as? NSMutableArray{
                         self.commentArray = raw
-                        
+   
                     }
                     main{
+                        serialHook.perform(key: .ForceReloadData, argument: ())
                         self.commentlist.reloadData()
                         let numberOfRows = self.commentlist.numberOfRowsInSection(0)
                         if numberOfRows > 0 {
@@ -782,7 +783,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     }
                     
                     main{
-                        
+                        if(self.tagArray.count > 0){
                         var Yaxis :CGFloat = 0
                         self.scrollView.frame = CGRectMake(0, self.commentTextfeildView.frame.origin.y-250, self.timelineCommentView.frame.size.width, 250)
                         self.scrollView.delegate = self
@@ -818,6 +819,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         self.scrollView.contentSize = CGSizeMake(self.timelineCommentView.frame.size.width, Yaxis)
                         self.scrollView.backgroundColor = UIColor.groupTableViewBackgroundColor()
                         self.timelineCommentView.addSubview(self.scrollView)
+                        }
                     }
                 })
             }
@@ -1337,6 +1339,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     
     func btnTouched(){
         KGModal.sharedInstance().hideAnimated(true)
+        
         self.commentArray = []
         self.tagArray = []
         self.timelineCommentView.removeFromSuperview()

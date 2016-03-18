@@ -53,7 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             clientKey: "TSMwY8Asxa08Br0pB0QR03bpGA5GjMLPYia9Ljka")
 //        Parse.setApplicationId("Zlos4Gg3l7oIeyfekTgMNrA5ENWoHmyKGuRiM39C",
 //            clientKey: "XAGhmOVc3POrGugXHlVYuySyWuOj0Q6hET3SE2fW")
-
         
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
