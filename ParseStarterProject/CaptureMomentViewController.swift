@@ -186,6 +186,9 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         }
     }
     func removeScrollView() {
+        for subUIView in self.scrollView.subviews as [UIView] {
+            subUIView.removeFromSuperview()
+        }
         self.scrollView.removeFromSuperview()
         self.videoPlayView.removeFromSuperview()
         self.drafts.removeAllObjects()
@@ -401,12 +404,12 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     }
     
     override func viewDidDisappear(animated: Bool) {
-         self.update()
         self.recorder.stopRunning()
-        self.closeViewButton()
         self.refreshTorches()
         self.reloadBadges()
         self.removeScrollView()
+        self.closeViewButton()
+
 //        videoPreviewView.hidden = true
     }
     

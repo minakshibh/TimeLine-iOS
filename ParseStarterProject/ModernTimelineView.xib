@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dZX-FB-9P2">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZX-FB-9P2">
                     <rect key="frame" x="15" y="8" width="40" height="13"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="F56-P4-frN"/>
@@ -251,6 +251,7 @@
                 <constraint firstItem="Ymc-ol-e8e" firstAttribute="width" secondItem="IKO-PQ-lb0" secondAttribute="height" multiplier="10:3" id="c2B-A5-kYq"/>
                 <constraint firstItem="j8U-pc-cJ2" firstAttribute="top" secondItem="Ymc-ol-e8e" secondAttribute="bottom" constant="9" id="coi-re-rHe"/>
                 <constraint firstItem="1aP-Uc-Olc" firstAttribute="leading" secondItem="Qua-Bu-xhg" secondAttribute="trailing" constant="8" id="cyR-Ag-YQC"/>
+                <constraint firstItem="dZX-FB-9P2" firstAttribute="width" relation="lessThanOrEqual" secondItem="j8U-pc-cJ2" secondAttribute="width" constant="-30" id="dez-a1-dHY"/>
                 <constraint firstItem="rdV-je-7Td" firstAttribute="width" secondItem="Ekh-71-eJd" secondAttribute="width" id="fgT-lJ-cMr"/>
                 <constraint firstItem="rdV-je-7Td" firstAttribute="top" secondItem="Ekh-71-eJd" secondAttribute="bottom" constant="7" id="hlH-25-o9A"/>
                 <constraint firstItem="MRr-Jw-1xW" firstAttribute="width" secondItem="rdV-je-7Td" secondAttribute="width" id="jym-jY-6tV"/>

@@ -73,7 +73,7 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
         case 0:
             return 100
         default:
-            return 392
+            return 432
         }
     }
     

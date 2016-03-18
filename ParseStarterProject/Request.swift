@@ -220,7 +220,7 @@ enum ApiRequest {
         case let .CreateGroupTimeline(timeLinename,members,groupdescription):
             urlString = "/api/timeline/create"
             urlRequest.HTTPMethod = "POST"
-            urlRequest.HTTPBody = "name=\(timeLinename.urlEncoded)&participants=\(members.urlEncoded)&description=\(groupdescription.urlEncoded)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            urlRequest.HTTPBody = "name=\(timeLinename.urlEncoded)&participants=\(members.urlEncoded)&description=\(groupdescription.urlEncoded)&group_timeline=1".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
             
 
             
