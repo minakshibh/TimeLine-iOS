@@ -178,22 +178,26 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         }
         previewView.session = recorder.captureSession
         
-        delay(0.001) {
-            if !Storage.session.walkedThroughCamera {
-                Storage.session.walkedThroughCamera = true
-                self.performSegueWithIdentifier("WalkthroughCamera", sender: self)
-            }
-        }
+//        delay(0.001) {
+//            if !Storage.session.walkedThroughCamera {
+//                Storage.session.walkedThroughCamera = true
+//                self.performSegueWithIdentifier("WalkthroughCamera", sender: self)
+//            }
+//        }
+        
+        self.addScrollView()
+
     }
     func removeScrollView() {
-        for subUIView in self.scrollView.subviews as [UIView] {
-            subUIView.removeFromSuperview()
+        main
+            {
+                self.closeViewButton()
+                for subUIView in self.scrollView.subviews as [UIView] {
+                    subUIView.removeFromSuperview()
+                }
+                self.drafts.removeAllObjects()
+                self.closeButton.hidden = true
         }
-        self.scrollView.removeFromSuperview()
-        self.videoPlayView.removeFromSuperview()
-        self.drafts.removeAllObjects()
-        closeButton.removeFromSuperview()
-
     }
     func addScrollView() {
         //Scroll view with preview of videos
@@ -390,9 +394,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
   }
     
     func update(){
-        
-        //        videoPreviewView.hidden = true
-        self.addScrollView()
+        self.scrollView.hidden = false
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.notificationAPI ()
         recorder.startRunning()
@@ -408,8 +410,6 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         self.refreshTorches()
         self.reloadBadges()
         self.removeScrollView()
-        self.closeViewButton()
-
 //        videoPreviewView.hidden = true
     }
     
