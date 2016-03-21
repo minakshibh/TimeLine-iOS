@@ -178,8 +178,14 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 nameLabel.text = "@\(user.username!)"
                 nameLabel1.text = "\(firstname) \(lastname)"
                 emailLabel.text = "\(user.email!)"
-                let k = user.objectForKey("bio") ?? ""
-                lblBio.text = "Bio: \(k)"
+                
+                var k:String = ""
+                if user.objectForKey("bio") != nil {
+                    k = "\(user.objectForKey("bio")!)"
+                }
+                if user.objectForKey("bio") == nil {
+                    k = ""
+                }
                 
                 let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: "Bio: \(k)")
                 attributedText.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
