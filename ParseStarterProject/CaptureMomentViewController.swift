@@ -138,6 +138,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     }
     override func viewDidLoad() {
 //        hidesBottomBarWhenPushed = true
+        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
         tabBarController?.tabBar.hidden = true
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
