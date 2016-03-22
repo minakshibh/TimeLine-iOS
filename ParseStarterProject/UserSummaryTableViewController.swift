@@ -17,7 +17,7 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
+        tableView.registerNib(UINib(nibName: "UserSummary1TableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
 
         //tableView.rowHeight = UITableViewAutomaticDimension
         navigationItem.title = "@\(user.name ?? String())"
@@ -71,9 +71,25 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 100
+            var height:CGFloat = 320
+//            let bioStr:String = "\(NSUserDefaults.standardUserDefaults().valueForKeyPath("user_bio")!)"
+//            let websiteStr = "\(NSUserDefaults.standardUserDefaults().valueForKeyPath("user_website")!)"
+//            let otherStr = "\(NSUserDefaults.standardUserDefaults().valueForKeyPath("user_other")!)"
+//            if bioStr.characters.count == 1 {
+//               height = height - 60
+//                return  height
+//            }
+//            if websiteStr.characters.count == 1 {
+//                 height = height - 30
+//                return  height
+//            }
+//            if otherStr.characters.count == 1 {
+//                height = height - 47
+//                return  height
+//            }
+            return height
         default:
-            return 432
+            return 462
         }
     }
     

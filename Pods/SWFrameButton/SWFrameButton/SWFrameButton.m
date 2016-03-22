@@ -95,8 +95,12 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 
 - (void)setHighlighted:(BOOL)highlighted
 {
+    if (self.tag == 567)
+    {
+        highlighted = false;
+    }
     [super setHighlighted:highlighted];
-    
+   
     [UIView animateWithDuration:SWAnimationDuration animations:^{
         if (highlighted) {
             if (self.selected) {

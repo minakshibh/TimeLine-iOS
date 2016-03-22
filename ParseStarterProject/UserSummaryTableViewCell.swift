@@ -13,9 +13,15 @@ class UserSummaryTableViewCell: UITableViewCell {
 
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var nameLabel1: UILabel!
+    @IBOutlet var lblBio: UILabel!
+    @IBOutlet var lblOthers: UILabel!
+    @IBOutlet var btnWebsite: SWFrameButton!
+
     @IBOutlet var profileImageView: ProfileImageView!
     @IBOutlet var likeButton: SWFrameButton!
-    
+    @IBOutlet var likeTimelineButton: UIButton!
+    @IBOutlet var followTimelineButton: UIButton!
+
     @IBOutlet var likeButton1: SWFrameButton!
     @IBOutlet var followButton: SWFrameButton!
     @IBOutlet var approveButton: SWFrameButton!
@@ -30,11 +36,11 @@ class UserSummaryTableViewCell: UITableViewCell {
     }
 
     var refreshers: [() -> ()] {
-        return [refreshLikeableBehavior, refreshFollowableBehavior, refreshApproveableBehavior, refreshNamedBehavior ,refreshFirstLastName, refreshLikeableBehavior2]
+        return [refreshLikeableBehavior, refreshFollowableBehavior, refreshApproveableBehavior, refreshNamedBehavior ,refreshFirstLastName, refreshLikeableBehavior2, refreshwebsiteButtonClick]
     }
 }
 
-extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBehavior, ApproveableBehavior, NamedBehavior ,FirstLastName, LikeableBehavior2 {
+extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBehavior, ApproveableBehavior, NamedBehavior ,FirstLastName, LikeableBehavior2 , websiteButtonClick {
 
     typealias TargetBehaviorType = User
     var behaviorTarget: TargetBehaviorType? {
@@ -56,5 +62,8 @@ extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBeh
     @IBAction func tappedMoreButton() {
         guard let user = user else { return }
         serialHook.perform(key: .UserMoreButtonTapped, argument: user)
+    }
+    @IBAction func btnWebsiteAction() {
+        websiteButtonClickAction()
     }
 }

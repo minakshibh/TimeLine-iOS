@@ -17,6 +17,8 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     @IBOutlet var nameLabel1: UILabel!
     @IBOutlet var lblBio: UILabel!
     @IBOutlet var emailLabel: UILabel!
+    @IBOutlet var websiteButton: UIButton!
+    @IBOutlet var othersLabel: UILabel!
     @IBOutlet var followingLabel: UILabel!
     @IBOutlet var followersLabel: UILabel!
     @IBOutlet var lovedLabel: UILabel!
@@ -43,6 +45,21 @@ class ProfileTableViewController: TintedHeaderTableViewController {
 //
         navigationItem.leftBarButtonItem = left
        
+    }
+    
+    @IBAction func websiteButton(sender: AnyObject) {
+        let buttonTitle = websiteButton.currentTitle!  as String
+        let check = buttonTitle.componentsSeparatedByString("http://")
+        
+        var resultingStr:String = ""
+        if check.count != 0 {
+            resultingStr = buttonTitle
+        }else{
+            resultingStr = "http://\(buttonTitle)"
+        }
+        
+        UIApplication.sharedApplication().openURL(NSURL(string: resultingStr)!)
+
     }
     
     
@@ -166,7 +183,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 emailLabel.text = "\(NSUserDefaults.standardUserDefaults().valueForKey("fb_email")!)"
                 navigationItem.title = "\(NSUserDefaults.standardUserDefaults().valueForKey("fb_username")!)"
                 
-                lblBio.text = "Bio: "
+//                lblBio.text = "Bio: "
                 
                 let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: "Bio:  ")
                 attributedText.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
@@ -179,17 +196,53 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 nameLabel1.text = "\(firstname) \(lastname)"
                 emailLabel.text = "\(user.email!)"
                 
-                var k:String = ""
+                var bioStr:String = ""
                 if user.objectForKey("bio") != nil {
-                    k = "\(user.objectForKey("bio")!)"
+                    bioStr = "\(user.objectForKey("bio")!)"
+                    let attributedTextBio: NSMutableAttributedString = NSMutableAttributedString(string: "Bio: \(bioStr)")
+                    attributedTextBio.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
+                    lblBio.attributedText = attributedTextBio
                 }
                 if user.objectForKey("bio") == nil {
-                    k = ""
+                    bioStr = ""
+                    lblBio.text = bioStr
+                    let heigh =  lblBio.frame.size.height
+//                    lblBio.frame = CGRectMake(lblBio.frame.origin.x, lblBio.frame.origin.y, lblBio.frame.size.width, 0)
+//                    userSummaryView.frame = CGRectMake(userSummaryView.frame.origin.x, userSummaryView.frame.origin.y, userSummaryView.frame.size.width, userSummaryView.frame.size.height-heigh)
                 }
                 
-                let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: "Bio: \(k)")
-                attributedText.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
-                lblBio.attributedText = attributedText
+                
+                var websiteStr:String = ""
+                if user["website"] != nil {
+                    websiteStr = "\(user.objectForKey("website")!)"
+                    websiteButton.setTitle(websiteStr, forState: .Normal)
+                }
+                if user["website"] == nil {
+                websiteStr = ""
+                }
+                
+                
+                
+                var otherStr:String = ""
+                if user["other"] != nil {
+                    otherStr = "\(user.objectForKey("other")!)"
+                    let attributedTextOther: NSMutableAttributedString = NSMutableAttributedString(string: "Other: \(otherStr)")
+                    attributedTextOther.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 6))
+                    othersLabel.attributedText = attributedTextOther
+                }
+                if user["other"] == nil {
+                    otherStr = ""
+                }
+                
+                
+//                if let website = user["website"] as? String {
+//                    websiteLabel.text = website
+//                }
+//                if let other = user["other"] as? String {
+//                    otherLabel.text = other
+//                }
+                
+                
             }
             
             timelinesPublicSwitch.on = Storage.session.currentUser!.timelinesPublic!
@@ -219,7 +272,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
             pendingLabel.text = "\(user.pendingFollowersCount ?? 0)"
         }
         
-        userImageView.user = Storage.session.currentUser
+         userImageView.user = Storage.session.currentUser
     }
     
     @IBAction func toggleTimelinesPublic() {

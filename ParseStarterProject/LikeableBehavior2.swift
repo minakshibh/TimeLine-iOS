@@ -12,6 +12,7 @@ protocol LikeableBehavior2 {
     typealias TargetBehaviorType: Likeable
     var behaviorTarget: TargetBehaviorType? { get }
     var likeButton1: SWFrameButton! { get }
+    var btnWebsite: SWFrameButton! { get }
 }
 
 private extension UIColor {
@@ -45,6 +46,27 @@ extension LikeableBehavior2 where TargetBehaviorType: Ownable {
             likeButton1.selected =!= false
             likeButton1.normalTitle =!= "0"
 //            likeButton1.borderWidth =!= 1.5
+        }
+        
+        
+        if PFUser.currentUser()?.authenticated ?? false {
+            let user = PFUser.currentUser()!
+            
+            let isFacebook = NSUserDefaults.standardUserDefaults().valueForKey("facebook_login")
+            if(isFacebook != nil)
+            {
+            }else{
+                var websiteStr:String = ""
+                if user["website"] != nil {
+                    websiteStr = "\(user.objectForKey("website")!)"
+                    btnWebsite.setTitle(websiteStr, forState: .Normal)
+                }
+                if user["website"] == nil {
+                    websiteStr = ""
+                }
+                
+                
+            }
         }
     }
 
