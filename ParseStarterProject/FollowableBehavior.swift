@@ -12,6 +12,8 @@ protocol FollowableBehavior {
     typealias TargetBehaviorType: Followable
     var behaviorTarget: TargetBehaviorType? { get }
     var followButton: SWFrameButton! { get }
+    var followTimelineButton: UIButton! { get }
+
 }
 
 private extension UIColor {
@@ -31,19 +33,27 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
         
         if let target = behaviorTarget {
             followButton.setTitle("\(target.followersCount)", forState: .Normal)
-            followButton.selected =!= target.followed != .NotFollowing && !target.isOwn
             followButton.enabled =!= true
-//            followButton.borderWidth =!= target.isOwn ? 0 : 1.5
-            //            followButton.tintColor =!= target.isOwn ? UIColor.blackColor() : .followableTintColor
-            followButton.borderWidth =!= 0 
+            followButton.borderWidth =!= 0
             followButton.tintColor =!= UIColor.blackColor()
+            if (followTimelineButton != nil)
+            {
+                followTimelineButton.hidden =!= target.isOwn ? true : false
+                followTimelineButton.selected =!= target.followed != .NotFollowing && !target.isOwn
+                followTimelineButton.enabled =!= true
+                followTimelineButton.normalImage =!= target.followed != .NotFollowing ? UIImage(assetIdentifier: .dislikeImage) : UIImage(assetIdentifier: .likeImage)
+            }
+           
         } else {
             followButton.enabled =!= false
             followButton.selected =!= false
             followButton.normalTitle =!= "0"
             followButton.borderWidth =!= 0
-//            followButton.borderWidth =!= 1.5
-
+            if (followTimelineButton != nil)
+            {
+                followTimelineButton.selected =!= false
+                followTimelineButton.enabled =!= false
+            }
         }
     }
 
@@ -58,5 +68,18 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
             controller.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: likeable))
         }
     }
-    
+    func toggleFollowedState() {
+        if let target = behaviorTarget {
+            target.toggleFollowState {
+                self.refreshFollowableBehavior()
+            }
+            refreshFollowableBehavior()
+        }
+    }
+    func showFollowers() {
+        if let likeable = behaviorTarget as? Followable {
+            guard let controller = activeController() else { return }
+            controller.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: likeable))
+        }
+    }
 }

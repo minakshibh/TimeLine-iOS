@@ -9,7 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ModernTimelineView" customModule="Timeline" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="470"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZX-FB-9P2">
@@ -26,69 +26,8 @@
                         </mask>
                     </variation>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HVl-oO-cuI" customClass="DraftPreviewView" customModule="Timeline" customModuleProvider="target">
-                    <rect key="frame" x="15" y="72" width="305" height="305"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="HVl-oO-cuI" secondAttribute="height" multiplier="305:306" id="9jS-Yr-96Y"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="9jS-Yr-96Y"/>
-                        </mask>
-                    </variation>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8U-pc-cJ2" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
-                    <rect key="frame" x="15" y="72" width="305" height="305"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Play Button" translatesAutoresizingMaskIntoConstraints="NO" id="j95-K4-6Qt">
-                            <rect key="frame" x="72" y="89" width="160" height="127"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="0.90539359619686788" alpha="1" colorSpace="calibratedWhite"/>
-                    <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstItem="j95-K4-6Qt" firstAttribute="centerY" secondItem="j8U-pc-cJ2" secondAttribute="centerY" id="C9T-Dg-Whi"/>
-                        <constraint firstItem="j95-K4-6Qt" firstAttribute="centerX" secondItem="j8U-pc-cJ2" secondAttribute="centerX" id="RzL-84-fUT"/>
-                        <constraint firstAttribute="width" secondItem="j8U-pc-cJ2" secondAttribute="height" multiplier="1:1" id="pn7-n3-owf"/>
-                    </constraints>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="Pwz-aJ-f1i" appends="YES" id="yvb-Un-znv"/>
-                    </connections>
-                </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ekh-71-eJd" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
-                    <rect key="frame" x="328" y="72" width="71" height="71"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="Ekh-71-eJd" secondAttribute="height" multiplier="1:1" id="xun-ZM-YuE"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="xun-ZM-YuE"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="X9B-N1-dFJ" appends="YES" id="VYz-ff-sUR"/>
-                    </connections>
-                </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRr-Jw-1xW" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
-                    <rect key="frame" x="328" y="228" width="71" height="71"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <gestureRecognizers/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="MRr-Jw-1xW" secondAttribute="height" multiplier="1:1" id="3EX-Gb-p4p"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="3EX-Gb-p4p"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="raS-1B-bJa" appends="YES" id="nT0-jY-kUk"/>
-                    </connections>
-                </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="IKO-PQ-lb0" customClass="SWFrameButton">
-                    <rect key="frame" x="120" y="33" width="90" height="27"/>
+                <button opaque="NO" tag="567" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="IKO-PQ-lb0" customClass="SWFrameButton">
+                    <rect key="frame" x="120" y="70" width="90" height="27"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -109,7 +48,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6K-aH-QGE">
-                    <rect key="frame" x="347" y="31" width="33" height="30"/>
+                    <rect key="frame" x="347" y="68" width="33" height="30"/>
                     <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" image="more"/>
                     <connections>
@@ -136,8 +75,28 @@
                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YRI-Jb-ZXO" customClass="SWFrameButton">
-                    <rect key="frame" x="15" y="33" width="90" height="27"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkG-no-Juk">
+                    <rect key="frame" x="340" y="0.0" width="47" height="30"/>
+                    <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="Comment">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="groupTimelineButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="VdF-OQ-Nyj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymc-ol-e8e">
+                    <rect key="frame" x="225" y="70" width="90" height="30"/>
+                    <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="0" image="chat">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="timelineCommentClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="AVa-d8-8Hj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="567" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YRI-Jb-ZXO" customClass="SWFrameButton">
+                    <rect key="frame" x="15" y="70" width="90" height="27"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="As1-y6-NhK"/>
                     </constraints>
@@ -160,8 +119,69 @@
                         <action selector="likeButtonTapped" destination="iN0-l3-epB" eventType="touchUpInside" id="uBH-8V-XDP"/>
                     </connections>
                 </button>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-a6-ir2" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
-                    <rect key="frame" x="328" y="306" width="71" height="71"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HVl-oO-cuI" customClass="DraftPreviewView" customModule="Timeline" customModuleProvider="target">
+                    <rect key="frame" x="15" y="93" width="305" height="305"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="HVl-oO-cuI" secondAttribute="height" multiplier="305:306" id="9jS-Yr-96Y"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="9jS-Yr-96Y"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8U-pc-cJ2" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                    <rect key="frame" x="15" y="102" width="305" height="305"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Play Button" translatesAutoresizingMaskIntoConstraints="NO" id="j95-K4-6Qt">
+                            <rect key="frame" x="72" y="89" width="160" height="127"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.90539359619686788" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="j95-K4-6Qt" firstAttribute="centerY" secondItem="j8U-pc-cJ2" secondAttribute="centerY" id="C9T-Dg-Whi"/>
+                        <constraint firstItem="j95-K4-6Qt" firstAttribute="centerX" secondItem="j8U-pc-cJ2" secondAttribute="centerX" id="RzL-84-fUT"/>
+                        <constraint firstAttribute="width" secondItem="j8U-pc-cJ2" secondAttribute="height" multiplier="1:1" id="pn7-n3-owf"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="Pwz-aJ-f1i" appends="YES" id="yvb-Un-znv"/>
+                    </connections>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ekh-71-eJd" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                    <rect key="frame" x="328" y="102" width="71" height="71"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Ekh-71-eJd" secondAttribute="height" multiplier="1:1" id="xun-ZM-YuE"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="xun-ZM-YuE"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="X9B-N1-dFJ" appends="YES" id="VYz-ff-sUR"/>
+                    </connections>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MRr-Jw-1xW" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                    <rect key="frame" x="328" y="258" width="71" height="71"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="MRr-Jw-1xW" secondAttribute="height" multiplier="1:1" id="3EX-Gb-p4p"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="3EX-Gb-p4p"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="raS-1B-bJa" appends="YES" id="nT0-jY-kUk"/>
+                    </connections>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-a6-ir2" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                    <rect key="frame" x="328" y="336" width="71" height="71"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <constraints>
@@ -177,7 +197,7 @@
                     </connections>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-je-7Td" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
-                    <rect key="frame" x="328" y="151" width="71" height="71"/>
+                    <rect key="frame" x="328" y="181" width="71" height="71"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <constraints>
@@ -192,36 +212,56 @@
                         <outletCollection property="gestureRecognizers" destination="cC5-F5-vor" appends="YES" id="Smt-3i-eYX"/>
                     </connections>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymc-ol-e8e">
-                    <rect key="frame" x="225" y="33" width="90" height="30"/>
-                    <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="0" image="chat">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="timelineCommentClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="AVa-d8-8Hj"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkG-no-Juk">
-                    <rect key="frame" x="340" y="0.0" width="47" height="30"/>
-                    <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" image="Comment">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="groupTimelineButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="VdF-OQ-Nyj"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="GkD-2l-EIq">
-                    <rect key="frame" x="15" y="382" width="384" height="58"/>
+                    <rect key="frame" x="15" y="412" width="384" height="58"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFV-dk-x9W">
+                    <rect key="frame" x="15" y="28" width="94" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="sJP-W9-g4f"/>
+                    </constraints>
+                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="whiteHeart">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="likeTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="DPe-3Z-6Ta"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kso-Qv-IH6">
+                    <rect key="frame" x="120" y="24" width="90" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="ulh-M7-Uey"/>
+                    </constraints>
+                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="likeImage">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="followTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="l4V-Xz-vDj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NX4-aK-Vhg">
+                    <rect key="frame" x="230" y="24" width="90" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="g2v-gB-IaC"/>
+                    </constraints>
+                    <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="7" image="showComments">
+                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="commentOnTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="8uc-oL-Ioc"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="a0D-So-pvo" firstAttribute="leading" secondItem="dZX-FB-9P2" secondAttribute="trailing" constant="8" id="0Bu-Hf-Mhg"/>
                 <constraint firstItem="Ekh-71-eJd" firstAttribute="leading" secondItem="j8U-pc-cJ2" secondAttribute="trailing" constant="8" id="0ch-LO-Qdx"/>
+                <constraint firstItem="aFV-dk-x9W" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="3Kn-ha-pdx"/>
                 <constraint firstAttribute="trailing" secondItem="GkD-2l-EIq" secondAttribute="trailing" constant="15" id="3lm-J2-5iK"/>
                 <constraint firstItem="Ymc-ol-e8e" firstAttribute="trailing" secondItem="j8U-pc-cJ2" secondAttribute="trailing" id="4BS-ft-qRo"/>
                 <constraint firstItem="rdV-je-7Td" firstAttribute="width" secondItem="rdV-je-7Td" secondAttribute="height" multiplier="1:1" id="5QP-nB-hEu"/>
@@ -236,9 +276,10 @@
                 <constraint firstItem="j8U-pc-cJ2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="LNP-tE-vaS"/>
                 <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="GkD-2l-EIq" secondAttribute="bottom" constant="12" id="Lra-Qd-XVg"/>
                 <constraint firstItem="MRr-Jw-1xW" firstAttribute="width" secondItem="MRr-Jw-1xW" secondAttribute="height" multiplier="1:1" id="OOx-bI-kMs"/>
+                <constraint firstItem="aFV-dk-x9W" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="PAX-tU-1kX"/>
                 <constraint firstItem="Ymc-ol-e8e" firstAttribute="leading" secondItem="IKO-PQ-lb0" secondAttribute="trailing" constant="15" id="Q9r-7N-KI2"/>
                 <constraint firstItem="HVl-oO-cuI" firstAttribute="centerX" secondItem="j8U-pc-cJ2" secondAttribute="centerX" priority="250" id="QHm-sn-yFn"/>
-                <constraint firstItem="YRI-Jb-ZXO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="33" id="U5g-fM-e50"/>
+                <constraint firstItem="kso-Qv-IH6" firstAttribute="leading" secondItem="IKO-PQ-lb0" secondAttribute="leading" id="TsJ-C0-e1W"/>
                 <constraint firstItem="HVl-oO-cuI" firstAttribute="width" secondItem="j8U-pc-cJ2" secondAttribute="width" priority="250" id="ULm-dx-rIQ"/>
                 <constraint firstItem="j8U-pc-cJ2" firstAttribute="top" secondItem="YRI-Jb-ZXO" secondAttribute="bottom" constant="12" id="UyG-ul-2dv"/>
                 <constraint firstItem="HVl-oO-cuI" firstAttribute="centerY" secondItem="j8U-pc-cJ2" secondAttribute="centerY" priority="250" id="VHA-B5-YDW"/>
@@ -246,23 +287,32 @@
                 <constraint firstItem="Qua-Bu-xhg" firstAttribute="leading" secondItem="a0D-So-pvo" secondAttribute="trailing" id="W8J-MR-FrN"/>
                 <constraint firstItem="dZX-FB-9P2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="WTG-Ip-LoD"/>
                 <constraint firstItem="N6K-aH-QGE" firstAttribute="centerY" secondItem="IKO-PQ-lb0" secondAttribute="centerY" id="XfC-D2-YUy"/>
+                <constraint firstItem="kso-Qv-IH6" firstAttribute="top" secondItem="aFV-dk-x9W" secondAttribute="top" id="Xqc-23-I8G"/>
                 <constraint firstItem="IKO-PQ-lb0" firstAttribute="leading" secondItem="YRI-Jb-ZXO" secondAttribute="trailing" constant="15" id="bIc-JM-vsB"/>
+                <constraint firstItem="NX4-aK-Vhg" firstAttribute="top" secondItem="kso-Qv-IH6" secondAttribute="top" id="bQK-WB-iHa"/>
                 <constraint firstItem="YRI-Jb-ZXO" firstAttribute="width" secondItem="IKO-PQ-lb0" secondAttribute="width" id="bZa-Ga-Zhk"/>
                 <constraint firstItem="Ymc-ol-e8e" firstAttribute="width" secondItem="IKO-PQ-lb0" secondAttribute="height" multiplier="10:3" id="c2B-A5-kYq"/>
+                <constraint firstItem="aFV-dk-x9W" firstAttribute="width" secondItem="YRI-Jb-ZXO" secondAttribute="width" id="cEd-cQ-Fui"/>
+                <constraint firstItem="YRI-Jb-ZXO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="61" id="cWG-ph-0tG"/>
                 <constraint firstItem="j8U-pc-cJ2" firstAttribute="top" secondItem="Ymc-ol-e8e" secondAttribute="bottom" constant="9" id="coi-re-rHe"/>
                 <constraint firstItem="1aP-Uc-Olc" firstAttribute="leading" secondItem="Qua-Bu-xhg" secondAttribute="trailing" constant="8" id="cyR-Ag-YQC"/>
                 <constraint firstItem="dZX-FB-9P2" firstAttribute="width" relation="lessThanOrEqual" secondItem="j8U-pc-cJ2" secondAttribute="width" constant="-30" id="dez-a1-dHY"/>
                 <constraint firstItem="rdV-je-7Td" firstAttribute="width" secondItem="Ekh-71-eJd" secondAttribute="width" id="fgT-lJ-cMr"/>
+                <constraint firstItem="kso-Qv-IH6" firstAttribute="width" secondItem="IKO-PQ-lb0" secondAttribute="width" id="g0C-Pv-y7Q"/>
                 <constraint firstItem="rdV-je-7Td" firstAttribute="top" secondItem="Ekh-71-eJd" secondAttribute="bottom" constant="7" id="hlH-25-o9A"/>
+                <constraint firstItem="NX4-aK-Vhg" firstAttribute="leading" secondItem="Ymc-ol-e8e" secondAttribute="leading" id="igm-qr-nsY"/>
                 <constraint firstItem="MRr-Jw-1xW" firstAttribute="width" secondItem="rdV-je-7Td" secondAttribute="width" id="jym-jY-6tV"/>
                 <constraint firstItem="Ymc-ol-e8e" firstAttribute="bottom" secondItem="IKO-PQ-lb0" secondAttribute="bottom" id="ldB-gh-hX6"/>
+                <constraint firstItem="NX4-aK-Vhg" firstAttribute="width" secondItem="Ymc-ol-e8e" secondAttribute="width" id="mOG-wN-4kh"/>
                 <constraint firstItem="HVl-oO-cuI" firstAttribute="height" secondItem="j8U-pc-cJ2" secondAttribute="height" priority="250" id="mXO-P7-IN7"/>
                 <constraint firstItem="Ekh-71-eJd" firstAttribute="top" secondItem="YRI-Jb-ZXO" secondAttribute="bottom" constant="12" id="n2d-cg-AV8"/>
                 <constraint firstItem="ev8-a6-ir2" firstAttribute="width" secondItem="ev8-a6-ir2" secondAttribute="height" multiplier="1:1" id="opK-bI-rN4"/>
                 <constraint firstItem="Ymc-ol-e8e" firstAttribute="top" secondItem="IKO-PQ-lb0" secondAttribute="top" id="oz6-7m-lzh"/>
+                <constraint firstItem="aFV-dk-x9W" firstAttribute="width" secondItem="YRI-Jb-ZXO" secondAttribute="width" id="p5I-5l-AQQ"/>
                 <constraint firstItem="rdV-je-7Td" firstAttribute="centerX" secondItem="Ekh-71-eJd" secondAttribute="centerX" id="pEg-n4-5L9"/>
                 <constraint firstItem="YRI-Jb-ZXO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="pUG-18-BDq"/>
                 <constraint firstItem="MRr-Jw-1xW" firstAttribute="centerX" secondItem="rdV-je-7Td" secondAttribute="centerX" id="rOh-7R-FjV"/>
+                <constraint firstItem="NX4-aK-Vhg" firstAttribute="centerX" secondItem="Ymc-ol-e8e" secondAttribute="centerX" id="rmt-5a-P5D"/>
                 <constraint firstItem="Ekh-71-eJd" firstAttribute="width" secondItem="Ekh-71-eJd" secondAttribute="height" multiplier="1:1" id="skM-6C-BqY"/>
                 <constraint firstItem="GkD-2l-EIq" firstAttribute="leading" secondItem="j8U-pc-cJ2" secondAttribute="leading" id="sp4-JE-c14"/>
                 <constraint firstItem="GkD-2l-EIq" firstAttribute="top" secondItem="j8U-pc-cJ2" secondAttribute="bottom" constant="5" id="tKn-Ql-q90"/>
@@ -282,12 +332,15 @@
             </variation>
             <connections>
                 <outlet property="commentButton" destination="Ymc-ol-e8e" id="8WC-7D-3c1"/>
+                <outlet property="commentOnTimelineButton" destination="NX4-aK-Vhg" id="Ftb-ly-wtU"/>
                 <outlet property="descriptionLabel" destination="GkD-2l-EIq" id="lWC-DC-sWL"/>
                 <outlet property="durationLabel" destination="a0D-So-pvo" id="aOd-Su-E2O"/>
                 <outlet property="firstMomentPreview" destination="j8U-pc-cJ2" id="Afl-hd-l59"/>
                 <outlet property="followButton" destination="IKO-PQ-lb0" id="cBt-8d-ddc"/>
+                <outlet property="followTimelineButton" destination="kso-Qv-IH6" id="P8V-wQ-Ke8"/>
                 <outlet property="groupTimelineButton" destination="vkG-no-Juk" id="HqP-fk-yj6"/>
                 <outlet property="likeButton" destination="YRI-Jb-ZXO" id="Mds-Xz-aRb"/>
+                <outlet property="likeTimelineButton" destination="aFV-dk-x9W" id="6NY-1W-ABo"/>
                 <outlet property="nameLabel" destination="dZX-FB-9P2" id="TPP-Tq-fV0"/>
                 <outlet property="playerView" destination="HVl-oO-cuI" id="1aw-xQ-RO1"/>
                 <outletCollection property="previewItems" destination="dZX-FB-9P2" collectionClass="NSMutableArray" id="hm1-kY-Is4"/>
@@ -310,8 +363,11 @@
                 <outletCollection property="lastMomentPreviews" destination="MRr-Jw-1xW" collectionClass="NSMutableArray" id="MAZ-yY-Efa"/>
                 <outletCollection property="lastMomentPreviews" destination="ev8-a6-ir2" collectionClass="NSMutableArray" id="7hy-eq-bBN"/>
                 <outletCollection property="previewItems" destination="vkG-no-Juk" collectionClass="NSMutableArray" id="NWv-GV-L1S"/>
+                <outletCollection property="previewItems" destination="aFV-dk-x9W" collectionClass="NSMutableArray" id="3A2-P5-sAU"/>
+                <outletCollection property="previewItems" destination="kso-Qv-IH6" collectionClass="NSMutableArray" id="JbW-db-eVX"/>
+                <outletCollection property="previewItems" destination="NX4-aK-Vhg" collectionClass="NSMutableArray" id="9SU-fw-PGz"/>
             </connections>
-            <point key="canvasLocation" x="464" y="474"/>
+            <point key="canvasLocation" x="464" y="487"/>
         </view>
         <tapGestureRecognizer id="Pwz-aJ-f1i">
             <connections>
@@ -345,7 +401,10 @@
         <image name="chat" width="16" height="15"/>
         <image name="comments" width="16" height="15"/>
         <image name="follower" width="16" height="15"/>
+        <image name="likeImage" width="33" height="33"/>
         <image name="love" width="16" height="15"/>
         <image name="more" width="33" height="30"/>
+        <image name="showComments" width="33" height="33"/>
+        <image name="whiteHeart" width="33" height="33"/>
     </resources>
 </document>

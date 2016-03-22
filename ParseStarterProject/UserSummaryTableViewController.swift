@@ -89,7 +89,7 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
 //            }
             return height
         default:
-            return 432
+            return 462
         }
     }
     

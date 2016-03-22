@@ -12,6 +12,8 @@ protocol LikeableBehavior {
     typealias TargetBehaviorType: Likeable
     var behaviorTarget: TargetBehaviorType? { get }
     var likeButton: SWFrameButton! { get }
+    var likeTimelineButton: UIButton! { get }
+
 }
 
 private extension UIColor {
@@ -24,7 +26,6 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
 
     func refreshLikeableBehavior() {
         likeButton.cornerRadius =!= 7
-//        likeButton.tintColor =!= .likeableTintColor
         likeButton.normalImage =!= UIImage(assetIdentifier: .LikeableButton)
         likeButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 0)
 
@@ -32,23 +33,26 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
 
         if let behaviorTarget = behaviorTarget {
             likeButton.setTitle("\(behaviorTarget.likesCount)", forState: .Normal)
-            likeButton.selected =!= behaviorTarget.liked
-            likeButton.enabled =!= true
-            print("\(behaviorTarget.likesCount)-----\(behaviorTarget.isOwn)")
-//            likeButton.borderWidth =!= behaviorTarget.isOwn ? 0 : 1.5
-            //           
-            
             likeButton.borderWidth =!= 0
-//            likeButton.tintColor =!= behaviorTarget.isOwn ? UIColor.blackColor() : .likeableTintColor
             likeButton.tintColor =!=  UIColor.blackColor()
+            if (likeTimelineButton != nil)
+            {
+                likeTimelineButton.hidden =!= behaviorTarget.isOwn ? true : false
+                likeTimelineButton.selected =!= behaviorTarget.liked
+                likeTimelineButton.enabled =!= true
+                likeTimelineButton.normalImage =!= behaviorTarget.liked ? UIImage(assetIdentifier: .RedHeart) : UIImage(assetIdentifier: .whiteHeart)
+            }
         } else {
             likeButton.enabled =!= false
             likeButton.selected =!= false
             likeButton.normalTitle =!= "0"
-//            likeButton.borderWidth =!= 1.5
-
             likeButton.borderWidth =!= 0
-}
+            if (likeTimelineButton != nil)
+            {
+                likeTimelineButton.selected =!= false
+                likeTimelineButton.enabled =!= false
+            }
+        }
     }
 
     func toggleLiked() {
@@ -57,10 +61,25 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
             self.refreshLikeableBehavior()
         }
             refreshLikeableBehavior()
-        } else if let likeable = behaviorTarget as? Likeable {
+        }
+        else if let likeable = behaviorTarget as? Likeable {
             guard let controller = activeController() else { return }
             controller.performSegueWithIdentifier("ShowUserList", sender: LikeableValue(likeable: likeable))
         }
     }
     
+    func toggledLiked() {
+        if let target = behaviorTarget where !target.isOwn {
+            target.toggleLiked {
+                self.refreshLikeableBehavior()
+            }
+            refreshLikeableBehavior()
+        }
+    }
+    func showLikes() {
+        if let likeable = behaviorTarget as? Likeable {
+            guard let controller = activeController() else { return }
+            controller.performSegueWithIdentifier("ShowUserList", sender: LikeableValue(likeable: likeable))
+        }
+    }
 }
