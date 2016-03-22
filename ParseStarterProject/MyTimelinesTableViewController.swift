@@ -36,12 +36,12 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         (leftBarButtonItems, rightBarButtonItems) = (navigationItem.leftBarButtonItems, navigationItem.rightBarButtonItems)
         
-        delay(0.001) {
-            if !Storage.session.walkedThroughMine {
-                Storage.session.walkedThroughMine = true
-                self.performSegueWithIdentifier("WalkthroughMy", sender: self)
-            }
-        }
+//        delay(0.001) {
+//            if !Storage.session.walkedThroughMine {
+//                Storage.session.walkedThroughMine = true
+//                self.performSegueWithIdentifier("WalkthroughMy", sender: self)
+//            }
+//        }
         
         let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
         navigationItem.leftBarButtonItem = right

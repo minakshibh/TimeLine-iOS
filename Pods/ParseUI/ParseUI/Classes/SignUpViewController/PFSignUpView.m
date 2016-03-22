@@ -114,9 +114,10 @@ static NSString *const PFSignUpViewDefaultLogoImageName = @"parse_logo.png";
         _addProfilePicture.contentEdgeInsets = UIEdgeInsetsMake(0, 23, 0, 0);
         _addProfilePicture.titleLabel.font = [_addProfilePicture.titleLabel.font fontWithSize:17];
         [self addSubview:_addProfilePicture];
-
-        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(_addProfilePicture.frame.size.width-_addProfilePicture.frame.size.height, 0, _addProfilePicture.frame.size.height, _addProfilePicture.frame.size.height)];
-        _imageView.backgroundColor = [UIColor blackColor];
+        
+        _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(270, _addProfilePicture.frame.origin.y+7, 40, 40)];
+        _imageView.hidden = YES;
+        _imageView.layer.cornerRadius = 20;
         [_addProfilePicture addSubview:_imageView];
         
       

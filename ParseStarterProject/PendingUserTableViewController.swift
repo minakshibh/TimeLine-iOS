@@ -30,12 +30,12 @@ class PendingUserTableViewController: FlatUserTableViewController {
             self.users = usrs
         }
         
-        delay(0.001) {
-            if !Storage.session.walkedThroughApprove {
-                Storage.session.walkedThroughApprove = true
-                self.performSegueWithIdentifier("WalkthroughApprove", sender: self)
-            }
-        }
+//        delay(0.001) {
+//            if !Storage.session.walkedThroughApprove {
+//                Storage.session.walkedThroughApprove = true
+//                self.performSegueWithIdentifier("WalkthroughApprove", sender: self)
+//            }
+//        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -72,12 +72,12 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         self.layout?.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 53)
         self.collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "Footer")
         
-        delay(0.001) {
-            if !Storage.session.walkedThroughMoments {
-                Storage.session.walkedThroughMoments = true
-                self.performSegueWithIdentifier("WalkthroughMoments", sender: self)
-            }
-        }
+//        delay(0.001) {
+//            if !Storage.session.walkedThroughMoments {
+//                Storage.session.walkedThroughMoments = true
+//                self.performSegueWithIdentifier("WalkthroughMoments", sender: self)
+//            }
+//        }
         let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to Record"), style: .Plain, target: self, action: "goToRecordScreen")
         let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
         navigationItem.leftBarButtonItem = left

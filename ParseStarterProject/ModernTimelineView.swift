@@ -1090,6 +1090,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     let notifyStr = raw["user_image"] as! String
                     //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
                     userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+                    //userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal, placeholderImage: UIImage(named:"default-user-profile"), options: SDWebImageOptions.ProgressiveDownload)
                 }
                 userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
                 userImage.clipsToBounds = true

@@ -28,6 +28,7 @@
 #import "PFLocalization.h"
 #import "PFPrimaryButton.h"
 #import "PFTextField.h"
+#import "PFSignUpView.h"
 
 
 NSString *const PFSignUpSuccessNotification = @"com.parse.ui.signup.success";
@@ -239,6 +240,7 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
     _signUpView.usernameField.delegate = self;
     _signUpView.passwordField.delegate = self;
     _signUpView.emailField.delegate = self;
+    
     
     _signUpView.additionalField.delegate = self;
     [_signUpView.addProfilePicture addTarget:self
@@ -654,13 +656,11 @@ static NSString *const PFSignUpViewControllerDelegateInfoAdditionalKey = @"addit
 {
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     _imageDataProfile = UIImageJPEGRepresentation(chosenImage, 0.85);
-    
-//    _signUpView = [[PFSignUpView alloc]init];
-//    [_signUpView.imageView setImage: chosenImage];
-//    _signUpView.imageView.image = chosenImage;
-//   _signUpView.image.image = [UIImage imageWithData:data];
-//    _signUpView.image.backgroundColor = [UIColor yellowColor];
-//    [_signUpView setImage:chosenImage];
+   // _signUpView = [[PFSignUpView alloc] init];
+    _signUpView.imageView.frame = CGRectMake(self.view.frame.size.width-50, _signUpView.imageView.frame.origin.y, _signUpView.imageView.frame.size.width, _signUpView.imageView.frame.size.height);
+    _signUpView.imageView.hidden = NO;
+    _signUpView.imageView.clipsToBounds = YES;
+    [_signUpView.imageView setImage: chosenImage];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
   

@@ -76,12 +76,12 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         navigationItem.rightBarButtonItems = [right,Add]
         navigationItem.leftBarButtonItem = left
         
-        delay(0.001) {
-            if !Storage.session.walkedThroughTrends {
-                Storage.session.walkedThroughTrends = true
-                self.performSegueWithIdentifier("WalkthroughTrending", sender: self)
-            }
-        }
+//        delay(0.001) {
+//            if !Storage.session.walkedThroughTrends {
+//                Storage.session.walkedThroughTrends = true
+//                self.performSegueWithIdentifier("WalkthroughTrending", sender: self)
+//            }
+//        }
         
         
         let screenRect = UIScreen.mainScreen().bounds
