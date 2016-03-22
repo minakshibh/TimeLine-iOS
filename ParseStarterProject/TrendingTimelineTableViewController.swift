@@ -499,7 +499,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 //                    return 100
                     return 60
                 } else {
-                    return 432
+                    return 462
                 }
             
             }

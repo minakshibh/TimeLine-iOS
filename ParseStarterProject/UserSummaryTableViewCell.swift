@@ -15,7 +15,9 @@ class UserSummaryTableViewCell: UITableViewCell {
     @IBOutlet var nameLabel1: UILabel!
     @IBOutlet var profileImageView: ProfileImageView!
     @IBOutlet var likeButton: SWFrameButton!
-    
+    @IBOutlet var likeTimelineButton: UIButton!
+    @IBOutlet var followTimelineButton: UIButton!
+
     @IBOutlet var likeButton1: SWFrameButton!
     @IBOutlet var followButton: SWFrameButton!
     @IBOutlet var approveButton: SWFrameButton!

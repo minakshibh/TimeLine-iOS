@@ -139,6 +139,16 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             if let participants = behavior.timeline?.participants {
                 self.friendsListArray = participants.mutableCopy() as! NSMutableArray
             }
+            if let user_id = behavior.timeline?.parent?.state.uuid
+            {
+                if (user_id == Storage.session.currentUser?.uuid)
+                {
+                    commentOnTimelineButton.hidden = true
+//                    followTimelineButton.hidden = true
+//                    likeTimelineButton.hidden = true
+                }
+            }
+
         }
     }
     
@@ -1374,14 +1384,19 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     // MARK: LikeableBehavior:
     @IBOutlet var likeButton: SWFrameButton!
     
+    @IBOutlet var likeTimelineButton: UIButton!
+    
+    
     // MARK: FollowableBehavior:
     @IBOutlet var followButton: SWFrameButton!
     
+    @IBOutlet var followTimelineButton: UIButton!
     // MARK: DurationalBehavior:
     @IBOutlet var durationLabel: UILabel!
     
     @IBOutlet var commentButton: UIButton!
     
+    @IBOutlet var commentOnTimelineButton: UIButton!
     
 }
 
@@ -1401,10 +1416,23 @@ extension ModernTimelineView: FollowableBehavior, LikeableBehavior {
     }
     
     @IBAction func followButtonTapped() {
-        toggleFollowState()
+        showFollowers()
     }
     
     @IBAction func likeButtonTapped() {
-        toggleLiked()
+        showLikes()
+    }
+
+    @IBAction func likeTimelineButtonTapped(sender: UIButton) {
+        toggledLiked()
+    }
+    @IBAction func followTimelineButtonTapped(sender: UIButton) {
+         toggleFollowedState()
+    }
+    
+    @IBAction func commentOnTimelineButtonTapped(sender: AnyObject) {
+        main{
+            self.showCommentPopup()
+        }
     }
 }

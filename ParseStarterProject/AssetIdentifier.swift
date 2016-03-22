@@ -46,6 +46,11 @@ extension UIImage {
         case likeImage = "likeImage"
         
         case dislikeImage = "dislikeImage"
+        
+        
+        case whiteHeart = "whiteHeart"
+        case RedHeart = "RedHeart"
+        
     }
     
     convenience init!(assetIdentifier: AssetIdentifier) {
