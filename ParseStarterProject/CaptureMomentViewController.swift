@@ -187,6 +187,32 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //        }
         
         self.addScrollView()
+        
+        if PFUser.currentUser()?.authenticated ?? false {
+            let user = PFUser.currentUser()!
+            
+                if user.objectForKey("bio") != nil {
+                    NSUserDefaults.standardUserDefaults().setObject(user.objectForKey("bio"), forKey: "user_bio")
+                }
+                if user.objectForKey("bio") == nil {
+                     NSUserDefaults.standardUserDefaults().setObject(" ", forKey: "user_bio")
+                }
+                
+                if user["website"] != nil {
+                NSUserDefaults.standardUserDefaults().setObject(user["website"], forKey: "user_website")
+                }
+                if user["website"] == nil {
+                NSUserDefaults.standardUserDefaults().setObject(" ", forKey: "user_website")
+                }
+                
+                if user["other"] != nil {
+                NSUserDefaults.standardUserDefaults().setObject(user["other"], forKey: "user_other")
+               }
+                if user["other"] == nil {
+                NSUserDefaults.standardUserDefaults().setObject(" ", forKey: "user_other")
+
+                }
+        }
 
     }
     func removeScrollView() {
