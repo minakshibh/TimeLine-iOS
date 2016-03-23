@@ -63,8 +63,10 @@ extension TimelineMoreButtonBehavior where Self: UIViewController, Self: Reloada
 
         sheet.addAction(title: local(.TimelineSheetMoreButtonShare), style: .Default, handler: performShareableBehaviorAction(timeline))
         
+        if !(timeline.isOwn){
         if let user = timeline.parent {
             sheet.addAction(title: lformat(LocalizedString.TimelineSheetMoreButtonUser1s, user.name), style: .Default, handler: performPushableBehaviorAction(user))
+        }
         }
 
 //        sheet.addAction(title: local(.TimelineSheetMoreButtonFollowers), style: .Default) { _ in

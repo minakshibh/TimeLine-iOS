@@ -104,6 +104,7 @@ At the moment it's only used to perform custom animations on didScroll.
         scrollview.showsHorizontalScrollIndicator = false
         scrollview.showsVerticalScrollIndicator = false
         scrollview.pagingEnabled = true
+        scrollview.bounces = false
         
         // Controllers as empty array
         controllers = Array()

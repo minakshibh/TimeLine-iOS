@@ -141,15 +141,14 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             }
             if let user_id = behavior.timeline?.parent?.state.uuid
             {
-                commentOnTimelineButton.hidden = false
-                print(user_id)
-                print(Storage.session.currentUser?.uuid)
-                if (user_id == Storage.session.currentUser?.uuid)
-                {
-                    commentOnTimelineButton.hidden = true
+                commentOnTimelineButton.hidden = true
+                
+//                if (user_id == Storage.session.currentUser?.uuid)
+//                {
+//                    commentOnTimelineButton.hidden = true
 //                    followTimelineButton.hidden = true
 //                    likeTimelineButton.hidden = true
-                }
+//                }
             }
 
         }

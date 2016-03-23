@@ -21,6 +21,7 @@
 		81BA81791A49E0DB00E65899 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA81781A49E0DB00E65899 /* AudioToolbox.framework */; };
 		81BA817B1A49E0E500E65899 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817A1A49E0E500E65899 /* SystemConfiguration.framework */; };
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
+		972BEACD1CA2752100D3767D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57C77B1B53EA7400C51BC0 /* AVFoundation.framework */; };
 		975E4F9A1C80702300DAEF0E /* UILabel+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 975E4F991C80702300DAEF0E /* UILabel+helper.m */; };
 		979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */; };
 		97ADC8791C89B0BF00546A9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ADC8781C89B0BF00546A9B /* AppDelegate.swift */; };
@@ -175,7 +176,6 @@
 		DA5115651B7E615A00B0776A /* Storage+Find.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5115641B7E615A00B0776A /* Storage+Find.swift */; };
 		DA57C7741B53BAB400C51BC0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57C7731B53BAB400C51BC0 /* Social.framework */; };
 		DA57C7761B53BADD00C51BC0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57C7751B53BADD00C51BC0 /* Accounts.framework */; };
-		DA57C77C1B53EA7400C51BC0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57C77B1B53EA7400C51BC0 /* AVFoundation.framework */; };
 		DA57C77E1B53EC2500C51BC0 /* CapturePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57C77D1B53EC2500C51BC0 /* CapturePreviewView.swift */; };
 		DA57C7831B53F75C00C51BC0 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57C7821B53F75C00C51BC0 /* Localization.swift */; };
 		DA57C7851B53FDE600C51BC0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA57C7871B53FDE600C51BC0 /* Localizable.strings */; };
@@ -510,6 +510,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				972BEACD1CA2752100D3767D /* AVFoundation.framework in Frameworks */,
 				D9AA74B71C75F9050008E3EC /* MessageUI.framework in Frameworks */,
 				D9B340911C72F28600EC3BFF /* libz.tbd in Frameworks */,
 				D9B3408D1C72EABB00EC3BFF /* FBSDKLoginKit.framework in Frameworks */,
@@ -518,7 +519,6 @@
 				BAF593191B95F51300C7E8AE /* StoreKit.framework in Frameworks */,
 				DAE99AB01B7CEC120031A3BB /* MobileCoreServices.framework in Frameworks */,
 				DAB91DB81B7A4E8E005516F2 /* CoreGraphics.framework in Frameworks */,
-				DA57C77C1B53EA7400C51BC0 /* AVFoundation.framework in Frameworks */,
 				DA57C7761B53BADD00C51BC0 /* Accounts.framework in Frameworks */,
 				DA57C7741B53BAB400C51BC0 /* Social.framework in Frameworks */,
 				BAEBFCA51C18E2B700FE558D /* ConclurerHook.framework in Frameworks */,
@@ -1722,7 +1722,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
 				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
-
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1782,7 +1781,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
 				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
-
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;

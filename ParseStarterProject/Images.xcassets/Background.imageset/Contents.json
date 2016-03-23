@@ -6,18 +6,18 @@
     },
     {
       "idiom" : "iphone",
-      "filename" : "Background_750x1334.png",
+      "filename" : "Background_750x1334 copy.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "Background_1020x1920.png",
+      "filename" : "Background_750x1334 copy-1.png",
       "subtype" : "retina4",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "Background_1242x2208.png",
+      "filename" : "Background_1020x1920.png",
       "scale" : "3x"
     }
   ],

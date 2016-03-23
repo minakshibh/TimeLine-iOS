@@ -2,4 +2,54 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParseStarterProject/TimelineMoreButtonBehavior.swift"
+            timestampString = "480405833.844746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "triggerMoreButtonBehavior(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ext.Timeline.Timeline.TimelineMoreButtonBehavior&lt;A where A: __ObjC.UIViewController, A: Timeline.BlockableBehavior, A: Timeline.DeleteableBehavior, A: Timeline.PushableBehavior, A: Timeline.Reloadable, A: Timeline.ShareableBehavior, A: Timeline.TimelineMoreButtonBehavior&gt;.triggerMoreButtonBehavior &lt;A where A: __ObjC.UIViewController, A: Timeline.BlockableBehavior, A: Timeline.DeleteableBehavior, A: Timeline.PushableBehavior, A: Timeline.Reloadable, A: Timeline.ShareableBehavior, A: Timeline.TimelineMoreButtonBehavior&gt; (A)(Timeline.Timeline) -&gt; ()"
+                  moduleName = "Timeline"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/krishna-mac/Desktop/TimeLine-iOS/ParseStarterProject/TimelineMoreButtonBehavior.swift"
+                  timestampString = "480405834.139809"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ext.Timeline.Timeline.TimelineMoreButtonBehavior&lt;A where A: __ObjC.UIViewController, A: Timeline.BlockableBehavior, A: Timeline.DeleteableBehavior, A: Timeline.PushableBehavior, A: Timeline.Reloadable, A: Timeline.ShareableBehavior, A: Timeline.TimelineMoreButtonBehavior&gt;.triggerMoreButtonBehavior &lt;A where A: __ObjC.UIViewController, A: Timeline.BlockableBehavior, A: Timeline.DeleteableBehavior, A: Timeline.PushableBehavior, A: Timeline.Reloadable, A: Timeline.ShareableBehavior, A: Timeline.TimelineMoreButtonBehavior&gt; (A) -&gt; (Timeline.Timeline) -&gt; ()"
+                  moduleName = "Timeline"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/krishna-mac/Desktop/TimeLine-iOS/ParseStarterProject/TimelineMoreButtonBehavior.swift"
+                  timestampString = "480405834.140224"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "25">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

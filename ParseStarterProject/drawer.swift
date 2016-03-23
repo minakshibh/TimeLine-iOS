@@ -15,13 +15,14 @@ class drawer: EZSwipeController {
     }
     override func viewDidLoad() {
         self.navigationController?.navigationBarHidden = true
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        //UIApplication.sharedApplication().statusBarStyle = .LightContent
+       
     }
     
     override func viewWillAppear(animated: Bool) {
         
        
-        self.view.frame = CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y-20, self.view.bounds.size.width, self.view.bounds.size.height)
+        self.view.frame = CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)
         
         }
     

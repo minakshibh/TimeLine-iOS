@@ -18,6 +18,7 @@ class FollowingTableViewController: SortedTimelineTableViewController {
     var active = false {
         didSet {
             followLoadingCountDidChange?(shouldShowRefreshControl())
+            
         }
     }
     
@@ -25,7 +26,7 @@ class FollowingTableViewController: SortedTimelineTableViewController {
         super.viewDidLoad()
 
 //        self.hidesBottomBarWhenPushed = true
-        
+        self.refreshTableView()
         
         // Do any additional setup after loading the view.
         refreshControl!.tintColor = tableView.tintColor
