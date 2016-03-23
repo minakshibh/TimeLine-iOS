@@ -2073,7 +2073,7 @@ Effective as of September 14, 2015
                         <segue destination="SRB-sd-SLO" kind="presentation" identifier="WalkthroughMy" id="dHW-RB-S8H"/>
                         <segue destination="dpZ-pz-TmS" kind="show" identifier="ShowUserList" id="sHs-6J-bIg"/>
                         <segue destination="TOd-Hl-c3P" kind="show" identifier="ShowCreateTimeline" id="HAd-wS-i9i"/>
-                        <segue destination="MMK-V0-V7Q" kind="show" identifier="ShowUser" id="3pr-L1-lUc"/>
+                        <segue destination="2TK-H5-g5m" kind="show" identifier="ShowUser" id="bz1-Sk-Hfb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgs-fD-JOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3249,13 +3249,13 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="2TK-H5-g5m" customClass="UserSummaryTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="M00-gH-iuK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="147" id="JqU-iW-ILt" customClass="ModernTimelineTableViewCell" customModule="Timeline" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="86" width="600" height="147"/>
+                                <rect key="frame" x="0.0" y="22" width="600" height="147"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JqU-iW-ILt" id="2pr-Ic-Plg">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="146"/>
@@ -3263,7 +3263,7 @@ Effective as of September 14, 2015
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="216" id="DKR-7h-Qon" customClass="UserSummaryTableViewCell" customModule="Timeline" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="233" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="169" width="600" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DKR-7h-Qon" id="fOj-74-R4g">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
@@ -4444,7 +4444,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="dpZ-pz-TmS" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="fjd-4e-PdK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4484,7 +4484,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="mAi-gA-dKZ" userLabel="Followers" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlA-cD-rtE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4969,7 +4969,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="MMK-V0-V7Q" customClass="updatedUserSummaryTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="92d-cD-zbG">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -5055,11 +5055,11 @@ Effective as of September 14, 2015
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fy0-iv-eFM"/>
+        <segue reference="bz1-Sk-Hfb"/>
         <segue reference="dHW-RB-S8H"/>
+        <segue reference="sHs-6J-bIg"/>
         <segue reference="0Uq-5l-w5H"/>
-        <segue reference="sgm-pg-59s"/>
-        <segue reference="Jh7-bx-SfD"/>
-        <segue reference="T9S-G7-mh0"/>
+        <segue reference="MIt-vp-hHF"/>
         <segue reference="9SA-Oc-iuS"/>
         <segue reference="BJd-cD-9l3"/>
         <segue reference="wPR-Ua-TlF"/>
