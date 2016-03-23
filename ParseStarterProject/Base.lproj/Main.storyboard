@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -2071,9 +2071,9 @@ Effective as of September 14, 2015
                     <connections>
                         <segue destination="R3t-tK-2PC" kind="presentation" identifier="TimelineCreated" id="MIt-vp-hHF"/>
                         <segue destination="SRB-sd-SLO" kind="presentation" identifier="WalkthroughMy" id="dHW-RB-S8H"/>
-                        <segue destination="2TK-H5-g5m" kind="show" identifier="ShowUser" id="hFd-TA-2wg"/>
                         <segue destination="dpZ-pz-TmS" kind="show" identifier="ShowUserList" id="sHs-6J-bIg"/>
                         <segue destination="TOd-Hl-c3P" kind="show" identifier="ShowCreateTimeline" id="HAd-wS-i9i"/>
+                        <segue destination="MMK-V0-V7Q" kind="show" identifier="ShowUser" id="3pr-L1-lUc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgs-fD-JOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3249,13 +3249,13 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="2TK-H5-g5m" customClass="UserSummaryTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="M00-gH-iuK">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="147" id="JqU-iW-ILt" customClass="ModernTimelineTableViewCell" customModule="Timeline" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="22" width="600" height="147"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="147"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JqU-iW-ILt" id="2pr-Ic-Plg">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="146"/>
@@ -3263,7 +3263,7 @@ Effective as of September 14, 2015
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="216" id="DKR-7h-Qon" customClass="UserSummaryTableViewCell" customModule="Timeline" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="169" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="233" width="600" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DKR-7h-Qon" id="fOj-74-R4g">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
@@ -4444,7 +4444,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="dpZ-pz-TmS" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="fjd-4e-PdK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4484,7 +4484,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="mAi-gA-dKZ" userLabel="Followers" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlA-cD-rtE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4964,12 +4964,55 @@ Effective as of September 14, 2015
             </objects>
             <point key="canvasLocation" x="933" y="-535"/>
         </scene>
+        <!--Updated User Summary Table View Controller-->
+        <scene sceneID="GoH-cz-2lh">
+            <objects>
+                <tableViewController id="MMK-V0-V7Q" customClass="updatedUserSummaryTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="92d-cD-zbG">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimelineCell" rowHeight="147" id="QNu-Q4-g71" customClass="ModernTimelineTableViewCell" customModule="Timeline" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="22" width="600" height="147"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QNu-Q4-g71" id="fAL-J9-Ipl">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="146"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="216" id="kSe-Az-ohQ" customClass="UserSummaryTableViewCell" customModule="Timeline" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="169" width="600" height="216"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kSe-Az-ohQ" id="xPt-gO-v3q">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MMK-V0-V7Q" id="1ku-D8-zdj"/>
+                            <outlet property="delegate" destination="MMK-V0-V7Q" id="owy-jf-C8H"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="D20-LF-uCA"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="dpZ-pz-TmS" kind="show" identifier="ShowUserList" id="sgm-pg-59s"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZZn-7p-Txr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6037" y="1730"/>
+        </scene>
     </scenes>
     <resources>
         <image name="#Tag Input" width="331" height="72"/>
         <image name="Back to Record" width="43" height="25"/>
         <image name="Back to previous screen" width="23" height="20"/>
-        <image name="Background" width="375" height="667"/>
+        <image name="Background" width="319" height="568"/>
         <image name="Button" width="338" height="90"/>
         <image name="Camera View" width="30" height="30"/>
         <image name="Delete Active" width="21" height="29"/>
@@ -5011,17 +5054,17 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3ER-K8-eo8"/>
         <segue reference="fy0-iv-eFM"/>
-        <segue reference="5f9-3x-iDp"/>
-        <segue reference="JUD-Gk-HWr"/>
         <segue reference="dHW-RB-S8H"/>
-        <segue reference="wPR-Ua-TlF"/>
-        <segue reference="Q72-pv-Wqo"/>
-        <segue reference="UDh-ad-jqq"/>
-        <segue reference="pyd-yG-wzP"/>
+        <segue reference="0Uq-5l-w5H"/>
+        <segue reference="sgm-pg-59s"/>
+        <segue reference="Jh7-bx-SfD"/>
+        <segue reference="T9S-G7-mh0"/>
         <segue reference="9SA-Oc-iuS"/>
         <segue reference="BJd-cD-9l3"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="5f9-3x-iDp"/>
+        <segue reference="JUD-Gk-HWr"/>
         <segue reference="gqI-eh-cAa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>

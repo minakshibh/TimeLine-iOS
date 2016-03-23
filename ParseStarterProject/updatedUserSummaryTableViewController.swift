@@ -9,7 +9,7 @@
 import UIKit
 import ConclurerHook
 
-class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUsername {
+class updatedUserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUsername {
     
     var user: User!
     var timeline_id : NSString = ""
@@ -17,7 +17,7 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
+        tableView.registerNib(UINib(nibName: "UserSummary1TableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
 
         //tableView.rowHeight = UITableViewAutomaticDimension
         navigationItem.title = "@\(user.name ?? String())"
@@ -71,7 +71,7 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            var height:CGFloat = 100
+            let height:CGFloat = 320
 //            let bioStr:String = "\(NSUserDefaults.standardUserDefaults().valueForKeyPath("user_bio")!)"
 //            let websiteStr = "\(NSUserDefaults.standardUserDefaults().valueForKeyPath("user_website")!)"
 //            let otherStr = "\(NSUserDefaults.standardUserDefaults().valueForKeyPath("user_other")!)"

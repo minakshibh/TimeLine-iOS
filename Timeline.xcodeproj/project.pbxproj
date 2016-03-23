@@ -118,6 +118,7 @@
 		D94042571C7EBF7700FDCD46 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */; };
 		D95459671CA0296400A6FA49 /* UserSummary1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95459661CA0296400A6FA49 /* UserSummary1TableViewCell.xib */; };
 		D988A5651CA111F400AC1EE1 /* websiteButtonClick.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988A5641CA111F400AC1EE1 /* websiteButtonClick.swift */; };
+		D98B6D9B1CA29AB70021706D /* updatedUserSummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98B6D9A1CA29AB70021706D /* updatedUserSummaryTableViewController.swift */; };
 		D9AA74B71C75F9050008E3EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9AA74B61C75F9050008E3EC /* MessageUI.framework */; };
 		D9B3408B1C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */; };
 		D9B3408C1C72EABB00EC3BFF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */; };
@@ -392,6 +393,7 @@
 		D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
 		D95459661CA0296400A6FA49 /* UserSummary1TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSummary1TableViewCell.xib; sourceTree = "<group>"; };
 		D988A5641CA111F400AC1EE1 /* websiteButtonClick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = websiteButtonClick.swift; sourceTree = "<group>"; };
+		D98B6D9A1CA29AB70021706D /* updatedUserSummaryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = updatedUserSummaryTableViewController.swift; sourceTree = "<group>"; };
 		D9AA74B61C75F9050008E3EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -1031,6 +1033,7 @@
 		DAFBADFE1B860CE800F3906E /* Specific Timelines */ = {
 			isa = PBXGroup;
 			children = (
+				D98B6D9A1CA29AB70021706D /* updatedUserSummaryTableViewController.swift */,
 				D95459661CA0296400A6FA49 /* UserSummary1TableViewCell.xib */,
 				DA7546591B82943200FADDE5 /* TimelineSummaryTableViewController.swift */,
 				DAF09E931B854709007DE11D /* UserSummaryTableViewController.swift */,
@@ -1426,6 +1429,7 @@
 				DA95401C1B837FA600392C75 /* MGSwipeTableCell.m in Sources */,
 				BA8607AB1C166D37001D73EE /* NamedBehavior.swift in Sources */,
 				DA40BBB81B7FBF190070BEE9 /* DraftPreview.swift in Sources */,
+				D98B6D9B1CA29AB70021706D /* updatedUserSummaryTableViewController.swift in Sources */,
 				18E9AA6F1C844DE60026C9AB /* EditLastNameTableViewController.swift in Sources */,
 				18ECB2891C7D8C60001EA23B /* EditBioTableViewController.swift in Sources */,
 				DA873BA31B7E97F400A8BB06 /* TimelineCollectionViewCell.swift in Sources */,

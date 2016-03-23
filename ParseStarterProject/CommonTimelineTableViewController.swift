@@ -122,7 +122,7 @@ class CommonTimelineTableViewController: UITableViewController {
                 tableView.reloadRowsAtIndexPaths([sip], withRowAnimation: UITableViewRowAnimation.Automatic)
             }
         } else if let user = sender as? User where segue.identifier == "ShowUser" {
-            let dest = segue.destinationViewController as! UserSummaryTableViewController
+            let dest = segue.destinationViewController as! updatedUserSummaryTableViewController
             dest.user = user
         } else if segue.identifier == "PresentTimelineModally" {
             let dest = segue.destinationViewController as! TimelinePlaybackViewController
