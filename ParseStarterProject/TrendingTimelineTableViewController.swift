@@ -814,7 +814,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
                             parent.timelines.append(timeline)
                             results.append(timeline)
                         } else {
-                            let _ = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [timeline], state: .Dummy(parentID), userfullname : nil , firstname : nil , lastname : nil , imageurl : nil , parent: nil)
+                            let _ = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [timeline], state: .Dummy(parentID), userfullname : nil,website: nil, other : nil, bio : nil , firstname : nil , lastname : nil , imageurl : nil , parent: nil)
                             results.append(timeline)
                             
                             Storage.performRequest(ApiRequest.UserProfile(parentID), completion: { (json) -> Void in

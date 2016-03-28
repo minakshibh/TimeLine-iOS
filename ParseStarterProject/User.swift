@@ -33,6 +33,9 @@ class User: Synchronized {
     var hasNews: Bool
     var externalID: String?
     var userfullName: String = ""
+    var website: String = ""
+    var other: String = ""
+    var bio: String = ""
     var updated_at: String = ""
     var firstName:String = ""
     var lastName:String = ""
@@ -42,7 +45,7 @@ class User: Synchronized {
     weak var parent: ParentType?
     
     
-    required init(name: String?, email: String?, externalID: String?, timelinesPublic: Bool?, approveFollowers: Bool?, pendingFollowersCount: Int?, followersCount: Int?, followingCount: Int?, likersCount: Int?, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, timelines: [Timeline], state: SynchronizationState, userfullname: String? ,firstname: String? ,lastname: String? , imageurl: String? , parent: ParentType? = nil) {
+    required init(name: String?, email: String?, externalID: String?, timelinesPublic: Bool?, approveFollowers: Bool?, pendingFollowersCount: Int?, followersCount: Int?, followingCount: Int?, likersCount: Int?, liked: Bool, blocked: Bool, followed: FollowState, hasNews: Bool = false, timelines: [Timeline], state: SynchronizationState, userfullname: String?,website: String?, other: String?,bio: String? ,firstname: String? ,lastname: String? , imageurl: String? , parent: ParentType? = nil) {
         self.name = name ?? ""
         self.email = email
         self.timelinesPublic = timelinesPublic
@@ -60,6 +63,9 @@ class User: Synchronized {
         self.timelines = timelines
         self.hasNews = hasNews
         self.userfullName = userfullname ?? ""
+        self.website = website ?? ""
+        self.other = other ?? ""
+        self.bio = bio ?? ""
         self.firstName = firstname ?? ""
         self.lastName = lastname ?? ""
         self.imageUrl = imageurl ?? ""
@@ -70,6 +76,9 @@ class User: Synchronized {
     
     convenience required init(dict: [String: AnyObject], parent: Session? = nil) {
         var userFullNameStr : (NSString) = ""
+        var websiteStr : (NSString) = ""
+        var otherStr : (NSString) = ""
+        var bioStr : (NSString) = ""
         var firstNameStr : (NSString) = ""
         var lastNameStr : (NSString) = ""
         
@@ -99,7 +108,7 @@ class User: Synchronized {
             hasNews: dict["hasNews"] as? Bool ?? false,
             timelines: (dict["timelines"] as? [[String: AnyObject]] ?? []).map { Timeline(dict: $0) },
             state: SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict),
-            userfullname : userFullNameStr as String , firstname : dict["firstname"] as? String , lastname : dict["lastname"] as? String , imageurl : dict["image"] as? String , parent: parent
+            userfullname : userFullNameStr as String, website : dict["website"] as? String, other : dict["other"] as? String, bio : dict["bio"] as? String , firstname : dict["firstname"] as? String , lastname : dict["lastname"] as? String , imageurl : dict["image"] as? String , parent: parent
         )
 //        self.init(name: dict["name"] as? String,
 //            email: dict["email"] as? String,
@@ -127,7 +136,7 @@ extension User: DictConvertable {
     var dict: [String: AnyObject] {
         let state = self.state.dict
         let timelines = (self.timelines ?? []).map { $0.dict }
-        let optionalPairs: [(String, AnyObject?)] = [("state", state), ("name", name), ("email", email), ("timelines", timelines), ("timelines_public", timelinesPublic), ("followers_count", followersCount), ("approve_followers", approveFollowers), ("liked", liked), ("followed", followed.rawValue), ("external_id", externalID), ("pending_followers", pendingFollowersCount), ("blocked", blocked), ("followees_users_count", followingCount), ("likers_count", likesCount), ("hasNews", hasNews) , ("userfullname", userfullName),("firstname", firstName), ("lastname", lastName), ("image",imageUrl)]
+        let optionalPairs: [(String, AnyObject?)] = [("state", state), ("name", name), ("email", email), ("timelines", timelines), ("timelines_public", timelinesPublic), ("followers_count", followersCount), ("approve_followers", approveFollowers), ("liked", liked), ("followed", followed.rawValue), ("external_id", externalID), ("pending_followers", pendingFollowersCount), ("blocked", blocked), ("followees_users_count", followingCount), ("likers_count", likesCount), ("hasNews", hasNews) , ("userfullname", userfullName),("website", website), ("other", other), ("bio", bio),("firstname", firstName), ("lastname", lastName), ("image",imageUrl)]
         var result = [String: AnyObject]()
         for (k,ov) in optionalPairs {
             if let v: AnyObject = ov {
@@ -164,6 +173,9 @@ extension User {
                 self.liked = new.liked
                 self.blocked = new.blocked
                 self.userfullName = new.userfullName
+                self.website = new.website
+                self.other = new.other
+                self.bio = new.bio
                 self.firstName = new.firstName
                 self.lastName = new.lastName
                 self.imageUrl = new.imageUrl
@@ -420,6 +432,9 @@ extension User {
                         existing.blocked = u.blocked
                         existing.followed = u.followed
                         existing.userfullName = u.userfullName
+                        existing.website = u.website
+                        existing.other = u.other
+                        existing.bio = u.bio
                         existing.firstName = u.firstName
                         existing.lastName = u.lastName
                         

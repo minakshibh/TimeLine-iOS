@@ -258,7 +258,7 @@ extension Timeline {
 //                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil ,  parent: Storage.session)
 
 
-                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil , firstname: nil, lastname: nil, imageurl: nil, parent: Storage.session)
+                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil,website: nil, other: nil,bio: nil , firstname: nil, lastname: nil, imageurl: nil, parent: Storage.session)
                             
                             Storage.session.users.append(owner)
                             
@@ -271,6 +271,15 @@ extension Timeline {
                                 }
                                 if let v = json["lastname"] as? String {
                                     owner.lastName = v
+                                }
+                                if let v = json["website"] as? String {
+                                    owner.website = v
+                                }
+                                if let v = json["other"] as? String {
+                                    owner.other = v
+                                }
+                                if let v = json["bio"] as? String {
+                                    owner.bio = v
                                 }
                                 if let v = json["email"] as? String {
                                     owner.email = v

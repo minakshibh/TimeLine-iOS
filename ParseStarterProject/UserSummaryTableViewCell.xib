@@ -21,8 +21,7 @@
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33" id="12K-gb-58x"/>
                         </constraints>
-                        <state key="normal" image="19E1F184-A791-4B73-8085-37491EC20B27"/>
-
+                        <state key="normal" image="7F243655-FFB0-45C4-89A3-3629E259F561"/>
                         <connections>
                             <action selector="tappedMoreButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="QQa-Cu-uuz"/>
                         </connections>
@@ -210,7 +209,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="19E1F184-A791-4B73-8085-37491EC20B27" width="33" height="30">
+        <image name="7F243655-FFB0-45C4-89A3-3629E259F561" width="33" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
