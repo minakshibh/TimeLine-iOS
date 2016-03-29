@@ -22,7 +22,7 @@
                             <constraint firstAttribute="width" secondItem="re5-Sp-TW8" secondAttribute="height" multiplier="2:1" id="O0r-B4-5O7"/>
                             <constraint firstAttribute="height" constant="30" id="RyS-va-K0x"/>
                         </constraints>
-                        <state key="normal" image="467E4543-6032-475F-9437-039FBA1B7B2D"/>
+                        <state key="normal" image="59B4B4BF-7415-4975-8B43-50C3D84CEF13"/>
                         <connections>
                             <action selector="tappedMoreButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="QQa-Cu-uuz"/>
                         </connections>
@@ -73,7 +73,7 @@
                             <action selector="tappedFollowButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="FnR-sB-unJ"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mm-UQ-4qv" customClass="SWFrameButton">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mm-UQ-4qv" customClass="SWFrameButton">
                         <rect key="frame" x="269" y="115" width="78" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <state key="normal" title="Respond"/>
@@ -130,7 +130,7 @@
                             <action selector="tappedLikeButton1" destination="dWy-cR-JQd" eventType="touchUpInside" id="Vck-o1-rDp"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="love" translatesAutoresizingMaskIntoConstraints="NO" id="kxx-0T-7P1">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedHeart" translatesAutoresizingMaskIntoConstraints="NO" id="kxx-0T-7P1">
                         <rect key="frame" x="154" y="49" width="33" height="33"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="kxx-0T-7P1" secondAttribute="height" multiplier="1:1" id="Ufp-Lj-rL0"/>
@@ -239,6 +239,8 @@
                 <outlet property="approveButton" destination="8mm-UQ-4qv" id="cTQ-Kq-GDg"/>
                 <outlet property="btnWebsite" destination="14C-Mk-xF9" id="GpO-L7-ny2"/>
                 <outlet property="followButton" destination="z0h-u8-Fmv" id="7ky-r2-76k"/>
+                <outlet property="imagePerson" destination="jSW-q6-e96" id="KCZ-Be-bcT"/>
+                <outlet property="imageheart" destination="kxx-0T-7P1" id="HTz-MQ-o2h"/>
                 <outlet property="lblBio" destination="Ssg-en-dvr" id="ml8-EB-Cud"/>
                 <outlet property="lblOthers" destination="FmF-Jr-2nL" id="6en-xE-IEc"/>
                 <outlet property="likeButton" destination="20q-DA-Jxx" id="QXP-LE-khS"/>
@@ -251,7 +253,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="467E4543-6032-475F-9437-039FBA1B7B2D" width="33" height="30">
+        <image name="59B4B4BF-7415-4975-8B43-50C3D84CEF13" width="33" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -387,9 +389,9 @@ HWIdax1+HYIdlR2gHakdrh22Hbkdvh3NHdEd2B3gHe0d8h30HfYd+x4DHgYeCx4THhYeKB4rHjAAAAAA
 AAACAQAAAAAAAAA/AAAAAAAAAAAAAAAAAAAeMg
 </mutableData>
         </image>
+        <image name="RedHeart" width="33" height="33"/>
         <image name="dislikeImage" width="33" height="33"/>
         <image name="follower" width="16" height="15"/>
         <image name="likeImage" width="33" height="33"/>
-        <image name="love" width="16" height="15"/>
     </resources>
 </document>

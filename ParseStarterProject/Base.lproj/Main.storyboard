@@ -687,6 +687,8 @@
                                             <outlet property="approveConstraint" destination="SUY-M7-sbU" id="ank-2G-eeC"/>
                                             <outlet property="btnWebsite" destination="VH0-EI-dcy" id="Onf-bD-S7e"/>
                                             <outlet property="followButton" destination="wQI-J3-R4G" id="x0V-Om-tS8"/>
+                                            <outlet property="imagePerson" destination="crR-98-HrX" id="aBX-8a-8cM"/>
+                                            <outlet property="imageheart" destination="2b5-B5-QQm" id="3TC-tO-Z84"/>
                                             <outlet property="lblBio" destination="ADc-gv-Cjl" id="C38-Zz-6gO"/>
                                             <outlet property="lblOthers" destination="bcQ-1o-9hB" id="u9r-Uw-VuS"/>
                                             <outlet property="likeButton" destination="ut9-YL-kYv" id="77O-wS-ePi"/>
@@ -5056,6 +5058,7 @@ Effective as of September 14, 2015
     <inferredMetricsTieBreakers>
         <segue reference="fy0-iv-eFM"/>
         <segue reference="5f9-3x-iDp"/>
+        <segue reference="JSH-Rm-O8t"/>
         <segue reference="JUD-Gk-HWr"/>
         <segue reference="0Uq-5l-w5H"/>
         <segue reference="dHW-RB-S8H"/>
@@ -5064,7 +5067,6 @@ Effective as of September 14, 2015
         <segue reference="T9S-G7-mh0"/>
         <segue reference="Mq8-L9-ocP"/>
         <segue reference="gqI-eh-cAa"/>
-        <segue reference="ji8-C3-1Lo"/>
         <segue reference="BJd-cD-9l3"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>

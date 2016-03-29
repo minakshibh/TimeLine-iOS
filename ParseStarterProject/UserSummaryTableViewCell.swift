@@ -11,6 +11,8 @@ import SWFrameButton
 
 class UserSummaryTableViewCell: UITableViewCell {
 
+    @IBOutlet var imageheart: UIImageView!
+    @IBOutlet var imagePerson: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var nameLabel1: UILabel!
     @IBOutlet var lblBio: UILabel!
@@ -36,11 +38,11 @@ class UserSummaryTableViewCell: UITableViewCell {
     }
 
     var refreshers: [() -> ()] {
-        return [refreshLikeableBehavior, refreshFollowableBehavior, refreshApproveableBehavior, refreshNamedBehavior ,refreshFirstLastName, refreshLikeableBehavior2, refreshwebsiteButtonClick]
+        return [refreshLikeableBehavior, refreshFollowableBehavior, refreshApproveableBehavior, refreshNamedBehavior ,refreshFirstLastName, refreshLikeableBehavior2, refreshwebsiteButtonClick, refreshLikeableBehaviorCount, refreshFollowableBehaviorCount]
     }
 }
 
-extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBehavior, ApproveableBehavior, NamedBehavior ,FirstLastName, LikeableBehavior2 , websiteButtonClick {
+extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBehavior, ApproveableBehavior, NamedBehavior ,FirstLastName, LikeableBehavior2 , websiteButtonClick, LikeableBehaviorCount, FollowableBehaviorCount {
 
     typealias TargetBehaviorType = User
     var behaviorTarget: TargetBehaviorType? {

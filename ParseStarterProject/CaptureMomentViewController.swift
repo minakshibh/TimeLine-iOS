@@ -1,4 +1,4 @@
-//
+ //
 //  CaptureMomentViewController.swift
 //  Timeline
 //
@@ -416,15 +416,17 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //    }
     
     override func viewWillAppear(animated: Bool) {
-       NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
+       NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
+       delay (0.60) {
        
+        }
   }
     
     func update(){
         self.scrollView.hidden = false
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.notificationAPI ()
-        recorder.startRunning()
+         recorder.startRunning()
         
         delay (0.01) {
             self.reloadBadges()
@@ -512,7 +514,7 @@ extension CaptureMomentViewController {
     }
     
     @IBAction func focusAndExposeTap(sender: UITapGestureRecognizer) {
-//        recorder.continuousFocusAtPoint(recorder.convertToPointOfInterestFromViewCoordinates(sender.locationInView(previewView)))
+        recorder.continuousFocusAtPoint(recorder.convertToPointOfInterestFromViewCoordinates(sender.locationInView(previewView)))
     }
     
     @IBAction func flipCamera(sender: AnyObject!) {
@@ -605,7 +607,7 @@ extension CaptureMomentViewController {
     
     func enableAllControls(enabled: Bool) {
         recordButton.enabled = enabled
-//        nonRecordGestureRecognizers.each { $0.enabled = enabled }
+        nonRecordGestureRecognizers.each { $0.enabled = enabled }
         menuControls.each { $0.enabled = enabled }
     }
     

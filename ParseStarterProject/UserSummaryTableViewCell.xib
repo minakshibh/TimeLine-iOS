@@ -16,12 +16,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="412" height="311"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re5-Sp-TW8">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re5-Sp-TW8">
                         <rect key="frame" x="292" y="159" width="60" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33" id="12K-gb-58x"/>
                         </constraints>
-                        <state key="normal" image="7F243655-FFB0-45C4-89A3-3629E259F561"/>
+                        <state key="normal" image="A80B3AAF-9CE3-42B8-BE0D-9F61DEA800E5"/>
                         <connections>
                             <action selector="tappedMoreButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="QQa-Cu-uuz"/>
                         </connections>
@@ -155,6 +155,12 @@
                         <rect key="frame" x="13" y="39" width="46" height="30"/>
                         <state key="normal" title="Button"/>
                     </button>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aKj-B8-hLN">
+                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HHZ-Pz-QQ8">
+                        <rect key="frame" x="0.0" y="24" width="20" height="20"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="YTH-jO-qx1" secondAttribute="trailing" constant="-6" id="0zG-Nu-A0m"/>
@@ -197,6 +203,8 @@
                 <outlet property="approveConstraint" destination="IEW-dR-2hh" id="lCT-fP-Wi5"/>
                 <outlet property="btnWebsite" destination="KBg-Qv-ZLw" id="rLW-di-uVg"/>
                 <outlet property="followButton" destination="z0h-u8-Fmv" id="7ky-r2-76k"/>
+                <outlet property="imagePerson" destination="HHZ-Pz-QQ8" id="cnw-Na-4IW"/>
+                <outlet property="imageheart" destination="aKj-B8-hLN" id="gYm-KR-d0z"/>
                 <outlet property="lblBio" destination="pPN-du-P6z" id="PAW-jK-R6b"/>
                 <outlet property="lblOthers" destination="3e9-MG-eZ3" id="HaE-Kq-yDr"/>
                 <outlet property="likeButton" destination="20q-DA-Jxx" id="QXP-LE-khS"/>
@@ -209,7 +217,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="7F243655-FFB0-45C4-89A3-3629E259F561" width="33" height="30">
+        <image name="A80B3AAF-9CE3-42B8-BE0D-9F61DEA800E5" width="33" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

@@ -267,6 +267,10 @@ public class EZSwipeController: UIViewController {
         pageViewController.setViewControllers([currentStackVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
     }
 
+    func movePages(index:Int){
+        currentStackVC = stackPageVC[index]
+        pageViewController.setViewControllers([currentStackVC], direction: UIPageViewControllerNavigationDirection.Reverse, animated: false, completion: nil)
+    }
 }
 
 extension EZSwipeController: UIPageViewControllerDataSource {
