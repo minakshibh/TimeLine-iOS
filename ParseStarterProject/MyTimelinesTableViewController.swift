@@ -143,6 +143,12 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         var first = true
         Timeline.getTimelines(ApiRequest.TimelineMe, completion: { (timelines) -> Void in
             Storage.session.currentUser?.timelines.sortInPlace(>)
+           
+            if Storage.session.currentUser?.name.isEmpty ?? true {
+                print("str is nil or empty")
+                return
+            }
+            
             super.users = [Storage.session.currentUser!]
             
             if !first {

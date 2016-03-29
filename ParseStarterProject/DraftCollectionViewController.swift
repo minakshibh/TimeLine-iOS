@@ -89,6 +89,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
     }
     func update(){
 //        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+1)
+        collectionView?.reloadData()
     }
     override func viewWillAppear(animated: Bool) {
        
@@ -189,6 +190,32 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
         //print("Drafts: \(drafts.count)")
+        
+        for(var i=0;i<drafts.count;i++){
+            let sample:Moment = drafts[i]
+            var videoLocalURL = "\(sample.localThumbURL)"
+            var videoLocalURLArr = videoLocalURL.componentsSeparatedByString("/")
+            videoLocalURL = videoLocalURLArr[videoLocalURLArr.count-1]
+            videoLocalURLArr = videoLocalURL.componentsSeparatedByString(".")
+            videoLocalURL = videoLocalURLArr[0]
+            
+        if(NSUserDefaults.standardUserDefaults().valueForKey("uploadingVideoURL") == nil){
+                break
+            }
+            var uploadingVIdeoURLStr = "\(NSUserDefaults.standardUserDefaults().valueForKey("uploadingVideoURL"))"
+            var uploadingVIdeoURLArr = uploadingVIdeoURLStr.componentsSeparatedByString("/")
+            uploadingVIdeoURLStr = uploadingVIdeoURLArr[uploadingVIdeoURLArr.count-1]
+            uploadingVIdeoURLArr = uploadingVIdeoURLStr.componentsSeparatedByString(".")
+            uploadingVIdeoURLStr = uploadingVIdeoURLArr[0]
+            
+            if(videoLocalURL == uploadingVIdeoURLStr){
+                drafts.removeAtIndex(i)
+            }
+        }
+//        var sample:Moment = drafts[indexPath.item]
+//        print("\(sample.localThumbURL)")
+        
+        
         return drafts.count
     }
 
@@ -197,6 +224,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
             
         // Configure the cell
         cell.moment = drafts[indexPath.item]
+        
         if indexPath.item == selectedIndex {
             cell.previewed = true
         } else {
@@ -451,7 +479,8 @@ extension DraftCollectionViewController {
     @IBAction func sendMoment() {
         headerView?.draftPreview.stop()
         if(Storage.session.currentUser?.timelines.count != nil)
-        {  if(Storage.session.currentUser!.timelines.count==1)
+        {
+            if(Storage.session.currentUser!.timelines.count==1)
         {
             Storage.session.currentUser?.timelines.each({ tl in
                 //                print("\(tl.fullName) ******\(tl.duration) ***** )  ***** \(local(.DraftAlertConfirmUploadMessage))")
@@ -482,6 +511,8 @@ extension DraftCollectionViewController {
         }
         
         if let _ = timeline {
+            let selectedVIdeoURL = NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoLocalThumbURL")
+            NSUserDefaults.standardUserDefaults().setObject(selectedVIdeoURL, forKey: "uploadingVideoURL")
             performSegueWithIdentifier("Upload", sender: nil)
         } else {
             let alert = UIAlertController(title: local(.DraftAlertPickTimelineTitle),
@@ -526,6 +557,8 @@ extension DraftCollectionViewController {
                     confirm.addAction(title: local(.DraftAlertConfirmUploadUpload),
                         style: .Default) { _ in
                             
+                           let selectedVIdeoURL = "\(NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoLocalThumbURL"))"
+                            NSUserDefaults.standardUserDefaults().setObject(selectedVIdeoURL, forKey: "uploadingVideoURL")
                             self.timeline = tl
                             self.performSegueWithIdentifier("Upload", sender: nil)
                     }

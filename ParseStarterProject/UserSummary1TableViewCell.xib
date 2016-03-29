@@ -22,7 +22,7 @@
                             <constraint firstAttribute="width" secondItem="re5-Sp-TW8" secondAttribute="height" multiplier="2:1" id="O0r-B4-5O7"/>
                             <constraint firstAttribute="height" constant="30" id="RyS-va-K0x"/>
                         </constraints>
-                        <state key="normal" image="59B4B4BF-7415-4975-8B43-50C3D84CEF13"/>
+                        <state key="normal" image="4820EF00-F202-4320-852B-B3CC9994C2CB"/>
                         <connections>
                             <action selector="tappedMoreButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="QQa-Cu-uuz"/>
                         </connections>
@@ -52,10 +52,10 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-u8-Fmv" customClass="SWFrameButton">
-                        <rect key="frame" x="223" y="95" width="74" height="22"/>
+                        <rect key="frame" x="223" y="94" width="74" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="z0h-u8-Fmv" secondAttribute="height" multiplier="37:11" id="GwO-gq-8V8"/>
-                            <constraint firstAttribute="height" constant="22" id="eUW-2N-gsb"/>
+                            <constraint firstAttribute="width" secondItem="z0h-u8-Fmv" secondAttribute="height" multiplier="37:11" constant="-10" id="GwO-gq-8V8"/>
+                            <constraint firstAttribute="height" constant="25" id="eUW-2N-gsb"/>
                         </constraints>
                         <color key="tintColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -90,10 +90,10 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20q-DA-Jxx" customClass="SWFrameButton">
-                        <rect key="frame" x="134" y="94" width="74" height="22"/>
+                        <rect key="frame" x="134" y="94" width="74" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="20q-DA-Jxx" secondAttribute="height" multiplier="37:11" id="Fvs-Rz-C0W"/>
-                            <constraint firstAttribute="height" constant="22" id="cPd-Th-WV3"/>
+                            <constraint firstAttribute="width" secondItem="20q-DA-Jxx" secondAttribute="height" multiplier="37:11" constant="-10" id="Fvs-Rz-C0W"/>
+                            <constraint firstAttribute="height" constant="25" id="cPd-Th-WV3"/>
                         </constraints>
                         <color key="tintColor" red="1" green="0.31372549020000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -126,9 +126,6 @@
                                 <real key="value" value="7"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="tappedLikeButton1" destination="dWy-cR-JQd" eventType="touchUpInside" id="Vck-o1-rDp"/>
-                        </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedHeart" translatesAutoresizingMaskIntoConstraints="NO" id="kxx-0T-7P1">
                         <rect key="frame" x="154" y="49" width="33" height="33"/>
@@ -215,11 +212,11 @@
                     <constraint firstItem="20q-DA-Jxx" firstAttribute="leading" secondItem="ptT-Lq-JZU" secondAttribute="trailing" constant="14" id="VLR-kK-4le"/>
                     <constraint firstItem="14C-Mk-xF9" firstAttribute="leading" secondItem="CnY-dq-8Rf" secondAttribute="leadingMargin" constant="17" id="Xjv-NO-bCs"/>
                     <constraint firstItem="FmF-Jr-2nL" firstAttribute="top" secondItem="14C-Mk-xF9" secondAttribute="bottom" constant="-2" id="ZxQ-9D-3M4"/>
-                    <constraint firstItem="z0h-u8-Fmv" firstAttribute="top" secondItem="jSW-q6-e96" secondAttribute="bottom" constant="13" id="aAp-xz-1Rs"/>
+                    <constraint firstItem="z0h-u8-Fmv" firstAttribute="top" secondItem="jSW-q6-e96" secondAttribute="bottom" constant="12" id="aAp-xz-1Rs"/>
                     <constraint firstItem="kxx-0T-7P1" firstAttribute="top" secondItem="CnY-dq-8Rf" secondAttribute="topMargin" constant="41" id="ayR-Lh-1XD"/>
                     <constraint firstItem="ptT-Lq-JZU" firstAttribute="leading" secondItem="CnY-dq-8Rf" secondAttribute="leadingMargin" constant="12" id="bq8-Bh-TQK"/>
                     <constraint firstAttribute="trailingMargin" secondItem="FmF-Jr-2nL" secondAttribute="trailing" constant="29" id="dKQ-oI-FOy"/>
-                    <constraint firstItem="NpC-xd-0Kv" firstAttribute="top" secondItem="z0h-u8-Fmv" secondAttribute="bottom" constant="13" id="ftQ-gR-rTY"/>
+                    <constraint firstItem="NpC-xd-0Kv" firstAttribute="top" secondItem="z0h-u8-Fmv" secondAttribute="bottom" constant="12" id="ftQ-gR-rTY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="re5-Sp-TW8" secondAttribute="trailing" constant="60" id="gYO-2y-Rma"/>
                     <constraint firstItem="kxx-0T-7P1" firstAttribute="leading" secondItem="ptT-Lq-JZU" secondAttribute="trailing" constant="34" id="hoT-nV-IPp"/>
                     <constraint firstItem="jSW-q6-e96" firstAttribute="top" secondItem="CnY-dq-8Rf" secondAttribute="topMargin" constant="41" id="hxA-gb-GJa"/>
@@ -244,16 +241,16 @@
                 <outlet property="lblBio" destination="Ssg-en-dvr" id="ml8-EB-Cud"/>
                 <outlet property="lblOthers" destination="FmF-Jr-2nL" id="6en-xE-IEc"/>
                 <outlet property="likeButton" destination="20q-DA-Jxx" id="QXP-LE-khS"/>
-                <outlet property="likeButton1" destination="YTH-jO-qx1" id="d6T-RZ-cgs"/>
                 <outlet property="nameLabel" destination="6py-u8-Z8l" id="iOe-KS-e1K"/>
                 <outlet property="nameLabel1" destination="NpC-xd-0Kv" id="Wug-LP-6iT"/>
                 <outlet property="profileImageView" destination="ptT-Lq-JZU" id="Xnw-Ar-eTh"/>
+                <outlet property="updatedFollowButton" destination="YTH-jO-qx1" id="cAd-WP-Yw3"/>
             </connections>
             <point key="canvasLocation" x="783" y="313"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="59B4B4BF-7415-4975-8B43-50C3D84CEF13" width="33" height="30">
+        <image name="4820EF00-F202-4320-852B-B3CC9994C2CB" width="33" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

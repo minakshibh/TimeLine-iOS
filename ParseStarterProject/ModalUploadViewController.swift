@@ -63,6 +63,7 @@ class ModalUploadViewController: UIViewController {
                         }
                     }
                     
+                    
                     Storage.save()
                     
                     main {

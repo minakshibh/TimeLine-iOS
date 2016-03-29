@@ -24,7 +24,7 @@ class UserSummaryTableViewCell: UITableViewCell {
     @IBOutlet var likeTimelineButton: UIButton!
     @IBOutlet var followTimelineButton: UIButton!
 
-    @IBOutlet var likeButton1: SWFrameButton!
+    @IBOutlet var updatedFollowButton: SWFrameButton!
     @IBOutlet var followButton: SWFrameButton!
     @IBOutlet var approveButton: SWFrameButton!
     @IBOutlet var approveConstraint: NSLayoutConstraint!
@@ -52,14 +52,15 @@ extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBeh
     @IBAction func tappedLikeButton() {
         toggleLiked()
     }
-    @IBAction func tappedLikeButton1() {
+    @IBAction func updatedFollowBtn(){
         toggleLiked2()
     }
+    
     @IBAction func tappedFollowButton() {
         toggleFollowState()
     }
     @IBAction func tappedApproveButton() {
-        triggerApproveableBehavior()
+              triggerApproveableBehavior()
     }
     @IBAction func tappedMoreButton() {
         guard let user = user else { return }

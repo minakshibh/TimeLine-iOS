@@ -13,7 +13,7 @@ class PendingUserTableViewController: FlatUserTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.registerNib(UINib(nibName: "UserSummaryPendingFollowersTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
         // Do any additional setup after loading the view.
     }
 

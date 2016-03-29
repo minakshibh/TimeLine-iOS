@@ -128,6 +128,7 @@
 		D9BE2D831C92DC830023494A /* Named1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE2D821C92DC820023494A /* Named1.swift */; };
 		D9BF503C1CA95C4D002B8AFC /* LikeableBehaviorCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF503B1CA95C4C002B8AFC /* LikeableBehaviorCount.swift */; };
 		D9BF503E1CA95F3F002B8AFC /* FollowableBehaviorCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF503D1CA95F3F002B8AFC /* FollowableBehaviorCount.swift */; };
+		D9C252871CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9C252861CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib */; };
 		DA167DFD1B7D211C00608A6C /* VideoSquareCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167DFC1B7D211C00608A6C /* VideoSquareCropper.m */; };
 		DA167E091B7D351F00608A6C /* UIAppearence+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E081B7D351F00608A6C /* UIAppearence+Swift.m */; };
 		DA167E0E1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E0B1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m */; };
@@ -405,6 +406,7 @@
 		D9BE2D821C92DC820023494A /* Named1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Named1.swift; sourceTree = "<group>"; };
 		D9BF503B1CA95C4C002B8AFC /* LikeableBehaviorCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeableBehaviorCount.swift; sourceTree = "<group>"; };
 		D9BF503D1CA95F3F002B8AFC /* FollowableBehaviorCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowableBehaviorCount.swift; sourceTree = "<group>"; };
+		D9C252861CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSummaryPendingFollowersTableViewCell.xib; sourceTree = "<group>"; };
 		DA0342991B7BBC67008DAB69 /* record-end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "record-end.mp3"; sourceTree = "<group>"; };
 		DA03429A1B7BBC67008DAB69 /* record-start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "record-start.mp3"; sourceTree = "<group>"; };
 		DA167DFB1B7D211C00608A6C /* VideoSquareCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSquareCropper.h; sourceTree = "<group>"; };
@@ -1039,6 +1041,7 @@
 		DAFBADFE1B860CE800F3906E /* Specific Timelines */ = {
 			isa = PBXGroup;
 			children = (
+				D9C252861CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib */,
 				D98B6D9A1CA29AB70021706D /* updatedUserSummaryTableViewController.swift */,
 				D95459661CA0296400A6FA49 /* UserSummary1TableViewCell.xib */,
 				DA7546591B82943200FADDE5 /* TimelineSummaryTableViewController.swift */,
@@ -1257,6 +1260,7 @@
 				BA14B76D1B9DB368006A5843 /* APParallaxHeader.license in Resources */,
 				DA57C7851B53FDE600C51BC0 /* Localizable.strings in Resources */,
 				D937FA8F1C90556B00C53274 /* User-lists.png in Resources */,
+				D9C252871CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib in Resources */,
 				BA14B7721B9DB3A3006A5843 /* SCRecorder.license in Resources */,
 				BA14B7691B9DB349006A5843 /* MGSwipeTableCell.license in Resources */,
 				DA167E111B7D6A9200608A6C /* EmptyCollectionViewReusableView.xib in Resources */,

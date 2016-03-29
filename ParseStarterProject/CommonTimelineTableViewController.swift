@@ -9,24 +9,24 @@
 import UIKit
 
 class CommonTimelineTableViewController: UITableViewController {
-
+    var lblFeed:UILabel! = UILabel()
     var users: [User] = [] {
         didSet {
             
             main { self.tableView.reloadData() }
-            lblFeed = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height))
-            lblFeed.textAlignment = NSTextAlignment.Center
-            lblFeed.text = "No Feedeos found"
-            
             for j in 0..<users.count {
-                print("$$ \(users.count)")
+//                print("\(users.count)")
                 let ts = users[j].timelines
                 if(ts.count == 0){
+                    lblFeed.frame = CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height)
+                    lblFeed.textAlignment = NSTextAlignment.Center
+                    lblFeed.text = "No Feedeos found"
                     
+
                     self.tableView.addSubview(lblFeed)
                 }
                 for i in 0..<ts.count {
-                    print("^^ \(ts.count)")
+//                    print("\(ts.count)")
                     if(ts.count != 0){
                         lblFeed.removeFromSuperview()
                     }
@@ -44,7 +44,7 @@ class CommonTimelineTableViewController: UITableViewController {
     func update(){
            }
     
-    var lblFeed:UILabel!
+   
     var callbacks: [AnyObject?] = []
     
     override func viewDidLoad() {
