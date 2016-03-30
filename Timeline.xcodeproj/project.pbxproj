@@ -118,6 +118,7 @@
 		D94042571C7EBF7700FDCD46 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */; };
 		D95459671CA0296400A6FA49 /* UserSummary1TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95459661CA0296400A6FA49 /* UserSummary1TableViewCell.xib */; };
 		D988A5651CA111F400AC1EE1 /* websiteButtonClick.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988A5641CA111F400AC1EE1 /* websiteButtonClick.swift */; };
+		D98B6D9B1CA29AB70021706D /* updatedUserSummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98B6D9A1CA29AB70021706D /* updatedUserSummaryTableViewController.swift */; };
 		D9AA74B71C75F9050008E3EC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9AA74B61C75F9050008E3EC /* MessageUI.framework */; };
 		D9B3408B1C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */; };
 		D9B3408C1C72EABB00EC3BFF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */; };
@@ -125,6 +126,9 @@
 		D9B3408E1C72EABB00EC3BFF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340891C72EABB00EC3BFF /* FBSDKShareKit.framework */; };
 		D9B340911C72F28600EC3BFF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D9B340901C72F28600EC3BFF /* libz.tbd */; };
 		D9BE2D831C92DC830023494A /* Named1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BE2D821C92DC820023494A /* Named1.swift */; };
+		D9BF503C1CA95C4D002B8AFC /* LikeableBehaviorCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF503B1CA95C4C002B8AFC /* LikeableBehaviorCount.swift */; };
+		D9BF503E1CA95F3F002B8AFC /* FollowableBehaviorCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF503D1CA95F3F002B8AFC /* FollowableBehaviorCount.swift */; };
+		D9C252871CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9C252861CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib */; };
 		DA167DFD1B7D211C00608A6C /* VideoSquareCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167DFC1B7D211C00608A6C /* VideoSquareCropper.m */; };
 		DA167E091B7D351F00608A6C /* UIAppearence+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E081B7D351F00608A6C /* UIAppearence+Swift.m */; };
 		DA167E0E1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E0B1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m */; };
@@ -392,6 +396,7 @@
 		D94042561C7EBF7700FDCD46 /* EZSwipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
 		D95459661CA0296400A6FA49 /* UserSummary1TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSummary1TableViewCell.xib; sourceTree = "<group>"; };
 		D988A5641CA111F400AC1EE1 /* websiteButtonClick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = websiteButtonClick.swift; sourceTree = "<group>"; };
+		D98B6D9A1CA29AB70021706D /* updatedUserSummaryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = updatedUserSummaryTableViewController.swift; sourceTree = "<group>"; };
 		D9AA74B61C75F9050008E3EC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D9B340861C72EABB00EC3BFF /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		D9B340871C72EABB00EC3BFF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -399,6 +404,9 @@
 		D9B340891C72EABB00EC3BFF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		D9B340901C72F28600EC3BFF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D9BE2D821C92DC820023494A /* Named1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Named1.swift; sourceTree = "<group>"; };
+		D9BF503B1CA95C4C002B8AFC /* LikeableBehaviorCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeableBehaviorCount.swift; sourceTree = "<group>"; };
+		D9BF503D1CA95F3F002B8AFC /* FollowableBehaviorCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowableBehaviorCount.swift; sourceTree = "<group>"; };
+		D9C252861CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSummaryPendingFollowersTableViewCell.xib; sourceTree = "<group>"; };
 		DA0342991B7BBC67008DAB69 /* record-end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "record-end.mp3"; sourceTree = "<group>"; };
 		DA03429A1B7BBC67008DAB69 /* record-start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "record-start.mp3"; sourceTree = "<group>"; };
 		DA167DFB1B7D211C00608A6C /* VideoSquareCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSquareCropper.h; sourceTree = "<group>"; };
@@ -654,8 +662,10 @@
 			children = (
 				BADDE8031C19EB7400872FEC /* Protocols */,
 				BA380BB21C1612B400013053 /* LikeableBehavior.swift */,
+				D9BF503B1CA95C4C002B8AFC /* LikeableBehaviorCount.swift */,
 				D988A5641CA111F400AC1EE1 /* websiteButtonClick.swift */,
 				BA380BBB1C16159100013053 /* FollowableBehavior.swift */,
+				D9BF503D1CA95F3F002B8AFC /* FollowableBehaviorCount.swift */,
 				BA8607A41C166C10001D73EE /* DurationalBehavior.swift */,
 				BA8607AA1C166D37001D73EE /* NamedBehavior.swift */,
 				BAEE09511C17057D0095F6CE /* TimelineMoreButtonBehavior.swift */,
@@ -1031,6 +1041,8 @@
 		DAFBADFE1B860CE800F3906E /* Specific Timelines */ = {
 			isa = PBXGroup;
 			children = (
+				D9C252861CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib */,
+				D98B6D9A1CA29AB70021706D /* updatedUserSummaryTableViewController.swift */,
 				D95459661CA0296400A6FA49 /* UserSummary1TableViewCell.xib */,
 				DA7546591B82943200FADDE5 /* TimelineSummaryTableViewController.swift */,
 				DAF09E931B854709007DE11D /* UserSummaryTableViewController.swift */,
@@ -1248,6 +1260,7 @@
 				BA14B76D1B9DB368006A5843 /* APParallaxHeader.license in Resources */,
 				DA57C7851B53FDE600C51BC0 /* Localizable.strings in Resources */,
 				D937FA8F1C90556B00C53274 /* User-lists.png in Resources */,
+				D9C252871CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib in Resources */,
 				BA14B7721B9DB3A3006A5843 /* SCRecorder.license in Resources */,
 				BA14B7691B9DB349006A5843 /* MGSwipeTableCell.license in Resources */,
 				DA167E111B7D6A9200608A6C /* EmptyCollectionViewReusableView.xib in Resources */,
@@ -1403,6 +1416,7 @@
 				BA0578801C1A3B630098C3A1 /* UserSummaryTableViewCell.swift in Sources */,
 				DA47FA341B73F6A0005747E3 /* PFUser+Additions.swift in Sources */,
 				BAF5933B1B960BA100C7E8AE /* PendingInAppViewController.swift in Sources */,
+				D9BF503C1CA95C4D002B8AFC /* LikeableBehaviorCount.swift in Sources */,
 				BA3DB6621B986150004E061A /* EditOverlayViewController.swift in Sources */,
 				BA3CF6461B9CE5F6007BB3A6 /* FlatUserTableViewController.swift in Sources */,
 				BA3CF6431B9CE46F007BB3A6 /* CurrentTimelineFollowingTableViewController.swift in Sources */,
@@ -1426,6 +1440,7 @@
 				DA95401C1B837FA600392C75 /* MGSwipeTableCell.m in Sources */,
 				BA8607AB1C166D37001D73EE /* NamedBehavior.swift in Sources */,
 				DA40BBB81B7FBF190070BEE9 /* DraftPreview.swift in Sources */,
+				D98B6D9B1CA29AB70021706D /* updatedUserSummaryTableViewController.swift in Sources */,
 				18E9AA6F1C844DE60026C9AB /* EditLastNameTableViewController.swift in Sources */,
 				18ECB2891C7D8C60001EA23B /* EditBioTableViewController.swift in Sources */,
 				DA873BA31B7E97F400A8BB06 /* TimelineCollectionViewCell.swift in Sources */,
@@ -1487,6 +1502,7 @@
 				DA2BA53A1B78C80600DE6300 /* Moment.swift in Sources */,
 				BADDE8071C19ED1300872FEC /* Deleteable.swift in Sources */,
 				BA14B7611B9DB00F006A5843 /* FollowingTimelineTableViewController.swift in Sources */,
+				D9BF503E1CA95F3F002B8AFC /* FollowableBehaviorCount.swift in Sources */,
 				BA14B7741B9DB468006A5843 /* LicenseViewController.swift in Sources */,
 				BA3CF64E1B9CE73E007BB3A6 /* FollowerUserTableViewController.swift in Sources */,
 				DA799AE71B64F76500EA4982 /* Constant.swift in Sources */,

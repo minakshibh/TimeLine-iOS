@@ -9,30 +9,42 @@
 import UIKit
 
 class CommonTimelineTableViewController: UITableViewController {
-
+    var lblFeed:UILabel! = UILabel()
     var users: [User] = [] {
         didSet {
             
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
-        }
-    }
-    func update(){
-        main { self.tableView.reloadData() }
-        
-        for j in 0..<users.count {
-            let ts = users[j].timelines
-            for i in 0..<ts.count {
-                users[j].timelines[i].reloadMoments {
-                    if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
-                        cell.timeline = self.users[j].timelines[i]
+            main { self.tableView.reloadData() }
+            for j in 0..<users.count {
+//                print("\(users.count)")
+                let ts = users[j].timelines
+                if(ts.count == 0){
+                    lblFeed.frame = CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height)
+                    lblFeed.textAlignment = NSTextAlignment.Center
+                    lblFeed.text = "No Feedeos found"
+                    
+
+                    self.tableView.addSubview(lblFeed)
+                }
+                for i in 0..<ts.count {
+//                    print("\(ts.count)")
+                    if(ts.count != 0){
+                        lblFeed.removeFromSuperview()
+                    }
+                    users[j].timelines[i].reloadMoments {
+                        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
+                            cell.timeline = self.users[j].timelines[i]
+                        }
                     }
                 }
             }
-        }
+            
 
+        }
     }
+    func update(){
+           }
     
-    var lblFeed:UILabel!
+   
     var callbacks: [AnyObject?] = []
     
     override func viewDidLoad() {
@@ -68,17 +80,6 @@ class CommonTimelineTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(users[section].timelines.count == 0 && NSUserDefaults.standardUserDefaults().valueForKey("status") as? String == "yes"){
-            
-            self.tableView.addSubview(lblFeed)
-            NSUserDefaults.standardUserDefaults().setObject("no", forKey: "status")
-        }
-        if(users[section].timelines.count > 0)
-        {
-            lblFeed.removeFromSuperview()
-        }
-        
-        
         return users[section].timelines.count
     }
 
@@ -89,7 +90,6 @@ class CommonTimelineTableViewController: UITableViewController {
         
         // Configure the cell...
         cell.timelineView.timeline = users[indexPath.section].timelines[indexPath.row]
-        lblFeed.removeFromSuperview()
         //cell.deletionCallback = self.deletionCallback()
         
         return cell
@@ -172,16 +172,15 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
         self.refreshTableView()
         self.tableView.reloadData()
     }
+    
+    
     override func viewWillAppear(animated: Bool) {
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update3", userInfo: nil, repeats: false)
     }
     func update3(){
         self.setUpHooking() // required for Hooking protocol
         
-        lblFeed = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height))
-        lblFeed.textAlignment = NSTextAlignment.Center
-        lblFeed.text = "No Feedeos found"
-    }
+            }
     override func viewWillDisappear(animated: Bool) {
         cleanUpHooking() // breaks cycles on disappear
     }

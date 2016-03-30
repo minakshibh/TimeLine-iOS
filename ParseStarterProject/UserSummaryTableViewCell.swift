@@ -11,6 +11,8 @@ import SWFrameButton
 
 class UserSummaryTableViewCell: UITableViewCell {
 
+    @IBOutlet var imageheart: UIImageView!
+    @IBOutlet var imagePerson: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var nameLabel1: UILabel!
     @IBOutlet var lblBio: UILabel!
@@ -22,7 +24,7 @@ class UserSummaryTableViewCell: UITableViewCell {
     @IBOutlet var likeTimelineButton: UIButton!
     @IBOutlet var followTimelineButton: UIButton!
 
-    @IBOutlet var likeButton1: SWFrameButton!
+    @IBOutlet var updatedFollowButton: SWFrameButton!
     @IBOutlet var followButton: SWFrameButton!
     @IBOutlet var approveButton: SWFrameButton!
     @IBOutlet var approveConstraint: NSLayoutConstraint!
@@ -36,11 +38,11 @@ class UserSummaryTableViewCell: UITableViewCell {
     }
 
     var refreshers: [() -> ()] {
-        return [refreshLikeableBehavior, refreshFollowableBehavior, refreshApproveableBehavior, refreshNamedBehavior ,refreshFirstLastName, refreshLikeableBehavior2, refreshwebsiteButtonClick]
+        return [refreshLikeableBehavior, refreshFollowableBehavior, refreshApproveableBehavior, refreshNamedBehavior ,refreshFirstLastName, refreshLikeableBehavior2, refreshwebsiteButtonClick, refreshLikeableBehaviorCount, refreshFollowableBehaviorCount]
     }
 }
 
-extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBehavior, ApproveableBehavior, NamedBehavior ,FirstLastName, LikeableBehavior2 , websiteButtonClick {
+extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBehavior, ApproveableBehavior, NamedBehavior ,FirstLastName, LikeableBehavior2 , websiteButtonClick, LikeableBehaviorCount, FollowableBehaviorCount {
 
     typealias TargetBehaviorType = User
     var behaviorTarget: TargetBehaviorType? {
@@ -50,14 +52,15 @@ extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBeh
     @IBAction func tappedLikeButton() {
         toggleLiked()
     }
-    @IBAction func tappedLikeButton1() {
+    @IBAction func updatedFollowBtn(){
         toggleLiked2()
     }
+    
     @IBAction func tappedFollowButton() {
         toggleFollowState()
     }
     @IBAction func tappedApproveButton() {
-        triggerApproveableBehavior()
+              triggerApproveableBehavior()
     }
     @IBAction func tappedMoreButton() {
         guard let user = user else { return }

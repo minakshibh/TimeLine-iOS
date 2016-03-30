@@ -28,6 +28,8 @@ class DraftBarCollectionReusableView: UICollectionReusableView {
             
             if(moment?.duration != nil)
             {
+                let selectedVideoLocalThumbURL = moment!.localThumbURL
+                user.setObject("\(moment!.localThumbURL)", forKey: "selectedVideoLocalThumbURL")
                 let selectedVideoTime = moment!.duration
 //                print("-----------\(selectedVideoTime)----------------")
                 user.setObject(selectedVideoTime, forKey: "selectedVideoTime")

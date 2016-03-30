@@ -9,7 +9,7 @@
 import SWFrameButton
 
 protocol websiteButtonClick {
-    typealias TargetBehaviorType: Likeable
+    typealias TargetBehaviorType: Named1
     var behaviorTarget: TargetBehaviorType? { get }
     var btnWebsite: SWFrameButton! { get }
 }
@@ -30,19 +30,20 @@ extension websiteButtonClick where TargetBehaviorType: Ownable {
            
         }
         
-        
+        btnWebsite.setTitle(behaviorTarget?.website, forState: .Normal)
 
-                var websiteStr:String = ""
-                if NSUserDefaults.standardUserDefaults().valueForKey("user_website") != nil {
-                    websiteStr = "\(NSUserDefaults.standardUserDefaults().valueForKey("user_website")!)"
-                    btnWebsite.setTitle(websiteStr, forState: .Normal)
-                }
-                if NSUserDefaults.standardUserDefaults().valueForKey("user_website") == nil {
-                    websiteStr = " "
-                    btnWebsite.setTitle(websiteStr, forState: .Normal)
-                }
-                
-                
+//
+//                var websiteStr:String = ""
+//                if NSUserDefaults.standardUserDefaults().valueForKey("user_website") != nil {
+//                    websiteStr = "\(NSUserDefaults.standardUserDefaults().valueForKey("user_website")!)"
+//                    btnWebsite.setTitle(websiteStr, forState: .Normal)
+//                }
+//                if NSUserDefaults.standardUserDefaults().valueForKey("user_website") == nil {
+//                    websiteStr = " "
+//                    btnWebsite.setTitle(websiteStr, forState: .Normal)
+//                }
+//                
+        
 
     }
 

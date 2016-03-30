@@ -94,7 +94,8 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
+//        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
+        self.update()
 //        self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
         print("\(self.navigationController!.navigationBar.frame)")
         
@@ -126,9 +127,9 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         }
     }
     func update(){
-        
-        setUpHooking()
-        refresh()
+        delay (0.20) {
+        self.setUpHooking()
+        self.refresh()
         
         Storage.performRequest(ApiRequest.UserMe, completion: { (json) -> Void in
             if let user = Storage.session.currentUser {
@@ -158,9 +159,9 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 Storage.save()
                 
                 self.refresh()
-            }
-        })
-
+                }
+            })
+        }
     }
     
     private func refresh() {

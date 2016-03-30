@@ -19,7 +19,7 @@ protocol ApproveableBehavior {
 
 private extension UIColor {
     static var approveableTintColor: UIColor! {
-        return UIColor.from(hexString: "F4C642")
+        return UIColor.from(hexString: "FF0000")
     }
 }
 
@@ -34,6 +34,7 @@ extension ApproveableBehavior where TargetBehaviorType: Named {
             self.approveButton.setTitle(local(.UserButtonRespondTitle), forState: .Normal)
             self.approveButton.enabled =!= true
             self.approveButton.borderWidth =!= 1.5
+//            self.approveButton.layer.borderColor = UIColor.blackColor().CGColor
 //            self.approveButton.titleLabel?.numberOfLines = 1
 //            self.approveButton.titleLabel?.adjustsFontSizeToFitWidth = true
 //            self.approveButton.titleLabel?.lineBreakMode = .ByClipping
@@ -45,6 +46,10 @@ extension ApproveableBehavior where TargetBehaviorType: Named {
     }
 
     func triggerApproveableBehavior() {
+        
+//        self.approveButton.backgroundColor = UIColor.redColor()
+//        self.approveButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        
         guard let approveable = behaviorTarget,
             let controller = activeController()
             else { return }
@@ -65,13 +70,21 @@ extension ApproveableBehavior where TargetBehaviorType: Named {
             approveable.approve(reloadData)
             self.resetPendingFollowerCount()
             removeData()
+            self.approveButton.backgroundColor = UIColor.whiteColor()
+            self.approveButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         }
         alert.addAction(title: local(.UserSheetRespondDecline), style: .Destructive) { _ in
             approveable.decline(reloadData)
             self.resetPendingFollowerCount()
             removeData()
+            self.approveButton.backgroundColor = UIColor.whiteColor()
+            self.approveButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         }
-        alert.addAction(title: local(.UserSheetRespondCancel), style: .Cancel, handler: nil)
+        alert.addAction(title: local(.UserSheetRespondCancel), style: .Cancel){ _ in
+//            self.approveButton.layer.borderColor = UIColor.blackColor().CGColor
+            self.approveButton.backgroundColor = UIColor.whiteColor()
+            self.approveButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+        }
 
         controller.presentAlertController(alert)
     }

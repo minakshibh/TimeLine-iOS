@@ -17,11 +17,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re5-Sp-TW8">
-                        <rect key="frame" x="292" y="159" width="60" height="30"/>
+                        <rect key="frame" x="292" y="184" width="60" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33" id="12K-gb-58x"/>
                         </constraints>
-                        <state key="normal" image="62912CFD-7253-4B87-AC85-36EB61214174"/>
+                        <state key="normal" image="9E990D26-6A07-4F18-9A42-1E49F13FC024"/>
                         <connections>
                             <action selector="tappedMoreButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="QQa-Cu-uuz"/>
                         </connections>
@@ -50,7 +50,7 @@
                             <constraint firstAttribute="height" id="F0k-Se-6r8"/>
                         </constraints>
                     </view>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-u8-Fmv" customClass="SWFrameButton">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-u8-Fmv" customClass="SWFrameButton">
                         <rect key="frame" x="208" y="161" width="69" height="22"/>
                         <color key="tintColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -77,22 +77,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mm-UQ-4qv" customClass="SWFrameButton">
-                        <rect key="frame" x="297" y="115" width="50" height="30"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <state key="normal" title="Respond"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="7"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="1.5"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="tappedApproveButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="MJO-cA-crN"/>
-                        </connections>
-                    </button>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6py-u8-Z8l">
                         <rect key="frame" x="70" y="147" width="293" height="20"/>
                         <constraints>
@@ -102,7 +86,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20q-DA-Jxx" customClass="SWFrameButton">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20q-DA-Jxx" customClass="SWFrameButton">
                         <rect key="frame" x="203" y="143" width="89" height="22"/>
                         <color key="tintColor" red="1" green="0.31372549020000001" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -119,7 +103,7 @@
                             <action selector="tappedLikeButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="uF0-Ny-g9A"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTH-jO-qx1" customClass="SWFrameButton">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTH-jO-qx1" customClass="SWFrameButton">
                         <rect key="frame" x="358" y="138" width="52" height="33"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="52" id="GbI-os-ic3"/>
@@ -135,9 +119,6 @@
                                 <real key="value" value="7"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="updatedFollowBtn" destination="dWy-cR-JQd" eventType="touchUpInside" id="cjU-JW-NBt"/>
-                        </connections>
                     </button>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPN-du-P6z">
                         <rect key="frame" x="13" y="0.0" width="42" height="21"/>
@@ -161,6 +142,25 @@
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HHZ-Pz-QQ8">
                         <rect key="frame" x="0.0" y="24" width="20" height="20"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mm-UQ-4qv" customClass="SWFrameButton">
+                        <rect key="frame" x="318" y="140" width="85" height="30"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="Respond">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="tappedApproveButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="MJO-cA-crN"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="YTH-jO-qx1" secondAttribute="trailing" constant="-6" id="0zG-Nu-A0m"/>
@@ -170,11 +170,11 @@
                     <constraint firstAttribute="trailingMargin" secondItem="6py-u8-Z8l" secondAttribute="trailing" constant="41" id="8EB-48-QME"/>
                     <constraint firstItem="YTH-jO-qx1" firstAttribute="centerY" secondItem="ptT-Lq-JZU" secondAttribute="centerY" id="Feg-H1-NRq"/>
                     <constraint firstItem="xaF-cL-c0Y" firstAttribute="centerY" secondItem="CnY-dq-8Rf" secondAttribute="centerY" constant="22.5" id="IBX-qY-YVC"/>
-                    <constraint firstItem="8mm-UQ-4qv" firstAttribute="leading" secondItem="re5-Sp-TW8" secondAttribute="trailing" constant="-55" id="IEW-dR-2hh"/>
+                    <constraint firstItem="8mm-UQ-4qv" firstAttribute="leading" secondItem="re5-Sp-TW8" secondAttribute="trailing" constant="-34" id="IEW-dR-2hh"/>
                     <constraint firstAttribute="trailingMargin" secondItem="20q-DA-Jxx" secondAttribute="trailing" constant="112" id="ImF-jf-WZV"/>
                     <constraint firstItem="6py-u8-Z8l" firstAttribute="top" secondItem="NpC-xd-0Kv" secondAttribute="bottom" constant="-2" id="Inq-aS-nRR"/>
                     <constraint firstItem="NpC-xd-0Kv" firstAttribute="leading" secondItem="ptT-Lq-JZU" secondAttribute="trailing" constant="9" id="MCT-fx-OhO"/>
-                    <constraint firstItem="8mm-UQ-4qv" firstAttribute="top" secondItem="z0h-u8-Fmv" secondAttribute="bottom" constant="-68" id="Rgp-tQ-fyc"/>
+                    <constraint firstItem="8mm-UQ-4qv" firstAttribute="top" secondItem="z0h-u8-Fmv" secondAttribute="bottom" constant="-43" id="Rgp-tQ-fyc"/>
                     <constraint firstItem="NpC-xd-0Kv" firstAttribute="leading" secondItem="6py-u8-Z8l" secondAttribute="leading" id="Smj-US-Wfw"/>
                     <constraint firstAttribute="trailingMargin" secondItem="YTH-jO-qx1" secondAttribute="trailing" constant="-6" id="Tsi-vo-fai"/>
                     <constraint firstItem="YTH-jO-qx1" firstAttribute="centerY" secondItem="20q-DA-Jxx" secondAttribute="centerY" id="Z4V-kd-eEr"/>
@@ -186,7 +186,7 @@
                     <constraint firstItem="z0h-u8-Fmv" firstAttribute="leading" secondItem="xaF-cL-c0Y" secondAttribute="trailing" id="evK-W3-sM3"/>
                     <constraint firstItem="20q-DA-Jxx" firstAttribute="leading" secondItem="z0h-u8-Fmv" secondAttribute="trailing" constant="-74" id="j6d-F0-oZ1"/>
                     <constraint firstItem="z0h-u8-Fmv" firstAttribute="centerY" secondItem="CnY-dq-8Rf" secondAttribute="centerY" constant="16.5" id="m4g-Fh-AJo"/>
-                    <constraint firstItem="8mm-UQ-4qv" firstAttribute="trailing" secondItem="z0h-u8-Fmv" secondAttribute="trailing" constant="70" id="m6m-70-I2P"/>
+                    <constraint firstItem="8mm-UQ-4qv" firstAttribute="trailing" secondItem="z0h-u8-Fmv" secondAttribute="trailing" constant="126" id="m6m-70-I2P"/>
                     <constraint firstItem="6py-u8-Z8l" firstAttribute="centerY" secondItem="CnY-dq-8Rf" secondAttribute="centerY" constant="1.5" id="tDP-ks-gFi"/>
                     <constraint firstItem="xaF-cL-c0Y" firstAttribute="centerX" secondItem="CnY-dq-8Rf" secondAttribute="centerX" constant="2" id="viI-oO-1Nu"/>
                     <constraint firstItem="ptT-Lq-JZU" firstAttribute="leading" secondItem="CnY-dq-8Rf" secondAttribute="leadingMargin" constant="3" id="xfH-xx-zD3"/>
@@ -202,7 +202,7 @@
                 <outlet property="approveButton" destination="8mm-UQ-4qv" id="cTQ-Kq-GDg"/>
                 <outlet property="approveConstraint" destination="IEW-dR-2hh" id="lCT-fP-Wi5"/>
                 <outlet property="btnWebsite" destination="KBg-Qv-ZLw" id="rLW-di-uVg"/>
-                <outlet property="followButton" destination="z0h-u8-Fmv" id="yxr-vh-TVZ"/>
+                <outlet property="followButton" destination="z0h-u8-Fmv" id="7ky-r2-76k"/>
                 <outlet property="imagePerson" destination="HHZ-Pz-QQ8" id="cnw-Na-4IW"/>
                 <outlet property="imageheart" destination="aKj-B8-hLN" id="gYm-KR-d0z"/>
                 <outlet property="lblBio" destination="pPN-du-P6z" id="PAW-jK-R6b"/>
@@ -211,13 +211,13 @@
                 <outlet property="nameLabel" destination="6py-u8-Z8l" id="iOe-KS-e1K"/>
                 <outlet property="nameLabel1" destination="NpC-xd-0Kv" id="Wug-LP-6iT"/>
                 <outlet property="profileImageView" destination="ptT-Lq-JZU" id="Xnw-Ar-eTh"/>
-                <outlet property="updatedFollowButton" destination="YTH-jO-qx1" id="cb5-ce-Nhz"/>
+                <outlet property="updatedFollowButton" destination="YTH-jO-qx1" id="o66-Ak-YwX"/>
             </connections>
             <point key="canvasLocation" x="783" y="313"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="62912CFD-7253-4B87-AC85-36EB61214174" width="33" height="30">
+        <image name="9E990D26-6A07-4F18-9A42-1E49F13FC024" width="33" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
