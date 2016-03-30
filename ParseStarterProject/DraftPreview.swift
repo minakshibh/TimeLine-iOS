@@ -53,8 +53,16 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             } else {
                 previewImageView.moment = nil
             }
-            
+            print(String(DraftPreview.topViewController()!))
             if String(DraftPreview.topViewController()!).rangeOfString("DraftCollectionViewController") != nil{
+                print("exists")
+                self.playPlayButton.hidden = true
+                self.pausePlayButton.hidden = true
+                self.closeButton.hidden = true
+                self.commentButton.hidden = true
+            }
+            
+            if String(DraftPreview.topViewController()!).rangeOfString("drawer") != nil{
                 print("exists")
                 self.playPlayButton.hidden = true
                 self.pausePlayButton.hidden = true
@@ -157,6 +165,15 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                     
                 }else{
                 pausePlayButton.hidden = false
+                }
+                
+                if String(DraftPreview.topViewController()!).rangeOfString("drawer") != nil{
+                    print("exists")
+                    
+                    self.pausePlayButton.hidden = true
+                    
+                }else{
+                    pausePlayButton.hidden = false
                 }
                 playPlayButton.hidden = true
             }

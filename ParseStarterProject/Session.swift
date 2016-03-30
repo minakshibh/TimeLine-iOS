@@ -69,7 +69,7 @@ class Session: DictConvertable {
         self.walkedThroughApprove = walkedThroughApprove
         
         self.notificationDate = notificationDate
-        
+//        print(users)
         for u in users {
             u.parent = self
         }

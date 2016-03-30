@@ -29,7 +29,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     var InvitedFriends_id : NSMutableArray = []
     var removedFriends_id : NSMutableArray = []
     var participants_id : NSMutableArray = []
-
+    
     var InvitedFriendsIdSTr : NSString = ""
     var sendbutton = UIButton()
     var Updatebutton = UIButton()
@@ -43,8 +43,11 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     var followersArrayList: [User] = []
     var friendsInGroupTl : NSMutableArray = []
     let seperatorLineView = UIView()
-
-
+    
+    var activityIndicator = UIActivityIndicatorView()
+    let activityIndicatorView = UIView()
+    
+    
     lazy var behavior: ModernTimelineBehavior = {
         let behavior = ModernTimelineBehavior()
         behavior.modernTimelineView = self
@@ -60,84 +63,84 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 usrs in  self.followersArrayList = usrs
             }
             behavior.timeline = newValue
-            //main{
-            self.scrollMomentArray = []
-            
-            // Seperator view for timeline
-            if !(self.timeline?.isOwn)!
-            {
-            seperatorLineView.frame = CGRectMake(25,self.likeTimelineButton.frame.origin.y + self.likeTimelineButton.frame.size.height + 5, self.frame.size.width-25,1)
-            seperatorLineView.hidden = false
-            seperatorLineView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-            self.addSubview(seperatorLineView)
-            
-            }else{
-                self.likeButton.frame = CGRectMake(self.likeButton.frame.origin.x ,self.likeButton.frame.origin.y-50, self.likeButton.frame.size.width,self.likeButton.frame.size.height)
-            }
-            
-            
-            if let raw = self.behavior.timeline?.dict["moments"]!
-            {
-                self.scrollMomentArray = raw as! NSArray
+            main{
+                self.scrollMomentArray = []
                 
-            }
-           // self.scrollMomentArray = self.behavior.timeline?.dict["moments"]! as! NSArray
-            var Yaxis :CGFloat = 0
-            self.momentScroller.subviews.forEach {
-                ( view) -> () in
-                if (view is UIButton) {
-                    
-                    view.removeFromSuperview()
-                
-                }
-            }
-            self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
-            self.momentScroller.delegate = self
-            self.momentScroller.showsVerticalScrollIndicator = false
-            for var i = 0; i < self.scrollMomentArray.count; i++ {
-                
-                let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.momentScroller.frame.size.width, height: self.momentScroller.frame.size.width))
-                villainButton.titleLabel?.font =  UIFont.boldSystemFontOfSize(15)
-                villainButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-                
-                if let raw = self.scrollMomentArray[i] as? NSDictionary
+                // Seperator view for timeline
+                if !(self.timeline?.isOwn)!
                 {
-                    let notifyStr = raw["video_thumb"] as! String
+                    self.seperatorLineView.frame = CGRectMake(25,self.likeTimelineButton.frame.origin.y + self.likeTimelineButton.frame.size.height + 5, self.frame.size.width-25,1)
+                    self.seperatorLineView.hidden = false
+                    self.seperatorLineView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                    self.addSubview(self.seperatorLineView)
                     
-                    let momentNumbering = UILabel()
-                    momentNumbering.frame = CGRectMake(CGFloat((villainButton.frame.size.width/2)-10), CGFloat((villainButton.frame.size.height/2)-10), 20, 20)
-                    momentNumbering.layer.cornerRadius = 10
-                    momentNumbering.layer.masksToBounds = true
-                    momentNumbering.font = UIFont.boldSystemFontOfSize(15)
-                    momentNumbering.textAlignment = .Center
-                    momentNumbering.backgroundColor = UIColor(white: 1, alpha: 0.35)
-                    momentNumbering.textColor = UIColor(white: 0, alpha: 0.7 )
-                    momentNumbering.text = "\(i + 1)"
-                    
-                    villainButton.addSubview(momentNumbering)
-                    
-                    villainButton.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+                }else{
+                    self.likeButton.frame = CGRectMake(self.likeButton.frame.origin.x ,self.likeButton.frame.origin.y-50, self.likeButton.frame.size.width,self.likeButton.frame.size.height)
                 }
-                villainButton.tag = i
-                villainButton.addTarget(self, action: "momentButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
                 
+                
+                if let raw = self.behavior.timeline?.dict["moments"]!
+                {
+                    self.scrollMomentArray = raw as! NSArray
+                    
+                }
+                // self.scrollMomentArray = self.behavior.timeline?.dict["moments"]! as! NSArray
+                var Yaxis :CGFloat = 0
+                self.momentScroller.subviews.forEach {
+                    ( view) -> () in
+                    if (view is UIButton) {
+                        
+                        view.removeFromSuperview()
+                        
+                    }
+                }
+                self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
+                self.momentScroller.delegate = self
+                self.momentScroller.showsVerticalScrollIndicator = false
+                for var i = 0; i < self.scrollMomentArray.count; i++ {
+                    
+                    let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.momentScroller.frame.size.width, height: self.momentScroller.frame.size.width))
+                    villainButton.titleLabel?.font =  UIFont.boldSystemFontOfSize(15)
+                    villainButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                    
+                    if let raw = self.scrollMomentArray[i] as? NSDictionary
+                    {
+                        let notifyStr = raw["video_thumb"] as! String
+                        
+                        let momentNumbering = UILabel()
+                        momentNumbering.frame = CGRectMake(CGFloat((villainButton.frame.size.width/2)-10), CGFloat((villainButton.frame.size.height/2)-10), 20, 20)
+                        momentNumbering.layer.cornerRadius = 10
+                        momentNumbering.layer.masksToBounds = true
+                        momentNumbering.font = UIFont.boldSystemFontOfSize(15)
+                        momentNumbering.textAlignment = .Center
+                        momentNumbering.backgroundColor = UIColor(white: 1, alpha: 0.35)
+                        momentNumbering.textColor = UIColor(white: 0, alpha: 0.7 )
+                        momentNumbering.text = "\(i + 1)"
+                        
+                        villainButton.addSubview(momentNumbering)
+                        
+                        villainButton.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+                    }
+                    villainButton.tag = i
+                    villainButton.addTarget(self, action: "momentButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+                    
                     self.momentScroller.addSubview(villainButton)
+                    
+                    Yaxis = Yaxis + self.momentScroller.frame.size.width
+                }
+                self.momentScroller.contentSize = CGSizeMake(self.momentScroller.frame.size.width, Yaxis)
+                self.momentScroller.backgroundColor = UIColor.from(hexString:"#e7e7e7")
                 
-                Yaxis = Yaxis + self.momentScroller.frame.size.width
+                self.addSubview(self.momentScroller)
+                
             }
-            self.momentScroller.contentSize = CGSizeMake(self.momentScroller.frame.size.width, Yaxis)
-            self.momentScroller.backgroundColor = UIColor.from(hexString:"#e7e7e7")
-            
-            self.addSubview(self.momentScroller)
-//                self.previewItems.append(self.momentScroller)
-            //}
             
             refresh()
             
             self.friendsListArray.removeAllObjects()
             self.groupTimelineButton.hidden = !(behavior.timeline?.groupTimeline)!
             self.commentButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 0)
-
+            
             if let timelineCount = behavior.timeline?.commentsCount {
                 self.commentButton.setTitle("\(timelineCount)", forState: .Normal)
             }
@@ -157,14 +160,14 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             {
                 commentOnTimelineButton.hidden = true
                 
-//                if (user_id == Storage.session.currentUser?.uuid)
-//                {
-//                    commentOnTimelineButton.hidden = true
-//                    followTimelineButton.hidden = true
-//                    likeTimelineButton.hidden = true
-//                }
+                //                if (user_id == Storage.session.currentUser?.uuid)
+                //                {
+                //                    commentOnTimelineButton.hidden = true
+                //                    followTimelineButton.hidden = true
+                //                    likeTimelineButton.hidden = true
+                //                }
             }
-
+            
         }
     }
     
@@ -173,7 +176,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         self.momentScroller.hidden = true
         selectedTimelineMomentArray = behavior.timeline?.dict["moments"]! as! NSArray
         print(selectedTimelineMomentArray[sender.tag])
-
+        
         behavior.playMoment(sender, moment: Moment.init(dict: selectedTimelineMomentArray[sender.tag] as! [String : AnyObject], parent: behavior.timeline))
         
     }
@@ -182,7 +185,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     var tagArray = NSMutableArray()
     var momentArray = NSMutableArray()
     
-
+    
     @IBAction func groupTimelineButtonAction(sender: AnyObject) {
         
         let controller = activeController()
@@ -299,13 +302,13 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     
     
     @IBAction func timelineCommentClick(sender: UIButton!){
-        print("timeline id: \(timeline!.uuid!)")
-        print(timeline!.dict["moments"]!)  //show all moments
+        //        print("timeline id: \(timeline!.uuid!)")
+        //        print(timeline!.dict["moments"]!)  //show all moments
         
         main{
             self.showCommentPopup()
         }
- 
+        
     }
     
     func addFriendsListView()
@@ -362,7 +365,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             for i in 0..<(self.friendsListArray.count ?? 0) {
                 if let dataDict = self.friendsListArray[i] as? NSDictionary
                 {
-                   let user_id = (dataDict["id"] as? String!)!
+                    let user_id = (dataDict["id"] as? String!)!
                     self.participants_id.addObject(user_id)
                     self.InvitedFriends_id.addObject(user_id)
                 }
@@ -381,7 +384,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         
         KGModal.sharedInstance().closeButtonType = KGModalCloseButtonType.None
         KGModal.sharedInstance().showWithContentView(self.friendsListView)
-
+        
     }
     func closeViewButton(){
         
@@ -395,7 +398,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             
         }
     }
-
+    
     func doneButtonAction()
     {
         if self.InvitedFriends_id.count > 0
@@ -413,13 +416,13 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         for i in 0..<self.InvitedFriends_id.count {
             if !self.participants_id .containsObject(self.InvitedFriends_id[i])
             {
-                 addParticipantsList.addObject(self.InvitedFriends_id[i])
+                addParticipantsList.addObject(self.InvitedFriends_id[i])
             }
         }
         if addParticipantsList.count == 0
         {
             self.InvitedFriends_id.removeAllObjects()
-
+            
             self.closeViewButton()
             return
         }
@@ -437,7 +440,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         }
         
         Storage.performRequest(.AddParticipantInGroupTimeline((self.timeline?.uuid)! ,InvitedFriendsIdSTr  as members)) { (json) -> Void in
-           
+            
             let controller = activeController()
             
             switch json["status_code"] as? Int ?? 400 {
@@ -466,7 +469,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             }
         }
     }
-
+    
     func removeParticipantsAPI()
     {
         let removeParticipantsList : NSMutableArray = []
@@ -481,7 +484,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             self.closeViewButton()
             return
         }
-
+        
         var removedFriendsIdSTr : NSString = ""
         for ids in removeParticipantsList{
             if removedFriendsIdSTr == ""
@@ -524,13 +527,13 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             main {
                 self.closeViewButton()
             }
-
+            
         }
     }
     func followButton(sender: UIButton) {
         let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
         let followButton = sender as UIButton
-
+        
         var user_id : NSString = ""
         
         if let dataDict = self.friendsListArray[indexPath.row] as? NSDictionary
@@ -543,7 +546,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             return
         }
         let user = User(dict: (self.friendsListArray[indexPath.row] as? [String: AnyObject])!, parent: nil)
-
+        
         if(followButton.imageView!.image == UIImage(named:"likeImage")){
             followButton.setImage(UIImage(named: "dislikeImage") as UIImage?, forState: .Normal)
             
@@ -560,14 +563,14 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         }
         return
     }
-
+    
     func inviteButton(sender: UIButton) {
         let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
         let inviteButton = sender as UIButton
         
         var user_id : NSString = ""
         if let user : User?  = self.followersArrayList[indexPath.row]
-
+            
         {
             user_id = (user?.uuid)!
         }
@@ -585,104 +588,130 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             removedFriends_id .removeObject(user_id)
         }
     }
-
+    
     
     
     
     func showCommentPopup(){
-        self.InvitedFriends_id.removeAllObjects()
-        self.invitedFriendsArray.removeAllObjects()
-        Storage.performRequest(ApiRequest.TimelineComments(timeline!.uuid!), completion: { (json) -> Void in
-            if let raw = json["result"] as? NSMutableArray{
-                self.commentArray = raw
-            }
-            self.commentlist.reloadData()
-            main{
-                let screenRect = UIScreen.mainScreen().bounds
-                let screenWidth = screenRect.size.width;
-                let screenHeight = screenRect.size.height;
-                self.timelineCommentView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-                self.timelineCommentView.backgroundColor = UIColor(white: 1 , alpha: 1)
-                self.timelineCommentView.alpha = 1
-                
-                
-                let Statusbarview = UIView()
-                Statusbarview.frame = CGRectMake(0, 0, screenWidth, 20)
-                Statusbarview.backgroundColor = UIColor.redNavbarColor()
-                self.timelineCommentView.addSubview(Statusbarview)
-                
-                let commentScreenTitle = UILabel()
-                commentScreenTitle.frame = CGRectMake(0, 20, screenWidth, 44)
-                commentScreenTitle.font = UIFont.systemFontOfSize(18)
-                commentScreenTitle.textAlignment = .Center
-                commentScreenTitle.backgroundColor = UIColor.redNavbarColor()
-                commentScreenTitle.textColor = UIColor.whiteColor()
-                commentScreenTitle.text = "Comments"
-                self.timelineCommentView.addSubview(commentScreenTitle)
-                
-                // close button comment section
-                let closeButton  = UIButton()
-                closeButton.frame = CGRectMake(0, 20, 50, 44);
-                closeButton.setImage(UIImage(assetIdentifier: .BackIndicator) as UIImage?, forState: .Normal)
-                closeButton.addTarget(self, action: "btnTouched", forControlEvents:.TouchUpInside)
-                self.timelineCommentView.addSubview(closeButton)
-                
-                // table view declaration
-                
-                self.commentlist.frame         =   CGRectMake(0, 64, self.timelineCommentView.frame.width, self.timelineCommentView.frame.height-144);
-                self.commentlist.delegate      =   self
-                self.commentlist.dataSource    =   self
-                self.commentlist.backgroundColor = UIColor.clearColor()
-                self.commentlist.separatorStyle = .None
-                self.commentlist.tableFooterView = UIView()
-                self.commentlist.registerClass(UITableViewCell.self, forCellReuseIdentifier: "commentCell")
-                self.timelineCommentView.addSubview(self.commentlist)
-                
-                
-                self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
-                self.commentTextfeildView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                self.timelineCommentView.addSubview(self.commentTextfeildView)
-                
-                
-                self.commentTextField.frame = CGRectMake(10, 15, CGFloat(295+40*isiphone6Plus()-55*isiPhone5()), 50)
-                self.commentTextField.layer.cornerRadius = 4
-                self.commentTextField.backgroundColor = UIColor.whiteColor()
-                self.commentTextField.autocorrectionType = .No
-                let leftPadding = UIImageView()
-                leftPadding.frame = CGRectMake(0.0, 0.0, 10.0, 50);
-                leftPadding.contentMode = UIViewContentMode.Center
-                self.commentTextField.leftViewMode = UITextFieldViewMode.Always
-                self.commentTextField.leftView = leftPadding
-                self.commentTextField.delegate = self
-                let attributes = [
-                    NSForegroundColorAttributeName: UIColor.lightGrayColor(),
-                    NSFontAttributeName : UIFont.boldSystemFontOfSize(20)
-                ]
-                self.commentTextField.attributedPlaceholder = NSAttributedString(string: "Share a comment", attributes:attributes)
-                self.commentTextfeildView.addSubview(self.commentTextField)
-                
-                self.sendbutton = UIButton(type: UIButtonType.Custom) as UIButton
-                self.sendbutton.frame = CGRectMake(self.commentTextField.frame.origin.x + self.commentTextField.frame.size.width+10, 15, 50, 50)
-                self.sendbutton.layer.cornerRadius = 4
-                self.sendbutton.hidden = false
-                self.sendbutton.backgroundColor = UIColor.redColor()
-                self.sendbutton.setTitle("Send", forState: UIControlState.Normal)
-                self.sendbutton.addTarget(self, action: "CommentSendButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
-                self.commentTextfeildView.addSubview(self.sendbutton)
-                
-                self.Updatebutton = UIButton(type: UIButtonType.Custom) as UIButton
-                self.Updatebutton.frame = CGRectMake(self.commentTextField.frame.origin.x + self.commentTextField.frame.size.width+10, 15, 50, 50)
-                self.Updatebutton.layer.cornerRadius = 4
-                self.Updatebutton.hidden = true
-                self.Updatebutton.backgroundColor = UIColor.redColor()
-                self.Updatebutton.setTitle("Done", forState: UIControlState.Normal)
-                self.Updatebutton.addTarget(self, action: "CommentUpdateButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
-                self.commentTextfeildView.addSubview(self.Updatebutton)
-                
-                KGModal.sharedInstance().closeButtonType = KGModalCloseButtonType.None
-                KGModal.sharedInstance().showWithContentView(self.timelineCommentView)
-            }
-        })
+        main{
+            
+            self.InvitedFriends_id.removeAllObjects()
+            self.invitedFriendsArray.removeAllObjects()
+            Storage.performRequest(ApiRequest.TimelineComments(self.timeline!.uuid!), completion: { (json) -> Void in
+                if let raw = json["result"] as? NSMutableArray{
+                    self.commentArray = raw
+                }
+                main{
+                    self.activityIndicatorView.removeFromSuperview()
+                    self.activityIndicator.stopAnimating()
+                    self.commentlist.reloadData()
+                }
+            })
+            
+            let screenRect = UIScreen.mainScreen().bounds
+            let screenWidth = screenRect.size.width;
+            let screenHeight = screenRect.size.height;
+            self.timelineCommentView.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+            self.timelineCommentView.backgroundColor = UIColor(white: 1 , alpha: 1)
+            self.timelineCommentView.alpha = 1
+            
+            self.activityIndicatorView.frame = CGRectMake(0, 0, 70, 70);
+            self.activityIndicatorView.backgroundColor = UIColor.grayColor()
+            self.activityIndicatorView.alpha = 1
+            self.activityIndicatorView.center = self.window!.center
+            self.activityIndicatorView.layer.cornerRadius = 4
+            self.timelineCommentView.addSubview(self.activityIndicatorView)
+            
+            self.activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+            self.activityIndicator.frame = CGRect(x: 0, y: 7, width: 70, height: 50)
+            self.activityIndicatorView.addSubview(self.activityIndicator)
+            self.activityIndicator.startAnimating()
+            
+            let indicatorTitle = UILabel()
+            indicatorTitle.frame = CGRectMake(0, 50, 70, 20)
+            indicatorTitle.font = UIFont.boldSystemFontOfSize(9)
+            indicatorTitle.textAlignment = .Center
+            indicatorTitle.textColor = UIColor.whiteColor()
+            indicatorTitle.text = "Please wait.."
+            self.activityIndicatorView.addSubview(indicatorTitle)
+            
+            let Statusbarview = UIView()
+            Statusbarview.frame = CGRectMake(0, 0, screenWidth, 20)
+            Statusbarview.backgroundColor = UIColor.redNavbarColor()
+            self.timelineCommentView.addSubview(Statusbarview)
+            
+            let commentScreenTitle = UILabel()
+            commentScreenTitle.frame = CGRectMake(0, 20, screenWidth, 44)
+            commentScreenTitle.font = UIFont.systemFontOfSize(18)
+            commentScreenTitle.textAlignment = .Center
+            commentScreenTitle.backgroundColor = UIColor.redNavbarColor()
+            commentScreenTitle.textColor = UIColor.whiteColor()
+            commentScreenTitle.text = "Comments"
+            self.timelineCommentView.addSubview(commentScreenTitle)
+            
+            // close button comment section
+            let closeButton  = UIButton()
+            closeButton.frame = CGRectMake(0, 20, 50, 44);
+            closeButton.setImage(UIImage(assetIdentifier: .BackIndicator) as UIImage?, forState: .Normal)
+            closeButton.addTarget(self, action: "btnTouched", forControlEvents:.TouchUpInside)
+            self.timelineCommentView.addSubview(closeButton)
+            
+            // table view declaration
+            
+            self.commentlist.frame         =   CGRectMake(0, 64, self.timelineCommentView.frame.width, self.timelineCommentView.frame.height-144);
+            self.commentlist.delegate      =   self
+            self.commentlist.dataSource    =   self
+            self.commentlist.backgroundColor = UIColor.clearColor()
+            self.commentlist.separatorStyle = .None
+            self.commentlist.tableFooterView = UIView()
+            self.commentlist.registerClass(UITableViewCell.self, forCellReuseIdentifier: "commentCell")
+            self.timelineCommentView.addSubview(self.commentlist)
+            
+            
+            self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
+            self.commentTextfeildView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+            self.timelineCommentView.addSubview(self.commentTextfeildView)
+            
+            
+            self.commentTextField.frame = CGRectMake(10, 15, CGFloat(295+40*isiphone6Plus()-55*isiPhone5()), 50)
+            self.commentTextField.layer.cornerRadius = 4
+            self.commentTextField.backgroundColor = UIColor.whiteColor()
+            self.commentTextField.autocorrectionType = .No
+            let leftPadding = UIImageView()
+            leftPadding.frame = CGRectMake(0.0, 0.0, 10.0, 50);
+            leftPadding.contentMode = UIViewContentMode.Center
+            self.commentTextField.leftViewMode = UITextFieldViewMode.Always
+            self.commentTextField.leftView = leftPadding
+            self.commentTextField.delegate = self
+            let attributes = [
+                NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+                NSFontAttributeName : UIFont.boldSystemFontOfSize(20)
+            ]
+            self.commentTextField.attributedPlaceholder = NSAttributedString(string: "Share a comment", attributes:attributes)
+            self.commentTextfeildView.addSubview(self.commentTextField)
+            
+            self.sendbutton = UIButton(type: UIButtonType.Custom) as UIButton
+            self.sendbutton.frame = CGRectMake(self.commentTextField.frame.origin.x + self.commentTextField.frame.size.width+10, 15, 50, 50)
+            self.sendbutton.layer.cornerRadius = 4
+            self.sendbutton.hidden = false
+            self.sendbutton.backgroundColor = UIColor.redColor()
+            self.sendbutton.setTitle("Send", forState: UIControlState.Normal)
+            self.sendbutton.addTarget(self, action: "CommentSendButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
+            self.commentTextfeildView.addSubview(self.sendbutton)
+            
+            self.Updatebutton = UIButton(type: UIButtonType.Custom) as UIButton
+            self.Updatebutton.frame = CGRectMake(self.commentTextField.frame.origin.x + self.commentTextField.frame.size.width+10, 15, 50, 50)
+            self.Updatebutton.layer.cornerRadius = 4
+            self.Updatebutton.hidden = true
+            self.Updatebutton.backgroundColor = UIColor.redColor()
+            self.Updatebutton.setTitle("Done", forState: UIControlState.Normal)
+            self.Updatebutton.addTarget(self, action: "CommentUpdateButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
+            self.commentTextfeildView.addSubview(self.Updatebutton)
+            
+            KGModal.sharedInstance().closeButtonType = KGModalCloseButtonType.None
+            KGModal.sharedInstance().showWithContentView(self.timelineCommentView)
+            
+        }
         
     }
     
@@ -729,7 +758,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             
             
         })
-
+        
         
     }
     
@@ -740,11 +769,11 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         let TrimString = commentTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
         if(TrimString == ""){
-        let alert = UIAlertView()
-        alert.title = ""
-        alert.message = "Please enter your comment first."
-        alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
-        alert.show()
+            let alert = UIAlertView()
+            alert.title = ""
+            alert.message = "Please enter your comment first."
+            alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
+            alert.show()
             return
         }
         
@@ -756,7 +785,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 Storage.performRequest(ApiRequest.TimelineComments(self.timeline!.uuid!), completion: { (json) -> Void in
                     if let raw = json["result"] as? NSMutableArray{
                         self.commentArray = raw
-   
+                        
                     }
                     main{
                         serialHook.perform(key: .ForceReloadData, argument: ())
@@ -810,41 +839,41 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     
                     main{
                         if(self.tagArray.count > 0){
-                        var Yaxis :CGFloat = 0
-                        self.scrollView.frame = CGRectMake(0, self.commentTextfeildView.frame.origin.y-250, self.timelineCommentView.frame.size.width, 250)
-                        self.scrollView.delegate = self
-                        
-                        for var i = 0; i < self.tagArray.count; i++ {
-
+                            var Yaxis :CGFloat = 0
+                            self.scrollView.frame = CGRectMake(0, self.commentTextfeildView.frame.origin.y-250, self.timelineCommentView.frame.size.width, 250)
+                            self.scrollView.delegate = self
                             
-                            let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.commentTextfeildView.frame.size.width, height: 50))
-                            
-                            villainButton.layer.cornerRadius = 0
-                            villainButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-                            villainButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
-                            villainButton.titleEdgeInsets = UIEdgeInsetsMake(
-                                0, 60, 0.0, 0)
-                            villainButton.backgroundColor = UIColor.whiteColor()
-                            villainButton.tag = i
-                            if let raw = self.tagArray[i] as? NSDictionary
-                            {
-                                villainButton.setTitle("@\(raw["name"]!)", forState: UIControlState.Normal)
-                                let userimage = UIImageView()
-                                userimage.frame = CGRectMake(10, 5, 40, 40)
-                                userimage.layer.cornerRadius = 20
-                                userimage.clipsToBounds = true
-                                userimage.sd_setImageWithURL(NSURL(string: (raw["image"] as? String)!))
-                                villainButton.addSubview(userimage)
-//                                villainButton.sd_setBackgroundImageWithURL(NSURL(string: (raw["image"] as? String)!), forState: .Normal)
+                            for var i = 0; i < self.tagArray.count; i++ {
+                                
+                                
+                                let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.commentTextfeildView.frame.size.width, height: 50))
+                                
+                                villainButton.layer.cornerRadius = 0
+                                villainButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                                villainButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+                                villainButton.titleEdgeInsets = UIEdgeInsetsMake(
+                                    0, 60, 0.0, 0)
+                                villainButton.backgroundColor = UIColor.whiteColor()
+                                villainButton.tag = i
+                                if let raw = self.tagArray[i] as? NSDictionary
+                                {
+                                    villainButton.setTitle("@\(raw["name"]!)", forState: UIControlState.Normal)
+                                    let userimage = UIImageView()
+                                    userimage.frame = CGRectMake(10, 5, 40, 40)
+                                    userimage.layer.cornerRadius = 20
+                                    userimage.clipsToBounds = true
+                                    userimage.sd_setImageWithURL(NSURL(string: (raw["image"] as? String)!))
+                                    villainButton.addSubview(userimage)
+                                    //                                villainButton.sd_setBackgroundImageWithURL(NSURL(string: (raw["image"] as? String)!), forState: .Normal)
+                                }
+                                villainButton.addTarget(self, action: "villainButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+                                //villainButton.tag = Int(element.id)
+                                self.scrollView.addSubview(villainButton)
+                                Yaxis = Yaxis + 51
                             }
-                            villainButton.addTarget(self, action: "villainButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-                            //villainButton.tag = Int(element.id)
-                            self.scrollView.addSubview(villainButton)
-                           Yaxis = Yaxis + 51
-                        }
-                        self.scrollView.contentSize = CGSizeMake(self.timelineCommentView.frame.size.width, Yaxis)
-                        self.scrollView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                        self.timelineCommentView.addSubview(self.scrollView)
+                            self.scrollView.contentSize = CGSizeMake(self.timelineCommentView.frame.size.width, Yaxis)
+                            self.scrollView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                            self.timelineCommentView.addSubview(self.scrollView)
                         }
                     }
                 })
@@ -862,7 +891,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         {
             user_id = (dataDict["id"] as? String!)!
         }
-
+        
         if invitedFriendsArray .containsObject(sender.tag)
         {
             
@@ -871,7 +900,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         }
         else
         {
-
+            
             self.invitedFriendsArray .addObject(sender.tag)
             self.InvitedFriends_id .addObject(user_id)
         }
@@ -925,7 +954,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         if tableView == self.friendslistTableView
         {
             if self.timeline?.adminId == self.timeline?.parent?.uuid
-
+                
             {
                 return self.followersArrayList.count
             }
@@ -939,7 +968,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             return self.commentArray.count
         }
     }
-
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == friendslistTableView
@@ -976,292 +1005,292 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             username.frame = CGRectMake(70, 26, 250, 25)
             username.font = UIFont.boldSystemFontOfSize(16)
             username.textColor = UIColor.grayColor()
-                
             
-                cellView.addSubview(userImage)
-                cellView.addSubview(username)
-                cellView.addSubview(fullName)
-                
-                let gap : CGFloat = 15
-                let buttonHeight: CGFloat = 30
-                let buttonWidth: CGFloat = 30
-                let inviteButton = UIButton()
-                inviteButton .setTitleColor( UIColor.redColor(), forState: .Normal)
-                inviteButton.frame = CGRectMake(cellView.frame.size.width - gap - buttonWidth, gap, buttonWidth, buttonHeight)
-                inviteButton.backgroundColor = UIColor.whiteColor()
-                inviteButton.tag = indexPath.row
-                
-                
-                if isAdmin
+            
+            cellView.addSubview(userImage)
+            cellView.addSubview(username)
+            cellView.addSubview(fullName)
+            
+            let gap : CGFloat = 15
+            let buttonHeight: CGFloat = 30
+            let buttonWidth: CGFloat = 30
+            let inviteButton = UIButton()
+            inviteButton .setTitleColor( UIColor.redColor(), forState: .Normal)
+            inviteButton.frame = CGRectMake(cellView.frame.size.width - gap - buttonWidth, gap, buttonWidth, buttonHeight)
+            inviteButton.backgroundColor = UIColor.whiteColor()
+            inviteButton.tag = indexPath.row
+            
+            
+            if isAdmin
+            {
+                if let user : User?  = self.followersArrayList[indexPath.row]
                 {
-                    if let user : User?  = self.followersArrayList[indexPath.row]
+                    if let fullNameStr = user?.userfullName
                     {
-                        if let fullNameStr = user?.userfullName
-                        {
-                            fullName.text = fullNameStr as String
-                        }
-                        if (fullName.text?.characters.count == 0)
-                        {
-                            username.frame = fullName.frame
-                            fullName.hidden = true
-                        }
-                        
-                        username.text = "@" + (user?.name)!
-                        let placeHolderimg = UIImage(named: "default-user-profile")
-                        let imageName = user!.imageUrl as? String ?? ""
-                        userImage.sd_setImageWithURL(NSURL (string: imageName), placeholderImage:placeHolderimg)
-                      
-                        inviteButton.layer.cornerRadius = 0.5 * inviteButton.bounds.size.width
-                        inviteButton.layer.borderColor = UIColor.blackColor().CGColor;
-                        inviteButton.layer.borderWidth = 2.0
-                        if self.InvitedFriends_id .containsObject(user!.uuid!)
-                        {
-                            inviteButton.backgroundColor = UIColor.redColor()
-                        }
-                        else
-                        {
-                            inviteButton.backgroundColor = UIColor.whiteColor()
-                        }
-                        inviteButton.addTarget(self, action: "inviteButton:", forControlEvents: UIControlEvents.TouchUpInside)
-                        inviteButton.titleLabel!.font = UIFont.boldSystemFontOfSize(17)
+                        fullName.text = fullNameStr as String
+                    }
+                    if (fullName.text?.characters.count == 0)
+                    {
+                        username.frame = fullName.frame
+                        fullName.hidden = true
                     }
                     
+                    username.text = "@" + (user?.name)!
+                    let placeHolderimg = UIImage(named: "default-user-profile")
+                    let imageName = user!.imageUrl as? String ?? ""
+                    userImage.sd_setImageWithURL(NSURL (string: imageName), placeholderImage:placeHolderimg)
+                    
+                    inviteButton.layer.cornerRadius = 0.5 * inviteButton.bounds.size.width
+                    inviteButton.layer.borderColor = UIColor.blackColor().CGColor;
+                    inviteButton.layer.borderWidth = 2.0
+                    if self.InvitedFriends_id .containsObject(user!.uuid!)
+                    {
+                        inviteButton.backgroundColor = UIColor.redColor()
+                    }
+                    else
+                    {
+                        inviteButton.backgroundColor = UIColor.whiteColor()
+                    }
+                    inviteButton.addTarget(self, action: "inviteButton:", forControlEvents: UIControlEvents.TouchUpInside)
+                    inviteButton.titleLabel!.font = UIFont.boldSystemFontOfSize(17)
                 }
-                else
+                
+            }
+            else
+            {
+                if let dataDict = self.friendsListArray[indexPath.row] as? NSMutableDictionary
                 {
-                    if let dataDict = self.friendsListArray[indexPath.row] as? NSMutableDictionary
+                    if let firstName = dataDict["firstname"] as? NSString
                     {
-                        if let firstName = dataDict["firstname"] as? NSString
+                        var fullname = firstName
+                        if let lastName = dataDict["lastname"] as? NSString
                         {
-                            var fullname = firstName
-                            if let lastName = dataDict["lastname"] as? NSString
-                            {
-                                fullname = "\(firstName) \(lastName)"
-                            }
-                            fullName.text = fullname as String
+                            fullname = "\(firstName) \(lastName)"
                         }
-                        if (fullName.text?.characters.count == 0)
-                        {
-                            username.frame = fullName.frame
-                            fullName.hidden = true
-                        }
-                        //            fullName.text = "Firstname"+"LastName"
-                        username.text = "@" + (dataDict["name"] as? String)!
-                        let placeHolderimg = UIImage(named: "default-user-profile")
-                        let imageName = dataDict["image"] as? String ?? ""
-                        userImage.sd_setImageWithURL(NSURL (string: imageName), placeholderImage:placeHolderimg)
+                        fullName.text = fullname as String
                     }
-                    
-                    inviteButton.addTarget(self, action: "followButton:", forControlEvents: UIControlEvents.TouchUpInside)
-                    inviteButton.setImage(UIImage(named: "likeImage") as UIImage?, forState: .Normal)
-                    
-                    if let dataDict = self.friendsListArray[indexPath.row] as? NSDictionary
+                    if (fullName.text?.characters.count == 0)
                     {
-                        let user_id = (dataDict["id"] as? String!)!
-                        if user_id == Storage.session.currentUser?.uuid
+                        username.frame = fullName.frame
+                        fullName.hidden = true
+                    }
+                    //            fullName.text = "Firstname"+"LastName"
+                    username.text = "@" + (dataDict["name"] as? String)!
+                    let placeHolderimg = UIImage(named: "default-user-profile")
+                    let imageName = dataDict["image"] as? String ?? ""
+                    userImage.sd_setImageWithURL(NSURL (string: imageName), placeholderImage:placeHolderimg)
+                }
+                
+                inviteButton.addTarget(self, action: "followButton:", forControlEvents: UIControlEvents.TouchUpInside)
+                inviteButton.setImage(UIImage(named: "likeImage") as UIImage?, forState: .Normal)
+                
+                if let dataDict = self.friendsListArray[indexPath.row] as? NSDictionary
+                {
+                    let user_id = (dataDict["id"] as? String!)!
+                    if user_id == Storage.session.currentUser?.uuid
+                    {
+                        inviteButton.setImage(UIImage(named: "dislikeImage") as UIImage?, forState: .Normal)
+                    }
+                    else
+                    {
+                        for var i = 0; i < self.followersArrayList.count; ++i
                         {
-                            inviteButton.setImage(UIImage(named: "dislikeImage") as UIImage?, forState: .Normal)
-                        }
-                        else
-                        {
-                            for var i = 0; i < self.followersArrayList.count; ++i
+                            if let user : User?  = self.followersArrayList[i]
                             {
-                                if let user : User?  = self.followersArrayList[i]
+                                let follower_id = user?.uuid
+                                if follower_id == user_id
                                 {
-                                    let follower_id = user?.uuid
-                                    if follower_id == user_id
-                                    {
-                                        inviteButton.setImage(UIImage(named: "dislikeImage") as UIImage?, forState: .Normal)
-                                    }
+                                    inviteButton.setImage(UIImage(named: "dislikeImage") as UIImage?, forState: .Normal)
                                 }
                             }
                         }
                     }
                 }
-                cellView.addSubview(inviteButton)
-                
-                return cell
+            }
+            cellView.addSubview(inviteButton)
+            
+            return cell
         }
-            else
+        else
+        {
+            
+            let reuseIdentifier = "programmaticCell"
+            var cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as! MGSwipeTableCell!
+            if cell == nil
             {
-
-                let reuseIdentifier = "programmaticCell"
-                var cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as! MGSwipeTableCell!
-                if cell == nil
+                cell = MGSwipeTableCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: reuseIdentifier)
+            }
+            
+            
+            
+            for object in cell.contentView.subviews
+            {
+                object.removeFromSuperview();
+            }
+            cell.selectionStyle = .None
+            
+            cell.backgroundColor = UIColor.clearColor()
+            let cellView = UIView()
+            cellView.frame = CGRectMake(0, 0, self.frame.size.width, 65)
+            cellView.backgroundColor = UIColor.whiteColor()
+            cell.contentView.addSubview(cellView)
+            
+            let userImage = UIButton()
+            userImage.frame = CGRectMake(15, 10, 50, 50)
+            userImage.backgroundColor = UIColor.lightGrayColor()
+            userImage.layer.cornerRadius = 25
+            userImage.tag = indexPath.row
+            if let raw = self.commentArray[indexPath.row] as? NSDictionary
+            {
+                let notifyStr = raw["user_image"] as! String
+                //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
+                userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+                //userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal, placeholderImage: UIImage(named:"default-user-profile"), options: SDWebImageOptions.ProgressiveDownload)
+            }
+            userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
+            userImage.clipsToBounds = true
+            cellView.addSubview(userImage)
+            
+            let username = UILabel()
+            username.frame = CGRectMake(80, 5, 250, 30)
+            username.font = UIFont.boldSystemFontOfSize(18)
+            username.textColor = UIColor.blackColor()
+            if let raw = self.commentArray[indexPath.row] as? NSDictionary
+            {
+                let notifyStr = raw["username"] as! String
+                username.text = "@\(notifyStr)"
+            }
+            cellView.addSubview(username)
+            
+            let timeStamp = UILabel()
+            timeStamp.frame = CGRectMake(cellView.frame.size.width-110, 5, 100, 30)
+            timeStamp.font = UIFont.systemFontOfSize(14)
+            //username.backgroundColor = UIColor(white: 0, alpha: 0.25)
+            timeStamp.textColor = UIColor.blackColor()
+            if let raw = self.commentArray[indexPath.row] as? NSDictionary
+            {
+                let notifyStr = raw["created_at"] as! String
+                
+                let f = NSDateFormatter()
+                f.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+                f.timeZone = NSTimeZone(name: "UTC")
+                f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'"
+                
+                let endDate:NSDate = f.dateFromString(notifyStr)!
+                let elapsedTime = NSDate().timeIntervalSinceDate(endDate)
+                
+                var timeStr = "1d"
+                let duration = Int(elapsedTime)
+                let minutes = duration / 60
+                let hours = minutes / 60
+                let days = hours / 24
+                let months = days / 30
+                let years = days / 365
+                
+                if (years != 0)
                 {
-                    cell = MGSwipeTableCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: reuseIdentifier)
+                    timeStr = String(years) + "y"
                 }
-
-                
-                
-                for object in cell.contentView.subviews
+                if (months != 0)
                 {
-                    object.removeFromSuperview();
+                    timeStr = String(months) + "m"
                 }
-                cell.selectionStyle = .None
-                
-                cell.backgroundColor = UIColor.clearColor()
-                let cellView = UIView()
-                cellView.frame = CGRectMake(0, 0, self.frame.size.width, 65)
-                cellView.backgroundColor = UIColor.whiteColor()
-                cell.contentView.addSubview(cellView)
-                
-                let userImage = UIButton()
-                userImage.frame = CGRectMake(15, 10, 50, 50)
-                userImage.backgroundColor = UIColor.lightGrayColor()
-                userImage.layer.cornerRadius = 25
-                userImage.tag = indexPath.row
-                if let raw = self.commentArray[indexPath.row] as? NSDictionary
+                else if(days != 0)
                 {
-                    let notifyStr = raw["user_image"] as! String
-                    //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
-                    userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
-                    //userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal, placeholderImage: UIImage(named:"default-user-profile"), options: SDWebImageOptions.ProgressiveDownload)
+                    timeStr = String(days) + "d"
                 }
-                userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
-                userImage.clipsToBounds = true
-                cellView.addSubview(userImage)
-                
-                let username = UILabel()
-                username.frame = CGRectMake(80, 5, 250, 30)
-                username.font = UIFont.boldSystemFontOfSize(18)
-                username.textColor = UIColor.blackColor()
-                if let raw = self.commentArray[indexPath.row] as? NSDictionary
+                else if(hours != 0)
                 {
-                    let notifyStr = raw["username"] as! String
-                    username.text = "@\(notifyStr)"
+                    timeStr = String(hours) + "h"
                 }
-                cellView.addSubview(username)
-                
-                let timeStamp = UILabel()
-                timeStamp.frame = CGRectMake(cellView.frame.size.width-110, 5, 100, 30)
-                timeStamp.font = UIFont.systemFontOfSize(14)
-                //username.backgroundColor = UIColor(white: 0, alpha: 0.25)
-                timeStamp.textColor = UIColor.blackColor()
-                if let raw = self.commentArray[indexPath.row] as? NSDictionary
+                else if(minutes != 0)
                 {
-                    let notifyStr = raw["created_at"] as! String
-                    
-                    let f = NSDateFormatter()
-                    f.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-                    f.timeZone = NSTimeZone(name: "UTC")
-                    f.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'"
-                    
-                    let endDate:NSDate = f.dateFromString(notifyStr)!
-                    let elapsedTime = NSDate().timeIntervalSinceDate(endDate)
-                    
-                    var timeStr = "1d"
-                    let duration = Int(elapsedTime)
-                    let minutes = duration / 60
-                    let hours = minutes / 60
-                    let days = hours / 24
-                    let months = days / 30
-                    let years = days / 365
-                    
-                    if (years != 0)
-                    {
-                        timeStr = String(years) + "y"
-                    }
-                    if (months != 0)
-                    {
-                        timeStr = String(months) + "m"
-                    }
-                    else if(days != 0)
-                    {
-                        timeStr = String(days) + "d"
-                    }
-                    else if(hours != 0)
-                    {
-                        timeStr = String(hours) + "h"
-                    }
-                    else if(minutes != 0)
-                    {
-                        timeStr = String(minutes) + "m"
-                    }
-                    else{
-                        timeStr = String(duration) + "s"
-                    }
-                    
-                    timeStamp.text = timeStr
-                    timeStamp.textAlignment = .Right
+                    timeStr = String(minutes) + "m"
                 }
-                cellView.addSubview(timeStamp)
-                
-                let commentMessage = UILabel()
-                commentMessage.frame = CGRectMake(80, 30, CGFloat(250+40*isiphone6Plus()-55*isiPhone5()), 30)
-                commentMessage.font = UIFont.systemFontOfSize(15)
-                commentMessage.textColor = UIColor.blackColor()
-                if let raw = self.commentArray[indexPath.row] as? NSDictionary
-                {
-                    let notifyStr = raw["comment"] as! String
-                    
-                    let emoData1 = notifyStr.dataUsingEncoding(NSUTF8StringEncoding)
-                    let emoStringConverted = String.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as String
-                    
-                    
-                    commentMessage.text = emoStringConverted
+                else{
+                    timeStr = String(duration) + "s"
                 }
-                cellView.addSubview(username)
-                commentMessage.autosizeForWidth()
-                cellView.addSubview(commentMessage)
                 
-                let notifyStr : String
-                if let raw = self.commentArray[indexPath.row] as? NSDictionary
+                timeStamp.text = timeStr
+                timeStamp.textAlignment = .Right
+            }
+            cellView.addSubview(timeStamp)
+            
+            let commentMessage = UILabel()
+            commentMessage.frame = CGRectMake(80, 30, CGFloat(250+40*isiphone6Plus()-55*isiPhone5()), 30)
+            commentMessage.font = UIFont.systemFontOfSize(15)
+            commentMessage.textColor = UIColor.blackColor()
+            if let raw = self.commentArray[indexPath.row] as? NSDictionary
+            {
+                let notifyStr = raw["comment"] as! String
+                
+                let emoData1 = notifyStr.dataUsingEncoding(NSUTF8StringEncoding)
+                let emoStringConverted = String.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as String
+                
+                
+                commentMessage.text = emoStringConverted
+            }
+            cellView.addSubview(username)
+            commentMessage.autosizeForWidth()
+            cellView.addSubview(commentMessage)
+            
+            let notifyStr : String
+            if let raw = self.commentArray[indexPath.row] as? NSDictionary
+            {
+                
+                notifyStr = raw["user_id"] as! String
+                if (notifyStr == Storage.session.uuid)
                 {
-                    
-                    notifyStr = raw["user_id"] as! String
-                    if (notifyStr == Storage.session.uuid)
-                    {
-                        //configure right buttons
-                        cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
-                            (sender: MGSwipeTableCell!) -> Bool in
-                            print("Delete: \(indexPath.row)")
+                    //configure right buttons
+                    cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
+                        (sender: MGSwipeTableCell!) -> Bool in
+                        print("Delete: \(indexPath.row)")
+                        
+                        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+                        {
+                            let notifyStr = raw["id"] as! String
+                            print(notifyStr)
+                            self.deleteCommentAPI(notifyStr)
                             
-                            if let raw = self.commentArray[indexPath.row] as? NSDictionary
-                            {
-                                let notifyStr = raw["id"] as! String
-                                print(notifyStr)
-                                self.deleteCommentAPI(notifyStr)
-                                
-                            }
-                            
-                            return true
-                        }),MGSwipeButton(title: "Edit",backgroundColor: UIColor.lightGrayColor(), callback: {
-                            (sender: MGSwipeTableCell!) -> Bool in
-                            self.sendbutton.hidden = true
-                            self.Updatebutton.hidden = false
-                            if let raw = self.commentArray[indexPath.row] as? NSDictionary
-                            {
-                                //print(raw)
-                                self.commentTextField.text = raw["comment"] as? String
-                                self.commentId = (raw["id"] as? String)!
-                            }
-                            return true
-                        })]
-                        cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
-                    }
-                    else if  (self.timeline?.isOwn)!
-                    {
-                        cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
-                            (sender: MGSwipeTableCell!) -> Bool in
-                            print("Delete: \(indexPath.row)")
-                            
-                            if let raw = self.commentArray[indexPath.row] as? NSDictionary
-                            {
-                                let notifyStr = raw["id"] as! String
-                                print(notifyStr)
-                                self.deleteCommentAPI(notifyStr)
-                            }
-                            
-                            return true
-                        })]
-                        cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
-                    }
+                        }
+                        
+                        return true
+                    }),MGSwipeButton(title: "Edit",backgroundColor: UIColor.lightGrayColor(), callback: {
+                        (sender: MGSwipeTableCell!) -> Bool in
+                        self.sendbutton.hidden = true
+                        self.Updatebutton.hidden = false
+                        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+                        {
+                            //print(raw)
+                            self.commentTextField.text = raw["comment"] as? String
+                            self.commentId = (raw["id"] as? String)!
+                        }
+                        return true
+                    })]
+                    cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
                 }
-
-                
-                return cell
+                else if  (self.timeline?.isOwn)!
+                {
+                    cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
+                        (sender: MGSwipeTableCell!) -> Bool in
+                        print("Delete: \(indexPath.row)")
+                        
+                        if let raw = self.commentArray[indexPath.row] as? NSDictionary
+                        {
+                            let notifyStr = raw["id"] as! String
+                            print(notifyStr)
+                            self.deleteCommentAPI(notifyStr)
+                        }
+                        
+                        return true
+                    })]
+                    cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
                 }
+            }
+            
+            
+            return cell
+        }
     }
     func deleteCommentAPI(commentid: String){
         
@@ -1282,7 +1311,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             }
         })
     }
-        
+    
     func UserImageClick(sender: UIButton){
         print(sender.tag)
         if let raw = self.commentArray[sender.tag] as? NSDictionary
@@ -1300,14 +1329,14 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                             self.handle(deepLink: link)
                         }
                     }
-
-                    }
-  
+                    
+                }
+                
             }
             catch {
                 print(error)
             }
- 
+            
         }
     }
     
@@ -1318,9 +1347,9 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             if PFUser.currentUser() != nil {
                 push.link = link
                 if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
-
+                    
                     topController.presentViewController(push, animated: true, completion: nil)
-
+                    
                 }
             }
             
@@ -1381,7 +1410,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     @IBOutlet var playerView: DraftPreviewView!
     @IBOutlet var groupTimelineButton: UIButton!
     @IBOutlet var descriptionLabel: UILabel!
-
+    
     var newsBadge: CustomBadge?
     
     @IBAction func tappedItem(sender: UITapGestureRecognizer) {
@@ -1440,17 +1469,17 @@ extension ModernTimelineView: FollowableBehavior, LikeableBehavior {
     @IBAction func likeButtonTapped() {
         showLikes()
     }
-
+    
     @IBAction func likeTimelineButtonTapped(sender: UIButton) {
         toggledLiked()
     }
     @IBAction func followTimelineButtonTapped(sender: UIButton) {
-         toggleFollowedState()
+        toggleFollowedState()
     }
     
     @IBAction func commentOnTimelineButtonTapped(sender: AnyObject) {
-        main{
-            self.showCommentPopup()
-        }
+        
+        self.showCommentPopup()
+        
     }
 }
