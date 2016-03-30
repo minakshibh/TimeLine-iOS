@@ -53,6 +53,15 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             } else {
                 previewImageView.moment = nil
             }
+            
+            if String(DraftPreview.topViewController()!).rangeOfString("DraftCollectionViewController") != nil{
+                print("exists")
+                self.playPlayButton.hidden = true
+                self.pausePlayButton.hidden = true
+                self.closeButton.hidden = true
+                self.commentButton.hidden = true
+            }
+
             playButton.enabled = moments.count != 0
             momentPlayerController?.pause()
             momentPlayerController = nil
@@ -102,6 +111,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     @IBOutlet var playPlayButton: UIButton!
     @IBOutlet var previousPlayButton: UIButton!
     @IBOutlet var nextPlayButton: UIButton!
+    @IBOutlet var closeButton: UIButton!
     @IBOutlet var commentButton: UIButton!
     
     // MARK: - Overlay start
@@ -140,7 +150,14 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             if momentPlayerController == nil {
                 momentPlayerController = MomentPlayerController(moments: moments, inView: playbackContainer)
                 momentPlayerController?.delegate = self
+                if String(DraftPreview.topViewController()!).rangeOfString("DraftCollectionViewController") != nil{
+                    print("exists")
+                    
+                    self.pausePlayButton.hidden = true
+                    
+                }else{
                 pausePlayButton.hidden = false
+                }
                 playPlayButton.hidden = true
             }
             momentPlayerController?.play()
@@ -933,4 +950,28 @@ extension DraftPreview {
     private func validPosition(newPosition: CGFloat) -> CGFloat {
         return max(minPosition, min(newPosition, maxPosition))
     }
+    
+    class func topViewController(base: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController) -> UIViewController? {
+        
+        if let nav = base as? UINavigationController {
+            return topViewController(nav.visibleViewController)
+        }
+        
+        if let tab = base as? UITabBarController {
+            let moreNavigationController = tab.moreNavigationController
+            
+            if let top = moreNavigationController.topViewController where top.view.window != nil {
+                return topViewController(top)
+            } else if let selected = tab.selectedViewController {
+                return topViewController(selected)
+            }
+        }
+        
+        if let presented = base?.presentedViewController {
+            return topViewController(presented)
+        }
+        
+        return base
+    }
 }
+
