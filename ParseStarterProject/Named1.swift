@@ -30,12 +30,13 @@ extension Named1 {
         return  userfullName
     }
     var bio: String {
-        print("bio")
-        return  bio
+        var bioStr = bio
+        bioStr = "Bio: \(bioStr)"
+        return bioStr
     }
     var other: String {
         print("other")
-        return  other
+        return  "Other: \(other)"
     }
     var website: String {
         print("website")
