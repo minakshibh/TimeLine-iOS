@@ -205,6 +205,7 @@ extension ModernTimelineBehavior {
             }
             for v in self.modernTimelineView?.playbackItems ?? [] {
                 self.modernTimelineView?.momentScroller.hidden = false
+                self.modernTimelineView?.seperatorLineView.hidden = false
                 v.hidden = true
             }
         })
@@ -223,7 +224,7 @@ extension ModernTimelineBehavior {
             moment = tlview.lastMomentPreviews.filter { $0 == target }.first?.moment
         }
         guard let m = moment else {
-            
+            self.modernTimelineView?.momentScroller.hidden = false
             let alert = UIAlertView()
             alert.title = ""
             alert.message = "Sorry, this timeline has no moments. Follow to get updates or check back later."

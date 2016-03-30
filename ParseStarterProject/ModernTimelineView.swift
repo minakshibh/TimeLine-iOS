@@ -42,6 +42,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     var isAdmin : Bool = false
     var followersArrayList: [User] = []
     var friendsInGroupTl : NSMutableArray = []
+    let seperatorLineView = UIView()
 
 
     lazy var behavior: ModernTimelineBehavior = {
@@ -59,9 +60,22 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 usrs in  self.followersArrayList = usrs
             }
             behavior.timeline = newValue
-            main{
+            //main{
             self.scrollMomentArray = []
-                
+            
+            // Seperator view for timeline
+            if !(self.timeline?.isOwn)!
+            {
+            seperatorLineView.frame = CGRectMake(25,self.likeTimelineButton.frame.origin.y + self.likeTimelineButton.frame.size.height + 5, self.frame.size.width-25,1)
+            seperatorLineView.hidden = false
+            seperatorLineView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+            self.addSubview(seperatorLineView)
+            
+            }else{
+                self.likeButton.frame = CGRectMake(self.likeButton.frame.origin.x ,self.likeButton.frame.origin.y-50, self.likeButton.frame.size.width,self.likeButton.frame.size.height)
+            }
+            
+            
             if let raw = self.behavior.timeline?.dict["moments"]!
             {
                 self.scrollMomentArray = raw as! NSArray
@@ -116,7 +130,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             
             self.addSubview(self.momentScroller)
 //                self.previewItems.append(self.momentScroller)
-            }
+            //}
             
             refresh()
             
@@ -1372,6 +1386,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     
     @IBAction func tappedItem(sender: UITapGestureRecognizer) {
         self.momentScroller.hidden = true
+        self.seperatorLineView.hidden = true
         behavior.tappedItem(sender)
     }
     

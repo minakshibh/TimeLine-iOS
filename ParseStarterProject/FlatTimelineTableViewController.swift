@@ -50,10 +50,17 @@ class FlatTimelineTableViewController: UITableViewController {
     }
     
     func refreshTableView() { }
-
+    
     override func viewWillAppear(animated: Bool) {
-        self.setUpHooking() // required for Hooking protocol
+        self.setUpHooking()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.setUpHooking()
+    }
+//    override func viewWillAppear(animated: Bool) {
+//         // required for Hooking protocol
+//    }
     override func viewWillDisappear(animated: Bool) {
         cleanUpHooking() // breaks cycles on disappear
         
