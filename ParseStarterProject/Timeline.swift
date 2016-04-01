@@ -395,6 +395,39 @@ extension Timeline {
                     }
                     
                 }
+                
+                
+                
+                let savedTimelinesIdsList : NSMutableArray = []
+                let responseTimelinesIdsList : NSMutableArray = []
+                for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i
+                {
+                    let t = Storage.session.currentUser!.timelines[i]
+                    savedTimelinesIdsList.addObject(t.state.uuid!)
+                }
+                for td in timelineDicts
+                {
+                    let tid = td["id"] as! UUID
+                    responseTimelinesIdsList.addObject(tid)
+                }
+                for var i = 0; i < savedTimelinesIdsList.count; ++i
+                {
+                    if (!responseTimelinesIdsList.containsObject(savedTimelinesIdsList .objectAtIndex(i)))
+                    {
+                        tempTimelinesArray.addObject(savedTimelinesIdsList.objectAtIndex(i))
+                    }
+                }
+                
+                for var n = 0; n < tempTimelinesArray.count; ++n
+                {
+                    for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i{
+                        let t = Storage.session.currentUser!.timelines[i]
+                        if tempTimelinesArray[n] as! String == t.state.uuid! {
+                            Storage.session.currentUser!.timelines.removeAtIndex(i)
+                            
+                        }
+                    }
+                }
             }
             switch request {
             case .TimelineFollowing:
