@@ -1697,7 +1697,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeffrey Garibay (7WH2H4QHZW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reebay Inc. (B4F2Z6ZQE6)";
 				CURRENT_PROJECT_VERSION = 105;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1741,7 +1741,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "acdab6e3-2254-47cf-8ee0-6fccb8e8d1b1";
+				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1756,7 +1756,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeffrey Garibay (7WH2H4QHZW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Reebay Inc. (B4F2Z6ZQE6)";
 				CURRENT_PROJECT_VERSION = 105;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1800,7 +1800,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = inc.reebay.Timeline;
 				PRODUCT_NAME = Timeline;
-				PROVISIONING_PROFILE = "acdab6e3-2254-47cf-8ee0-6fccb8e8d1b1";
+				PROVISIONING_PROFILE = "098c4c2e-f282-427f-a0ab-a1adb2058b6c";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ParseStarterProject/ParseStarterProject-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
