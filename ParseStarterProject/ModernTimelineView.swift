@@ -72,7 +72,9 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             self.addSubview(seperatorLineView)
             
             }else{
+                main{
                 self.likeButton.frame = CGRectMake(self.likeButton.frame.origin.x ,self.likeButton.frame.origin.y-50, self.likeButton.frame.size.width,self.likeButton.frame.size.height)
+                }
             }
             
             
@@ -86,9 +88,9 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             self.momentScroller.subviews.forEach {
                 ( view) -> () in
                 if (view is UIButton) {
-                    
+                 main{
                     view.removeFromSuperview()
-                
+                    }
                 }
             }
             self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
@@ -121,8 +123,9 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 villainButton.tag = i
                 villainButton.addTarget(self, action: "momentButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
                 
+                main{
                     self.momentScroller.addSubview(villainButton)
-                
+                }
                 Yaxis = Yaxis + self.momentScroller.frame.size.width
             }
             self.momentScroller.contentSize = CGSizeMake(self.momentScroller.frame.size.width, Yaxis)

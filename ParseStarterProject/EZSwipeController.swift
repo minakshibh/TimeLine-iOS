@@ -205,7 +205,7 @@ public class EZSwipeController: UIViewController {
             if (v is UIScrollView) {
                 let scroll = v as! UIScrollView
                 scroll.setContentOffset(CGPointMake(0, 0), animated: false)
-                print("--121--")
+//                print("--121--")
             }
         }
         

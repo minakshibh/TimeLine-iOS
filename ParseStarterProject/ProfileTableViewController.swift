@@ -97,7 +97,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
 //        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
         self.update()
 //        self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
-        print("\(self.navigationController!.navigationBar.frame)")
+//        print("\(self.navigationController!.navigationBar.frame)")
         
         if(isiphone6()==1 || isiPhone5()==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
@@ -207,7 +207,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 if user.objectForKey("bio") == nil {
                     bioStr = ""
                     lblBio.text = bioStr
-                    let heigh =  lblBio.frame.size.height
+//                    let heigh =  lblBio.frame.size.height
 //                    lblBio.frame = CGRectMake(lblBio.frame.origin.x, lblBio.frame.origin.y, lblBio.frame.size.width, 0)
 //                    userSummaryView.frame = CGRectMake(userSummaryView.frame.origin.x, userSummaryView.frame.origin.y, userSummaryView.frame.size.width, userSummaryView.frame.size.height-heigh)
                 }

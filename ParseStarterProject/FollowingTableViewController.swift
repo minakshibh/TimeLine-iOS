@@ -32,7 +32,7 @@ class FollowingTableViewController: SortedTimelineTableViewController {
         refreshControl!.tintColor = tableView.tintColor
         
         followLoadingCountDidChange = { [weak self] show in
-            print("Count: \(followLoadingCount)")
+//            print("Count: \(followLoadingCount)")
             main {
                 if show || self?.active ?? false {
                     self?.refreshControl?.beginRefreshing()

@@ -66,9 +66,10 @@ class ModalUploadViewController: UIViewController {
                     
                     Storage.save()
                     
-                    main {
+//                    main {
                         self.dismissViewControllerAnimated(true, completion: nil)
-                    }
+                    self.dismissViewControllerAnimated(true, completion: nil)
+//                    }
                     
                     //return
                 }
