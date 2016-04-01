@@ -48,7 +48,10 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         
         tabBarController?.delegate = self
         navigationController?.delegate = self
-        
+        headerView?.draftPreview.commentButton.hidden = true
+        headerView?.draftPreview.playPlayButton.hidden = true
+        headerView?.draftPreview.pausePlayButton.hidden = true
+        headerView?.draftPreview.closeButton.hidden = true
 //         self.hidesBottomBarWhenPushed = true
         //navigationItem.setRightBarButtonItems(buttons, animated: true)
         
@@ -97,7 +100,11 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         collectionView?.reloadData()
     }
     override func viewWillAppear(animated: Bool) {
-       
+        headerView?.draftPreview.commentButton.hidden = true
+        headerView?.draftPreview.playPlayButton.hidden = true
+        headerView?.draftPreview.pausePlayButton.hidden = true
+        headerView?.draftPreview.closeButton.hidden = true
+
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
 
     }

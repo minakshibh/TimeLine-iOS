@@ -390,8 +390,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         main{
             self.activityIndicatorView.frame = CGRectMake(0, 0, 70, 70);
-            self.activityIndicatorView.backgroundColor = UIColor.grayColor()
-            self.activityIndicatorView.alpha = 1
+            self.activityIndicatorView.backgroundColor = UIColor.blackColor()
+            self.activityIndicatorView.alpha = 0.7
             self.activityIndicatorView.center = self.window!.center
             self.activityIndicatorView.layer.cornerRadius = 4
             self.window!.addSubview(self.activityIndicatorView)

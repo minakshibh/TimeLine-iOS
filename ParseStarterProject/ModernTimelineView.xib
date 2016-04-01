@@ -84,7 +84,7 @@
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="timelineCommentClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="AVa-d8-8Hj"/>
+                        <action selector="commentOnTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="hUm-6P-Pwt"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="567" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YRI-Jb-ZXO" customClass="SWFrameButton">
@@ -245,9 +245,6 @@
                     <state key="normal" title="7" image="showComments">
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
-                    <connections>
-                        <action selector="commentOnTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="8uc-oL-Ioc"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6K-aH-QGE">
                     <rect key="frame" x="347" y="53" width="33" height="34"/>
