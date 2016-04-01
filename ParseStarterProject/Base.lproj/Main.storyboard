@@ -40,7 +40,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dub-gh-rHt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XkS-L7-QhD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -110,7 +110,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BQs-7X-4UJ" kind="presentation" identifier="" id="trc-F1-lO4"/>
+                                    <action selector="timelineProfileButton:" destination="Qj8-N8-GTa" eventType="touchUpInside" id="qxb-G3-Il2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCF-BM-4Pb">
@@ -2494,7 +2494,7 @@ Effective as of September 14, 2015
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ep-C1-ZaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3296" y="1635"/>
+            <point key="canvasLocation" x="-3290" y="1676"/>
         </scene>
         <!--Moment Title-->
         <scene sceneID="JJH-YW-ZUD">
@@ -2997,6 +2997,11 @@ Effective as of September 14, 2015
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="uxJ-tx-fDg">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="xZg-r6-kPa" kind="relationship" relationship="rootViewController" id="Faq-KO-rhF"/>
                     </connections>
@@ -4446,7 +4451,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="dpZ-pz-TmS" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="fjd-4e-PdK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4486,7 +4491,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="mAi-gA-dKZ" userLabel="Followers" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlA-cD-rtE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -5025,14 +5030,14 @@ Effective as of September 14, 2015
         <image name="Flash On" width="24" height="36"/>
         <image name="Follow Timeline" width="45" height="41"/>
         <image name="Heart" width="50" height="42"/>
-        <image name="Moments-Original" width="33" height="33"/>
-        <image name="Moments-Template" width="33" height="33"/>
-        <image name="My Timelines-Original" width="30" height="30"/>
-        <image name="My Timelines-Template" width="30" height="30"/>
+        <image name="Moments-Original" width="45" height="45"/>
+        <image name="Moments-Template" width="45" height="45"/>
+        <image name="My Timelines-Original" width="45" height="45"/>
+        <image name="My Timelines-Template" width="45" height="45"/>
         <image name="New Timeline" width="43" height="25"/>
         <image name="Notification" width="32" height="32"/>
-        <image name="Search-Original" width="33" height="33"/>
-        <image name="Search-Template" width="33" height="33"/>
+        <image name="Search-Original" width="45" height="45"/>
+        <image name="Search-Template" width="45" height="45"/>
         <image name="Send to Timeline" width="30" height="32"/>
         <image name="Settings" width="128" height="128"/>
         <image name="Settings_Profile" width="32" height="32"/>
@@ -5056,18 +5061,18 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fy0-iv-eFM"/>
-        <segue reference="Cnm-d8-vbZ"/>
-        <segue reference="LAc-cl-HI0"/>
-        <segue reference="Y4K-mN-kMc"/>
-        <segue reference="9SA-Oc-iuS"/>
-        <segue reference="BJd-cD-9l3"/>
         <segue reference="dHW-RB-S8H"/>
+        <segue reference="fy0-iv-eFM"/>
+        <segue reference="3Xw-TM-u6h"/>
+        <segue reference="pyd-yG-wzP"/>
+        <segue reference="UDh-ad-jqq"/>
         <segue reference="wPR-Ua-TlF"/>
-        <segue reference="JSH-Rm-O8t"/>
+        <segue reference="9SA-Oc-iuS"/>
+        <segue reference="uwx-Vf-wTk"/>
+        <segue reference="kNn-C3-4Z5"/>
+        <segue reference="gqI-eh-cAa"/>
         <segue reference="5f9-3x-iDp"/>
         <segue reference="JUD-Gk-HWr"/>
-        <segue reference="gqI-eh-cAa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -129,6 +129,7 @@
 		D9BF503C1CA95C4D002B8AFC /* LikeableBehaviorCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF503B1CA95C4C002B8AFC /* LikeableBehaviorCount.swift */; };
 		D9BF503E1CA95F3F002B8AFC /* FollowableBehaviorCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF503D1CA95F3F002B8AFC /* FollowableBehaviorCount.swift */; };
 		D9C252871CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9C252861CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib */; };
+		D9F9F13A1CAE887B00D2F253 /* post-comment.png in Resources */ = {isa = PBXBuildFile; fileRef = D9F9F1391CAE887B00D2F253 /* post-comment.png */; };
 		DA167DFD1B7D211C00608A6C /* VideoSquareCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167DFC1B7D211C00608A6C /* VideoSquareCropper.m */; };
 		DA167E091B7D351F00608A6C /* UIAppearence+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E081B7D351F00608A6C /* UIAppearence+Swift.m */; };
 		DA167E0E1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E0B1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m */; };
@@ -407,6 +408,7 @@
 		D9BF503B1CA95C4C002B8AFC /* LikeableBehaviorCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeableBehaviorCount.swift; sourceTree = "<group>"; };
 		D9BF503D1CA95F3F002B8AFC /* FollowableBehaviorCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowableBehaviorCount.swift; sourceTree = "<group>"; };
 		D9C252861CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSummaryPendingFollowersTableViewCell.xib; sourceTree = "<group>"; };
+		D9F9F1391CAE887B00D2F253 /* post-comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "post-comment.png"; sourceTree = "<group>"; };
 		DA0342991B7BBC67008DAB69 /* record-end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "record-end.mp3"; sourceTree = "<group>"; };
 		DA03429A1B7BBC67008DAB69 /* record-start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "record-start.mp3"; sourceTree = "<group>"; };
 		DA167DFB1B7D211C00608A6C /* VideoSquareCropper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSquareCropper.h; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 		81BA81471A49DA1800E65899 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				D9F9F1391CAE887B00D2F253 /* post-comment.png */,
 				D937FA901C9055A600C53274 /* FirstLastName.swift */,
 				D937FA8B1C90556B00C53274 /* LikeableBehavior2.swift */,
 				D937FA8C1C90556B00C53274 /* User-lists.png */,
@@ -1257,6 +1260,7 @@
 			files = (
 				BAB69A881C1DAF2D0058BE67 /* UserSummaryTableViewCell.xib in Resources */,
 				BA05787A1C1A39470098C3A1 /* UserSummaryView.xib in Resources */,
+				D9F9F13A1CAE887B00D2F253 /* post-comment.png in Resources */,
 				BA14B76D1B9DB368006A5843 /* APParallaxHeader.license in Resources */,
 				DA57C7851B53FDE600C51BC0 /* Localizable.strings in Resources */,
 				D937FA8F1C90556B00C53274 /* User-lists.png in Resources */,

@@ -59,7 +59,7 @@
                     <color key="textColor" red="0.99215686270000003" green="0.58039215690000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="B06994FF-F188-42B0-A72D-AD03C9A4AF29" translatesAutoresizingMaskIntoConstraints="NO" id="xa4-7B-OYU">
+                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="B7668FDE-1949-47E6-8AD5-D787C031CF66" translatesAutoresizingMaskIntoConstraints="NO" id="xa4-7B-OYU">
                     <rect key="frame" x="81" y="38" width="9" height="8"/>
                     <color key="tintColor" red="0.95686274510000002" green="0.38431372549999998" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
@@ -110,7 +110,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="B06994FF-F188-42B0-A72D-AD03C9A4AF29" width="9" height="8">
+        <image name="B7668FDE-1949-47E6-8AD5-D787C031CF66" width="9" height="8">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

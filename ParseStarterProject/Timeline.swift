@@ -179,68 +179,7 @@ extension Timeline {
         
         Storage.performRequest(request) { (json) -> Void in
             var timelines = [Timeline]()
-            let currentUserId = Storage.session.currentUser?.uuid
-
-            let tempTimelinesArray : NSMutableArray = []
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
-                
-//                for i in 0..<(Storage.session.currentUser?.timelines.count ?? 0) {
-//                    let t = Storage.session.currentUser!.timelines[i]
-//                    var containtl : Bool = false
-//                    for td in timelineDicts
-//                    {
-//                        let tid = td["id"] as! UUID
-//                        if tid == t.state.uuid
-//                        {
-//                            containtl = true
-//                        }
-//                    }
-//                    if !containtl{
-//                        tempTimelinesArray.addObject(i)
-//                    }
-//                }
-
-//                switch request {
-//                    case .TimelineMe:
-//                        for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i
-//                        {
-//                            let t = Storage.session.currentUser!.timelines[i]
-//                            var containtl : Bool = false
-//                            
-//                            for td in timelineDicts
-//                            {
-//                                let tid = td["id"] as! UUID
-//                                let tlCreaterID = td["user_id"] as? UUID
-//                                let sameUserId = (currentUserId == tlCreaterID)
-//                                
-//                                if tid == t.state.uuid && sameUserId
-//                                {
-//                                    containtl = true
-//                                }
-//                            }
-//                            if !containtl{
-//                                tempTimelinesArray.addObject(i)
-//                            }
-//                        }
-//                        if tempTimelinesArray.count > 0
-//                        {
-//                            for var i = 0; i < tempTimelinesArray.count; ++i
-//                            {
-//                                print(Storage.session.currentUser!.timelines.count)
-//                                if (Storage.session.currentUser!.timelines.count >= i)
-//                                {
-//                                    Storage.session.currentUser!.timelines.removeAtIndex(i)
-//                                    serialHook.perform(key: .ForceReloadData, argument: ())
-//                                }
-//                            }
-//                        }
-//                    
-//
-//                    
-//                default:
-//                    break
-//                }
-
                 
                 for td in timelineDicts {
                     if let userID = td["user_id"] as? UUID
@@ -249,15 +188,9 @@ extension Timeline {
                         if let user = Storage.findUser(userID)
                         { // update user
                             owner = user
-
+                            
                         } else
                         { // set up user
-//                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), parent: Storage.session)
-                            
-
-//                            owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil ,  parent: Storage.session)
-
-
                             owner = User(name: nil, email: nil, externalID: nil, timelinesPublic: nil, approveFollowers: nil, pendingFollowersCount: nil, followersCount: nil, followingCount: nil, likersCount: nil, liked: false, blocked: false, followed: .NotFollowing, timelines: [], state: .Dummy(userID), userfullname: nil,website: nil, other: nil,bio: nil , firstname: nil, lastname: nil, imageurl: nil, parent: Storage.session)
                             
                             Storage.session.users.append(owner)
@@ -394,6 +327,41 @@ extension Timeline {
                         timelines.append(tl)
                     }
                     
+                }
+                
+                
+                
+                let savedTimelinesIdsList : NSMutableArray = []
+                let responseTimelinesIdsList : NSMutableArray = []
+                let tempTimelinesArray : NSMutableArray = []
+
+                for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i
+                {
+                    let t = Storage.session.currentUser!.timelines[i]
+                    savedTimelinesIdsList.addObject(t.state.uuid!)
+                }
+                for td in timelineDicts
+                {
+                    let tid = td["id"] as! UUID
+                    responseTimelinesIdsList.addObject(tid)
+                }
+                for var i = 0; i < savedTimelinesIdsList.count; ++i
+                {
+                    if (!responseTimelinesIdsList.containsObject(savedTimelinesIdsList .objectAtIndex(i)))
+                    {
+                        tempTimelinesArray.addObject(savedTimelinesIdsList.objectAtIndex(i))
+                    }
+                }
+                
+                for var n = 0; n < tempTimelinesArray.count; ++n
+                {
+                    for var i = 0; i < Storage.session.currentUser?.timelines.count; ++i{
+                        let t = Storage.session.currentUser!.timelines[i]
+                        if tempTimelinesArray[n] as! String == t.state.uuid! {
+                            Storage.session.currentUser!.timelines.removeAtIndex(i)
+                            
+                        }
+                    }
                 }
             }
             switch request {

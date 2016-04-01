@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "post-comment.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "group-icon.png",
+      "filename" : "post-comment-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "post-comment-2.png",
       "scale" : "3x"
     }
   ],

@@ -89,6 +89,11 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
 
         self.navigationController!.navigationBar.frame = CGRectMake(0, 40, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+40)
+        
+        main{
+            self.drafts = Array(Storage.session.drafts.reverse())
+            self.collectionView?.reloadData()
+        }
     }
     func update(){
 //        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+1)
@@ -109,7 +114,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
         var nav = appDelegate.window?.rootViewController as? UINavigationController
-        
+        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
         nav = UINavigationController.init(rootViewController:vc )
         
         hidesBottomBarWhenPushed = true

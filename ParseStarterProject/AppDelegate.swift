@@ -49,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ParseCrashReporting.enable()
         //
         // Uncomment and fill in with your Parse credentials:
+        NSUserDefaults.standardUserDefaults().setObject(" ", forKey:"transitionTo")
+
         Parse.setApplicationId("LiynFqjSP5wmP8QfzLQLgm8tGStY3Jt5FeH34lhS",
             clientKey: "TSMwY8Asxa08Br0pB0QR03bpGA5GjMLPYia9Ljka")
 //        Parse.setApplicationId("Zlos4Gg3l7oIeyfekTgMNrA5ENWoHmyKGuRiM39C",
