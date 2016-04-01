@@ -54,7 +54,7 @@ class FollowingTableViewController: SortedTimelineTableViewController {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
         var nav = appDelegate.window?.rootViewController as? UINavigationController
-        
+        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
         nav = UINavigationController.init(rootViewController:vc )
         
         hidesBottomBarWhenPushed = true

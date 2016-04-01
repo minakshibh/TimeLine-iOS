@@ -17,7 +17,75 @@ class drawer: EZSwipeController {
         self.navigationController?.navigationBarHidden = true
         //UIApplication.sharedApplication().statusBarStyle = .LightContent
        
+        let transitionTo = "\(NSUserDefaults.standardUserDefaults().valueForKey("transitionTo")!)"
         
+        if transitionTo == "capture"{
+            for(var i=0;i<3;i++){
+                if(i==2){
+                    self.movePages(1)
+                    continue
+                }
+                if(i==0){
+                    self.movePages(0)
+                    continue
+                }
+                if(i==1){
+                    self.movePages(2)
+                    continue
+                }
+                
+            }
+        }else if transitionTo == "Right"{
+            for(var i=0;i<3;i++){
+                if(i==2){
+                    self.movePages(2)
+                    continue
+                }
+                if(i==0){
+                    self.movePages(0)
+                    continue
+                }
+                if(i==1){
+                    self.movePages(1)
+                    continue
+                }
+                
+            }
+        }else if transitionTo == "Left"{
+            for(var i=0;i<3;i++){
+                if(i==2){
+                    self.movePages(0)
+                    continue
+                }
+                if(i==0){
+                    self.movePages(2)
+                    continue
+                }
+                if(i==1){
+                    self.movePages(1)
+                    continue
+                }
+                
+            }
+        }else {
+            for(var i=0;i<3;i++){
+                if(i==2){
+                    self.movePages(1)
+                    continue
+                }
+                if(i==0){
+                    self.movePages(2)
+                    continue
+                }
+                if(i==1){
+                    self.movePages(0)
+                    continue
+                }
+                
+            }
+        }
+        
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -26,22 +94,22 @@ class drawer: EZSwipeController {
         self.view.frame = CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)
         
 //        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
-
-        for(var i=0;i<3;i++){
-            if(i==2){
-                self.movePages(1)
-                continue
-            }
-            if(i==0){
-                self.movePages(0)
-                continue
-            }
-            if(i==1){
-                self.movePages(2)
-                continue
-            }
-            
-        }
+//
+//        for(var i=0;i<3;i++){
+//            if(i==2){
+//                self.movePages(1)
+//                continue
+//            }
+//            if(i==0){
+//                self.movePages(0)
+//                continue
+//            }
+//            if(i==1){
+//                self.movePages(2)
+//                continue
+//            }
+//            
+//        }
         
     }
     func update(){
