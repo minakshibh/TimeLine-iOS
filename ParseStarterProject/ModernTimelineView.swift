@@ -68,37 +68,6 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 self.scrollMomentArray = []
                 
                 // Seperator view for timeline
-                if !(self.timeline?.isOwn)!
-                {
-                    self.seperatorLineView.frame = CGRectMake(25,self.likeTimelineButton.frame.origin.y + self.likeTimelineButton.frame.size.height + 5, self.frame.size.width-25,1)
-                    self.seperatorLineView.hidden = false
-                    self.seperatorLineView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                    self.addSubview(self.seperatorLineView)
-                   
-                    
-                    
-                }else{
-
-                    self.likeButton.translatesAutoresizingMaskIntoConstraints = false
-                    
-//                    NSLayoutConstraint constraint = [NSLayoutConstraint constraintWithItem: attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0f constant:20.f];
-//                    
-//                    [self.likeButton addConstraint:constraint];
-//                    self.likeButton.frame = CGRectMake(self.likeButton.frame.origin.x,self.likeButton.frame.origin.y-50,self.likeButton.frame.size.width,self.likeButton.frame.size.height)
-//                    let widthConstraint = NSLayoutConstraint(item: self.likeButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.likeButton.frame.size.width)
-//                    let heightConstraint = NSLayoutConstraint(item: self.likeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.likeButton.frame.size.height)
-//                    
-//                    // but since I'll be modifying these later, these are class properties
-//                    
-//                    let xConstraint = NSLayoutConstraint(item: self.likeButton, attribute: .CenterX, relatedBy: .Equal, toItem: nil, attribute: .CenterX, multiplier: 1.0, constant: 1)
-//                    let yConstraint = NSLayoutConstraint(item: self.likeButton, attribute: .CenterY, relatedBy: .Equal, toItem: nil, attribute: .CenterY, multiplier: 1.0, constant: -50)
-//
-//                    self.likeButton.addConstraints([widthConstraint, heightConstraint, xConstraint, yConstraint])
-
-                    
-
-                }
-                
                 
                 if let raw = self.behavior.timeline?.dict["moments"]!
                 {
@@ -116,9 +85,37 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         
                     }
                 }
-                self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
+                //self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
                 self.momentScroller.delegate = self
                 self.momentScroller.showsVerticalScrollIndicator = false
+                
+                if !(self.timeline?.isOwn)!
+                {
+                    
+                    self.seperatorLineView.removeFromSuperview()
+
+                    self.seperatorLineView.frame = CGRectMake(25,self.likeTimelineButton.frame.origin.y + self.likeTimelineButton.frame.size.height + 5, self.frame.size.width-25,1)
+                    self.seperatorLineView.hidden = false
+                    self.seperatorLineView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                    self.addSubview(self.seperatorLineView)
+                    
+                    self.likebuttonY.constant = 80
+                    
+                    main{
+                    self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
+                    }
+                    
+                }else{
+                    if (self.timeline?.isOwn)!{
+                        self.seperatorLineView.removeFromSuperview()
+                        self.seperatorLineView.hidden = true
+                        self.likebuttonY.constant = 35
+                    main{
+                    self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
+                    }
+                    }
+                }
+                
                 for var i = 0; i < self.scrollMomentArray.count; i++ {
                     
                     let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.momentScroller.frame.size.width, height: self.momentScroller.frame.size.width))
@@ -1457,6 +1454,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     // MARK: LikeableBehavior:
     @IBOutlet var likeButton: SWFrameButton!
     
+    @IBOutlet var likebuttonY: NSLayoutConstraint!
     @IBOutlet var likeTimelineButton: UIButton!
     
     

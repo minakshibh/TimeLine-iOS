@@ -185,7 +185,7 @@ enum ApiRequest {
     var urlRequest: NSMutableURLRequest {
         let urlString: String
         let urlRequest = NSMutableURLRequest()
-        print(Storage.session.webToken)
+        //print(Storage.session.webToken)
         urlRequest.setValue(Storage.session.webToken, forHTTPHeaderField: "X-Timeline-Authentication")
         
         switch self {

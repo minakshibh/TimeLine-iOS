@@ -338,6 +338,7 @@
                 <outlet property="groupTimelineButton" destination="vkG-no-Juk" id="HqP-fk-yj6"/>
                 <outlet property="likeButton" destination="YRI-Jb-ZXO" id="Mds-Xz-aRb"/>
                 <outlet property="likeTimelineButton" destination="aFV-dk-x9W" id="6NY-1W-ABo"/>
+                <outlet property="likebuttonY" destination="cWG-ph-0tG" id="mEj-ai-vhe"/>
                 <outlet property="nameLabel" destination="dZX-FB-9P2" id="TPP-Tq-fV0"/>
                 <outlet property="playerView" destination="HVl-oO-cuI" id="1aw-xQ-RO1"/>
                 <outletCollection property="previewItems" destination="dZX-FB-9P2" collectionClass="NSMutableArray" id="hm1-kY-Is4"/>
