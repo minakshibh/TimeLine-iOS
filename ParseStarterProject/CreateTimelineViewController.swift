@@ -226,8 +226,8 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         self.friendsListView.addSubview(closeButton)
         
         
-        let friendslistY: CGFloat = 80
-        let friendslistHeight: CGFloat = self.friendsListView.frame.height-150
+        let friendslistY: CGFloat = CGFloat(headerBackView.frame.size.height)
+        let friendslistHeight: CGFloat = self.friendsListView.frame.height-friendslistY
         
         // DONE button comment section
         let doneButton   = UIButton()

@@ -28,6 +28,7 @@ class DraftPreviewCollectionReusableView: UICollectionReusableView {
         self.clipsToBounds = true
         self.addSubview(self.draftPreview)
         self.draftPreview.frame.size = self.bounds.size
+        
 
     }
     

@@ -53,23 +53,18 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             } else {
                 previewImageView.moment = nil
             }
-            print(String(DraftPreview.topViewController()!))
-            if String(DraftPreview.topViewController()!).rangeOfString("DraftCollectionViewController") != nil{
-                print("exists")
-                self.playPlayButton.hidden = true
-                self.pausePlayButton.hidden = true
-                self.closeButton.hidden = true
-                self.commentButton.hidden = true
+            if let topController = DraftPreview.topViewController() {
+                print(topController)
             }
+            //print(String(DraftPreview.topViewController()!))
+//            if String(DraftPreview.topViewController()!).rangeOfString("DraftCollectionViewController") != nil{
+//                print("exists")
+//                self.playPlayButton.hidden = true
+//                self.pausePlayButton.hidden = true
+//                self.closeButton.hidden = true
+//                self.commentButton.hidden = true
+//            }
             
-            if String(DraftPreview.topViewController()!).rangeOfString("drawer") != nil{
-                print("exists")
-                self.playPlayButton.hidden = true
-                self.pausePlayButton.hidden = true
-                self.closeButton.hidden = true
-                self.commentButton.hidden = true
-            }
-
             playButton.enabled = moments.count != 0
             momentPlayerController?.pause()
             momentPlayerController = nil
@@ -158,23 +153,23 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             if momentPlayerController == nil {
                 momentPlayerController = MomentPlayerController(moments: moments, inView: playbackContainer)
                 momentPlayerController?.delegate = self
-                if String(DraftPreview.topViewController()!).rangeOfString("DraftCollectionViewController") != nil{
-                    print("exists")
-                    
-                    self.pausePlayButton.hidden = true
-                    
-                }else{
-                pausePlayButton.hidden = false
-                }
+//                if String(DraftPreview.topViewController()!).rangeOfString("DraftCollectionViewController") != nil{
+//                    print("exists")
+//                    
+//                    self.pausePlayButton.hidden = true
+//                    
+//                }else{
+//                pausePlayButton.hidden = false
+//                }
                 
-                if String(DraftPreview.topViewController()!).rangeOfString("drawer") != nil{
-                    print("exists")
-                    
-                    self.pausePlayButton.hidden = true
-                    
-                }else{
-                    pausePlayButton.hidden = false
-                }
+//                if String(DraftPreview.topViewController()!).rangeOfString("drawer") != nil{
+//                    print("exists")
+//                    
+//                    self.pausePlayButton.hidden = true
+//                    
+//                }else{
+//                    pausePlayButton.hidden = false
+//                }
                 playPlayButton.hidden = true
             }
             momentPlayerController?.play()
@@ -970,24 +965,17 @@ extension DraftPreview {
     
     class func topViewController(base: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController) -> UIViewController? {
         
-        if let nav = base as? UINavigationController {
-            return topViewController(nav.visibleViewController)
-        }
-        
         if let tab = base as? UITabBarController {
-            let moreNavigationController = tab.moreNavigationController
-            
-            if let top = moreNavigationController.topViewController where top.view.window != nil {
-                return topViewController(top)
-            } else if let selected = tab.selectedViewController {
+            if let selected = tab.selectedViewController {
                 return topViewController(selected)
             }
         }
-        
         if let presented = base?.presentedViewController {
             return topViewController(presented)
         }
-        
+        if let nav = base as? UINavigationController {
+            return topViewController(nav.visibleViewController)
+        }
         return base
     }
 }

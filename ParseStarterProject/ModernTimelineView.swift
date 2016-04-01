@@ -73,9 +73,28 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     self.seperatorLineView.hidden = false
                     self.seperatorLineView.backgroundColor = UIColor.groupTableViewBackgroundColor()
                     self.addSubview(self.seperatorLineView)
+                   
+                    
                     
                 }else{
-                    self.likeButton.frame = CGRectMake(self.likeButton.frame.origin.x ,self.likeButton.frame.origin.y-50, self.likeButton.frame.size.width,self.likeButton.frame.size.height)
+
+                    self.likeButton.translatesAutoresizingMaskIntoConstraints = false
+                    
+//                    NSLayoutConstraint constraint = [NSLayoutConstraint constraintWithItem: attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0f constant:20.f];
+//                    
+//                    [self.likeButton addConstraint:constraint];
+//                    self.likeButton.frame = CGRectMake(self.likeButton.frame.origin.x,self.likeButton.frame.origin.y-50,self.likeButton.frame.size.width,self.likeButton.frame.size.height)
+//                    let widthConstraint = NSLayoutConstraint(item: self.likeButton, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.likeButton.frame.size.width)
+//                    let heightConstraint = NSLayoutConstraint(item: self.likeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.likeButton.frame.size.height)
+//                    
+//                    // but since I'll be modifying these later, these are class properties
+//                    
+//                    let xConstraint = NSLayoutConstraint(item: self.likeButton, attribute: .CenterX, relatedBy: .Equal, toItem: nil, attribute: .CenterX, multiplier: 1.0, constant: 1)
+//                    let yConstraint = NSLayoutConstraint(item: self.likeButton, attribute: .CenterY, relatedBy: .Equal, toItem: nil, attribute: .CenterY, multiplier: 1.0, constant: -50)
+//
+//                    self.likeButton.addConstraints([widthConstraint, heightConstraint, xConstraint, yConstraint])
+
+                    
                 }
                 
                 
@@ -174,6 +193,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     func momentButtonPressed(sender: UIButton){
         //print(sender.tag)
         self.momentScroller.hidden = true
+        self.seperatorLineView.hidden = true
         selectedTimelineMomentArray = behavior.timeline?.dict["moments"]! as! NSArray
         print(selectedTimelineMomentArray[sender.tag])
         
@@ -813,6 +833,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     
     func textFieldDidBeginEditing(textField: UITextField) {
         UIView.animateWithDuration(0.3, animations: { () -> Void in
+            
             self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-290, self.timelineCommentView.frame.size.width, 80)
         })
     }
