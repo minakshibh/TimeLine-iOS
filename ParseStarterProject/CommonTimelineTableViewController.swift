@@ -31,8 +31,11 @@ class CommonTimelineTableViewController: UITableViewController {
                         lblFeed.removeFromSuperview()
                     }
                     users[j].timelines[i].reloadMoments {
+                        main{
                         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
                             cell.timeline = self.users[j].timelines[i]
+                            
+                            }
                         }
                     }
                 }

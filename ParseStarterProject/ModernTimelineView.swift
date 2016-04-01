@@ -63,6 +63,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 usrs in  self.followersArrayList = usrs
             }
             behavior.timeline = newValue
+
             main{
                 self.scrollMomentArray = []
                 
@@ -95,6 +96,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
 //                    self.likeButton.addConstraints([widthConstraint, heightConstraint, xConstraint, yConstraint])
 
                     
+
                 }
                 
                 
@@ -108,8 +110,9 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 self.momentScroller.subviews.forEach {
                     ( view) -> () in
                     if (view is UIButton) {
-                        
+                        main{
                         view.removeFromSuperview()
+                        }
                         
                     }
                 }
@@ -142,8 +145,9 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     }
                     villainButton.tag = i
                     villainButton.addTarget(self, action: "momentButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-                    
+                    main{
                     self.momentScroller.addSubview(villainButton)
+                    }
                     
                     Yaxis = Yaxis + self.momentScroller.frame.size.width
                 }
@@ -152,6 +156,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 
                 self.addSubview(self.momentScroller)
                 
+
             }
             
             refresh()

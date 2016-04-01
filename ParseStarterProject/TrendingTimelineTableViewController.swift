@@ -512,10 +512,12 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
              errorText?.removeFromSuperview()
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }else{
+            main{
             if tableView == self.tableView {
                 //super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
-            } else if let user = searchResults[indexPath.row] as? User {
-                    performSegueWithIdentifier("ShowUser", sender: user)
+            } else if let user = self.searchResults[indexPath.row] as? User {
+                    self.performSegueWithIdentifier("ShowUser", sender: user)
+            }
             }
         }
     }
@@ -531,9 +533,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 object.removeFromSuperview();
             }
             
-            
-            
-            
+  
             let text1:UILabel = UILabel.init(frame: CGRectMake(20, 10, 350, 30))
             text1.font = UIFont.systemFontOfSize(23)
             if (self.resultSearchController.active) {
