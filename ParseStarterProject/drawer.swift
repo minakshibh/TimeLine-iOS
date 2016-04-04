@@ -26,6 +26,7 @@ class drawer: EZSwipeController {
                     continue
                 }
                 if(i==0){
+                    self.movePages(1)
                     self.movePages(0)
                     continue
                 }
@@ -42,6 +43,7 @@ class drawer: EZSwipeController {
                     continue
                 }
                 if(i==0){
+                    self.movePages(2)
                     self.movePages(0)
                     continue
                 }
@@ -58,6 +60,7 @@ class drawer: EZSwipeController {
                     continue
                 }
                 if(i==0){
+                    self.movePages(0)
                     self.movePages(2)
                     continue
                 }
@@ -74,6 +77,7 @@ class drawer: EZSwipeController {
                     continue
                 }
                 if(i==0){
+                    self.movePages(1)
                     self.movePages(2)
                     continue
                 }

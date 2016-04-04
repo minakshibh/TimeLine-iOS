@@ -223,8 +223,9 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         if !recorder.isPrepared {
             _ = try? recorder.prepare()
         }
-        previewView.session = recorder.captureSession
-        
+        main{
+        self.previewView.session = self.recorder.captureSession
+        }
 //        delay(0.001) {
 //            if !Storage.session.walkedThroughCamera {
 //                Storage.session.walkedThroughCamera = true
@@ -469,12 +470,14 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
   }
     
     func update(){
+       
         self.scrollView.hidden = false
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.notificationAPI ()
          recorder.startRunning()
         
         delay (0.01) {
+            
             self.reloadBadges()
         }
         

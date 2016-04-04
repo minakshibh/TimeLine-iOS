@@ -17,8 +17,8 @@ public class CameraPreviewView: UIView {
                 layer.session = newValue
                 let bounds = layer.bounds
                 layer.videoGravity = AVLayerVideoGravityResizeAspectFill
-                layer.bounds = bounds
-                layer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
+//                layer.bounds = bounds
+//                layer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
             }
         }
     }
