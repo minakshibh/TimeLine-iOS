@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -2889,7 +2889,7 @@ Effective as of September 14, 2015
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hF-Ui-0Ho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5365" y="175"/>
+            <point key="canvasLocation" x="-5721" y="-221"/>
         </scene>
         <!--Walkthrough Template View Controller-->
         <scene sceneID="B0Y-7o-cws">
@@ -3249,12 +3249,12 @@ Effective as of September 14, 2015
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK5-PH-2EQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5365" y="1010"/>
+            <point key="canvasLocation" x="-5501" y="698"/>
         </scene>
         <!--User Summary Table View Controller-->
         <scene sceneID="08N-qG-IQk">
             <objects>
-                <tableViewController id="2TK-H5-g5m" customClass="UserSummaryTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ShowUser" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2TK-H5-g5m" customClass="UserSummaryTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="M00-gH-iuK">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3758,7 +3758,7 @@ Effective as of September 14, 2015
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ju6-or-esL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4037" y="483"/>
+            <point key="canvasLocation" x="-4013" y="475"/>
         </scene>
         <!--Feedeo Playback-->
         <scene sceneID="x2Z-K2-ciu">
@@ -4451,7 +4451,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="dpZ-pz-TmS" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="fjd-4e-PdK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4491,7 +4491,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="mAi-gA-dKZ" userLabel="Followers" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlA-cD-rtE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4647,10 +4647,15 @@ Effective as of September 14, 2015
                             <action selector="refreshTable:" destination="h8c-CJ-WKs" eventType="valueChanged" id="f2e-5l-2Nv"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <segue destination="tDS-AT-rfR" kind="presentation" identifier="ShowUser" id="Szi-aa-9D9"/>
+                        <segue destination="YM6-8A-qq8" kind="presentation" identifier="ShowMoment" id="8hy-1e-CX1"/>
+                        <segue destination="YM6-8A-qq8" kind="presentation" identifier="ShowTimeline" id="OVj-EF-9W0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULZ-gt-pE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1924" y="-1898"/>
+            <point key="canvasLocation" x="-5085" y="-842"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zir-j0-bnP">
@@ -5043,8 +5048,8 @@ Effective as of September 14, 2015
         <image name="Settings_Profile" width="32" height="32"/>
         <image name="Share" width="128" height="128"/>
         <image name="Timelines" width="32" height="32"/>
-        <image name="Timelines I Follow - Original" width="36" height="30"/>
-        <image name="Timelines I Follow - Template" width="36" height="30"/>
+        <image name="Timelines I Follow - Original" width="45" height="45"/>
+        <image name="Timelines I Follow - Template" width="45" height="45"/>
         <image name="Trim" width="29" height="29"/>
         <image name="Upgrades" width="128" height="128"/>
         <image name="Video_Pic Capture" width="93" height="82"/>
@@ -5061,16 +5066,17 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dHW-RB-S8H"/>
         <segue reference="fy0-iv-eFM"/>
-        <segue reference="3Xw-TM-u6h"/>
-        <segue reference="pyd-yG-wzP"/>
-        <segue reference="UDh-ad-jqq"/>
         <segue reference="wPR-Ua-TlF"/>
-        <segue reference="9SA-Oc-iuS"/>
-        <segue reference="uwx-Vf-wTk"/>
-        <segue reference="kNn-C3-4Z5"/>
+        <segue reference="dHW-RB-S8H"/>
+        <segue reference="T9S-G7-mh0"/>
+        <segue reference="Mq8-L9-ocP"/>
+        <segue reference="Odf-Iw-TZ0"/>
         <segue reference="gqI-eh-cAa"/>
+        <segue reference="ji8-C3-1Lo"/>
+        <segue reference="kNn-C3-4Z5"/>
+        <segue reference="uwx-Vf-wTk"/>
+        <segue reference="9SA-Oc-iuS"/>
         <segue reference="5f9-3x-iDp"/>
         <segue reference="JUD-Gk-HWr"/>
     </inferredMetricsTieBreakers>

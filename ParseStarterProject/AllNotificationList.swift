@@ -18,6 +18,7 @@ class AllNotificationList: UITableViewController {
     var page_id :String=""
     var timeline_id :String=""
     var timelineLikeOrComment :Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         delay (0.01) {
@@ -240,16 +241,10 @@ class AllNotificationList: UITableViewController {
                 break
             }
         }
-
-//        processAsync(payload: payload) { link in
-//            if let link = link {
-//                    self.handle(deepLink: link)
-//                }
-//        }
-
         processAsyncForUser(payload: notificationPayload) { link in
             if let link = link {
                 self.handle(deepLink: link)
+                self.fetchData(link)
             }
         }
         
@@ -269,12 +264,61 @@ class AllNotificationList: UITableViewController {
             if PFUser.currentUser() != nil {
                 push.link = link
                 push.timeline_id = self.timeline_id
-
-                self.presentViewController(push, animated: true, completion: nil)
+//                self.presentViewController(push, animated: true, completion: nil)
             }
 
         }
     }
+    
+    func fetchData(link: DeepLink?) {
+        main {
+            switch link! {
+                
+            case let .UserLink(_, _, uuid):
+                DeepLink.user(uuid: uuid) { u in
+                    self.performSegueWithIdentifier("ShowUser", sender: u)
+                }
+                
+            case let .TimelineLink(_, uuid):
+                DeepLink.timeline(uuid: uuid) { t in
+                    self.performSegueWithIdentifier("ShowTimeline", sender: t)
+                }
+                
+            case let .MomentLink(_, tid, vid):
+                DeepLink.timeline(uuid: tid) { t in
+                    t.reloadMoments {
+                        let m = Storage.findMoment(vid)
+                        self.performSegueWithIdentifier("ShowMoment", sender: m)
+                    }
+                }
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        finished = true
+        
+        switch segue.identifier ?? "" {
+        case "ShowUser":
+            let dest = (segue.destinationViewController as! UINavigationController).topViewController as! UserSummaryTableViewController
+            dest.timeline_id = self.timeline_id
+            dest.user = sender as! User
+            
+        case "ShowTimeline":
+            let dest = (segue.destinationViewController as! UINavigationController).topViewController as! TimelinePlaybackViewController
+            
+            dest.timeline = sender as! Timeline
+            
+        case "ShowMoment":
+            let dest = (segue.destinationViewController as! UINavigationController).topViewController as! TimelinePlaybackViewController
+            dest.moment = sender as? Moment
+            
+        default:
+            break
+        }
+    }
+
+    
     
     func processAsync(payload payload: [String: AnyObject], completion: (DeepLink?) -> Void) {
         let link = DeepLink.from(payload: payload)
