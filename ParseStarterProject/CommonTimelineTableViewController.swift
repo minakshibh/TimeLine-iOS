@@ -14,23 +14,25 @@ class CommonTimelineTableViewController: UITableViewController {
         didSet {
             
             main { self.tableView.reloadData() }
-            for j in 0..<users.count {
+            
+       main{     
+            for j in 0..<self.users.count {
 //                print("\(users.count)")
-                let ts = users[j].timelines
+                let ts = self.users[j].timelines
                 if(ts.count == 0){
-                    lblFeed.frame = CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height)
-                    lblFeed.textAlignment = NSTextAlignment.Center
-                    lblFeed.text = "No Feedeos found"
+                    self.lblFeed.frame = CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height)
+                   self.lblFeed.textAlignment = NSTextAlignment.Center
+                    self.lblFeed.text = "No Feedeos found"
                     
 
-                    self.tableView.addSubview(lblFeed)
+                    self.tableView.addSubview(self.lblFeed)
                 }
                 for i in 0..<ts.count {
 //                    print("\(ts.count)")
                     if(ts.count != 0){
-                        lblFeed.removeFromSuperview()
+                        self.lblFeed.removeFromSuperview()
                     }
-                    users[j].timelines[i].reloadMoments {
+                    self.users[j].timelines[i].reloadMoments {
                         main{
                         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
                             cell.timeline = self.users[j].timelines[i]
@@ -40,7 +42,8 @@ class CommonTimelineTableViewController: UITableViewController {
                     }
                 }
             }
-            
+          main { self.tableView.reloadData() }
+        }
 
         }
     }
