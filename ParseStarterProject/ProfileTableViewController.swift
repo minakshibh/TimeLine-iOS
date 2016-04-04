@@ -5,9 +5,10 @@
 //  Created by Valentin Knabel on 31.07.15.
 //  Copyright (c) 2015 Conclurer GbR. All rights reserved.
 //
-
+import Foundation
 import UIKit
 import Parse
+
 
 class ProfileTableViewController: TintedHeaderTableViewController {
 
@@ -41,7 +42,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         navigationController?.delegate = self
         
         self.navigationController?.navigationBarHidden = false
-        let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
+        let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action:"goToRecordScreen")
 //
         navigationItem.leftBarButtonItem = left
        

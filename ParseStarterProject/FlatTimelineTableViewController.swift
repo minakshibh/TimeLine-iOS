@@ -135,9 +135,9 @@ class FlatTimelineTableViewController: UITableViewController {
     
     func removeTimelineFromCache(uuid: UUID) { }
     
-    func deletionCallback() -> MGSwipeButtonCallback? {
-        return nil
-    }
+//    func deletionCallback() -> MGSwipeButtonCallback? {
+//        return nil
+//    }
     // MARK: Hooking
     var hookingResponsibilities: [AnyObject?] = []
 

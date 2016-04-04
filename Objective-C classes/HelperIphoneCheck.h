@@ -1,13 +1,7 @@
-//
-//  HelperIphoneCheck.h
-//  HelperApp
-//
-//  Created by Poonam Parmar on 2/9/15.
-//  Copyright (c) 2015 MSS. All rights reserved.
-//
 
-#import <Foundation/Foundation.h>
+
 #import <UIKit/UIKit.h>
+
 @interface HelperIphoneCheck : NSObject
 /*  This is the method to check device compatibilty for iphone 4 */
 int isiPhone4(void);

@@ -5,7 +5,7 @@
 //  Created by Valentin Knabel on 15.08.15.
 //  Copyright (c) 2015 Conclurer GbR. All rights reserved.
 //
-
+import Foundation
 import UIKit
 import MediaPlayer
 import KGModal
@@ -70,10 +70,28 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             momentPlayerController = nil
             playbackContainer.hidden = true
             
-            self.commentButton.frame = CGRectMake(self.commentButton.frame.origin.x + CGFloat(32*isiPhone5()) , self.commentButton.frame.origin.y, self.commentButton.frame.size.width, self.commentButton.frame.size.height)
+            self.userInteractionEnabled = true
+            let tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+            self.addGestureRecognizer(tapGesture)
             
-            self.playPlayButton.frame = CGRectMake(self.playPlayButton.frame.origin.x , self.playPlayButton.frame.origin.y + 17, self.playPlayButton.frame.size.width, self.playPlayButton.frame.size.height)
+            self.commentButton.frame = CGRectMake(self.closeButton.frame.origin.x + self.closeButton.frame.size.width + 73 , self.closeButton.frame.origin.y, self.closeButton.frame.size.width, self.closeButton.frame.size.height)
+            
+            self.playPlayButton.frame = CGRectMake(self.closeButton.frame.origin.x + self.closeButton.frame.size.width + 20 , self.closeButton.frame.origin.y, self.closeButton.frame.size.width, self.closeButton.frame.size.height)
+            self.pausePlayButton.frame = CGRectMake(self.closeButton.frame.origin.x + self.closeButton.frame.size.width + 20 , self.closeButton.frame.origin.y, self.closeButton.frame.size.width, self.closeButton.frame.size.height)
+            //previois and next button hidden
+            self.nextPlayButton.hidden = true
+            self.previousPlayButton.hidden = true
+            
 //            bufferIndicator.hidden = true
+        }
+    }
+    func handleTap(sender : UIView) {
+        self.nextPlayButton.hidden = true
+        self.previousPlayButton.hidden = true
+        //print("Tap Gesture recognized")
+        main{
+            self.bufferIndicator.startAnimating()
+            self.momentPlayerController?.next()
         }
     }
     func setTimeline(timeline: Timeline?) {
@@ -916,8 +934,8 @@ extension DraftPreview: MomentPlayerControllerDelegate {
         UIView.animateWithDuration(0.5, animations: {
             self.previousPlayButton.alpha = momentPlayerController.isFirst ? 0.0 : 0.5
             self.nextPlayButton.alpha = momentPlayerController.isLast ? 0.0 : 0.5
-            
-            (self.previousPlayButton.hidden, self.nextPlayButton.hidden) = (false, false)
+            //previois and next button hidden
+            //(self.previousPlayButton.hidden, self.nextPlayButton.hidden) = (false, false)
             
             self.previousPlayButton.enabled = !momentPlayerController.isFirst
             self.nextPlayButton.enabled = !momentPlayerController.isLast
@@ -940,8 +958,12 @@ extension DraftPreview: MomentPlayerControllerDelegate {
             }
             self.layoutIfNeeded()
             }) { _ in
-                self.previousPlayButton.hidden = momentPlayerController.isFirst
-                self.nextPlayButton.hidden = momentPlayerController.isLast
+                //previois and next button hidden
+//                self.previousPlayButton.hidden = momentPlayerController.isFirst
+//                self.nextPlayButton.hidden = momentPlayerController.isLast
+                
+                self.nextPlayButton.hidden = true
+                self.previousPlayButton.hidden = true
         }
     }
     }

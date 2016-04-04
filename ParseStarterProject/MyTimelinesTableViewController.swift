@@ -5,7 +5,7 @@
 //  Created by Valentin Knabel on 10.08.15.
 //  Copyright (c) 2015 Conclurer GbR. All rights reserved.
 //
-
+import Foundation
 import UIKit
 import Parse
 
@@ -20,8 +20,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     var status:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+                
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update6", userInfo: nil, repeats: false)
 
         
@@ -102,7 +101,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
 
 //        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
 
-        if(isiphone6()==1 || isiPhone5()==1){
+        if(isiphone6() == 1 || isiPhone5()==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
                 
             }else{
@@ -184,58 +183,58 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         })
     }
     
-    override func deletionCallback() -> MGSwipeButtonCallback? {
-        func result(sender: MGSwipeTableCell!) -> Bool {
-            let indexPath = self.tableView.indexPathForCell(sender)!
-            func performDelete(action: UIAlertAction!) {
-                
-                let alert = UIAlertController(title: LocalizedString.TimelineAlertDeleteWaitTitle.localized, message: local(.TimelineAlertDeleteWaitMessage), preferredStyle: .Alert)
-                self.presentAlertController(alert)
-                
-                // Delete the row from the data source
-                let del = users[indexPath.section].timelines[indexPath.row]
-                Storage.performRequest(ApiRequest.DestroyTimeline(del.state.uuid!), completion: { (json) -> Void in
-                    alert.dismissViewControllerAnimated(true) {
-                        if let error = json["error"] as? String {
-                            let alert = UIAlertController(title: local(.TimelineAlertDeleteErrorTitle), message: error, preferredStyle: .Alert)
-                            alert.addAction(UIAlertAction(title: local(.TimelineAlertDeleteErrorActionDismiss), style: .Default, handler: nil))
-                            self.presentAlertController(alert)
-                            return
-                        }
-                        let moms = del.moments
-                        async {
-                            for m in moms {
-                                if let url = m.localVideoURL {
-                                    do {
-                                        try NSFileManager.defaultManager().removeItemAtURL(url)
-                                    } catch _ {
-                                    }
-                                }
-                            }
-                        }
-                        
-                        for i in 0..<(Storage.session.currentUser?.timelines.count ?? 0) {
-                            let t = Storage.session.currentUser!.timelines[i]
-                            if del.state.uuid == t.state.uuid {
-                                Storage.session.currentUser!.timelines.removeAtIndex(i)
-                                main { self.tableView.reloadData() }
-                                break
-                            }
-                        }
-                    }
-                })
-            }
-            let confirmation = UIAlertController(title: local(.TimelineAlertDeleteConfirmTitle), message: local(.TimelineAlertDeleteConfirmMessage), preferredStyle: .Alert)
-            confirmation.addAction(UIAlertAction(title: local(.TimelineAlertDeleteConfirmActionDelete), style: .Destructive, handler: performDelete))
-            confirmation.addAction(UIAlertAction(title: local(.TimelineAlertDeleteConfirmActionCancel), style: .Cancel, handler: { [weak self] _ in
-                self?.tableView.cellForRowAtIndexPath(indexPath)?.setEditing(false, animated: true)
-            }))
-            presentAlertController(confirmation)
-            
-            return true
-        }
-        return result
-    }
+//    override func deletionCallback() -> MGSwipeButtonCallback? {
+//        func result(sender: MGSwipeTableCell!) -> Bool {
+//            let indexPath = self.tableView.indexPathForCell(sender)!
+//            func performDelete(action: UIAlertAction!) {
+//                
+//                let alert = UIAlertController(title: LocalizedString.TimelineAlertDeleteWaitTitle.localized, message: local(.TimelineAlertDeleteWaitMessage), preferredStyle: .Alert)
+//                self.presentAlertController(alert)
+//                
+//                // Delete the row from the data source
+//                let del = users[indexPath.section].timelines[indexPath.row]
+//                Storage.performRequest(ApiRequest.DestroyTimeline(del.state.uuid!), completion: { (json) -> Void in
+//                    alert.dismissViewControllerAnimated(true) {
+//                        if let error = json["error"] as? String {
+//                            let alert = UIAlertController(title: local(.TimelineAlertDeleteErrorTitle), message: error, preferredStyle: .Alert)
+//                            alert.addAction(UIAlertAction(title: local(.TimelineAlertDeleteErrorActionDismiss), style: .Default, handler: nil))
+//                            self.presentAlertController(alert)
+//                            return
+//                        }
+//                        let moms = del.moments
+//                        async {
+//                            for m in moms {
+//                                if let url = m.localVideoURL {
+//                                    do {
+//                                        try NSFileManager.defaultManager().removeItemAtURL(url)
+//                                    } catch _ {
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        
+//                        for i in 0..<(Storage.session.currentUser?.timelines.count ?? 0) {
+//                            let t = Storage.session.currentUser!.timelines[i]
+//                            if del.state.uuid == t.state.uuid {
+//                                Storage.session.currentUser!.timelines.removeAtIndex(i)
+//                                main { self.tableView.reloadData() }
+//                                break
+//                            }
+//                        }
+//                    }
+//                })
+//            }
+//            let confirmation = UIAlertController(title: local(.TimelineAlertDeleteConfirmTitle), message: local(.TimelineAlertDeleteConfirmMessage), preferredStyle: .Alert)
+//            confirmation.addAction(UIAlertAction(title: local(.TimelineAlertDeleteConfirmActionDelete), style: .Destructive, handler: performDelete))
+//            confirmation.addAction(UIAlertAction(title: local(.TimelineAlertDeleteConfirmActionCancel), style: .Cancel, handler: { [weak self] _ in
+//                self?.tableView.cellForRowAtIndexPath(indexPath)?.setEditing(false, animated: true)
+//            }))
+//            presentAlertController(confirmation)
+//            
+//            return true
+//        }
+//        return result
+//    }
     
     @IBAction func createTimelineActionButton(sender: AnyObject) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
