@@ -387,12 +387,16 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                             villainButton.tag = i
                             if let raw = self.tagArray[i] as? NSDictionary
                             {
-                                villainButton.setTitle("@\(raw["name"]!)", forState: UIControlState.Normal)
+                                if let name = raw["name"] as? String{
+                                villainButton.setTitle("@\(name)", forState: UIControlState.Normal)
+                                }
                                 let userimage = UIImageView()
                                 userimage.frame = CGRectMake(10, 5, 40, 40)
                                 userimage.layer.cornerRadius = 20
                                 userimage.clipsToBounds = true
-                                userimage.sd_setImageWithURL(NSURL(string: (raw["image"] as? String)!))
+                                if let image = raw["image"] as? String{
+                                userimage.sd_setImageWithURL(NSURL(string:image))
+                                }
                                 villainButton.addSubview(userimage)
                             }
                             villainButton.addTarget(self, action: "villainButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -585,7 +589,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         
         cell.backgroundColor = UIColor.clearColor()
         let cellView = UIView()
-        cellView.frame = CGRectMake(0, 5, self.frame.size.width, 65)
+        cellView.frame = CGRectMake(0, 5, self.timelineCommentView.frame.size.width, 65)
         cellView.backgroundColor = UIColor(white: 0, alpha: 0.25)
         cell.contentView.addSubview(cellView)
         
@@ -597,9 +601,10 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         if let raw = self.commentArray[indexPath.row] as? NSDictionary
         {
             
-            let notifyStr = raw["user_image"] as! String
-            //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
-            userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+            if let notifyStr = raw["user_image"] as? String {
+                userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+            }
+            
         }
         userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
         userImage.clipsToBounds = true
@@ -646,26 +651,26 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             
             if (years != 0)
             {
-                timeStr = String(years) + "y"
+                timeStr = String(years) + "year"
             }
             if (months != 0)
             {
-                timeStr = String(months) + "M"
+                timeStr = String(months) + "mon"
             }
             else if(days != 0)
             {
-                timeStr = String(days) + "d"
+                timeStr = String(days) + "day"
             }
             else if(hours != 0)
             {
-                timeStr = String(hours) + "h"
+                timeStr = String(hours) + "hrs"
             }
             else if(minutes != 0)
             {
-                timeStr = String(minutes) + "m"
+                timeStr = String(minutes) + "min"
             }
             else{
-                timeStr = String(duration) + "s"
+                timeStr = String(duration) + "sec"
             }
             
             timeStamp.text = timeStr
@@ -698,7 +703,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             if (notifyStr == Storage.session.uuid)
             {
                 //configure right buttons
-                cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
+                cell.rightButtons = [MGSwipeButton(title: "", icon:UIImage(named: "CommentDelete.png"), backgroundColor: UIColor.redColor(), callback: {
                     (sender: MGSwipeTableCell!) -> Bool in
                     print("Delete: \(indexPath.row)")
                     
@@ -712,7 +717,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                     }
                     
                     return true
-                }),MGSwipeButton(title: "Edit",backgroundColor: UIColor.lightGrayColor(), callback: {
+                }),MGSwipeButton(title: "", icon:UIImage(named: "CommentEdit.png"), backgroundColor: UIColor.lightGrayColor(), callback: {
                     (sender: MGSwipeTableCell!) -> Bool in
                     print("Edit")
                     self.sendbutton.hidden = true
@@ -729,7 +734,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             }
             else if  (momentPlayerController?.currentMoment()?.isOwn)!
             {
-                cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
+                cell.rightButtons = [MGSwipeButton(title: "", icon:UIImage(named: "CommentDelete.png"),backgroundColor: UIColor.redColor(), callback: {
                     (sender: MGSwipeTableCell!) -> Bool in
                     print("Delete: \(indexPath.row)")
                     
@@ -805,11 +810,30 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             let push = storyboard.instantiateViewControllerWithIdentifier("PushFetchViewController") as! PushFetchViewController
             if PFUser.currentUser() != nil {
                 push.link = link
-                if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+                switch link! {
                     
-                    topController.presentViewController(push, animated: true, completion: nil)
+                case let .UserLink(_, _, uuid):
+                    DeepLink.user(uuid: uuid) { u in
+                        //push.timeline_id = (self.behavior.timeline?.adminId)!
+                        let dest = storyboard.instantiateViewControllerWithIdentifier("ShowUser") as! UserSummaryTableViewController
+                        dest.user = u
+                        let navigationController = UINavigationController(rootViewController: dest)
+                        navigationController.navigationBar.barTintColor = UIColor.redNavbarColor()
+                        navigationController.navigationBar.translucent = false
+                        if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+                            topController.presentViewController(navigationController, animated: true, completion: nil)
+                            //topController.navigationController?.pushViewController(navigationController, animated: true)
+                        }
+                    }
+                default : break
+                    
                     
                 }
+//                if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+//                    
+//                    topController.presentViewController(push, animated: true, completion: nil)
+//                    
+//                }
             }
             
         }

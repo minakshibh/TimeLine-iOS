@@ -20,11 +20,11 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     var status:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        UIApplication.sharedApplication().statusBarHidden = false;
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update6", userInfo: nil, repeats: false)
 
         
-           }
+    }
      func update6(){
         self.tableView.allowsMultipleSelectionDuringEditing = false
 
@@ -175,7 +175,9 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
             if !first {
                 PFUser.currentUser()?.resetBadgeMineInBackground()
                 self.navigationController?.tabBarItem.badgeValue = nil
+                main{
                 self.refreshControl?.endRefreshing()
+                }
             } else {
                 first = !first
             }

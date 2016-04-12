@@ -92,7 +92,7 @@ class MomentPlayerController: NSObject {
     }
     func previous() {
         
-        print("previous: \(self.currentIndex)")
+        //print("previous: \(self.currentIndex)")
         if self.currentIndex > 0
         {
             self.queuePlayer.seekToTime(kCMTimeZero)

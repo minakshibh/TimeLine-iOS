@@ -66,6 +66,11 @@ class EditWebsiteTableViewController: TintedHeaderTableViewController, UITextFie
             return false
         }
     }
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if let website = PFUser.currentUser()!["website"] as? String {
+            websiteField.text = website
+        }
+    }
     
     /*
     // MARK: - Navigation

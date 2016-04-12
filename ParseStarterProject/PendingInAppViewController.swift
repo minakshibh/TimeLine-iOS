@@ -14,7 +14,7 @@ class PendingInAppViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.navigationBarHidden = true
         // Do any additional setup after loading the view.
         switch productIdentifier {
         case String.additionalTimelineProduct:
@@ -40,7 +40,8 @@ class PendingInAppViewController: UIViewController {
                 preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: local(LocalizedString.TimelineAlertLimitErrorActionDismiss),
                 style: UIAlertActionStyle.Default, handler: { _ in
-                    self.dismissViewControllerAnimated(true, completion: nil)
+//                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.navigationController?.popViewControllerAnimated(true)
             }))
             self.presentAlertController(alert)
         }
@@ -50,7 +51,8 @@ class PendingInAppViewController: UIViewController {
         alert.addAction(UIAlertAction(title: local(LocalizedString.TimelineAlertLimitErrorActionLater),
             style: UIAlertActionStyle.Cancel,
             handler: { _ in
-                self.dismissViewControllerAnimated(true, completion: nil)
+//                self.dismissViewControllerAnimated(true, completion: nil)
+                self.navigationController?.popViewControllerAnimated(true)
         }))
         alert.addAction(UIAlertAction(title: local(LocalizedString.TimelineAlertLimitErrorActionRetry),
             style: UIAlertActionStyle.Default,

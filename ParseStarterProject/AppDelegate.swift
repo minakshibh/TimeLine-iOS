@@ -166,6 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         Storage.performRequest(ApiRequest.UserNotifications, completion: { (json) -> Void in
             print(json)
+            
             if let results = json["result"] as? [[String: AnyObject]] {
                 self.notificationCount = results.count
                 for not in results {

@@ -87,6 +87,27 @@ class FlatTimelineTableViewController: UITableViewController {
         return indexPath.row
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        if(timelines[indexForIndexPath(indexPath)].isOwn){
+            
+            if(timelines[indexForIndexPath(indexPath)].description.isEmpty){
+                return CGFloat(380+30*isiphone6Plus());
+            }else{
+                return CGFloat(402+30*isiphone6Plus());
+            }
+        }else{
+            
+            if(timelines[indexForIndexPath(indexPath)].description.isEmpty){
+                return CGFloat(435+30*isiphone6Plus());
+            }else{
+                return CGFloat(455+30*isiphone6Plus());
+            }
+            
+        }
+        
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("TimelineCell", forIndexPath: indexPath) as! ModernTimelineTableViewCell
         

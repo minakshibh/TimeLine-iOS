@@ -151,7 +151,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         }
     }
     func update(){
-        delay (0.20) {
+        delay (0.1) {
         self.setUpHooking()
         self.refresh()
         

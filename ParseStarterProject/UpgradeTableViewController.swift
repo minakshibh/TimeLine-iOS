@@ -38,7 +38,7 @@ class UpgradeTableViewController: TintedHeaderTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationController?.navigationBarHidden = false
         Storage.session.updateProduct(String.additionalTimelineProduct, success: refreshUnsynced, failure: { _ in })
         
         if popOnAppear && requestedPurchase {
@@ -48,11 +48,13 @@ class UpgradeTableViewController: TintedHeaderTableViewController {
             
             Storage.session.requestProducts { valids in
                 for vp in valids {
+                    print(vp)
                     switch vp.productIdentifier {
                     case String.additionalTimelineProduct:
-                        self.additionalTimelinePurchaseLabel.text = vp.localizedTitle
+                        self.additionalTimelinePurchaseLabel.text = "One Additional Feedeo"
                         self.additionalTimelinePriceLabel.text = vp.localizedPrice
-                        self.additionalTimelinePurchaseLabel.textColor = UIColor(red: 0xEB/255.0, green: 0x81/255.0, blue: 0x28/255.0, alpha: 1.0)
+                        self.additionalTimelinePurchaseLabel.textColor = UIColor.redNavbarColor()
+//                        self.additionalTimelinePurchaseLabel.textColor = UIColor(red: 0xEB/255.0, green: 0x81/255.0, blue: 0x28/255.0, alpha: 1.0)
                         let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: self.tableView.numberOfRowsInSection(0) - 1, inSection: 0))
                         cell?.selectionStyle = .Default
                     default:

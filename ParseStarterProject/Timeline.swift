@@ -178,6 +178,7 @@ extension Timeline {
         }
         
         Storage.performRequest(request) { (json) -> Void in
+            //print(json)
             var timelines = [Timeline]()
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
                 

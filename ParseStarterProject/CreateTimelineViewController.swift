@@ -247,7 +247,7 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
         friendslistTableView.frame         =   CGRectMake(10, friendslistY, self.friendsListView.frame.width-20, friendslistHeight);
         friendslistTableView.delegate      =   self
         friendslistTableView.dataSource    =   self
-        friendslistTableView.backgroundColor = UIColor.clearColor()
+        friendslistTableView.backgroundColor = UIColor.whiteColor()
         friendslistTableView.separatorStyle = .None
         friendslistTableView.tableFooterView = UIView()
         friendslistTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")

@@ -87,7 +87,7 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
                 let size = CGSizeMake(bioLabel.frame.width,CGFloat.max)
                 let rect = text.boundingRectWithSize(size, options:.UsesLineFragmentOrigin, attributes: attributes, context:nil)
                 bioLabel.autosizeForWidth()
-                cellHeight = CGFloat(rect.size.height + 5)
+                cellHeight = CGFloat(rect.size.height + 20)
                 
             }
         }
@@ -100,7 +100,7 @@ class EditProfileTableViewController: TintedHeaderTableViewController {
                 let size = CGSizeMake(otherLabel.frame.width,CGFloat.max)
                 let rect = text.boundingRectWithSize(size, options:.UsesLineFragmentOrigin, attributes: attributes, context:nil)
                 otherLabel.autosizeForWidth()
-                cellHeight = CGFloat(rect.size.height + 5)
+                cellHeight = CGFloat(rect.size.height + 20)
 
             }
         }

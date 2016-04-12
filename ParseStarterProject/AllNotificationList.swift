@@ -107,26 +107,26 @@ class AllNotificationList: UITableViewController {
             
             if (years != 0)
             {
-                timeStr = String(years) + "y"
+                timeStr = String(years) + "year"
             }
             if (months != 0)
             {
-                timeStr = String(months) + "M"
+                timeStr = String(months) + "mon"
             }
             else if(days != 0)
             {
-                timeStr = String(days) + "d"
+                timeStr = String(days) + "day"
             }
             else if(hours != 0)
             {
-                timeStr = String(hours) + "h"
+                timeStr = String(hours) + "hrs"
             }
             else if(minutes != 0)
             {
-                timeStr = String(minutes) + "m"
+                timeStr = String(minutes) + "min"
             }
             else{
-                timeStr = String(duration) + "s"
+                timeStr = String(duration) + "sec"
             }
             
             let notifyStr = raw["notification"] as! String

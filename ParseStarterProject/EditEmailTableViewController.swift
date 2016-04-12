@@ -43,6 +43,10 @@ class EditEmailTableViewController: TintedHeaderTableViewController, UITextField
         }
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        emailField.text = PFUser.currentUser()?.email
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         switch textField {
         case emailField:

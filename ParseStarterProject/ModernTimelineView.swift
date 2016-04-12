@@ -46,7 +46,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     
     var activityIndicator = UIActivityIndicatorView()
     let activityIndicatorView = UIView()
-    
+    var timeline_id :String = ""
     
     lazy var behavior: ModernTimelineBehavior = {
         let behavior = ModernTimelineBehavior()
@@ -102,7 +102,8 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     self.likebuttonY.constant = 80
                     
                     main{
-                    self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
+//                    self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
+                        self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), self.firstMomentPreview.frame.size.height)
                     }
                     
                 }else{
@@ -111,7 +112,8 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         self.seperatorLineView.hidden = true
                         self.likebuttonY.constant = 35
                     main{
-                    self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
+//                    self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
+                      self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), self.firstMomentPreview.frame.size.height)
                     }
                     }
                 }
@@ -880,12 +882,16 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                                 villainButton.tag = i
                                 if let raw = self.tagArray[i] as? NSDictionary
                                 {
-                                    villainButton.setTitle("@\(raw["name"]!)", forState: UIControlState.Normal)
+                                    if let name = raw["name"] as? String{
+                                        villainButton.setTitle("@\(name)", forState: UIControlState.Normal)
+                                    }
                                     let userimage = UIImageView()
                                     userimage.frame = CGRectMake(10, 5, 40, 40)
                                     userimage.layer.cornerRadius = 20
                                     userimage.clipsToBounds = true
-                                    userimage.sd_setImageWithURL(NSURL(string: (raw["image"] as? String)!))
+                                    if let image = raw["image"] as? String{
+                                        userimage.sd_setImageWithURL(NSURL(string:image))
+                                    }
                                     villainButton.addSubview(userimage)
                                     //                                villainButton.sd_setBackgroundImageWithURL(NSURL(string: (raw["image"] as? String)!), forState: .Normal)
                                 }
@@ -959,13 +965,14 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             commentMessage.textColor = UIColor.blackColor()
             if let raw = self.commentArray[indexPath.row] as? NSDictionary
             {
-                let notifyStr = raw["comment"] as! String
+                if let notifyStr = raw["comment"] as? String{
                 
                 let emoData1 = notifyStr.dataUsingEncoding(NSUTF8StringEncoding)
                 let emoStringConverted = String.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as String
                 
                 
                 commentMessage.text = emoStringConverted
+                }
             }
             commentMessage.autosizeForWidth()
             
@@ -1165,9 +1172,10 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             userImage.tag = indexPath.row
             if let raw = self.commentArray[indexPath.row] as? NSDictionary
             {
-                let notifyStr = raw["user_image"] as! String
+                if let notifyStr = raw["user_image"] as? String {
                 //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
                 userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+                }
                 //userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal, placeholderImage: UIImage(named:"default-user-profile"), options: SDWebImageOptions.ProgressiveDownload)
             }
             userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
@@ -1212,26 +1220,26 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 
                 if (years != 0)
                 {
-                    timeStr = String(years) + "y"
+                    timeStr = String(years) + "year"
                 }
                 if (months != 0)
                 {
-                    timeStr = String(months) + "m"
+                    timeStr = String(months) + "mon"
                 }
                 else if(days != 0)
                 {
-                    timeStr = String(days) + "d"
+                    timeStr = String(days) + "day"
                 }
                 else if(hours != 0)
                 {
-                    timeStr = String(hours) + "h"
+                    timeStr = String(hours) + "hrs"
                 }
                 else if(minutes != 0)
                 {
-                    timeStr = String(minutes) + "m"
+                    timeStr = String(minutes) + "min"
                 }
                 else{
-                    timeStr = String(duration) + "s"
+                    timeStr = String(duration) + "sec"
                 }
                 
                 timeStamp.text = timeStr
@@ -1265,7 +1273,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 if (notifyStr == Storage.session.uuid)
                 {
                     //configure right buttons
-                    cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
+                    cell.rightButtons = [MGSwipeButton(title: "", icon:UIImage(named: "CommentDelete.png"),backgroundColor: UIColor.redColor(), callback: {
                         (sender: MGSwipeTableCell!) -> Bool in
                         print("Delete: \(indexPath.row)")
                         
@@ -1278,7 +1286,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         }
                         
                         return true
-                    }),MGSwipeButton(title: "Edit",backgroundColor: UIColor.lightGrayColor(), callback: {
+                    }),MGSwipeButton(title: "",icon:UIImage(named: "CommentEdit.png"),backgroundColor: UIColor.lightGrayColor(), callback: {
                         (sender: MGSwipeTableCell!) -> Bool in
                         self.sendbutton.hidden = true
                         self.Updatebutton.hidden = false
@@ -1290,11 +1298,11 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         }
                         return true
                     })]
-                    cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
+                    cell.rightSwipeSettings.transition = MGSwipeTransition.ClipCenter
                 }
                 else if  (self.timeline?.isOwn)!
                 {
-                    cell.rightButtons = [MGSwipeButton(title: "Delete", backgroundColor: UIColor.redColor(), callback: {
+                    cell.rightButtons = [MGSwipeButton(title: "",icon:UIImage(named: "CommentDelete.png") ,backgroundColor: UIColor.redColor(), callback: {
                         (sender: MGSwipeTableCell!) -> Bool in
                         print("Delete: \(indexPath.row)")
                         
@@ -1307,7 +1315,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         
                         return true
                     })]
-                    cell.rightSwipeSettings.transition = MGSwipeTransition.Drag
+                    cell.rightSwipeSettings.transition = MGSwipeTransition.ClipCenter
                 }
             }
             
@@ -1350,6 +1358,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         if let link = link {
                             
                             self.handle(deepLink: link)
+//                            self.fetchData(link)
                         }
                     }
                     
@@ -1367,17 +1376,41 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         main {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let push = storyboard.instantiateViewControllerWithIdentifier("PushFetchViewController") as! PushFetchViewController
+            
             if PFUser.currentUser() != nil {
                 push.link = link
-                if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+                switch link! {
                     
-                    topController.presentViewController(push, animated: true, completion: nil)
+                case let .UserLink(_, _, uuid):
+                    DeepLink.user(uuid: uuid) { u in
+                        push.timeline_id = (self.behavior.timeline?.adminId)!
+                        let dest = storyboard.instantiateViewControllerWithIdentifier("ShowUser") as! UserSummaryTableViewController
+                        dest.user = u
+                        let navigationController = UINavigationController(rootViewController: dest)
+                        navigationController.navigationBar.barTintColor = UIColor.redNavbarColor()
+                        navigationController.navigationBar.translucent = false
+                        if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+                            topController.presentViewController(navigationController, animated: true, completion: nil)
+                            
+                            //topController.navigationController?.pushViewController(navigationController, animated: true)
+                        }
+                }
+                default : break
+                    
                     
                 }
+//                if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+//                    
+//                    topController.presentViewController(push, animated: true, completion: nil)
+//                    
+//                }
             }
             
         }
     }
+    
+
+    
     var notificationActivity: AllNotificationList?
     
     func processAsync(payload payload: [String: AnyObject], completion: (DeepLink?) -> Void) {

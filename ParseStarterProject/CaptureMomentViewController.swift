@@ -27,7 +27,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     var badgeTimer: NSTimer!
     var badgeTimerEnabled: Bool = true
     var momentPlayerController: MomentPlayerController?
-
+    var captureDevice : AVCaptureDevice?
     @IBOutlet var previewView: CameraPreviewView!
     @IBOutlet var recordButton: UIButton!
     @IBOutlet var torchOnButton: UIButton!
@@ -184,7 +184,8 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     }
     override func viewDidLoad() {
 //        hidesBottomBarWhenPushed = true
-        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
+        //UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
+        UIApplication.sharedApplication().statusBarHidden = true;
         tabBarController?.tabBar.hidden = true
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
@@ -398,6 +399,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     
     func reloadBadges() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //print(appDelegate.notificationCount)
         if appDelegate.notificationCount > 0{
              let style = BadgeStyle.defaultStyle()
             let text = String(appDelegate.notificationCount)
@@ -406,7 +408,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
                 self.allNotificationMenuButton.superview?.insertSubview(self.notificationsMenuBadge!, aboveSubview: self.allNotificationMenuButton)
                 self.notificationsMenuBadge?.frame.origin = CGPoint(
                     x: self.allNotificationMenuButton!.frame.origin.x + self.allNotificationMenuButton!.frame.width / 1.5,
-                    y: self.allNotificationMenuButton!.frame.origin.y-10
+                    y: self.allNotificationMenuButton!.frame.origin.y-15
                 )
             }
             self.notificationsMenuBadge?.badgeText = text
@@ -491,17 +493,17 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //        videoPreviewView.hidden = true
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-    
-    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
-        return .Fade
-    }
+//    override func prefersStatusBarHidden() -> Bool {
+//        return true
+//    }
+//    
+//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+//        return .LightContent
+//    }
+//    
+//    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+//        return .Fade
+//    }
     
     override func shouldAutorotate() -> Bool {
         print("should: \(!(recorder?.isRecording ?? false))")
@@ -543,6 +545,31 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         }
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let screenSize = previewView.bounds.size
+        if let touchPoint = touches.first {
+            let x = touchPoint.locationInView(previewView).y / screenSize.height
+            let y = 1.0 - touchPoint.locationInView(previewView).x / screenSize.width
+            let focusPoint = CGPoint(x: x, y: y)
+            
+            if let device = captureDevice {
+                do {
+                    try device.lockForConfiguration()
+                    
+                    device.focusPointOfInterest = focusPoint
+                    //device.focusMode = .ContinuousAutoFocus
+                    device.focusMode = .AutoFocus
+                    //device.focusMode = .Locked
+                    device.exposurePointOfInterest = focusPoint
+                    device.exposureMode = AVCaptureExposureMode.ContinuousAutoExposure
+                    device.unlockForConfiguration()
+                }
+                catch {
+                    // just ignore
+                }
+            }
+        }
+    }
 }
 
 
@@ -568,7 +595,7 @@ extension CaptureMomentViewController {
     
     @IBAction func flipCamera(sender: AnyObject!) {
         recorder.switchCaptureDevices()
-        toggleTorch()
+        //toggleTorch()
         refreshTorches()
     }
     

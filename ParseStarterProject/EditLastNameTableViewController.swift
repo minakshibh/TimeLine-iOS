@@ -54,6 +54,11 @@ class EditLastNameTableViewController: TintedHeaderTableViewController, UITextFi
         }
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if let lastName = PFUser.currentUser()!["lastname"] as? String {
+            lNameField.text = lastName
+        }
+    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         switch textField {

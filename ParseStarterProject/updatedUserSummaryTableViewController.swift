@@ -21,6 +21,9 @@ class updatedUserSummaryTableViewController: FlatTimelineTableViewControllerWith
 
         //tableView.rowHeight = UITableViewAutomaticDimension
         navigationItem.title = "@\(user.name ?? String())"
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.whiteColor()
+        ]
         if navigationController?.viewControllers[0] == self {
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(assetIdentifier: UIImage.AssetIdentifier.BackIndicator), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissViewControllerWithAnimation:")
         }

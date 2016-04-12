@@ -79,6 +79,28 @@ class CommonTimelineTableViewController: UITableViewController {
     func refreshTableView() { }
     
     // MARK: - Table view data source
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        
+        if(self.users[indexPath.section].timelines[indexPath.row].isOwn){
+            
+            if(self.users[indexPath.section].timelines[indexPath.row].description.isEmpty){
+                return CGFloat(380+30*isiphone6Plus());
+            }else{
+                return CGFloat(402+30*isiphone6Plus());
+            }
+        }else{
+            
+            if(self.users[indexPath.section].timelines[indexPath.row].description.isEmpty){
+                return CGFloat(435+30*isiphone6Plus());
+            }else{
+                return CGFloat(455+30*isiphone6Plus());
+            }
+            
+        }
+        
+        
+    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // Return the number of sections.
@@ -95,7 +117,9 @@ class CommonTimelineTableViewController: UITableViewController {
         
         
         // Configure the cell...
-        cell.timelineView.timeline = users[indexPath.section].timelines[indexPath.row]
+        main{
+        cell.timelineView.timeline = self.users[indexPath.section].timelines[indexPath.row]
+        }
         //cell.deletionCallback = self.deletionCallback()
         
         return cell

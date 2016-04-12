@@ -71,6 +71,7 @@
     button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     [button setTitle:title forState:UIControlStateNormal];
+    [button setTintColor:[UIColor whiteColor]];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setImage:icon forState:UIControlStateNormal];
     button.callback = callback;

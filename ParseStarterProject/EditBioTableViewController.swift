@@ -64,7 +64,7 @@ class EditBioTableViewController: TintedHeaderTableViewController, UITextViewDel
         return true
     }
     func textViewDidBeginEditing(textView: UITextView) {
-        textView.text = ""
+        //textView.text = ""
         textView.textColor = UIColor.blackColor()
     }
 }

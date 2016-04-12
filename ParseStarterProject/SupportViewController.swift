@@ -24,7 +24,7 @@ class SupportViewController: UIViewController, UIWebViewDelegate {
         let y = self.view.frame.height/2.0 - height/2.0
         
         self.viewActivityIndicator = UIView(frame: CGRect(x: x, y: y, width: width, height: height))
-        self.viewActivityIndicator.backgroundColor = UIColor(red: 255.0/255.0, green: 148.0/255.0, blue: 1.0/255.0, alpha: 1.0)
+        self.viewActivityIndicator.backgroundColor = UIColor.redNavbarColor()
         self.viewActivityIndicator.layer.cornerRadius = 10
         
         self.activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
