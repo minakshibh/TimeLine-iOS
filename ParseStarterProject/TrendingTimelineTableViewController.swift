@@ -38,6 +38,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
     
+    
+    
     var searchResults: [AnyObject] = [] {
         didSet {
             searching = false
@@ -173,7 +175,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     override func viewWillAppear(animated: Bool) {
         
         
-        if(isiphone6()==1 || isiPhone5()==1){
+        if(IPHONE6==1 || IPHONE5==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
                 
             }else{
@@ -182,7 +184,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             }
         }
         
-        if(isiphone6Plus()==1){
+        if(IPHONE6P==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
                 
             }else{
@@ -370,6 +372,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                     
                     contactName = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
                     print("\(contactName)")
+                    
                     self.nameArray.addObject(contactName )
                     
                     
@@ -389,7 +392,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                             for ix in 0 ..< ABMultiValueGetCount(numbers) {
                                 //                            let label = ABMultiValueCopyLabelAtIndex(numbers,ix).takeRetainedValue() as String
                                 //                            let value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
-                                
+                                print("numbers: \(numbers)")
                                 
                                 if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
                                     value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
@@ -727,7 +730,10 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         // Pass the selected object to the new view controller.
     }
     */
-
+    deinit{
+        resultSearchController.removeFromParentViewController()
+    }
+    
 }
 
 extension TrendingTimelineTableViewController: UISearchDisplayDelegate {

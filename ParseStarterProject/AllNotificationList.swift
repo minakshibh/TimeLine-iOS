@@ -24,6 +24,7 @@ class AllNotificationList: UITableViewController {
         delay (0.01) {
             self.allNotificationsAPI()
         }
+        self.navigationController?.navigationBarHidden = false
            // Do any additional setup after loading the view.
     }
     override func viewDidDisappear(animated: Bool) {

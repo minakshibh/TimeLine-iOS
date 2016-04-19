@@ -12,7 +12,9 @@ class FlatUserTableViewController: UITableViewController {
     
     var users: [User] = [] {
         didSet {
-            main { self.tableView.reloadData() }
+            main {
+                self.tableView.reloadData()
+            }
         }
     }
     

@@ -44,9 +44,9 @@ class EditOverlayViewController: UIViewController {
         
         // notifications
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+            selector: #selector(EditOverlayViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+            selector: #selector(EditOverlayViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         view.setNeedsLayout()
         delay(0.01) {

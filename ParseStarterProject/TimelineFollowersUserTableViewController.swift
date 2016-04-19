@@ -18,14 +18,17 @@ class TimelineFollowersUserTableViewController: FlatUserTableViewController {
     
     override func refreshTableView() {
         var first = true
-        
+        main{
         User.getUsers(ApiRequest.CurrentTimelineFollowers) { usrs in
             self.users = usrs
             if !first {
-                main { self.refreshControl?.endRefreshing() }
+                main {
+                    self.refreshControl?.endRefreshing()
+                }
             } else {
                 first = false
             }
+        }
         }
     }
 

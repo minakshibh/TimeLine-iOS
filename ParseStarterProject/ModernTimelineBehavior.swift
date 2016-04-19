@@ -233,8 +233,9 @@ extension ModernTimelineBehavior {
             
             return
         }
-        
-        playMoment(target, moment: m)
+        main{
+            self.playMoment(target, moment: m)
+        }
     }
 
 }

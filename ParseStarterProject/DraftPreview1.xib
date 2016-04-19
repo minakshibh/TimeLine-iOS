@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DraftPreview" customModule="Timeline" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="csb-QR-16h" customClass="DraftPreview" customModule="Timeline" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zff-g2-nsb" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                    <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
+                </imageView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tvY-GW-Lgf">
+                    <rect key="frame" x="141" y="142" width="37" height="37"/>
+                </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFZ-4u-yBn">
+                    <rect key="frame" x="115" y="115" width="90" height="90"/>
+                    <state key="normal" image="Play Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="playMoment" destination="csb-QR-16h" eventType="touchUpInside" id="sMs-Ke-lSO"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uwZ-dp-iXz">
+                    <rect key="frame" x="141" y="142" width="37" height="37"/>
+                </activityIndicatorView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="leo-Yk-aoL" userLabel="Playback Container" customClass="PlayerView" customModule="Timeline" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                    <subviews>
+                        <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aoq-yw-VBh">
+                            <rect key="frame" x="0.0" y="50" width="320" height="52"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="ovX-fG-ePF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kLB-TN-mRk">
+                                        <rect key="frame" x="8" y="8" width="304" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                            <blurEffect style="light"/>
+                        </visualEffectView>
+                        <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OV7-vj-LV9" userLabel="Previous">
+                            <rect key="frame" x="8" y="290" width="64" height="22"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="Previous Player"/>
+                            <connections>
+                                <action selector="previous" destination="csb-QR-16h" eventType="touchUpInside" id="KTS-9X-Bsz"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ug-7a-dXv" userLabel="Next">
+                            <rect key="frame" x="303" y="290" width="9" height="22"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="Next Player"/>
+                            <connections>
+                                <action selector="next" destination="csb-QR-16h" eventType="touchUpInside" id="hsD-zg-knn"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbR-vn-rok">
+                            <rect key="frame" x="8" y="8" width="31" height="32"/>
+                            <state key="normal" image="close"/>
+                            <connections>
+                                <action selector="stop" destination="csb-QR-16h" eventType="touchUpInside" id="ctz-Cz-D6L"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9a5-vt-yJT" userLabel="Play">
+                            <rect key="frame" x="74" y="280" width="85" height="32"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="Play Player"/>
+                            <connections>
+                                <action selector="play" destination="csb-QR-16h" eventType="touchUpInside" id="lik-F6-aC7"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5a-9L-GaU" userLabel="Comments">
+                            <rect key="frame" x="161" y="280" width="32" height="32"/>
+                            <state key="normal" image="commentMoment"/>
+                            <connections>
+                                <action selector="commentButtonClick:" destination="csb-QR-16h" eventType="touchUpInside" id="Yv1-SY-362"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8u0-H3-dgq" userLabel="Pause">
+                            <rect key="frame" x="85" y="290" width="64" height="22"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="Pause Player"/>
+                            <connections>
+                                <action selector="pause" destination="csb-QR-16h" eventType="touchUpInside" id="wnj-EJ-qV8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="leo-Yk-aoL" firstAttribute="top" secondItem="csb-QR-16h" secondAttribute="top" id="7R1-if-wzc"/>
+                <constraint firstItem="tvY-GW-Lgf" firstAttribute="centerX" secondItem="EFZ-4u-yBn" secondAttribute="centerX" id="GfQ-Ms-Pxy"/>
+                <constraint firstItem="leo-Yk-aoL" firstAttribute="bottom" secondItem="zff-g2-nsb" secondAttribute="bottom" id="Gz2-Ha-qen"/>
+                <constraint firstItem="uwZ-dp-iXz" firstAttribute="leading" secondItem="tvY-GW-Lgf" secondAttribute="leading" id="UK1-JL-PDt"/>
+                <constraint firstAttribute="trailing" secondItem="leo-Yk-aoL" secondAttribute="trailing" id="YiX-De-jYd"/>
+                <constraint firstItem="zff-g2-nsb" firstAttribute="centerX" secondItem="tvY-GW-Lgf" secondAttribute="centerX" id="d7k-x7-YxV"/>
+                <constraint firstItem="zff-g2-nsb" firstAttribute="leading" secondItem="leo-Yk-aoL" secondAttribute="leading" id="gPA-tM-jcf"/>
+                <constraint firstAttribute="bottom" secondItem="leo-Yk-aoL" secondAttribute="bottom" id="gjo-2V-LlN"/>
+                <constraint firstItem="tvY-GW-Lgf" firstAttribute="top" secondItem="uwZ-dp-iXz" secondAttribute="top" id="iEy-qO-uVW"/>
+                <constraint firstItem="leo-Yk-aoL" firstAttribute="trailing" secondItem="zff-g2-nsb" secondAttribute="trailing" id="j4O-5X-l97"/>
+                <constraint firstItem="zff-g2-nsb" firstAttribute="leading" secondItem="csb-QR-16h" secondAttribute="leading" id="k64-t2-Z0W"/>
+                <constraint firstItem="zff-g2-nsb" firstAttribute="top" secondItem="leo-Yk-aoL" secondAttribute="top" id="orB-6I-ORq"/>
+                <constraint firstItem="zff-g2-nsb" firstAttribute="centerY" secondItem="EFZ-4u-yBn" secondAttribute="centerY" id="ouI-Rd-B4C"/>
+                <constraint firstItem="uwZ-dp-iXz" firstAttribute="centerY" secondItem="EFZ-4u-yBn" secondAttribute="centerY" id="uMt-HA-LwK"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="activityIndicatorView" destination="tvY-GW-Lgf" id="HSL-fG-ROk"/>
+                <outlet property="bufferIndicator" destination="uwZ-dp-iXz" id="lTG-f3-Aed"/>
+                <outlet property="closeButton" destination="pbR-vn-rok" id="JDG-uY-EOG"/>
+                <outlet property="commentButton" destination="E5a-9L-GaU" id="zUi-qd-7UR"/>
+                <outlet property="nextPlayButton" destination="1ug-7a-dXv" id="gR5-Rr-b51"/>
+                <outlet property="pausePlayButton" destination="8u0-H3-dgq" id="8Ba-7M-IfO"/>
+                <outlet property="playButton" destination="EFZ-4u-yBn" id="5fS-2B-PAW"/>
+                <outlet property="playPlayButton" destination="9a5-vt-yJT" id="zQi-uv-1Sv"/>
+                <outlet property="playbackContainer" destination="leo-Yk-aoL" id="YDC-S0-wkE"/>
+                <outlet property="previewImageView" destination="zff-g2-nsb" id="oMQ-Fq-ZhE"/>
+                <outlet property="previousPlayButton" destination="OV7-vj-LV9" id="UPQ-Fj-9Cc"/>
+                <outlet property="textField" destination="kLB-TN-mRk" id="3Vz-r0-qnW"/>
+                <outlet property="textFieldContainer" destination="Aoq-yw-VBh" id="j0s-az-Zue"/>
+            </connections>
+            <point key="canvasLocation" x="347" y="362"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Next Player" width="32" height="32"/>
+        <image name="Pause Player" width="32" height="32"/>
+        <image name="Play Button" width="90" height="90"/>
+        <image name="Play Player" width="32" height="32"/>
+        <image name="Previous Player" width="32" height="32"/>
+        <image name="close" width="31" height="32"/>
+        <image name="commentMoment" width="32" height="31"/>
+    </resources>
+</document>

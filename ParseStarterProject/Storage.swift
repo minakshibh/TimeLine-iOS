@@ -160,13 +160,14 @@ extension Storage {
                 //print("Error: \(request.urlRequest.URL?.absoluteString ?? "")\n\(error)\n\n")
                 return
             }
-            //print(response)
+            //print(data)
             func perform() {
                 var error: NSError?
                 var json : [String: AnyObject]?
                 do {
                     guard let data = data else { throw NSError(domain: "Storage.performRequest", code: 0, userInfo: nil) }
                     let someJson: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+                    //print(someJson)
                     if let array = someJson as? [AnyObject] {
                         json = ["result": array]
                     } else if let dict = someJson as? [String: AnyObject] {

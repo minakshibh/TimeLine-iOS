@@ -1,8 +1,10 @@
 EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CrittercismSDK"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Alamofire.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Bolts.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/KGModal.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Parse.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/ParseCrashReporting.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/ParseUI.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/RMStore.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SCRecorder.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SDWebImage.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SWFrameButton.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -ObjC -framework "Alamofire" -framework "Bolts" -framework "KGModal" -framework "Parse" -framework "ParseCrashReporting" -framework "ParseUI" -framework "RMStore" -framework "SCRecorder" -framework "SDWebImage" -framework "SWFrameButton"
+LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/CrittercismSDK/CrittercismSDK"
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Alamofire.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Bolts.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/KGModal.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Parse.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/ParseCrashReporting.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/ParseUI.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/RMStore.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SCRecorder.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SDWebImage.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SWFrameButton.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/CrittercismSDK"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"Crittercism_v5_4_0" -framework "Alamofire" -framework "Bolts" -framework "KGModal" -framework "Parse" -framework "ParseCrashReporting" -framework "ParseUI" -framework "RMStore" -framework "SCRecorder" -framework "SDWebImage" -framework "SWFrameButton" -framework "SystemConfiguration"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
 PODS_ROOT = ${SRCROOT}/Pods

@@ -178,7 +178,7 @@ extension Timeline {
         }
         
         Storage.performRequest(request) { (json) -> Void in
-            //print(json)
+            print(json)
             var timelines = [Timeline]()
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
                 
@@ -388,19 +388,25 @@ extension Timeline {
     }
     
     func reloadMoments(completion: Void -> Void) {
-        Storage.performRequest(ApiRequest.ViewTimelineVideos(state.uuid!), completion: { (json) -> Void in
+        main{
+        Storage.performRequest(ApiRequest.ViewTimelineVideos(self.state.uuid!), completion: { (json) -> Void in
             var dirty = false
             if let videos = json["videos"] as? [[String: AnyObject]] {
-                //print(videos)
+                //print("moment for video's :\(videos)")
+                self.moments.removeAll()
                 for v in videos {
-                    if let _ = Storage.findMoment(v["id"] as! UUID) {
-                        // do nothing
-                    } else {
+//                    if let _ = Storage.findMoment(v["id"] as! UUID) {
+//                        // do nothing
+//                        
+//                        
+//                    } else {
                         // create moment
+                    
+                        //print("video dictionary : \(v)")
                         let moment = Moment(dict: v, parent: self)
                         self.moments.append(moment)
                         dirty = true
-                    }
+                    //}
                 }
             }
             if dirty {
@@ -408,6 +414,7 @@ extension Timeline {
             }
             completion()
         })
+        }
     }
     
     func like(completion: () -> ()) {

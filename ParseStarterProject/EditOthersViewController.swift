@@ -55,6 +55,13 @@ class EditOthersTableViewController: TintedHeaderTableViewController, UITextView
     }
    
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let newLength = text.characters.count + textView.text.characters.count - range.length
+        
+        if(newLength > 120)
+        {
+            textView.resignFirstResponder()
+            return false
+        }
         if(text == "\n") {
             textView.resignFirstResponder()
             save()

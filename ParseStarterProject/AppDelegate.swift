@@ -46,7 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "addAnimation", userInfo: nil, repeats: true)
 
         Parse.enableLocalDatastore()
-        ParseCrashReporting.enable()
+        //ParseCrashReporting.enable()
+        Crittercism.enableWithAppID("2c57534195eb481fbee96f5d44fdbe9f00555300")
         //
         // Uncomment and fill in with your Parse credentials:
         NSUserDefaults.standardUserDefaults().setObject(" ", forKey:"transitionTo")
@@ -55,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             clientKey: "TSMwY8Asxa08Br0pB0QR03bpGA5GjMLPYia9Ljka")
 //        Parse.setApplicationId("Zlos4Gg3l7oIeyfekTgMNrA5ENWoHmyKGuRiM39C",
 //            clientKey: "XAGhmOVc3POrGugXHlVYuySyWuOj0Q6hET3SE2fW")
-        
+        //PFUser.logOut()
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         let defaultACL = PFACL()

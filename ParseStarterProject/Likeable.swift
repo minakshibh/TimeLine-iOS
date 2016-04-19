@@ -47,7 +47,9 @@ extension Timeline: Likeable {
             completion([])
             return
         }
+        main{
         User.getUsers(.TimelineLikersList(uuid), completion: completion)
+        }
     }
 }
 extension User: Likeable {

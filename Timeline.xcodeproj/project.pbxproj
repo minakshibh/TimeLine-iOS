@@ -23,6 +23,7 @@
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
 		972BEACD1CA2752100D3767D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57C77B1B53EA7400C51BC0 /* AVFoundation.framework */; };
 		975E4F9A1C80702300DAEF0E /* UILabel+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 975E4F991C80702300DAEF0E /* UILabel+helper.m */; };
+		977A9EFF1CC0B63900591FAE /* DraftPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 977A9EFE1CC0B63900591FAE /* DraftPreview.xib */; };
 		979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */; };
 		97ADC8791C89B0BF00546A9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ADC8781C89B0BF00546A9B /* AppDelegate.swift */; };
 		97BB61C01CB237FA0081DEA6 /* HelperIphoneCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB61BF1CB237FA0081DEA6 /* HelperIphoneCheck.m */; };
@@ -135,7 +136,6 @@
 		DA167E0E1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E0B1B7D61E800608A6C /* CSStickyHeaderFlowLayout.m */; };
 		DA167E0F1B7D61E800608A6C /* CSStickyHeaderFlowLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = DA167E0D1B7D61E800608A6C /* CSStickyHeaderFlowLayoutAttributes.m */; };
 		DA167E111B7D6A9200608A6C /* EmptyCollectionViewReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA167E101B7D6A9200608A6C /* EmptyCollectionViewReusableView.xib */; };
-		DA167E131B7D6C6D00608A6C /* DraftPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA167E121B7D6C6D00608A6C /* DraftPreview.xib */; };
 		DA167E151B7D720A00608A6C /* DraftBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA167E141B7D720A00608A6C /* DraftBarCollectionReusableView.swift */; };
 		DA1DF2021B55263F00BD6011 /* AVCaptureDeviceAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1DF2011B55263F00BD6011 /* AVCaptureDeviceAdditions.swift */; };
 		DA1DF2041B55295A00BD6011 /* async.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1DF2031B55295A00BD6011 /* async.swift */; };
@@ -281,6 +281,7 @@
 		9472C1B472FC01F506711759 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		975E4F981C80702300DAEF0E /* UILabel+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+helper.h"; path = "Objective-C classes/UILabel+helper.h"; sourceTree = SOURCE_ROOT; };
 		975E4F991C80702300DAEF0E /* UILabel+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+helper.m"; path = "Objective-C classes/UILabel+helper.m"; sourceTree = SOURCE_ROOT; };
+		977A9EFE1CC0B63900591FAE /* DraftPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftPreview.xib; sourceTree = "<group>"; };
 		979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatTimelineTableViewControllerWithoutUsername.swift; sourceTree = "<group>"; };
 		97ADC8781C89B0BF00546A9B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97BB61BE1CB237FA0081DEA6 /* HelperIphoneCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelperIphoneCheck.h; path = "Objective-C classes/HelperIphoneCheck.h"; sourceTree = SOURCE_ROOT; };
@@ -420,7 +421,6 @@
 		DA167E0C1B7D61E800608A6C /* CSStickyHeaderFlowLayoutAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStickyHeaderFlowLayoutAttributes.h; sourceTree = "<group>"; };
 		DA167E0D1B7D61E800608A6C /* CSStickyHeaderFlowLayoutAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSStickyHeaderFlowLayoutAttributes.m; sourceTree = "<group>"; };
 		DA167E101B7D6A9200608A6C /* EmptyCollectionViewReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCollectionViewReusableView.xib; sourceTree = "<group>"; };
-		DA167E121B7D6C6D00608A6C /* DraftPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftPreview.xib; sourceTree = "<group>"; };
 		DA167E141B7D720A00608A6C /* DraftBarCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraftBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		DA1DF2011B55263F00BD6011 /* AVCaptureDeviceAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCaptureDeviceAdditions.swift; sourceTree = "<group>"; };
 		DA1DF2031B55295A00BD6011 /* async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = async.swift; sourceTree = "<group>"; };
@@ -1108,11 +1108,11 @@
 		DAFBAE031B8616F100F3906E /* Moment Preview */ = {
 			isa = PBXGroup;
 			children = (
+				977A9EFE1CC0B63900591FAE /* DraftPreview.xib */,
 				DAB91DB21B7A476A005516F2 /* DraftPreviewCollectionReusableView.swift */,
 				DA40BBB91B7FBFD60070BEE9 /* DraftPreviewTableViewCell.swift */,
 				BA6729D61B9993D2000935A1 /* DraftPreviewView.swift */,
 				DA40BBB71B7FBF190070BEE9 /* DraftPreview.swift */,
-				DA167E121B7D6C6D00608A6C /* DraftPreview.xib */,
 			);
 			name = "Moment Preview";
 			sourceTree = "<group>";
@@ -1265,6 +1265,7 @@
 				DA57C7851B53FDE600C51BC0 /* Localizable.strings in Resources */,
 				D937FA8F1C90556B00C53274 /* User-lists.png in Resources */,
 				D9C252871CAA464A008F2E4B /* UserSummaryPendingFollowersTableViewCell.xib in Resources */,
+				977A9EFF1CC0B63900591FAE /* DraftPreview.xib in Resources */,
 				BA14B7721B9DB3A3006A5843 /* SCRecorder.license in Resources */,
 				BA14B7691B9DB349006A5843 /* MGSwipeTableCell.license in Resources */,
 				DA167E111B7D6A9200608A6C /* EmptyCollectionViewReusableView.xib in Resources */,
@@ -1277,7 +1278,6 @@
 				BA14B7631B9DB2B6006A5843 /* RMStore.license in Resources */,
 				BA14B7671B9DB31E006A5843 /* CustomBadge.license in Resources */,
 				DA38C4DD1B87DB68004C3A14 /* TimelineView.xib in Resources */,
-				DA167E131B7D6C6D00608A6C /* DraftPreview.xib in Resources */,
 				81BA81501A49DA1800E65899 /* Main.storyboard in Resources */,
 				DA38C4E01B87DB74004C3A14 /* TimelineTableHeaderView.xib in Resources */,
 				18DBC7101C902A67006AFE68 /* ModernTimelineView.xib in Resources */,

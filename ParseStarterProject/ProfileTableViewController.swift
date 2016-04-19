@@ -32,6 +32,35 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     var status:Bool = false
     var pendingBadge: CustomBadge?
     
+    // Iphonecheck Classes
+    enum UIUserInterfaceIdiom : Int
+    {
+        case Unspecified
+        case Phone
+        case Pad
+    }
+    
+    struct ScreenSize
+    {
+        static let SCREEN_WIDTH         = UIScreen.mainScreen().bounds.size.width
+        static let SCREEN_HEIGHT        = UIScreen.mainScreen().bounds.size.height
+        static let SCREEN_MAX_LENGTH    = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+        static let SCREEN_MIN_LENGTH    = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+    }
+    
+    struct DeviceType
+    {
+        static let IS_IPHONE_4_OR_LESS  = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
+        static let IS_IPHONE_5          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
+        static let IS_IPHONE_6          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
+        static let IS_IPHONE_6P         = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
+        static let IS_IPAD              = UIDevice.currentDevice().userInterfaceIdiom == .Pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
+    }
+    let IPHONE4 : Int = DeviceType.IS_IPHONE_4_OR_LESS ? 1 : 0
+    let IPHONE5 : Int = DeviceType.IS_IPHONE_5 ? 1 : 0
+    let IPHONE6 : Int = DeviceType.IS_IPHONE_6 ? 1 : 0
+    let IPHONE6P :Int = DeviceType.IS_IPHONE_6P ? 1 : 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,7 +114,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         
         let transition: CATransition = CATransition()
         let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.duration = 0.25
+        transition.duration = 0.1
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
@@ -123,7 +152,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
 //        self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
 //        print("\(self.navigationController!.navigationBar.frame)")
         
-        if(isiphone6()==1 || isiPhone5()==1){
+        if(IPHONE6==1 || IPHONE5==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
                 
             }else{
@@ -132,7 +161,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
             }
         }
         
-        if(isiphone6Plus()==1){
+        if(IPHONE6P==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
                 
             }else{
@@ -143,7 +172,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if (status && isiphone6Plus()==1) {
+        if (status && IPHONE6P==1) {
          self.tableView.headerViewForSection(0)?.frame = CGRectMake((self.tableView.headerViewForSection(0)?.frame.origin.x)!,(self.tableView.headerViewForSection(0)?.frame.origin.y)!-20,(self.tableView.headerViewForSection(0)?.frame.size.width)!,(self.tableView.headerViewForSection(0)?.frame.size.height)!)
 
         userSummaryView.frame = CGRectMake(userSummaryView.frame.origin.x,userSummaryView.frame.origin.y-20,userSummaryView.frame.size.width,userSummaryView.frame.size.height)

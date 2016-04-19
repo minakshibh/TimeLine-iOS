@@ -47,7 +47,7 @@ class Moment: Synchronized, DictConvertable {
     var overlayText: String?
     var overlaySize: Int?
     var overlayColor: UIColor?
-    
+    var commentCount: Int?
     var localThumbURL: NSURL? {
         if let l = self.pathName {
             return Moment.documentURL(l, suffix: "jpg")
@@ -65,7 +65,8 @@ class Moment: Synchronized, DictConvertable {
     weak var parent: ParentType?
     typealias ParentType = Timeline
     
-    required init(persistent: Bool, pathName: String?, remoteStreamURL: NSURL?, remoteVideoURL: NSURL?, remoteThumbURL: NSURL?, size: Int?, duration: Int?, contentType: String?, overlayPosition: Float?, overlayText: String?, overlaySize: Int?, overlayColor: UIColor?, state: SynchronizationState = .LocalOnly, parent: ParentType? = nil) {
+    required init(persistent: Bool, pathName: String?, remoteStreamURL: NSURL?, remoteVideoURL: NSURL?, remoteThumbURL: NSURL?, size: Int?, duration: Int?, contentType: String?, overlayPosition: Float?, overlayText: String?, overlaySize: Int?, overlayColor: UIColor?,commentcount: Int?, state: SynchronizationState = .LocalOnly, parent: ParentType? = nil) {
+        
         self.persistent = persistent
         self.pathName = pathName ?? Moment.newName()
         self.remoteStreamURL = remoteStreamURL
@@ -78,8 +79,10 @@ class Moment: Synchronized, DictConvertable {
         self.overlayPosition = overlayPosition
         self.overlaySize = overlaySize
         self.overlayText = overlayText
+        self.commentCount = commentcount
         self.state = state
         self.parent = parent
+        
     }
     
     convenience required init(dict: [String: AnyObject], parent: ParentType? = nil) {
@@ -87,6 +90,7 @@ class Moment: Synchronized, DictConvertable {
         let bug = (dict["persistent"] as? Bool) ?? true
         let state = SynchronizationState(dict: dict["state"] as? [String: AnyObject] ?? dict)
         let duration = dict["duration"] as? Float
+        //print("testing moment \(dict)")
         self.init(
             persistent: bug,
             pathName: alternative(dict["local_name"] as? String, rhs: dict["path_name"] as? String),
@@ -100,13 +104,16 @@ class Moment: Synchronized, DictConvertable {
             overlayText: dict["overlay_text"] as? String,
             overlaySize: dict["overlay_size"] as? Int,
             overlayColor: UIColor.from(hexString: dict["overlay_color"] as? String),
+            commentcount: dict["comments_count"] as? Int,
             state: state,
             parent: parent
         )
     }
     
     var dict: [String: AnyObject] {
-        let optDict: [String: AnyObject?] = ["persistent": persistent, "path_name": pathName, "video_url": maybeURLToString(remoteVideoURL), "video_lowres": maybeURLToString(remoteStreamURL), "video_thumb": maybeURLToString(remoteThumbURL), "video_file_size": size, "video_content_type": contentType, "state": state.dict, "duration": duration ?? 0, "overlay_position": overlayPosition, "overlay_text": overlayText, "overlay_size": overlaySize, "overlay_color": overlayColor?.hexString]
+        let optDict: [String: AnyObject?] = ["persistent": persistent, "path_name": pathName, "video_url": maybeURLToString(remoteVideoURL), "video_lowres": maybeURLToString(remoteStreamURL), "video_thumb": maybeURLToString(remoteThumbURL), "video_file_size": size, "video_content_type": contentType, "state": state.dict, "duration": duration ?? 0, "overlay_position": overlayPosition, "overlay_text": overlayText, "overlay_size": overlaySize, "overlay_color": overlayColor?.hexString,"comments_count":commentCount]
+        
+        //print("optdict : \(optDict)")
         let tuples = optDict.filter {
             return $0.1 != nil
         }

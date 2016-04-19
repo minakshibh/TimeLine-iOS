@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -90,6 +90,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="timelineMenuButton:" destination="Qj8-N8-GTa" eventType="touchUpInside" id="heK-nA-Xei"/>
+                                    <segue destination="9Mx-I1-skZ" kind="presentation" identifier="ShowMoments" id="Wfv-9H-0DN"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="rHK-jr-uvR">
@@ -111,6 +112,7 @@
                                 </state>
                                 <connections>
                                     <action selector="timelineProfileButton:" destination="Qj8-N8-GTa" eventType="touchUpInside" id="qxb-G3-Il2"/>
+                                    <segue destination="BQs-7X-4UJ" kind="show" id="5Va-44-WlD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCF-BM-4Pb">
@@ -118,7 +120,7 @@
                                 <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Notification"/>
                                 <connections>
-                                    <segue destination="JHn-XN-scc" kind="presentation" id="rwK-at-l0Q"/>
+                                    <segue destination="JHn-XN-scc" kind="show" id="GtY-Yp-P1j"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIn-Pj-rdw" userLabel="Torch Off">
@@ -390,7 +392,6 @@
                         <outletCollection property="menuControls" destination="AMt-W2-JPI" collectionClass="NSMutableArray" id="Zpr-5x-V7m"/>
                         <outletCollection property="menuControls" destination="rIn-Pj-rdw" collectionClass="NSMutableArray" id="x9x-lC-M3g"/>
                         <outletCollection property="menuControls" destination="LCF-BM-4Pb" collectionClass="NSMutableArray" id="SAI-nj-7Sp"/>
-                        <segue destination="9Mx-I1-skZ" kind="presentation" identifier="ShowMoments" id="SrR-ph-ZEC"/>
                         <segue destination="eIZ-rg-iqM" kind="presentation" identifier="WalkthroughCamera" id="fy0-iv-eFM"/>
                     </connections>
                 </viewController>
@@ -2950,7 +2951,7 @@ Effective as of September 14, 2015
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ivp-0o-qJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3573" y="-1587"/>
+            <point key="canvasLocation" x="-4021" y="-1783"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="a86-Zj-Umv">
@@ -4157,7 +4158,7 @@ Effective as of September 14, 2015
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1n7-PD-kKf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1195" y="554"/>
+            <point key="canvasLocation" x="1245" y="583"/>
         </scene>
         <!--Pending Followers-->
         <scene sceneID="igh-Cq-7ks">
@@ -4452,7 +4453,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="dpZ-pz-TmS" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="fjd-4e-PdK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4492,7 +4493,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="mAi-gA-dKZ" userLabel="Followers" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlA-cD-rtE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4541,12 +4542,12 @@ Effective as of September 14, 2015
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="h8c-CJ-WKs" kind="relationship" relationship="rootViewController" id="1Ax-Uh-Qdj"/>
+                        <segue destination="h8c-CJ-WKs" kind="relationship" relationship="rootViewController" id="L8K-rD-8QS"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLg-l8-9bA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1914" y="-1190"/>
+            <point key="canvasLocation" x="-1838" y="-1319"/>
         </scene>
         <!--Activity-->
         <scene sceneID="oQz-Aa-og3">
@@ -4656,7 +4657,7 @@ Effective as of September 14, 2015
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULZ-gt-pE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5085" y="-842"/>
+            <point key="canvasLocation" x="-2647" y="-1923"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zir-j0-bnP">
@@ -5067,19 +5068,19 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JSH-Rm-O8t"/>
-        <segue reference="5f9-3x-iDp"/>
-        <segue reference="JUD-Gk-HWr"/>
         <segue reference="fy0-iv-eFM"/>
-        <segue reference="wPR-Ua-TlF"/>
-        <segue reference="dHW-RB-S8H"/>
-        <segue reference="T9S-G7-mh0"/>
-        <segue reference="Mq8-L9-ocP"/>
-        <segue reference="Odf-Iw-TZ0"/>
-        <segue reference="gqI-eh-cAa"/>
+        <segue reference="Szi-aa-9D9"/>
+        <segue reference="OVj-EF-9W0"/>
+        <segue reference="sHs-6J-bIg"/>
+        <segue reference="MIt-vp-hHF"/>
+        <segue reference="bz1-Sk-Hfb"/>
         <segue reference="uwx-Vf-wTk"/>
-        <segue reference="kNn-C3-4Z5"/>
         <segue reference="9SA-Oc-iuS"/>
+        <segue reference="kNn-C3-4Z5"/>
+        <segue reference="5f9-3x-iDp"/>
+        <segue reference="2FX-5X-rOO"/>
+        <segue reference="XhF-7W-aYm"/>
+        <segue reference="zbe-iw-8oa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

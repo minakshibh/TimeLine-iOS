@@ -48,6 +48,35 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     let activityIndicatorView = UIView()
     var timeline_id :String = ""
     
+    // Iphonecheck Classes
+    enum UIUserInterfaceIdiom : Int
+    {
+        case Unspecified
+        case Phone
+        case Pad
+    }
+    
+    struct ScreenSize
+    {
+        static let SCREEN_WIDTH         = UIScreen.mainScreen().bounds.size.width
+        static let SCREEN_HEIGHT        = UIScreen.mainScreen().bounds.size.height
+        static let SCREEN_MAX_LENGTH    = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+        static let SCREEN_MIN_LENGTH    = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+    }
+    
+    struct DeviceType
+    {
+        static let IS_IPHONE_4_OR_LESS  = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
+        static let IS_IPHONE_5          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
+        static let IS_IPHONE_6          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
+        static let IS_IPHONE_6P         = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
+        static let IS_IPAD              = UIDevice.currentDevice().userInterfaceIdiom == .Pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
+    }
+    let IPHONE4 : Int = DeviceType.IS_IPHONE_4_OR_LESS ? 1 : 0
+    let IPHONE5 : Int = DeviceType.IS_IPHONE_5 ? 1 : 0
+    let IPHONE6 : Int = DeviceType.IS_IPHONE_6 ? 1 : 0
+    let IPHONE6P :Int = DeviceType.IS_IPHONE_6P ? 1 : 0
+    
     lazy var behavior: ModernTimelineBehavior = {
         let behavior = ModernTimelineBehavior()
         behavior.modernTimelineView = self
@@ -88,7 +117,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 //self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
                 self.momentScroller.delegate = self
                 self.momentScroller.showsVerticalScrollIndicator = false
-                
+                //print(self.timeline?.moments.)
                 if !(self.timeline?.isOwn)!
                 {
                     
@@ -103,7 +132,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     
                     main{
 //                    self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
-                        self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), self.firstMomentPreview.frame.size.height)
+                        self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*self.IPHONE6P)+CGFloat(10*self.IPHONE5)), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*self.IPHONE6P-10*self.IPHONE5), self.firstMomentPreview.frame.size.height)
                     }
                     
                 }else{
@@ -113,7 +142,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         self.likebuttonY.constant = 35
                     main{
 //                    self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
-                      self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), self.firstMomentPreview.frame.size.height)
+                      self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*self.IPHONE6P)+CGFloat(10*self.IPHONE5)), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*self.IPHONE6P-10*self.IPHONE5), self.firstMomentPreview.frame.size.height)
                     }
                     }
                 }
@@ -697,7 +726,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             self.timelineCommentView.addSubview(self.commentTextfeildView)
             
             
-            self.commentTextField.frame = CGRectMake(10, 15, CGFloat(295+40*isiphone6Plus()-55*isiPhone5()), 50)
+            self.commentTextField.frame = CGRectMake(10, 15, CGFloat(295+40*self.IPHONE6P-55*self.IPHONE5), 50)
             self.commentTextField.layer.cornerRadius = 4
             self.commentTextField.backgroundColor = UIColor.whiteColor()
             self.commentTextField.autocorrectionType = .No
@@ -960,7 +989,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         else
         {
             let commentMessage = UILabel()
-            commentMessage.frame = CGRectMake(80, 40, CGFloat(250+40*isiphone6Plus()-55*isiPhone5()), 30)
+            commentMessage.frame = CGRectMake(80, 40, CGFloat(250+40*self.IPHONE6P-55*self.IPHONE5), 30)
             commentMessage.font = UIFont.systemFontOfSize(15)
             commentMessage.textColor = UIColor.blackColor()
             if let raw = self.commentArray[indexPath.row] as? NSDictionary
@@ -1090,12 +1119,18 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             {
                 if let dataDict = self.friendsListArray[indexPath.row] as? NSMutableDictionary
                 {
+                    print(dataDict)
                     if let firstName = dataDict["firstname"] as? NSString
                     {
                         var fullname = firstName
                         if let lastName = dataDict["lastname"] as? NSString
                         {
-                            fullname = "\(firstName) \(lastName)"
+                            if(dataDict["isAdmin"] as? Bool == true ){
+                                fullname = "*\(firstName) \(lastName)"
+                            }else{
+                                fullname = "\(firstName) \(lastName)"
+                            }
+                            
                         }
                         fullName.text = fullname as String
                     }
@@ -1248,7 +1283,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             cellView.addSubview(timeStamp)
             
             let commentMessage = UILabel()
-            commentMessage.frame = CGRectMake(80, 30, CGFloat(250+40*isiphone6Plus()-55*isiPhone5()), 30)
+            commentMessage.frame = CGRectMake(80, 30, CGFloat(250+40*IPHONE6P-55*IPHONE5), 30)
             commentMessage.font = UIFont.systemFontOfSize(15)
             commentMessage.textColor = UIColor.blackColor()
             if let raw = self.commentArray[indexPath.row] as? NSDictionary

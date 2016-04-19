@@ -7,11 +7,11 @@
 //
 
 protocol OwnableTrait {
-    typealias ParentType
+    associatedtype ParentType
     var parent: ParentType? { get }
 }
 protocol Ownable {
-    typealias ParentType
+    associatedtype ParentType
     var parent: ParentType? { get }
     var isOwn: Bool { get }
 }

@@ -41,7 +41,7 @@ class ProfileImageView: RoundImageView {
                 self.image = image
             }
             async {
-                PFUser(withoutDataWithObjectId: externalID).setProfileImageInBackground(image, handler: nil, progressBlock: nil)
+                PFUser(outDataWithObjectId: externalID).setProfileImageInBackground(image, handler: nil, progressBlock: nil)
             }
         } else {
             main { self.image = UIImage(assetIdentifier: .DefaultUserProfile) }
@@ -74,7 +74,7 @@ class ProfileImageView: RoundImageView {
                     return
                 }
                 self.image = UIImage(assetIdentifier: .DefaultUserProfile)
-                PFUser(withoutDataWithObjectId: externalID).getProfileImageInBackground { (image, error) -> Void in
+                PFUser(outDataWithObjectId: externalID).getProfileImageInBackground { (image, error) -> Void in
                     if let image = image {
                         userProfileImageCache.setObject(image, forKey: externalID)
                         main {

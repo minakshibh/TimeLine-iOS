@@ -90,9 +90,14 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         nav!.navigationBarHidden = true
         appDelegate.window?.makeKeyAndVisible()
     }
+//    @IBAction func NotificationButtonClick(sender: UIButton) {
+//        let vc = AllNotificationList(nibName: nil, bundle: nil)
+//        navigationController?.pushViewController(vc, animated: true)
+//    }
+    
     @IBAction func timelineProfileButton(sender: AnyObject) {
         
-        
+        main{
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -101,19 +106,19 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         
         nav = UINavigationController.init(rootViewController:vc )
         
-        hidesBottomBarWhenPushed = true
+        self.hidesBottomBarWhenPushed = true
         NSUserDefaults.standardUserDefaults().setObject("Right", forKey: "transitionTo")
         
         let transition: CATransition = CATransition()
         let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.duration = 0.25
+        transition.duration = 0.1
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
         nav!.view.layer.addAnimation(transition, forKey: kCATransition)
         appDelegate.window?.rootViewController = nav
         appDelegate.window?.makeKeyAndVisible()
-
+        }
         
 //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -137,7 +142,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //        appDelegate.window?.makeKeyAndVisible()
     }
     @IBAction func timelineMenuButton(sender: AnyObject) {
-        
+        main{
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -146,19 +151,19 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         
         nav = UINavigationController.init(rootViewController:vc )
         
-        hidesBottomBarWhenPushed = true
+        self.hidesBottomBarWhenPushed = true
         NSUserDefaults.standardUserDefaults().setObject("Left", forKey: "transitionTo")
         
         let transition: CATransition = CATransition()
         let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.duration = 0.25
+        transition.duration = 0.1
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
         nav!.view.layer.addAnimation(transition, forKey: kCATransition)
         appDelegate.window?.rootViewController = nav
         appDelegate.window?.makeKeyAndVisible()
-        
+        }
 //       
 //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -753,7 +758,7 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                     let asset = AVURLAsset(URL: newURL, options: nil)
                     let seconds = Int(round(CMTimeGetSeconds(asset.duration)))
                     
-                    let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil)
+                    let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, commentcount: nil, state: .LocalOnly, parent: nil)
                     
                     
                     Storage.session.drafts.append(newMoment)
@@ -847,7 +852,7 @@ extension CaptureMomentViewController: SCRecorderDelegate {
             try NSFileManager.defaultManager().moveItemAtURL(url, toURL: newURL)
             let asset = AVURLAsset(URL: newURL, options: nil)
             let seconds = Int(round(CMTimeGetSeconds(asset.duration)))
-            let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil)
+            let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, commentcount:nil, state: .LocalOnly, parent: nil)
             
             
             Storage.session.drafts.append(newMoment)

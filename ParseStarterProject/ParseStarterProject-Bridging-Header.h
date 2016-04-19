@@ -29,5 +29,6 @@
 #import "MobileCoreServices/MobileCoreServices.h"
 #import "HelperIphoneCheck.h"
 #import "UILabel+helper.h"
+#import "Crittercism.h"
 
 #endif

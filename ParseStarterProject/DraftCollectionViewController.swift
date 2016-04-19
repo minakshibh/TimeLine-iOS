@@ -81,12 +81,12 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
 //                self.performSegueWithIdentifier("WalkthroughMoments", sender: self)
 //            }
 //        }
-        let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to Record"), style: .Plain, target: self, action: "goToRecordScreen")
-        let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
+        let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to Record"), style: .Plain, target: self, action: #selector(DraftCollectionViewController.goToRecordScreen))
+        let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: #selector(DraftCollectionViewController.goToRecordScreen))
         navigationItem.leftBarButtonItem = left
         navigationItem.rightBarButtonItem = right
         
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(DraftCollectionViewController.update), userInfo: nil, repeats: false)
 
         self.navigationController!.navigationBar.frame = CGRectMake(0, 40, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+40)
         
@@ -300,13 +300,13 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         editor.videoPath = drafts[selectedIndex].localVideoURL!.path!
         presentViewController(editor, animated: true) {
             editor.navigationBar.tintColor = .barButtonTintColor()
-            editor.navigationBar.barTintColor = .topBarTintColor()
+            editor.navigationBar.barTintColor = UIColor.redNavbarColor()
             editor.toolbar.barStyle = .Black
             editor.toolbar.tintColor = .barButtonTintColor()
             editor.toolbar.barTintColor = .bottomBarTintColor()
         }
         editor.navigationBar.tintColor = UIColor.barButtonTintColor()
-        editor.navigationBar.barTintColor = UIColor.topBarTintColor()
+        editor.navigationBar.barTintColor = UIColor.redNavbarColor()
         editor.toolbar.barStyle = .Black
         editor.toolbar.tintColor = UIColor.barButtonTintColor()
         editor.toolbar.barTintColor = UIColor.bottomBarTintColor()
@@ -331,7 +331,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
                     try NSFileManager.defaultManager().moveItemAtURL(url, toURL: newURL)
                     let asset = AVURLAsset(URL: newURL, options: nil)
                     let seconds = Int(round(CMTimeGetSeconds(asset.duration)))
-                    let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil)
+                    let newMoment = Moment(persistent: true, pathName: name, remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, commentcount: nil, state: .LocalOnly, parent: nil)
                     Storage.session.drafts.append(newMoment)
                     Storage.save()
                     self.drafts.insert(newMoment, atIndex: 0)
@@ -412,7 +412,7 @@ extension DraftCollectionViewController {
             }
         }))
         alert.addAction(UIAlertAction(title: local(.MomentAlertTrimKeepActionKeep), style: .Default, handler: { _ in
-            let newMoment = Moment(persistent: true, pathName: Moment.newName(), remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, state: .LocalOnly, parent: nil)
+            let newMoment = Moment(persistent: true, pathName: Moment.newName(), remoteStreamURL: nil, remoteVideoURL: nil, remoteThumbURL: nil, size: nil, duration: seconds, contentType: nil, overlayPosition: nil, overlayText: nil, overlaySize: nil, overlayColor: nil, commentcount: nil, state: .LocalOnly, parent: nil)
             do {
                 try NSFileManager.defaultManager().moveItemAtURL(NSURL(fileURLWithPath: editedVideoPath), toURL: newMoment.localVideoURL!)
                 Storage.session.drafts.append(newMoment)

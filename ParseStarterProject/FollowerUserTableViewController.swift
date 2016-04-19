@@ -22,7 +22,9 @@ class FollowerUserTableViewController: FlatUserTableViewController {
         User.getUsers(ApiRequest.CurrentUserFollowers) { usrs in
             self.users = usrs
             if !first {
-                main { self.refreshControl?.endRefreshing() }
+                main {
+                    self.refreshControl?.endRefreshing()
+                }
             } else {
                 first = false
             }

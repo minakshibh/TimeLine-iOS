@@ -412,7 +412,7 @@ extension User {
             cached = []
         }
         completion(cached)
-        
+        main{
         Storage.performRequest(request, completion: { (json) -> Void in
             if let results = json["result"] as? [[String: AnyObject]] {
                 var users = results.map { User(dict: $0, parent: nil) }
@@ -475,6 +475,7 @@ extension User {
                 completion(cached)
             }
         })
+    }
     }
     
 }

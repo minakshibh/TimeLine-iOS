@@ -10,12 +10,45 @@ import UIKit
 
 class CommonTimelineTableViewController: UITableViewController {
     var lblFeed:UILabel! = UILabel()
+    
+    // Iphonecheck Classes
+    enum UIUserInterfaceIdiom : Int
+    {
+        case Unspecified
+        case Phone
+        case Pad
+    }
+    
+    struct ScreenSize
+    {
+        static let SCREEN_WIDTH         = UIScreen.mainScreen().bounds.size.width
+        static let SCREEN_HEIGHT        = UIScreen.mainScreen().bounds.size.height
+        static let SCREEN_MAX_LENGTH    = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+        static let SCREEN_MIN_LENGTH    = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+    }
+    
+    struct DeviceType
+    {
+        static let IS_IPHONE_4_OR_LESS  = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
+        static let IS_IPHONE_5          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
+        static let IS_IPHONE_6          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
+        static let IS_IPHONE_6P         = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
+        static let IS_IPAD              = UIDevice.currentDevice().userInterfaceIdiom == .Pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
+    }
+    let IPHONE4 : Int = DeviceType.IS_IPHONE_4_OR_LESS ? 1 : 0
+    let IPHONE5 : Int = DeviceType.IS_IPHONE_5 ? 1 : 0
+    let IPHONE6 : Int = DeviceType.IS_IPHONE_6 ? 1 : 0
+    let IPHONE6P :Int = DeviceType.IS_IPHONE_6P ? 1 : 0
+    
     var users: [User] = [] {
         didSet {
             
-            main { self.tableView.reloadData() }
+//            main {
+//                self.tableView.reloadData()
+//            }
             
-       main{     
+       main{
+        
             for j in 0..<self.users.count {
 //                print("\(users.count)")
                 let ts = self.users[j].timelines
@@ -42,7 +75,9 @@ class CommonTimelineTableViewController: UITableViewController {
                     }
                 }
             }
-          main { self.tableView.reloadData() }
+          main {
+            self.tableView.reloadData()
+            }
         }
 
         }
@@ -82,21 +117,28 @@ class CommonTimelineTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         
-        if(self.users[indexPath.section].timelines[indexPath.row].isOwn){
+        
+        if (self.users[indexPath.section].timelines[indexPath.row].isOwn as? Bool) != nil{
             
-            if(self.users[indexPath.section].timelines[indexPath.row].description.isEmpty){
-                return CGFloat(380+30*isiphone6Plus());
+            if(self.users[indexPath.section].timelines[indexPath.row].isOwn){
+                
+                if(self.users[indexPath.section].timelines[indexPath.row].description.isEmpty){
+                    return CGFloat(380+30*IPHONE6P);
+                }else{
+                    return CGFloat(402+30*IPHONE6P);
+                }
             }else{
-                return CGFloat(402+30*isiphone6Plus());
+                
+                if(self.users[indexPath.section].timelines[indexPath.row].description.isEmpty){
+                    return CGFloat(435+30*IPHONE6P);
+                }else{
+                    return CGFloat(455+30*IPHONE6P);
+                }
+                
             }
+
         }else{
-            
-            if(self.users[indexPath.section].timelines[indexPath.row].description.isEmpty){
-                return CGFloat(435+30*isiphone6Plus());
-            }else{
-                return CGFloat(455+30*isiphone6Plus());
-            }
-            
+            return 435
         }
         
         

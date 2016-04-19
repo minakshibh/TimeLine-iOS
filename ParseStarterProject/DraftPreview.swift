@@ -25,13 +25,42 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     var sendbutton = UIButton()
     var Updatebutton = UIButton()
     var commentId : String = ""
-    
+    var commentcount = UILabel()
     enum RightError {
     case BlockedTimeline(String, String)
     case BlockedUser(String, String)
     case NotPublic(String)
     case Viewable
     }
+    
+    // Iphonecheck Classes
+    enum UIUserInterfaceIdiom : Int
+    {
+        case Unspecified
+        case Phone
+        case Pad
+    }
+    
+    struct ScreenSize
+    {
+        static let SCREEN_WIDTH         = UIScreen.mainScreen().bounds.size.width
+        static let SCREEN_HEIGHT        = UIScreen.mainScreen().bounds.size.height
+        static let SCREEN_MAX_LENGTH    = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+        static let SCREEN_MIN_LENGTH    = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+    }
+    
+    struct DeviceType
+    {
+        static let IS_IPHONE_4_OR_LESS  = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
+        static let IS_IPHONE_5          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
+        static let IS_IPHONE_6          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
+        static let IS_IPHONE_6P         = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
+        static let IS_IPAD              = UIDevice.currentDevice().userInterfaceIdiom == .Pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
+    }
+    let IPHONE4 : Int = DeviceType.IS_IPHONE_4_OR_LESS ? 1 : 0
+    let IPHONE5 : Int = DeviceType.IS_IPHONE_5 ? 1 : 0
+    let IPHONE6 : Int = DeviceType.IS_IPHONE_6 ? 1 : 0
+    let IPHONE6P :Int = DeviceType.IS_IPHONE_6P ? 1 : 0
     
     var rightError: RightError = .Viewable
     var moment: Moment? {
@@ -53,17 +82,10 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             } else {
                 previewImageView.moment = nil
             }
-            if let topController = DraftPreview.topViewController() {
-                print(topController)
-            }
-            //print(String(DraftPreview.topViewController()!))
-//            if String(DraftPreview.topViewController()!).rangeOfString("DraftCollectionViewController") != nil{
-//                print("exists")
-//                self.playPlayButton.hidden = true
-//                self.pausePlayButton.hidden = true
-//                self.closeButton.hidden = true
-//                self.commentButton.hidden = true
+//            if let topController = DraftPreview.topViewController() {
+//                print(topController)
 //            }
+            //print(Storage.session.users)
             
             playButton.enabled = moments.count != 0
             momentPlayerController?.pause()
@@ -71,13 +93,12 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             playbackContainer.hidden = true
             
             self.userInteractionEnabled = true
-            let tapGesture = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DraftPreview.handleTap(_:)))
             self.addGestureRecognizer(tapGesture)
             
-            self.commentButton.frame = CGRectMake(self.closeButton.frame.origin.x + self.closeButton.frame.size.width + 73 , self.closeButton.frame.origin.y, self.closeButton.frame.size.width, self.closeButton.frame.size.height)
+            self.adjustMomentPlayerButtons()
             
-            self.playPlayButton.frame = CGRectMake(self.closeButton.frame.origin.x + self.closeButton.frame.size.width + 20 , self.closeButton.frame.origin.y, self.closeButton.frame.size.width, self.closeButton.frame.size.height)
-            self.pausePlayButton.frame = CGRectMake(self.closeButton.frame.origin.x + self.closeButton.frame.size.width + 20 , self.closeButton.frame.origin.y, self.closeButton.frame.size.width, self.closeButton.frame.size.height)
+            
             //previois and next button hidden
             self.nextPlayButton.hidden = true
             self.previousPlayButton.hidden = true
@@ -85,10 +106,27 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
 //            bufferIndicator.hidden = true
         }
     }
+    
+    func adjustMomentPlayerButtons(){
+        main{
+            self.commentButton.frame = CGRectMake(self.closeButton.frame.origin.x + self.closeButton.frame.size.width + 73 , self.closeButton.frame.origin.y, self.closeButton.frame.size.width, self.closeButton.frame.size.height)
+            
+            self.playPlayButton.frame = CGRectMake(self.closeButton.frame.origin.x + self.closeButton.frame.size.width + 20 , self.closeButton.frame.origin.y, self.closeButton.frame.size.width, self.closeButton.frame.size.height)
+            self.pausePlayButton.frame = CGRectMake(self.closeButton.frame.origin.x + self.closeButton.frame.size.width + 20 , self.closeButton.frame.origin.y, self.closeButton.frame.size.width, self.closeButton.frame.size.height)
+            
+            
+            self.commentcount.frame = CGRectMake(self.commentButton.frame.origin.x + self.commentButton.frame.size.width + 5 , self.commentButton.frame.origin.y, self.commentButton.frame.size.width, self.commentButton.frame.size.height)
+            self.commentcount.textColor = UIColor(white:1, alpha: 0.5)
+            self.addSubview(self.commentcount)
+        }
+    }
+    
     func handleTap(sender : UIView) {
         self.nextPlayButton.hidden = true
         self.previousPlayButton.hidden = true
-        //print("Tap Gesture recognized")
+//         let momentCommentCount = moments[(momentPlayerController?.currentIndexOfMoment())!].commentCount!
+//        self.commentcount.text = "\(momentCommentCount)"
+//    self.previewImageView.sd_setImageWithURL(moments[(momentPlayerController?.currentIndexOfMoment())!].remoteThumbURL)
         main{
             self.bufferIndicator.startAnimating()
             self.momentPlayerController?.next()
@@ -276,7 +314,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 let closeButton  = UIButton()
                 closeButton.frame = CGRectMake(5, 20, 30, 30);
                 closeButton.setImage(UIImage(named: "close") as UIImage?, forState: .Normal)
-                closeButton.addTarget(self, action: "btnTouched", forControlEvents:.TouchUpInside)
+                closeButton.addTarget(self, action: #selector(DraftPreview.btnTouched), forControlEvents:.TouchUpInside)
                 self.timelineCommentView.addSubview(closeButton)
                 
                 // table view declaration
@@ -296,7 +334,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 self.timelineCommentView.addSubview(self.commentTextfeildView)
                 
                 
-                self.commentTextField.frame = CGRectMake(10, 15, CGFloat(295+40*isiphone6Plus()-55*isiPhone5()), 50)
+                self.commentTextField.frame = CGRectMake(10, 15, CGFloat(295+40*self.IPHONE6P-55*self.IPHONE5), 50)
                 self.commentTextField.layer.cornerRadius = 4
                 self.commentTextField.textColor = UIColor.whiteColor()
                 self.commentTextField.backgroundColor = UIColor(white: 0.5, alpha: 0.95)
@@ -320,7 +358,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 self.sendbutton.hidden = false
                 self.sendbutton.backgroundColor = UIColor.redColor()
                 self.sendbutton.setTitle("Send", forState: UIControlState.Normal)
-                self.sendbutton.addTarget(self, action: "CommentSendButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
+                self.sendbutton.addTarget(self, action: #selector(DraftPreview.CommentSendButtonAction), forControlEvents: UIControlEvents.TouchUpInside)
                 self.commentTextfeildView.addSubview(self.sendbutton)
                 
                 self.Updatebutton = UIButton(type: UIButtonType.Custom) as UIButton
@@ -329,7 +367,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                 self.Updatebutton.hidden = true
                 self.Updatebutton.backgroundColor = UIColor.redColor()
                 self.Updatebutton.setTitle("Done", forState: UIControlState.Normal)
-                self.Updatebutton.addTarget(self, action: "CommentUpdateButtonAction", forControlEvents: UIControlEvents.TouchUpInside)
+                self.Updatebutton.addTarget(self, action: #selector(DraftPreview.CommentUpdateButtonAction), forControlEvents: UIControlEvents.TouchUpInside)
                 self.commentTextfeildView.addSubview(self.Updatebutton)
                 
                 KGModal.sharedInstance().closeButtonType = KGModalCloseButtonType.None
@@ -374,7 +412,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                         self.scrollView.frame = CGRectMake(0, self.commentTextfeildView.frame.origin.y-250, self.timelineCommentView.frame.size.width, 250)
                         self.scrollView.delegate = self
                         var Yaxis: CGFloat = 0
-                        for var i = 0; i < self.tagArray.count; i++ {
+                        for i in 0 ..< self.tagArray.count {
                             
                             let villainButton = UIButton(frame: CGRect(x: 0, y: Yaxis, width: self.commentTextfeildView.frame.size.width, height: 50))
                             
@@ -399,7 +437,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                                 }
                                 villainButton.addSubview(userimage)
                             }
-                            villainButton.addTarget(self, action: "villainButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+                            villainButton.addTarget(self, action: #selector(DraftPreview.villainButtonPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                             //villainButton.tag = Int(element.id)
                             self.scrollView.addSubview(villainButton)
                             Yaxis = Yaxis + 51
@@ -549,7 +587,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         let commentMessage = UILabel()
-        commentMessage.frame = CGRectMake(80, 40, CGFloat(250+40*isiphone6Plus()-55*isiPhone5()), 20)
+        commentMessage.frame = CGRectMake(80, 40, CGFloat(250+40*IPHONE6P-55*IPHONE5), 20)
         commentMessage.font = UIFont.systemFontOfSize(15)
         commentMessage.textColor = UIColor.whiteColor()
         if let raw = self.commentArray[indexPath.row] as? NSDictionary
@@ -606,7 +644,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             }
             
         }
-        userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
+        userImage.addTarget(self, action: #selector(DraftPreview.UserImageClick(_:)), forControlEvents: .TouchUpInside)
         userImage.clipsToBounds = true
         cellView.addSubview(userImage)
         
@@ -679,7 +717,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         cellView.addSubview(timeStamp)
         
         let commentMessage = UILabel()
-        commentMessage.frame = CGRectMake(80, 30, CGFloat(250+40*isiphone6Plus()-55*isiPhone5()), 30)
+        commentMessage.frame = CGRectMake(80, 30, CGFloat(250+40*IPHONE6P-55*IPHONE5), 30)
         commentMessage.font = UIFont.systemFontOfSize(15)
         commentMessage.textColor = UIColor.whiteColor()
         if let raw = self.commentArray[indexPath.row] as? NSDictionary
@@ -698,7 +736,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         let notifyStr : String
         if let raw = self.commentArray[indexPath.row] as? NSDictionary
         {
-            
+            print("testing momentplayer current moments is own \(momentPlayerController?.currentMoment()?.isOwn)")
             notifyStr = raw["user_id"] as! String
             if (notifyStr == Storage.session.uuid)
             {
@@ -898,6 +936,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     
     @IBAction func next() {
         main{
+            //print(self.momentPlayerController?.currentMoment())
         self.bufferIndicator.startAnimating()
         self.momentPlayerController?.next()
         }
@@ -955,31 +994,44 @@ extension DraftPreview: MomentPlayerControllerDelegate {
             self.previousPlayButton.userInteractionEnabled = momentPlayerController.isFirst ? false : true
             self.nextPlayButton.userInteractionEnabled = momentPlayerController.isLast ? false : true
 
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animateWithDuration(0.01, animations: {
             self.previousPlayButton.alpha = momentPlayerController.isFirst ? 0.0 : 0.5
             self.nextPlayButton.alpha = momentPlayerController.isLast ? 0.0 : 0.5
-            //previois and next button hidden
+            //previous and next button hidden
             //(self.previousPlayButton.hidden, self.nextPlayButton.hidden) = (false, false)
-            
+        
+            let momentCommentCount = self.moments[momentPlayerController.currentIndexOfMoment()].commentCount!
+            self.commentcount.text = "\(momentCommentCount)"
             self.previousPlayButton.enabled = !momentPlayerController.isFirst
             self.nextPlayButton.enabled = !momentPlayerController.isLast
+            let moment = moment
+            print(moment!.overlayText)
+            print(moment!.overlayColor)
+            print(moment!.overlayPosition)
             
-            if let moment = moment,
-                let text = moment.overlayText,
-                let color = moment.overlayColor,
-                let position = moment.overlayPosition,
-                let size = moment.overlaySize
-            {
-                self.textField.text = text
-                self.textField.textColor = color
-                self.textField.font = UIFont(descriptor: self.textField.font.fontDescriptor(), size: CGFloat(size))
-                self.positioningLayoutConstraint.constant = self.validPosition(self.minPosition + CGFloat(position) * self.maxPosition)
-                self.textFieldContainer.hidden = false
-                //self.textFieldContainer.alpha = 1.0
-            } else {
-                //self.textFieldContainer.alpha = 0.0
-                self.textFieldContainer.hidden = true
-            }
+            delay(0.0, closure: {
+                
+                if let moment = moment,
+                    let text = moment.overlayText,
+                    let color = moment.overlayColor,
+                    let position = moment.overlayPosition,
+                    let size = moment.overlaySize
+                {
+                    self.adjustMomentPlayerButtons()
+                    self.textField.text = text
+                    self.textField.textColor = color
+                    self.textField.font = UIFont(descriptor: self.textField.font.fontDescriptor(), size: CGFloat(size))
+                    
+                    //App crashing due to constraints animation form up to bottom
+                    self.positioningLayoutConstraint.constant = self.validPosition(self.minPosition + CGFloat(position) * self.maxPosition)
+                    self.textFieldContainer.hidden = false
+                    //self.textFieldContainer.alpha = 1.0
+                } else {
+                    //self.textFieldContainer.alpha = 0.0
+                    self.textFieldContainer.hidden = true
+                }
+            })
+            
             self.layoutIfNeeded()
             }) { _ in
                 //previois and next button hidden

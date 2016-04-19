@@ -123,8 +123,10 @@ class MomentPlayerController: NSObject {
         if self.currentMoment() == nil {
             var prev: AVPlayerItem? = nil
             for i in (self.items.map { $0.1 }) {
+                main{
                 self.queuePlayer.insertItem(i, afterItem: prev)
                 prev = i
+                }
             }
         }
         
@@ -165,6 +167,7 @@ class MomentPlayerController: NSObject {
             if self.observing {
                 self.queuePlayer.removeObserver(self, forKeyPath: "rate", context: nil)
                 self.queuePlayer.removeObserver(self, forKeyPath: "currentItem", context: nil)
+                print(self.items)
                 for o in self.items {
                     NSNotificationCenter.defaultCenter().removeObserver(self, name: AVPlayerItemDidPlayToEndTimeNotification, object: o.1)
                     NSNotificationCenter.defaultCenter().removeObserver(self, name: AVPlayerItemPlaybackStalledNotification, object: o.1)

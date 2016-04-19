@@ -1,7 +1,7 @@
 import SWFrameButton
 
 protocol FirstLastName {
-    typealias TargetBehaviorType: Named1
+    associatedtype TargetBehaviorType: Named1
     var behaviorTarget: TargetBehaviorType? { get }
     var nameLabel1: UILabel! { get }
     //    var nameLabel1: UILabel! { get }
