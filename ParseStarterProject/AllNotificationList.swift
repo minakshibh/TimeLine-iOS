@@ -265,7 +265,17 @@ class AllNotificationList: UITableViewController {
             if PFUser.currentUser() != nil {
                 push.link = link
                 push.timeline_id = self.timeline_id
-//                self.presentViewController(push, animated: true, completion: nil)
+                //push.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+                
+//                let transition: CATransition = CATransition()
+//                let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//                transition.duration = 0.1
+//                transition.timingFunction = timeFunc
+//                transition.type = kCATransitionPush
+//                transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+//                self.view.window!.layer.addAnimation(transition, forKey: kCATransition)
+
+                //self.presentViewController(push, animated: true, completion: nil)
             }
 
         }

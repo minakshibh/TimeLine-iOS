@@ -40,7 +40,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dub-gh-rHt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XkS-L7-QhD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -89,8 +89,7 @@
                                     <rect key="frame" x="16" y="348" width="32" height="32"/>
                                 </variation>
                                 <connections>
-                                    <action selector="timelineMenuButton:" destination="Qj8-N8-GTa" eventType="touchUpInside" id="heK-nA-Xei"/>
-                                    <segue destination="9Mx-I1-skZ" kind="presentation" identifier="ShowMoments" id="Wfv-9H-0DN"/>
+                                    <action selector="timelineMenuButton:" destination="Qj8-N8-GTa" eventType="touchUpInside" id="rS6-ka-sh3"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="rHK-jr-uvR">
@@ -112,7 +111,6 @@
                                 </state>
                                 <connections>
                                     <action selector="timelineProfileButton:" destination="Qj8-N8-GTa" eventType="touchUpInside" id="qxb-G3-Il2"/>
-                                    <segue destination="BQs-7X-4UJ" kind="show" id="5Va-44-WlD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCF-BM-4Pb">
@@ -120,7 +118,7 @@
                                 <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Notification"/>
                                 <connections>
-                                    <segue destination="JHn-XN-scc" kind="show" id="GtY-Yp-P1j"/>
+                                    <segue destination="JHn-XN-scc" kind="presentation" id="GtY-Yp-P1j"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIn-Pj-rdw" userLabel="Torch Off">
@@ -4453,7 +4451,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="dpZ-pz-TmS" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="fjd-4e-PdK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4493,7 +4491,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="mAi-gA-dKZ" userLabel="Followers" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlA-cD-rtE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4650,9 +4648,9 @@ Effective as of September 14, 2015
                         </connections>
                     </refreshControl>
                     <connections>
-                        <segue destination="tDS-AT-rfR" kind="presentation" identifier="ShowUser" id="Szi-aa-9D9"/>
-                        <segue destination="YM6-8A-qq8" kind="presentation" identifier="ShowMoment" id="8hy-1e-CX1"/>
-                        <segue destination="YM6-8A-qq8" kind="presentation" identifier="ShowTimeline" id="OVj-EF-9W0"/>
+                        <segue destination="tDS-AT-rfR" kind="presentation" identifier="ShowUser" modalTransitionStyle="crossDissolve" id="Szi-aa-9D9"/>
+                        <segue destination="YM6-8A-qq8" kind="presentation" identifier="ShowMoment" modalTransitionStyle="crossDissolve" id="8hy-1e-CX1"/>
+                        <segue destination="YM6-8A-qq8" kind="presentation" identifier="ShowTimeline" modalTransitionStyle="crossDissolve" id="OVj-EF-9W0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULZ-gt-pE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5068,19 +5066,19 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fy0-iv-eFM"/>
-        <segue reference="Szi-aa-9D9"/>
-        <segue reference="OVj-EF-9W0"/>
-        <segue reference="sHs-6J-bIg"/>
-        <segue reference="MIt-vp-hHF"/>
-        <segue reference="bz1-Sk-Hfb"/>
-        <segue reference="uwx-Vf-wTk"/>
-        <segue reference="9SA-Oc-iuS"/>
-        <segue reference="kNn-C3-4Z5"/>
         <segue reference="5f9-3x-iDp"/>
-        <segue reference="2FX-5X-rOO"/>
         <segue reference="XhF-7W-aYm"/>
+        <segue reference="2FX-5X-rOO"/>
         <segue reference="zbe-iw-8oa"/>
+        <segue reference="3Xw-TM-u6h"/>
+        <segue reference="Y4K-mN-kMc"/>
+        <segue reference="kNn-C3-4Z5"/>
+        <segue reference="9SA-Oc-iuS"/>
+        <segue reference="fy0-iv-eFM"/>
+        <segue reference="OVj-EF-9W0"/>
+        <segue reference="Szi-aa-9D9"/>
+        <segue reference="Mq8-L9-ocP"/>
+        <segue reference="sgm-pg-59s"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

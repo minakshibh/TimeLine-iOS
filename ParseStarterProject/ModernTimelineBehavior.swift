@@ -145,7 +145,7 @@ extension ModernTimelineBehavior {
         playerView.superview?.layoutIfNeeded()
         playerView.draftPreview.setTimeline(moment.parent)
         playerView.draftPreview.setCurrentMoment(moment)
-
+        
 
 
         UIView.animateWithDuration(0.01, animations: {

@@ -52,6 +52,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         headerView?.draftPreview.playPlayButton.hidden = true
         headerView?.draftPreview.pausePlayButton.hidden = true
         headerView?.draftPreview.closeButton.hidden = true
+        headerView?.draftPreview.commentcount.hidden = true
 //         self.hidesBottomBarWhenPushed = true
         //navigationItem.setRightBarButtonItems(buttons, animated: true)
         
@@ -109,25 +110,28 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
 
     }
     func goToRecordScreen () {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
-        var nav = appDelegate.window?.rootViewController as? UINavigationController
-        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
-        nav = UINavigationController.init(rootViewController:vc )
         
-        hidesBottomBarWhenPushed = true
-        
-        let transition: CATransition = CATransition()
-        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.duration = 0.25
-        transition.timingFunction = timeFunc
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
-        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
-        appDelegate.window?.rootViewController = nav
-        appDelegate.window?.makeKeyAndVisible()
+        let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
+        viewController?.profileButtonClick()
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+//        var nav = appDelegate.window?.rootViewController as? UINavigationController
+//        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
+//        nav = UINavigationController.init(rootViewController:vc )
+//        
+//        hidesBottomBarWhenPushed = true
+//        
+//        let transition: CATransition = CATransition()
+//        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        transition.duration = 0.25
+//        transition.timingFunction = timeFunc
+//        transition.type = kCATransitionPush
+//        transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
+//        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+//        appDelegate.window?.rootViewController = nav
+//        appDelegate.window?.makeKeyAndVisible()
 
     }
     

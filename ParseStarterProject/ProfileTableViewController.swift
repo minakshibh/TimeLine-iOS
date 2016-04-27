@@ -101,26 +101,29 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     }
     func goToRecordScreen(){
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
-        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
+        viewController?.timelineButtonCLick()
         
-        nav = UINavigationController.init(rootViewController:vc )
-        
-        hidesBottomBarWhenPushed = true
-        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
-        
-        let transition: CATransition = CATransition()
-        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.duration = 0.1
-        transition.timingFunction = timeFunc
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
-        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
-        appDelegate.window?.rootViewController = nav
-        appDelegate.window?.makeKeyAndVisible()
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+//        var nav = appDelegate.window?.rootViewController as? UINavigationController
+//        
+//        nav = UINavigationController.init(rootViewController:vc )
+//        
+//        hidesBottomBarWhenPushed = true
+//        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
+//        
+//        let transition: CATransition = CATransition()
+//        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        transition.duration = 0.1
+//        transition.timingFunction = timeFunc
+//        transition.type = kCATransitionPush
+//        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+//        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+//        appDelegate.window?.rootViewController = nav
+//        appDelegate.window?.makeKeyAndVisible()
         
         
 //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

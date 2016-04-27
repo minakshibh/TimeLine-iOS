@@ -13,7 +13,7 @@ protocol FollowableBehavior {
     var behaviorTarget: TargetBehaviorType? { get }
     var followButton: SWFrameButton! { get }
     var followTimelineButton: UIButton! { get }
-
+    
 }
 
 private extension UIColor {
@@ -81,5 +81,12 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
             guard let controller = activeController() else { return }
             controller.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: likeable))
         }
+    }
+    func showCommentScreen(timelineID : String , ownTimeline: Bool){
+        guard let controller = activeController() else { return }
+        let vc = CommentViewController()
+        vc.ownTimeline = ownTimeline
+        vc.timelineCommentID = timelineID
+        controller.navigationController?.pushViewController(vc, animated: true)
     }
 }

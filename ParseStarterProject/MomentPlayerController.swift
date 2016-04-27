@@ -123,6 +123,7 @@ class MomentPlayerController: NSObject {
         if self.currentMoment() == nil {
             var prev: AVPlayerItem? = nil
             for i in (self.items.map { $0.1 }) {
+                print("video item: \(i)")
                 main{
                 self.queuePlayer.insertItem(i, afterItem: prev)
                 prev = i

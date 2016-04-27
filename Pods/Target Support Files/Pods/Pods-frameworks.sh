@@ -94,6 +94,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/SCRecorder.framework"
   install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/SWFrameButton.framework"
+  install_framework "Pods/SlackTextViewController.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
@@ -106,4 +107,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/SCRecorder.framework"
   install_framework "Pods/SDWebImage.framework"
   install_framework "Pods/SWFrameButton.framework"
+  install_framework "Pods/SlackTextViewController.framework"
 fi

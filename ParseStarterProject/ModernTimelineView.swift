@@ -13,7 +13,7 @@ import ConclurerHook
 import KGModal
 import Alamofire
 import SDWebImage
-
+import SlackTextViewController
 
 class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIScrollViewDelegate {
     let timelineCommentView = UIView()
@@ -360,6 +360,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         
         main{
             self.showCommentPopup()
+            
         }
         
     }
@@ -650,6 +651,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             
             self.InvitedFriends_id.removeAllObjects()
             self.invitedFriendsArray.removeAllObjects()
+            
             Storage.performRequest(ApiRequest.TimelineComments(self.timeline!.uuid!), completion: { (json) -> Void in
                 if let raw = json["result"] as? NSMutableArray{
                     self.commentArray = raw
@@ -1425,9 +1427,10 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                         navigationController.navigationBar.barTintColor = UIColor.redNavbarColor()
                         navigationController.navigationBar.translucent = false
                         if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+                            navigationController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
                             topController.presentViewController(navigationController, animated: true, completion: nil)
                             
-                            //topController.navigationController?.pushViewController(navigationController, animated: true)
+                
                         }
                 }
                 default : break
@@ -1571,7 +1574,10 @@ extension ModernTimelineView: FollowableBehavior, LikeableBehavior {
     
     @IBAction func commentOnTimelineButtonTapped(sender: AnyObject) {
         
-        self.showCommentPopup()
+        if let timelineID : String = (behaviorTarget?.uuid)! as String{
+            showCommentScreen(timelineID, ownTimeline:(self.timeline?.isOwn)!)
+        }
+       
         
     }
 }

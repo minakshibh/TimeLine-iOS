@@ -13,3 +13,4 @@ pod 'SWFrameButton'
 pod 'KGModal', '~> 1.2.0'
 pod 'SDWebImage', '~>3.7'
 pod 'CrittercismSDK', '5.4.0'
+pod "SlackTextViewController"

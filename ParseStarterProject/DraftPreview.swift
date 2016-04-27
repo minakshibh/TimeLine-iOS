@@ -98,7 +98,6 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             
             self.adjustMomentPlayerButtons()
             
-            
             //previois and next button hidden
             self.nextPlayButton.hidden = true
             self.previousPlayButton.hidden = true
@@ -288,7 +287,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             if let raw = json["result"] as? NSMutableArray{
                 self.commentArray = raw
             }
-            //print(self.commentArray)
+            print(self.commentArray)
             self.commentlist.reloadData()
             main{
                 let screenRect = UIScreen.mainScreen().bounds
@@ -859,6 +858,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
                         navigationController.navigationBar.barTintColor = UIColor.redNavbarColor()
                         navigationController.navigationBar.translucent = false
                         if let topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+                            navigationController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
                             topController.presentViewController(navigationController, animated: true, completion: nil)
                             //topController.navigationController?.pushViewController(navigationController, animated: true)
                         }
@@ -999,7 +999,7 @@ extension DraftPreview: MomentPlayerControllerDelegate {
             self.nextPlayButton.alpha = momentPlayerController.isLast ? 0.0 : 0.5
             //previous and next button hidden
             //(self.previousPlayButton.hidden, self.nextPlayButton.hidden) = (false, false)
-        
+            self.previewImageView.sd_setImageWithURL(self.moments[momentPlayerController.currentIndexOfMoment()].remoteThumbURL)
             let momentCommentCount = self.moments[momentPlayerController.currentIndexOfMoment()].commentCount!
             self.commentcount.text = "\(momentCommentCount)"
             self.previousPlayButton.enabled = !momentPlayerController.isFirst

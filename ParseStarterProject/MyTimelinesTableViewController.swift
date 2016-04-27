@@ -15,36 +15,7 @@ private func timelineOrder(l: Timeline, r: Timeline) -> Bool {
 }
 
 class MyTimelinesTableViewController: CommonTimelineTableViewController {
-    
-//    // Iphonecheck Classes
-//    enum UIUserInterfaceIdiom : Int
-//    {
-//        case Unspecified
-//        case Phone
-//        case Pad
-//    }
-//    
-//    struct ScreenSize
-//    {
-//        static let SCREEN_WIDTH         = UIScreen.mainScreen().bounds.size.width
-//        static let SCREEN_HEIGHT        = UIScreen.mainScreen().bounds.size.height
-//        static let SCREEN_MAX_LENGTH    = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
-//        static let SCREEN_MIN_LENGTH    = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
-//    }
-//    
-//    struct DeviceType
-//    {
-//        static let IS_IPHONE_4_OR_LESS  = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
-//        static let IS_IPHONE_5          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
-//        static let IS_IPHONE_6          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
-//        static let IS_IPHONE_6P         = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
-//        static let IS_IPAD              = UIDevice.currentDevice().userInterfaceIdiom == .Pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
-//    }
-//    let IPHONE4 : Int = DeviceType.IS_IPHONE_4_OR_LESS ? 1 : 0
-//    let IPHONE5 : Int = DeviceType.IS_IPHONE_5 ? 1 : 0
-//    let IPHONE6 : Int = DeviceType.IS_IPHONE_6 ? 1 : 0
-//    let IPHONE6P :Int = DeviceType.IS_IPHONE_6P ? 1 : 0
-    
+
     var status:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,27 +45,28 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         navigationItem.leftBarButtonItem = right
     }
     func goToRecordScreen(){
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
-        var nav = appDelegate.window?.rootViewController as? UINavigationController
-        
-        nav = UINavigationController.init(rootViewController:vc )
-        
-        hidesBottomBarWhenPushed = true
-        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
-        
-        let transition: CATransition = CATransition()
-        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.duration = 0.1
-        transition.timingFunction = timeFunc
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight   //kCATransitionFromLeft
-        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
-        appDelegate.window?.rootViewController = nav
-        appDelegate.window?.makeKeyAndVisible()
+        let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
+        viewController?.profileButtonClick()
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+//        var nav = appDelegate.window?.rootViewController as? UINavigationController
+//        
+//        nav = UINavigationController.init(rootViewController:vc )
+//        
+//        hidesBottomBarWhenPushed = true
+//        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
+//        
+//        let transition: CATransition = CATransition()
+//        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        transition.duration = 0.1
+//        transition.timingFunction = timeFunc
+//        transition.type = kCATransitionPush
+//        transition.subtype = kCATransitionFromRight   //kCATransitionFromLeft
+//        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+//        appDelegate.window?.rootViewController = nav
+//        appDelegate.window?.makeKeyAndVisible()
         
 //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)

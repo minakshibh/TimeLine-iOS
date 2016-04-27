@@ -23,10 +23,12 @@
 		81BA817F1A49E0F000E65899 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA817E1A49E0F000E65899 /* libstdc++.6.dylib */; };
 		972BEACD1CA2752100D3767D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA57C77B1B53EA7400C51BC0 /* AVFoundation.framework */; };
 		975E4F9A1C80702300DAEF0E /* UILabel+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 975E4F991C80702300DAEF0E /* UILabel+helper.m */; };
+		9761A8571CCA43BD0088C35E /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9761A8561CCA43BD0088C35E /* CommentViewController.swift */; };
 		977A9EFF1CC0B63900591FAE /* DraftPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 977A9EFE1CC0B63900591FAE /* DraftPreview.xib */; };
 		979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */; };
 		97ADC8791C89B0BF00546A9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ADC8781C89B0BF00546A9B /* AppDelegate.swift */; };
 		97BB61C01CB237FA0081DEA6 /* HelperIphoneCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB61BF1CB237FA0081DEA6 /* HelperIphoneCheck.m */; };
+		97CD00481CCE3DE100853084 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CD00471CCE3DE100853084 /* MessageTableViewCell.m */; };
 		97F83CE31C99457E0079A657 /* ModernTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F83CE21C99457E0079A657 /* ModernTimelineView.swift */; };
 		BA05786E1C1A0FC10098C3A1 /* NormalButtonProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */; };
 		BA05787A1C1A39470098C3A1 /* UserSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA0578791C1A39470098C3A1 /* UserSummaryView.xib */; };
@@ -281,11 +283,14 @@
 		9472C1B472FC01F506711759 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		975E4F981C80702300DAEF0E /* UILabel+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+helper.h"; path = "Objective-C classes/UILabel+helper.h"; sourceTree = SOURCE_ROOT; };
 		975E4F991C80702300DAEF0E /* UILabel+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+helper.m"; path = "Objective-C classes/UILabel+helper.m"; sourceTree = SOURCE_ROOT; };
+		9761A8561CCA43BD0088C35E /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentViewController.swift; path = ../CommentViewController.swift; sourceTree = "<group>"; };
 		977A9EFE1CC0B63900591FAE /* DraftPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftPreview.xib; sourceTree = "<group>"; };
 		979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatTimelineTableViewControllerWithoutUsername.swift; sourceTree = "<group>"; };
 		97ADC8781C89B0BF00546A9B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97BB61BE1CB237FA0081DEA6 /* HelperIphoneCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelperIphoneCheck.h; path = "Objective-C classes/HelperIphoneCheck.h"; sourceTree = SOURCE_ROOT; };
 		97BB61BF1CB237FA0081DEA6 /* HelperIphoneCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelperIphoneCheck.m; path = "Objective-C classes/HelperIphoneCheck.m"; sourceTree = SOURCE_ROOT; };
+		97CD00461CCE3DE100853084 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		97CD00471CCE3DE100853084 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		97F83CE21C99457E0079A657 /* ModernTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModernTimelineView.swift; sourceTree = "<group>"; };
 		BA05786D1C1A0FC10098C3A1 /* NormalButtonProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalButtonProperties.swift; sourceTree = "<group>"; };
 		BA0578791C1A39470098C3A1 /* UserSummaryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSummaryView.xib; sourceTree = "<group>"; };
@@ -567,6 +572,7 @@
 		81BA81471A49DA1800E65899 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				97CD00451CCE3DE100853084 /* CommentViewFiles */,
 				D9F9F1391CAE887B00D2F253 /* post-comment.png */,
 				D937FA901C9055A600C53274 /* FirstLastName.swift */,
 				D937FA8B1C90556B00C53274 /* LikeableBehavior2.swift */,
@@ -633,6 +639,15 @@
 				81BA81761A49E0D500E65899 /* libsqlite3.dylib */,
 			);
 			name = "System Frameworks";
+			sourceTree = "<group>";
+		};
+		97CD00451CCE3DE100853084 /* CommentViewFiles */ = {
+			isa = PBXGroup;
+			children = (
+				97CD00461CCE3DE100853084 /* MessageTableViewCell.h */,
+				97CD00471CCE3DE100853084 /* MessageTableViewCell.m */,
+			);
+			path = CommentViewFiles;
 			sourceTree = "<group>";
 		};
 		99DB208D579E8BC5EA88691A /* Pods */ = {
@@ -1135,6 +1150,7 @@
 				DA5115681B7E690400B0776A /* TimelineView.swift */,
 				DA51156C1B7E710A00B0776A /* TimelineCollectionViewCell.swift */,
 				DAFCE32B1B7E74C600F189AF /* SendMomentBarCollectionReusableView.swift */,
+				9761A8561CCA43BD0088C35E /* CommentViewController.swift */,
 				97F83CE21C99457E0079A657 /* ModernTimelineView.swift */,
 				BA452AEA1BFB21F100FF4598 /* ModernTimelineTableViewCell.swift */,
 				BAC4F0E41BFB62D4009C395D /* ModernTimelineBehavior.swift */,
@@ -1400,6 +1416,7 @@
 				DA2B8A441B5918DD00D25AED /* AVAsset.swift in Sources */,
 				18DF0CEE1C745F380042F16B /* AllNotificationList.swift in Sources */,
 				DA167E0F1B7D61E800608A6C /* CSStickyHeaderFlowLayoutAttributes.m in Sources */,
+				97CD00481CCE3DE100853084 /* MessageTableViewCell.m in Sources */,
 				DA3FF4E41B6C0ABC006CC0D7 /* Request.swift in Sources */,
 				DA1DF2111B5544A000BD6011 /* AVCaptureVideoOrientation+UIInterfaceOrientation.swift in Sources */,
 				BA9696551B9C999E00D17D5A /* SupportViewController.swift in Sources */,
@@ -1470,6 +1487,7 @@
 				BAB996D61C12EDDB000E72F3 /* GlobalHooks.swift in Sources */,
 				979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */,
 				BAEE04461BA2E5A200B61DA7 /* BWWalkthroughPageViewController.swift in Sources */,
+				9761A8571CCA43BD0088C35E /* CommentViewController.swift in Sources */,
 				BAEE09521C17057D0095F6CE /* TimelineMoreButtonBehavior.swift in Sources */,
 				DAF09E8C1B84FF91007DE11D /* MomentImageView.swift in Sources */,
 				DA2BA5361B78C7DD00DE6300 /* SynchronizationState.swift in Sources */,
@@ -1710,6 +1728,12 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 					"$(PROJECT_DIR)/ParseStarterProject",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CrittercismSDK\"",
+					"\"${PODS_ROOT}/Headers/Public/SlackTextViewController\"",
+				);
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
@@ -1770,6 +1794,12 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 					"$(PROJECT_DIR)/ParseStarterProject",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/CrittercismSDK\"",
+					"\"${PODS_ROOT}/Headers/Public/SlackTextViewController\"",
 				);
 				INFOPLIST_FILE = ParseStarterProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

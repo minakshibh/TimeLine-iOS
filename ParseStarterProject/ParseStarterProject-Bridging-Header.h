@@ -30,5 +30,6 @@
 #import "HelperIphoneCheck.h"
 #import "UILabel+helper.h"
 #import "Crittercism.h"
+#import "MessageTableViewCell.h"
 
 #endif

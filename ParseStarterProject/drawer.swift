@@ -92,6 +92,12 @@ class drawer: EZSwipeController {
 
     }
     
+    func profileButtonClick(){
+        self.rightButtonClick()
+    }
+     func timelineButtonCLick(){
+        self.leftButtonClick()
+    }
     override func viewWillAppear(animated: Bool) {
         
        
@@ -137,6 +143,9 @@ extension drawer: EZSwipeControllerDataSource {
         
         return [redVC, blueVC, greenVC]
     }
+    
+    
+    
 //    func indexOfStartingPage() -> Int {
 //        return 1 // EZSwipeController starts from 2nd, green page
 //    }

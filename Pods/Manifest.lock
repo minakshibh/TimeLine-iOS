@@ -23,6 +23,7 @@ PODS:
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - SlackTextViewController (1.9.2)
   - SWFrameButton (1.2.0)
 
 DEPENDENCIES:
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - RMStore (~> 0.7)
   - SCRecorder
   - SDWebImage (~> 3.7)
+  - SlackTextViewController
   - SWFrameButton
 
 SPEC CHECKSUMS:
@@ -49,6 +51,7 @@ SPEC CHECKSUMS:
   RMStore: 64ba13a9c040e3b7572765d169f77175cd3243e5
   SCRecorder: ef11bc34094c43201cc7c94fa9aeb5266e5b9cf7
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SlackTextViewController: bac3350ccc639bc446bb14cbd09da238f5e01f32
   SWFrameButton: 9d6e46b85d673fc7dc0adc23159cd3448aab0ed6
 
 COCOAPODS: 0.39.0

@@ -388,7 +388,7 @@ extension Timeline {
     }
     
     func reloadMoments(completion: Void -> Void) {
-        main{
+        
         Storage.performRequest(ApiRequest.ViewTimelineVideos(self.state.uuid!), completion: { (json) -> Void in
             var dirty = false
             if let videos = json["videos"] as? [[String: AnyObject]] {
@@ -414,7 +414,7 @@ extension Timeline {
             }
             completion()
         })
-        }
+       
     }
     
     func like(completion: () -> ()) {

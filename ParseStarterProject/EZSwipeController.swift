@@ -16,6 +16,7 @@ import UIKit
     optional func disableSwipingForRightButtonAtPageIndex(index: Int) -> Bool
     optional func clickedLeftButtonFromPageIndex(index: Int)
     optional func clickedRightButtonFromPageIndex(index: Int)
+    
 }
 
 public class EZSwipeController: UIViewController {
@@ -234,7 +235,12 @@ public class EZSwipeController: UIViewController {
         
        
     }
-
+    func rightButtonClick(){
+        self.clickedRightButton()
+    }
+    func leftButtonClick(){
+        self.clickedLeftButton()
+    }
     @objc private func clickedLeftButton() {
         let currentIndex = stackPageVC.indexOf(currentStackVC)!
         datasource?.clickedLeftButtonFromPageIndex?(currentIndex)
