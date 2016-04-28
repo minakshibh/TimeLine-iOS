@@ -98,6 +98,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
     }
     func update(){
 //        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+1)
+        drafts = Array(Storage.session.drafts.reverse())
         collectionView?.reloadData()
     }
     override func viewWillAppear(animated: Bool) {
@@ -109,6 +110,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
 
     }
+    
     func goToRecordScreen () {
         
         let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
