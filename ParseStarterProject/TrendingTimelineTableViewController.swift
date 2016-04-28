@@ -123,7 +123,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         tableViewContact.delegate = self
         tableViewContact.dataSource = self
         tableViewContact.registerClass(UITableViewCell.self, forCellReuseIdentifier: "commentCellss")
-        self.tableViewContact.frame = CGRectMake(0, headerView.frame.size.height, screenWidth, screenHeight);
+        self.tableViewContact.frame = CGRectMake(0, headerView.frame.size.height, screenWidth, screenHeight-headerView.frame.size.height);
         self.timelineCommentView.layer.cornerRadius = 8.0
 //        self.tableViewContact.layer.cornerRadius = 8.0
         self.timelineCommentView.addSubview(self.tableViewContact)
@@ -173,7 +173,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     override func viewWillAppear(animated: Bool) {
         
         
-        if(isiphone6()==1 || isiPhone5()==1){
+        if(IPHONE6==1 || IPHONE5==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
                 
             }else{
@@ -182,7 +182,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             }
         }
         
-        if(isiphone6Plus()==1){
+        if(IPHONE6P==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
                 
             }else{
@@ -328,20 +328,17 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     }
     
     func fetchContacts(){
-        
         // user previously denied, to tell them to fix that in settings
         let status = ABAddressBookGetAuthorizationStatus()
         if status == .Denied || status == .Restricted {
             return
         }
-        
         var error: Unmanaged<CFError>?
         let addressBook: ABAddressBook? = ABAddressBookCreateWithOptions(nil, &error)?.takeRetainedValue()
         if addressBook == nil {
             print(error?.takeRetainedValue())
             return
         }
-        
         // request permission to use it
         ABAddressBookRequestAccessWithCompletion(addressBook) {
             granted, error in
@@ -350,104 +347,81 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 // also let them know that they have to fix this in settings
                 return
             }
-            
-            
             // addressBook = !ABAddressBookCreateWithOptions(emptyDictionary,nil)
             let contactList: NSArray = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue()
             print("records in the array \(contactList.count)") // returns 0
-            
             self.nameArray = []
             self.numberArray = []
             self.selectedPeople = []
-            
             for record:ABRecordRef in contactList {
                 let contactPerson: ABRecordRef = record
-                
                 let randomArray: NSMutableArray! = []
                 let labelArray: NSMutableArray! = []
-
                 if var contactName = ABRecordCopyCompositeName(contactPerson)?.takeRetainedValue(){
-                    
                     contactName = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
                     print("\(contactName)")
-//                    self.nameArray.addObject(contactName )
-                    
-                    
+                    //                    self.nameArray.addObject(contactName )
                     if var numbers = ABRecordCopyValue(
                         contactPerson, kABPersonPhoneProperty)?.takeRetainedValue(){
+                        numbers = ABRecordCopyValue(
+                            contactPerson, kABPersonPhoneProperty).takeRetainedValue()
+                        print("\(ABMultiValueGetCount(numbers))")
+                        if (ABMultiValueGetCount(numbers) == 0)
+                        {
+                            self.nameArray.addObject("\(contactName)")
+                            self.numberArray.addObject("--")
+                            print("\(self.nameArray)---\(self.numberArray)")
+                            //nhjjnj
+                            //kkjmk
+                        }
+                        var swiftString = ""
+                        for ix in 0 ..< ABMultiValueGetCount(numbers) {
+                            var phones : ABMultiValueRef = ABRecordCopyValue(record,kABPersonPhoneProperty).takeUnretainedValue() as ABMultiValueRef
                             
-                            numbers = ABRecordCopyValue(
-                                contactPerson, kABPersonPhoneProperty).takeRetainedValue()
-                            
-                            
-                            print("\(ABMultiValueGetCount(numbers))")
-                            if (ABMultiValueGetCount(numbers) == 0)
-                            {
-                                self.nameArray.addObject("\(contactName)")
-                                self.numberArray.addObject("--")
-                                
-                            }
-                            
-                            var swiftString = ""
-                            for ix in 0 ..< ABMultiValueGetCount(numbers) {
-                                var phones : ABMultiValueRef = ABRecordCopyValue(record,kABPersonPhoneProperty).takeUnretainedValue() as ABMultiValueRef
-
-                               if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
-                                    value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
-                                    print("Phonenumber  is \(value)")
-                                    randomArray.addObject(value)
-                                
+                            if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
+                                value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
+                                print("Phonenumber  is \(value)")
+                                randomArray.addObject(value)
                                 let locLabel : CFStringRef = (ABMultiValueCopyLabelAtIndex(phones, ix) != nil) ? ABMultiValueCopyLabelAtIndex(phones, ix).takeUnretainedValue() as CFStringRef : ""
                                 var cfStr:CFTypeRef = locLabel
                                 var nsTypeString = cfStr as! NSString
                                 var swiftString:String = nsTypeString as String
                                 print("\(swiftString)")
                                 labelArray.addObject(swiftString)
-                                }
-                                
                             }
-                            
-                            
-                           
-
-                }
-                
-                
-                
-                
-                
-//                let numbers:ABMultiValue = ABRecordCopyValue(
-//                    contactPerson, kABPersonPhoneProperty).takeRetainedValue()
-                    
-                        let count:Int = randomArray.count
-                        if(count == 1){
-                            self.nameArray.addObject("\(contactName)")
-                           self.numberArray.addObject(randomArray[0])
-                        }else{
-                        for(var a=0;a<randomArray.count;a++){
-//                            if(a==0){
-//                               arrStr = "\(randomArray[a])"
-//                            }else{
-//                            arrStr = "\(arrStr),\(randomArray[a])"
-//                            }
-                            
-                            var arrStr1 = labelArray[a].componentsSeparatedByString("<")
-                            let lblStr =  arrStr1[1].componentsSeparatedByString(">")[0]
-                            
-                            self.nameArray.addObject("\(contactName)-\(lblStr)")
-                            self.numberArray.addObject(randomArray[a])
-                            print("\(self.nameArray)---\(self.numberArray)")
-                            
-                            
                         }
-//                           self.numberArray.addObject(arrStr)
+                    }
+                    //                let numbers:ABMultiValue = ABRecordCopyValue(
+                    //                    contactPerson, kABPersonPhoneProperty).takeRetainedValue()
+                    let count:Int = randomArray.count
+                    if(count == 1){
+                        self.nameArray.addObject("\(contactName)")
+                        self.numberArray.addObject(randomArray[0])
+                        print("\(self.nameArray)---\(self.numberArray)")
+                    }else{
+                        for(var a=0;a<randomArray.count;a++){
+                            //                            if(a==0){
+                            //                               arrStr = "\(randomArray[a])"
+                            //                            }else{
+                            //                            arrStr = "\(arrStr),\(randomArray[a])"
+                            //                            }
+                            if ("\(labelArray[a])").rangeOfString("<") != nil{
+                                var arrStr1 = labelArray[a].componentsSeparatedByString("<")
+                                let lblStr =  arrStr1[1].componentsSeparatedByString(">")[0]
+                                self.nameArray.addObject("\(contactName)-\(lblStr)")
+                                self.numberArray.addObject(randomArray[a])
+                            }else{
+                                print("crash")
+                                self.nameArray.addObject("\(contactName)-\(labelArray[a])")
+                                self.numberArray.addObject(randomArray[a])
+                            }
+                        }
+                        //                           self.numberArray.addObject(arrStr)
                     }
                 }
             }
             print("\(self.nameArray)----\(self.nameArray.count)")
             print("\(self.numberArray)---\(self.numberArray.count)")
-            
-            
             for(var k=0;k<self.nameArray.count;k++){
                 self.contactDict.setValue(self.numberArray[k], forKey: self.nameArray[k] as! String)
             }
@@ -455,14 +429,12 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
            
             let sortedArray = self.nameArray.sortedArrayUsingComparator {
                 (obj1, obj2) -> NSComparisonResult in
-                
                 let p1 = obj1 as! String
                 let p2 = obj2 as! String
                 let result = p1.compare(p2)
                 return result
             }
-           self.nameArray.removeAllObjects()
-           
+            self.nameArray.removeAllObjects()
             for(var v=0;v<sortedArray.count;v++)
             {
                 self.nameArray.addObject(sortedArray[v])
@@ -473,6 +445,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             self.tableViewContact.reloadData()
         }
     }
+
+
     
     override func removeTimelineFromCache(uuid: UUID) {
         Storage.session.trendingCache = Storage.session.trendingCache.filter { $0 != uuid }

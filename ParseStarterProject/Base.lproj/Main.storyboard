@@ -40,7 +40,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dub-gh-rHt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XkS-L7-QhD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -555,8 +555,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Bio:-" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSY-RG-8nJ">
-                                                    <rect key="frame" x="18" y="187" width="570" height="60"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" misplaced="YES" text="Bio:-" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="ZSY-RG-8nJ">
+                                                    <rect key="frame" x="18" y="187" width="570" height="74"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="ZSY-RG-8nJ" secondAttribute="height" multiplier="19:2" id="SPs-lI-B3D"/>
                                                         <constraint firstAttribute="height" constant="60" id="spw-Gi-Bdm"/>
@@ -565,8 +565,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtP-cl-iWb">
-                                                    <rect key="frame" x="18" y="243" width="555" height="21"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtP-cl-iWb">
+                                                    <rect key="frame" x="18" y="247" width="555" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="EHw-HT-xxG"/>
                                                         <constraint firstAttribute="width" secondItem="dtP-cl-iWb" secondAttribute="height" multiplier="185:7" id="On0-Nx-WNI"/>
@@ -580,8 +580,8 @@
                                                         <action selector="websiteButton:" destination="h9D-gl-vWt" eventType="touchUpInside" id="huA-rS-xel"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pO-WK-biJ">
-                                                    <rect key="frame" x="18" y="266" width="555" height="47"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pO-WK-biJ">
+                                                    <rect key="frame" x="18" y="272" width="555" height="47"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="3pO-WK-biJ" secondAttribute="height" multiplier="555:47" id="N9a-9W-pBs"/>
                                                         <constraint firstAttribute="height" constant="47" id="vZt-jX-tHn"/>
@@ -4871,12 +4871,24 @@ Effective as of September 14, 2015
                                                         <outlet property="delegate" destination="ddZ-Mz-lWg" id="jde-DG-S21"/>
                                                     </connections>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivf-Jm-Mh3">
+                                                    <rect key="frame" x="563" y="75" width="29" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="29" id="hgo-a2-7IH"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="ivf-Jm-Mh3" firstAttribute="trailing" secondItem="S75-bG-TG6" secondAttribute="trailingMargin" id="7Y4-Zf-S5Q"/>
+                                                <constraint firstItem="ivf-Jm-Mh3" firstAttribute="top" secondItem="S75-bG-TG6" secondAttribute="topMargin" constant="67" id="DSi-yr-pnF"/>
                                                 <constraint firstItem="ogw-7X-xPy" firstAttribute="leading" secondItem="S75-bG-TG6" secondAttribute="leadingMargin" constant="7" id="JMe-7S-zga"/>
                                                 <constraint firstItem="ogw-7X-xPy" firstAttribute="bottom" secondItem="S75-bG-TG6" secondAttribute="bottomMargin" id="VTD-Ff-ynQ"/>
                                                 <constraint firstItem="ogw-7X-xPy" firstAttribute="leading" secondItem="S75-bG-TG6" secondAttribute="leadingMargin" constant="7" id="Vmh-D9-K4g"/>
                                                 <constraint firstItem="ogw-7X-xPy" firstAttribute="centerY" secondItem="S75-bG-TG6" secondAttribute="centerY" id="eIP-pN-ZKi"/>
+                                                <constraint firstAttribute="bottom" secondItem="ivf-Jm-Mh3" secondAttribute="bottom" id="fju-c8-YDs"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ogw-7X-xPy" secondAttribute="trailing" constant="5" id="jWC-uC-sn4"/>
                                                 <constraint firstItem="ogw-7X-xPy" firstAttribute="top" secondItem="S75-bG-TG6" secondAttribute="topMargin" id="lhH-Uc-TdQ"/>
                                                 <constraint firstItem="ogw-7X-xPy" firstAttribute="centerX" secondItem="S75-bG-TG6" secondAttribute="centerX" constant="1" id="p0X-dg-1Kp"/>
@@ -4900,6 +4912,7 @@ Effective as of September 14, 2015
                     </navigationItem>
                     <connections>
                         <outlet property="bioField" destination="ogw-7X-xPy" id="klY-Ll-SEj"/>
+                        <outlet property="countLbl" destination="ivf-Jm-Mh3" id="JqR-hW-Erl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L9O-eE-TQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5067,18 +5080,18 @@ Effective as of September 14, 2015
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5f9-3x-iDp"/>
+        <segue reference="JSH-Rm-O8t"/>
         <segue reference="XhF-7W-aYm"/>
-        <segue reference="2FX-5X-rOO"/>
         <segue reference="zbe-iw-8oa"/>
-        <segue reference="3Xw-TM-u6h"/>
-        <segue reference="Y4K-mN-kMc"/>
+        <segue reference="T9S-G7-mh0"/>
+        <segue reference="Cnm-d8-vbZ"/>
+        <segue reference="dHW-RB-S8H"/>
         <segue reference="kNn-C3-4Z5"/>
         <segue reference="9SA-Oc-iuS"/>
+        <segue reference="uwx-Vf-wTk"/>
+        <segue reference="gqI-eh-cAa"/>
         <segue reference="fy0-iv-eFM"/>
-        <segue reference="OVj-EF-9W0"/>
         <segue reference="Szi-aa-9D9"/>
-        <segue reference="Mq8-L9-ocP"/>
-        <segue reference="sgm-pg-59s"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

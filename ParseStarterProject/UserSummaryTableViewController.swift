@@ -46,7 +46,7 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
                         if self.timeline_id .isEqual(timeline.state.uuid)
                         {
                             print("same t_id")
-                            let indexPath = NSIndexPath(forRow: i, inSection: 0)
+                            let indexPath = NSIndexPath(forRow: i+1, inSection: 0)
                             self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
                         }
                     }

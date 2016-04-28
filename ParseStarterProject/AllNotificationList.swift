@@ -378,6 +378,7 @@ class AllNotificationList: UITableViewController {
         let payload = self.notificationListArray[btnsendtag.tag] as! [String : AnyObject]
         self.processAsyncForUser(payload: payload) { link in
             self.handle(deepLink: link)
+            self.fetchData(link)
         }
         }
     }

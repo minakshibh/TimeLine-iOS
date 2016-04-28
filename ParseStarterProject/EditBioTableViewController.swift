@@ -13,6 +13,7 @@ import Parse
 class EditBioTableViewController: TintedHeaderTableViewController, UITextViewDelegate {
     
     @IBOutlet var bioField: UITextView!
+    @IBOutlet var countLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,8 @@ class EditBioTableViewController: TintedHeaderTableViewController, UITextViewDel
             bioField.text = bio
         }
         bioField.textColor = UIColor.lightGrayColor()
+        self .countStatusLength(bioField.text.characters.count)
+        
     }
     override func viewDidDisappear(animated: Bool) {
         main{
@@ -53,15 +56,23 @@ class EditBioTableViewController: TintedHeaderTableViewController, UITextViewDel
             alert.addAction(UIAlertAction(title: local(.SettingsAlertEmailMissingActionDismiss), style: UIAlertActionStyle.Default, handler: nil))
             presentAlertController(alert)
         }
+        self .countStatusLength(bioField.text.characters.count)
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
         let newLength = text.characters.count + textView.text.characters.count - range.length
+        if (text != "\n") {
+            self .countStatusLength(newLength)
+        }
         
         if(newLength > 120)
         {
-            textView.resignFirstResponder()
+            if(text == "\n") {
+                textView.resignFirstResponder()
+                save()
+                return false
+            }
             return false
         }
         if(text == "\n") {
@@ -74,5 +85,17 @@ class EditBioTableViewController: TintedHeaderTableViewController, UITextViewDel
     func textViewDidBeginEditing(textView: UITextView) {
         //textView.text = ""
         textView.textColor = UIColor.blackColor()
+    }
+    func countStatusLength(textViewCharacterLength: Int) {
+        let count = 120
+        let diff: Int = (count) - (textViewCharacterLength)
+        
+        if(diff == -1)
+        {
+            countLbl.text = String(0)
+        }else
+        {
+        countLbl.text = String(diff)
+        }
     }
 }
