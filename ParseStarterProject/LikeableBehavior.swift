@@ -56,6 +56,14 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
     }
 
     func toggleLiked() {
+         if let target = behaviorTarget where !target.isOwn {
+            if let likeable = behaviorTarget as? Likeable {
+                guard let controller = activeController() else { return }
+                controller.performSegueWithIdentifier("ShowUserList", sender: LikeableValue(likeable: likeable))
+                return
+            }
+        }
+        
         if let target = behaviorTarget where !target.isOwn {
         target.toggleLiked {
             self.refreshLikeableBehavior()
@@ -65,6 +73,15 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
         else if let likeable = behaviorTarget as? Likeable {
             guard let controller = activeController() else { return }
             controller.performSegueWithIdentifier("ShowUserList", sender: LikeableValue(likeable: likeable))
+        }
+    }
+    
+    func toggleLikeForHeartOther() {
+        if let target = behaviorTarget where !target.isOwn {
+            target.toggleLiked {
+                self.refreshLikeableBehavior()
+            }
+            refreshLikeableBehavior()
         }
     }
     

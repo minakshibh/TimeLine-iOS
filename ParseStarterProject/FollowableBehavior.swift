@@ -59,6 +59,14 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
 
     func toggleFollowState() {
         if let target = behaviorTarget where !target.isOwn {
+            if let likeable = behaviorTarget as? Followable {
+                guard let controller = activeController() else { return }
+                controller.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: likeable))
+            }
+                return
+        }
+        
+        if let target = behaviorTarget where !target.isOwn {
             target.toggleFollowState {
                 self.refreshFollowableBehavior()
             }
@@ -68,6 +76,16 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
             controller.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: likeable))
         }
     }
+    
+    func toggleFollowUser() {
+        if let target = behaviorTarget where !target.isOwn {
+            target.toggleFollowState {
+                self.refreshFollowableBehavior()
+            }
+            refreshFollowableBehavior()
+        }
+    }
+    
     func toggleFollowedState() {
         if let target = behaviorTarget {
             target.toggleFollowState {
