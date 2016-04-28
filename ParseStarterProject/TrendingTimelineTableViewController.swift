@@ -38,8 +38,6 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
     
-    
-    
     var searchResults: [AnyObject] = [] {
         didSet {
             searching = false
@@ -175,7 +173,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     override func viewWillAppear(animated: Bool) {
         
         
-        if(IPHONE6==1 || IPHONE5==1){
+        if(isiphone6()==1 || isiPhone5()==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
                 
             }else{
@@ -184,7 +182,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             }
         }
         
-        if(IPHONE6P==1){
+        if(isiphone6Plus()==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
                 
             }else{
@@ -204,27 +202,25 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         KGModal.sharedInstance().hideAnimated(true)
     }
     func goToRecordScreen(){
-        let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
-        viewController?.profileButtonClick()
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
-//        var nav = appDelegate.window?.rootViewController as? UINavigationController
-//        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
-//        nav = UINavigationController.init(rootViewController:vc )
-//        
-//        hidesBottomBarWhenPushed = true
-//        
-//        let transition: CATransition = CATransition()
-//        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.duration = 0.25
-//        transition.timingFunction = timeFunc
-//        transition.type = kCATransitionPush
-//        transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
-//        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
-//        appDelegate.window?.rootViewController = nav
-//        appDelegate.window?.makeKeyAndVisible()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
+        nav = UINavigationController.init(rootViewController:vc )
+        
+        hidesBottomBarWhenPushed = true
+        
+        let transition: CATransition = CATransition()
+        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.duration = 0.25
+        transition.timingFunction = timeFunc
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
+        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        appDelegate.window?.rootViewController = nav
+        appDelegate.window?.makeKeyAndVisible()
     }
     
     func Invitebuttontapped()
@@ -366,16 +362,15 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             
             for record:ABRecordRef in contactList {
                 let contactPerson: ABRecordRef = record
-//                print("\(ABRecordCopyCompositeName(contactPerson).takeRetainedValue())")
-//                let contactName: String = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
                 
                 let randomArray: NSMutableArray! = []
+                let labelArray: NSMutableArray! = []
+
                 if var contactName = ABRecordCopyCompositeName(contactPerson)?.takeRetainedValue(){
                     
                     contactName = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
                     print("\(contactName)")
-                    
-                    self.nameArray.addObject(contactName )
+//                    self.nameArray.addObject(contactName )
                     
                     
                     if var numbers = ABRecordCopyValue(
@@ -383,27 +378,37 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                             
                             numbers = ABRecordCopyValue(
                                 contactPerson, kABPersonPhoneProperty).takeRetainedValue()
+                            
+                            
                             print("\(ABMultiValueGetCount(numbers))")
                             if (ABMultiValueGetCount(numbers) == 0)
                             {
+                                self.nameArray.addObject("\(contactName)")
                                 self.numberArray.addObject("--")
                                 
                             }
                             
-                            
+                            var swiftString = ""
                             for ix in 0 ..< ABMultiValueGetCount(numbers) {
-                                //                            let label = ABMultiValueCopyLabelAtIndex(numbers,ix).takeRetainedValue() as String
-                                //                            let value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
-                                print("numbers: \(numbers)")
-                                
-                                if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
+                                var phones : ABMultiValueRef = ABRecordCopyValue(record,kABPersonPhoneProperty).takeUnretainedValue() as ABMultiValueRef
+
+                               if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
                                     value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
                                     print("Phonenumber  is \(value)")
                                     randomArray.addObject(value)
-                                    
+                                
+                                let locLabel : CFStringRef = (ABMultiValueCopyLabelAtIndex(phones, ix) != nil) ? ABMultiValueCopyLabelAtIndex(phones, ix).takeUnretainedValue() as CFStringRef : ""
+                                var cfStr:CFTypeRef = locLabel
+                                var nsTypeString = cfStr as! NSString
+                                var swiftString:String = nsTypeString as String
+                                print("\(swiftString)")
+                                labelArray.addObject(swiftString)
                                 }
                                 
                             }
+                            
+                            
+                           
 
                 }
                 
@@ -413,20 +418,30 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 
 //                let numbers:ABMultiValue = ABRecordCopyValue(
 //                    contactPerson, kABPersonPhoneProperty).takeRetainedValue()
-                                       var arrStr:String = ""
+                    
                         let count:Int = randomArray.count
                         if(count == 1){
+                            self.nameArray.addObject("\(contactName)")
                            self.numberArray.addObject(randomArray[0])
                         }else{
                         for(var a=0;a<randomArray.count;a++){
-                            if(a==0){
-                               arrStr = "\(randomArray[a])"
-                            }else{
-                            arrStr = "\(arrStr),\(randomArray[a])"
-                            }
+//                            if(a==0){
+//                               arrStr = "\(randomArray[a])"
+//                            }else{
+//                            arrStr = "\(arrStr),\(randomArray[a])"
+//                            }
+                            
+                            var arrStr1 = labelArray[a].componentsSeparatedByString("<")
+                            let lblStr =  arrStr1[1].componentsSeparatedByString(">")[0]
+                            
+                            self.nameArray.addObject("\(contactName)-\(lblStr)")
+                            self.numberArray.addObject(randomArray[a])
+                            print("\(self.nameArray)---\(self.numberArray)")
+                            
+                            
                         }
-                           self.numberArray.addObject(arrStr)
-                        }
+//                           self.numberArray.addObject(arrStr)
+                    }
                 }
             }
             print("\(self.nameArray)----\(self.nameArray.count)")
@@ -555,6 +570,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             if (self.resultSearchController.active) {
                 str = self.contactDict.valueForKey(filteredTableData[indexPath.row]) as! String
             }else{
+               
                 str = self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as! String
             }
             let arr = str.componentsSeparatedByString(",")
@@ -732,10 +748,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         // Pass the selected object to the new view controller.
     }
     */
-    deinit{
-        resultSearchController.removeFromParentViewController()
-    }
-    
+
 }
 
 extension TrendingTimelineTableViewController: UISearchDisplayDelegate {
