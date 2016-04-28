@@ -55,6 +55,7 @@ extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBeh
     
      @IBAction func toggleLikeForHeart() {
         toggleLikeForHeartOther()
+        changeHeartImage()
         }
     
     @IBAction func updatedFollowBtn(){
@@ -63,9 +64,11 @@ extension UserSummaryTableViewCell: Refreshable, LikeableBehavior, FollowableBeh
     
     @IBAction func tappedFollowButton() {
         toggleFollowState()
+        
     }
     @IBAction func toggleFollowForUser() {
         toggleFollowUser()
+        togglePersonImage()
     }
     @IBAction func tappedApproveButton() {
               triggerApproveableBehavior()

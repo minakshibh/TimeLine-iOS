@@ -39,6 +39,17 @@ extension FollowableBehaviorCount where TargetBehaviorType: Ownable {
             }else{
                imagePerson.image = UIImage(named: "likeImage.png")
             }
+            
+            if target.isOwn{
+                if(target.followersCount > 0){
+                    imagePerson.image = UIImage(named: "dislikeImage.png")
+                }else{
+                    imagePerson.image = UIImage(named: "likeImage.png")
+                }
+            }else{
+               
+            }
+            print("\(target.followed)")
 //            followButton.enabled =!= true
 //            followButton.borderWidth =!= 0
 //            followButton.tintColor =!= UIColor.blackColor()
@@ -74,14 +85,21 @@ extension FollowableBehaviorCount where TargetBehaviorType: Ownable {
 //            controller.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: likeable))
 //        }
 //    }
-//    func toggleFollowedState() {
-//        if let target = behaviorTarget {
-//            target.toggleFollowState {
-//                self.refreshFollowableBehavior()
-//            }
-//            refreshFollowableBehavior()
-//        }
-//    }
+    func togglePersonImage() {
+        if let behaviorTarget = behaviorTarget {
+            if  !behaviorTarget.isOwn {
+                print("\(behaviorTarget.followed)")
+                var status = false
+                if ("\(behaviorTarget.followed)" == "Following" || "\(behaviorTarget.followed)" == "Pending"){
+                status = true
+                }else if "\(behaviorTarget.followed)" == "NotFollowing"{
+                 status = false
+                }
+                
+                imagePerson.image =!= status ? UIImage(named: "dislikeImage.png") : UIImage(named: "likeImage.png")
+            }
+        }
+    }
 //    func showFollowers() {
 //        if let likeable = behaviorTarget as? Followable {
 //            guard let controller = activeController() else { return }

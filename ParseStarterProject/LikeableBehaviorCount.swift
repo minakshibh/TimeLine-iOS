@@ -9,7 +9,7 @@
 import SWFrameButton
 
 protocol LikeableBehaviorCount {
-    typealias TargetBehaviorType: Likeable
+    typealias TargetBehaviorType: Likeable,Followable
     var behaviorTarget: TargetBehaviorType? { get }
 //    var likeButton: SWFrameButton! { get }
 //    var likeTimelineButton: UIButton! { get }
@@ -33,10 +33,14 @@ extension LikeableBehaviorCount where TargetBehaviorType: Ownable {
 
         if let behaviorTarget = behaviorTarget {
 //            likeButton.setTitle("\(behaviorTarget.likesCount)", forState: .Normal)
-            if(behaviorTarget.likesCount > 0){
-                imageheart.image = UIImage(named: "RedHeart.png")
+            if behaviorTarget.isOwn{
+                if(behaviorTarget.likesCount > 0){
+                    imageheart.image = UIImage(named: "RedHeart.png")
+                }else{
+                    imageheart.image = UIImage(named: "whiteHeart.png")
+                }
             }else{
-                imageheart.image = UIImage(named: "whiteHeart.png")
+                imageheart.image =!= behaviorTarget.liked ? UIImage(assetIdentifier: .RedHeart) : UIImage(assetIdentifier: .whiteHeart)
             }
 //            likeButton.borderWidth =!= 0
 //            likeButton.tintColor =!=  UIColor.blackColor()
@@ -73,14 +77,13 @@ extension LikeableBehaviorCount where TargetBehaviorType: Ownable {
 //        }
 //    }
 //    
-//    func toggledLiked() {
-//        if let target = behaviorTarget where !target.isOwn {
-//            target.toggleLiked {
-//                self.refreshLikeableBehavior()
-//            }
-//            refreshLikeableBehavior()
-//        }
-//    }
+    func changeHeartImage() {
+         if let behaviorTarget = behaviorTarget {
+         if  !behaviorTarget.isOwn {
+           imageheart.image =!= behaviorTarget.liked ? UIImage(assetIdentifier: .RedHeart) : UIImage(assetIdentifier: .whiteHeart)
+        }
+        }
+    }
 //    func showLikes() {
 //        if let likeable = behaviorTarget as? Likeable {
 //            guard let controller = activeController() else { return }

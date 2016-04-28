@@ -13,7 +13,7 @@ protocol LikeableBehavior {
     var behaviorTarget: TargetBehaviorType? { get }
     var likeButton: SWFrameButton! { get }
     var likeTimelineButton: UIButton! { get }
-
+//    var imageheart: UIImageView! { get }
 }
 
 private extension UIColor {
