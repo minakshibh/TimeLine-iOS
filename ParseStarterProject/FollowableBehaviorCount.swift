@@ -47,7 +47,17 @@ extension FollowableBehaviorCount where TargetBehaviorType: Ownable {
                     imagePerson.image = UIImage(named: "likeImage.png")
                 }
             }else{
-               
+                if  !target.isOwn {
+                    print("\(target.followed)")
+                    var status = false
+                    if ("\(target.followed)" == "Following" || "\(target.followed)" == "Pending"){
+                        status = true
+                    }else if "\(target.followed)" == "NotFollowing"{
+                        status = false
+                    }
+                    
+                    imagePerson.image =!= status ? UIImage(named: "dislikeImage.png") : UIImage(named: "likeImage.png")
+                }
             }
             print("\(target.followed)")
 //            followButton.enabled =!= true

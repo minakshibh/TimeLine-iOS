@@ -38,6 +38,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
     
+    
     var searchResults: [AnyObject] = [] {
         didSet {
             searching = false
@@ -809,6 +810,8 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         if searchResults.count == 0 {
             searching = true
         }
+        
+        self.view.userInteractionEnabled = false
         Storage.performRequest(ApiRequest.Search(text), completion: { (json) -> Void in
             var results = [AnyObject]()
             for r in json["result"] as? [[String: AnyObject]] ?? [] {
@@ -851,6 +854,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
             }
             main {
                 self.searchResults = results
+                 self.view.userInteractionEnabled = true
             }
         })
     }

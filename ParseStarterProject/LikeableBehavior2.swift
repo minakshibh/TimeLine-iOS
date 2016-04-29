@@ -41,7 +41,7 @@ extension LikeableBehavior2 where TargetBehaviorType: Ownable {
 //            likeButton1.borderWidth =!= behaviorTarget.isOwn ? 0 : 1.5
 //            likeButton1.tintColor =!= behaviorTarget.isOwn ? UIColor.blackColor() : .likeableTintColor
             print("\(behaviorTarget.followed)")
-            updatedFollowButton.normalImage =!= behaviorTarget.followed != .NotFollowing ? UIImage(named: "dislikeImage") : UIImage(named: "likeImage")
+//            updatedFollowButton.normalImage =!= behaviorTarget.followed != .NotFollowing ? UIImage(named: "dislikeImage") : UIImage(named: "likeImage")
             
 //            followTimelineButton.normalImage =!= target.followed != .NotFollowing ? UIImage(assetIdentifier: .dislikeImage) : UIImage(assetIdentifier: .likeImage)
         } else {
