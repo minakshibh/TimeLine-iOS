@@ -484,6 +484,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     }
     
     override func viewDidDisappear(animated: Bool) {
+        self.stop()
         self.recorder.stopRunning()
         self.refreshTorches()
         self.reloadBadges()
