@@ -811,7 +811,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
             searching = true
         }
         
-        self.view.userInteractionEnabled = false
+        self.tableView.userInteractionEnabled = false
         Storage.performRequest(ApiRequest.Search(text), completion: { (json) -> Void in
             var results = [AnyObject]()
             for r in json["result"] as? [[String: AnyObject]] ?? [] {
@@ -854,7 +854,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
             }
             main {
                 self.searchResults = results
-                 self.view.userInteractionEnabled = true
+                 self.tableView.userInteractionEnabled = true
             }
         })
     }
