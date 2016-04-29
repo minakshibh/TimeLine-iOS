@@ -37,6 +37,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var status:Bool = false
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
+    var searchStatus:Bool = false
     
     var searchResults: [AnyObject] = [] {
         didSet {
@@ -512,7 +513,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             if tableView == self.tableView {
                 //super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
             } else if let user = self.searchResults[indexPath.row] as? User {
+                if self.searchStatus {
                     self.performSegueWithIdentifier("ShowUser", sender: user)
+                }
             }
             }
         }
@@ -785,6 +788,8 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         if searchResults.count == 0 {
             searching = true
         }
+        
+        searchStatus = false
         Storage.performRequest(ApiRequest.Search(text), completion: { (json) -> Void in
             var results = [AnyObject]()
             for r in json["result"] as? [[String: AnyObject]] ?? [] {
@@ -824,6 +829,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
                         }
                     }
                 }
+                self.searchStatus = true
             }
             main {
                 self.searchResults = results
