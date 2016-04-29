@@ -102,11 +102,13 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         collectionView?.reloadData()
     }
     override func viewWillAppear(animated: Bool) {
+        
         headerView?.draftPreview.commentButton.hidden = true
         headerView?.draftPreview.playPlayButton.hidden = true
         headerView?.draftPreview.pausePlayButton.hidden = true
         headerView?.draftPreview.closeButton.hidden = true
-
+        headerView?.draftPreview.commentcount.hidden = true
+        
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
 
     }

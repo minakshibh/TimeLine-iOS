@@ -68,6 +68,7 @@ class CommentViewController: SLKTextViewController {
         ]
         self.inverted = false
         self.textInputbar.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        self.textInputbar.textView.placeholder = "Share a comment"
         self.textInputbar.autoHideRightButton = true
         
         //        self.rightButton.backgroundColor = UIColor.redColor()
@@ -109,11 +110,12 @@ class CommentViewController: SLKTextViewController {
                 for var i = 0; i < raw.count; i++ {
                     if let username = raw[i] as? NSDictionary
                     {
-                        var userDict = NSMutableDictionary()
-//                        userDict = username
+                        //print("Username : \(username)")
+//                        var userDict = NSMutableDictionary()
+////                        userDict = username
 //                        userDict.setObject(username["name"]!, forKey: "name")
 //                        userDict.setObject(username["image"]!, forKey: "image")
-                        self.userArray.addObject(userDict)
+                        self.userArray.addObject(username)
                     }
                 }
             }

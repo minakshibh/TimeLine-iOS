@@ -12,6 +12,9 @@ class FlatTimelineTableViewController: UITableViewController {
     
     var oldTabDelegate: UITabBarControllerDelegate?
     var oldNavDelegate: UINavigationControllerDelegate?
+    var dateArray: NSMutableArray! = []
+    var sortedDateArray: NSMutableArray! = []
+    var sortedtimelines: [Timeline] = []
     
     // Iphonecheck Classes
     enum UIUserInterfaceIdiom : Int
@@ -46,7 +49,73 @@ class FlatTimelineTableViewController: UITableViewController {
     var timelines: [Timeline] = [] {
         didSet {
             print("didset")
-
+            //            print("\(timelines.count)")
+            
+            //get dates from timeline
+            dateArray = []
+            for f in 0..<timelines.count {
+                //            print("\(timelines[f].updated_at)")
+                
+                if !(timelines[f].updated_at.isEmpty) {
+                    var sampleArrayOne = "\(timelines[f].updated_at)".componentsSeparatedByString("T")
+                    let dateStr = sampleArrayOne[0]
+                    var sampleArrayTwo = sampleArrayOne[1].componentsSeparatedByString("Z")
+                    var timeStr = sampleArrayTwo[0]
+                    timeStr = timeStr.componentsSeparatedByString(".")[0]
+                    
+                    dateArray.addObject("\(dateStr) \(timeStr)")
+                    //                    print ("\(dateArray)")
+                }
+            }
+            
+            // sort the date array
+            
+            
+            //            print("\(dateArray)")
+            if !(dateArray.count > 1) {
+                return
+            }
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            var sortedArray = dateArray.sort{(dateFormatter.dateFromString($0 as! String))!.compare(dateFormatter.dateFromString($1 as! String)!) == .OrderedAscending}
+            
+            //            print("----------*********---------")
+            //            print("\(sortedArray)")
+            
+            // reverse an array
+            var c = sortedArray.count - 1
+            var i = 0
+            while i < c {
+                swap(&sortedArray[i++],&sortedArray[c--])
+            }
+            print("\(sortedArray)")
+            
+            sortedtimelines = []
+            for g in 0..<sortedArray.count{
+                let sortedDateStr = "\(sortedArray[g])"
+                for h in 0..<timelines.count{
+                    if !(timelines[h].updated_at.isEmpty) {
+                        var sampleArrayOne = "\(timelines[h].updated_at)".componentsSeparatedByString("T")
+                        let dateStr = sampleArrayOne[0]
+                        var sampleArrayTwo = sampleArrayOne[1].componentsSeparatedByString("Z")
+                        var timeStr = sampleArrayTwo[0]
+                        timeStr = timeStr.componentsSeparatedByString(".")[0]
+                        let compareStr = "\(dateStr) \(timeStr)"
+                        
+                        if(sortedDateStr == compareStr){
+                            sortedtimelines.append(timelines[h])
+                            break
+                        }
+                    }
+                    
+                }
+            }
+            
+            timelines = []
+            timelines = sortedtimelines
+            
+            
             for i in 0..<timelines.count {
                 timelines[i].reloadMoments {
                     if let cell = self.tableView.cellForRowAtIndexPath(self.indexPathForIndex(i)) as? ModernTimelineTableViewCell {

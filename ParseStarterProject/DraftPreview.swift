@@ -999,15 +999,23 @@ extension DraftPreview: MomentPlayerControllerDelegate {
             self.nextPlayButton.alpha = momentPlayerController.isLast ? 0.0 : 0.5
             //previous and next button hidden
             //(self.previousPlayButton.hidden, self.nextPlayButton.hidden) = (false, false)
-            self.previewImageView.sd_setImageWithURL(self.moments[momentPlayerController.currentIndexOfMoment()].remoteThumbURL)
-            let momentCommentCount = self.moments[momentPlayerController.currentIndexOfMoment()].commentCount!
-            self.commentcount.text = "\(momentCommentCount)"
+            
+//            self.previewImageView.sd_setImageWithURL(self.moments[momentPlayerController.currentIndexOfMoment()].remoteThumbURL)
+//            let momentCommentCount = self.moments[momentPlayerController.currentIndexOfMoment()].commentCount!
+            //print("moment?.commentCount : \(moment?.commentCount!)")
+            if (moment?.commentCount) != nil{
+                if let count : Int = (moment?.commentCount)! as Int{
+                    self.commentcount.text = "\(count)"
+                }
+                
+            }
+            
             self.previousPlayButton.enabled = !momentPlayerController.isFirst
             self.nextPlayButton.enabled = !momentPlayerController.isLast
-            let moment = moment
-            print(moment!.overlayText)
-            print(moment!.overlayColor)
-            print(moment!.overlayPosition)
+//            let moment = moment
+//            print(moment!.overlayText)
+//            print(moment!.overlayColor)
+//            print(moment!.overlayPosition)
             
             delay(0.0, closure: {
                 

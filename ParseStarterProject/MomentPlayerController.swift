@@ -19,7 +19,7 @@ class MomentPlayerController: NSObject {
     var finished: Bool = false
     var observing: Bool = false
     var modernTimeline : ModernTimelineView!
-    
+    var draftView : DraftPreview!
     weak var delegate: MomentPlayerControllerDelegate?
     //lazy var queue: NSOperationQueue = SerialOperationQueue(name: "queue player")
 

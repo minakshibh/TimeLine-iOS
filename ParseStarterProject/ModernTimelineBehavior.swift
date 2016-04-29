@@ -34,7 +34,7 @@ class ModernTimelineBehavior {
         })
         self.callbacks.append(serialHook.add(key: .StopAllPlaybacks) {
             if case .Playing = self.state {
-                self.stopPlayback(animated: true)
+  //              self.stopPlayback(animated: true)
             }
         })
     }

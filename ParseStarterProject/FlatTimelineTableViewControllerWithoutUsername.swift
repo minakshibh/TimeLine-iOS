@@ -5,6 +5,8 @@ class FlatTimelineTableViewControllerWithoutUsername: UITableViewController, UIT
     
     var oldTabDelegate: UITabBarControllerDelegate?
     var oldNavDelegate: UINavigationControllerDelegate?
+
+
     
     var timelines: [Timeline] = [] {
         didSet {
@@ -25,7 +27,7 @@ class FlatTimelineTableViewControllerWithoutUsername: UITableViewController, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        callbacks.append(setUpReloadable())
+//        callbacks.append(setUpReloadable())
         
         oldTabDelegate = tabBarController?.delegate
         tabBarController?.delegate = self
