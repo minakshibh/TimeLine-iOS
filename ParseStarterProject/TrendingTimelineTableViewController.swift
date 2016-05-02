@@ -643,26 +643,25 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 if searching && searchResults.count == 0 {
                     let cell = self.tableView.dequeueReusableCellWithIdentifier("ActivityCell", forIndexPath: indexPath)
                     return cell
-                } else if searchResults.count > 0 {
-                    let user = searchResults[indexPath.row] as? User
+                } else if let user = searchResults[indexPath.row] as? User {
                     let cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserSummaryTableViewCell
-                
+                    
                     // Configure the cell...
-                
+                    
                     cell.user = user
                     cell.nameLabel.hidden = false
                     cell.nameLabel1.hidden = false
                     return cell
                 } else {
-                    
                     let timeline = searchResults[indexPath.row] as! Timeline
                     let cell = self.tableView.dequeueReusableCellWithIdentifier("TimelineCell",     forIndexPath: indexPath) as! ModernTimelineTableViewCell
-                
+                    
                     // Configure the cell...
                     cell.timeline = timeline
-                
+                    
                     return cell
                 }
+
             
             }
         }
