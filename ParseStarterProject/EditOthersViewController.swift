@@ -13,6 +13,7 @@ import Parse
 class EditOthersTableViewController: TintedHeaderTableViewController, UITextViewDelegate {
     
     @IBOutlet var othersField: UITextView!
+    @IBOutlet var countorLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,7 @@ class EditOthersTableViewController: TintedHeaderTableViewController, UITextView
             othersField.text = other
         }
         othersField.textColor = UIColor.lightGrayColor()
+        self .countStatusLength(othersField.text.characters.count)
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,9 +54,24 @@ class EditOthersTableViewController: TintedHeaderTableViewController, UITextView
             alert.addAction(UIAlertAction(title: local(.SettingsAlertEmailMissingActionDismiss), style: UIAlertActionStyle.Default, handler: nil))
             presentAlertController(alert)
         }
+        self .countStatusLength(othersField.text.characters.count)
     }
    
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool{
+        let newLength = text.characters.count + textView.text.characters.count - range.length
+        
+        if (text != "\n") {
+            self .countStatusLength(newLength)
+        }
+        if(newLength > 120)
+        {
+            if(text == "\n") {
+                textView.resignFirstResponder()
+                save()
+                return false
+            }
+            return false
+        }
         if(text == "\n") {
             textView.resignFirstResponder()
             save()
@@ -63,7 +80,20 @@ class EditOthersTableViewController: TintedHeaderTableViewController, UITextView
         return true
     }
     func textViewDidBeginEditing(textView: UITextView) {
-        textView.text = ""
+        
         textView.textColor = UIColor.blackColor()
+    }
+    
+    func countStatusLength(textViewCharacterLength: Int) {
+        let count = 120
+        let diff: Int = (count) - (textViewCharacterLength)
+        if(diff == -1)
+        {
+            countorLbl.text = String(0)
+            
+        }else
+        {
+            countorLbl.text = String(diff)
+        }
     }
 }

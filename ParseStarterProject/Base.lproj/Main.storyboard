@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9s-d8-mdv">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -4756,14 +4756,26 @@ Effective as of September 14, 2015
                                                         <outlet property="delegate" destination="Ev4-Ms-jSR" id="5fg-nc-m62"/>
                                                     </connections>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JL-2B-UKw">
+                                                    <rect key="frame" x="568" y="76" width="24" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="syZ-Vv-A0X"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.0" alpha="0.39000000000000001" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="bdc-be-JDt" secondAttribute="trailing" constant="5" id="1us-sZ-s55"/>
+                                                <constraint firstAttribute="bottom" secondItem="4JL-2B-UKw" secondAttribute="bottom" id="5Gz-ZI-nL4"/>
+                                                <constraint firstItem="4JL-2B-UKw" firstAttribute="trailing" secondItem="qQc-14-q7Z" secondAttribute="trailingMargin" id="5Q2-Iz-Pof"/>
                                                 <constraint firstItem="bdc-be-JDt" firstAttribute="leading" secondItem="qQc-14-q7Z" secondAttribute="leadingMargin" constant="7" id="8eV-RD-5DN"/>
                                                 <constraint firstItem="bdc-be-JDt" firstAttribute="bottom" secondItem="qQc-14-q7Z" secondAttribute="bottomMargin" id="99G-Bh-SI1"/>
                                                 <constraint firstItem="bdc-be-JDt" firstAttribute="top" secondItem="qQc-14-q7Z" secondAttribute="topMargin" id="9Ld-xw-Cmx"/>
                                                 <constraint firstItem="bdc-be-JDt" firstAttribute="centerY" secondItem="qQc-14-q7Z" secondAttribute="centerY" id="CZz-dh-8OF"/>
                                                 <constraint firstItem="bdc-be-JDt" firstAttribute="centerX" secondItem="qQc-14-q7Z" secondAttribute="centerX" constant="1" id="IPa-1L-nRL"/>
+                                                <constraint firstItem="4JL-2B-UKw" firstAttribute="top" secondItem="qQc-14-q7Z" secondAttribute="topMargin" constant="68" id="O2g-ye-cok"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="bdc-be-JDt" secondAttribute="trailing" constant="5" id="bg6-EY-DOH"/>
                                                 <constraint firstItem="bdc-be-JDt" firstAttribute="leading" secondItem="qQc-14-q7Z" secondAttribute="leadingMargin" constant="7" id="tAN-B5-pb0"/>
                                             </constraints>
@@ -4784,12 +4796,13 @@ Effective as of September 14, 2015
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="countorLbl" destination="4JL-2B-UKw" id="icY-bE-34s"/>
                         <outlet property="othersField" destination="bdc-be-JDt" id="5HD-Zz-Mjh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzR-x1-Udw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="62" y="-1195"/>
+            <point key="canvasLocation" x="59" y="-1234"/>
         </scene>
         <!--Change Website-->
         <scene sceneID="fIw-5O-U82">
@@ -5066,19 +5079,19 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="JUD-Gk-HWr"/>
         <segue reference="fy0-iv-eFM"/>
         <segue reference="wPR-Ua-TlF"/>
         <segue reference="dHW-RB-S8H"/>
+        <segue reference="U58-7K-X9n"/>
         <segue reference="T9S-G7-mh0"/>
         <segue reference="Mq8-L9-ocP"/>
         <segue reference="Odf-Iw-TZ0"/>
         <segue reference="gqI-eh-cAa"/>
         <segue reference="ji8-C3-1Lo"/>
-        <segue reference="kNn-C3-4Z5"/>
         <segue reference="uwx-Vf-wTk"/>
         <segue reference="9SA-Oc-iuS"/>
-        <segue reference="5f9-3x-iDp"/>
-        <segue reference="JUD-Gk-HWr"/>
+        <segue reference="kNn-C3-4Z5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -1165,9 +1165,19 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             userImage.tag = indexPath.row
             if let raw = self.commentArray[indexPath.row] as? NSDictionary
             {
-                let notifyStr = raw["user_image"] as! String
+                var notifyStrs: String = ""
+                
+                if let notifyStr = raw["user_image"] as? NSString
+                {
+                    let notify = notifyStr
+                    if(notify != "")
+                    {
+                    notifyStrs = notify as String
+                    userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStrs), forState: .Normal)
+                    }
+                }
                 //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
-                userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+                
                 //userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal, placeholderImage: UIImage(named:"default-user-profile"), options: SDWebImageOptions.ProgressiveDownload)
             }
             userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
