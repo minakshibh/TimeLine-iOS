@@ -76,7 +76,7 @@ class FollowingTableViewController: SortedTimelineTableViewController {
     override func refreshTableView() {
         active = true
         var first = true
-        
+        do{
         Timeline.getTimelines(.TimelineFollowing) { tls in
             self.setTimelines(tls)
             main{
@@ -92,6 +92,10 @@ class FollowingTableViewController: SortedTimelineTableViewController {
                 }
             }
         }
+    }catch{
+        var alert=UIAlertController(title: "CRASH", message: "App tried to crash at refreshing following screen", preferredStyle: UIAlertControllerStyle.Alert);
+        self.showViewController(alert, sender: self);
+            }
     }
     
     override func didReceiveMemoryWarning() {

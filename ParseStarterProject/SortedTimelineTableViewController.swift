@@ -40,7 +40,7 @@ class SortedTimelineTableViewController: UITableViewController {
         }
 
         //2016-01-11T04:25:50.000Z
-        
+        do{
         let resultingSecs = secs.values.map { uts in
             (uts.0, uts.1.sort(<))
         }.sort { (luts, ruts) -> Bool in
@@ -82,6 +82,10 @@ class SortedTimelineTableViewController: UITableViewController {
             }
             
         return status
+        }
+        }catch{
+            var alert=UIAlertController(title: "CRASH", message: "App tried to crash while sorting values", preferredStyle: UIAlertControllerStyle.Alert);
+            self.showViewController(alert, sender: self);
         }
         
         sections = Array(resultingSecs)

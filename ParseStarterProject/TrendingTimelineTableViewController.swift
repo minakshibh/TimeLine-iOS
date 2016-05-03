@@ -375,9 +375,6 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                         {
                             self.nameArray.addObject("\(contactName)")
                             self.numberArray.addObject("--")
- //                           print("\(self.nameArray)---\(self.numberArray)")
-                            //nhjjnj
-                            //kkjmk
                         }
                         var swiftString = ""
                         for ix in 0 ..< ABMultiValueGetCount(numbers) {
@@ -387,7 +384,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                                 value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
 //                                print("Phonenumber  is \(value)")
                                 randomArray.addObject(value)
-                                let locLabel : CFStringRef = (ABMultiValueCopyLabelAtIndex(phones, ix) != nil) ? ABMultiValueCopyLabelAtIndex(phones, ix).takeUnretainedValue() as CFStringRef : ""
+                                
+                    do{               let locLabel : CFStringRef = (ABMultiValueCopyLabelAtIndex(phones, ix) != nil) ? ABMultiValueCopyLabelAtIndex(phones, ix).takeUnretainedValue() as CFStringRef : ""
                                 let cfStr:CFTypeRef = locLabel
                                 let nsTypeString = cfStr as! NSString
                                 var swiftString:String = nsTypeString as String
@@ -399,6 +397,10 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                                         var arrStr1 = swiftString.componentsSeparatedByString("<")
                                         swiftString =  arrStr1[1].componentsSeparatedByString(">")[0]
                                                                     }
+                                }
+                    }catch{
+                        var alert=UIAlertController(title: "CRASH", message: "App tried to crash trending view fetch contact labels", preferredStyle: UIAlertControllerStyle.Alert);
+                        self.showViewController(alert, sender: self);
                                 }
                                 labelArray.addObject(swiftString)
                             }
