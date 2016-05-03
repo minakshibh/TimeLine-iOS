@@ -12,6 +12,7 @@ import MessageUI
 import AddressBookUI
 import AddressBook
 import KGModal
+import Contacts
 
 
 
@@ -387,10 +388,18 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 //                                print("Phonenumber  is \(value)")
                                 randomArray.addObject(value)
                                 let locLabel : CFStringRef = (ABMultiValueCopyLabelAtIndex(phones, ix) != nil) ? ABMultiValueCopyLabelAtIndex(phones, ix).takeUnretainedValue() as CFStringRef : ""
-                                var cfStr:CFTypeRef = locLabel
-                                var nsTypeString = cfStr as! NSString
+                                let cfStr:CFTypeRef = locLabel
+                                let nsTypeString = cfStr as! NSString
                                 var swiftString:String = nsTypeString as String
 //                                print("\(swiftString)")
+                                if #available(iOS 9.0, *) {
+                                    swiftString = CNLabeledValue.localizedStringForLabel(swiftString)
+                                } else {
+                                    if ("\(swiftString)").rangeOfString("<") != nil{
+                                        var arrStr1 = swiftString.componentsSeparatedByString("<")
+                                        swiftString =  arrStr1[1].componentsSeparatedByString(">")[0]
+                                                                    }
+                                }
                                 labelArray.addObject(swiftString)
                             }
                         }
@@ -403,31 +412,31 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                         self.numberArray.addObject(randomArray[0])
 //                        print("\(self.nameArray)---\(self.numberArray)")
                     }else{
-            do{
-                        for(var a=0;a<randomArray.count;a++){
+//            do{
+                        for(var a=0;a<randomArray.count;a += 1){
                             
-                            if ("\(labelArray[a])").rangeOfString("<") != nil{
-                                var arrStr1 = labelArray[a].componentsSeparatedByString("<")
-                                let lblStr =  arrStr1[1].componentsSeparatedByString(">")[0]
-                                self.nameArray.addObject("\(contactName)-\(lblStr)")
-                                self.numberArray.addObject(randomArray[a])
-                            }else{
+//                            if ("\(labelArray[a])").rangeOfString("<") != nil{
+//                                var arrStr1 = labelArray[a].componentsSeparatedByString("<")
+//                                let lblStr =  arrStr1[1].componentsSeparatedByString(">")[0]
+//                                self.nameArray.addObject("\(contactName)-\(lblStr)")
+//                                self.numberArray.addObject(randomArray[a])
+//                            }else{
 //                                print("crash")
                                 self.nameArray.addObject("\(contactName)-\(labelArray[a])")
                                 self.numberArray.addObject(randomArray[a])
-                            }
+//                            }
                         }
-            }catch {
-                            for(var a=0;a<randomArray.count;a++){
-                                var alert=UIAlertController(title: "CRASH", message: "App tried to cresh here-2", preferredStyle: UIAlertControllerStyle.Alert);
-                                //show it
-                                self.showViewController(alert, sender: self);
-                                    print("crash")
-                                    self.nameArray.addObject("\(contactName)-\(labelArray[a])")
-                                    self.numberArray.addObject(randomArray[a])
-                                
-                            }
-                }
+//            }catch {
+//                            for(var a=0;a<randomArray.count;a++){
+//                                var alert=UIAlertController(title: "CRASH", message: "App tried to cresh here-2", preferredStyle: UIAlertControllerStyle.Alert);
+//                                //show it
+//                                self.showViewController(alert, sender: self);
+//                                    print("crash")
+//                                    self.nameArray.addObject("\(contactName)-\(labelArray[a])")
+//                                    self.numberArray.addObject(randomArray[a])
+//                                
+//                            }
+//                }
                         //                           self.numberArray.addObject(arrStr)
                     }
                 }
