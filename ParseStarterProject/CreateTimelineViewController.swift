@@ -170,7 +170,8 @@ class CreateTimelineViewController: SubmitViewController ,UITableViewDataSource 
                         self.submitButton.enabled = true
                         self.upgrading = false
                         self.navigationController?.popViewControllerAnimated(true)
-                        self.navigationController?.topViewController?.performSegueWithIdentifier("TimelineCreated", sender: tl)
+NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "moveToMomentsScreen")
+                        //                        self.navigationController?.topViewController?.performSegueWithIdentifier("TimelineCreated", sender: tl)
                     }
                 }
             }
