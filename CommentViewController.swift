@@ -25,6 +25,7 @@ class CommentViewController: SLKTextViewController {
     var invitedFriendsArray : NSMutableArray = []
     var InvitedFriends_id : NSMutableArray = []
     var InvitedFriendsIdSTr : NSString = ""
+    var editmessageid : String = ""
     
     // Iphonecheck Classes
     enum UIUserInterfaceIdiom : Int
@@ -71,8 +72,6 @@ class CommentViewController: SLKTextViewController {
         self.textInputbar.textView.placeholder = "Share a comment"
         self.textInputbar.autoHideRightButton = true
         
-        //        self.rightButton.backgroundColor = UIColor.redColor()
-        //        self.rightButton.setImage(UIImage(named:"post-comment"), forState: .Normal)
         self.tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         self.tableView?.separatorStyle = .None
         self.autoCompletionView.registerClass(MessageTableViewCell.self, forCellReuseIdentifier: AutoCompletionCellIdentifier)
@@ -107,7 +106,7 @@ class CommentViewController: SLKTextViewController {
         Storage.performRequest(ApiRequest.GetTagUsers, completion: { (json) -> Void in
             
             if let raw = json["result"] as? NSMutableArray{
-                for var i = 0; i < raw.count; i++ {
+                for (var i = 0; i < raw.count; i++ ){
                     if let username = raw[i] as? NSDictionary
                     {
                         //print("Username : \(username)")
@@ -124,6 +123,7 @@ class CommentViewController: SLKTextViewController {
         Storage.performRequest(ApiRequest.TimelineComments(timelineCommentID), completion: { (json) -> Void in
             if let raw = json["result"] as? NSMutableArray{
                 self.messages = raw
+                print("messages : \(raw)")
                 main{
                     self.tableView?.reloadData()
                     self.activityIndicator.stopAnimating()
@@ -293,13 +293,13 @@ class CommentViewController: SLKTextViewController {
         commentMessage.textColor = UIColor.blackColor()
         if let raw = self.messages[indexPath.row] as? NSDictionary
         {
-            let notifyStr = raw["comment"] as! String
-            
+            if let notifyStr = raw["comment"] as? String
+            {
             let emoData1 = notifyStr.dataUsingEncoding(NSUTF8StringEncoding)
             let emoStringConverted = String.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as String
-            
-            
-            commentMessage.text = emoStringConverted
+            let newString = emoStringConverted.stringByReplacingOccurrencesOfString("%26", withString: "&")
+            commentMessage.text = newString
+            }
         }
         cellView.addSubview(username)
         commentMessage.autosizeForWidth()
@@ -459,6 +459,9 @@ class CommentViewController: SLKTextViewController {
             if let notifyStr = raw["comment"] as? String{
                 self.textMessage = notifyStr
             }
+            if let messageID = raw["id"] as? String{
+                editmessageid = messageID
+            }
         }
         
         self.editText(self.textMessage)
@@ -468,7 +471,7 @@ class CommentViewController: SLKTextViewController {
     override func didPressRightButton(sender: AnyObject?) {
         
         self.textView.refreshFirstResponder()
-
+        
         let TrimString = self.textView.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
         if(TrimString == ""){
@@ -482,15 +485,16 @@ class CommentViewController: SLKTextViewController {
         
         let emoData = self.textView.text.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
         let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
+        let newString = goodValue!.stringByReplacingOccurrencesOfString("&", withString: "%26")
         
-        Storage.performRequest(ApiRequest.TimelinePostComment(timelineCommentID, goodValue! as PARAMS , InvitedFriendsIdSTr as UserIdString), completion: { (json) -> Void in
+        Storage.performRequest(ApiRequest.TimelinePostComment(timelineCommentID, newString as PARAMS , InvitedFriendsIdSTr as UserIdString), completion: { (json) -> Void in
             main{
                 Storage.performRequest(ApiRequest.TimelineComments(self.timelineCommentID), completion: { (json) -> Void in
                     if let raw = json["result"] as? NSMutableArray{
                         self.messages = raw
                     }
                     main{
-                        serialHook.perform(key: .ForceReloadData, argument: ())
+                        //serialHook.perform(key: .ForceReloadData, argument: ())
                         self.tableView?.reloadData()
                         let numberOfRows = self.tableView?.numberOfRowsInSection(0)
                         if numberOfRows > 0 {
@@ -512,7 +516,7 @@ class CommentViewController: SLKTextViewController {
             print(json)
             main{
                 Storage.performRequest(ApiRequest.TimelineComments(self.timelineCommentID), completion: { (json) -> Void in
-                    
+                    main{
                     if let raw = json["result"] as? NSMutableArray{
                         self.messages = raw
                         
@@ -520,13 +524,62 @@ class CommentViewController: SLKTextViewController {
                     main({
                         self.tableView!.reloadData()
                     })
-                    
+                    }
                 })
             }
             
         })
     }
+    override func didCommitTextEditing(sender: AnyObject)
+    {
+    // Notifies the view controller when tapped on the right "Accept" button for commiting the edited text
+//    self.editingMessage.text = self.textView.text.copy
+//    
+//    self.tableView!.reloadData()
+        
+        
+        let TrimString = self.textView.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        if(TrimString == ""){
+            let alert = UIAlertView()
+            alert.title = ""
+            alert.message = "Please enter your comment first."
+            alert.addButtonWithTitle(local(.MomentAlertUploadErrorActionDismiss))
+            alert.show()
+            return
+        }
+        
+        let emoData = self.textView.text!.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
+        let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
+        print(goodValue!)
+        Storage.performRequest(ApiRequest.EditComment(self.editmessageid as commentID, goodValue! as commentmessage), completion: { (json) -> Void in
+            main{
+                
+                Storage.performRequest(ApiRequest.TimelineComments(self.timelineCommentID), completion: { (json) -> Void in
+                    if let raw = json["result"] as? NSMutableArray{
+                        self.messages = raw
+                        
+                    }
+                    main{
+                        self.tableView!.reloadData()
+                        
+                    }
+                    
+                })
+            }
+            
+                })
+
+    super.didCommitTextEditing(sender)
+    }
     
+    override func didCancelTextEditing(sender: AnyObject)
+    {
+    // Notifies the view controller when tapped on the left "Cancel" button
+    
+    super.didCancelTextEditing(sender)
+    }
+
     func UserImageClick(sender: UIButton){
         print(sender.tag)
         if let raw = self.messages[sender.tag] as? NSDictionary

@@ -609,6 +609,7 @@ extension CaptureMomentViewController {
     }
     
     @IBAction func flipCamera(sender: AnyObject!) {
+        recorder.flashMode = recorder.flashMode == .Light ? .Off : .Off
         recorder.switchCaptureDevices()
         //toggleTorch()
         refreshTorches()

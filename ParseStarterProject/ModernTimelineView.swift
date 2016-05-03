@@ -93,7 +93,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             }
             behavior.timeline = newValue
 
-            main{
+            delay(0.001){
                 self.scrollMomentArray = []
                 
                 // Seperator view for timeline
@@ -1209,13 +1209,22 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             userImage.tag = indexPath.row
             if let raw = self.commentArray[indexPath.row] as? NSDictionary
             {
-                if let notifyStr = raw["user_image"] as? String {
-                //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
-                userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+                var notifyStrs: String = ""
+                
+                if let notifyStr = raw["user_image"] as? NSString
+                {
+                    let notify = notifyStr
+                    if(notify != "")
+                    {
+                    notifyStrs = notify as String
+                    userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStrs), forState: .Normal)
+                    }
                 }
-                //userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal, placeholderImage: UIImage(named:"default-user-profile"), options: SDWebImageOptions.ProgressiveDownload)
+                //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
+                
+                //userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal, placeholderImage: UIImage(named:"default-user-profile", options: SDWebImageOptions.ProgressiveDownload)
             }
-            userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
+            userImage.addTarget(self, action: #selector(ModernTimelineView.UserImageClick(_:)), forControlEvents: .TouchUpInside)
             userImage.clipsToBounds = true
             cellView.addSubview(userImage)
             

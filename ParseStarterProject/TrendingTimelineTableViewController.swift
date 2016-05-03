@@ -200,6 +200,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 //        self.tabBarController?.tabBar.frame = CGRectMake(0, self.view.bounds.height, self.view.bounds.width, self.view.bounds.height);
     }
     func btnBackContact(){
+        self.errorText?.removeFromSuperview()
         KGModal.sharedInstance().hideAnimated(true)
     }
     func goToRecordScreen(){
@@ -352,7 +353,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             }
             // addressBook = !ABAddressBookCreateWithOptions(emptyDictionary,nil)
             let contactList: NSArray = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue()
-            print("records in the array \(contactList.count)") // returns 0
+//            print("records in the array \(contactList.count)") // returns 0
             self.nameArray = []
             self.numberArray = []
             self.selectedPeople = []
@@ -362,18 +363,18 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 let labelArray: NSMutableArray! = []
                 if var contactName = ABRecordCopyCompositeName(contactPerson)?.takeRetainedValue(){
                     contactName = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
-                    print("\(contactName)")
+//                    print("\(contactName)")
                     //                    self.nameArray.addObject(contactName )
                     if var numbers = ABRecordCopyValue(
                         contactPerson, kABPersonPhoneProperty)?.takeRetainedValue(){
                         numbers = ABRecordCopyValue(
                             contactPerson, kABPersonPhoneProperty).takeRetainedValue()
-                        print("\(ABMultiValueGetCount(numbers))")
+ //                       print("\(ABMultiValueGetCount(numbers))")
                         if (ABMultiValueGetCount(numbers) == 0)
                         {
                             self.nameArray.addObject("\(contactName)")
                             self.numberArray.addObject("--")
-                            print("\(self.nameArray)---\(self.numberArray)")
+ //                           print("\(self.nameArray)---\(self.numberArray)")
                             //nhjjnj
                             //kkjmk
                         }
@@ -383,13 +384,13 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                             
                             if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
                                 value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
-                                print("Phonenumber  is \(value)")
+//                                print("Phonenumber  is \(value)")
                                 randomArray.addObject(value)
                                 let locLabel : CFStringRef = (ABMultiValueCopyLabelAtIndex(phones, ix) != nil) ? ABMultiValueCopyLabelAtIndex(phones, ix).takeUnretainedValue() as CFStringRef : ""
                                 var cfStr:CFTypeRef = locLabel
                                 var nsTypeString = cfStr as! NSString
                                 var swiftString:String = nsTypeString as String
-                                print("\(swiftString)")
+//                                print("\(swiftString)")
                                 labelArray.addObject(swiftString)
                             }
                         }
@@ -400,35 +401,43 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                     if(count == 1){
                         self.nameArray.addObject("\(contactName)")
                         self.numberArray.addObject(randomArray[0])
-                        print("\(self.nameArray)---\(self.numberArray)")
+//                        print("\(self.nameArray)---\(self.numberArray)")
                     }else{
+            do{
                         for(var a=0;a<randomArray.count;a++){
-                            //                            if(a==0){
-                            //                               arrStr = "\(randomArray[a])"
-                            //                            }else{
-                            //                            arrStr = "\(arrStr),\(randomArray[a])"
-                            //                            }
+                            
                             if ("\(labelArray[a])").rangeOfString("<") != nil{
                                 var arrStr1 = labelArray[a].componentsSeparatedByString("<")
                                 let lblStr =  arrStr1[1].componentsSeparatedByString(">")[0]
                                 self.nameArray.addObject("\(contactName)-\(lblStr)")
                                 self.numberArray.addObject(randomArray[a])
                             }else{
-                                print("crash")
+//                                print("crash")
                                 self.nameArray.addObject("\(contactName)-\(labelArray[a])")
                                 self.numberArray.addObject(randomArray[a])
                             }
                         }
+            }catch {
+                            for(var a=0;a<randomArray.count;a++){
+                                var alert=UIAlertController(title: "CRASH", message: "App tried to cresh here-2", preferredStyle: UIAlertControllerStyle.Alert);
+                                //show it
+                                self.showViewController(alert, sender: self);
+                                    print("crash")
+                                    self.nameArray.addObject("\(contactName)-\(labelArray[a])")
+                                    self.numberArray.addObject(randomArray[a])
+                                
+                            }
+                }
                         //                           self.numberArray.addObject(arrStr)
                     }
                 }
             }
-            print("\(self.nameArray)----\(self.nameArray.count)")
-            print("\(self.numberArray)---\(self.numberArray.count)")
+//            print("\(self.nameArray)----\(self.nameArray.count)")
+//            print("\(self.numberArray)---\(self.numberArray.count)")
             for(var k=0;k<self.nameArray.count;k++){
                 self.contactDict.setValue(self.numberArray[k], forKey: self.nameArray[k] as! String)
             }
-            print("\(self.contactDict.allKeys)")
+//            print("\(self.contactDict.allKeys)")
            
             let sortedArray = self.nameArray.sortedArrayUsingComparator {
                 (obj1, obj2) -> NSComparisonResult in
@@ -512,9 +521,12 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             main{
             if tableView == self.tableView {
                 //super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
-            } else if let user = self.searchResults[indexPath.row] as? User {
-                if self.searchStatus {
-                    self.performSegueWithIdentifier("ShowUser", sender: user)
+            } else if self.searchResults.count > 0{
+                
+                if let user = self.searchResults[indexPath.row] as? User {
+                    if self.searchStatus {
+                        self.performSegueWithIdentifier("ShowUser", sender: user)
+                    }
                 }
             }
             }
@@ -610,7 +622,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 if searching && searchResults.count == 0 {
                     let cell = self.tableView.dequeueReusableCellWithIdentifier("ActivityCell", forIndexPath: indexPath)
                     return cell
-                } else if let user = searchResults[indexPath.row] as? User {
+                } else if (searchResults[indexPath.row] as? User  != nil) {
+                    let user = searchResults[indexPath.row] as? User
                     let cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserSummaryTableViewCell
                 
                     // Configure the cell...

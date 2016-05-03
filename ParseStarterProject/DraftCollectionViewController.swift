@@ -48,11 +48,15 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         
         tabBarController?.delegate = self
         navigationController?.delegate = self
-        headerView?.draftPreview.commentButton.hidden = true
-        headerView?.draftPreview.playPlayButton.hidden = true
-        headerView?.draftPreview.pausePlayButton.hidden = true
-        headerView?.draftPreview.closeButton.hidden = true
-        headerView?.draftPreview.commentcount.hidden = true
+        
+        delay(0.001) {
+            self.headerView?.draftPreview.commentButton.hidden = true
+            self.headerView?.draftPreview.playPlayButton.hidden = true
+            self.headerView?.draftPreview.pausePlayButton.hidden = true
+            self.headerView?.draftPreview.closeButton.hidden = true
+            self.headerView?.draftPreview.commentcount.hidden = true
+        }
+        
 //         self.hidesBottomBarWhenPushed = true
         //navigationItem.setRightBarButtonItems(buttons, animated: true)
         
@@ -109,7 +113,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         headerView?.draftPreview.closeButton.hidden = true
         headerView?.draftPreview.commentcount.hidden = true
         
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(DraftCollectionViewController.update), userInfo: nil, repeats: false)
 
     }
     

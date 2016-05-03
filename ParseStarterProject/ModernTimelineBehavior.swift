@@ -32,11 +32,7 @@ class ModernTimelineBehavior {
                 self.stopPlayback(animated: true)
             }
         })
-        self.callbacks.append(serialHook.add(key: .StopAllPlaybacks) {
-            if case .Playing = self.state {
-  //              self.stopPlayback(animated: true)
-            }
-        })
+        
     }
 
     weak var modernTimelineView: ModernTimelineView?
@@ -45,6 +41,11 @@ class ModernTimelineBehavior {
     var timeline: Timeline? {
         didSet {
             main { self.refresh() }
+            self.callbacks.append(serialHook.add(key: .StopAllPlaybacks) {
+                if case .Playing = self.state {
+                    self.stopPlayback(animated: true)
+                }
+            })
         }
     }
 
@@ -56,19 +57,23 @@ class ModernTimelineBehavior {
     var centerConstraints: [NSLayoutConstraint] = []
 
     func refresh() {
-        stopPlayback(animated: false)
+        if case .Playing = self.state {
+            self.stopPlayback(animated: true)
+        }
+
+        //stopPlayback(animated: false)
         viewingRights = TimelineViewingRight(timeline: timeline)
 
         if timeline?.hasNews ?? false {
             modernTimelineView?.newsBadge?.removeFromSuperview()
             modernTimelineView?.newsBadge = nil
 
-            let title = "!"
-            modernTimelineView?.newsBadge = CustomBadge(string: title, withScale: 1.2, withStyle: BadgeStyle.defaultStyle())
-            let anchor = modernTimelineView!.lastMomentPreviews.last!
-            modernTimelineView?.newsBadge?.center = CGPoint(x: anchor.frame.origin.x + anchor.frame.width, y: anchor.frame.origin.y)
-            anchor.superview?.addSubview(modernTimelineView!.newsBadge!)
-            modernTimelineView?.newsBadge?.autoBadgeSizeWithString(title)
+//            let title = "!"
+//            modernTimelineView?.newsBadge = CustomBadge(string: title, withScale: 1.2, withStyle: BadgeStyle.defaultStyle())
+//            let anchor = modernTimelineView!.lastMomentPreviews.last!
+//            modernTimelineView?.newsBadge?.center = CGPoint(x: anchor.frame.origin.x + anchor.frame.width, y: anchor.frame.origin.y)
+//            anchor.superview?.addSubview(modernTimelineView!.newsBadge!)
+//            modernTimelineView?.newsBadge?.autoBadgeSizeWithString(title)
         } else {
             modernTimelineView?.newsBadge?.removeFromSuperview()
             modernTimelineView?.newsBadge = nil

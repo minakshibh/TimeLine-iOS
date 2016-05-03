@@ -946,11 +946,14 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         bufferIndicator.stopAnimating()
         momentPlayerController?.stop()
         momentPlayerController = nil
-        
-        playbackContainer.hidden = true
+        delay(0.001){
+            
+            self.playbackContainer.hidden = true
+            serialHook.perform(key: .StopAllPlaybacks, argument: ())
+        }
 //        bufferIndicator.hidden = true
 
-        serialHook.perform(key: .StopAllPlaybacks, argument: ())
+        
     }
     
     func setCurrentMoment(moment: Moment) {
