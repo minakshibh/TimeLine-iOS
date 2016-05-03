@@ -77,27 +77,38 @@ class CommentViewController: SLKTextViewController {
         self.autoCompletionView.registerClass(MessageTableViewCell.self, forCellReuseIdentifier: AutoCompletionCellIdentifier)
         self.registerPrefixesForAutoCompletion(["@"])
         
-        self.activityIndicatorView.frame = CGRectMake(0, 0, 70, 70);
-        self.activityIndicatorView.backgroundColor = UIColor.grayColor()
-        self.activityIndicatorView.alpha = 1
-        self.activityIndicatorView.center = self.view.center
-        self.activityIndicatorView.layer.cornerRadius = 4
-        self.view.addSubview(self.activityIndicatorView)
         
-        self.activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        self.activityIndicator.frame = CGRect(x: 0, y: 7, width: 70, height: 50)
-        self.activityIndicatorView.addSubview(self.activityIndicator)
-        self.activityIndicator.startAnimating()
         
-        let indicatorTitle = UILabel()
-        indicatorTitle.frame = CGRectMake(0, 50, 70, 20)
-        indicatorTitle.font = UIFont.boldSystemFontOfSize(9)
-        indicatorTitle.textAlignment = .Center
-        indicatorTitle.textColor = UIColor.whiteColor()
-        indicatorTitle.text = "Please wait.."
-        self.activityIndicatorView.addSubview(indicatorTitle)
         
-        self.fetchingDataFromAPI()
+        let CommentButtonCountStr = NSUserDefaults.standardUserDefaults().valueForKey("CommentButtonCount") as! String
+        if CommentButtonCountStr != "0"{
+        
+            self.activityIndicatorView.frame = CGRectMake(0, 0, 70, 70);
+            self.activityIndicatorView.backgroundColor = UIColor.grayColor()
+            self.activityIndicatorView.alpha = 1
+            self.activityIndicatorView.center = self.view.center
+            self.activityIndicatorView.layer.cornerRadius = 4
+            self.view.addSubview(self.activityIndicatorView)
+            
+            self.activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+            self.activityIndicator.frame = CGRect(x: 0, y: 7, width: 70, height: 50)
+            self.activityIndicatorView.addSubview(self.activityIndicator)
+            self.activityIndicator.startAnimating()
+
+            let indicatorTitle = UILabel()
+            indicatorTitle.frame = CGRectMake(0, 50, 70, 20)
+            indicatorTitle.font = UIFont.boldSystemFontOfSize(9)
+            indicatorTitle.textAlignment = .Center
+            indicatorTitle.textColor = UIColor.whiteColor()
+            indicatorTitle.text = "Please wait.."
+            self.activityIndicatorView.addSubview(indicatorTitle)
+            
+             self.fetchingDataFromAPI()
+            
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("CommentButtonCount")
+        }
+
+       
         
     }
     
