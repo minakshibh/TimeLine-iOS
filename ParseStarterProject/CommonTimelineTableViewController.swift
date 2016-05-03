@@ -90,6 +90,9 @@ class CommonTimelineTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        delay(0.001) { 
+            self.callbacks.append(self.setUpReloadable())
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -101,13 +104,13 @@ class CommonTimelineTableViewController: UITableViewController {
 
     }
     func update1(){
-        callbacks.append(setUpReloadable())
+        
         
         tabBarController?.delegate = self
         navigationController?.delegate = self
         
         self.refreshControl?.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
-        self.refreshTableView()
+        //self.refreshTableView()
         
         NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "status")
     }

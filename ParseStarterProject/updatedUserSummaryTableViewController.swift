@@ -34,7 +34,9 @@ class updatedUserSummaryTableViewController: FlatTimelineTableViewControllerWith
     
     override func refreshTableView() {
         timelines = user.timelines ?? []
-       
+        
+       serialHook.perform(key: .ForceReloadData, argument: ())
+        
         user.reloadUser {
             main {
                 self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forItem: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Automatic)

@@ -98,7 +98,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        serialHook.perform(key: .ForceReloadData, argument: ())
 //        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
 
         if(IPHONE6 == 1 || IPHONE5==1){
@@ -124,7 +124,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     }
     
      func update7(){
-        refreshTableView()
+        //refreshTableView()
         
         for any: AnyObject in leftBarButtonItems ?? [] {
             if let item = any as? UIBarButtonItem {

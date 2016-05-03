@@ -25,8 +25,8 @@ enum ApiRequest {
 
 //    private static let baseUrl = NSURL(string: "http://timeline-server.elasticbeanstalk.com")!
 //    private static let baseUrl = NSURL(string: "http://54.191.110.86")!
-    private static let baseUrl = NSURL(string: "http://54.187.225.1")! // for client
-//    private static let baseUrl = NSURL(string: "http://54.186.168.14")!  // for push notification testing.
+//    private static let baseUrl = NSURL(string: "http://54.187.225.1")! // for client
+    private static let baseUrl = NSURL(string: "http://54.186.168.14")!  // for push notification testing.
 
     /// GET /api/user/get_token
     /// Header: X-Parse-Session-Token String
@@ -87,7 +87,7 @@ enum ApiRequest {
     /// POST /api/user/settings
     case UserSettings(String, Bool)
     ////PATCH api/comment/id/edit/
-    case EditComment(commentID,commentmessage)
+    case EditComment(commentID,commentmessage,UserIdString)
     ////DELETE api/comment/id/delete/
     case DeleteComment(commentID)
     /// GET /api/timeline/me
@@ -279,9 +279,9 @@ enum ApiRequest {
             urlString = "/api/user/\(uuid.urlEncoded)"
             urlRequest.HTTPMethod = "GET"
 
-        case .EditComment(let commentID, let commentmessage):
+        case .EditComment(let commentID, let commentmessage, let IdString):
             print("commentmessage: \(commentmessage)")
-            let bodyData = "comment=\(commentmessage.urlEncoded)"
+            let bodyData = "comment=\(commentmessage.urlEncoded)&tag_users=\(IdString.urlEncoded)"
             urlString = "api/comment/\(commentID.urlEncoded)/edit?\(bodyData)"
             urlRequest.HTTPMethod = "PATCH"
             

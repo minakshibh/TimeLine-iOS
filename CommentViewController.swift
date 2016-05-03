@@ -26,6 +26,8 @@ class CommentViewController: SLKTextViewController {
     var InvitedFriends_id : NSMutableArray = []
     var InvitedFriendsIdSTr : NSString = ""
     var editmessageid : String = ""
+    var IsMoment : Bool = false
+    var CurrentMoment: Int = 0
     
     // Iphonecheck Classes
     enum UIUserInterfaceIdiom : Int
@@ -62,11 +64,19 @@ class CommentViewController: SLKTextViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Comments"
+        if IsMoment{
+            if let raw : Int = CurrentMoment{
+                navigationItem.title = "Moment \(raw + 1) Comments"
+            }
+        }else{
+            navigationItem.title = "Comments"
+        }
+        
         navigationController?.navigationBar.tintColor = UIColor.redNavbarColor()
         navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor()
         ]
+        
         self.inverted = false
         self.textInputbar.backgroundColor = UIColor.groupTableViewBackgroundColor()
         self.textInputbar.textView.placeholder = "Share a comment"
@@ -98,7 +108,7 @@ class CommentViewController: SLKTextViewController {
         self.activityIndicatorView.addSubview(indicatorTitle)
         
         self.fetchingDataFromAPI()
-        
+//        print("isMoment: \(IsMoment) and current index:\(CurrentMoment)")
     }
     
     func fetchingDataFromAPI(){
@@ -110,27 +120,51 @@ class CommentViewController: SLKTextViewController {
                     if let username = raw[i] as? NSDictionary
                     {
                         //print("Username : \(username)")
-//                        var userDict = NSMutableDictionary()
-////                        userDict = username
-//                        userDict.setObject(username["name"]!, forKey: "name")
-//                        userDict.setObject(username["image"]!, forKey: "image")
+                        //                        var userDict = NSMutableDictionary()
+                        ////                        userDict = username
+                        //                        userDict.setObject(username["name"]!, forKey: "name")
+                        //                        userDict.setObject(username["image"]!, forKey: "image")
                         self.userArray.addObject(username)
                     }
                 }
             }
         })
-        
-        Storage.performRequest(ApiRequest.TimelineComments(timelineCommentID), completion: { (json) -> Void in
-            if let raw = json["result"] as? NSMutableArray{
-                self.messages = raw
-                print("messages : \(raw)")
-                main{
-                    self.tableView?.reloadData()
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicatorView.removeFromSuperview()
+        if IsMoment{
+            
+            Storage.performRequest(ApiRequest.MomentComments(timelineCommentID), completion: { (json) -> Void in
+                if let raw = json["result"] as? NSMutableArray{
+                    self.messages = raw
+                    
                 }
-            }
-        })
+                main{
+//                    self.tableView!.reloadData()
+//                    let numberOfRows = self.tableView!.numberOfRowsInSection(0)
+//                    if numberOfRows > 0 {
+//                        let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: 0)
+//                        self.tableView!.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+                    
+                        self.tableView?.reloadData()
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicatorView.removeFromSuperview()
+                   
+                }
+                
+            })
+            
+        }else{
+            Storage.performRequest(ApiRequest.TimelineComments(timelineCommentID), completion: { (json) -> Void in
+                if let raw = json["result"] as? NSMutableArray{
+                    self.messages = raw
+                    print("messages : \(raw)")
+                    main{
+                        self.tableView?.reloadData()
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicatorView.removeFromSuperview()
+                    }
+                }
+            })
+        }
+        
     }
     
     
@@ -212,13 +246,30 @@ class CommentViewController: SLKTextViewController {
         userImage.backgroundColor = UIColor.lightGrayColor()
         userImage.layer.cornerRadius = 25
         userImage.tag = indexPath.row
+        
+//        {
+//            if let notifyStr = raw["user_image"] as? String {
+//                userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+//            }
+//        }
         if let raw = self.messages[indexPath.row] as? NSDictionary
         {
-            if let notifyStr = raw["user_image"] as? String {
-                userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal)
+            var notifyStrs: String = ""
+            
+            if let notifyStr = raw["user_image"] as? NSString
+            {
+                let notify = notifyStr
+                if(notify != "")
+                {
+                    notifyStrs = notify as String
+                    userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStrs), forState: .Normal)
+                }
             }
+            //userImage.sd_setImageWithURL(NSURL(string: notifyStr))
+            
+            //userImage.sd_setBackgroundImageWithURL(NSURL(string: notifyStr), forState: .Normal, placeholderImage: UIImage(named:"default-user-profile", options: SDWebImageOptions.ProgressiveDownload)
         }
-        userImage.addTarget(self, action: "UserImageClick:", forControlEvents: .TouchUpInside)
+        userImage.addTarget(self, action: #selector(CommentViewController.UserImageClick(_:)), forControlEvents: .TouchUpInside)
         userImage.clipsToBounds = true
         cellView.addSubview(userImage)
         
@@ -235,7 +286,7 @@ class CommentViewController: SLKTextViewController {
         
         let timeStamp = UILabel()
         timeStamp.frame = CGRectMake(cellView.frame.size.width-110, 5, 100, 30)
-        timeStamp.font = UIFont.systemFontOfSize(14)
+        timeStamp.font = UIFont.systemFontOfSize(12)
         
         timeStamp.textColor = UIColor.blackColor()
         if let raw = self.messages[indexPath.row] as? NSDictionary
@@ -260,26 +311,26 @@ class CommentViewController: SLKTextViewController {
             
             if (years != 0)
             {
-                timeStr = String(years) + "year"
+                timeStr = String(years) + "y"
             }
             if (months != 0)
             {
-                timeStr = String(months) + "mon"
+                timeStr = String(months) + "mo"
             }
             else if(days != 0)
             {
-                timeStr = String(days) + "day"
+                timeStr = String(days) + "d"
             }
             else if(hours != 0)
             {
-                timeStr = String(hours) + "hrs"
+                timeStr = String(hours) + "h"
             }
             else if(minutes != 0)
             {
                 timeStr = String(minutes) + "min"
             }
             else{
-                timeStr = String(duration) + "sec"
+                timeStr = String(duration) + "s"
             }
             
             timeStamp.text = timeStr
@@ -295,10 +346,10 @@ class CommentViewController: SLKTextViewController {
         {
             if let notifyStr = raw["comment"] as? String
             {
-            let emoData1 = notifyStr.dataUsingEncoding(NSUTF8StringEncoding)
-            let emoStringConverted = String.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as String
-            let newString = emoStringConverted.stringByReplacingOccurrencesOfString("%26", withString: "&")
-            commentMessage.text = newString
+                let emoData1 = notifyStr.dataUsingEncoding(NSUTF8StringEncoding)
+                let emoStringConverted = String.init(data: emoData1!, encoding: NSNonLossyASCIIStringEncoding)! as String
+                let newString = emoStringConverted.stringByReplacingOccurrencesOfString("%26", withString: "&")
+                commentMessage.text = newString
             }
         }
         cellView.addSubview(username)
@@ -454,18 +505,22 @@ class CommentViewController: SLKTextViewController {
     }
     
     func editCellMessage(indexPath: NSIndexPath){
-        if let raw = self.messages[indexPath.row] as? NSDictionary
-        {
-            if let notifyStr = raw["comment"] as? String{
-                self.textMessage = notifyStr
+        delay(0.001) {
+            if let raw = self.messages[indexPath.row] as? NSDictionary
+            {
+                if let notifyStr = raw["comment"] as? String{
+                    let convertedString = notifyStr.stringByReplacingOccurrencesOfString("%26", withString: "&")
+                    self.textMessage = convertedString
+                }
+                if let messageID = raw["id"] as? String{
+                    self.editmessageid = messageID
+                }
             }
-            if let messageID = raw["id"] as? String{
-                editmessageid = messageID
-            }
+            
+            self.editText(self.textMessage)
+            self.tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
         }
         
-        self.editText(self.textMessage)
-        self.tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
     }
     
     override func didPressRightButton(sender: AnyObject?) {
@@ -487,55 +542,103 @@ class CommentViewController: SLKTextViewController {
         let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
         let newString = goodValue!.stringByReplacingOccurrencesOfString("&", withString: "%26")
         
-        Storage.performRequest(ApiRequest.TimelinePostComment(timelineCommentID, newString as PARAMS , InvitedFriendsIdSTr as UserIdString), completion: { (json) -> Void in
-            main{
-                Storage.performRequest(ApiRequest.TimelineComments(self.timelineCommentID), completion: { (json) -> Void in
+        if IsMoment{
+            Storage.performRequest(ApiRequest.MomentPostComment(timelineCommentID, newString as PARAMS, InvitedFriendsIdSTr as UserIdString), completion: { (json) -> Void in
+                
+                
+                Storage.performRequest(ApiRequest.MomentComments(self.timelineCommentID), completion: { (json) -> Void in
                     if let raw = json["result"] as? NSMutableArray{
                         self.messages = raw
+                        
                     }
                     main{
-                        //serialHook.perform(key: .ForceReloadData, argument: ())
-                        self.tableView?.reloadData()
-                        let numberOfRows = self.tableView?.numberOfRowsInSection(0)
+                        self.tableView!.reloadData()
+                        let numberOfRows = self.tableView!.numberOfRowsInSection(0)
                         if numberOfRows > 0 {
-                            let indexPath = NSIndexPath(forRow: numberOfRows!-1, inSection: 0)
-                            self.tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+                            let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: 0)
+                            self.tableView!.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
                         }
                     }
+                    
                 })
-            }
- 
-        })
+                
+            })
+            
+        }else{
+            
+            Storage.performRequest(ApiRequest.TimelinePostComment(timelineCommentID, newString as PARAMS , InvitedFriendsIdSTr as UserIdString), completion: { (json) -> Void in
+                main{
+                    Storage.performRequest(ApiRequest.TimelineComments(self.timelineCommentID), completion: { (json) -> Void in
+                        if let raw = json["result"] as? NSMutableArray{
+                            self.messages = raw
+                        }
+                        main{
+                            serialHook.perform(key: .ForceReloadData, argument: ())
+                            delay(0.001){
+                                self.tableView?.reloadData()
+                                let numberOfRows = self.tableView?.numberOfRowsInSection(0)
+                                if numberOfRows > 0 {
+                                    let indexPath = NSIndexPath(forRow: numberOfRows!-1, inSection: 0)
+                                    self.tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+                            }
+                            
+                            }
+                        }
+                    })
+                }
+                
+            })
+        }
         
         super.didPressRightButton(sender)
     }
     
     func deleteCommentAPI(commentid: String){
         
-        Storage.performRequest(ApiRequest.DeleteComment(commentid as commentID), completion: { (json) -> Void in
-            print(json)
-            main{
-                Storage.performRequest(ApiRequest.TimelineComments(self.timelineCommentID), completion: { (json) -> Void in
-                    main{
-                    if let raw = json["result"] as? NSMutableArray{
-                        self.messages = raw
+        if IsMoment{
+            Storage.performRequest(ApiRequest.DeleteComment(commentid as commentID), completion: { (json) -> Void in
+                print(json)
+                main{
+                    Storage.performRequest(ApiRequest.MomentComments(self.timelineCommentID), completion: { (json) -> Void in
                         
-                    }
-                    main({
-                        self.tableView!.reloadData()
+                        if let raw = json["result"] as? NSMutableArray{
+                            self.messages = raw
+                            
+                        }
+                        main{
+                            self.tableView!.reloadData()
+                        }
+                        
                     })
-                    }
-                })
-            }
-            
-        })
+                }
+            })
+        }else{
+            Storage.performRequest(ApiRequest.DeleteComment(commentid as commentID), completion: { (json) -> Void in
+                print(json)
+                main{
+                    Storage.performRequest(ApiRequest.TimelineComments(self.timelineCommentID), completion: { (json) -> Void in
+                        main{
+                            if let raw = json["result"] as? NSMutableArray{
+                                self.messages = raw
+                                
+                            }
+                            main({
+                                self.tableView!.reloadData()
+                            })
+                        }
+                    })
+                }
+                
+            })
+        }
+        
     }
     override func didCommitTextEditing(sender: AnyObject)
     {
-    // Notifies the view controller when tapped on the right "Accept" button for commiting the edited text
-//    self.editingMessage.text = self.textView.text.copy
-//    
-//    self.tableView!.reloadData()
+        // Notifies the view controller when tapped on the right "Accept" button for commiting the edited text
+        //    self.editingMessage.text = self.textView.text.copy
+        //
+        //    self.tableView!.reloadData()
         
         
         let TrimString = self.textView.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
@@ -551,8 +654,29 @@ class CommentViewController: SLKTextViewController {
         
         let emoData = self.textView.text!.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
         let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
-        print(goodValue!)
-        Storage.performRequest(ApiRequest.EditComment(self.editmessageid as commentID, goodValue! as commentmessage), completion: { (json) -> Void in
+        let newString = goodValue!.stringByReplacingOccurrencesOfString("&", withString: "%26")
+        
+        if IsMoment{
+            Storage.performRequest(ApiRequest.EditComment(self.editmessageid as commentID, newString as commentmessage , InvitedFriendsIdSTr as UserIdString), completion: { (json) -> Void in
+                main{
+                    print(json)
+                    Storage.performRequest(ApiRequest.MomentComments(self.timelineCommentID), completion: { (json) -> Void in
+                        if let raw = json["result"] as? NSMutableArray{
+                            self.messages = raw
+                            
+                        }
+                        main{
+                            self.tableView!.reloadData()
+                        }
+                        
+                    })
+                    
+                }
+                
+                
+            })
+        }else{
+            Storage.performRequest(ApiRequest.EditComment(self.editmessageid as commentID, newString as commentmessage, InvitedFriendsIdSTr as UserIdString), completion: { (json) -> Void in
             main{
                 
                 Storage.performRequest(ApiRequest.TimelineComments(self.timelineCommentID), completion: { (json) -> Void in
@@ -568,18 +692,19 @@ class CommentViewController: SLKTextViewController {
                 })
             }
             
-                })
-
-    super.didCommitTextEditing(sender)
+        })
+        }
+        
+        super.didCommitTextEditing(sender)
     }
     
     override func didCancelTextEditing(sender: AnyObject)
     {
-    // Notifies the view controller when tapped on the left "Cancel" button
-    
-    super.didCancelTextEditing(sender)
+        // Notifies the view controller when tapped on the left "Cancel" button
+        
+        super.didCancelTextEditing(sender)
     }
-
+    
     func UserImageClick(sender: UIButton){
         print(sender.tag)
         if let raw = self.messages[sender.tag] as? NSDictionary

@@ -54,8 +54,10 @@ class AllNotificationList: UITableViewController {
                 }
                 self.page_id = String(pageId)
             }
+            
             if let results = json["result"] as? [[String: AnyObject]]
             {
+                print(results)
                 for not in results {
                     if let raw = not["payload"] as? NSString,
                         let data = raw.dataUsingEncoding(NSUTF8StringEncoding),
@@ -108,26 +110,26 @@ class AllNotificationList: UITableViewController {
             
             if (years != 0)
             {
-                timeStr = String(years) + "year"
+                timeStr = String(years) + "y"
             }
             if (months != 0)
             {
-                timeStr = String(months) + "mon"
+                timeStr = String(months) + "mo"
             }
             else if(days != 0)
             {
-                timeStr = String(days) + "day"
+                timeStr = String(days) + "d"
             }
             else if(hours != 0)
             {
-                timeStr = String(hours) + "hrs"
+                timeStr = String(hours) + "h"
             }
             else if(minutes != 0)
             {
                 timeStr = String(minutes) + "min"
             }
             else{
-                timeStr = String(duration) + "sec"
+                timeStr = String(duration) + "s"
             }
             
             let notifyStr = raw["notification"] as! String
@@ -225,6 +227,7 @@ class AllNotificationList: UITableViewController {
                 
             case "create":
                 print("create")
+                timelineLikeOrComment = true
                 break
                 
             case "like" :

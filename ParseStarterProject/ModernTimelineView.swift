@@ -787,32 +787,32 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
         let emoData = commentTextField.text!.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
         let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
         print(goodValue!)
-        Storage.performRequest(ApiRequest.EditComment(self.commentId as commentID, goodValue! as commentmessage), completion: { (json) -> Void in
-            main{
-                
-                Storage.performRequest(ApiRequest.TimelineComments(self.timeline!.uuid!), completion: { (json) -> Void in
-                    if let raw = json["result"] as? NSMutableArray{
-                        self.commentArray = raw
-                        
-                    }
-                    main{
-                        self.commentlist.reloadData()
-                        
-                    }
-                    
-                })
-                self.sendbutton.hidden = false
-                self.Updatebutton.hidden = true
-                self.commentTextField.text = ""
-                self.commentTextField.resignFirstResponder()
-                UIView.animateWithDuration(0.3, animations: { () -> Void in
-                    self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
-                    
-                })
-            }
-            
-            
-        })
+//        Storage.performRequest(ApiRequest.EditComment(self.commentId as commentID, goodValue! as commentmessage), completion: { (json) -> Void in
+//            main{
+//                
+//                Storage.performRequest(ApiRequest.TimelineComments(self.timeline!.uuid!), completion: { (json) -> Void in
+//                    if let raw = json["result"] as? NSMutableArray{
+//                        self.commentArray = raw
+//                        
+//                    }
+//                    main{
+//                        self.commentlist.reloadData()
+//                        
+//                    }
+//                    
+//                })
+//                self.sendbutton.hidden = false
+//                self.Updatebutton.hidden = true
+//                self.commentTextField.text = ""
+//                self.commentTextField.resignFirstResponder()
+//                UIView.animateWithDuration(0.3, animations: { () -> Void in
+//                    self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
+//                    
+//                })
+//            }
+//            
+//            
+//        })
         
         
     }

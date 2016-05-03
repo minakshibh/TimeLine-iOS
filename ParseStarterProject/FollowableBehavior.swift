@@ -9,7 +9,7 @@
 import SWFrameButton
 
 protocol FollowableBehavior {
-    typealias TargetBehaviorType: Followable
+    associatedtype TargetBehaviorType: Followable
     var behaviorTarget: TargetBehaviorType? { get }
     var followButton: SWFrameButton! { get }
     var followTimelineButton: UIButton! { get }

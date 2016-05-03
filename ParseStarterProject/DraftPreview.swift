@@ -276,7 +276,8 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         playPlayButton.hidden = false
         momentPlayerController?.pause()
         main{
-        self.showCommentPopup()
+        //self.showCommentPopup()
+          self.showCommentScreen((self.momentPlayerController?.currentMoment()?.state.uuid)!, ownTimeline: (self.momentPlayerController?.currentMoment()?.isOwn)! ,isMoment: true , currentTimelineIndex: (self.momentPlayerController?.currentIndexOfMoment())!)
         }
     }
     
@@ -506,32 +507,32 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         let emoData = commentTextField.text!.dataUsingEncoding(NSNonLossyASCIIStringEncoding)
         let goodValue = NSString.init(data: emoData!, encoding: NSUTF8StringEncoding)
         print(goodValue!)
-        Storage.performRequest(ApiRequest.EditComment(self.commentId as commentID, goodValue! as commentmessage), completion: { (json) -> Void in
-            main{
-                
-                Storage.performRequest(ApiRequest.MomentComments((self.momentPlayerController?.currentMoment()?.state.uuid)!), completion: { (json) -> Void in
-                    if let raw = json["result"] as? NSMutableArray{
-                        self.commentArray = raw
-                        
-                    }
-                    main{
-                        self.commentlist.reloadData()
-                    }
-                    
-                })
-                self.sendbutton.hidden = false
-                self.Updatebutton.hidden = true
-                
-                self.commentTextField.text = ""
-                self.commentTextField.resignFirstResponder()
-                UIView.animateWithDuration(0.3, animations: { () -> Void in
-                    self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
-                    
-                })
-            }
-            
-            
-        })
+//        Storage.performRequest(ApiRequest.EditComment(self.commentId as commentID, goodValue! as commentmessage), completion: { (json) -> Void in
+//            main{
+//                
+//                Storage.performRequest(ApiRequest.MomentComments((self.momentPlayerController?.currentMoment()?.state.uuid)!), completion: { (json) -> Void in
+//                    if let raw = json["result"] as? NSMutableArray{
+//                        self.commentArray = raw
+//                        
+//                    }
+//                    main{
+//                        self.commentlist.reloadData()
+//                    }
+//                    
+//                })
+//                self.sendbutton.hidden = false
+//                self.Updatebutton.hidden = true
+//                
+//                self.commentTextField.text = ""
+//                self.commentTextField.resignFirstResponder()
+//                UIView.animateWithDuration(0.3, animations: { () -> Void in
+//                    self.commentTextfeildView.frame = CGRectMake(0, self.timelineCommentView.frame.size.height-80, self.timelineCommentView.frame.size.width, 80)
+//                    
+//                })
+//            }
+//            
+//            
+//        })
         
         
     }
@@ -1087,5 +1088,14 @@ extension DraftPreview {
         }
         return base
     }
+    
+    func showCommentScreen(timelineID : String , ownTimeline: Bool , isMoment: Bool , currentTimelineIndex: Int){
+        guard let controller = activeController() else { return }
+        let vc = CommentViewController()
+        vc.ownTimeline = ownTimeline
+        vc.CurrentMoment = currentTimelineIndex
+        vc.IsMoment = isMoment
+        vc.timelineCommentID = timelineID
+        controller.navigationController?.pushViewController(vc, animated: true)
+    }
 }
-
