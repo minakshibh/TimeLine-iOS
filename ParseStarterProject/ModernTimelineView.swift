@@ -92,7 +92,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 usrs in  self.followersArrayList = usrs
             }
             behavior.timeline = newValue
-
+            
             delay(0.001){
                 self.scrollMomentArray = []
                 

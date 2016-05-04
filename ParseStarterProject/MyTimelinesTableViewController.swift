@@ -21,6 +21,9 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarHidden = false;
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update6", userInfo: nil, repeats: false)
+//        delay(0.001) {
+//            self.callbacks.append(self.setUpReloadable())
+//        }
 
         
     }
