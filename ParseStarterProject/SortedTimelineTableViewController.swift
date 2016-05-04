@@ -83,12 +83,13 @@ class SortedTimelineTableViewController: UITableViewController {
             
         return status
         }
+        
+        
+        sections = Array(resultingSecs)
         }catch{
             var alert=UIAlertController(title: "CRASH", message: "App tried to crash while sorting values", preferredStyle: UIAlertControllerStyle.Alert);
             self.showViewController(alert, sender: self);
         }
-        
-        sections = Array(resultingSecs)
     }
     
     override func viewDidLoad() {
