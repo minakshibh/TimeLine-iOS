@@ -373,9 +373,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
  //                       print("\(ABMultiValueGetCount(numbers))")
                         if (ABMultiValueGetCount(numbers) == 0)
                         {
-                            self.nameArray.addObject("\(contactName)")
-                            self.numberArray.addObject("--")
-                        }
+//                            self.nameArray.addObject("\(contactName)")
+//                            self.numberArray.addObject("--")
+                        }else{
                         var swiftString = ""
                         for ix in 0 ..< ABMultiValueGetCount(numbers) {
                             var phones : ABMultiValueRef = ABRecordCopyValue(record,kABPersonPhoneProperty).takeUnretainedValue() as ABMultiValueRef
@@ -385,7 +385,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 //                                print("Phonenumber  is \(value)")
                                 randomArray.addObject(value)
                                 
-                    do{               let locLabel : CFStringRef = (ABMultiValueCopyLabelAtIndex(phones, ix) != nil) ? ABMultiValueCopyLabelAtIndex(phones, ix).takeUnretainedValue() as CFStringRef : ""
+                     let locLabel : CFStringRef = (ABMultiValueCopyLabelAtIndex(phones, ix) != nil) ? ABMultiValueCopyLabelAtIndex(phones, ix).takeUnretainedValue() as CFStringRef : ""
                                 let cfStr:CFTypeRef = locLabel
                                 let nsTypeString = cfStr as! NSString
                                 var swiftString:String = nsTypeString as String
@@ -398,14 +398,12 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                                         swiftString =  arrStr1[1].componentsSeparatedByString(">")[0]
                                                                     }
                                 }
-                    }catch{
-                        var alert=UIAlertController(title: "CRASH", message: "App tried to crash trending view fetch contact labels", preferredStyle: UIAlertControllerStyle.Alert);
-                        self.showViewController(alert, sender: self);
-                                }
                                 labelArray.addObject(swiftString)
                             }
                         }
+                        }
                     }
+                    //*****
                     //                let numbers:ABMultiValue = ABRecordCopyValue(
                     //                    contactPerson, kABPersonPhoneProperty).takeRetainedValue()
                     let count:Int = randomArray.count
