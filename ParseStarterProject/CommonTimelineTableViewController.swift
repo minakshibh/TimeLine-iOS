@@ -43,54 +43,62 @@ class CommonTimelineTableViewController: UITableViewController {
     var users: [User] = [] {
         didSet {
             
-//            main {
-//                self.tableView.reloadData()
-//            }
+            //            main {
+            //                self.tableView.reloadData()
+            //            }
             
-       main{
-        
-            for j in 0..<self.users.count {
-//                print("\(users.count)")
-                let ts = self.users[j].timelines
-                if(ts.count == 0){
-                    self.lblFeed.frame = CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height)
-                   self.lblFeed.textAlignment = NSTextAlignment.Center
-                    self.lblFeed.text = "No Feedeos found"
-                    
-
-                    self.tableView.addSubview(self.lblFeed)
-                }
-                for i in 0..<ts.count {
-//                    print("\(ts.count)")
-                    if(ts.count != 0){
-                        self.lblFeed.removeFromSuperview()
-                    }
-                    self.users[j].timelines[i].reloadMoments {
-                        main{
-                        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
-                            cell.timeline = self.users[j].timelines[i]
+            main{
+                if(self.users.count>0){
+                    for j in 0..<self.users.count {
+                        //                print("\(users.count)")
+                        let ts = self.users[j].timelines
+                        if(ts.count == 0){
+                            self.lblFeed.frame = CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height)
+                            self.lblFeed.textAlignment = NSTextAlignment.Center
+                            self.lblFeed.text = "No Feedeos found"
                             
+                            
+                            self.tableView.addSubview(self.lblFeed)
+                        }
+                        else{
+                            self.callbacks.append(self.setUpReloadable())
+                        }
+                        if (ts.count>0) {
+                            for i in 0..<ts.count {
+                                //                    print("\(ts.count)")
+                                if(ts.count != 0){
+                                    self.lblFeed.removeFromSuperview()
+                                }
+                                self.users[j].timelines[i].reloadMoments {
+                                    main{
+                                        if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
+                                            cell.timeline = self.users[j].timelines[i]
+                                            
+                                        }
+                                    }
+                                }
                             }
+                        }else{
+                            self.callbacks.append(self.setUpReloadable())
                         }
                     }
                 }
+                main {
+                    self.tableView.reloadData()
+                }
             }
-          main {
-            self.tableView.reloadData()
-            }
-        }
-
+            
         }
     }
     func update(){
-           }
+    }
     
-   
+    
     var callbacks: [AnyObject?] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        delay(0.001) { 
+        delay(0.001) {
             self.callbacks.append(self.setUpReloadable())
         }
         
@@ -101,7 +109,7 @@ class CommonTimelineTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update1", userInfo: nil, repeats: false)
-
+        
     }
     func update1(){
         
@@ -121,8 +129,8 @@ class CommonTimelineTableViewController: UITableViewController {
     {
         
         
-        if (self.users[indexPath.section].timelines[indexPath.row].isOwn as? Bool) != nil{
-            
+//        if (self.users[indexPath.section].timelines[indexPath.row].isOwn) != nil{
+        
             if(self.users[indexPath.section].timelines[indexPath.row].isOwn){
                 
                 if(self.users[indexPath.section].timelines[indexPath.row].description.isEmpty){
@@ -139,10 +147,10 @@ class CommonTimelineTableViewController: UITableViewController {
                 }
                 
             }
-
-        }else{
-            return 435
-        }
+            
+//        }else{
+//            return 435
+//        }
         
         
     }
@@ -151,11 +159,11 @@ class CommonTimelineTableViewController: UITableViewController {
         // Return the number of sections.
         return users.count
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users[section].timelines.count
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("TimelineCell", forIndexPath: indexPath) as! ModernTimelineTableViewCell
@@ -163,7 +171,7 @@ class CommonTimelineTableViewController: UITableViewController {
         
         // Configure the cell...
         main{
-        cell.timelineView.timeline = self.users[indexPath.section].timelines[indexPath.row]
+            cell.timelineView.timeline = self.users[indexPath.section].timelines[indexPath.row]
         }
         //cell.deletionCallback = self.deletionCallback()
         
@@ -172,9 +180,9 @@ class CommonTimelineTableViewController: UITableViewController {
     }
     
     /*override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        println("height")
-        return TimelineTableHeaderView.Height
-    }*/
+     println("height")
+     return TimelineTableHeaderView.Height
+     }*/
     
     private lazy var headerView: TimelineTableHeaderView = NSBundle.mainBundle().loadNib(.TimelineTableHeaderView, owner: self)[0] as! TimelineTableHeaderView
     
@@ -183,9 +191,9 @@ class CommonTimelineTableViewController: UITableViewController {
         return headerView
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-       // print(users[indexPath.section].timelines[indexPath.row].uuid)
+        // print(users[indexPath.section].timelines[indexPath.row].uuid)
     }
-
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowTimeline" {
@@ -208,7 +216,7 @@ class CommonTimelineTableViewController: UITableViewController {
             let _ = nav.topViewController as? DraftCollectionViewController
             where segue.identifier == "TimelineCreated"
         {
-                // dest.timeline = tl
+            // dest.timeline = tl
         } else if let fl = sender as? Followable,
             let dest = segue.destinationViewController as? CallbackUserTableViewController
             where segue.identifier == "ShowUserList"
@@ -224,10 +232,10 @@ class CommonTimelineTableViewController: UITableViewController {
         }
     }
     
-//    func deletionCallback() -> MGSwipeButtonCallback? {
-//        return nil
-//    }
-
+    //    func deletionCallback() -> MGSwipeButtonCallback? {
+    //        return nil
+    //    }
+    
     // MARK: Hooking
     var hookingResponsibilities: [AnyObject?] = []
     
@@ -240,7 +248,7 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
     override func reloadData() {
         main {
             NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update2", userInfo: nil, repeats: false)
-
+            
         }
     }
     func update2(){
@@ -255,7 +263,7 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
     func update3(){
         self.setUpHooking() // required for Hooking protocol
         
-            }
+    }
     override func viewWillDisappear(animated: Bool) {
         cleanUpHooking() // breaks cycles on disappear
     }

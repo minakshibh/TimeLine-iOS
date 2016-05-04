@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="495"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZX-FB-9P2">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZX-FB-9P2">
                     <rect key="frame" x="15" y="33" width="40" height="13"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="F56-P4-frN"/>
@@ -26,7 +26,7 @@
                         </mask>
                     </variation>
                 </label>
-                <button opaque="NO" tag="567" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="IKO-PQ-lb0" customClass="SWFrameButton">
+                <button opaque="NO" tag="567" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="IKO-PQ-lb0" customClass="SWFrameButton">
                     <rect key="frame" x="120" y="95" width="90" height="27"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -47,13 +47,13 @@
                         <action selector="followButtonTapped" destination="iN0-l3-epB" eventType="touchUpInside" id="I0F-T9-fEN"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0D-So-pvo">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0D-So-pvo">
                     <rect key="frame" x="63" y="32" width="13" height="14"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/300s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qua-Bu-xhg">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="/300s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qua-Bu-xhg">
                     <rect key="frame" x="76" y="32" width="31" height="14"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,7 +67,7 @@
                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkG-no-Juk">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkG-no-Juk">
                     <rect key="frame" x="340" y="0.0" width="48" height="55"/>
                     <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" image="Comment">
@@ -77,7 +77,7 @@
                         <action selector="groupTimelineButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="VdF-OQ-Nyj"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymc-ol-e8e">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymc-ol-e8e">
                     <rect key="frame" x="225" y="95" width="90" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -88,7 +88,7 @@
                         <action selector="commentOnTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="hUm-6P-Pwt"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="567" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YRI-Jb-ZXO" customClass="SWFrameButton">
+                <button opaque="NO" tag="567" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YRI-Jb-ZXO" customClass="SWFrameButton">
                     <rect key="frame" x="15" y="95" width="90" height="27"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="As1-y6-NhK"/>
@@ -112,8 +112,8 @@
                         <action selector="likeButtonTapped" destination="iN0-l3-epB" eventType="touchUpInside" id="uBH-8V-XDP"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HVl-oO-cuI" customClass="DraftPreviewView" customModule="Timeline" customModuleProvider="target">
-                    <rect key="frame" x="15" y="118" width="305" height="305"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HVl-oO-cuI" customClass="DraftPreviewView" customModule="Timeline" customModuleProvider="target">
+                    <rect key="frame" x="15" y="126" width="305" height="305"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="HVl-oO-cuI" secondAttribute="height" multiplier="305:306" id="9jS-Yr-96Y"/>
                     </constraints>
@@ -123,10 +123,10 @@
                         </mask>
                     </variation>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8U-pc-cJ2" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8U-pc-cJ2" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="15" y="127" width="305" height="305"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Play Button" translatesAutoresizingMaskIntoConstraints="NO" id="j95-K4-6Qt">
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Play Button" translatesAutoresizingMaskIntoConstraints="NO" id="j95-K4-6Qt">
                             <rect key="frame" x="72" y="89" width="160" height="127"/>
                         </imageView>
                     </subviews>
@@ -141,7 +141,7 @@
                         <outletCollection property="gestureRecognizers" destination="Pwz-aJ-f1i" appends="YES" id="yvb-Un-znv"/>
                     </connections>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ekh-71-eJd" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ekh-71-eJd" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="328" y="127" width="71" height="71"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
@@ -157,7 +157,7 @@
                         <outletCollection property="gestureRecognizers" destination="X9B-N1-dFJ" appends="YES" id="VYz-ff-sUR"/>
                     </connections>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRr-Jw-1xW" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MRr-Jw-1xW" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="328" y="283" width="71" height="71"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
@@ -173,7 +173,7 @@
                         <outletCollection property="gestureRecognizers" destination="raS-1B-bJa" appends="YES" id="nT0-jY-kUk"/>
                     </connections>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-a6-ir2" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-a6-ir2" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="328" y="361" width="71" height="71"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
@@ -189,7 +189,7 @@
                         <outletCollection property="gestureRecognizers" destination="du8-JZ-SKG" appends="YES" id="dOJ-o1-h9i"/>
                     </connections>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-je-7Td" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-je-7Td" customClass="MomentImageView" customModule="Timeline" customModuleProvider="target">
                     <rect key="frame" x="328" y="206" width="71" height="71"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
@@ -205,13 +205,13 @@
                         <outletCollection property="gestureRecognizers" destination="cC5-F5-vor" appends="YES" id="Smt-3i-eYX"/>
                     </connections>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="GkD-2l-EIq">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="GkD-2l-EIq">
                     <rect key="frame" x="15" y="437" width="384" height="58"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFV-dk-x9W">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFV-dk-x9W">
                     <rect key="frame" x="15" y="53" width="94" height="34"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="sJP-W9-g4f"/>
@@ -224,7 +224,7 @@
                         <action selector="likeTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="DPe-3Z-6Ta"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kso-Qv-IH6">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kso-Qv-IH6">
                     <rect key="frame" x="120" y="49" width="90" height="42"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="ulh-M7-Uey"/>
@@ -237,7 +237,7 @@
                         <action selector="followTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="l4V-Xz-vDj"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NX4-aK-Vhg">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NX4-aK-Vhg">
                     <rect key="frame" x="230" y="49" width="90" height="42"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="g2v-gB-IaC"/>
@@ -247,7 +247,7 @@
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6K-aH-QGE">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6K-aH-QGE">
                     <rect key="frame" x="347" y="53" width="33" height="34"/>
                     <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" image="more"/>
@@ -281,7 +281,7 @@
                 <constraint firstItem="kso-Qv-IH6" firstAttribute="leading" secondItem="IKO-PQ-lb0" secondAttribute="leading" id="TsJ-C0-e1W"/>
                 <constraint firstItem="HVl-oO-cuI" firstAttribute="width" secondItem="j8U-pc-cJ2" secondAttribute="width" priority="250" id="ULm-dx-rIQ"/>
                 <constraint firstItem="j8U-pc-cJ2" firstAttribute="top" secondItem="YRI-Jb-ZXO" secondAttribute="bottom" constant="5" id="UyG-ul-2dv"/>
-                <constraint firstItem="HVl-oO-cuI" firstAttribute="centerY" secondItem="j8U-pc-cJ2" secondAttribute="centerY" priority="250" constant="-9" id="VHA-B5-YDW"/>
+                <constraint firstItem="HVl-oO-cuI" firstAttribute="centerY" secondItem="j8U-pc-cJ2" secondAttribute="centerY" priority="250" id="VHA-B5-YDW"/>
                 <constraint firstItem="YRI-Jb-ZXO" firstAttribute="height" secondItem="IKO-PQ-lb0" secondAttribute="height" id="Vai-8e-uaX"/>
                 <constraint firstItem="Qua-Bu-xhg" firstAttribute="leading" secondItem="a0D-So-pvo" secondAttribute="trailing" id="W8J-MR-FrN"/>
                 <constraint firstItem="dZX-FB-9P2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="WTG-Ip-LoD"/>

@@ -68,12 +68,12 @@ class ModernTimelineBehavior {
             modernTimelineView?.newsBadge?.removeFromSuperview()
             modernTimelineView?.newsBadge = nil
 
-//            let title = "!"
-//            modernTimelineView?.newsBadge = CustomBadge(string: title, withScale: 1.2, withStyle: BadgeStyle.defaultStyle())
-//            let anchor = modernTimelineView!.lastMomentPreviews.last!
-//            modernTimelineView?.newsBadge?.center = CGPoint(x: anchor.frame.origin.x + anchor.frame.width, y: anchor.frame.origin.y)
-//            anchor.superview?.addSubview(modernTimelineView!.newsBadge!)
-//            modernTimelineView?.newsBadge?.autoBadgeSizeWithString(title)
+            let title = "!"
+            modernTimelineView?.newsBadge = CustomBadge(string: title, withScale: 1.2, withStyle: BadgeStyle.defaultStyle())
+            let anchor = modernTimelineView!.lastMomentPreviews.last!
+            modernTimelineView?.newsBadge?.center = CGPoint(x: anchor.frame.origin.x + anchor.frame.width, y: anchor.frame.origin.y)
+            anchor.superview?.addSubview(modernTimelineView!.newsBadge!)
+            modernTimelineView?.newsBadge?.autoBadgeSizeWithString(title)
         } else {
             modernTimelineView?.newsBadge?.removeFromSuperview()
             modernTimelineView?.newsBadge = nil

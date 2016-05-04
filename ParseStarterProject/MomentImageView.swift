@@ -16,6 +16,7 @@ class MomentImageView: UIImageView {
                 image = nil
             }
             if let moment = moment {
+                main{
                 UIImage.getImage(moment) { [weak self] image in
                     if let s = self,
                         let m = s.moment
@@ -23,6 +24,7 @@ class MomentImageView: UIImageView {
                     {
                         self?.image = image
                     }
+                }
                 }
             } else {
                 image = nil

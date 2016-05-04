@@ -55,7 +55,8 @@
 
 /* MARK: Settings Logout */
 "Settings-Alert-Logout-Title" = "Logout";
-"Settings-Alert-Logout-Message" = "All unpublished moments will be lost.";
+//"Settings-Alert-Logout-Message" = "All unpublished moments will be lost.";
+"Settings-Alert-Logout-Message" = "Your recorded moments are being saved and will not be affected by login from a different account on this device";
 "Settings-Alert-Logout-Action-Cancel" = "Cancel";
 "Settings-Alert-Logout-Action-Logout" = "Logout";
 
