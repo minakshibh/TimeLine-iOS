@@ -97,7 +97,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 self.scrollMomentArray = []
                 
                 // Seperator view for timeline
-                
+//                self.playerView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y + CGFloat(8*self.IPHONE5), self.frame.size.width, self.frame.size.height-CGFloat(8*self.IPHONE5))
                 if let raw = self.behavior.timeline?.dict["moments"]!
                 {
                     self.scrollMomentArray = raw as! NSArray

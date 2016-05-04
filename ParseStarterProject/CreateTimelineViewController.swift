@@ -478,6 +478,12 @@ NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "moveToMomentsScr
         }
     }
     
+    func characterMaxAlert(){
+        let alert = UIAlertController(title: "Warning!", message: "Character limit for feedeo title exceeds.", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -508,6 +514,20 @@ NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "moveToMomentsScr
             UIView.animateWithDuration(0.3) {
                 self.warningLabel.alpha = 1.0
             }
+        }
+        let newLength = string.characters.count + textField.text!.characters.count - range.length
+        
+        
+        if(newLength > 20)
+        {
+            if(string == "\n") {
+                textField.resignFirstResponder()
+                
+                return false
+            }
+            characterMaxAlert()
+            textField.resignFirstResponder()
+            return false
         }
         
         if let stringRange = textField.text?.rangeFromNSRange(range)
