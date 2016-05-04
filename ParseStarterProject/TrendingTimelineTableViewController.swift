@@ -63,7 +63,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         searchDisplayController?.searchBar.delegate = self
         searchDisplayController?.delegate = self
         
-        searchDisplayController?.searchBar.scopeButtonTitles = [NSLocalizedString("Users", comment: "Country"),NSLocalizedString("Feedeo", comment: "Capital")]
+        searchDisplayController?.searchBar.scopeButtonTitles = [NSLocalizedString("Users", comment: "Country"),NSLocalizedString("Feedeos", comment: "Capital")]
             
         UIApplication.sharedApplication().statusBarStyle = .LightContent
 
@@ -736,7 +736,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         }else if segue.identifier == "toContactView"{
         super.prepareForSegue(segue, sender: sender)
         }else {
-            super.prepareForSegue(segue, sender: sender)
+        super.prepareForSegue(segue, sender: sender)
         }
     }
     
@@ -768,8 +768,9 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         // ALGORITHM HARDCODED - SEE CREATE TIMELINE
         let data = string.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
         let temp = NSString(data: data!, encoding: NSASCIIStringEncoding) as! String
+        print("@@\(temp.characters.filter)--++\(temp.characters.filter)")
         var replacement = String(temp.characters.filter { (c: Character) -> Bool in
-            return "abcdefghijklmnopqrstuvwxyz0123456789".rangeOfString(String(c).lowercaseString) != nil
+            return "abcdefghijklmnopqrstuvwxyz0123456789 ".rangeOfString(String(c).lowercaseString) != nil
             })
 //        if range.location == 0 && string.hasPrefix("#") {
 //            replacement = "#" + replacement
@@ -794,7 +795,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         var text: String = String((searchBar.text ?? "").characters.filter { (c: Character) -> Bool in
-            return "abcdefghijklmnopqrstuvwxyz0123456789".rangeOfString(String(c).lowercaseString) != nil
+            return "abcdefghijklmnopqrstuvwxyz0123456789 ".rangeOfString(String(c).lowercaseString) != nil
             })
 //        if text.characters.count < 2 { return }
 //        if searchText.hasPrefix("#") {
