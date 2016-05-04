@@ -120,10 +120,10 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
             }
         }
         
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update7", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(MyTimelinesTableViewController.update7), userInfo: nil, repeats: false)
 
-        let valueStr = "\(NSUserDefaults.standardUserDefaults().valueForKey("moveToMomentsScreen") )"
-        if valueStr == "yes"{
+        let valueStr = "\(NSUserDefaults.standardUserDefaults().valueForKey("moveToMomentsScreen"))"
+        if valueStr.rangeOfString("yes") != nil{
         self.tabBarController?.selectedIndex = 1
             NSUserDefaults.standardUserDefaults().setObject("no", forKey:"moveToMomentsScreen")
         }

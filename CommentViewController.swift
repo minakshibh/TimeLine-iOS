@@ -87,7 +87,7 @@ class CommentViewController: SLKTextViewController {
         self.autoCompletionView.registerClass(MessageTableViewCell.self, forCellReuseIdentifier: AutoCompletionCellIdentifier)
         self.registerPrefixesForAutoCompletion(["@"])
         
-        let CommentButtonCountStr = "\(NSUserDefaults.standardUserDefaults().valueForKey("CommentButtonCount"))"
+        let CommentButtonCountStr = "\(NSUserDefaults.standardUserDefaults().valueForKey("CommentButtonCount")!)"
         if CommentButtonCountStr != "0"{
         
             self.activityIndicatorView.frame = CGRectMake(0, 0, 70, 70);
