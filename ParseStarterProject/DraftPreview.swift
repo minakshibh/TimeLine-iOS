@@ -269,6 +269,9 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     var tagArray = NSMutableArray()
     
     @IBAction func commentButtonClick(sender: UIButton){
+        let text = commentcount.text
+        NSUserDefaults.standardUserDefaults().setObject("\(text)", forKey: "CommentButtonCount")
+        
         print(momentPlayerController?.currentMoment()?.state.uuid)
         print(momentPlayerController?.currentIndexOfMoment())
         

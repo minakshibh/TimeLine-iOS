@@ -1584,7 +1584,11 @@ extension ModernTimelineView: FollowableBehavior, LikeableBehavior {
     @IBAction func commentOnTimelineButtonTapped(sender: AnyObject) {
         
         let text = commentButton.titleLabel?.text!
-        NSUserDefaults.standardUserDefaults().setObject("\(text!)", forKey: "CommentButtonCount")
+//        if text!.rangeOfString("(") != nil{
+//            NSUserDefaults.standardUserDefaults().setObject("\(text!)", forKey: "CommentButtonCount")
+//        }else{
+            NSUserDefaults.standardUserDefaults().setObject("\(text!)", forKey: "CommentButtonCount")
+//        }
         if let timelineID : String = (behaviorTarget?.uuid)! as String{
             showCommentScreen(timelineID, ownTimeline:(self.timeline?.isOwn)!)
         }

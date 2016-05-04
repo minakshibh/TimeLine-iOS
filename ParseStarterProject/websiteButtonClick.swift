@@ -30,7 +30,7 @@ extension websiteButtonClick where TargetBehaviorType: Ownable {
            
         }
         
-        btnWebsite.setTitle(behaviorTarget?.website, forState: .Normal)
+//        btnWebsite.setTitle(behaviorTarget?.website, forState: .Normal)
 
 //
 //                var websiteStr:String = ""
