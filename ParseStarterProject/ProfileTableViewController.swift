@@ -172,6 +172,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 status = true
             }
         }
+        refresh()
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)

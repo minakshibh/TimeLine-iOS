@@ -15,6 +15,8 @@ protocol LikeableBehaviorCount {
 //    var likeTimelineButton: UIButton! { get }
     var imageheart: UIImageView! { get }
      var lblBio: UILabel! { get }
+     var lblOthers: UILabel! { get }
+    var btnWebsite: SWFrameButton! { get }
 }
 
 private extension UIColor {
@@ -44,12 +46,48 @@ extension LikeableBehaviorCount where TargetBehaviorType: Ownable {
                         attributedTextBio.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
                         lblBio.attributedText = attributedTextBio
                     }
+                    if user.objectForKey("bio") == nil {
+                        bioStr = ""
+                        lblBio.text = bioStr
+                    }
+                    
+                    var otherStr:String = ""
+                    if user["other"] != nil {
+                        otherStr = "\(user.objectForKey("other")!)"
+                        let attributedTextOther: NSMutableAttributedString = NSMutableAttributedString(string: "Other: \(otherStr)")
+                        attributedTextOther.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 6))
+                        lblOthers.attributedText = attributedTextOther
+                    }
+                    if user["other"] == nil {
+                        otherStr = ""
+                    }
+                    
+                    
+                    var websiteStr:String = ""
+                    if user["website"] != nil {
+                        websiteStr = "\(user.objectForKey("website")!)"
+                        btnWebsite.setTitle(websiteStr, forState: .Normal)
+                    }
+                    if user["website"] == nil {
+                        websiteStr = ""
+                        btnWebsite.setTitle(websiteStr, forState: .Normal)
+                    }
+                    
+
+                    
                 }
             }else{
             let attributedTextBio: NSMutableAttributedString = NSMutableAttributedString(string: "Bio: \(behaviorTarget.bio ?? "")")
             attributedTextBio.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
             lblBio.attributedText = attributedTextBio
             //        lblBio.text =!= behaviorTarget?.bio ?? ""
+                
+                
+            let attributedTextOthers: NSMutableAttributedString = NSMutableAttributedString(string: "Others: \(behaviorTarget.other ?? "")")
+            attributedTextOthers.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 6))
+            lblOthers.attributedText = attributedTextOthers
+                
+            btnWebsite.setTitle(behaviorTarget.website, forState: .Normal)
             }
             
             

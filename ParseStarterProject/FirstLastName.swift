@@ -6,7 +6,7 @@ protocol FirstLastName {
     var nameLabel1: UILabel! { get }
     //    var nameLabel1: UILabel! { get }
 //    var lblBio: UILabel! { get }
-    var lblOthers: UILabel! { get }
+//    var lblOthers: UILabel! { get }
 //    var btnWebsite: SWFrameButton! { get }
 }
 
@@ -20,10 +20,10 @@ extension FirstLastName {
 //        lblBio.attributedText = attributedTextBio
 ////        lblBio.text =!= behaviorTarget?.bio ?? ""
         
-        let attributedTextOthers: NSMutableAttributedString = NSMutableAttributedString(string: "Others: \(behaviorTarget?.other ?? "")")
-        attributedTextOthers.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 6))
-        lblOthers.attributedText = attributedTextOthers
-//        lblOthers.text =!= behaviorTarget?.other ?? ""
+//        let attributedTextOthers: NSMutableAttributedString = NSMutableAttributedString(string: "Others: \(behaviorTarget?.other ?? "")")
+//        attributedTextOthers.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 6))
+//        lblOthers.attributedText = attributedTextOthers
+////        lblOthers.text =!= behaviorTarget?.other ?? ""
 
         nameLabel1.text =!= behaviorTarget?.fullName1 ?? ""
         
