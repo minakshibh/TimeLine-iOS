@@ -9,11 +9,12 @@
 import SWFrameButton
 
 protocol LikeableBehaviorCount {
-    typealias TargetBehaviorType: Likeable,Followable
+    typealias TargetBehaviorType: Likeable,Followable,Named1
     var behaviorTarget: TargetBehaviorType? { get }
 //    var likeButton: SWFrameButton! { get }
 //    var likeTimelineButton: UIButton! { get }
     var imageheart: UIImageView! { get }
+     var lblBio: UILabel! { get }
 }
 
 private extension UIColor {
@@ -33,6 +34,27 @@ extension LikeableBehaviorCount where TargetBehaviorType: Ownable {
 
         if let behaviorTarget = behaviorTarget {
 //            likeButton.setTitle("\(behaviorTarget.likesCount)", forState: .Normal)
+            if behaviorTarget.isOwn{
+                if PFUser.currentUser()?.authenticated ?? false {
+                    let user = PFUser.currentUser()!
+                    var bioStr:String = ""
+                    if user.objectForKey("bio") != nil {
+                        bioStr = "\(user.objectForKey("bio")!)"
+                        let attributedTextBio: NSMutableAttributedString = NSMutableAttributedString(string: "Bio: \(bioStr ?? "")")
+                        attributedTextBio.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
+                        lblBio.attributedText = attributedTextBio
+                    }
+                }
+            }else{
+            let attributedTextBio: NSMutableAttributedString = NSMutableAttributedString(string: "Bio: \(behaviorTarget.bio ?? "")")
+            attributedTextBio.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
+            lblBio.attributedText = attributedTextBio
+            //        lblBio.text =!= behaviorTarget?.bio ?? ""
+            }
+            
+            
+            
+            
             if behaviorTarget.isOwn{
                 if(behaviorTarget.likesCount > 0){
                     imageheart.image = UIImage(named: "RedHeart.png")
