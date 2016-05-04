@@ -280,6 +280,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             first = false
         }
     }
+    
     func btnInvite() {
 
         let confirm = UIAlertController(title: "Send Invites", message: "", preferredStyle:UIAlertControllerStyle.ActionSheet)
@@ -533,9 +534,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             } else if self.searchResults.count > 0{
                 
                 if let user = self.searchResults[indexPath.row] as? User {
-                    if self.searchStatus {
+//                    if self.searchStatus {
                         self.performSegueWithIdentifier("ShowUser", sender: user)
-                    }
+//                    }
                 }
             }
             }
