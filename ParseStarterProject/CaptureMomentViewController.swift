@@ -479,10 +479,8 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //    }
     
     override func viewWillAppear(animated: Bool) {
-       NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
-       delay (0.60) {
-       
-        }
+       NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector: #selector(CaptureMomentViewController.update), userInfo: nil, repeats: false)
+
   }
     
     func update(){
@@ -500,11 +498,13 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     }
     
     override func viewDidDisappear(animated: Bool) {
+        main{
         self.stop()
         self.recorder.stopRunning()
         self.refreshTorches()
         self.reloadBadges()
         self.removeScrollView()
+        }
 //        videoPreviewView.hidden = true
     }
     
