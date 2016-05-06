@@ -480,6 +480,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //    }
     
     override func viewWillAppear(animated: Bool) {
+
         synced(self){
         self.previewView.session = self.recorder.captureSession
         }
@@ -488,6 +489,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //       delay (0.60) {
 //       
 //        }
+
   }
     
     func update(){
@@ -505,11 +507,13 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     }
     
     override func viewDidDisappear(animated: Bool) {
+        main{
         self.stop()
         self.recorder.stopRunning()
         self.refreshTorches()
         self.reloadBadges()
         self.removeScrollView()
+        }
 //        videoPreviewView.hidden = true
     }
     

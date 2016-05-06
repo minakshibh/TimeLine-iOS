@@ -449,7 +449,9 @@ NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "moveToMomentsScr
                 main {
                     self.upgrading = false
                     self.navigationController?.popViewControllerAnimated(true)
-                    self.navigationController?.topViewController?.performSegueWithIdentifier("TimelineCreated", sender: tl)
+                    self.navigationController?.popViewControllerAnimated(true)
+                    NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "moveToMomentsScreen")
+//                    self.navigationController?.topViewController?.performSegueWithIdentifier("TimelineCreated", sender: tl)
                 }
             }
         }

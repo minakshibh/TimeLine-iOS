@@ -151,7 +151,9 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
+        main{
         self.update()
+        }
 //        self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
 //        print("\(self.navigationController!.navigationBar.frame)")
         
@@ -172,7 +174,9 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 status = true
             }
         }
-        refresh()
+        main{
+        self.refresh()
+        }
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
