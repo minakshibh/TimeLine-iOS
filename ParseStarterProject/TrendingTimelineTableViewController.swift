@@ -43,9 +43,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var searchResults: [AnyObject] = [] {
         didSet {
             searching = false
-            main {
+//            main {
                 self.searchDisplayController?.searchResultsTableView.reloadData()
-            }
+//            }
         }
     }
     
@@ -168,8 +168,14 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             return controller
         })()
         
-        
-        
+        main{
+        Timeline.getTimelines(.TimelineTrending) { tls in
+          
+            self.timelines = tls
+            
+            }
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -274,7 +280,11 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         var first = true
         Timeline.getTimelines(.TimelineTrending) { tls in
             if !first {
-                main { self.refreshControl?.endRefreshing() }
+//                main {
+                delay (0.001){
+                    self.refreshControl?.endRefreshing()
+                }
+//                }
             }
             self.timelines = tls
             first = false
@@ -528,18 +538,19 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
              errorText?.removeFromSuperview()
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }else{
-            main{
+//            main{
             if tableView == self.tableView {
                 //super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
             } else if self.searchResults.count > 0{
-                
+                delay(0.001){
                 if let user = self.searchResults[indexPath.row] as? User {
 //                    if self.searchStatus {
                         self.performSegueWithIdentifier("ShowUser", sender: user)
 //                    }
+                    }
                 }
             }
-            }
+//            }
         }
     }
 
@@ -855,10 +866,11 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
                 }
                 self.searchStatus = true
             }
-            main {
+//            main {
+                 delay(0.001) {
                 self.searchResults = results
-                
-            }
+                }
+//            }
         })
     }
    
