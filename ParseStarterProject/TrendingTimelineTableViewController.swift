@@ -168,8 +168,14 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             return controller
         })()
         
-        
-        
+        main{
+        Timeline.getTimelines(.TimelineTrending) { tls in
+          
+            self.timelines = tls
+            
+            }
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
