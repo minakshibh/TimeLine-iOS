@@ -235,12 +235,13 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         audio.enabled = true
         //audio.format// = kAudioFormatMPEG4AAC
         
-        if !recorder.isPrepared {
-            _ = try? recorder.prepare()
+        
+        if !self.recorder.isPrepared {
+                _ = try? self.recorder.prepare()
         }
-        main{
-        self.previewView.session = self.recorder.captureSession
-        }
+        
+        
+    
 //        delay(0.001) {
 //            if !Storage.session.walkedThroughCamera {
 //                Storage.session.walkedThroughCamera = true
@@ -278,7 +279,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 
     }
     func removeScrollView() {
-        main
+        delay(0.001)
             {
                 self.closeViewButton()
                 for subUIView in self.scrollView.subviews as [UIView] {
@@ -479,7 +480,15 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 //    }
     
     override func viewWillAppear(animated: Bool) {
-       NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector: #selector(CaptureMomentViewController.update), userInfo: nil, repeats: false)
+
+        synced(self){
+        self.previewView.session = self.recorder.captureSession
+        }
+        
+       NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
+//       delay (0.60) {
+//       
+//        }
 
   }
     
@@ -490,10 +499,10 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         appDelegate.notificationAPI ()
          recorder.startRunning()
         
-        delay (0.01) {
+        //delay (0.001) {
             
             self.reloadBadges()
-        }
+        //}
         
     }
     
@@ -592,12 +601,12 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
 extension CaptureMomentViewController {
     
     func refreshTorches() {
-        main {
+//        main {
             self.torchOffButton.enabled = self.recorder.deviceHasFlash && self.torchEnabled
             self.torchOnButton.enabled = self.recorder.deviceHasFlash && self.torchEnabled
             self.torchOnButton.hidden = self.recorder.flashMode != .Light
             self.torchOffButton.hidden = self.recorder.flashMode == .Light
-        }
+//        }
     }
     
     @IBAction func toggleTorch() {
@@ -649,7 +658,7 @@ extension CaptureMomentViewController {
     
     @IBAction func stopRecording(sender: AnyObject) {
         // SOUND: if startDate < NSDate() {
-        delay(0.5) { self.stop() }
+        delay(0.001) { self.stop() } // previous delay is .5
         /* SOUND: }
         else if let d = startDate {
             let leftInterval = d.timeIntervalSinceNow

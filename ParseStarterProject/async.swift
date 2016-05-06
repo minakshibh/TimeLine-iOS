@@ -17,6 +17,12 @@ func main(closure:()->()) {
     dispatch_async(dispatch_get_main_queue(), closure)
 }
 
+func synced(lock: AnyObject, closure: () -> ()) {
+    objc_sync_enter(lock)
+    closure()
+    objc_sync_exit(lock)
+}
+
 func SerialOperationQueue(name: String = "") -> NSOperationQueue {
     let op = NSOperationQueue()
     op.underlyingQueue = dispatch_queue_create(name, DISPATCH_QUEUE_SERIAL)
