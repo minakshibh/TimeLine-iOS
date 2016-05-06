@@ -26,7 +26,7 @@ extension User: Named1 {
 
 extension Named1 {
     var fullName1: String {
-        print("fullName1")
+        //print("fullName1")
         return  userfullName
     }
     var bio: String {
@@ -35,11 +35,11 @@ extension Named1 {
         return bioStr
     }
     var other: String {
-        print("other")
+        //print("other")
         return  "Other: \(other)"
     }
     var website: String {
-        print("website")
+        //print("website")
         return  website
     }
 

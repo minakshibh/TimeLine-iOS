@@ -117,7 +117,7 @@ class CommonTimelineTableViewController: UITableViewController {
         tabBarController?.delegate = self
         navigationController?.delegate = self
         
-        self.refreshControl?.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
+        //self.refreshControl?.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged) removed 6may
         self.refreshTableView()
         
         NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "status")
@@ -252,7 +252,7 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
         }
     }
     func update2(){
-        self.refreshTableView()
+        //self.refreshTableView() removed 6may
         self.tableView.reloadData()
     }
     

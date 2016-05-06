@@ -47,13 +47,13 @@ class updatedUserSummaryTableViewController: FlatTimelineTableViewControllerWith
                 self.timelines = self.user.timelines ?? []
                 if !self.timeline_id .isEqual("")
                 {
-                    print("self.timeline_id==\(self.timeline_id)")
+                    //print("self.timeline_id==\(self.timeline_id)")
                     
                     for i in 0..<self.timelines.count {
                         let timeline = self.timelines[i]
                         if self.timeline_id .isEqual(timeline.state.uuid)
                         {
-                            print("same t_id")
+                            //print("same t_id")
                             let indexPath = NSIndexPath(forRow: i+1, inSection: 0)
                             self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
                         }

@@ -161,7 +161,7 @@ class CommentViewController: SLKTextViewController {
             Storage.performRequest(ApiRequest.TimelineComments(timelineCommentID), completion: { (json) -> Void in
                 if let raw = json["result"] as? NSMutableArray{
                     self.messages = raw
-                    print("messages : \(raw)")
+                    //print("messages : \(raw)")
                     main{
                         self.tableView?.reloadData()
                         self.activityIndicator.stopAnimating()
@@ -191,7 +191,7 @@ class CommentViewController: SLKTextViewController {
             //array  = array.sortedArrayUsingSelector(#selector(NSString.localizedCaseInsensitiveCompare(_:)))
             array = array.sort({ $0.name > $1.name })
         }
-        print("search array \(array)")
+       // print("search array \(array)")
         self.searchResult = array
         let show : Bool = (self.searchResult.count > 0);
         self.showAutoCompletionView(show)
@@ -372,7 +372,7 @@ class CommentViewController: SLKTextViewController {
                 //configure right buttons
                 cell.rightButtons = [MGSwipeButton(title: "", icon:UIImage(named: "CommentDelete.png"),backgroundColor: UIColor.redColor(), callback: {
                     (sender: MGSwipeTableCell!) -> Bool in
-                    print("Delete: \(indexPath.row)")
+                    //print("Delete: \(indexPath.row)")
                     if let raw = self.messages[indexPath.row] as? NSDictionary
                     {
                         let notifyStr = raw["id"] as! String
@@ -394,7 +394,7 @@ class CommentViewController: SLKTextViewController {
             {
                 cell.rightButtons = [MGSwipeButton(title: "",icon:UIImage(named: "CommentDelete.png") ,backgroundColor: UIColor.redColor(), callback: {
                     (sender: MGSwipeTableCell!) -> Bool in
-                    print("Delete: \(indexPath.row)")
+                    //print("Delete: \(indexPath.row)")
                     
                     if let raw = self.messages[indexPath.row] as? NSDictionary
                     {

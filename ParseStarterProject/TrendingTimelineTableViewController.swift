@@ -461,8 +461,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             {
                 self.nameArray.addObject(sortedArray[v])
             }
-            print("\(self.numberArray)")
-            print("\(self.nameArray)")
+           // print("\(self.numberArray)")
+            //print("\(self.nameArray)")
             self.selectedPeople = []
             self.tableViewContact.reloadData()
         }
@@ -487,8 +487,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         
         
         if tableView == tableViewContact{
-            print("\(nameArray.count)")
-            print("\(numberArray.count)")
+            //print("\(nameArray.count)")
+            //print("\(numberArray.count)")
             return nameArray.count
         }else{
             
@@ -609,7 +609,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             inviteButton.layer.borderWidth = 1.0
             
             inviteButton.tag = indexPath.row
-            print("\(selectedPeople)")
+            //print("\(selectedPeople)")
             if selectedPeople.containsObject(text2.text!)
             {
                 inviteButton.backgroundColor = UIColor.redColor()
@@ -704,9 +704,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             }
         }
         
-        print("\(filteredTableData)-----")
-        print("\(selectedPeople)")
-        print("inviteButton: \(indexPath.row)")
+        //print("\(filteredTableData)-----")
+        //print("\(selectedPeople)")
+        //print("inviteButton: \(indexPath.row)")
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowTimeline" {
@@ -769,7 +769,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         // ALGORITHM HARDCODED - SEE CREATE TIMELINE
         let data = string.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
         let temp = NSString(data: data!, encoding: NSASCIIStringEncoding) as! String
-        print("@@\(temp.characters.filter)--++\(temp.characters.filter)")
+        //print("@@\(temp.characters.filter)--++\(temp.characters.filter)")
         var replacement = String(temp.characters.filter { (c: Character) -> Bool in
             return "abcdefghijklmnopqrstuvwxyz0123456789 ".rangeOfString(String(c).lowercaseString) != nil
             })
@@ -864,11 +864,11 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
    
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         if selectedScope==0 {
-            print("----button pressed 11111-----")
+            //print("----button pressed 11111-----")
             searchTag = "@"
             searchBar.text = ""
         }else{
-            print("----button pressed 222222-----")
+           // print("----button pressed 222222-----")
             searchTag = "#"
             searchBar.text = ""
         }

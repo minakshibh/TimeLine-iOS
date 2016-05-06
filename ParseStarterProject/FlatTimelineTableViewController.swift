@@ -89,7 +89,7 @@ class FlatTimelineTableViewController: UITableViewController {
             while i < c {
                 swap(&sortedArray[i++],&sortedArray[c--])
             }
-            print("\(sortedArray)")
+            //print("\(sortedArray)")
             
             sortedtimelines = []
             for g in 0..<sortedArray.count{
@@ -188,7 +188,7 @@ class FlatTimelineTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        print("is own Trending \(timelines[indexForIndexPath(indexPath)].isOwn)")
+        //print("is own Trending \(timelines[indexForIndexPath(indexPath)].isOwn)")
         if(timelines[indexForIndexPath(indexPath)].isOwn){
             
             if(timelines[indexForIndexPath(indexPath)].description.isEmpty){

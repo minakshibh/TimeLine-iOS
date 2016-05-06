@@ -28,7 +28,7 @@ class SortedTimelineTableViewController: UITableViewController {
 //            }
 //        }
         for t in timelines {
-            print("\(t.parent)")
+            //print("\(t.parent)")
             if let uid = t.parent?.uuid {
                 let indexUid = "\(secs.count)\(uid)"
                 if secs[indexUid] == nil {
@@ -50,11 +50,11 @@ class SortedTimelineTableViewController: UITableViewController {
             
              for t in luts.1 {
                date1 =  t.updated_at
-                print("%%%%\(date1)")
+                //print("%%%%\(date1)")
             }
             for t in ruts.1 {
                 date2 =  t.updated_at
-                print("%%%%\(date1)")
+                //print("%%%%\(date1)")
             }
             
             
@@ -64,14 +64,14 @@ class SortedTimelineTableViewController: UITableViewController {
             date1 = arr[0]
             arr = arr[1].componentsSeparatedByString(".")
             date1 = "\(date1) \(arr[0])"
-                print("1111111---\(date1)")
+                //print("1111111---\(date1)")
             }
             if (date2 != "") {
             var arr1 = date2.componentsSeparatedByString("T")
             date2 = arr1[0]
             arr1 = arr1[1].componentsSeparatedByString(".")
             date2 = "\(date2) \(arr1[0])"
-                print("2222222---\(date2)")
+                //print("2222222---\(date2)")
             }
             
             let dateFormatter = NSDateFormatter()
@@ -111,12 +111,12 @@ class SortedTimelineTableViewController: UITableViewController {
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // Return the number of sections.
-        print("\(sections.count)")
+        //print("\(sections.count)")
         return sections.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("\(sections[section].1.count)")
+        //print("\(sections[section].1.count)")
         return sections[section].1.count
     }
     

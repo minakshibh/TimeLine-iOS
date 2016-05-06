@@ -739,7 +739,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         let notifyStr : String
         if let raw = self.commentArray[indexPath.row] as? NSDictionary
         {
-            print("testing momentplayer current moments is own \(momentPlayerController?.currentMoment()?.isOwn)")
+           // print("testing momentplayer current moments is own \(momentPlayerController?.currentMoment()?.isOwn)")
             notifyStr = raw["user_id"] as! String
             if (notifyStr == Storage.session.uuid)
             {

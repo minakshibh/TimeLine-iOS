@@ -100,7 +100,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
 //                self.playerView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y + CGFloat(8*self.IPHONE5), self.frame.size.width, self.frame.size.height-CGFloat(8*self.IPHONE5))
                 if let raw = self.behavior.timeline?.dict["moments"]!
                 {
-                    
+                    //print(raw)
                     self.scrollMomentArray = raw as! NSArray
   
                 }
@@ -121,7 +121,6 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 //print(self.timeline?.moments.)
                 if !(self.timeline?.isOwn)!
                 {
-                    
                     self.seperatorLineView.removeFromSuperview()
 
                     self.seperatorLineView.frame = CGRectMake(25,self.likeTimelineButton.frame.origin.y + self.likeTimelineButton.frame.size.height + 5, self.frame.size.width-25,1)
@@ -184,7 +183,6 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                 self.momentScroller.backgroundColor = UIColor.from(hexString:"#e7e7e7")
                 
                 self.addSubview(self.momentScroller)
-                
 
             }
             

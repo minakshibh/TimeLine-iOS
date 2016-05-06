@@ -222,22 +222,22 @@ class AllNotificationList: UITableViewController {
             self.timeline_id = tid
             switch payload["action"] as? String ?? "" {
             case "follow_request":
-                print("follow_request")
+               // print("follow_request")
                 break
                 
             case "create":
-                print("create")
+                //print("create")
                 timelineLikeOrComment = true
                 break
                 
             case "like" :
                 timelineLikeOrComment = true
-                print("like")
+                //print("like")
                 break
                 
             case "follow":
                 timelineLikeOrComment = true
-                print("follow")
+                //print("follow")
                 break
                 
                 

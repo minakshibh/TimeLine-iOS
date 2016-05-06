@@ -18,7 +18,7 @@ class BlockedTimelineTableViewController: FlatTimelineTableViewController {
 
     override func refreshTableView() {
         var first = true
-        print("refresh")
+        //print("refresh")
         Timeline.getTimelines(ApiRequest.CurrentTimelineBlocked, completion: { (tls) -> Void in
             self.timelines = tls
             if !first {

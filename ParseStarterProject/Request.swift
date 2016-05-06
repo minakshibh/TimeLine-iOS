@@ -280,7 +280,7 @@ enum ApiRequest {
             urlRequest.HTTPMethod = "GET"
 
         case .EditComment(let commentID, let commentmessage, let IdString):
-            print("commentmessage: \(commentmessage)")
+            //print("commentmessage: \(commentmessage)")
             let bodyData = "comment=\(commentmessage.urlEncoded)&tag_users=\(IdString.urlEncoded)"
             urlString = "api/comment/\(commentID.urlEncoded)/edit?\(bodyData)"
             urlRequest.HTTPMethod = "PATCH"

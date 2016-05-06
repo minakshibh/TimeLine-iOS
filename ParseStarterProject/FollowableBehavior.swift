@@ -41,7 +41,7 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
                 followTimelineButton.hidden =!= target.isOwn ? true : false
                 followTimelineButton.selected =!= target.followed != .NotFollowing && !target.isOwn
                 followTimelineButton.enabled =!= true
-                followTimelineButton.normalImage =!= target.followed != .NotFollowing ? UIImage(assetIdentifier: .dislikeImage) : UIImage(assetIdentifier: .likeImage)
+                followTimelineButton.normalImage =!= target.followed != .NotFollowing ? UIImage(assetIdentifier: .feedeoSelected) : UIImage(assetIdentifier: .feedeoUnselected)
             }
            
         } else {

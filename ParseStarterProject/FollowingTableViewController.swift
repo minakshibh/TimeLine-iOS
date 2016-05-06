@@ -79,7 +79,7 @@ class FollowingTableViewController: SortedTimelineTableViewController {
         do{
         Timeline.getTimelines(.TimelineFollowing) { tls in
             self.setTimelines(tls)
-            main{
+            //main{ removed 6may
                 if !first {
                     PFUser.currentUser()?.resetBadgeFollowingInBackground()
                     
@@ -90,7 +90,7 @@ class FollowingTableViewController: SortedTimelineTableViewController {
                 } else {
                     first = !first
                 }
-            }
+            //}
         }
     }catch{
         var alert=UIAlertController(title: "CRASH", message: "App tried to crash at refreshing following screen", preferredStyle: UIAlertControllerStyle.Alert);

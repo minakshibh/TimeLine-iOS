@@ -230,7 +230,7 @@
                         <constraint firstAttribute="height" constant="42" id="ulh-M7-Uey"/>
                     </constraints>
                     <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" image="likeImage">
+                    <state key="normal" image="FeedeoDislike">
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -396,11 +396,11 @@
     </objects>
     <resources>
         <image name="Comment" width="30" height="30"/>
+        <image name="FeedeoDislike" width="33" height="33"/>
         <image name="Play Button" width="90" height="90"/>
         <image name="chat" width="16" height="15"/>
         <image name="comments" width="16" height="15"/>
         <image name="follower" width="16" height="15"/>
-        <image name="likeImage" width="33" height="33"/>
         <image name="love" width="16" height="15"/>
         <image name="more" width="33" height="30"/>
         <image name="showComments" width="33" height="33"/>

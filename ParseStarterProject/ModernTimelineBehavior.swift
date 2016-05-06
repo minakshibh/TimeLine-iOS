@@ -28,7 +28,7 @@ class ModernTimelineBehavior {
     init() {
         self.callbacks.append(serialHook.add(key: .PlaybackStarted) { behavior, moment in
             if case .Playing = self.state where self !== behavior {
-                print("Stop: \(self.timeline?.name)")
+                //print("Stop: \(self.timeline?.name)")
                 self.stopPlayback(animated: true)
             }
         })

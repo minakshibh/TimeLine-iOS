@@ -47,6 +47,8 @@ extension UIImage {
         
         case dislikeImage = "dislikeImage"
         
+        case feedeoSelected = "Feedeolike"
+        case feedeoUnselected = "FeedeoDislike"
         
         case whiteHeart = "whiteHeart"
         case RedHeart = "RedHeart"

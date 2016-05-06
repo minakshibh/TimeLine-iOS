@@ -48,7 +48,7 @@ extension FollowableBehaviorCount where TargetBehaviorType: Ownable {
                 }
             }else{
                 if  !target.isOwn {
-                    print("\(target.followed)")
+                    //print("\(target.followed)")
                     var status = false
                     if ("\(target.followed)" == "Following" || "\(target.followed)" == "Pending"){
                         status = true
@@ -60,7 +60,7 @@ extension FollowableBehaviorCount where TargetBehaviorType: Ownable {
                 }
 
             }
-            print("\(target.followed)")
+           // print("\(target.followed)")
 //            followButton.enabled =!= true
 //            followButton.borderWidth =!= 0
 //            followButton.tintColor =!= UIColor.blackColor()
@@ -99,7 +99,7 @@ extension FollowableBehaviorCount where TargetBehaviorType: Ownable {
     func togglePersonImage() {
         if let behaviorTarget = behaviorTarget {
             if  !behaviorTarget.isOwn {
-                print("\(behaviorTarget.followed)")
+                //print("\(behaviorTarget.followed)")
                 var status = false
                 if ("\(behaviorTarget.followed)" == "Following" || "\(behaviorTarget.followed)" == "Pending"){
                 status = true
