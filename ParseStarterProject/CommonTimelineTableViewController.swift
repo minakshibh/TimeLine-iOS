@@ -72,8 +72,9 @@ class CommonTimelineTableViewController: UITableViewController {
                                 self.users[j].timelines[i].reloadMoments {
                                     main{
                                         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
+                                            if self.users[j].timelines.count > 0 {
                                             cell.timeline = self.users[j].timelines[i]
-                                            
+                                            }
                                         }
                                     }
                                 }
