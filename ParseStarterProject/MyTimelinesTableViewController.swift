@@ -44,12 +44,16 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
 //            }
 //        }
         
-        let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
+        let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named:"Back to previous screen"), style: .Plain, target: self, action:"goToRecordScreen")
         navigationItem.leftBarButtonItem = right
     }
     func goToRecordScreen(){
+        
+        UIView.animateWithDuration(1.0,animations: { () -> Void in
         let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
         viewController?.profileButtonClick()
+           
+        })
 //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 //        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

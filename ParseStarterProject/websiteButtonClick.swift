@@ -9,7 +9,7 @@
 import SWFrameButton
 
 protocol websiteButtonClick {
-    typealias TargetBehaviorType: Named1
+    associatedtype TargetBehaviorType: Named1
     var behaviorTarget: TargetBehaviorType? { get }
     var btnWebsite: SWFrameButton! { get }
 }
@@ -50,14 +50,17 @@ extension websiteButtonClick where TargetBehaviorType: Ownable {
     func websiteButtonClickAction() {
         
         let buttonTitle = btnWebsite.currentTitle!  as String
-        let check = buttonTitle.componentsSeparatedByString("http://")
+        let check = buttonTitle.stringByReplacingOccurrencesOfString("Website: ", withString: "")
         
         var resultingStr:String = ""
-        if check.count != 0 {
-            resultingStr = buttonTitle
-        }else{
-            resultingStr = "http://\(buttonTitle)"
-        }
+//        if check.length != 0 {
+//            resultingStr = buttonTitle
+//        }else{
+//
+//        }
+        resultingStr = "http://\(check)"
+        print(resultingStr)
+
         
         UIApplication.sharedApplication().openURL(NSURL(string: resultingStr)!)
 

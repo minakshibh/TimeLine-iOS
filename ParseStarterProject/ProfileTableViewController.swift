@@ -78,31 +78,32 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     }
     
     @IBAction func websiteButton(sender: AnyObject) {
-        let buttonTitle = websiteButton.currentTitle!  as String
-        let check = buttonTitle.componentsSeparatedByString("http://")
+        
+        let buttonTitle = (websiteButton.titleLabel?.text)!  as String
+        let check = buttonTitle.stringByReplacingOccurrencesOfString("Website: ", withString: "")
         
         var resultingStr:String = ""
-        if check.count != 0 {
-            resultingStr = buttonTitle
-        }else{
-            resultingStr = "http://\(buttonTitle)"
-        }
-        
+//        if check.length != 0 {
+//            resultingStr = buttonTitle
+//        }else{
+//
+//        }
+        resultingStr = "http://\(check)"
+        print(resultingStr)
         UIApplication.sharedApplication().openURL(NSURL(string: resultingStr)!)
 
     }
     
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         cleanUpHooking()
-        
-        
+  
     }
     func goToRecordScreen(){
-        
+        UIView.animateWithDuration(1.0,animations: { () -> Void in
         let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
         viewController?.timelineButtonCLick()
+        })
         
 //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -277,7 +278,12 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 var websiteStr:String = ""
                 if user["website"] != nil {
                     websiteStr = "\(user.objectForKey("website")!)"
-                    websiteButton.setTitle(websiteStr, forState: .Normal)
+                    let attributedTextBio: NSMutableAttributedString = NSMutableAttributedString(string: "Website: \(websiteStr)")
+                    attributedTextBio.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18) , NSForegroundColorAttributeName : UIColor.blackColor()], range: NSRange(location: 0, length: 8))
+                    websiteButton.titleLabel?.textColor = UIColor.blackColor()
+                    websiteButton.titleLabel?.font = UIFont.systemFontOfSize(16)
+                    websiteButton.setAttributedTitle(attributedTextBio, forState: .Normal)
+                    //websiteButton.setatt(attributedTextBio, forState: .Normal)
                 }
                 if user["website"] == nil {
                 websiteStr = ""
@@ -463,5 +469,12 @@ class ProfileTableViewController: TintedHeaderTableViewController {
 extension ProfileTableViewController: Hooking, UserMoreButtonBehavior, PushableBehavior, ShareableBehavior, BlockableBehavior {
     var hookingSetUps: [() -> AnyObject?] {
         return [setUpUserMoreButtonBehavior, setUpActiveControllerBehavior]
+    }
+    
+    
+}
+extension String {
+    var length: Int {
+        return characters.count
     }
 }
