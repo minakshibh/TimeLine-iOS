@@ -67,7 +67,7 @@
 "Settings-Alert-Delete-Action-Delete" = "Delete Account";
 
 /* MARK: Settings Email */
-"Settings-Placeholder-Email-Text" = "example@email.com";
+"Settings-Placeholder-Email-Text" = "www.example.com";
 
 "Settings-Alert-Email-Missing-Title" = "Change Email";
 "Settings-Alert-Email-Missing-Message" = "There is no email set.";

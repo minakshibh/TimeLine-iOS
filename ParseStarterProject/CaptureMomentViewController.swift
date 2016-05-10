@@ -1,22 +1,22 @@
  //
-//  CaptureMomentViewController.swift
-//  Timeline
-//
-//  Created by Valentin Knabel on 26.07.15.
-//  Copyright (c) 2015 Conclurer GbR. All rights reserved.
-//
-
-import UIKit
-import AVFoundation
-import AudioToolbox
-import Parse
-import SCRecorder
-import CoreMedia
-import MediaPlayer
-
-/// The central view controller.
-/// Contains a capture view and controls for navigation.
-class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
+ //  CaptureMomentViewController.swift
+ //  Timeline
+ //
+ //  Created by Valentin Knabel on 26.07.15.
+ //  Copyright (c) 2015 Conclurer GbR. All rights reserved.
+ //
+ 
+ import UIKit
+ import AVFoundation
+ import AudioToolbox
+ import Parse
+ import SCRecorder
+ import CoreMedia
+ import MediaPlayer
+ 
+ /// The central view controller.
+ /// Contains a capture view and controls for navigation.
+ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     
     var scrollView = UIScrollView()
     let closeButton  = UIButton()
@@ -34,7 +34,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     @IBOutlet var torchOffButton: UIButton!
     @IBOutlet var countdownLabel: UILabel!
     var videoPlayView: PlayerView!
-
+    
     var countdown: Int = 1
     var timer: NSTimer? {
         didSet {
@@ -48,24 +48,24 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     @IBOutlet var profileMenuButton: UIButton!
     @IBOutlet var timelineMenuButton: UIButton!
     @IBOutlet var allNotificationMenuButton: UIButton!
-
+    
     var profileMenuBadge: CustomBadge?
     var timelineMenuBadge: CustomBadge?
     var notificationsMenuBadge: CustomBadge?
-
+    
     var startDate: NSDate?
     var endTimer: NSTimer?
     
     /* SOUND: lazy var startRecording: AVAudioPlayer = {
-        let url = NSBundle.mainBundle().URLForResource("record-start", withExtension: "mp3", subdirectory: nil)
-        var player = AVAudioPlayer(contentsOfURL: url, error: nil)
-        return player
-        }()
-    lazy var endRecording: AVAudioPlayer = {
-        let url = NSBundle.mainBundle().URLForResource("record-end", withExtension: "mp3", subdirectory: nil)
-        var player = AVAudioPlayer(contentsOfURL: url, error: nil)
-        return player
-        }()*/
+     let url = NSBundle.mainBundle().URLForResource("record-start", withExtension: "mp3", subdirectory: nil)
+     var player = AVAudioPlayer(contentsOfURL: url, error: nil)
+     return player
+     }()
+     lazy var endRecording: AVAudioPlayer = {
+     let url = NSBundle.mainBundle().URLForResource("record-end", withExtension: "mp3", subdirectory: nil)
+     var player = AVAudioPlayer(contentsOfURL: url, error: nil)
+     return player
+     }()*/
     
     @IBAction func menuControls(sender: AnyObject) {
         
@@ -90,114 +90,119 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         nav!.navigationBarHidden = true
         appDelegate.window?.makeKeyAndVisible()
     }
-//    @IBAction func NotificationButtonClick(sender: UIButton) {
-//        let vc = AllNotificationList(nibName: nil, bundle: nil)
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
+    //    @IBAction func NotificationButtonClick(sender: UIButton) {
+    //        let vc = AllNotificationList(nibName: nil, bundle: nil)
+    //        navigationController?.pushViewController(vc, animated: true)
+    //    }
     
     @IBAction func timelineProfileButton(sender: AnyObject) {
-        let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
-        viewController?.profileButtonClick()
+        UIView.animateWithDuration(0.2,animations: { () -> Void in
+            let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
+            viewController?.profileButtonClick()
+        })
         
         
         
-//        main{
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
-//        var nav = appDelegate.window?.rootViewController as? UINavigationController
-//        
-//        nav = UINavigationController.init(rootViewController:vc )
-//        
-//        self.hidesBottomBarWhenPushed = true
-//        NSUserDefaults.standardUserDefaults().setObject("Right", forKey: "transitionTo")
-//        
-//        let transition: CATransition = CATransition()
-//        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.duration = 0.1
-//        transition.timingFunction = timeFunc
-//        transition.type = kCATransitionPush
-//        transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
-//        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
-//        appDelegate.window?.rootViewController = nav
-//        appDelegate.window?.makeKeyAndVisible()
-//        }
         
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc  = storyboard.instantiateViewControllerWithIdentifier("Right")
-//        var nav = appDelegate.window?.rootViewController as? UINavigationController
-//        
-//        nav = UINavigationController.init(rootViewController:vc )
-//        
-//        hidesBottomBarWhenPushed = true
-//        
-//        let transition: CATransition = CATransition()
-//        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.duration = 0.25
-//        transition.timingFunction = timeFunc
-//        transition.type = kCATransitionPush
-//        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
-//        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
-//        appDelegate.window?.rootViewController = nav
-//        nav!.navigationBarHidden = true
-//        appDelegate.window?.makeKeyAndVisible()
+        //        main{
+        //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        //        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        //        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+        //        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        //
+        //        nav = UINavigationController.init(rootViewController:vc )
+        //
+        //        self.hidesBottomBarWhenPushed = true
+        //        NSUserDefaults.standardUserDefaults().setObject("Right", forKey: "transitionTo")
+        //
+        //        let transition: CATransition = CATransition()
+        //        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        //        transition.duration = 0.1
+        //        transition.timingFunction = timeFunc
+        //        transition.type = kCATransitionPush
+        //        transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
+        //        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        //        appDelegate.window?.rootViewController = nav
+        //        appDelegate.window?.makeKeyAndVisible()
+        //        }
+        
+        //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        //        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        //        let vc  = storyboard.instantiateViewControllerWithIdentifier("Right")
+        //        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        //
+        //        nav = UINavigationController.init(rootViewController:vc )
+        //
+        //        hidesBottomBarWhenPushed = true
+        //
+        //        let transition: CATransition = CATransition()
+        //        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        //        transition.duration = 0.25
+        //        transition.timingFunction = timeFunc
+        //        transition.type = kCATransitionPush
+        //        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+        //        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        //        appDelegate.window?.rootViewController = nav
+        //        nav!.navigationBarHidden = true
+        //        appDelegate.window?.makeKeyAndVisible()
     }
     @IBAction func timelineMenuButton(sender: AnyObject) {
+        UIView.animateWithDuration(0.2,animations: { () -> Void in
+            
+            let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
+            print(viewController)
+            viewController?.timelineButtonCLick()
+        })
         
-        let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
-        print(viewController)
-        viewController?.timelineButtonCLick()
+        //        main{
+        //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        //        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        //        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+        //        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        //
+        //        nav = UINavigationController.init(rootViewController:vc )
+        //
+        //        self.hidesBottomBarWhenPushed = true
+        //        NSUserDefaults.standardUserDefaults().setObject("Left", forKey: "transitionTo")
+        //
+        //        let transition: CATransition = CATransition()
+        //        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        //        transition.duration = 0.1
+        //        transition.timingFunction = timeFunc
+        //        transition.type = kCATransitionPush
+        //        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+        //        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        //        appDelegate.window?.rootViewController = nav
+        //        appDelegate.window?.makeKeyAndVisible()
+        //        }
         
-//        main{
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
-//        var nav = appDelegate.window?.rootViewController as? UINavigationController
-//        
-//        nav = UINavigationController.init(rootViewController:vc )
-//        
-//        self.hidesBottomBarWhenPushed = true
-//        NSUserDefaults.standardUserDefaults().setObject("Left", forKey: "transitionTo")
-//        
-//        let transition: CATransition = CATransition()
-//        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.duration = 0.1
-//        transition.timingFunction = timeFunc
-//        transition.type = kCATransitionPush
-//        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
-//        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
-//        appDelegate.window?.rootViewController = nav
-//        appDelegate.window?.makeKeyAndVisible()
-//        }
-
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc  = storyboard.instantiateViewControllerWithIdentifier("Left")
-//        var nav = appDelegate.window?.rootViewController as? UINavigationController
-//        
-//        nav = UINavigationController.init(rootViewController:vc )
-//        
-//        hidesBottomBarWhenPushed = true
-//        
-//        let transition: CATransition = CATransition()
-//        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.duration = 0.25
-//        transition.timingFunction = timeFunc
-//        transition.type = kCATransitionPush
-//        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
-//        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
-//        appDelegate.window?.rootViewController = nav
-//        nav!.navigationBarHidden = true
-//        appDelegate.window?.makeKeyAndVisible()
+        //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        //        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        //        let vc  = storyboard.instantiateViewControllerWithIdentifier("Left")
+        //        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        //
+        //        nav = UINavigationController.init(rootViewController:vc )
+        //
+        //        hidesBottomBarWhenPushed = true
+        //
+        //        let transition: CATransition = CATransition()
+        //        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        //        transition.duration = 0.25
+        //        transition.timingFunction = timeFunc
+        //        transition.type = kCATransitionPush
+        //        transition.subtype = kCATransitionFromLeft    //kCATransitionFromLeft
+        //        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        //        appDelegate.window?.rootViewController = nav
+        //        nav!.navigationBarHidden = true
+        //        appDelegate.window?.makeKeyAndVisible()
         
     }
     override func viewDidLoad() {
-//        hidesBottomBarWhenPushed = true
+        //        hidesBottomBarWhenPushed = true
         //UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.None)
         UIApplication.sharedApplication().statusBarHidden = true;
         tabBarController?.tabBar.hidden = true
@@ -237,56 +242,56 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         
         
         if !self.recorder.isPrepared {
-                _ = try? self.recorder.prepare()
+            _ = try? self.recorder.prepare()
         }
         
         
-    
-//        delay(0.001) {
-//            if !Storage.session.walkedThroughCamera {
-//                Storage.session.walkedThroughCamera = true
-//                self.performSegueWithIdentifier("WalkthroughCamera", sender: self)
-//            }
-//        }
+        
+        //        delay(0.001) {
+        //            if !Storage.session.walkedThroughCamera {
+        //                Storage.session.walkedThroughCamera = true
+        //                self.performSegueWithIdentifier("WalkthroughCamera", sender: self)
+        //            }
+        //        }
         
         self.addScrollView()
         
         if PFUser.currentUser()?.authenticated ?? false {
             let user = PFUser.currentUser()!
             
-                if user.objectForKey("bio") != nil {
-                    NSUserDefaults.standardUserDefaults().setObject(user.objectForKey("bio"), forKey: "user_bio")
-                }
-                if user.objectForKey("bio") == nil {
-                     NSUserDefaults.standardUserDefaults().setObject(" ", forKey: "user_bio")
-                }
-                
-                if user["website"] != nil {
+            if user.objectForKey("bio") != nil {
+                NSUserDefaults.standardUserDefaults().setObject(user.objectForKey("bio"), forKey: "user_bio")
+            }
+            if user.objectForKey("bio") == nil {
+                NSUserDefaults.standardUserDefaults().setObject(" ", forKey: "user_bio")
+            }
+            
+            if user["website"] != nil {
                 NSUserDefaults.standardUserDefaults().setObject(user["website"], forKey: "user_website")
-                }
-                if user["website"] == nil {
+            }
+            if user["website"] == nil {
                 NSUserDefaults.standardUserDefaults().setObject(" ", forKey: "user_website")
-                }
-                
-                if user["other"] != nil {
+            }
+            
+            if user["other"] != nil {
                 NSUserDefaults.standardUserDefaults().setObject(user["other"], forKey: "user_other")
-               }
-                if user["other"] == nil {
+            }
+            if user["other"] == nil {
                 NSUserDefaults.standardUserDefaults().setObject(" ", forKey: "user_other")
-
-                }
+                
+            }
         }
-
+        
     }
     func removeScrollView() {
         delay(0.001)
-            {
-                self.closeViewButton()
-                for subUIView in self.scrollView.subviews as [UIView] {
-                    subUIView.removeFromSuperview()
-                }
-                self.drafts.removeAllObjects()
-                self.closeButton.hidden = true
+        {
+            self.closeViewButton()
+            for subUIView in self.scrollView.subviews as [UIView] {
+                subUIView.removeFromSuperview()
+            }
+            self.drafts.removeAllObjects()
+            self.closeButton.hidden = true
         }
     }
     func addScrollView() {
@@ -305,7 +310,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         self.videoPlayView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.view.addSubview(self.videoPlayView)
         self.videoPlayView.hidden = true
-
+        
         // close button
         self.closeButton.frame = CGRectMake(10, self.videoPlayView.frame.origin.y + 10, 30, 30);
         self.closeButton.setImage(UIImage(named: "close") as UIImage?, forState: .Normal)
@@ -317,7 +322,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     
     func addImagesToScrollView()
     {
-
+        
         let subViews = self.scrollView.subviews
         for subview in subViews{
             subview.removeFromSuperview()
@@ -325,7 +330,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         self.scrollView.frame = CGRectMake(0,self.previewView.frame.origin.y - self.view.frame.width / 4, self.view.frame.width, self.view.frame.width / 4 )
         self.closeButton.frame = CGRectMake(10, self.previewView.frame.origin.y + 10, 30, 30);
         self.videoPlayView.frame = CGRectMake(0,self.previewView.frame.origin.y, self.view.frame.width,self.previewView.frame.size.height)
-
+        
         let scrollViewWidth:CGFloat = self.scrollView.frame.width/4
         let scrollViewHeight:CGFloat = self.scrollView.frame.height
         
@@ -338,10 +343,10 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
             start++
             end--
         }
-
+        
         
         for var index = 0; index < self.reverseDrafts.count; ++index {
-              let previewImg = UIImageView(frame: CGRectMake(scrollViewWidth * CGFloat(index), 0,scrollViewWidth-4, scrollViewHeight-4))
+            let previewImg = UIImageView(frame: CGRectMake(scrollViewWidth * CGFloat(index), 0,scrollViewWidth-4, scrollViewHeight-4))
             previewImg.tag = index
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("videoImageTapped:"))
             previewImg.userInteractionEnabled = true
@@ -353,7 +358,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
                     self.scrollView.addSubview(previewImg)
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     appDelegate.hideActivityIndicator()
-
+                    
                 }
             }
         }
@@ -373,7 +378,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
             self.recordButton.alpha = 0.5
             self.previewView.hidden = true
             self.recordButton.enabled = false
-            }) { (flag) -> Void in
+        }) { (flag) -> Void in
             self.menuControls.each { $0.enabled = false }
         }
         self.videoPlayView.hidden = false
@@ -394,7 +399,7 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     {
         momentPlayerController?.pause()
         momentPlayerController = nil
-
+        
         UIView.animateWithDuration(0.2,animations: { () -> Void in
             self.menuControls.each { $0.alpha = 1.0 }
             self.torchEnabled = true
@@ -404,19 +409,19 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
             self.recordButton.alpha = 1.0
             self.previewView.hidden = false
             self.recordButton.enabled = true
-            }) { (flag) -> Void in
-                self.menuControls.each { $0.enabled = true }
+        }) { (flag) -> Void in
+            self.menuControls.each { $0.enabled = true }
         }
         self.videoPlayView.hidden = true
         self.closeButton.hidden = true
     }
-
+    
     
     func reloadBadges() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         //print(appDelegate.notificationCount)
         if appDelegate.notificationCount > 0{
-             let style = BadgeStyle.defaultStyle()
+            let style = BadgeStyle.defaultStyle()
             let text = String(appDelegate.notificationCount)
             if self.notificationsMenuBadge == nil {
                 self.notificationsMenuBadge = CustomBadge(string: text, withStyle: style)
@@ -432,102 +437,102 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
         } else {
             self.notificationsMenuBadge?.hidden = true
         }
-
+        
     }
-
-//    func reloadBadges() {
-//        if !badgeTimerEnabled {
-//            return
-//        }
-//        let style = BadgeStyle.defaultStyle()
-//        let user = PFUser.currentUser()
-//        
-//        user?.badgeUserAndPendingInBackground { uc, pc in
-//            main {
-//                if uc + pc > 0 {
-//                    let text = String(uc + pc)
-//                    if self.profileMenuBadge == nil {
-//                        self.profileMenuBadge = CustomBadge(string: text, withStyle: style)
-//                        self.profileMenuButton.superview?.insertSubview(self.profileMenuBadge!, aboveSubview: self.profileMenuButton)
-//                        self.profileMenuBadge?.frame.origin = CGPoint(
-//                            x: self.profileMenuButton!.frame.origin.x + self.profileMenuButton!.frame.width / 2.0,
-//                            y: self.profileMenuButton!.frame.origin.y
-//                        )
-//                    }
-//                    self.profileMenuBadge?.badgeText = text
-//                    self.profileMenuBadge?.autoBadgeSizeWithString(text)
-//                } else {
-//                    self.profileMenuBadge?.removeFromSuperview()
-//                }
-//            }
-//        }
-//        
-//        user?.badgeMineAndFollowingInBackground { mc, fc in
-//            if mc + fc > 0 {
-//                self.timelineMenuBadge?.removeFromSuperview()
-//                let text = String(mc + fc)
-//                self.timelineMenuBadge = CustomBadge(string: text, withStyle: style)
-//                self.timelineMenuButton.superview?.insertSubview(self.timelineMenuBadge!, aboveSubview: self.timelineMenuButton)
-//                self.timelineMenuBadge?.frame.origin = CGPoint(
-//                    x: self.timelineMenuButton!.frame.origin.x + self.timelineMenuButton!.frame.width / 2.0,
-//                    y: self.timelineMenuButton!.frame.origin.y
-//                )
-//                self.timelineMenuBadge?.autoBadgeSizeWithString(text)
-//            } else {
-//                self.timelineMenuBadge?.removeFromSuperview()
-//            }
-//        }
-//    }
+    
+    //    func reloadBadges() {
+    //        if !badgeTimerEnabled {
+    //            return
+    //        }
+    //        let style = BadgeStyle.defaultStyle()
+    //        let user = PFUser.currentUser()
+    //
+    //        user?.badgeUserAndPendingInBackground { uc, pc in
+    //            main {
+    //                if uc + pc > 0 {
+    //                    let text = String(uc + pc)
+    //                    if self.profileMenuBadge == nil {
+    //                        self.profileMenuBadge = CustomBadge(string: text, withStyle: style)
+    //                        self.profileMenuButton.superview?.insertSubview(self.profileMenuBadge!, aboveSubview: self.profileMenuButton)
+    //                        self.profileMenuBadge?.frame.origin = CGPoint(
+    //                            x: self.profileMenuButton!.frame.origin.x + self.profileMenuButton!.frame.width / 2.0,
+    //                            y: self.profileMenuButton!.frame.origin.y
+    //                        )
+    //                    }
+    //                    self.profileMenuBadge?.badgeText = text
+    //                    self.profileMenuBadge?.autoBadgeSizeWithString(text)
+    //                } else {
+    //                    self.profileMenuBadge?.removeFromSuperview()
+    //                }
+    //            }
+    //        }
+    //
+    //        user?.badgeMineAndFollowingInBackground { mc, fc in
+    //            if mc + fc > 0 {
+    //                self.timelineMenuBadge?.removeFromSuperview()
+    //                let text = String(mc + fc)
+    //                self.timelineMenuBadge = CustomBadge(string: text, withStyle: style)
+    //                self.timelineMenuButton.superview?.insertSubview(self.timelineMenuBadge!, aboveSubview: self.timelineMenuButton)
+    //                self.timelineMenuBadge?.frame.origin = CGPoint(
+    //                    x: self.timelineMenuButton!.frame.origin.x + self.timelineMenuButton!.frame.width / 2.0,
+    //                    y: self.timelineMenuButton!.frame.origin.y
+    //                )
+    //                self.timelineMenuBadge?.autoBadgeSizeWithString(text)
+    //            } else {
+    //                self.timelineMenuBadge?.removeFromSuperview()
+    //            }
+    //        }
+    //    }
     
     override func viewWillAppear(animated: Bool) {
-
+        
         synced(self){
-        self.previewView.session = self.recorder.captureSession
+            self.previewView.session = self.recorder.captureSession
         }
         
-       NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
-//       delay (0.60) {
-//       
-//        }
-
-  }
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
+        //       delay (0.60) {
+        //
+        //        }
+        
+    }
     
     func update(){
-       
+        
         self.scrollView.hidden = false
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.notificationAPI ()
-         recorder.startRunning()
+        recorder.startRunning()
         
         //delay (0.001) {
-            
-            self.reloadBadges()
+        
+        self.reloadBadges()
         //}
         
     }
     
     override func viewDidDisappear(animated: Bool) {
         main{
-        self.stop()
-        self.recorder.stopRunning()
-        self.refreshTorches()
-        self.reloadBadges()
-        self.removeScrollView()
+            self.stop()
+            self.recorder.stopRunning()
+            self.refreshTorches()
+            self.reloadBadges()
+            self.removeScrollView()
         }
-//        videoPreviewView.hidden = true
+        //        videoPreviewView.hidden = true
     }
     
-//    override func prefersStatusBarHidden() -> Bool {
-//        return true
-//    }
-//    
-//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-//        return .LightContent
-//    }
-//    
-//    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
-//        return .Fade
-//    }
+    //    override func prefersStatusBarHidden() -> Bool {
+    //        return true
+    //    }
+    //
+    //    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    //        return .LightContent
+    //    }
+    //
+    //    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+    //        return .Fade
+    //    }
     
     override func shouldAutorotate() -> Bool {
         print("should: \(!(recorder?.isRecording ?? false))")
@@ -536,9 +541,9 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     
     //@availability(iOS 8, *)
     /*override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        //UIView.setAnimationsEnabled(false)
-        println("transition")
-    }*/
+     //UIView.setAnimationsEnabled(false)
+     println("transition")
+     }*/
     
     //@availability(iOS, introduced=2.0, deprecated=8.0)
     func willRotateToInterfaceOrientation(toInterfaceOrientation orientation: UIInterfaceOrientation, duration: NSTimeInterval) {
@@ -594,19 +599,19 @@ class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
             }
         }
     }
-}
-
-
-// MARK: IBActions
-extension CaptureMomentViewController {
+ }
+ 
+ 
+ // MARK: IBActions
+ extension CaptureMomentViewController {
     
     func refreshTorches() {
-//        main {
-            self.torchOffButton.enabled = self.recorder.deviceHasFlash && self.torchEnabled
-            self.torchOnButton.enabled = self.recorder.deviceHasFlash && self.torchEnabled
-            self.torchOnButton.hidden = self.recorder.flashMode != .Light
-            self.torchOffButton.hidden = self.recorder.flashMode == .Light
-//        }
+        //        main {
+        self.torchOffButton.enabled = self.recorder.deviceHasFlash && self.torchEnabled
+        self.torchOnButton.enabled = self.recorder.deviceHasFlash && self.torchEnabled
+        self.torchOnButton.hidden = self.recorder.flashMode != .Light
+        self.torchOffButton.hidden = self.recorder.flashMode == .Light
+        //        }
     }
     
     @IBAction func toggleTorch() {
@@ -643,16 +648,16 @@ extension CaptureMomentViewController {
             self.notificationsMenuBadge?.alpha=0.0
             self.scrollView.alpha = 0.0
             self.closeButton.alpha = 0.0
-            }) { (flag) -> Void in
-                self.menuControls.each { $0.enabled = false }
+        }) { (flag) -> Void in
+            self.menuControls.each { $0.enabled = false }
         }
         
         // SOUND: delay(startRecording.duration + 0.2) {
-            // SOUND: self.startDate = NSDate(timeIntervalSinceNow: self.startRecording.duration)
-            
-            self.recorder.record()
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "adjustCountdownLabel", userInfo: nil, repeats: true)
-            self.timer?.fire()
+        // SOUND: self.startDate = NSDate(timeIntervalSinceNow: self.startRecording.duration)
+        
+        self.recorder.record()
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "adjustCountdownLabel", userInfo: nil, repeats: true)
+        self.timer?.fire()
         // SOUND: }
     }
     
@@ -660,10 +665,10 @@ extension CaptureMomentViewController {
         // SOUND: if startDate < NSDate() {
         delay(0.001) { self.stop() } // previous delay is .5
         /* SOUND: }
-        else if let d = startDate {
-            let leftInterval = d.timeIntervalSinceNow
-            endTimer = NSTimer.scheduledTimerWithTimeInterval(leftInterval, target: self, selector: "stop", userInfo: nil, repeats: false)
-        }*/
+         else if let d = startDate {
+         let leftInterval = d.timeIntervalSinceNow
+         endTimer = NSTimer.scheduledTimerWithTimeInterval(leftInterval, target: self, selector: "stop", userInfo: nil, repeats: false)
+         }*/
     }
     func stop() {
         recorder.pause {
@@ -685,11 +690,11 @@ extension CaptureMomentViewController {
             self.notificationsMenuBadge?.alpha = 1.0
             self.scrollView.alpha = 1.0
             self.closeButton.alpha = 1.0
-
-            }) { (flag) -> Void in
-                self.countdownLabel.hidden = false
-                self.menuControls.each { $0.enabled = true }
-                self.badgeTimerEnabled = true
+            
+        }) { (flag) -> Void in
+            self.countdownLabel.hidden = false
+            self.menuControls.each { $0.enabled = true }
+            self.badgeTimerEnabled = true
         }
     }
     
@@ -712,16 +717,16 @@ extension CaptureMomentViewController {
         menuControls.each { $0.enabled = enabled }
     }
     
-}
-
-extension CaptureMomentViewController: SCRecorderDelegate {
+ }
+ 
+ extension CaptureMomentViewController: SCRecorderDelegate {
     
     func recorder(recorder: SCRecorder, didCompleteSegment segment: SCRecordSessionSegment?, inSession session: SCRecordSession, error: NSError?) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         main{
             appDelegate.showActivityIndicator()
         }
-
+        
         recorder.flashMode = .Off
         recorder.session?.mergeSegmentsUsingPreset(AVAssetExportPresetHighestQuality, completionHandler: { (url, parentError) -> Void in
             if let url = url {
@@ -743,10 +748,10 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                         }
                         let count = tenSecsVideo + status
                         
-//                        self.cropVideo(url)
+                        //                        self.cropVideo(url)
                         
                         if status==1{
-                        //for loop with status
+                            //for loop with status
                             for (var a=0;a<count;a++){
                                 var stattime:Int
                                 var endTime:Int
@@ -756,14 +761,14 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                                     stattime = 0+10*a
                                     endTime = stattime + remainingTime
                                 }else{
-                                stattime = 0 + 10*a
-                                endTime = 10 + 10*a
+                                    stattime = 0 + 10*a
+                                    endTime = 10 + 10*a
                                 }
                                 self.cropVideo(url, statTime: Float(stattime), endTime: Float(endTime))
                             }
                         }
-                         if status==0{
-                        //for loop without status
+                        if status==0{
+                            //for loop without status
                             for (var a=0;a<count-1;a++){
                                 
                                 let stattime = 0 + 10*a
@@ -773,7 +778,7 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                         }
                         return
                     }
-//                    return
+                    //                    return
                     try NSFileManager.defaultManager().moveItemAtURL(url, toURL: newURL)
                     let asset = AVURLAsset(URL: newURL, options: nil)
                     let seconds = Int(round(CMTimeGetSeconds(asset.duration)))
@@ -786,7 +791,7 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                     
                     self.drafts.addObject(newMoment)
                     self.addImagesToScrollView()
-
+                    
                     //  self.performSegueWithIdentifier("ShowMoments", sender: self)
                     print("segued")
                 } catch {
@@ -852,7 +857,7 @@ extension CaptureMomentViewController: SCRecorderDelegate {
                 switch exportSession.status {
                 case .Completed:
                     print("exported at \(outputURL)")
-                   self.saveVideoTimeline(outputURL)
+                    self.saveVideoTimeline(outputURL)
                 case .Failed:
                     print("failed \(exportSession.error)")
                     
@@ -888,21 +893,21 @@ extension CaptureMomentViewController: SCRecorderDelegate {
     }
     //-------------------------
     /**
-    Called when the flashMode has changed
-    */
+     Called when the flashMode has changed
+     */
     func recorder(recorder: SCRecorder, didChangeFlashMode flashMode: SCFlashMode, error: NSError?) {
         refreshTorches()
     }
     /**
-    Called when the recorder has initialized the audio in a session
-    */
+     Called when the recorder has initialized the audio in a session
+     */
     func recorder(recorder: SCRecorder, didInitializeAudioInSession session: SCRecordSession, error: NSError?) {
         
     }
     
     /**
-    Called when the recorder has initialized the video in a session
-    */
+     Called when the recorder has initialized the video in a session
+     */
     func recorder(recorder: SCRecorder, didInitializeVideoInSession session: SCRecordSession, error: NSError?) {
         refreshTorches()
     }
@@ -911,9 +916,9 @@ extension CaptureMomentViewController: SCRecorderDelegate {
         refreshTorches()
     }
     
-}
-
-extension CaptureMomentViewController: UITabBarControllerDelegate {
+ }
+ 
+ extension CaptureMomentViewController: UITabBarControllerDelegate {
     
     func tabBarControllerSupportedInterfaceOrientations(tabBarController: UITabBarController) -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.Portrait
@@ -923,5 +928,5 @@ extension CaptureMomentViewController: UITabBarControllerDelegate {
         return .Portrait
     }
     
-}
-
+ }
+ 

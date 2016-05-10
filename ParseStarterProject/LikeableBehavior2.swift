@@ -62,6 +62,11 @@ extension LikeableBehavior2 where TargetBehaviorType: Ownable {
                 var websiteStr:String = ""
                 if user["website"] != nil {
                     websiteStr = "\(user.objectForKey("website")!)"
+                    let attributedTextBio: NSMutableAttributedString = NSMutableAttributedString(string: "Website: \(websiteStr)")
+                    attributedTextBio.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18) , NSForegroundColorAttributeName : UIColor.blackColor()], range: NSRange(location: 0, length: 8))
+                    btnWebsite.titleLabel?.textColor = UIColor.blackColor()
+                    btnWebsite.titleLabel?.font = UIFont.systemFontOfSize(16)
+                    btnWebsite.setAttributedTitle(attributedTextBio, forState: .Normal)
                     btnWebsite.setTitle(websiteStr, forState: .Normal)
                 }
                 if user["website"] == nil {

@@ -125,7 +125,7 @@ class CommentViewController: SLKTextViewController {
                 for (var i = 0; i < raw.count; i++ ){
                     if let username = raw[i] as? NSDictionary
                     {
-                        //print("Username : \(username)")
+                        print("Username : \(username)")
                         //                        var userDict = NSMutableDictionary()
                         ////                        userDict = username
                         //                        userDict.setObject(username["name"]!, forKey: "name")

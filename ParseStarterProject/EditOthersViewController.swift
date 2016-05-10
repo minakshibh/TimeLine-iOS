@@ -64,7 +64,7 @@ class EditOthersTableViewController: TintedHeaderTableViewController, UITextView
             self .countStatusLength(newLength)
         }
         
-        if(newLength > 120)
+        if(newLength > 60)
         {
             if(text == "\n") {
                 textView.resignFirstResponder()
@@ -85,7 +85,7 @@ class EditOthersTableViewController: TintedHeaderTableViewController, UITextView
         textView.textColor = UIColor.blackColor()
     }
     func countStatusLength(textViewCharacterLength: Int) {
-        let count = 120
+        let count = 60
         let diff: Int = (count) - (textViewCharacterLength)
         
         if(diff == -1)
