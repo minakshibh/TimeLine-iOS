@@ -52,17 +52,7 @@ class CommonTimelineTableViewController: UITableViewController {
                     for j in 0..<self.users.count {
                         //                print("\(users.count)")
                         let ts = self.users[j].timelines
-                        if(ts.count == 0){
-                            self.lblFeed.frame = CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height)
-                            self.lblFeed.textAlignment = NSTextAlignment.Center
-                            self.lblFeed.text = "No Feedeos found"
-                            
-                            
-                            self.tableView.addSubview(self.lblFeed)
-                        }
-                        else{
-                            self.callbacks.append(self.setUpReloadable())
-                        }
+                        
                         if (ts.count>0) {
                             for i in 0..<ts.count {
                                 //                    print("\(ts.count)")
@@ -112,6 +102,7 @@ class CommonTimelineTableViewController: UITableViewController {
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update1", userInfo: nil, repeats: false)
         
     }
+    
     func update1(){
         
         
@@ -248,7 +239,7 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
     }
     override func reloadData() {
         main {
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update2", userInfo: nil, repeats: false)
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(CommonTimelineTableViewController.update2), userInfo: nil, repeats: false)
             
         }
     }
@@ -259,7 +250,21 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
     
     
     override func viewWillAppear(animated: Bool) {
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update3", userInfo: nil, repeats: false)
+        if(self.users.count>0){
+            for j in 0..<self.users.count {
+                let ts = self.users[j].timelines
+                if(ts.count == 0){
+                    self.lblFeed.frame = CGRectMake(0, 0, self.tableView.frame.size.width,  self.tableView.frame.size.height)
+                    self.lblFeed.textAlignment = NSTextAlignment.Center
+                    self.lblFeed.text = "No Feedeos found"
+                    self.tableView.addSubview(self.lblFeed)
+                }
+                else{
+                    self.lblFeed .removeFromSuperview()
+                    self.callbacks.append(self.setUpReloadable())
+                }
+            }}
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(CommonTimelineTableViewController.update3), userInfo: nil, repeats: false)
     }
     func update3(){
         self.setUpHooking() // required for Hooking protocol

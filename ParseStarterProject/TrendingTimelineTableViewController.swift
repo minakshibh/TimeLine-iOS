@@ -373,25 +373,24 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                 let labelArray: NSMutableArray! = []
                 if var contactName = ABRecordCopyCompositeName(contactPerson)?.takeRetainedValue(){
                     contactName = ABRecordCopyCompositeName(contactPerson).takeRetainedValue() as String
-//                    print("\(contactName)")
-                    //                    self.nameArray.addObject(contactName )
+
                     if var numbers = ABRecordCopyValue(
                         contactPerson, kABPersonPhoneProperty)?.takeRetainedValue(){
                         numbers = ABRecordCopyValue(
                             contactPerson, kABPersonPhoneProperty).takeRetainedValue()
- //                       print("\(ABMultiValueGetCount(numbers))")
+
                         if (ABMultiValueGetCount(numbers) == 0)
                         {
 //                            self.nameArray.addObject("\(contactName)")
 //                            self.numberArray.addObject("--")
                         }else{
-                        var swiftString = ""
-                        for ix in 0 ..< ABMultiValueGetCount(numbers) {
-                            var phones : ABMultiValueRef = ABRecordCopyValue(record,kABPersonPhoneProperty).takeUnretainedValue() as ABMultiValueRef
+
+                            for ix in 0 ..< ABMultiValueGetCount(numbers) {
+                            let phones : ABMultiValueRef = ABRecordCopyValue(record,kABPersonPhoneProperty).takeUnretainedValue() as ABMultiValueRef
                             
                             if var value = ABMultiValueCopyValueAtIndex(numbers,ix)?.takeRetainedValue(){
                                 value = ABMultiValueCopyValueAtIndex(numbers,ix).takeRetainedValue() as! String
-//                                print("Phonenumber  is \(value)")
+
                                 randomArray.addObject(value)
                                 
                      let locLabel : CFStringRef = (ABMultiValueCopyLabelAtIndex(phones, ix) != nil) ? ABMultiValueCopyLabelAtIndex(phones, ix).takeUnretainedValue() as CFStringRef : ""
@@ -419,44 +418,24 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                     if(count == 1){
                         self.nameArray.addObject("\(contactName)")
                         self.numberArray.addObject(randomArray[0])
-//                        print("\(self.nameArray)---\(self.numberArray)")
+
                     }else{
-//            do{
+
                         for(var a=0;a<randomArray.count;a += 1){
                             
-//                            if ("\(labelArray[a])").rangeOfString("<") != nil{
-//                                var arrStr1 = labelArray[a].componentsSeparatedByString("<")
-//                                let lblStr =  arrStr1[1].componentsSeparatedByString(">")[0]
-//                                self.nameArray.addObject("\(contactName)-\(lblStr)")
-//                                self.numberArray.addObject(randomArray[a])
-//                            }else{
-//                                print("crash")
                                 self.nameArray.addObject("\(contactName)-\(labelArray[a])")
                                 self.numberArray.addObject(randomArray[a])
-//                            }
+
                         }
-//            }catch {
-//                            for(var a=0;a<randomArray.count;a++){
-//                                var alert=UIAlertController(title: "CRASH", message: "App tried to cresh here-2", preferredStyle: UIAlertControllerStyle.Alert);
-//                                //show it
-//                                self.showViewController(alert, sender: self);
-//                                    print("crash")
-//                                    self.nameArray.addObject("\(contactName)-\(labelArray[a])")
-//                                    self.numberArray.addObject(randomArray[a])
-//                                
-//                            }
-//                }
-                        //                           self.numberArray.addObject(arrStr)
+
                     }
                 }
             }
-//            print("\(self.nameArray)----\(self.nameArray.count)")
-//            print("\(self.numberArray)---\(self.numberArray.count)")
+
             for(var k=0;k<self.nameArray.count;k++){
                 self.contactDict.setValue(self.numberArray[k], forKey: self.nameArray[k] as! String)
             }
-//            print("\(self.contactDict.allKeys)")
-           
+
             let sortedArray = self.nameArray.sortedArrayUsingComparator {
                 (obj1, obj2) -> NSComparisonResult in
                 let p1 = obj1 as! String
@@ -535,6 +514,54 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         if tableView == tableViewContact{
              errorText?.removeFromSuperview()
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    //--------
+            let indexPath = indexPath
+            
+            
+            let person = numberArray[indexPath.row]
+            
+            
+            var containObj :String = ""
+            if(filteredTableData.count>0){
+                containObj = "\(self.contactDict.valueForKey(filteredTableData[indexPath.row])!)"
+            }else{
+                containObj =  "\(self.contactDict.valueForKey(nameArray[indexPath.row] as! String)!)"
+            }
+            
+
+            
+            
+            
+            
+            if selectedPeople .containsObject(containObj)
+            {
+//                inviteButton.backgroundColor = UIColor.whiteColor()
+                invitedFriendsArray .removeObject(indexPath.row)
+                
+                if(filteredTableData.count>0){
+                    selectedPeople.removeObject(self.contactDict.valueForKey(filteredTableData[indexPath.row]) as! String)
+                }else{
+                    selectedPeople.removeObject(self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as! String)
+                }
+                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            }
+            else
+            {
+//                inviteButton.backgroundColor = UIColor.redColor()
+                invitedFriendsArray .addObject(indexPath.row)
+                if(filteredTableData.count>0){
+                    selectedPeople.addObject(self.contactDict.valueForKey(filteredTableData[indexPath.row]) as! String)
+                }else{
+                    selectedPeople.addObject(self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as! String)
+                }
+                tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            }
+            
+            //print("\(filteredTableData)-----")
+            print("\(selectedPeople)")
+            //print("inviteButton: \(indexPath.row)")
+    //--------
+            
         }else{
 //            main{
             if tableView == self.tableView {
