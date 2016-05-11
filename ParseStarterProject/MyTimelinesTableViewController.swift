@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import Parse
-
+import Alamofire
 
 private func timelineOrder(l: Timeline, r: Timeline) -> Bool {
     return l.state.updatedAt > r.state.updatedAt
@@ -275,7 +275,19 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         controller!.presentAlertController(alert)
     }
     
-    
+    override func viewWillDisappear(animated: Bool) {
+        
+        if #available(iOS 9.0, *) {
+            Alamofire.Manager.sharedInstance.session.getAllTasksWithCompletionHandler { tasks in
+                for task in tasks {
+                    task.cancel()
+                }
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        super.viewWillDisappear(animated)
+    }
 
     // MARK: - Table view data source
     

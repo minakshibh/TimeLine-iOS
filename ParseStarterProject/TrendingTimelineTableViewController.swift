@@ -13,9 +13,7 @@ import AddressBookUI
 import AddressBook
 import KGModal
 import Contacts
-
-
-
+import Alamofire
 
 class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBSDKAppInviteDialogDelegate ,ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate,UISearchResultsUpdating{
     
@@ -923,4 +921,19 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         }
 //        self.dismissViewControllerAnimated(true, completion: nil)
     }
+    override func viewDidDisappear(animated: Bool) {
+        if #available(iOS 9.0, *) {
+            Alamofire.Manager.sharedInstance.session.getAllTasksWithCompletionHandler { tasks in
+                print(tasks)
+                for task in tasks {
+                    task.cancel()
+                }
+            }
+        }
+        //        else {
+        //            // Fallback on earlier versions
+        //        }
+        super.viewDidDisappear(animated)
+    }
+
 }

@@ -136,7 +136,25 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     }
                     
                 }else{
-                    if (self.timeline?.isOwn)!{
+                    print(self.behavior.timeline?.groupTimeline)
+//                    if(self.behavior.timeline?.groupTimeline == true){
+//                        self.seperatorLineView.removeFromSuperview()
+//                        
+//                        self.seperatorLineView.frame = CGRectMake(25,self.likeTimelineButton.frame.origin.y + self.likeTimelineButton.frame.size.height + 5, self.frame.size.width-25,1)
+//                        self.seperatorLineView.hidden = false
+//                        self.seperatorLineView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+//                        self.addSubview(self.seperatorLineView)
+//                        
+//                        self.likebuttonY.constant = 80
+//                        
+//                        main{
+//                            //                    self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
+//                            self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*self.IPHONE6P)+CGFloat(10*self.IPHONE5)), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*self.IPHONE6P-10*self.IPHONE5), self.firstMomentPreview.frame.size.height)
+//                        }
+//                        
+//                    }
+                    
+                   if (self.timeline?.isOwn)!{
                         self.seperatorLineView.removeFromSuperview()
                         self.seperatorLineView.hidden = true
                         self.likebuttonY.constant = 35

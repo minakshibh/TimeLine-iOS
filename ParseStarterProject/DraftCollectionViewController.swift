@@ -55,6 +55,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
             self.headerView?.draftPreview.pausePlayButton.hidden = true
             self.headerView?.draftPreview.closeButton.hidden = true
             self.headerView?.draftPreview.commentcount.hidden = true
+            
         }
         
 //         self.hidesBottomBarWhenPushed = true

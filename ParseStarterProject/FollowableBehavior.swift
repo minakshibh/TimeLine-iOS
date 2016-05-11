@@ -38,6 +38,7 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
             followButton.tintColor =!= UIColor.blackColor()
             if (followTimelineButton != nil)
             {
+                
                 followTimelineButton.hidden =!= target.isOwn ? true : false
                 followTimelineButton.selected =!= target.followed != .NotFollowing && !target.isOwn
                 followTimelineButton.enabled =!= true
