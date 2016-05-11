@@ -26,6 +26,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     var Updatebutton = UIButton()
     var commentId : String = ""
     var commentcount = UILabel()
+    var tapGesture = UITapGestureRecognizer()
     enum RightError {
     case BlockedTimeline(String, String)
     case BlockedUser(String, String)
@@ -93,7 +94,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             playbackContainer.hidden = true
             
             self.userInteractionEnabled = true
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DraftPreview.handleTap(_:)))
+            self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(DraftPreview.handleTap(_:)))
             self.addGestureRecognizer(tapGesture)
             
             self.adjustMomentPlayerButtons()

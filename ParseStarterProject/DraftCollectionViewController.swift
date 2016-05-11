@@ -16,7 +16,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
     
     var timeline: Timeline?
     var status:Bool = false
-     var trimstatus:Bool = false
+    var trimstatus:Bool = false
     
     private var layout: CSStickyHeaderFlowLayout? {
         return collectionViewLayout as? CSStickyHeaderFlowLayout
@@ -55,9 +55,10 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
             self.headerView?.draftPreview.pausePlayButton.hidden = true
             self.headerView?.draftPreview.closeButton.hidden = true
             self.headerView?.draftPreview.commentcount.hidden = true
+            self.headerView?.draftPreview.tapGesture.enabled = false
         }
         
-//         self.hidesBottomBarWhenPushed = true
+        //         self.hidesBottomBarWhenPushed = true
         //navigationItem.setRightBarButtonItems(buttons, animated: true)
         
         // Uncomment the following line to preserve selection between presentations
@@ -80,19 +81,19 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         self.layout?.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 53)
         self.collectionView?.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "Footer")
         
-//        delay(0.001) {
-//            if !Storage.session.walkedThroughMoments {
-//                Storage.session.walkedThroughMoments = true
-//                self.performSegueWithIdentifier("WalkthroughMoments", sender: self)
-//            }
-//        }
+        //        delay(0.001) {
+        //            if !Storage.session.walkedThroughMoments {
+        //                Storage.session.walkedThroughMoments = true
+        //                self.performSegueWithIdentifier("WalkthroughMoments", sender: self)
+        //            }
+        //        }
         let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to Record"), style: .Plain, target: self, action: #selector(DraftCollectionViewController.goToRecordScreen))
         let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: #selector(DraftCollectionViewController.goToRecordScreen))
         navigationItem.leftBarButtonItem = left
         navigationItem.rightBarButtonItem = right
         
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(DraftCollectionViewController.update), userInfo: nil, repeats: false)
-
+        
         self.navigationController!.navigationBar.frame = CGRectMake(0, 40, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+40)
         
         main{
@@ -101,7 +102,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         }
     }
     func update(){
-//        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+1)
+        //        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+1)
         drafts = Array(Storage.session.drafts.reverse())
         collectionView?.reloadData()
     }
@@ -114,33 +115,33 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         headerView?.draftPreview.commentcount.hidden = true
         
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(DraftCollectionViewController.update), userInfo: nil, repeats: false)
-
+        
     }
     
     func goToRecordScreen () {
         
         let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
         viewController?.profileButtonClick()
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
-//        var nav = appDelegate.window?.rootViewController as? UINavigationController
-//        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
-//        nav = UINavigationController.init(rootViewController:vc )
-//        
-//        hidesBottomBarWhenPushed = true
-//        
-//        let transition: CATransition = CATransition()
-//        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        transition.duration = 0.25
-//        transition.timingFunction = timeFunc
-//        transition.type = kCATransitionPush
-//        transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
-//        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
-//        appDelegate.window?.rootViewController = nav
-//        appDelegate.window?.makeKeyAndVisible()
-
+        //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //        appDelegate.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        //        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        //        let vc : drawer = storyboard.instantiateViewControllerWithIdentifier("drawerID") as! drawer
+        //        var nav = appDelegate.window?.rootViewController as? UINavigationController
+        //        NSUserDefaults.standardUserDefaults().setObject("Capture", forKey: "transitionTo")
+        //        nav = UINavigationController.init(rootViewController:vc )
+        //
+        //        hidesBottomBarWhenPushed = true
+        //
+        //        let transition: CATransition = CATransition()
+        //        let timeFunc : CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        //        transition.duration = 0.25
+        //        transition.timingFunction = timeFunc
+        //        transition.type = kCATransitionPush
+        //        transition.subtype = kCATransitionFromRight    //kCATransitionFromLeft
+        //        nav!.view.layer.addAnimation(transition, forKey: kCATransition)
+        //        appDelegate.window?.rootViewController = nav
+        //        appDelegate.window?.makeKeyAndVisible()
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -151,9 +152,9 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
@@ -193,24 +194,24 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
             async {
                 _ = try? NSFileManager.defaultManager().removeItemAtURL(oldURL)
             }
-                
+            
             self.drafts.removeAtIndex(oldIndex)
             self.collectionView?.deleteItemsAtIndexPaths([NSIndexPath(forItem: oldIndex, inSection: 0)])
             self.selectedIndex = max(0, oldIndex - 1)
-        })
+            })
         presentAlertController(alert) { [weak self] in
             self?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         }
     }
-
+    
     // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
         return 1
     }
-
-
+    
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
         //print("Drafts: \(drafts.count)")
@@ -223,7 +224,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
             videoLocalURLArr = videoLocalURL.componentsSeparatedByString(".")
             videoLocalURL = videoLocalURLArr[0]
             
-        if(NSUserDefaults.standardUserDefaults().valueForKey("uploadingVideoURL") == nil){
+            if(NSUserDefaults.standardUserDefaults().valueForKey("uploadingVideoURL") == nil){
                 break
             }
             var uploadingVIdeoURLStr = "\(NSUserDefaults.standardUserDefaults().valueForKey("uploadingVideoURL"))"
@@ -236,16 +237,16 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
                 drafts.removeAtIndex(i)
             }
         }
-//        var sample:Moment = drafts[indexPath.item]
-//        print("\(sample.localThumbURL)")
+        //        var sample:Moment = drafts[indexPath.item]
+        //        print("\(sample.localThumbURL)")
         
         
         return drafts.count
     }
-
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! DraftCollectionViewCell
-            
+        
         // Configure the cell
         cell.moment = drafts[indexPath.item]
         
@@ -254,10 +255,10 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         } else {
             cell.previewed = false
         }
-    
+        
         return cell
     }
-
+    
     // MARK: UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -281,23 +282,23 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
             return barView!
             
         default:
-            return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Footer", forIndexPath: indexPath) 
+            return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Footer", forIndexPath: indexPath)
         }
     }
     
     /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
+     // Uncomment this method to specify if the specified item should be highlighted during tracking
+     override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+     return true
+     }
+     */
+    
     /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
+     // Uncomment this method to specify if the specified item should be selected
+     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+     return true
+     }
+     */
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath.item
     }
@@ -323,7 +324,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         editor.toolbar.tintColor = UIColor.barButtonTintColor()
         editor.toolbar.barTintColor = UIColor.bottomBarTintColor()
     }
-
+    
     var imagePicker: UIImagePickerController?
     @IBAction func presentImagePicker() {
         imagePicker = UIImagePickerController()
@@ -332,7 +333,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
         imagePicker?.sourceType = .PhotoLibrary
         presentViewController(imagePicker!, animated: true, completion: nil)
     }
-
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let url = info[UIImagePickerControllerMediaURL] as? NSURL {
             let name = Moment.newName()
@@ -349,8 +350,8 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
                     self.drafts.insert(newMoment, atIndex: 0)
                     self.reloadData()
                     self.selectedIndex = 0
-
-
+                    
+                    
                 } catch {
                     print(error)
                 }
@@ -358,19 +359,19 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
             picker.dismissViewControllerAnimated(true, completion: nil)
         }
     }
-/*
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return true
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-        
-    }*/
-
+    /*
+     override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+     return false
+     }
+     
+     override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+     return true
+     }
+     
+     override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+     
+     }*/
+    
 }
 
 extension DraftCollectionViewController {
@@ -404,7 +405,7 @@ extension DraftCollectionViewController {
         alert.addAction(UIAlertAction(title: local(.MomentAlertTrimKeepActionDelete), style: .Destructive, handler: { _ in
             // override moment-file
             let moment = self.drafts[self.selectedIndex]
-
+            
             let newName = Moment.newName()
             do {
                 try NSFileManager.defaultManager().moveItemAtURL(NSURL(fileURLWithPath: editedVideoPath), toURL: Moment.documentURL(newName, suffix: "mp4"))
@@ -442,21 +443,21 @@ extension DraftCollectionViewController {
         }))
         editor.presentAlertController(alert)
     }
-        
+    
     func videoEditorControllerDidCancel(editor: UIVideoEditorController) {
         print("-------operation cancled-------")
         trimstatus = true
-         self.dismissViewControllerAnimated(true, completion: nil)
-//       
-//        let label = UILabel(frame: CGRectMake(0,0,320,64))
-//        label.backgroundColor = UIColor.redColor()
-//        self.view.addSubview(label)
-//        self.view.bringSubviewToFront(label)
-//        navigationController?.navigationBarHidden = true 
+        self.dismissViewControllerAnimated(true, completion: nil)
+        //
+        //        let label = UILabel(frame: CGRectMake(0,0,320,64))
+        //        label.backgroundColor = UIColor.redColor()
+        //        self.view.addSubview(label)
+        //        self.view.bringSubviewToFront(label)
+        //        navigationController?.navigationBarHidden = true
         
-//        self.navigationController!.navigationBar.frame = CGRectMake(0, 40, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+40)
-//        self.view.frame = CGRectMake(0, 20, self.view.frame.size.height, self.view.frame.size.width)
-
+        //        self.navigationController!.navigationBar.frame = CGRectMake(0, 40, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+40)
+        //        self.view.frame = CGRectMake(0, 20, self.view.frame.size.height, self.view.frame.size.width)
+        
         
     }
 }
@@ -477,14 +478,14 @@ extension DraftCollectionViewController: UICollectionViewDelegateFlowLayout {
         }
         return CGSize(width: width, height: width)
     }
-
+    
     override func willTransitionToTraitCollection(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animateAlongsideTransition({ _ in }) { _ in
             self.collectionView!.performBatchUpdates({
                 
                 self.collectionView?.collectionViewLayout.invalidateLayout()
                 },
-                completion: nil)
+                                                     completion: nil)
         }
     }
     
@@ -493,7 +494,7 @@ extension DraftCollectionViewController: UICollectionViewDelegateFlowLayout {
             
             self.collectionView?.collectionViewLayout.invalidateLayout()
             },
-            completion: nil)
+                                                 completion: nil)
     }
     
 }
@@ -502,46 +503,46 @@ extension DraftCollectionViewController {
     
     @IBAction func sendMoment() {
         headerView?.draftPreview.stop()
-        if(Storage.session.currentUser?.timelines.count != nil)
+        if(Storage.session.currentUser?.timelines.count != nil )
         {
-            if(Storage.session.currentUser!.timelines.count==1)
-        {
-            Storage.session.currentUser?.timelines.each({ tl in
-                //                print("\(tl.fullName) ******\(tl.duration) ***** )  ***** \(local(.DraftAlertConfirmUploadMessage))")
-                //                print("-------\(tl.duration)-------")
-                let profileTimeUsed = tl.duration as Int
-                let selectedVideoTime = NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoTime") as! Int
-                let totalTime = selectedVideoTime + profileTimeUsed
-                let leftTime = 300 - profileTimeUsed;
-//                print("profileTimeUsed = \(profileTimeUsed) and selectedVideoTime= \(selectedVideoTime)")
-                if(totalTime>300)
-                {
-                    let alert=UIAlertController(title: "Limit Exceed", message: "You have \(leftTime)s left. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
-                    
-                    //no event handler (just close dialog box)
-                    alert.addAction(title: "Okay",
+            if(Storage.session.currentUser!.timelines.count == 0)
+            {
+                Storage.session.currentUser?.timelines.each({ tl in
+                    //                print("\(tl.fullName) ******\(tl.duration) ***** )  ***** \(local(.DraftAlertConfirmUploadMessage))")
+                    //                print("-------\(tl.duration)-------")
+                    let profileTimeUsed = tl.duration as Int
+                    let selectedVideoTime = NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoTime") as! Int
+                    let totalTime = selectedVideoTime + profileTimeUsed
+                    let leftTime = 300 - profileTimeUsed;
+                    //                print("profileTimeUsed = \(profileTimeUsed) and selectedVideoTime= \(selectedVideoTime)")
+                    if(totalTime>300)
+                    {
+                        let alert=UIAlertController(title: "Limit Exceed", message: "You have \(leftTime)s left. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        //no event handler (just close dialog box)
+                        alert.addAction(title: "Okay",
                         style: .Default) { _ in
                             
                             self.trimVideo(leftTime)
+                        }
+                        //event handler with closure
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        return
                     }
-                    //event handler with closure
-                    self.presentViewController(alert, animated: true, completion: nil)
-                   return 
-                }
+                    
+                })
                 
-            })
-            
             }
         }
         
-        if let _ = timeline {
-            let selectedVIdeoURL = NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoLocalThumbURL")
-            NSUserDefaults.standardUserDefaults().setObject(selectedVIdeoURL, forKey: "uploadingVideoURL")
-            performSegueWithIdentifier("Upload", sender: nil)
-        } else {
+//        if let _ = timeline {
+//            let selectedVIdeoURL = NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoLocalThumbURL")
+//            NSUserDefaults.standardUserDefaults().setObject(selectedVIdeoURL, forKey: "uploadingVideoURL")
+//            performSegueWithIdentifier("Upload", sender: nil)
+//        } else {
             let alert = UIAlertController(title: local(.DraftAlertPickTimelineTitle),
-                message: local(.DraftAlertPickTimelineMessage),
-                preferredStyle: .ActionSheet)
+                                          message: local(.DraftAlertPickTimelineMessage),
+                                          preferredStyle: .ActionSheet)
             alert.addAction(title: local(.DraftAlertPickTimelineCancel), style: .Cancel, handler: nil)
             
             //             print(" \(LocalizedString.DurationFormatSeconds1d)   **** \(self.moment?.duration))")
@@ -554,16 +555,16 @@ extension DraftCollectionViewController {
                     let selectedVideoTime = NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoTime") as! Int
                     let totalTime = selectedVideoTime + profileTimeUsed
                     let leftTime = 300 - profileTimeUsed;
-//                    print("profileTimeUsed = \(profileTimeUsed) and selectedVideoTime= \(selectedVideoTime)")
+                    //                    print("profileTimeUsed = \(profileTimeUsed) and selectedVideoTime= \(selectedVideoTime)")
                     if(totalTime>300)
                     {
                         let alert=UIAlertController(title: "Limit Exceed", message: "You have \(leftTime)s left. Kindly trim the video before uplaod", preferredStyle: UIAlertControllerStyle.Alert)
                         
                         //no event handler (just close dialog box)
                         alert.addAction(title: "Okay",
-                            style: .Default) { _ in
-                                
-                                self.trimVideo(leftTime)
+                        style: .Default) { _ in
+                            
+                            self.trimVideo(leftTime)
                         }
                         //event handler with closure
                         self.presentViewController(alert, animated: true, completion: nil)
@@ -579,12 +580,12 @@ extension DraftCollectionViewController {
                         style: .Cancel,
                         handler: nil)
                     confirm.addAction(title: local(.DraftAlertConfirmUploadUpload),
-                        style: .Default) { _ in
-                            
-                           let selectedVIdeoURL = "\(NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoLocalThumbURL"))"
-                            NSUserDefaults.standardUserDefaults().setObject(selectedVIdeoURL, forKey: "uploadingVideoURL")
-                            self.timeline = tl
-                            self.performSegueWithIdentifier("Upload", sender: nil)
+                    style: .Default) { _ in
+                        
+                        let selectedVIdeoURL = "\(NSUserDefaults.standardUserDefaults().valueForKey("selectedVideoLocalThumbURL"))"
+                        NSUserDefaults.standardUserDefaults().setObject(selectedVIdeoURL, forKey: "uploadingVideoURL")
+                        self.timeline = tl
+                        self.performSegueWithIdentifier("Upload", sender: nil)
                     }
                     //print("\(tl.fullName) ******\(tl.duration) *****   ***** \(local(.DraftAlertConfirmUploadMessage))")
                     self.presentAlertController(confirm)
@@ -592,7 +593,7 @@ extension DraftCollectionViewController {
             })
             view.tintColor = UIColor.tintColor()
             presentAlertController(alert)
-        }
+//        }
     }
     func trimVideo(videoTime: Int)  {
         headerView?.draftPreview.stop()
