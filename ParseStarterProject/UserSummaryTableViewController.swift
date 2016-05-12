@@ -75,7 +75,8 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            var height:CGFloat = 320
+//            let height:CGFloat = 32
+            let height:CGFloat = 305
 //            let bioStr:String = "\(NSUserDefaults.standardUserDefaults().valueForKeyPath("user_bio")!)"
 //            let websiteStr = "\(NSUserDefaults.standardUserDefaults().valueForKeyPath("user_website")!)"
 //            let otherStr = "\(NSUserDefaults.standardUserDefaults().valueForKeyPath("user_other")!)"
