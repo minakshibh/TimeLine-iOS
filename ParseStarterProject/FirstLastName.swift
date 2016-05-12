@@ -24,7 +24,8 @@ extension FirstLastName {
 //        attributedTextOthers.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 6))
 //        lblOthers.attributedText = attributedTextOthers
 ////        lblOthers.text =!= behaviorTarget?.other ?? ""
-
+        
+        
         nameLabel1.text =!= "\(behaviorTarget?.fullName1 ?? "" ) \(TargetBehaviorType.prefix.stringByAppendingString(behaviorTarget?.name ?? ""))" 
         
        
