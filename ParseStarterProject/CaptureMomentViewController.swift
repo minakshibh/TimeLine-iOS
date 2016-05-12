@@ -13,6 +13,7 @@
  import SCRecorder
  import CoreMedia
  import MediaPlayer
+ import Alamofire
  
  /// The central view controller.
  /// Contains a capture view and controls for navigation.
@@ -518,9 +519,23 @@
             self.refreshTorches()
             self.reloadBadges()
             self.removeScrollView()
+            
+            if #available(iOS 9.0, *) {
+                Manager.sharedInstance.session.getAllTasksWithCompletionHandler { (tasks) -> Void in
+                    tasks.forEach({ $0.cancel() })
+                }
+            } else {
+                // Fallback on earlier versions
+                Manager.sharedInstance.session.getTasksWithCompletionHandler({
+                    $0.0.forEach({ $0.cancel() })
+                    $0.1.forEach({ $0.cancel() })
+                    $0.2.forEach({ $0.cancel() })
+                })
+            }
         }
         //        videoPreviewView.hidden = true
     }
+    
     
     //    override func prefersStatusBarHidden() -> Bool {
     //        return true

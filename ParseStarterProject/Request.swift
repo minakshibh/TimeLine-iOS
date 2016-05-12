@@ -187,7 +187,7 @@ enum ApiRequest {
     var urlRequest: NSMutableURLRequest {
         let urlString: String
         let urlRequest = NSMutableURLRequest()
-        //print(Storage.session.webToken)
+        print(Storage.session.webToken)
         urlRequest.setValue(Storage.session.webToken, forHTTPHeaderField: "X-Timeline-Authentication")
         
         switch self {
@@ -434,6 +434,7 @@ enum ApiRequest {
             
         case .UserAllNotifications(let page_id):
             let dateString = SynchronizationState.formatter.stringFromDate(Storage.session.notificationDate ?? NSDate())
+            print("date: \(dateString) pageid: \(page_id)")
             urlString = "/api/user/timeline_notifications?date=\(dateString.urlEncoded)&page_id=\(page_id)"
 //            urlString = "/api/user/notifications?date=2016-02-11T12%3A46%3A24.461Z"
             urlRequest.HTTPMethod = "GET"

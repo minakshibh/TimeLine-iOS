@@ -238,7 +238,7 @@ extension ModernTimelineBehavior {
             
             return
         }
-        main{
+        delay(0.001){
             self.playMoment(target, moment: m)
         }
     }

@@ -47,7 +47,7 @@ class CommonTimelineTableViewController: UITableViewController {
             //                self.tableView.reloadData()
             //            }
             
-            main{
+            //main{
                 if(self.users.count>0){
                     for j in 0..<self.users.count {
                         //                print("\(users.count)")
@@ -77,7 +77,7 @@ class CommonTimelineTableViewController: UITableViewController {
                 main {
                     self.tableView.reloadData()
                 }
-            }
+            //}
             
         }
     }

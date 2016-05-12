@@ -278,13 +278,16 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     override func viewWillDisappear(animated: Bool) {
         
         if #available(iOS 9.0, *) {
-            Alamofire.Manager.sharedInstance.session.getAllTasksWithCompletionHandler { tasks in
-                for task in tasks {
-                    task.cancel()
-                }
+            Manager.sharedInstance.session.getAllTasksWithCompletionHandler { (tasks) -> Void in
+                tasks.forEach({ $0.cancel() })
             }
         } else {
             // Fallback on earlier versions
+            Manager.sharedInstance.session.getTasksWithCompletionHandler({
+                $0.0.forEach({ $0.cancel() })
+                $0.1.forEach({ $0.cancel() })
+                $0.2.forEach({ $0.cancel() })
+            })
         }
         super.viewWillDisappear(animated)
     }
