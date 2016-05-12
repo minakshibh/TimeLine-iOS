@@ -1,7 +1,7 @@
 import SWFrameButton
 
 protocol FirstLastName {
-    associatedtype TargetBehaviorType: Named1,Likeable
+    associatedtype TargetBehaviorType: Named1,Named
     var behaviorTarget: TargetBehaviorType? { get }
     var nameLabel1: UILabel! { get }
     //    var nameLabel1: UILabel! { get }
@@ -25,7 +25,7 @@ extension FirstLastName {
 //        lblOthers.attributedText = attributedTextOthers
 ////        lblOthers.text =!= behaviorTarget?.other ?? ""
 
-        nameLabel1.text =!= behaviorTarget?.fullName1 ?? ""
+        nameLabel1.text =!= "\(behaviorTarget?.fullName1 ?? "" ) \(TargetBehaviorType.prefix.stringByAppendingString(behaviorTarget?.name ?? ""))" 
         
        
 //        btnWebsite.setTitle(behaviorTarget?.website ?? "", forState: .Normal)
