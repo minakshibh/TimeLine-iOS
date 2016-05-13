@@ -40,7 +40,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dub-gh-rHt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XkS-L7-QhD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4456,7 +4456,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="dpZ-pz-TmS" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="fjd-4e-PdK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4496,7 +4496,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="mAi-gA-dKZ" userLabel="Followers" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlA-cD-rtE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -5098,18 +5098,18 @@ Effective as of September 14, 2015
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5f9-3x-iDp"/>
-        <segue reference="JSH-Rm-O8t"/>
-        <segue reference="zbe-iw-8oa"/>
         <segue reference="XhF-7W-aYm"/>
-        <segue reference="Cnm-d8-vbZ"/>
-        <segue reference="T9S-G7-mh0"/>
+        <segue reference="dHW-RB-S8H"/>
+        <segue reference="pyd-yG-wzP"/>
+        <segue reference="UDh-ad-jqq"/>
+        <segue reference="wPR-Ua-TlF"/>
+        <segue reference="3ER-K8-eo8"/>
+        <segue reference="Q72-pv-Wqo"/>
         <segue reference="kNn-C3-4Z5"/>
         <segue reference="9SA-Oc-iuS"/>
-        <segue reference="uwx-Vf-wTk"/>
-        <segue reference="dHW-RB-S8H"/>
         <segue reference="fy0-iv-eFM"/>
-        <segue reference="Odf-Iw-TZ0"/>
         <segue reference="gqI-eh-cAa"/>
+        <segue reference="Odf-Iw-TZ0"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

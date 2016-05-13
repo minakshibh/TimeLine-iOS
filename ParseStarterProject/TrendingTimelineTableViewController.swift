@@ -618,9 +618,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             }
             
             if (self.resultSearchController.active) {
-                text2.text = self.contactDict.valueForKey(filteredTableData[indexPath.row]) as! String
+                text2.text = self.contactDict.valueForKey(filteredTableData[indexPath.row]) as? String
             }else{
-                text2.text = self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as! String
+                text2.text = self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as? String
             }
             
             text2.textColor = UIColor.lightGrayColor()

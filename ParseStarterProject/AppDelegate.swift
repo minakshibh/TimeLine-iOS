@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "addAnimation", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(AppDelegate.addAnimation), userInfo: nil, repeats: true)
 
         Parse.enableLocalDatastore()
         //ParseCrashReporting.enable()

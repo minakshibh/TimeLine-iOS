@@ -56,6 +56,7 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
             self.headerView?.draftPreview.closeButton.hidden = true
             self.headerView?.draftPreview.commentcount.hidden = true
             self.headerView?.draftPreview.tapGesture.enabled = false
+            
         }
         
         //         self.hidesBottomBarWhenPushed = true
@@ -215,6 +216,12 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
         //print("Drafts: \(drafts.count)")
+        if self.drafts.count == 0{
+            self.headerView?.draftPreview.playButton.hidden = true
+        }else{
+            self.headerView?.draftPreview.playButton.hidden = false
+//            self.headerView?.draftPreview.bufferIndicator.hidden = false
+        }
         
         for(var i=0;i<drafts.count;i++){
             let sample:Moment = drafts[i]
