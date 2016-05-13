@@ -26,6 +26,7 @@
 		9761A8571CCA43BD0088C35E /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9761A8561CCA43BD0088C35E /* CommentViewController.swift */; };
 		977A9EFF1CC0B63900591FAE /* DraftPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 977A9EFE1CC0B63900591FAE /* DraftPreview.xib */; };
 		979497BF1C5B61F60078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */; };
+		97A7CFD91CE59ED300A76524 /* UILabel+SimpleFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A7CFD81CE59ED300A76524 /* UILabel+SimpleFont.m */; };
 		97ADC8791C89B0BF00546A9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ADC8781C89B0BF00546A9B /* AppDelegate.swift */; };
 		97BB61C01CB237FA0081DEA6 /* HelperIphoneCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BB61BF1CB237FA0081DEA6 /* HelperIphoneCheck.m */; };
 		97CD00481CCE3DE100853084 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CD00471CCE3DE100853084 /* MessageTableViewCell.m */; };
@@ -286,6 +287,8 @@
 		9761A8561CCA43BD0088C35E /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentViewController.swift; path = ../CommentViewController.swift; sourceTree = "<group>"; };
 		977A9EFE1CC0B63900591FAE /* DraftPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DraftPreview.xib; sourceTree = "<group>"; };
 		979497BE1C5B61F50078B074 /* FlatTimelineTableViewControllerWithoutUsername.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatTimelineTableViewControllerWithoutUsername.swift; sourceTree = "<group>"; };
+		97A7CFD71CE59ED300A76524 /* UILabel+SimpleFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+SimpleFont.h"; path = "../UILabel+SimpleFont.h"; sourceTree = "<group>"; };
+		97A7CFD81CE59ED300A76524 /* UILabel+SimpleFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+SimpleFont.m"; path = "../UILabel+SimpleFont.m"; sourceTree = "<group>"; };
 		97ADC8781C89B0BF00546A9B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97BB61BE1CB237FA0081DEA6 /* HelperIphoneCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelperIphoneCheck.h; path = "Objective-C classes/HelperIphoneCheck.h"; sourceTree = SOURCE_ROOT; };
 		97BB61BF1CB237FA0081DEA6 /* HelperIphoneCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelperIphoneCheck.m; path = "Objective-C classes/HelperIphoneCheck.m"; sourceTree = SOURCE_ROOT; };
@@ -879,6 +882,8 @@
 		DA1DF20F1B553E9A00BD6011 /* Gist */ = {
 			isa = PBXGroup;
 			children = (
+				97A7CFD71CE59ED300A76524 /* UILabel+SimpleFont.h */,
+				97A7CFD81CE59ED300A76524 /* UILabel+SimpleFont.m */,
 				97BB61BE1CB237FA0081DEA6 /* HelperIphoneCheck.h */,
 				97BB61BF1CB237FA0081DEA6 /* HelperIphoneCheck.m */,
 				BAEE09551C1709260095F6CE /* AlertViewAction.swift */,
@@ -1453,6 +1458,7 @@
 				DABC10391B73D29D00E15698 /* EditProfileTableViewController.swift in Sources */,
 				DA873B9E1B7E940F00A8BB06 /* CreateTimelineViewController.swift in Sources */,
 				BADDE8091C19F0EA00872FEC /* ShareableBehavior.swift in Sources */,
+				97A7CFD91CE59ED300A76524 /* UILabel+SimpleFont.m in Sources */,
 				BAEE044B1BA2E69600B61DA7 /* WalkthroughDelegate.swift in Sources */,
 				BADDE8051C19ED0800872FEC /* Blockable.swift in Sources */,
 				BADDE8111C19F85B00872FEC /* Reloadable.swift in Sources */,

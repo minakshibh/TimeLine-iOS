@@ -25,8 +25,16 @@ extension FirstLastName {
 //        lblOthers.attributedText = attributedTextOthers
 ////        lblOthers.text =!= behaviorTarget?.other ?? ""
         
-        
-        nameLabel1.text =!= "\(behaviorTarget?.fullName1 ?? "" ) \(TargetBehaviorType.prefix.stringByAppendingString(behaviorTarget?.name ?? ""))" 
+        guard let controller = activeController() else { return }
+        if String(controller).rangeOfString("Timeline.TrendingTimelineTableViewController") != nil{
+            
+            nameLabel1.text =!= "\(behaviorTarget?.fullName1 ?? "" )"
+            
+        }else{
+            
+            nameLabel1.text =!= "\(behaviorTarget?.fullName1 ?? "" ) \(TargetBehaviorType.prefix.stringByAppendingString(behaviorTarget?.name ?? ""))"
+            nameLabel1.simpleSubstring("\(TargetBehaviorType.prefix.stringByAppendingString(behaviorTarget?.name ?? ""))")
+        }
         
        
 //        btnWebsite.setTitle(behaviorTarget?.website ?? "", forState: .Normal)

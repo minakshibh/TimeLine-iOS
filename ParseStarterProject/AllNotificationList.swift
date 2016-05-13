@@ -177,12 +177,14 @@ class AllNotificationList: UITableViewController {
             {
                 cell.fullNameLabel.font = UIFont.boldSystemFontOfSize(11.0)
                 cell.userNameLabel.font = UIFont.systemFontOfSize(10.0)
-                cell.userNameLabel.textColor = UIColor.grayColor()
+                cell.userNameLabel.textColor = UIColor.blackColor()
                 cell.fullNameLabel.textColor = UIColor.blackColor()
                 
                 cell.fullNameLabel?.text = fullname as String
-                cell.userNameLabel?.text = "@" + userNameStr
-                cell.notificationTxtLabel?.attributedText = attributedString
+                //cell.userNameLabel?.text = "@" + userNameStr
+                cell.userNameLabel?.attributedText = attributedString
+                let emptyString : NSAttributedString = NSAttributedString(string:"")
+                cell.notificationTxtLabel?.attributedText = emptyString
             }
 
             
