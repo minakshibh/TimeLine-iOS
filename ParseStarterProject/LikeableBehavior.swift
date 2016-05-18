@@ -35,11 +35,21 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
             likeButton.setTitle("\(behaviorTarget.likesCount)", forState: .Normal)
             likeButton.borderWidth =!= 0
             likeButton.tintColor =!=  UIColor.blackColor()
+            
             if (likeTimelineButton != nil)
             {
                 likeTimelineButton.hidden =!= behaviorTarget.isOwn ? true : false
                 likeTimelineButton.selected =!= behaviorTarget.liked
                 likeTimelineButton.enabled =!= true
+                likeTimelineButton.tintColor =!=  UIColor.redNavbarColor()
+                if(behaviorTarget.liked){
+                    likeTimelineButton.titleLabel?.textColor = UIColor.redNavbarColor()
+                    likeTimelineButton.setTitle("Unlike", forState: .Normal)
+                    
+                }else{
+                    likeTimelineButton.setTitle("Like", forState: .Normal)
+                    likeTimelineButton.titleLabel?.textColor = UIColor.groupTableViewBackgroundColor()
+                }
                 likeTimelineButton.normalImage =!= behaviorTarget.liked ? UIImage(assetIdentifier: .RedHeart) : UIImage(assetIdentifier: .whiteHeart)
             }
         } else {

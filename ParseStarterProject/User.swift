@@ -418,6 +418,7 @@ extension User {
                 var users = results.map { User(dict: $0, parent: nil) }
                 for i in 0..<users.count {
                     let u = users[i]
+//                    print("user data: \(u)")
                     if let existing = Storage.findUser(u.state.uuid!) {
                         existing.state = u.state
                         existing.name = u.name

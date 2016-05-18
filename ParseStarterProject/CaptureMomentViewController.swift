@@ -19,6 +19,35 @@
  /// Contains a capture view and controls for navigation.
  class CaptureMomentViewController: UIViewController ,UIScrollViewDelegate {
     
+    // Iphonecheck Classes
+    enum UIUserInterfaceIdiom : Int
+    {
+        case Unspecified
+        case Phone
+        case Pad
+    }
+    
+    struct ScreenSize
+    {
+        static let SCREEN_WIDTH         = UIScreen.mainScreen().bounds.size.width
+        static let SCREEN_HEIGHT        = UIScreen.mainScreen().bounds.size.height
+        static let SCREEN_MAX_LENGTH    = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+        static let SCREEN_MIN_LENGTH    = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
+    }
+    
+    struct DeviceType
+    {
+        static let IS_IPHONE_4_OR_LESS  = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
+        static let IS_IPHONE_5          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
+        static let IS_IPHONE_6          = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 667.0
+        static let IS_IPHONE_6P         = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
+        static let IS_IPAD              = UIDevice.currentDevice().userInterfaceIdiom == .Pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
+    }
+    let IPHONE4 : Int = DeviceType.IS_IPHONE_4_OR_LESS ? 1 : 0
+    let IPHONE5 : Int = DeviceType.IS_IPHONE_5 ? 1 : 0
+    let IPHONE6 : Int = DeviceType.IS_IPHONE_6 ? 1 : 0
+    let IPHONE6P :Int = DeviceType.IS_IPHONE_6P ? 1 : 0
+    
     var scrollView = UIScrollView()
     let closeButton  = UIButton()
     var drafts :NSMutableArray = []
@@ -373,8 +402,8 @@
         UIView.animateWithDuration(0.2,animations: { () -> Void in
             self.menuControls.each { $0.alpha = 0.5 }
             self.torchEnabled = false
-            self.profileMenuBadge?.alpha = 0.5
-            self.timelineMenuBadge?.alpha = 0.5
+            //self.profileMenuBadge?.alpha = 0.5
+            //self.timelineMenuBadge?.alpha = 0.5
             self.notificationsMenuBadge?.alpha = 0.5
             self.recordButton.alpha = 0.5
             self.previewView.hidden = true
@@ -404,8 +433,8 @@
         UIView.animateWithDuration(0.2,animations: { () -> Void in
             self.menuControls.each { $0.alpha = 1.0 }
             self.torchEnabled = true
-            self.profileMenuBadge?.alpha = 1.0
-            self.timelineMenuBadge?.alpha = 1.0
+            //self.profileMenuBadge?.alpha = 1.0
+            //self.timelineMenuBadge?.alpha = 1.0
             self.notificationsMenuBadge?.alpha = 1.0
             self.recordButton.alpha = 1.0
             self.previewView.hidden = false
@@ -429,7 +458,7 @@
                 self.allNotificationMenuButton.superview?.insertSubview(self.notificationsMenuBadge!, aboveSubview: self.allNotificationMenuButton)
                 self.notificationsMenuBadge?.frame.origin = CGPoint(
                     x: self.allNotificationMenuButton!.frame.origin.x + self.allNotificationMenuButton!.frame.width / 1.5,
-                    y: self.allNotificationMenuButton!.frame.origin.y-15
+                    y: self.allNotificationMenuButton!.frame.origin.y-8//+CGFloat(8*IPHONE6 + 8*IPHONE6P)
                 )
             }
             self.notificationsMenuBadge?.badgeText = text
@@ -658,8 +687,8 @@
             self.countdownLabel.alpha = 1.0
             self.countdownLabel.hidden = false
             self.torchEnabled = false
-            self.profileMenuBadge?.alpha = 0.0
-            self.timelineMenuBadge?.alpha = 0.0
+            //self.profileMenuBadge?.alpha = 0.0
+           // self.timelineMenuBadge?.alpha = 0.0
             self.notificationsMenuBadge?.alpha=0.0
             self.scrollView.alpha = 0.0
             self.closeButton.alpha = 0.0
@@ -700,8 +729,8 @@
             self.menuControls.each { $0.alpha = 1.0 }
             self.countdownLabel.alpha = 0.0
             self.torchEnabled = true
-            self.profileMenuBadge?.alpha = 1.0
-            self.timelineMenuBadge?.alpha = 1.0
+            //self.profileMenuBadge?.alpha = 1.0
+            //self.timelineMenuBadge?.alpha = 1.0
             self.notificationsMenuBadge?.alpha = 1.0
             self.scrollView.alpha = 1.0
             self.closeButton.alpha = 1.0

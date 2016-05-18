@@ -57,7 +57,7 @@ class AllNotificationList: UITableViewController {
             
             if let results = json["result"] as? [[String: AnyObject]]
             {
-                print(results)
+                //print(results)
                 for not in results {
                     if let raw = not["payload"] as? NSString,
                         let data = raw.dataUsingEncoding(NSUTF8StringEncoding),

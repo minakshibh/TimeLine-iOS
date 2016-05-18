@@ -178,7 +178,7 @@ extension Timeline {
         }
         
         Storage.performRequest(request) { (json) -> Void in
-            //print(json)
+            print(json)
             var timelines = [Timeline]()
             if let timelineDicts = json["result"] as? [[String: AnyObject]] {
                 
@@ -188,6 +188,7 @@ extension Timeline {
                         let owner: User
                         if let user = Storage.findUser(userID)
                         { // update user
+                            
                             owner = user
                             
                         } else
@@ -197,6 +198,7 @@ extension Timeline {
                             Storage.session.users.append(owner)
                             
                             Storage.performRequest(ApiRequest.UserProfile(userID), completion: { (json) -> Void in
+                                
                                 if let v = json["name"] as? String {
                                     owner.name = v
                                 }

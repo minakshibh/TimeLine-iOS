@@ -206,6 +206,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     }
     func btnBackContact(){
         self.errorText?.removeFromSuperview()
+        self.resultSearchController.active = false
         KGModal.sharedInstance().hideAnimated(true)
     }
     func goToRecordScreen(){
@@ -234,6 +235,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     
     func Invitebuttontapped()
     {
+        self.resultSearchController.active = false
         if selectedPeople.count == 0
         {
             errorText!.text = "Atleast Select one contact to send invite."
@@ -241,6 +243,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             return
         }
         
+        recipients.removeAll()
         
         if (MFMessageComposeViewController.canSendText()) {
             for (var i=0; i < selectedPeople.count; i++) {
@@ -563,7 +566,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     //--------
             
         }else{
-//            main{
+            main{
             if tableView == self.tableView {
                 //super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
             } else if self.searchResults.count > 0{
@@ -575,7 +578,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                     }
                 }
             }
-//            }
+            }
         }
     }
 
@@ -618,9 +621,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             }
             
             if (self.resultSearchController.active) {
-                text2.text = self.contactDict.valueForKey(filteredTableData[indexPath.row]) as! String
+                text2.text = self.contactDict.valueForKey(filteredTableData[indexPath.row]) as? String
             }else{
-                text2.text = self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as! String
+                text2.text = self.contactDict.valueForKey(nameArray[indexPath.row] as! String) as? String
             }
             
             text2.textColor = UIColor.lightGrayColor()

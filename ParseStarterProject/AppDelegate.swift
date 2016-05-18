@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "addAnimation", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(AppDelegate.addAnimation), userInfo: nil, repeats: true)
 
         Parse.enableLocalDatastore()
         //ParseCrashReporting.enable()
@@ -170,6 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if let results = json["result"] as? [[String: AnyObject]] {
                 self.notificationCount = results.count
+//                 self.notificationCount = 2
                 for not in results {
                     if let raw = not["payload"] as? NSString,
                         let data = raw.dataUsingEncoding(NSUTF8StringEncoding),

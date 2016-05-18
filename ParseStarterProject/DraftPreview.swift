@@ -95,6 +95,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             
             self.userInteractionEnabled = true
             self.tapGesture = UITapGestureRecognizer(target: self, action: #selector(DraftPreview.handleTap(_:)))
+            self.tapGesture.enabled = true
             self.addGestureRecognizer(tapGesture)
             
             self.adjustMomentPlayerButtons()
@@ -128,7 +129,11 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
 //        self.commentcount.text = "\(momentCommentCount)"
 //    self.previewImageView.sd_setImageWithURL(moments[(momentPlayerController?.currentIndexOfMoment())!].remoteThumbURL)
         main{
-            self.bufferIndicator.startAnimating()
+            if self.moments.count == 0{
+                self.bufferIndicator.stopAnimating()
+            }else{
+                self.bufferIndicator.startAnimating()
+            }
             self.momentPlayerController?.next()
         }
     }
