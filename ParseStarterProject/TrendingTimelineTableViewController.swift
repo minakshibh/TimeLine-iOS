@@ -485,7 +485,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             if tableView == self.tableView {
                 return super.tableView(tableView, numberOfRowsInSection: section)
             } else {
-                return searching && searchResults.count == 0 ? 1 : searchResults.count
+                return searching && searchResults.count == 0 ? 0 : searchResults.count == 0 ? 0 : searchResults.count
             }
         }
     }
@@ -669,11 +669,11 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             
             
                 if searching && searchResults.count == 0 {
-                    let cell = self.tableView.dequeueReusableCellWithIdentifier("ActivityCell", forIndexPath: indexPath)
-                    return cell
+                    let cell = self.tableView.dequeueReusableCellWithIdentifier("ActivityCell")
+                    return cell!
                 } else if (searchResults[indexPath.row] as? User  != nil) {
                     let user = searchResults[indexPath.row] as? User
-                    let cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserSummaryTableViewCell
+                    let cell = self.tableView.dequeueReusableCellWithIdentifier("UserCell") as! UserSummaryTableViewCell
                 
                     // Configure the cell...
                 
@@ -683,7 +683,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
                     return cell
                 } else {
                     let timeline = searchResults[indexPath.row] as! Timeline
-                    let cell = self.tableView.dequeueReusableCellWithIdentifier("TimelineCell",     forIndexPath: indexPath) as! ModernTimelineTableViewCell
+                    let cell = self.tableView.dequeueReusableCellWithIdentifier("TimelineCell") as! ModernTimelineTableViewCell
                 
                     // Configure the cell...
                     cell.timeline = timeline
@@ -809,7 +809,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         let data = string.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
         let temp = NSString(data: data!, encoding: NSASCIIStringEncoding) as! String
         //print("@@\(temp.characters.filter)--++\(temp.characters.filter)")
-        var replacement = String(temp.characters.filter { (c: Character) -> Bool in
+        let replacement = String(temp.characters.filter { (c: Character) -> Bool in
             return "abcdefghijklmnopqrstuvwxyz0123456789 ".rangeOfString(String(c).lowercaseString) != nil
             })
 //        if range.location == 0 && string.hasPrefix("#") {
@@ -832,6 +832,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         self.searchBar(searchBar, textDidChange: searchBar.text ?? "")
         return false
     }
+    
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         var text: String = String((searchBar.text ?? "").characters.filter { (c: Character) -> Bool in
@@ -894,11 +895,11 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
                 }
                 self.searchStatus = true
             }
-//            main {
+            main {
                  delay(0.001) {
                 self.searchResults = results
                 }
-//            }
+            }
         })
     }
    
