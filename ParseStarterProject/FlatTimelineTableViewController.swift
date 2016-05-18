@@ -132,16 +132,15 @@ class FlatTimelineTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        callbacks.append(setUpReloadable())
+        //callbacks.append(setUpReloadable())
         
         oldTabDelegate = tabBarController?.delegate
         tabBarController?.delegate = self
         oldNavDelegate = navigationController?.delegate
         navigationController?.delegate = self
         
-        self.refreshControl?.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
-        //self.refreshTableView()
-        
+        //self.refreshControl?.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshTableView()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         

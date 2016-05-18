@@ -41,7 +41,7 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
                 likeTimelineButton.hidden =!= behaviorTarget.isOwn ? true : false
                 likeTimelineButton.selected =!= behaviorTarget.liked
                 likeTimelineButton.enabled =!= true
-                likeTimelineButton.tintColor =!=  UIColor.redNavbarColor()
+                likeTimelineButton.contentHorizontalAlignment =!= UIControlContentHorizontalAlignment.Left
                 if(behaviorTarget.liked){
                     likeTimelineButton.titleLabel?.textColor = UIColor.redNavbarColor()
                     likeTimelineButton.setTitle("Unlike", forState: .Normal)

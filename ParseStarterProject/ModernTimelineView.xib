@@ -64,7 +64,7 @@
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="commentOnTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="hUm-6P-Pwt"/>
+                        <action selector="commentOnTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="r7d-kW-hGS"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="567" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YRI-Jb-ZXO" customClass="SWFrameButton">
@@ -218,7 +218,7 @@
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="followTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="l4V-Xz-vDj"/>
+                        <action selector="followTimelineButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="YD2-J8-Jl2"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NX4-aK-Vhg">
@@ -227,7 +227,7 @@
                         <constraint firstAttribute="height" constant="42" id="g2v-gB-IaC"/>
                     </constraints>
                     <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="7" image="378BFFB5-668A-4B3A-9C29-B8853C671F68">
+                    <state key="normal" title="7" image="6236C5DC-002B-4DB1-9C68-45E7EDC9EB5A">
                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -400,7 +400,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="378BFFB5-668A-4B3A-9C29-B8853C671F68" width="33" height="33">
+        <image name="6236C5DC-002B-4DB1-9C68-45E7EDC9EB5A" width="33" height="33">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

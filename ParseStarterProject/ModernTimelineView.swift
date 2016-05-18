@@ -131,7 +131,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     self.likebuttonY.constant = 80
                     
                     main{
-//                    self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*isiphone6Plus())+CGFloat(10*isiPhone5())), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*isiphone6Plus()-10*isiPhone5()), CGFloat(276 + 30*isiphone6Plus()-45*isiPhone5()))
+
                         self.momentScroller.frame = CGRectMake(CGFloat(self.frame.size.width - 80-CGFloat(5*self.IPHONE6P)+CGFloat(10*self.IPHONE5)), self.firstMomentPreview.frame.origin.y, CGFloat(70+5*self.IPHONE6P-10*self.IPHONE5), self.firstMomentPreview.frame.size.height)
                     }
                     
@@ -227,7 +227,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             }
             if let user_id = behavior.timeline?.parent?.state.uuid
             {
-                //commentOnTimelineButton.hidden = true
+                commentOnTimelineButton.hidden = true
                 
                 //                if (user_id == Storage.session.currentUser?.uuid)
                 //                {

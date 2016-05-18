@@ -45,16 +45,19 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
                 if(target.followed != .NotFollowing){
                     followTimelineButton.setTitle("Unfollow", forState: .Normal)
                     followTimelineButton.titleLabel?.textColor = UIColor.from(hexString: "3d89c9")
+                    followTimelineButton.normalImage =!=  UIImage(assetIdentifier: .feedeoSelected)
                 }
                 else if(target.followed != .Pending){
                     followTimelineButton.setTitle("Pending", forState: .Normal)
                     followTimelineButton.titleLabel?.textColor = UIColor.groupTableViewBackgroundColor()
+                    followTimelineButton.normalImage =!=  UIImage(assetIdentifier: .feedeoUnselected)
                 }
                 else{
                     followTimelineButton.setTitle("Follow", forState: .Normal)
                     followTimelineButton.titleLabel?.textColor = UIColor.groupTableViewBackgroundColor()
+                    followTimelineButton.normalImage =!=  UIImage(assetIdentifier: .feedeoUnselected)
                 }
-                followTimelineButton.normalImage =!= target.followed != .NotFollowing ? UIImage(assetIdentifier: .feedeoSelected) : UIImage(assetIdentifier: .feedeoUnselected)
+                
             }
            
         } else {

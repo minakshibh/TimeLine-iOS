@@ -24,9 +24,9 @@ class FollowingTableViewController: SortedTimelineTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        serialHook.perform(key: .ForceReloadData, argument: ())
 //        self.hidesBottomBarWhenPushed = true
-        self.refreshTableView()
+       // self.refreshTableView()
         
         // Do any additional setup after loading the view.
         refreshControl!.tintColor = tableView.tintColor

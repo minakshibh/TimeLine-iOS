@@ -41,16 +41,16 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var searchResults: [AnyObject] = [] {
         didSet {
             searching = false
-//            main {
+            main {
                 self.searchDisplayController?.searchResultsTableView.reloadData()
-//            }
+            }
         }
     }
     
        override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        serialHook.perform(key: .ForceReloadData, argument: ())
         
 //        self.hidesBottomBarWhenPushed = true
         tableView.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
@@ -264,7 +264,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             KGModal.sharedInstance().hideAnimated(true)
             
             let controller = MFMessageComposeViewController()
-            controller.body = "This is for testing to send invites to multiple users..."
+            controller.body = "This is testing for send invites to single and multiple users."
             controller.recipients = recipients
             controller.messageComposeDelegate = self
             self.presentViewController(controller, animated: true, completion: nil)
