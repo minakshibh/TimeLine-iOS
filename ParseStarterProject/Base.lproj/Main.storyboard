@@ -448,7 +448,7 @@
                                                         <constraint firstAttribute="height" id="bjt-0o-sho"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ut9-YL-kYv" customClass="SWFrameButton">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ut9-YL-kYv" customClass="SWFrameButton">
                                                     <rect key="frame" x="269" y="62" width="61" height="30"/>
                                                     <state key="normal" title="0"/>
                                                     <userDefinedRuntimeAttributes>
@@ -463,9 +463,9 @@
                                                         <action selector="tappedLikeButton" destination="OIx-NQ-kjv" eventType="touchUpInside" id="fsL-SC-a0R"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQI-J3-R4G" customClass="SWFrameButton">
-                                                    <rect key="frame" x="338" y="63" width="61" height="30"/>
-                                                    <state key="normal" title="0"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQI-J3-R4G" customClass="SWFrameButton">
+                                                    <rect key="frame" x="355" y="67" width="27" height="22"/>
+                                                    <state key="normal" title="0" image="Follow"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="7"/>
@@ -500,10 +500,10 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dislikeImage" translatesAutoresizingMaskIntoConstraints="NO" id="crR-98-HrX">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="dislikeImage" translatesAutoresizingMaskIntoConstraints="NO" id="crR-98-HrX">
                                                     <rect key="frame" x="355" y="29" width="33" height="33"/>
                                                 </imageView>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="love" translatesAutoresizingMaskIntoConstraints="NO" id="2b5-B5-QQm">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="love" translatesAutoresizingMaskIntoConstraints="NO" id="2b5-B5-QQm">
                                                     <rect key="frame" x="287" y="28" width="33" height="33"/>
                                                 </imageView>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SW9-aR-J2Y">
@@ -4456,7 +4456,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="dpZ-pz-TmS" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="fjd-4e-PdK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4496,7 +4496,7 @@ Effective as of September 14, 2015
             <objects>
                 <tableViewController id="mAi-gA-dKZ" userLabel="Followers" customClass="CallbackUserTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="191" sectionHeaderHeight="22" sectionFooterHeight="22" id="hlA-cD-rtE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.90588235289999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -4574,15 +4574,15 @@ Effective as of September 14, 2015
                                             <rect key="frame" x="9" y="18" width="48" height="48"/>
                                             <color key="backgroundColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="48" id="2U3-NI-Dti"/>
-                                                <constraint firstAttribute="height" constant="48" id="WdB-og-Wwa"/>
+                                                <constraint firstAttribute="width" priority="999" constant="48" id="2U3-NI-Dti"/>
+                                                <constraint firstAttribute="height" priority="999" constant="48" id="WdB-og-Wwa"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Firstname Lastname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="Eak-9M-pTJ">
                                             <rect key="frame" x="63" y="2" width="465" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="32" id="RdU-w3-beK"/>
-                                                <constraint firstAttribute="width" constant="407" id="eEb-qP-3m3"/>
+                                                <constraint firstAttribute="width" priority="999" constant="407" id="eEb-qP-3m3"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                             <nil key="highlightedColor"/>
@@ -5064,6 +5064,7 @@ Effective as of September 14, 2015
         <image name="Flag" width="51" height="39"/>
         <image name="Flash Off" width="24" height="36"/>
         <image name="Flash On" width="24" height="36"/>
+        <image name="Follow" width="16" height="15"/>
         <image name="Follow Timeline" width="45" height="41"/>
         <image name="Heart" width="50" height="42"/>
         <image name="Moments-Original" width="45" height="45"/>
@@ -5097,19 +5098,19 @@ Effective as of September 14, 2015
         <image name="more" width="33" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gqI-eh-cAa"/>
-        <segue reference="Odf-Iw-TZ0"/>
-        <segue reference="dHW-RB-S8H"/>
-        <segue reference="U58-7K-X9n"/>
-        <segue reference="3ER-K8-eo8"/>
+        <segue reference="JSH-Rm-O8t"/>
+        <segue reference="5f9-3x-iDp"/>
+        <segue reference="XhF-7W-aYm"/>
+        <segue reference="fy0-iv-eFM"/>
+        <segue reference="OVj-EF-9W0"/>
+        <segue reference="Szi-aa-9D9"/>
         <segue reference="Q72-pv-Wqo"/>
         <segue reference="wPR-Ua-TlF"/>
-        <segue reference="UDh-ad-jqq"/>
         <segue reference="pyd-yG-wzP"/>
+        <segue reference="3ER-K8-eo8"/>
         <segue reference="9SA-Oc-iuS"/>
         <segue reference="kNn-C3-4Z5"/>
-        <segue reference="fy0-iv-eFM"/>
-        <segue reference="XhF-7W-aYm"/>
+        <segue reference="dHW-RB-S8H"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92156862750000001" green="0.50588235290000005" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -12,7 +12,9 @@ class SortedTimelineTableViewController: UITableViewController {
 
     var sections: [(User, [Timeline])] = [] {
         didSet {
-            main { self.tableView.reloadData() }
+            delay(0.01) {
+                self.tableView.reloadData()
+            }
         }
     }
     

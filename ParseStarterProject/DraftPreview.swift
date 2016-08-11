@@ -130,9 +130,9 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
 //    self.previewImageView.sd_setImageWithURL(moments[(momentPlayerController?.currentIndexOfMoment())!].remoteThumbURL)
         main{
             if self.moments.count == 0{
-                self.bufferIndicator.stopAnimating()
+                //self.bufferIndicator.stopAnimating()
             }else{
-                self.bufferIndicator.startAnimating()
+               // self.bufferIndicator.startAnimating()
             }
             self.momentPlayerController?.next()
         }
@@ -210,7 +210,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
         
         switch rightError {
         case .Viewable:
-            bufferIndicator .startAnimating()
+            //bufferIndicator .startAnimating()
             if momentPlayerController == nil {
                 momentPlayerController = MomentPlayerController(moments: moments, inView: playbackContainer)
                 momentPlayerController?.delegate = self
@@ -235,7 +235,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
             }
             momentPlayerController?.play()
             playbackContainer.hidden = false
-            bufferIndicator.hidden = false
+            bufferIndicator.hidden = true
         case let .BlockedTimeline(u, t):
             error(
                 title: lformat(LocalizedString.TimelineAlertBlockedTimelineTitle1s, t),
@@ -258,14 +258,14 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     }
     
     @IBAction func play() {
-        bufferIndicator.startAnimating()
+        //bufferIndicator.startAnimating()
         pausePlayButton.hidden = false
         playPlayButton.hidden = true
         momentPlayerController?.play()
     }
     
     @IBAction func pause() {
-        bufferIndicator.stopAnimating()
+        //bufferIndicator.stopAnimating()
         pausePlayButton.hidden = true
         playPlayButton.hidden = false
         momentPlayerController?.pause()
@@ -939,7 +939,7 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     
     @IBAction func previous() {
         main{
-        self.bufferIndicator.startAnimating()
+        //self.bufferIndicator.startAnimating()
         self.momentPlayerController?.previous()
         }
     }
@@ -947,13 +947,13 @@ class DraftPreview: UIView , UITableViewDelegate , UITableViewDataSource, UIText
     @IBAction func next() {
         main{
             //print(self.momentPlayerController?.currentMoment())
-        self.bufferIndicator.startAnimating()
+        //self.bufferIndicator.startAnimating()
         self.momentPlayerController?.next()
         }
     }
     
     @IBAction func stop() {
-        bufferIndicator.stopAnimating()
+        //bufferIndicator.stopAnimating()
         momentPlayerController?.stop()
         momentPlayerController = nil
         delay(0.001){
@@ -992,13 +992,13 @@ extension DraftPreview: MomentPlayerControllerDelegate {
     }
     
     func momentPlayerController(momentPlayerController: MomentPlayerController, isBuffering: Bool) {
-        main {
-            if isBuffering {
-                self.bufferIndicator.startAnimating()
-            } else {
-                self.bufferIndicator.stopAnimating()
-            }
-        }
+//        main {
+//            if isBuffering {
+//                self.bufferIndicator.startAnimating()
+//            } else {
+//                self.bufferIndicator.stopAnimating()
+//            }
+//        }
     }
     
     func momentPlayerControllerItemDidChange(momentPlayerController: MomentPlayerController, moment: Moment?) {
@@ -1067,6 +1067,12 @@ extension DraftPreview: MomentPlayerControllerDelegate {
 }
 
 // MARK: - UIGestureRecognizerDelegate
+//extension DraftPreview : UISearchDisplayDelegate{
+//    func searchDisplayControllerDidEndSearch(controller: UISearchDisplayController) {
+//        self.stop()
+//    }
+//}
+
 extension DraftPreview {
     
     private var minPosition: CGFloat {

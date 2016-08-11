@@ -74,7 +74,7 @@ class LogInViewController: PFLogInViewController {
         alert = UIAlertController(title: local(.LoginAlertWaitTitle), message: nil, preferredStyle: UIAlertControllerStyle.Alert)
         presentAlertController(alert!)
         
-        //print("Token --- \(ApiRequest.GetToken(PFUser.currentUser()!.sessionToken!))")
+        print("\(PFUser.currentUser()?.firstname) \(PFUser.currentUser()?.lastname)")
         
         let tokenRequest = ApiRequest.GetToken(PFUser.currentUser()!.sessionToken!)
         print(tokenRequest)

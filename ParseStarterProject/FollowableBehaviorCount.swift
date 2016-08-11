@@ -12,7 +12,8 @@ protocol FollowableBehaviorCount {
     typealias TargetBehaviorType: Followable
     var behaviorTarget: TargetBehaviorType? { get }
 //    var followButton: SWFrameButton! { get }
-//    var followTimelineButton: UIButton! { get }
+    var followTimelineButton: UIButton! { get }
+    var updatedFollowButton : SWFrameButton! {get}
     var imagePerson: UIImageView! { get }
 
 }
@@ -33,30 +34,53 @@ extension FollowableBehaviorCount where TargetBehaviorType: Ownable {
 //        followButton.setNeedsLayout()
         
         if let target = behaviorTarget {
-//            followButton.setTitle("\(target.followersCount)", forState: .Normal)
-            if(target.followersCount > 0){
-                imagePerson.image = UIImage(named: "dislikeImage.png")
-            }else{
-               imagePerson.image = UIImage(named: "likeImage.png")
-            }
+            //followButton.setTitle("\(target.followersCount)", forState: .Normal)
+            
+            // commented on 31 May.
+//            if(target.followersCount > 0){
+//                if("\(target.followed)" == "Following"){
+//                    
+//                    imagePerson.image = UIImage(named: "likeImage.png")
+//                }
+//
+//                //updatedFollowButton.setTitle("testing", forState: .Normal)
+//            }else{
+//                imagePerson.image = UIImage(named: "dislikeImage.png")
+//               
+//                //updatedFollowButton.setTitle("Follow", forState: .Normal)
+//            }
             
             if target.isOwn{
                 if(target.followersCount > 0){
-                    imagePerson.image = UIImage(named: "dislikeImage.png")
-                }else{
                     imagePerson.image = UIImage(named: "likeImage.png")
+                    updatedFollowButton.setTitle("You", forState: .Normal)
+                }else{
+                    imagePerson.image = UIImage(named: "dislikeImage.png")
+                    
                 }
             }else{
                 if  !target.isOwn {
-                    //print("\(target.followed)")
+                    print(" follow status: \(target.followed)")
                     var status = false
-                    if ("\(target.followed)" == "Following" || "\(target.followed)" == "Pending"){
+                    if ("\(target.followed)" == "Following" ){
                         status = true
-                    }else if "\(target.followed)" == "NotFollowing"{
+                        updatedFollowButton.setTitle("Unfollow", forState: .Normal)
+                        updatedFollowButton.setTitleColor(UIColor.from(hexString: "3d89c9"), forState: .Normal)
+                        imagePerson.image =!= UIImage(named: "dislikeImage.png")
+                        
+                    }else if ("\(target.followed)" == "NotFollowing"){
                         status = false
+                        updatedFollowButton.setTitle("Follow", forState: .Normal)
+                        updatedFollowButton.setTitleColor(UIColor.from(hexString: "e7e7e7"), forState: .Normal)
+                        imagePerson.image =!= UIImage(named: "likeImage.png")
+                    }else{
+                        status = false
+                        updatedFollowButton.setTitle("Pending", forState: .Normal)
+                        updatedFollowButton.setTitleColor(UIColor.from(hexString: "e7e7e7"), forState: .Normal)
+                        imagePerson.image =!= UIImage(named: "likeImage.png")
                     }
                     
-                    imagePerson.image =!= status ? UIImage(named: "dislikeImage.png") : UIImage(named: "likeImage.png")
+                    
                 }
 
             }
@@ -101,10 +125,10 @@ extension FollowableBehaviorCount where TargetBehaviorType: Ownable {
             if  !behaviorTarget.isOwn {
                 //print("\(behaviorTarget.followed)")
                 var status = false
-                if ("\(behaviorTarget.followed)" == "Following" || "\(behaviorTarget.followed)" == "Pending"){
-                status = true
-                }else if "\(behaviorTarget.followed)" == "NotFollowing"{
-                 status = false
+                if ("\(behaviorTarget.followed)" == "NotFollowing" || "\(behaviorTarget.followed)" == "Pending"){
+                status = false
+                }else if "\(behaviorTarget.followed)" == "Following"{
+                 status = true
                 }
                 
                 imagePerson.image =!= status ? UIImage(named: "dislikeImage.png") : UIImage(named: "likeImage.png")

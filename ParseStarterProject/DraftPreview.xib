@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -85,7 +85,7 @@
                         <button hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9a5-vt-yJT" userLabel="Play">
                             <rect key="frame" x="74" y="280" width="85" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="9a5-vt-yJT" secondAttribute="height" multiplier="87:32" constant="-2" id="I5m-HQ-aTN"/>
+                                <constraint firstAttribute="width" secondItem="9a5-vt-yJT" secondAttribute="height" multiplier="87:32" priority="999" constant="-2" id="I5m-HQ-aTN"/>
                             </constraints>
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" image="Play Player"/>
@@ -96,7 +96,7 @@
                         <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5a-9L-GaU" userLabel="Comments">
                             <rect key="frame" x="161" y="280" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="E5a-9L-GaU" secondAttribute="height" id="yyq-U8-3D8"/>
+                                <constraint firstAttribute="width" secondItem="E5a-9L-GaU" secondAttribute="height" priority="999" id="yyq-U8-3D8"/>
                             </constraints>
                             <state key="normal" image="commentMoment"/>
                             <connections>
@@ -114,24 +114,24 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="8u0-H3-dgq" secondAttribute="bottom" constant="8" id="6z8-lW-h73"/>
-                        <constraint firstItem="Aoq-yw-VBh" firstAttribute="top" secondItem="leo-Yk-aoL" secondAttribute="top" constant="50" id="878-Mq-hvk"/>
-                        <constraint firstItem="Aoq-yw-VBh" firstAttribute="width" secondItem="leo-Yk-aoL" secondAttribute="width" id="DsL-6p-eef"/>
-                        <constraint firstAttribute="centerX" secondItem="Aoq-yw-VBh" secondAttribute="centerX" id="I5I-4z-HbP"/>
-                        <constraint firstAttribute="centerX" secondItem="9a5-vt-yJT" secondAttribute="centerX" constant="43.5" id="INS-l1-61l"/>
-                        <constraint firstItem="9a5-vt-yJT" firstAttribute="leading" secondItem="leo-Yk-aoL" secondAttribute="leading" constant="74" id="OCE-74-qPH"/>
-                        <constraint firstItem="pbR-vn-rok" firstAttribute="top" secondItem="leo-Yk-aoL" secondAttribute="top" constant="8" id="OSA-Oj-g0D"/>
-                        <constraint firstAttribute="bottom" secondItem="OV7-vj-LV9" secondAttribute="bottom" constant="8" id="RNy-Lk-zg8"/>
+                        <constraint firstAttribute="bottom" secondItem="8u0-H3-dgq" secondAttribute="bottom" priority="999" constant="8" id="6z8-lW-h73"/>
+                        <constraint firstItem="Aoq-yw-VBh" firstAttribute="top" secondItem="leo-Yk-aoL" secondAttribute="top" priority="999" constant="50" id="878-Mq-hvk"/>
+                        <constraint firstItem="Aoq-yw-VBh" firstAttribute="width" secondItem="leo-Yk-aoL" secondAttribute="width" priority="999" id="DsL-6p-eef"/>
+                        <constraint firstAttribute="centerX" secondItem="Aoq-yw-VBh" secondAttribute="centerX" priority="999" id="I5I-4z-HbP"/>
+                        <constraint firstAttribute="centerX" secondItem="9a5-vt-yJT" secondAttribute="centerX" priority="999" constant="43.5" id="INS-l1-61l"/>
+                        <constraint firstItem="9a5-vt-yJT" firstAttribute="leading" secondItem="leo-Yk-aoL" secondAttribute="leading" priority="999" constant="74" id="OCE-74-qPH"/>
+                        <constraint firstItem="pbR-vn-rok" firstAttribute="top" secondItem="leo-Yk-aoL" secondAttribute="top" priority="999" constant="8" id="OSA-Oj-g0D"/>
+                        <constraint firstAttribute="bottom" secondItem="OV7-vj-LV9" secondAttribute="bottom" priority="999" constant="8" id="RNy-Lk-zg8"/>
                         <constraint firstItem="Aoq-yw-VBh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="leo-Yk-aoL" secondAttribute="top" priority="999" constant="8" id="VYp-sM-tJq"/>
-                        <constraint firstAttribute="bottom" secondItem="1ug-7a-dXv" secondAttribute="bottom" constant="8" id="XJ1-cV-8tn"/>
-                        <constraint firstAttribute="bottom" secondItem="9a5-vt-yJT" secondAttribute="bottom" constant="8" id="XUC-Ff-gwB"/>
-                        <constraint firstItem="OV7-vj-LV9" firstAttribute="leading" secondItem="leo-Yk-aoL" secondAttribute="leading" constant="8" id="j6P-f4-SqV"/>
-                        <constraint firstItem="E5a-9L-GaU" firstAttribute="leading" secondItem="9a5-vt-yJT" secondAttribute="trailing" constant="2" id="m0K-IC-aAM"/>
-                        <constraint firstAttribute="bottom" secondItem="E5a-9L-GaU" secondAttribute="bottom" constant="8" id="mCi-xR-wey"/>
-                        <constraint firstAttribute="trailing" secondItem="1ug-7a-dXv" secondAttribute="trailing" constant="8" id="rr5-IH-gko"/>
+                        <constraint firstAttribute="bottom" secondItem="1ug-7a-dXv" secondAttribute="bottom" priority="999" constant="8" id="XJ1-cV-8tn"/>
+                        <constraint firstAttribute="bottom" secondItem="9a5-vt-yJT" secondAttribute="bottom" priority="999" constant="8" id="XUC-Ff-gwB"/>
+                        <constraint firstItem="OV7-vj-LV9" firstAttribute="leading" secondItem="leo-Yk-aoL" secondAttribute="leading" priority="999" constant="8" id="j6P-f4-SqV"/>
+                        <constraint firstItem="E5a-9L-GaU" firstAttribute="leading" secondItem="9a5-vt-yJT" secondAttribute="trailing" priority="999" constant="2" id="m0K-IC-aAM"/>
+                        <constraint firstAttribute="bottom" secondItem="E5a-9L-GaU" secondAttribute="bottom" priority="999" constant="8" id="mCi-xR-wey"/>
+                        <constraint firstAttribute="trailing" secondItem="1ug-7a-dXv" secondAttribute="trailing" priority="999" constant="8" id="rr5-IH-gko"/>
                         <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Aoq-yw-VBh" secondAttribute="bottom" priority="998" constant="-48" id="w4U-ov-6pd"/>
-                        <constraint firstItem="pbR-vn-rok" firstAttribute="leading" secondItem="OV7-vj-LV9" secondAttribute="leading" id="wDb-LJ-u6s"/>
-                        <constraint firstAttribute="centerX" secondItem="8u0-H3-dgq" secondAttribute="centerX" constant="43" id="wtS-8B-kTp"/>
+                        <constraint firstItem="pbR-vn-rok" firstAttribute="leading" secondItem="OV7-vj-LV9" secondAttribute="leading" priority="999" id="wDb-LJ-u6s"/>
+                        <constraint firstAttribute="centerX" secondItem="8u0-H3-dgq" secondAttribute="centerX" priority="999" constant="43" id="wtS-8B-kTp"/>
                     </constraints>
                 </view>
             </subviews>

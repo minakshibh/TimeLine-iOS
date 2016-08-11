@@ -124,7 +124,10 @@ class FlatTimelineTableViewController: UITableViewController {
                 }
             }
             //serialHook.perform(key: .ForceReloadData, argument: ())
-            main { self.tableView.reloadData() }
+            delay(0.01) {
+                    //self.refreshTableView()
+                self.tableView.reloadData()
+            }
         }
     }
 
@@ -269,10 +272,10 @@ extension FlatTimelineTableViewController: Hooking, UserMoreButtonBehavior, Time
         return [setUpTimelineMoreButtonBehavior, setUpUserMoreButtonBehavior, setUpPushableBehavior, setUpActiveControllerBehavior]
     }
 
-    override func reloadData() {
-        main {
-            self.refreshTableView()
-            self.tableView.reloadData()
-        }
-    }
+//    override func reloadData() {
+//        main {
+//            //self.refreshTableView()
+//            self.tableView.reloadData()
+//        }
+//    }
 }

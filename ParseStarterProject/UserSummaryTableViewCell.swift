@@ -33,6 +33,7 @@ class UserSummaryTableViewCell: UITableViewCell {
     var user: User? {
         didSet {
             profileImageView.user = user
+            
             refresh()
         }
     }

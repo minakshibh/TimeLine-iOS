@@ -43,12 +43,12 @@ extension LikeableBehavior where TargetBehaviorType: Ownable {
                 likeTimelineButton.enabled =!= true
                 likeTimelineButton.contentHorizontalAlignment =!= UIControlContentHorizontalAlignment.Left
                 if(behaviorTarget.liked){
-                    likeTimelineButton.titleLabel?.textColor = UIColor.redNavbarColor()
                     likeTimelineButton.setTitle("Unlike", forState: .Normal)
+                    likeTimelineButton.setTitleColor(UIColor.redNavbarColor(), forState: .Normal)
                     
                 }else{
                     likeTimelineButton.setTitle("Like", forState: .Normal)
-                    likeTimelineButton.titleLabel?.textColor = UIColor.groupTableViewBackgroundColor()
+                    likeTimelineButton.setTitleColor(UIColor.groupTableViewBackgroundColor(), forState: .Normal)
                 }
                 likeTimelineButton.normalImage =!= behaviorTarget.liked ? UIImage(assetIdentifier: .RedHeart) : UIImage(assetIdentifier: .whiteHeart)
             }

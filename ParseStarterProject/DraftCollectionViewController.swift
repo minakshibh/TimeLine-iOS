@@ -121,6 +121,11 @@ class DraftCollectionViewController: UICollectionViewController, UIVideoEditorCo
     
     func goToRecordScreen () {
         
+        if let topController = UIApplication.topViewController() {
+            print(topController)
+            self.dismissViewControllerWithAnimation(topController)
+        }
+        
         let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
         viewController?.profileButtonClick()
         //        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -623,5 +628,21 @@ extension DraftCollectionViewController {
         editor.toolbar.tintColor = UIColor.barButtonTintColor()
         editor.toolbar.barTintColor = UIColor.bottomBarTintColor()
         
+    }
+}
+extension UIApplication {
+    class func topViewController(base: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(presented)
+        }
+        return base
     }
 }

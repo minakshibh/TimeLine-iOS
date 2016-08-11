@@ -15,7 +15,7 @@ private func timelineOrder(l: Timeline, r: Timeline) -> Bool {
 }
 
 class MyTimelinesTableViewController: CommonTimelineTableViewController {
-
+    var networkHelper : NetworkHelper!
     var status:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         navigationItem.leftBarButtonItem = right
     }
     func goToRecordScreen(){
-        
+        cleanUpHooking()
         UIView.animateWithDuration(1.0,animations: { () -> Void in
         let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
         viewController?.profileButtonClick()
@@ -105,7 +105,8 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        serialHook.perform(key: .ForceReloadData, argument: ())
+        //serialHook.perform(key: .ForceReloadData, argument: ())
+        self.MytimelineAPIhit()
 //        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "update", userInfo: nil, repeats: false)
 
         if(IPHONE6 == 1 || IPHONE5==1){
@@ -154,7 +155,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+        //self.refreshTableView()
         if (status) {
 //            self.tableView.headerViewForSection(0)?.frame = CGRectMake((self.tableView.headerViewForSection(0)?.frame.origin.x)!,(self.tableView.headerViewForSection(0)?.frame.origin.y)!-20,(self.tableView.headerViewForSection(0)?.frame.size.width)!,(self.tableView.headerViewForSection(0)?.frame.size.height)!)
 //            
@@ -174,8 +175,9 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
         }
     }
     
-    override func refreshTableView() {
+    func MytimelineAPIhit() {
         var first = true
+        
         Timeline.getTimelines(ApiRequest.TimelineMe, completion: { (timelines) -> Void in
             Storage.session.currentUser?.timelines.sortInPlace(>)
            
@@ -197,6 +199,7 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
             }
             
         })
+        
     }
     
 //    override func deletionCallback() -> MGSwipeButtonCallback? {
@@ -277,21 +280,25 @@ class MyTimelinesTableViewController: CommonTimelineTableViewController {
     
     override func viewWillDisappear(animated: Bool) {
         
-        if #available(iOS 9.0, *) {
-            Manager.sharedInstance.session.getAllTasksWithCompletionHandler { (tasks) -> Void in
-                tasks.forEach({ $0.cancel() })
-            }
-        } else {
-            // Fallback on earlier versions
-            Manager.sharedInstance.session.getTasksWithCompletionHandler({
-                $0.0.forEach({ $0.cancel() })
-                $0.1.forEach({ $0.cancel() })
-                $0.2.forEach({ $0.cancel() })
-            })
-        }
+        self.refreshControl?.endRefreshing()
+        //self.networkHelper.cancelAllRequests()
+//        if #available(iOS 9.0, *) {
+//            Manager.sharedInstance.session.getAllTasksWithCompletionHandler { (tasks) -> Void in
+//                tasks.forEach({ $0.cancel() })
+//            }
+//        } else {
+//            // Fallback on earlier versions
+//            Manager.sharedInstance.session.getTasksWithCompletionHandler({
+//                $0.0.forEach({ $0.cancel() })
+//                $0.1.forEach({ $0.cancel() })
+//                $0.2.forEach({ $0.cancel() })
+//            })
+//        }
         super.viewWillDisappear(animated)
     }
-
+    
+    
+    
     // MARK: - Table view data source
     
     /*

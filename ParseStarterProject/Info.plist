@@ -25,17 +25,17 @@
 			<string>inc.reebay.Timeline</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb163207474057525</string>
+				<string>fb1107601472619758</string>
 				<string>mytimelineapp</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>141</string>
+	<string>148</string>
 	<key>FacebookAppID</key>
-	<string>163207474057525</string>
+	<string>1107601472619758</string>
 	<key>FacebookDisplayName</key>
-	<string>socialNetworks</string>
+	<string>Feedeo</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

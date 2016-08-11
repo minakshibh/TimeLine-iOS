@@ -55,7 +55,7 @@ class ModernTimelineBehavior {
     }
     var state: PlaybackState = .Preview
     var centerConstraints: [NSLayoutConstraint] = []
-
+    
     func refresh() {
         if case .Playing = self.state {
             self.stopPlayback(animated: true)
@@ -182,7 +182,7 @@ extension ModernTimelineBehavior {
                 playerView.draftPreview.playMoment()
         }
     }
-
+    
     func stopPlayback(animated animated: Bool) {
         defer {
             state = .Preview

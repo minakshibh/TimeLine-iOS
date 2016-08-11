@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ParseStarterProject/ModernTimelineView.swift"
-            timestampString = "485257034.084851"
+            filePath = "ParseStarterProject/FollowableBehaviorCount.swift"
+            timestampString = "488353476.869212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "374"
-            endingLineNumber = "374"
-            landmarkName = "timelineCommentClick(_:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "refreshFollowableBehaviorCount()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

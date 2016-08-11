@@ -24,7 +24,6 @@ enum FollowState: String {
 
 class Timeline: Synchronized, DictConvertable {
     var state: SynchronizationState
-    
     var name: String
     var updated_at:String
     var userfullName:String
@@ -160,8 +159,9 @@ extension Timeline {
         switch request {
         case .TimelineFollowing:
             completion(Storage.session.followingCache.map(Storage.findTimeline).filter { $0 != nil }.map { $0! })
-            
+        
         case .TimelineTrending:
+            
             completion(Storage.session.trendingCache.map(Storage.findTimeline).filter { $0 != nil }.map { $0! })
         
         case .TimelineMe:

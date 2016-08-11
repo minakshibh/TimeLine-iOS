@@ -100,6 +100,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
   
     }
     func goToRecordScreen(){
+        cleanUpHooking()
         UIView.animateWithDuration(1.0,animations: { () -> Void in
         let viewController = UIApplication.sharedApplication().windows[0].rootViewController?.childViewControllers[1] as? drawer
         viewController?.timelineButtonCLick()
@@ -152,9 +153,9 @@ class ProfileTableViewController: TintedHeaderTableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
-        main{
+        //main{
         self.update()
-        }
+        //}
 //        self.navigationController!.navigationBar.frame = CGRectMake(0, 0, self.navigationController!.navigationBar.frame.size.width, self.navigationController!.navigationBar.frame.size.height+20)
 //        print("\(self.navigationController!.navigationBar.frame)")
         
@@ -175,9 +176,9 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 status = true
             }
         }
-        main{
-        self.refresh()
-        }
+//        main{
+//        self.refresh()
+//        }
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -189,11 +190,12 @@ class ProfileTableViewController: TintedHeaderTableViewController {
         }
     }
     func update(){
-        delay (0.1) {
+        //delay (0.1) {
         self.setUpHooking()
         self.refresh()
         
         Storage.performRequest(ApiRequest.UserMe, completion: { (json) -> Void in
+            //print("user details json: \(json)")
             if let user = Storage.session.currentUser {
                 user.state = SynchronizationState(dict: json, parent: nil)
                 
@@ -223,7 +225,7 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 self.refresh()
                 }
             })
-        }
+        //}
     }
     
     private func refresh() {
@@ -252,11 +254,22 @@ class ProfileTableViewController: TintedHeaderTableViewController {
                 attributedText.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18)], range: NSRange(location: 0, length: 4))
                 lblBio.attributedText = attributedText
             }else{
-                let firstname = user.firstname ?? ""
-                let lastname = user.lastname ?? ""
+                
+                var Firstname:String = ""
+                var Lastname:String = ""
+                print(user.firstname)
+                print(user.lastname)
+                if(user.firstname == "" && user.lastname == ""){
+                    Firstname = "\(PFUser.currentUser()!.firstname)"
+                    Lastname = "\(PFUser.currentUser()!.lastname)"
+                }else{
+                    Firstname = user.firstname!
+                    Lastname = user.lastname!
+                }
+                
                 navigationItem.title = "@\(user.username!)"
                 nameLabel.text = "@\(user.username!)"
-                nameLabel1.text = "\(firstname) \(lastname)"
+                nameLabel1.text = "\(Firstname) \(Lastname)"
                 emailLabel.text = "\(user.email!)"
                 
                 var bioStr:String = ""

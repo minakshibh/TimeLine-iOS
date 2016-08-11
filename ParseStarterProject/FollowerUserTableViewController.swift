@@ -15,11 +15,12 @@ class FollowerUserTableViewController: FlatUserTableViewController {
 
         // Do any additional setup after loading the view.
     }
-
-    override func refreshTableView() {
+    
+    func APIhit() {
         var first = true
         
         User.getUsers(ApiRequest.CurrentUserFollowers) { usrs in
+            
             self.users = usrs
             if !first {
                 main {
@@ -29,6 +30,10 @@ class FollowerUserTableViewController: FlatUserTableViewController {
                 first = false
             }
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.APIhit()
     }
     
     override func didReceiveMemoryWarning() {

@@ -17,9 +17,9 @@ protocol FollowableBehavior {
 }
 
 private extension UIColor {
-    static var followableTintColor: UIColor! {
-        return UIColor.from(hexString: "FF9A00")
-    }
+//    static var followableTintColor: UIColor! {
+//        return UIColor.from(hexString: "FF9A00")
+//    }
 }
 
 extension FollowableBehavior where TargetBehaviorType: Ownable {
@@ -27,7 +27,7 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
     func refreshFollowableBehavior() {
         followButton.cornerRadius =!= 7
 //        followButton.tintColor =!= .followableTintColor
-        followButton.normalImage =!= UIImage(assetIdentifier: .FollowableButton)
+        //followButton.normalImage =!= UIImage(assetIdentifier: .Follow)
         followButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 0)
         followButton.setNeedsLayout()
         
@@ -42,19 +42,20 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
                 followTimelineButton.hidden =!= target.isOwn ? true : false
                 followTimelineButton.selected =!= target.followed != .NotFollowing && !target.isOwn
                 followTimelineButton.enabled =!= true
-                if(target.followed != .NotFollowing){
+                if(target.followed == .Following){
+                    
                     followTimelineButton.setTitle("Unfollow", forState: .Normal)
-                    followTimelineButton.titleLabel?.textColor = UIColor.from(hexString: "3d89c9")
+                    followTimelineButton.setTitleColor(UIColor.from(hexString: "3d89c9"), forState: .Normal)
                     followTimelineButton.normalImage =!=  UIImage(assetIdentifier: .feedeoSelected)
                 }
-                else if(target.followed != .Pending){
+                else if(target.followed == .Pending){
                     followTimelineButton.setTitle("Pending", forState: .Normal)
-                    followTimelineButton.titleLabel?.textColor = UIColor.groupTableViewBackgroundColor()
+                    followTimelineButton.setTitleColor(UIColor.groupTableViewBackgroundColor(), forState: .Normal)
                     followTimelineButton.normalImage =!=  UIImage(assetIdentifier: .feedeoUnselected)
                 }
                 else{
                     followTimelineButton.setTitle("Follow", forState: .Normal)
-                    followTimelineButton.titleLabel?.textColor = UIColor.groupTableViewBackgroundColor()
+                    followTimelineButton.setTitleColor(UIColor.groupTableViewBackgroundColor(), forState: .Normal)
                     followTimelineButton.normalImage =!=  UIImage(assetIdentifier: .feedeoUnselected)
                 }
                 
@@ -69,6 +70,7 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
             {
                 followTimelineButton.selected =!= false
                 followTimelineButton.enabled =!= false
+                
             }
         }
     }
@@ -86,7 +88,7 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
             target.toggleFollowState {
                 self.refreshFollowableBehavior()
             }
-            refreshFollowableBehavior()
+            //refreshFollowableBehavior()
         } else if let likeable = behaviorTarget as? Followable {
             guard let controller = activeController() else { return }
             controller.performSegueWithIdentifier("ShowUserList", sender: FollowableValue(followable: likeable))
@@ -98,7 +100,7 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
             target.toggleFollowState {
                 self.refreshFollowableBehavior()
             }
-            refreshFollowableBehavior()
+            //refreshFollowableBehavior()
         }
     }
     
@@ -107,7 +109,7 @@ extension FollowableBehavior where TargetBehaviorType: Ownable {
             target.toggleFollowState {
                 self.refreshFollowableBehavior()
             }
-            refreshFollowableBehavior()
+            //refreshFollowableBehavior()
         }
     }
     func showFollowers() {

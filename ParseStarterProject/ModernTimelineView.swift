@@ -94,6 +94,7 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
             behavior.timeline = newValue
             
             delay(0.001){
+                
                 self.scrollMomentArray = []
                 
                 // Seperator view for timeline
@@ -257,9 +258,14 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
     
     
     @IBAction func groupTimelineButtonAction(sender: AnyObject) {
-        
+       
+        let searchString = "\(Storage.session.uuid!)"
+        let predicate = NSPredicate(format: "SELF contains %@", searchString)
+        let searchDataSource = timeline?.participants.filter { predicate.evaluateWithObject($0) }
+
         let controller = activeController()
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
         if !(self.timeline?.isOwn)!
         {
             return
@@ -280,9 +286,13 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     self.addFriendsListView()
                 }
             }
-            alert.addAction(title: local(.ShowExitGroupTimelineMessage), style: .Default) { _ in
-                self.deleteGroupAPI()
+            if(searchDataSource?.count>0) {
+                print("Yes")
+                alert.addAction(title: local(.ShowExitGroupTimelineMessage), style: .Default) { _ in
+                    self.deleteGroupAPI()
+                }
             }
+            
         }
         else
         {
@@ -291,8 +301,11 @@ class ModernTimelineView: UIView, UITableViewDataSource, UITableViewDelegate, UI
                     self.addFriendsListView()
                 }
             }
-            alert.addAction(title: local(.ShowLeaveGroupTimelineMessage), style: .Default) { _ in
-                self.leaveGroupAPI()
+            if(searchDataSource?.count>0) {
+                print("Yes")
+                alert.addAction(title: local(.ShowLeaveGroupTimelineMessage), style: .Default) { _ in
+                    self.leaveGroupAPI()
+                }
             }
         }
         alert.addAction(title: local(.ShowGroupTimelineCancel), style: .Cancel, handler: nil)

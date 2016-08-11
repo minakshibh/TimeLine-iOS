@@ -24,7 +24,7 @@ class FollowingTableViewController: SortedTimelineTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        serialHook.perform(key: .ForceReloadData, argument: ())
+        //serialHook.perform(key: .ForceReloadData, argument: ())
 //        self.hidesBottomBarWhenPushed = true
        // self.refreshTableView()
         
@@ -72,8 +72,12 @@ class FollowingTableViewController: SortedTimelineTableViewController {
 //        appDelegate.window?.rootViewController = nav
 //        appDelegate.window?.makeKeyAndVisible()
     }
+    override func viewWillAppear(animated: Bool) {
+        self.APIhit()
+        self.setUpHooking()
+    }
     
-    override func refreshTableView() {
+    func APIhit() {
         active = true
         var first = true
         do{
@@ -84,7 +88,7 @@ class FollowingTableViewController: SortedTimelineTableViewController {
                     PFUser.currentUser()?.resetBadgeFollowingInBackground()
                     
                     self.navigationController?.tabBarItem.badgeValue = nil
-                    
+                    self.refreshControl?.endRefreshing()
                     
                     self.active = false
                 } else {

@@ -11,9 +11,12 @@ import UIKit
 class MomentImageView: UIImageView {
 
     var moment: Moment? {
+        
         didSet {
+            
             if moment?.state.uuid != oldValue?.state.uuid {
-                image = nil
+                //image = nil
+                self.sd_setImageWithURL(self.moment?.remoteThumbURL)
             }
             if let moment = moment {
                 main{
@@ -27,7 +30,8 @@ class MomentImageView: UIImageView {
                 }
                 }
             } else {
-                image = nil
+                //image = nil
+                self.sd_setImageWithURL(self.moment?.remoteThumbURL)
             }
         }
     }

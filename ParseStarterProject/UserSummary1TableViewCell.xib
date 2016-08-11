@@ -22,7 +22,7 @@
                             <constraint firstAttribute="width" secondItem="re5-Sp-TW8" secondAttribute="height" multiplier="2:1" id="O0r-B4-5O7"/>
                             <constraint firstAttribute="height" constant="30" id="RyS-va-K0x"/>
                         </constraints>
-                        <state key="normal" image="C16CE013-E075-4E14-9045-042EAD79CBB2"/>
+                        <state key="normal" image="00B2437E-387F-4675-8854-6DF7AA35879A"/>
                         <connections>
                             <action selector="tappedMoreButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="QQa-Cu-uuz"/>
                         </connections>
@@ -60,7 +60,7 @@
                         <color key="tintColor" red="1" green="0.58039215690000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <inset key="imageEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="0" image="follower"/>
+                        <state key="normal" title="0" image="Follow"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="7"/>
@@ -89,8 +89,8 @@
                             <action selector="tappedApproveButton" destination="dWy-cR-JQd" eventType="touchUpInside" id="MJO-cA-crN"/>
                         </connections>
                     </button>
-                    <button opaque="NO" tag="567" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20q-DA-Jxx" customClass="SWFrameButton">
-                        <rect key="frame" x="134" y="94" width="74" height="25"/>
+                    <button opaque="NO" tag="567" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20q-DA-Jxx" customClass="SWFrameButton">
+                        <rect key="frame" x="133" y="95" width="74" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="20q-DA-Jxx" secondAttribute="height" multiplier="37:11" constant="-10" id="Fvs-Rz-C0W"/>
                             <constraint firstAttribute="height" constant="25" id="cPd-Th-WV3"/>
@@ -141,16 +141,6 @@
                             <constraint firstAttribute="width" secondItem="jSW-q6-e96" secondAttribute="height" multiplier="1:1" id="txJ-sG-08L"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpC-xd-0Kv">
-                        <rect key="frame" x="25" y="128" width="364" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="NpC-xd-0Kv" secondAttribute="height" multiplier="13:1" id="GgQ-Fl-vGZ"/>
-                            <constraint firstAttribute="height" constant="28" id="Joz-r3-kr4"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Bio:-" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Ssg-en-dvr">
                         <rect key="frame" x="25" y="159" width="372" height="60"/>
                         <constraints>
@@ -185,23 +175,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqC-JG-YmI">
-                        <rect key="frame" x="143" y="41" width="82" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="KSt-Fw-YDK"/>
-                            <constraint firstAttribute="width" secondItem="WqC-JG-YmI" secondAttribute="height" multiplier="57:44" constant="25" id="KgX-Yl-3B2"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <inset key="titleEdgeInsets" minX="29" minY="39" maxX="0.0" maxY="0.0"/>
-                        <inset key="imageEdgeInsets" minX="-14" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="Unlike">
-                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                        <connections>
-                            <action selector="toggleLikeForHeart" destination="dWy-cR-JQd" eventType="touchUpInside" id="zcv-qh-98d"/>
-                        </connections>
-                    </button>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6py-u8-Z8l">
                         <rect key="frame" x="374" y="8" width="30" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -215,15 +188,42 @@
                             <constraint firstAttribute="height" constant="44" id="E7j-qC-oc4"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <inset key="contentEdgeInsets" minX="23" minY="39" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="Unfollow">
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <inset key="titleEdgeInsets" minX="-20" minY="29" maxX="0.0" maxY="0.0"/>
+                        <state key="normal">
                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
                             <action selector="toggleFollowForUser" destination="dWy-cR-JQd" eventType="touchUpInside" id="3fS-Kp-pkP"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqC-JG-YmI">
+                        <rect key="frame" x="143" y="41" width="82" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="KSt-Fw-YDK"/>
+                            <constraint firstAttribute="width" secondItem="WqC-JG-YmI" secondAttribute="height" multiplier="57:44" constant="25" id="KgX-Yl-3B2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <inset key="titleEdgeInsets" minX="13" minY="29" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="-14" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="toggleLikeForHeart" destination="dWy-cR-JQd" eventType="touchUpInside" id="zcv-qh-98d"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpC-xd-0Kv">
+                        <rect key="frame" x="25" y="128" width="364" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="NpC-xd-0Kv" secondAttribute="height" multiplier="13:1" id="GgQ-Fl-vGZ"/>
+                            <constraint firstAttribute="height" constant="28" id="Joz-r3-kr4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jSW-q6-e96" firstAttribute="leading" secondItem="kxx-0T-7P1" secondAttribute="trailing" constant="56" id="120-Ia-q9Z"/>
@@ -271,11 +271,13 @@
                 <outlet property="approveButton" destination="8mm-UQ-4qv" id="cTQ-Kq-GDg"/>
                 <outlet property="btnWebsite" destination="14C-Mk-xF9" id="GpO-L7-ny2"/>
                 <outlet property="followButton" destination="z0h-u8-Fmv" id="7ky-r2-76k"/>
+                <outlet property="followTimelineButton" destination="3Ao-Ci-XbT" id="xR5-TX-xAP"/>
                 <outlet property="imagePerson" destination="jSW-q6-e96" id="KCZ-Be-bcT"/>
                 <outlet property="imageheart" destination="kxx-0T-7P1" id="HTz-MQ-o2h"/>
                 <outlet property="lblBio" destination="Ssg-en-dvr" id="ml8-EB-Cud"/>
                 <outlet property="lblOthers" destination="FmF-Jr-2nL" id="6en-xE-IEc"/>
                 <outlet property="likeButton" destination="20q-DA-Jxx" id="QXP-LE-khS"/>
+                <outlet property="likeTimelineButton" destination="WqC-JG-YmI" id="N2L-ce-24v"/>
                 <outlet property="nameLabel" destination="6py-u8-Z8l" id="iOe-KS-e1K"/>
                 <outlet property="nameLabel1" destination="NpC-xd-0Kv" id="Wug-LP-6iT"/>
                 <outlet property="profileImageView" destination="ptT-Lq-JZU" id="Xnw-Ar-eTh"/>
@@ -285,7 +287,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="C16CE013-E075-4E14-9045-042EAD79CBB2" width="33" height="30">
+        <image name="00B2437E-387F-4675-8854-6DF7AA35879A" width="33" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -421,9 +423,9 @@ qx26Hb4dxR3NHdod3x3hHeMd6B3wHfMd+B4AHgMeFR4YHh0AAAAAAAACAQAAAAAAAAA+AAAAAAAAAAAA
 AAAAAAAeHw
 </mutableData>
         </image>
+        <image name="Follow" width="16" height="15"/>
         <image name="RedHeart" width="33" height="33"/>
         <image name="dislikeImage" width="33" height="33"/>
-        <image name="follower" width="16" height="15"/>
         <image name="likeImage" width="33" height="33"/>
         <image name="love" width="16" height="15"/>
     </resources>

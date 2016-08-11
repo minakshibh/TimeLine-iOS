@@ -25,7 +25,10 @@ class UserSummaryTableViewController: FlatTimelineTableViewControllerWithoutUser
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(assetIdentifier: UIImage.AssetIdentifier.BackIndicator), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissViewControllerWithAnimation:")
         }
     }
-    
+    override func viewWillDisappear(animated: Bool) {
+        
+        cleanUpHooking()
+    }
     override func refreshTableView() {
         timelines = user.timelines ?? []
        

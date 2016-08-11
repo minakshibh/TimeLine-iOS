@@ -255,7 +255,7 @@
         self.countdownLabel.text = 1.description
         
         recorder = SCRecorder.sharedRecorder()
-        //recorder.captureSessionPreset = SCRecorderTools.bestCaptureSessionPresetCompatibleWithAllDevices()
+        recorder.captureSessionPreset = SCRecorderTools.bestCaptureSessionPresetCompatibleWithAllDevices()
         recorder.captureSessionPreset = AVCaptureSessionPresetHigh
         recorder.delegate = self
         recorder.videoConfiguration.sizeAsSquare = true
@@ -275,6 +275,7 @@
             _ = try? self.recorder.prepare()
         }
         
+        //self.previewView.session = self.recorder.captureSession
         
         
         //        delay(0.001) {
@@ -516,11 +517,9 @@
     
     override func viewWillAppear(animated: Bool) {
         
-        synced(self){
-            self.previewView.session = self.recorder.captureSession
-        }
+        self.previewView.session = self.recorder.captureSession
         
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "update", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "update", userInfo: nil, repeats: false)
         //       delay (0.60) {
         //
         //        }
@@ -544,23 +543,22 @@
     override func viewDidDisappear(animated: Bool) {
         main{
             self.stop()
-            self.recorder.stopRunning()
             self.refreshTorches()
             self.reloadBadges()
             self.removeScrollView()
             
-            if #available(iOS 9.0, *) {
-                Manager.sharedInstance.session.getAllTasksWithCompletionHandler { (tasks) -> Void in
-                    tasks.forEach({ $0.cancel() })
-                }
-            } else {
-                // Fallback on earlier versions
-                Manager.sharedInstance.session.getTasksWithCompletionHandler({
-                    $0.0.forEach({ $0.cancel() })
-                    $0.1.forEach({ $0.cancel() })
-                    $0.2.forEach({ $0.cancel() })
-                })
-            }
+//            if #available(iOS 9.0, *) {
+//                Manager.sharedInstance.session.getAllTasksWithCompletionHandler { (tasks) -> Void in
+//                    tasks.forEach({ $0.cancel() })
+//                }
+//            } else {
+//                // Fallback on earlier versions
+//                Manager.sharedInstance.session.getTasksWithCompletionHandler({
+//                    $0.0.forEach({ $0.cancel() })
+//                    $0.1.forEach({ $0.cancel() })
+//                    $0.2.forEach({ $0.cancel() })
+//                })
+//            }
         }
         //        videoPreviewView.hidden = true
     }
@@ -579,7 +577,7 @@
     //    }
     
     override func shouldAutorotate() -> Bool {
-        print("should: \(!(recorder?.isRecording ?? false))")
+        //print("should: \(!(recorder?.isRecording ?? false))")
         return !(recorder?.isRecording ?? false)
     }
     
@@ -618,31 +616,31 @@
         }
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let screenSize = previewView.bounds.size
-        if let touchPoint = touches.first {
-            let x = touchPoint.locationInView(previewView).y / screenSize.height
-            let y = 1.0 - touchPoint.locationInView(previewView).x / screenSize.width
-            let focusPoint = CGPoint(x: x, y: y)
-            
-            if let device = captureDevice {
-                do {
-                    try device.lockForConfiguration()
-                    
-                    device.focusPointOfInterest = focusPoint
-                    //device.focusMode = .ContinuousAutoFocus
-                    device.focusMode = .AutoFocus
-                    //device.focusMode = .Locked
-                    device.exposurePointOfInterest = focusPoint
-                    device.exposureMode = AVCaptureExposureMode.ContinuousAutoExposure
-                    device.unlockForConfiguration()
-                }
-                catch {
-                    // just ignore
-                }
-            }
-        }
-    }
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+//        let screenSize = previewView.bounds.size
+//        if let touchPoint = touches.first {
+//            let x = touchPoint.locationInView(previewView).y / screenSize.height
+//            let y = 1.0 - touchPoint.locationInView(previewView).x / screenSize.width
+//            let focusPoint = CGPoint(x: x, y: y)
+//            
+//            if let device = captureDevice {
+//                do {
+//                    try device.lockForConfiguration()
+//                    
+//                    device.focusPointOfInterest = focusPoint
+//                    //device.focusMode = .ContinuousAutoFocus
+//                    device.focusMode = .AutoFocus
+//                    //device.focusMode = .Locked
+//                    device.exposurePointOfInterest = focusPoint
+//                    device.exposureMode = AVCaptureExposureMode.ContinuousAutoExposure
+//                    device.unlockForConfiguration()
+//                }
+//                catch {
+//                    // just ignore
+//                }
+//            }
+//        }
+//    }
  }
  
  
@@ -660,6 +658,7 @@
     
     @IBAction func toggleTorch() {
         recorder.flashMode = recorder.flashMode == .Light ? .Off : .Light
+        refreshTorches()
     }
     
     @IBAction func focusAndExposeTap(sender: UITapGestureRecognizer) {

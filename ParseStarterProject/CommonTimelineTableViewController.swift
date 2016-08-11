@@ -46,13 +46,15 @@ class CommonTimelineTableViewController: UITableViewController {
             //            main {
             //                self.tableView.reloadData()
             //            }
-            
-            main{
+            //let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            //appDelegate.showActivityIndicator()
+            delay(0.001){
                 if(self.users.count>0){
+                    
                     for j in 0..<self.users.count {
-                        //                print("\(users.count)")
+                        print("users.count : \(self.users.count)")
                         let ts = self.users[j].timelines
-                        
+                        print("users.count : \(self.users.count)")
                         if (ts.count>0) {
                             for i in 0..<ts.count {
                                 //                    print("\(ts.count)")
@@ -60,13 +62,13 @@ class CommonTimelineTableViewController: UITableViewController {
                                     self.lblFeed.removeFromSuperview()
                                 }
                                 self.users[j].timelines[i].reloadMoments {
-                                    main{
+                                    //main{
                                         if let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: j, inSection: i)) as? ModernTimelineTableViewCell {
                                             if self.users[j].timelines.count > 0 {
                                             cell.timeline = self.users[j].timelines[i]
                                             }
                                         }
-                                    }
+                                    //}
                                 }
                             }
                         }else{
@@ -74,9 +76,10 @@ class CommonTimelineTableViewController: UITableViewController {
                         }
                     }
                 }
-                main {
+                //main {
                     self.tableView.reloadData()
-                }
+                    //appDelegate.hideActivityIndicator()
+                //}
             }
             
         }
@@ -110,7 +113,7 @@ class CommonTimelineTableViewController: UITableViewController {
         navigationController?.delegate = self
         
         //self.refreshControl?.addTarget(self, action: "refreshTableView", forControlEvents: UIControlEvents.ValueChanged) removed 6may
-        self.refreshTableView()
+        //self.refreshTableView()
         
         NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "status")
     }
@@ -122,6 +125,8 @@ class CommonTimelineTableViewController: UITableViewController {
         
         
 //        if (self.users[indexPath.section].timelines[indexPath.row].isOwn) != nil{
+        if(self.users[indexPath.section].timelines.count>0){
+        //if(self.users.count>0){
         
             if(self.users[indexPath.section].timelines[indexPath.row].isOwn){
                 
@@ -139,11 +144,14 @@ class CommonTimelineTableViewController: UITableViewController {
                 }
                 
             }
-            
+        }else{
+            return 435
+        }
+        
 //        }else{
 //            return 435
 //        }
-        
+        //return 455
         
     }
     
@@ -162,9 +170,9 @@ class CommonTimelineTableViewController: UITableViewController {
         
         
         // Configure the cell...
-        main{
+        //main{
             cell.timelineView.timeline = self.users[indexPath.section].timelines[indexPath.row]
-        }
+        //}
         //cell.deletionCallback = self.deletionCallback()
         
         return cell
@@ -237,16 +245,16 @@ extension CommonTimelineTableViewController: Hooking, TimelineMoreButtonBehavior
     var hookingSetUps: [() -> AnyObject?] {
         return [setUpTimelineMoreButtonBehavior, setUpPushableBehavior, setUpActiveControllerBehavior]
     }
-    override func reloadData() {
-        main {
-            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(CommonTimelineTableViewController.update2), userInfo: nil, repeats: false)
-            
-        }
-    }
-    func update2(){
-        //self.refreshTableView() removed 6may
-        self.tableView.reloadData()
-    }
+//    override func reloadData() {
+//        main {
+//            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(CommonTimelineTableViewController.update2), userInfo: nil, repeats: false)
+//            
+//        }
+//    }
+//    func update2(){
+//        //self.refreshTableView() removed 6may
+//        self.tableView.reloadData()
+//    }
     
     
     override func viewWillAppear(animated: Bool) {

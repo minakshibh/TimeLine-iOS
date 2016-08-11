@@ -17,6 +17,7 @@ import Alamofire
 
 class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBSDKAppInviteDialogDelegate ,ABPeoplePickerNavigationControllerDelegate, MFMessageComposeViewControllerDelegate,UISearchResultsUpdating{
     
+    var networkHelper : NetworkHelper!
     var searchTag:String = "@"
     var searching: Bool = false
     var picker:ABPeoplePickerNavigationController!
@@ -38,6 +39,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     var resultSearchController = UISearchController()
     var searchStatus:Bool = false
     
+    
     var searchResults: [AnyObject] = [] {
         didSet {
             searching = false
@@ -49,8 +51,8 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     
        override func viewDidLoad() {
         super.viewDidLoad()
-
-        serialHook.perform(key: .ForceReloadData, argument: ())
+        
+        //serialHook.perform(key: .ForceReloadData, argument: ())
         
 //        self.hidesBottomBarWhenPushed = true
         tableView.registerNib(UINib(nibName: "UserSummaryTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
@@ -67,9 +69,9 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
 
 
         
-        let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to Record"), style: .Plain, target: self, action: "goToRecordScreen")
+        let right: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to Record"), style: .Plain, target: self, action: #selector(TrendingTimelineTableViewController.goToRecordScreen))
 //        (title: "Save", style: .Plain, target: self, action: "SaveImage")
-        let Add: UIBarButtonItem = UIBarButtonItem(title: "Invite", style: .Plain, target: self, action: "btnInvite")
+        let Add: UIBarButtonItem = UIBarButtonItem(title: "Invite", style: .Plain, target: self, action: #selector(TrendingTimelineTableViewController.btnInvite))
 //        (barButtonSystemItem: .Add, target: self, action: "AddComment:")
         let left: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "Back to previous screen"), style: .Plain, target: self, action: "goToRecordScreen")
     
@@ -177,7 +179,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        self.APIHit()
         
         if(IPHONE6==1 || IPHONE5==1){
             if(self.navigationController!.navigationBar.frame.origin.y == 20.0){
@@ -264,7 +266,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             KGModal.sharedInstance().hideAnimated(true)
             
             let controller = MFMessageComposeViewController()
-            controller.body = "This is testing for send invites to single and multiple users."
+            controller.body = "Checkout this cool app! Timeline - Capture life's every moment and share."
             controller.recipients = recipients
             controller.messageComposeDelegate = self
             self.presentViewController(controller, animated: true, completion: nil)
@@ -277,7 +279,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
     }
     
     
-    override func refreshTableView() {
+     func APIHit() {
         var first = true
         Timeline.getTimelines(.TimelineTrending) { tls in
             if !first {
@@ -657,7 +659,7 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
             {
                 inviteButton.backgroundColor = UIColor.whiteColor()
             }
-            inviteButton.addTarget(self, action: "inviteButton:", forControlEvents: UIControlEvents.TouchUpInside)
+            inviteButton.addTarget(self, action: #selector(TrendingTimelineTableViewController.inviteButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             inviteButton.titleLabel!.font = UIFont.boldSystemFontOfSize(17)
             cell.addSubview(inviteButton)
             
@@ -789,12 +791,15 @@ class TrendingTimelineTableViewController: FlatTimelineTableViewController , FBS
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    
 }
+
 
 extension TrendingTimelineTableViewController: UISearchDisplayDelegate {
     
     func searchDisplayControllerDidEndSearch(controller: UISearchDisplayController) {
+        cleanUpHooking()
         if let searchBar = searchDisplayController?.searchBar {
             tableView.insertSubview(searchBar, aboveSubview: tableView)
         }
@@ -855,6 +860,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
         
         searchStatus = false
         Storage.performRequest(ApiRequest.Search(text), completion: { (json) -> Void in
+            print(json)
             var results = [AnyObject]()
             for r in json["result"] as? [[String: AnyObject]] ?? [] {
                 if let _ = r["email"] as? String {
@@ -869,6 +875,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
                 }
                 if let parentID = r["user_id"] as? UUID {
                     let timeline = Timeline(dict: r, parent: nil)
+                    print(timeline.name)
                     if let uuid = timeline.state.uuid,
                         let existing = Storage.findTimeline(uuid)
                     {
@@ -877,6 +884,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
                         if let parentID = r["user_id"] as? UUID,
                             let parent = Storage.findUser(parentID)
                         {
+                            
                             parent.timelines.append(timeline)
                             results.append(timeline)
                         } else {
@@ -897,6 +905,7 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
             }
             main {
                  delay(0.001) {
+
                 self.searchResults = results
                 }
             }
@@ -953,18 +962,20 @@ extension TrendingTimelineTableViewController: UISearchBarDelegate {
 //        self.dismissViewControllerAnimated(true, completion: nil)
     }
     override func viewDidDisappear(animated: Bool) {
-        if #available(iOS 9.0, *) {
-            Manager.sharedInstance.session.getAllTasksWithCompletionHandler { (tasks) -> Void in
-                tasks.forEach({ $0.cancel() })
-            }
-        } else {
-            // Fallback on earlier versions
-            Manager.sharedInstance.session.getTasksWithCompletionHandler({
-                $0.0.forEach({ $0.cancel() })
-                $0.1.forEach({ $0.cancel() })
-                $0.2.forEach({ $0.cancel() })
-            })
-        }
+//        if #available(iOS 9.0, *) {
+//            Manager.sharedInstance.session.getAllTasksWithCompletionHandler { (tasks) -> Void in
+//                tasks.forEach({ $0.cancel() })
+//            }
+//        } else {
+//            // Fallback on earlier versions
+//            Manager.sharedInstance.session.getTasksWithCompletionHandler({
+//                $0.0.forEach({ $0.cancel() })
+//                $0.1.forEach({ $0.cancel() })
+//                $0.2.forEach({ $0.cancel() })
+//            })
+//        }
+        
+        //self.networkHelper.cancelAllRequests()
         super.viewDidDisappear(animated)
     }
 

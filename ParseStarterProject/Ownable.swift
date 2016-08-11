@@ -25,6 +25,7 @@ extension OwnableTrait where Self.ParentType: Ownable {
 
 extension User: Ownable {
     var isOwn: Bool {
+        //print("selfUuid: \(uuid)  &  Current user uuid: \(Storage.session.currentUser?.uuid)")
         if let selfUuid = uuid, currentUuid = Storage.session.currentUser?.uuid where selfUuid == currentUuid {
             return true
         } else {

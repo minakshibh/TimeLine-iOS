@@ -25,9 +25,19 @@ extension websiteButtonClick where TargetBehaviorType: Ownable {
     func refreshwebsiteButtonClick() {
 
         if let behaviorTarget = behaviorTarget {
+           
+            let attributedTextBio: NSMutableAttributedString = NSMutableAttributedString(string: "Website: \(behaviorTarget.website)")
+            attributedTextBio.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18) , NSForegroundColorAttributeName : UIColor.blackColor()], range: NSRange(location: 0, length: 8))
+            btnWebsite.titleLabel?.textColor = UIColor.blackColor()
+            btnWebsite.titleLabel?.font = UIFont.systemFontOfSize(16)
+            btnWebsite.setAttributedTitle(attributedTextBio, forState: .Normal)
 
         } else {
-           
+            let attributedTextBio: NSMutableAttributedString = NSMutableAttributedString(string: "Website: ")
+            attributedTextBio.addAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(18) , NSForegroundColorAttributeName : UIColor.blackColor()], range: NSRange(location: 0, length: 8))
+            btnWebsite.titleLabel?.textColor = UIColor.blackColor()
+            btnWebsite.titleLabel?.font = UIFont.systemFontOfSize(16)
+            btnWebsite.setAttributedTitle(attributedTextBio, forState: .Normal)
         }
         
 //        btnWebsite.setTitle(behaviorTarget?.website, forState: .Normal)
